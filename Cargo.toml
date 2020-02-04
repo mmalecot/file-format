@@ -1,0 +1,10 @@
+[package]
+name = "file-format"
+version = "0.1.0"
+authors = ["mmalecot <mickael.malecot@gmail.com>"]
+edition = "2018"
+description = "File format library for Rust"
+license = "MIT/Apache-2.0"
+keywords = ["file-format", "file-type", "magic-number", "magic", "media-type", "mime", "file"]
+homepage = "https://github.com/mmalecot/file-format"
+repository = "https://github.com/mmalecot/file-format"

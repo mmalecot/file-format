@@ -1,0 +1,32 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        build: [ubuntu, macos, windows]
+        include:
+          - build: ubuntu
+            os: ubuntu-latest
+          - build: macos
+            os: macos-latest
+          - build: windows
+            os: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Check warnings
+        run: cargo clippy -- -D warnings
+      - name: Run tests
+        run: cargo test --verbose
+
+  format:
+    name: Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Check format
+        run: cargo fmt -- --check
