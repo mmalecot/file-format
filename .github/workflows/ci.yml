@@ -12,12 +12,19 @@ jobs:
         include:
           - build: ubuntu
             os: ubuntu-latest
+            toolchain: stable
           - build: macos
             os: macos-latest
+            toolchain: stable
           - build: windows
             os: windows-latest
+            toolchain: stable
     steps:
       - uses: actions/checkout@v1
+      - name: Install Rust (rustup)
+        run: |
+          rustup update ${{ matrix.toolchain }}
+          rustup default ${{ matrix.toolchain }}
       - name: Check warnings
         run: cargo clippy -- -D warnings
       - name: Run tests
