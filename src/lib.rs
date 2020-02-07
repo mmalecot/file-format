@@ -207,7 +207,9 @@ impl FileFormat {
 
     /// Determines file format from an extension.
     ///
-    /// # Example
+    /// # Examples
+    ///
+    /// ## From jpeg extension
     ///
     /// ```rust
     /// use file_format::{FileFormat, Kind};
@@ -216,6 +218,26 @@ impl FileFormat {
     /// assert_eq!(format.kind(), Kind::Image);
     /// assert_eq!(format.media_type(), "image/jpeg");
     /// assert_eq!(format.preferred_extension(), Some("jpg"));
+    ///```
+    ///
+    /// ## From txt extension
+    ///
+    /// ```rust
+    /// use file_format::{FileFormat, Kind};
+    ///
+    /// let format = FileFormat::from_extension("txt").unwrap();
+    /// assert_eq!(format.kind(), Kind::Text);
+    /// assert_eq!(format.media_type(), "text/plain");
+    /// assert_eq!(format.preferred_extension(), Some("txt"));
+    ///```
+    ///
+    /// ## Unknown extension
+    ///
+    /// ```rust
+    /// use file_format::{FileFormat, Kind};
+    ///
+    /// let format = FileFormat::from_extension("foobar");
+    /// assert_eq!(format, None);
     ///```
     pub fn from_extension(extension: &str) -> Option<FileFormat> {
         FileFormat::from_extension_impl(extension)
