@@ -40,14 +40,14 @@ macro_rules! file_formats {
     {
         $($kind:expr, $media_type:literal,
             [$($extension:literal),+],
-            [$($start:literal..=$end:literal == $bytes:literal),+]
+            [$([$($start:literal..=$end:literal == $bytes:literal),+]),+]
         ),*
     } => {
         impl FileFormat {
             #[inline]
             fn from_bytes_impl(bytes: &[u8]) -> FileFormat {
                 $(
-                    if $(bytes.len() > $end && &bytes[$start..=$end] == $bytes) && * {
+                    if $($(bytes.len() > $end && &bytes[$start..=$end] == $bytes) && *) || * {
                         return file_format!($kind, $media_type, $($extension),*);
                     }
                 )*
@@ -129,19 +129,20 @@ pub struct FileFormat {
 }
 
 file_formats! {
-    Kind::Image, "image/bmp", ["bmp", "dlib"], [ 0..=1 == b"BM" ],
-    Kind::Image, "image/bpg", ["bpg"], [ 0..=3 == b"\x42\x50\x47\xFB" ],
-    Kind::Image, "image/flif", ["flif"], [ 0..=3 == b"FLIF" ],
-    Kind::Image, "image/gif", ["gif"], [ 0..=2 == b"GIF" ],
-    Kind::Image, "image/heic", ["heic"], [ 4..=7 == b"ftyp", 8..=11 == b"heic" ],
-    Kind::Image, "image/x-icon", ["ico"], [ 0..=3 == b"\x00\x00\x01\x00" ],
-    Kind::Image, "image/jp2", ["jp2"], [ 16..=19 == b"ftyp", 20..=22 == b"jp2" ],
-    Kind::Image, "image/jpeg", ["jpg", "jpeg"], [ 0..=2 == b"\xFF\xD8\xFF" ],
-    Kind::Image, "image/jxr", ["jxr", "hdp", "wdp"], [ 0..=2 == b"\x49\x49\xBC" ],
-    Kind::Image, "image/png", ["png"], [ 0..=7 == b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A" ],
-    Kind::Image, "image/vnd.adobe.photoshop", ["psd"], [ 0..=3 == b"8BPS" ],
-    Kind::Image, "image/tiff", ["tiff", "tif"], [ 0..=3 == b"\x49\x49\x2A\x00" ],
-    Kind::Image, "image/webp", ["webp"], [ 8..=11 == b"WEBP" ]
+    Kind::Image, "image/bmp", ["bmp", "dlib"], [[ 0..=1 == b"BM" ]],
+    Kind::Image, "image/bpg", ["bpg"], [[ 0..=3 == b"\x42\x50\x47\xFB" ]],
+    Kind::Image, "image/flif", ["flif"], [[ 0..=3 == b"FLIF" ]],
+    Kind::Image, "image/gif", ["gif"], [[ 0..=2 == b"GIF" ]],
+    Kind::Image, "image/heic", ["heic"], [[ 4..=7 == b"ftyp", 8..=11 == b"heic" ],
+                                          [ 4..=7 == b"ftyp", 8..=11 == b"heix" ]],
+    Kind::Image, "image/x-icon", ["ico"], [[ 0..=3 == b"\x00\x00\x01\x00" ]],
+    Kind::Image, "image/jp2", ["jp2"], [[ 16..=19 == b"ftyp", 20..=22 == b"jp2" ]],
+    Kind::Image, "image/jpeg", ["jpg", "jpeg"], [[ 0..=2 == b"\xFF\xD8\xFF" ]],
+    Kind::Image, "image/jxr", ["jxr", "hdp", "wdp"], [[ 0..=2 == b"\x49\x49\xBC" ]],
+    Kind::Image, "image/png", ["png"], [[ 0..=7 == b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A" ]],
+    Kind::Image, "image/vnd.adobe.photoshop", ["psd"], [[ 0..=3 == b"8BPS" ]],
+    Kind::Image, "image/tiff", ["tiff", "tif"], [[ 0..=3 == b"\x49\x49\x2A\x00" ]],
+    Kind::Image, "image/webp", ["webp"], [[ 8..=11 == b"WEBP" ]]
 }
 
 impl FileFormat {
