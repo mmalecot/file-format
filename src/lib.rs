@@ -25,14 +25,7 @@ use std::{fs, io::Error, path::Path, str};
 
 /// Creates a file format.
 macro_rules! file_format {
-    ($kind:expr, $media_type:literal) => {
-        FileFormat {
-            kind: $kind,
-            media_type: String::from($media_type),
-            extensions: vec![],
-        }
-    };
-    ($kind:expr, $media_type:literal, $($extension:literal),*) => {
+    ($kind:expr, $media_type:literal, $($extension:literal),+) => {
         FileFormat {
             kind: $kind,
             media_type: String::from($media_type),
