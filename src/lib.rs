@@ -64,6 +64,8 @@ macro_rules! file_formats {
                     $(
                         $($extension) | * => Some(file_format!($kind, $media_type, $($extension),*)),
                     )*
+                    "txt" => Some(file_format!(Kind::Text, "text/plain", "txt")),
+                    "bin" => Some(file_format!(Kind::Application, "application/octet-stream", "bin")),
                     _ => None,
                 }
             }
@@ -74,6 +76,8 @@ macro_rules! file_formats {
                     $(
                         $media_type => Some(file_format!($kind, $media_type, $($extension),*)),
                     )*
+                    "text/plain" => Some(file_format!(Kind::Text, "text/plain", "txt")),
+                    "application/octet-stream" => Some(file_format!(Kind::Application, "application/octet-stream", "bin")),
                     _ => None,
                 }
             }
