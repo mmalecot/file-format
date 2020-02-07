@@ -5,6 +5,10 @@
 //! | Name                              | Media type                | Extensions    |
 //! |-----------------------------------|---------------------------|---------------|
 //! | Binary                            | application/octet-stream  | bin           |
+//! | OpenType                          | font/otf                  | otf           |
+//! | TrueType                          | font/ttf                  | ttf           |
+//! | Web Open Font Format              | font/woff                 | woff          |
+//! | Web Open Font Format 2            | font/woff2                | woff2         |
 //! | Microsoft Windows bitmap          | image/bmp                 | bmp, dlib     |
 //! | Better Portable Graphics          | image/bpg                 | bpg           |
 //! | Free Lossless Image Format        | image/flif                | flif          |
@@ -137,6 +141,10 @@ pub struct FileFormat {
 }
 
 file_formats! {
+    Kind::Font, "font/otf", ["otf"], [[ 0..=4 == b"\x4F\x54\x54\x4F\x00" ]],
+    Kind::Font, "font/ttf", ["ttf"], [[ 0..=4 == b"\x00\x01\x00\x00\x00" ]],
+    Kind::Font, "font/woff", ["woff"], [[ 0..=3 == b"wOFF" ]],
+    Kind::Font, "font/woff2", ["woff2"], [[ 0..=3 == b"wOF2" ]],
     Kind::Image, "image/bmp", ["bmp", "dlib"], [[ 0..=1 == b"BM" ]],
     Kind::Image, "image/bpg", ["bpg"], [[ 0..=3 == b"\x42\x50\x47\xFB" ]],
     Kind::Image, "image/flif", ["flif"], [[ 0..=3 == b"FLIF" ]],

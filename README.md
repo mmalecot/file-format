@@ -68,6 +68,10 @@ assert_eq!(format.preferred_extension(), Some("tiff"));
 | Name                              | Media type                | Extensions    |
 |-----------------------------------|---------------------------|---------------|
 | Binary                            | application/octet-stream  | bin           |
+| OpenType                          | font/otf                  | otf           |
+| TrueType                          | font/ttf                  | ttf           |
+| Web Open Font Format              | font/woff                 | woff          |
+| Web Open Font Format 2            | font/woff2                | woff2         |
 | Microsoft Windows bitmap          | image/bmp                 | bmp, dlib     |
 | Better Portable Graphics          | image/bpg                 | bpg           |
 | Free Lossless Image Format        | image/flif                | flif          |
