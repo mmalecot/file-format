@@ -45,18 +45,10 @@ macro_rules! file_format {
 /// for `FileFormat` struct with a declaration of file formats and the way to detect them.
 macro_rules! file_formats {
     {
-        $({
-            kind = $kind:expr,
-            media_type = $media_type:literal,
-            extensions = [$($extension:literal),*],
-            patterns = [
-                $({
-                    start = $start:literal,
-                    end = $end:literal,
-                    bytes = $bytes:literal
-                }),+
-            ]
-        }),*
+        $($kind:expr, $media_type:literal,
+            [$($extension:literal),*],
+            [$($start:literal..=$end:literal == $bytes:literal),+]
+        ),*
     } => {
         impl FileFormat {
             #[inline]
@@ -140,172 +132,19 @@ pub struct FileFormat {
 }
 
 file_formats! {
-    {
-        kind = Kind::Image,
-        media_type = "image/bmp",
-        extensions = ["bmp", "dlib"],
-        patterns = [
-            {
-                start = 0,
-                end = 1,
-                bytes = b"BM"
-            }
-        ]
-    },
-    {
-        kind = Kind::Image,
-        media_type = "image/bpg",
-        extensions = ["bpg"],
-        patterns = [
-            {
-                start = 0,
-                end = 3,
-                bytes = b"\x42\x50\x47\xFB"
-            }
-        ]
-    },
-    {
-        kind = Kind::Image,
-        media_type = "image/flif",
-        extensions = ["flif"],
-        patterns = [
-            {
-                start = 0,
-                end = 3,
-                bytes = b"FLIF"
-            }
-        ]
-    },
-    {
-        kind = Kind::Image,
-        media_type = "image/gif",
-        extensions = ["gif"],
-        patterns = [
-            {
-                start = 0,
-                end = 2,
-                bytes = b"GIF"
-            }
-        ]
-    },
-    {
-        kind = Kind::Image,
-        media_type = "image/heic",
-        extensions = ["heic"],
-        patterns = [
-            {
-                start = 4,
-                end = 7,
-                bytes = b"ftyp"
-            },
-            {
-                start = 8,
-                end = 11,
-                bytes = b"heic"
-            }
-        ]
-    },
-    {
-        kind = Kind::Image,
-        media_type = "image/x-icon",
-        extensions = ["ico"],
-        patterns = [
-            {
-                start = 0,
-                end = 3,
-                bytes =  b"\x00\x00\x01\x00"
-            }
-        ]
-    },
-    {
-        kind = Kind::Image,
-        media_type = "image/jp2",
-        extensions = ["jp2"],
-        patterns = [
-            {
-                start = 16,
-                end = 19,
-                bytes = b"ftyp"
-            },
-            {
-                start = 20,
-                end = 22,
-                bytes = b"jp2"
-            }
-        ]
-    },
-    {
-        kind = Kind::Image,
-        media_type = "image/jpeg",
-        extensions = ["jpg", "jpeg"],
-        patterns = [
-            {
-                start = 0,
-                end = 2,
-                bytes = b"\xFF\xD8\xFF"
-            }
-        ]
-    },
-    {
-        kind = Kind::Image,
-        media_type = "image/jxr",
-        extensions = ["jxr", "hdp", "wdp"],
-        patterns = [
-            {
-                start = 0,
-                end = 2,
-                bytes = b"\x49\x49\xBC"
-            }
-        ]
-    },
-    {
-        kind = Kind::Image,
-        media_type = "image/png",
-        extensions = ["png"],
-        patterns = [
-            {
-                start = 0,
-                end = 7,
-                bytes = b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"
-            }
-        ]
-    },
-    {
-        kind = Kind::Image,
-        media_type = "image/vnd.adobe.photoshop",
-        extensions = ["psd"],
-        patterns = [
-            {
-                start = 0,
-                end = 3,
-                bytes = b"8BPS"
-            }
-        ]
-    },
-    {
-        kind = Kind::Image,
-        media_type = "image/tiff",
-        extensions = ["tiff", "tif"],
-        patterns = [
-            {
-                start = 0,
-                end = 3,
-                bytes = b"\x49\x49\x2A\x00"
-            }
-        ]
-    },
-    {
-        kind = Kind::Image,
-        media_type = "image/webp",
-        extensions = ["webp"],
-        patterns = [
-            {
-                start = 8,
-                end = 11,
-                bytes = b"WEBP"
-            }
-        ]
-    }
+    Kind::Image, "image/bmp", ["bmp", "dlib"], [ 0..=1 == b"BM" ],
+    Kind::Image, "image/bpg", ["bpg"], [ 0..=3 == b"\x42\x50\x47\xFB" ],
+    Kind::Image, "image/flif", ["flif"], [ 0..=3 == b"FLIF" ],
+    Kind::Image, "image/gif", ["gif"], [ 0..=2 == b"GIF" ],
+    Kind::Image, "image/heic", ["heic"], [ 4..=7 == b"ftyp", 8..=11 == b"heic" ],
+    Kind::Image, "image/x-icon", ["ico"], [ 0..=3 == b"\x00\x00\x01\x00" ],
+    Kind::Image, "image/jp2", ["jp2"], [ 16..=19 == b"ftyp", 20..=22 == b"jp2" ],
+    Kind::Image, "image/jpeg", ["jpg", "jpeg"], [ 0..=2 == b"\xFF\xD8\xFF" ],
+    Kind::Image, "image/jxr", ["jxr", "hdp", "wdp"], [ 0..=2 == b"\x49\x49\xBC" ],
+    Kind::Image, "image/png", ["png"], [ 0..=7 == b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A" ],
+    Kind::Image, "image/vnd.adobe.photoshop", ["psd"], [ 0..=3 == b"8BPS" ],
+    Kind::Image, "image/tiff", ["tiff", "tif"], [ 0..=3 == b"\x49\x49\x2A\x00" ],
+    Kind::Image, "image/webp", ["webp"], [ 8..=11 == b"WEBP" ]
 }
 
 impl FileFormat {
