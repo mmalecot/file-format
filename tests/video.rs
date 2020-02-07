@@ -1,6 +1,14 @@
 use file_format::{FileFormat, Kind};
 
 #[test]
+fn test_3gp() {
+    let format = FileFormat::from_file("fixtures/video/sample.3gp").unwrap();
+    assert_eq!(format.kind(), Kind::Video);
+    assert_eq!(format.media_type(), "video/3gpp");
+    assert_eq!(format.preferred_extension(), Some("3gp"));
+}
+
+#[test]
 fn test_avi() {
     let format = FileFormat::from_file("fixtures/video/sample.avi").unwrap();
     assert_eq!(format.kind(), Kind::Video);
@@ -14,6 +22,14 @@ fn test_flv() {
     assert_eq!(format.kind(), Kind::Video);
     assert_eq!(format.media_type(), "video/x-flv");
     assert_eq!(format.preferred_extension(), Some("flv"));
+}
+
+#[test]
+fn test_m4v() {
+    let format = FileFormat::from_file("fixtures/video/sample.m4v").unwrap();
+    assert_eq!(format.kind(), Kind::Video);
+    assert_eq!(format.media_type(), "video/x-m4v");
+    assert_eq!(format.preferred_extension(), Some("m4v"));
 }
 
 #[test]
@@ -38,6 +54,14 @@ fn test_mp4() {
     assert_eq!(format.kind(), Kind::Video);
     assert_eq!(format.media_type(), "video/mp4");
     assert_eq!(format.preferred_extension(), Some("mp4"));
+}
+
+#[test]
+fn test_mpeg() {
+    let format = FileFormat::from_file("fixtures/video/sample.mpg").unwrap();
+    assert_eq!(format.kind(), Kind::Video);
+    assert_eq!(format.media_type(), "video/mpeg");
+    assert_eq!(format.preferred_extension(), Some("mpg"));
 }
 
 #[test]

@@ -22,10 +22,13 @@
 //! | Adobe Photoshop bitmap            | image/vnd.adobe.photoshop | psd           |
 //! | Tagged Image File Format          | image/tiff                | tiff, tif     |
 //! | Weppy image format                | image/webp                | webp          |
+//! | 3GPP                              | video/3gpp                | 3gp           |
 //! | Audio Video Interleave            | video/avi                 | avi           |
 //! | Flash Video                       | video/x-flv               | flv           |
+//! | M4V                               | video/x-m4v               | m4v           |
 //! | Matroska Multimedia Container     | video/x-matroska          | mkv           |
 //! | QuickTime File Format             | video/quicktime           | mov, qt       |
+//! | MPEG                              | video/mpeg                | mpg           |
 //! | MPEG-4 Part 14                    | video/mp4                 | mp4           |
 //! | Ogg                               | video/ogv                 | ogv           |
 //! | Weppy video format                | video/webp                | webp          |
@@ -159,8 +162,10 @@ file_formats! {
     Kind::Image, "image/vnd.adobe.photoshop", ["psd"], [[ 0..=3 == b"8BPS" ]],
     Kind::Image, "image/tiff", ["tiff", "tif"], [[ 0..=3 == b"\x49\x49\x2A\x00" ]],
     Kind::Image, "image/webp", ["webp"], [[ 8..=11 == b"WEBP" ]],
+    Kind::Video, "video/3gpp", ["3gp"], [[ 4..=7 == b"ftyp", 8..=10 == b"3gp" ]],
     Kind::Video, "video/avi", ["avi"], [[ 0..=3 == b"\x52\x49\x46\x46", 8..=10 == b"\x41\x56\x49" ]],
     Kind::Video, "video/x-flv", ["flv"], [[ 0..=3 == b"\x46\x4C\x56\x01" ]],
+    Kind::Video, "video/x-m4v", ["m4v"], [[ 4..=7 == b"ftyp", 8..=10 == b"M4V" ]],
     Kind::Video, "video/x-matroska", ["mkv"], [[ 0..=3 == b"\x1A\x45\xDF\xA3", 24..=31 == b"matroska" ]],
     Kind::Video, "video/quicktime", ["mov", "qt"], [[ 0..=3 == b"\x00\x00\x00\x14", 4..=7 == b"ftyp", 8..=9 == b"qt" ]],
     Kind::Video, "video/mp4", ["mp4"], [[ 4..=7 == b"ftyp", 8..=11 == b"avc1" ],
@@ -189,6 +194,8 @@ file_formats! {
                                         [ 4..=7 == b"ftyp", 8..=11 == b"NDXP" ],
                                         [ 4..=7 == b"ftyp", 8..=11 == b"F4V " ],
                                         [ 4..=7 == b"ftyp", 8..=11 == b"F4P " ]],
+    Kind::Video, "video/mpeg", ["mpg"], [[ 0..=3 == b"\x00\x00\x01\xBA" ],
+                                         [ 0..=3 == b"\x00\x00\x01\xB3" ]],
     Kind::Video, "video/ogg", ["ogv"], [[ 0..=3 == b"OggS", 29..=34 == b"theora" ]],
     Kind::Video, "video/webm", ["webm"], [[ 0..=3 == b"\x1A\x45\xDF\xA3", 24..=27 == b"webm" ]],
     Kind::Video, "video/x-ms-asf", ["wmv", "wm"], [[ 0..=9 == b"\x30\x26\xB2\x75\x8E\x66\xCF\x11\xA6\xD9" ]]

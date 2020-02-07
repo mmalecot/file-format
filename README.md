@@ -85,11 +85,14 @@ assert_eq!(format.preferred_extension(), Some("tiff"));
 | Adobe Photoshop bitmap            | image/vnd.adobe.photoshop | psd           |
 | Tagged Image File Format          | image/tiff                | tiff, tif     |
 | Weppy image format                | image/webp                | webp          |
+| 3GPP                              | video/3gpp                | 3gp           |
 | Audio Video Interleave            | video/avi                 | avi           |
 | Flash Video                       | video/x-flv               | flv           |
+| M4V                               | video/x-m4v               | m4v           |
 | Matroska Multimedia Container     | video/x-matroska          | mkv           |
 | QuickTime File Format             | video/quicktime           | mov, qt       |
 | MPEG-4 Part 14                    | video/mp4                 | mp4           |
+| MPEG                              | video/mpeg                | mpg           |
 | Ogg                               | video/ogv                 | ogv           |
 | Weppy video format                | video/webp                | webp          |
 | Windows Media Video               | x-ms-asf                  | wmv, wm       |
