@@ -39,7 +39,7 @@ macro_rules! file_format {
 macro_rules! file_formats {
     {
         $($kind:expr, $media_type:literal,
-            [$($extension:literal),*],
+            [$($extension:literal),+],
             [$($start:literal..=$end:literal == $bytes:literal),+]
         ),*
     } => {
