@@ -18,6 +18,14 @@
 //! | Adobe Photoshop bitmap            | image/vnd.adobe.photoshop | psd           |
 //! | Tagged Image File Format          | image/tiff                | tiff, tif     |
 //! | Weppy image format                | image/webp                | webp          |
+//! | Audio Video Interleave            | video/avi                 | avi           |
+//! | Flash Video                       | video/x-flv               | flv           |
+//! | Matroska Multimedia Container     | video/x-matroska          | mkv           |
+//! | QuickTime File Format             | video/quicktime           | mov, qt       |
+//! | MPEG-4 Part 14                    | video/mp4                 | mp4           |
+//! | Ogg                               | video/ogv                 | ogv           |
+//! | Weppy video format                | video/webp                | webp          |
+//! | Windows Media Video               | x-ms-asf                  | wmv, wm       |
 //! | UTF-8 text                        | text/plain                | txt           |
 //!
 
@@ -142,7 +150,40 @@ file_formats! {
     Kind::Image, "image/png", ["png"], [[ 0..=7 == b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A" ]],
     Kind::Image, "image/vnd.adobe.photoshop", ["psd"], [[ 0..=3 == b"8BPS" ]],
     Kind::Image, "image/tiff", ["tiff", "tif"], [[ 0..=3 == b"\x49\x49\x2A\x00" ]],
-    Kind::Image, "image/webp", ["webp"], [[ 8..=11 == b"WEBP" ]]
+    Kind::Image, "image/webp", ["webp"], [[ 8..=11 == b"WEBP" ]],
+    Kind::Video, "video/avi", ["avi"], [[ 0..=3 == b"\x52\x49\x46\x46", 8..=10 == b"\x41\x56\x49" ]],
+    Kind::Video, "video/x-flv", ["flv"], [[ 0..=3 == b"\x46\x4C\x56\x01" ]],
+    Kind::Video, "video/x-matroska", ["mkv"], [[ 0..=3 == b"\x1A\x45\xDF\xA3", 24..=31 == b"matroska" ]],
+    Kind::Video, "video/quicktime", ["mov", "qt"], [[ 0..=3 == b"\x00\x00\x00\x14", 4..=7 == b"ftyp", 8..=9 == b"qt" ]],
+    Kind::Video, "video/mp4", ["mp4"], [[ 4..=7 == b"ftyp", 8..=11 == b"avc1" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"dash" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"iso2" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"iso3" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"iso4" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"iso5" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"iso6" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"isom" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"mmp4" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"mp41" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"mp42" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"mp4v" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"mp71" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"MSNV" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"NDAS" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"NDSC" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"NDSH" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"NDSM" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"NDSP" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"NDSS" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"NDXC" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"NDXH" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"NDXM" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"NDXP" ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"F4V " ],
+                                        [ 4..=7 == b"ftyp", 8..=11 == b"F4P " ]],
+    Kind::Video, "video/ogg", ["ogv"], [[ 0..=3 == b"OggS", 29..=34 == b"theora" ]],
+    Kind::Video, "video/webm", ["webm"], [[ 0..=3 == b"\x1A\x45\xDF\xA3", 24..=27 == b"webm" ]],
+    Kind::Video, "video/x-ms-asf", ["wmv", "wm"], [[ 0..=9 == b"\x30\x26\xB2\x75\x8E\x66\xCF\x11\xA6\xD9" ]]
 }
 
 impl FileFormat {
