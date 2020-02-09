@@ -47,40 +47,42 @@ macro_rules! file_format {
             extensions: vec![$(String::from($extension)),*],
         }
     };
+    (text) => {
+        file_format!(Kind::Text, "text/plain", "txt")
+    };
+    (binary) => {
+        file_format!(Kind::Application, "application/octet-stream", "bin")
+    };
 }
 
 /// Generates `from_bytes_impl`, `from_extension_impl` and `from_media_type_impl` functions
 /// for `FileFormat` struct with a declaration of file formats and the way to detect them.
 macro_rules! file_formats {
     {
-        $($kind:expr, $media_type:literal,
-            [$($extension:literal),+],
-            [$([$($start:literal..=$end:literal == $bytes:literal),+]),+]
+        $($kind:expr, $media_type:literal, [$($extension:literal),+],
+            $([$($offset:literal => $bytes:literal),+])||+
         ),*
     } => {
         impl FileFormat {
             #[inline]
             fn from_bytes_impl(bytes: &[u8]) -> FileFormat {
-                $(
-                    if $($(bytes.len() > $end && &bytes[$start..=$end] == $bytes) && *) || * {
-                        return file_format!($kind, $media_type, $($extension),*);
-                    }
-                )*
+                $(if $(($(bytes.len() >= $offset + $bytes.len()
+                    && &bytes[$offset..$offset + $bytes.len()] == $bytes)&&*))||* {
+                    return file_format!($kind, $media_type, $($extension),*);
+                })*
                 if FileFormat::is_utf8_text(bytes) {
-                    file_format!(Kind::Text, "text/plain", "txt")
+                    file_format!(text)
                 } else {
-                    file_format!(Kind::Application, "application/octet-stream", "bin")
+                    file_format!(binary)
                 }
             }
 
             #[inline]
             fn from_extension_impl(extension: &str) -> Option<FileFormat> {
                 match extension {
-                    $(
-                        $($extension) | * => Some(file_format!($kind, $media_type, $($extension),*)),
-                    )*
-                    "txt" => Some(file_format!(Kind::Text, "text/plain", "txt")),
-                    "bin" => Some(file_format!(Kind::Application, "application/octet-stream", "bin")),
+                    $($($extension)|* => Some(file_format!($kind, $media_type, $($extension),*)),)*
+                    "txt" => Some(file_format!(text)),
+                    "bin" => Some(file_format!(binary)),
                     _ => None,
                 }
             }
@@ -88,11 +90,9 @@ macro_rules! file_formats {
             #[inline]
             fn from_media_type_impl(media_type: &str) -> Option<FileFormat> {
                 match media_type {
-                    $(
-                        $media_type => Some(file_format!($kind, $media_type, $($extension),*)),
-                    )*
-                    "text/plain" => Some(file_format!(Kind::Text, "text/plain", "txt")),
-                    "application/octet-stream" => Some(file_format!(Kind::Application, "application/octet-stream", "bin")),
+                    $($media_type => Some(file_format!($kind, $media_type, $($extension),*)),)*
+                    "text/plain" => Some(file_format!(text)),
+                    "application/octet-stream" => Some(file_format!(binary)),
                     _ => None,
                 }
             }
@@ -144,61 +144,61 @@ pub struct FileFormat {
 }
 
 file_formats! {
-    Kind::Font, "font/otf", ["otf"], [[ 0..=4 == b"\x4F\x54\x54\x4F\x00" ]],
-    Kind::Font, "font/ttf", ["ttf"], [[ 0..=4 == b"\x00\x01\x00\x00\x00" ]],
-    Kind::Font, "font/woff", ["woff"], [[ 0..=3 == b"wOFF" ]],
-    Kind::Font, "font/woff2", ["woff2"], [[ 0..=3 == b"wOF2" ]],
-    Kind::Image, "image/bmp", ["bmp", "dlib"], [[ 0..=1 == b"BM" ]],
-    Kind::Image, "image/bpg", ["bpg"], [[ 0..=3 == b"\x42\x50\x47\xFB" ]],
-    Kind::Image, "image/flif", ["flif"], [[ 0..=3 == b"FLIF" ]],
-    Kind::Image, "image/gif", ["gif"], [[ 0..=2 == b"GIF" ]],
-    Kind::Image, "image/heic", ["heic"], [[ 4..=7 == b"ftyp", 8..=11 == b"heic" ],
-                                          [ 4..=7 == b"ftyp", 8..=11 == b"heix" ]],
-    Kind::Image, "image/x-icon", ["ico"], [[ 0..=3 == b"\x00\x00\x01\x00" ]],
-    Kind::Image, "image/jp2", ["jp2"], [[ 16..=19 == b"ftyp", 20..=22 == b"jp2" ]],
-    Kind::Image, "image/jpeg", ["jpg", "jpeg"], [[ 0..=2 == b"\xFF\xD8\xFF" ]],
-    Kind::Image, "image/jxr", ["jxr", "hdp", "wdp"], [[ 0..=2 == b"\x49\x49\xBC" ]],
-    Kind::Image, "image/png", ["png"], [[ 0..=7 == b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A" ]],
-    Kind::Image, "image/vnd.adobe.photoshop", ["psd"], [[ 0..=3 == b"8BPS" ]],
-    Kind::Image, "image/tiff", ["tiff", "tif"], [[ 0..=3 == b"\x49\x49\x2A\x00" ]],
-    Kind::Image, "image/webp", ["webp"], [[ 8..=11 == b"WEBP" ]],
-    Kind::Video, "video/3gpp", ["3gp"], [[ 4..=7 == b"ftyp", 8..=10 == b"3gp" ]],
-    Kind::Video, "video/avi", ["avi"], [[ 0..=3 == b"\x52\x49\x46\x46", 8..=10 == b"\x41\x56\x49" ]],
-    Kind::Video, "video/x-flv", ["flv"], [[ 0..=3 == b"\x46\x4C\x56\x01" ]],
-    Kind::Video, "video/x-m4v", ["m4v"], [[ 4..=7 == b"ftyp", 8..=10 == b"M4V" ]],
-    Kind::Video, "video/x-matroska", ["mkv"], [[ 0..=3 == b"\x1A\x45\xDF\xA3", 24..=31 == b"matroska" ]],
-    Kind::Video, "video/quicktime", ["mov", "qt"], [[ 0..=3 == b"\x00\x00\x00\x14", 4..=7 == b"ftyp", 8..=9 == b"qt" ]],
-    Kind::Video, "video/mp4", ["mp4"], [[ 4..=7 == b"ftyp", 8..=11 == b"avc1" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"dash" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"iso2" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"iso3" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"iso4" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"iso5" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"iso6" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"isom" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"mmp4" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"mp41" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"mp42" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"mp4v" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"mp71" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"MSNV" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"NDAS" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"NDSC" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"NDSH" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"NDSM" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"NDSP" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"NDSS" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"NDXC" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"NDXH" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"NDXM" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"NDXP" ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"F4V " ],
-                                        [ 4..=7 == b"ftyp", 8..=11 == b"F4P " ]],
-    Kind::Video, "video/mpeg", ["mpg"], [[ 0..=3 == b"\x00\x00\x01\xBA" ],
-                                         [ 0..=3 == b"\x00\x00\x01\xB3" ]],
-    Kind::Video, "video/ogg", ["ogv"], [[ 0..=3 == b"OggS", 29..=34 == b"theora" ]],
-    Kind::Video, "video/webm", ["webm"], [[ 0..=3 == b"\x1A\x45\xDF\xA3", 24..=27 == b"webm" ]],
-    Kind::Video, "video/x-ms-asf", ["wmv", "wm"], [[ 0..=9 == b"\x30\x26\xB2\x75\x8E\x66\xCF\x11\xA6\xD9" ]]
+    Kind::Font,  "font/otf",                    ["otf"],               [0 => b"\x4F\x54\x54\x4F\x00"],
+    Kind::Font,  "font/ttf",                    ["ttf"],               [0 => b"\x00\x01\x00\x00\x00"],
+    Kind::Font,  "font/woff",                   ["woff"],              [0 => b"wOFF"],
+    Kind::Font,  "font/woff2",                  ["woff2"],             [0 => b"wOF2"],
+    Kind::Image, "image/bmp",                   ["bmp", "dlib"],       [0 => b"BM"],
+    Kind::Image, "image/bpg",                   ["bpg"],               [0 => b"\x42\x50\x47\xFB"],
+    Kind::Image, "image/flif",                  ["flif"],              [0 => b"FLIF"],
+    Kind::Image, "image/gif",                   ["gif"],               [0 => b"GIF"],
+    Kind::Image, "image/heic",                  ["heic"],              [4 => b"ftyp", 8 => b"heic"] ||
+                                                                       [4 => b"ftyp", 8 => b"heix"],
+    Kind::Image, "image/x-icon",                ["ico"],               [0 => b"\x00\x00\x01\x00"],
+    Kind::Image, "image/jp2",                   ["jp2"],               [16 => b"ftyp", 20 => b"jp2"],
+    Kind::Image, "image/jpeg",                  ["jpg", "jpeg"],       [0 => b"\xFF\xD8\xFF"],
+    Kind::Image, "image/jxr",                   ["jxr", "hdp", "wdp"], [0 => b"\x49\x49\xBC"],
+    Kind::Image, "image/png",                   ["png"],               [0 => b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"],
+    Kind::Image, "image/vnd.adobe.photoshop",   ["psd"],               [0 => b"8BPS"],
+    Kind::Image, "image/tiff",                  ["tiff", "tif"],       [0 => b"\x49\x49\x2A\x00"],
+    Kind::Image, "image/webp",                  ["webp"],              [8 => b"WEBP"],
+    Kind::Video, "video/3gpp",                  ["3gp"],               [4 => b"ftyp", 8 => b"3gp"],
+    Kind::Video, "video/avi",                   ["avi"],               [0 => b"\x52\x49\x46\x46", 8 => b"\x41\x56\x49"],
+    Kind::Video, "video/x-flv",                 ["flv"],               [0 => b"\x46\x4C\x56\x01"],
+    Kind::Video, "video/x-m4v",                 ["m4v"],               [4 => b"ftyp", 8 => b"M4V"],
+    Kind::Video, "video/x-matroska",            ["mkv"],               [0 => b"\x1A\x45\xDF\xA3", 24 => b"matroska"],
+    Kind::Video, "video/quicktime",             ["mov", "qt"],         [0 => b"\x00\x00\x00\x14", 4 => b"ftyp", 8 => b"qt"],
+    Kind::Video, "video/mp4",                   ["mp4"],               [4 => b"ftyp", 8 => b"avc1"] ||
+                                                                       [4 => b"ftyp", 8 => b"dash"] ||
+                                                                       [4 => b"ftyp", 8 => b"iso2"] ||
+                                                                       [4 => b"ftyp", 8 => b"iso3"] ||
+                                                                       [4 => b"ftyp", 8 => b"iso4"] ||
+                                                                       [4 => b"ftyp", 8 => b"iso5"] ||
+                                                                       [4 => b"ftyp", 8 => b"iso6"] ||
+                                                                       [4 => b"ftyp", 8 => b"isom"] ||
+                                                                       [4 => b"ftyp", 8 => b"mmp4"] ||
+                                                                       [4 => b"ftyp", 8 => b"mp41"] ||
+                                                                       [4 => b"ftyp", 8 => b"mp42"] ||
+                                                                       [4 => b"ftyp", 8 => b"mp4v"] ||
+                                                                       [4 => b"ftyp", 8 => b"mp71"] ||
+                                                                       [4 => b"ftyp", 8 => b"MSNV"] ||
+                                                                       [4 => b"ftyp", 8 => b"NDAS"] ||
+                                                                       [4 => b"ftyp", 8 => b"NDSC"] ||
+                                                                       [4 => b"ftyp", 8 => b"NDSH"] ||
+                                                                       [4 => b"ftyp", 8 => b"NDSM"] ||
+                                                                       [4 => b"ftyp", 8 => b"NDSP"] ||
+                                                                       [4 => b"ftyp", 8 => b"NDSS"] ||
+                                                                       [4 => b"ftyp", 8 => b"NDXC"] ||
+                                                                       [4 => b"ftyp", 8 => b"NDXH"] ||
+                                                                       [4 => b"ftyp", 8 => b"NDXM"] ||
+                                                                       [4 => b"ftyp", 8 => b"NDXP"] ||
+                                                                       [4 => b"ftyp", 8 => b"F4V "] ||
+                                                                       [4 => b"ftyp", 8 => b"F4P "],
+    Kind::Video, "video/mpeg",                  ["mpg"],               [0 => b"\x00\x00\x01\xBA"] ||
+                                                                       [0 => b"\x00\x00\x01\xB3"],
+    Kind::Video, "video/ogg",                   ["ogv"],               [0 => b"OggS", 29 => b"theora"],
+    Kind::Video, "video/webm",                  ["webm"],              [0 => b"\x1A\x45\xDF\xA3", 24 => b"webm"],
+    Kind::Video, "video/x-ms-asf",              ["wmv", "wm"],         [0 => b"\x30\x26\xB2\x75\x8E\x66\xCF\x11\xA6\xD9"]
 }
 
 impl FileFormat {
