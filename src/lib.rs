@@ -38,6 +38,19 @@
 
 use std::{fs, io::Error, path::Path, str};
 
+/// Creates a boolean expression from a pattern.
+macro_rules! pattern {
+    ($bytes1:expr, $offset:literal => $bytes2:literal) => {
+        $bytes1.len() >= $offset + $bytes2.len() && &$bytes1[$offset..$offset + $bytes2.len()] == $bytes2
+    };
+    ($bytes1:expr, $(($($inner:tt)*))&&*) => {
+        $(pattern!($bytes1, $($inner)*))&&*
+    };
+    ($bytes1:expr, $(($($inner:tt)*))||*) => {
+        $(pattern!($bytes1, $($inner)*))||*
+    };
+}
+
 /// Creates a file format.
 macro_rules! file_format {
     ($kind:expr, $media_type:literal, $($extension:literal),+) => {
@@ -59,15 +72,12 @@ macro_rules! file_format {
 /// for `FileFormat` struct with a declaration of file formats and the way to detect them.
 macro_rules! file_formats {
     {
-        $($kind:ident, $media_type:literal, $($extension:literal),+,
-            $(($($offset:literal => $bytes:literal)&&+))||+
-        ),*
+        $($kind:ident, $media_type:literal, $($extension:literal),+, ($($patterns:tt)*)),*
     } => {
         impl FileFormat {
             #[inline]
             fn from_bytes_impl(bytes: &[u8]) -> FileFormat {
-                $(if $(($(bytes.len() >= $offset + $bytes.len()
-                    && &bytes[$offset..$offset + $bytes.len()] == $bytes)&&*))||* {
+                $(if pattern!(bytes, $($patterns)*) {
                     return file_format!(Kind::$kind, $media_type, $($extension),*);
                 })*
                 if FileFormat::is_utf8_text(bytes) {
@@ -152,52 +162,51 @@ file_formats! {
     Image, "image/bpg",                 "bpg",               (0 => b"\x42\x50\x47\xFB"),
     Image, "image/flif",                "flif",              (0 => b"FLIF"),
     Image, "image/gif",                 "gif",               (0 => b"GIF"),
-    Image, "image/heic",                "heic",              (4 => b"ftyp" && 8 => b"heic") ||
-                                                             (4 => b"ftyp" && 8 => b"heix"),
+    Image, "image/heic",                "heic",              ((4 => b"ftyp") && ((8 => b"heic") || (8 => b"heix"))),
     Image, "image/x-icon",              "ico",               (0 => b"\x00\x00\x01\x00"),
-    Image, "image/jp2",                 "jp2",               (16 => b"ftyp" && 20 => b"jp2"),
+    Image, "image/jp2",                 "jp2",               ((16 => b"ftyp") && (20 => b"jp2")),
     Image, "image/jpeg",                "jpg", "jpeg",       (0 => b"\xFF\xD8\xFF"),
     Image, "image/jxr",                 "jxr", "hdp", "wdp", (0 => b"\x49\x49\xBC"),
     Image, "image/png",                 "png",               (0 => b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"),
     Image, "image/vnd.adobe.photoshop", "psd",               (0 => b"8BPS"),
     Image, "image/tiff",                "tiff", "tif",       (0 => b"\x49\x49\x2A\x00"),
     Image, "image/webp",                "webp",              (8 => b"WEBP"),
-    Video, "video/3gpp",                "3gp",               (4 => b"ftyp" && 8 => b"3gp"),
-    Video, "video/avi",                 "avi",               (0 => b"\x52\x49\x46\x46" && 8 => b"\x41\x56\x49"),
+    Video, "video/3gpp",                "3gp",               ((4 => b"ftyp") && (8 => b"3gp")),
+    Video, "video/avi",                 "avi",               ((0 => b"\x52\x49\x46\x46") && (8 => b"\x41\x56\x49")),
     Video, "video/x-flv",               "flv",               (0 => b"\x46\x4C\x56\x01"),
-    Video, "video/x-m4v",               "m4v",               (4 => b"ftyp" && 8 => b"M4V"),
-    Video, "video/x-matroska",          "mkv",               (0 => b"\x1A\x45\xDF\xA3" && 24 => b"matroska"),
-    Video, "video/quicktime",           "mov", "qt",         (0 => b"\x00\x00\x00\x14" && 4 => b"ftyp" && 8 => b"qt"),
-    Video, "video/mp4",                 "mp4",               (4 => b"ftyp" && 8 => b"avc1") ||
-                                                             (4 => b"ftyp" && 8 => b"dash") ||
-                                                             (4 => b"ftyp" && 8 => b"iso2") ||
-                                                             (4 => b"ftyp" && 8 => b"iso3") ||
-                                                             (4 => b"ftyp" && 8 => b"iso4") ||
-                                                             (4 => b"ftyp" && 8 => b"iso5") ||
-                                                             (4 => b"ftyp" && 8 => b"iso6") ||
-                                                             (4 => b"ftyp" && 8 => b"isom") ||
-                                                             (4 => b"ftyp" && 8 => b"mmp4") ||
-                                                             (4 => b"ftyp" && 8 => b"mp41") ||
-                                                             (4 => b"ftyp" && 8 => b"mp42") ||
-                                                             (4 => b"ftyp" && 8 => b"mp4v") ||
-                                                             (4 => b"ftyp" && 8 => b"mp71") ||
-                                                             (4 => b"ftyp" && 8 => b"MSNV") ||
-                                                             (4 => b"ftyp" && 8 => b"NDAS") ||
-                                                             (4 => b"ftyp" && 8 => b"NDSC") ||
-                                                             (4 => b"ftyp" && 8 => b"NDSH") ||
-                                                             (4 => b"ftyp" && 8 => b"NDSM") ||
-                                                             (4 => b"ftyp" && 8 => b"NDSP") ||
-                                                             (4 => b"ftyp" && 8 => b"NDSS") ||
-                                                             (4 => b"ftyp" && 8 => b"NDXC") ||
-                                                             (4 => b"ftyp" && 8 => b"NDXH") ||
-                                                             (4 => b"ftyp" && 8 => b"NDXM") ||
-                                                             (4 => b"ftyp" && 8 => b"NDXP") ||
-                                                             (4 => b"ftyp" && 8 => b"F4V ") ||
-                                                             (4 => b"ftyp" && 8 => b"F4P "),
-    Video, "video/mpeg",                "mpg",               (0 => b"\x00\x00\x01\xBA") ||
-                                                             (0 => b"\x00\x00\x01\xB3"),
-    Video, "video/ogg",                 "ogv",               (0 => b"OggS" && 29 => b"theora"),
-    Video, "video/webm",                "webm",              (0 => b"\x1A\x45\xDF\xA3" && 24 => b"webm"),
+    Video, "video/x-m4v",               "m4v",               ((4 => b"ftyp") && (8 => b"M4V")),
+    Video, "video/x-matroska",          "mkv",               ((0 => b"\x1A\x45\xDF\xA3") && (24 => b"matroska")),
+    Video, "video/quicktime",           "mov", "qt",         ((0 => b"\x00\x00\x00\x14") && (4 => b"ftyp") && (8 => b"qt")),
+    Video, "video/mp4",                 "mp4",               ((4 => b"ftyp")
+                                                              && ((8 => b"avc1")
+                                                                  || (8 => b"dash")
+                                                                  || (8 => b"iso2")
+                                                                  || (8 => b"iso3")
+                                                                  || (8 => b"iso4")
+                                                                  || (8 => b"iso5")
+                                                                  || (8 => b"iso6")
+                                                                  || (8 => b"isom")
+                                                                  || (8 => b"mmp4")
+                                                                  || (8 => b"mp41")
+                                                                  || (8 => b"mp42")
+                                                                  || (8 => b"mp4v")
+                                                                  || (8 => b"mp71")
+                                                                  || (8 => b"MSNV")
+                                                                  || (8 => b"NDAS")
+                                                                  || (8 => b"NDSC")
+                                                                  || (8 => b"NDSH")
+                                                                  || (8 => b"NDSM")
+                                                                  || (8 => b"NDSP")
+                                                                  || (8 => b"NDSS")
+                                                                  || (8 => b"NDXC")
+                                                                  || (8 => b"NDXH")
+                                                                  || (8 => b"NDXM")
+                                                                  || (8 => b"NDXP")
+                                                                  || (8 => b"F4V ")
+                                                                  || (8 => b"F4P "))),
+    Video, "video/mpeg",                "mpg",               ((0 => b"\x00\x00\x01\xBA") || (0 => b"\x00\x00\x01\xB3")),
+    Video, "video/ogg",                 "ogv",               ((0 => b"OggS") && (29 => b"theora")),
+    Video, "video/webm",                "webm",              ((0 => b"\x1A\x45\xDF\xA3") && (24 => b"webm")),
     Video, "video/x-ms-asf",            "wmv", "wm",         (0 => b"\x30\x26\xB2\x75\x8E\x66\xCF\x11\xA6\xD9")
 }
 
