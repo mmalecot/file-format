@@ -68,6 +68,14 @@ assert_eq!(format.preferred_extension(), Some("tiff"));
 | Name                              | Media type                | Extensions    |
 |-----------------------------------|---------------------------|---------------|
 | Binary                            | application/octet-stream  | bin           |
+| Audio Interchange File Format     | audio/aiff                | aif, aiff     |
+| Au                                | audio/basic               | au, snd       |
+| Free Lossless Audio Codec         | audio/x-flac              | flac          |
+| M4V                               | audio/x-m4a               | m4a           |
+| MPEG-1 Audio Layer III            | audio/mpeg                | mp3           |
+| Ogg                               | audio/ogg                 | ogg, oga, spx |
+| Waveform Audio File Format        | audio/vnd.wave            | wav           |
+| WavPack                           | audio/wavpack             | wv            |
 | OpenType                          | font/otf                  | otf           |
 | TrueType                          | font/ttf                  | ttf           |
 | Web Open Font Format              | font/woff                 | woff          |

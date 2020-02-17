@@ -5,6 +5,14 @@
 //! | Name                              | Media type                | Extensions    |
 //! |-----------------------------------|---------------------------|---------------|
 //! | Binary                            | application/octet-stream  | bin           |
+//! | Audio Interchange File Format     | audio/aiff                | aif, aiff     |
+//! | Au                                | audio/basic               | au, snd       |
+//! | Free Lossless Audio Codec         | audio/x-flac              | flac          |
+//! | M4V                               | audio/x-m4a               | m4a           |
+//! | MPEG-1 Audio Layer III            | audio/mpeg                | mp3           |
+//! | Ogg                               | audio/ogg                 | ogg, oga, spx |
+//! | Waveform Audio File Format        | audio/vnd.wave            | wav           |
+//! | WavPack                           | audio/wavpack             | wv            |
 //! | OpenType                          | font/otf                  | otf           |
 //! | TrueType                          | font/ttf                  | ttf           |
 //! | Web Open Font Format              | font/woff                 | woff          |
@@ -152,6 +160,16 @@ pub struct FileFormat {
 }
 
 file_formats! {
+    Audio, "audio/aiff",                "aif", "aiff",       (0 => b"FORM"),
+    Audio, "audio/basic",               "au", "snd",         (0 => b".snd"),
+    Audio, "audio/x-flac",              "flac",              (0 => b"fLaC"),
+    Audio, "audio/x-m4a",               "m4a",               (4 => b"ftypM4A"),
+    Audio, "audio/mpeg",                "mp3",               (0 => b"ID3"),
+    Audio, "audio/ogg",                 "ogg", "oga", "spx", (0 => b"OggS" && 29 => b"vorbis"),
+                                                             (0 => b"OggS" && 29 => b"FLAC"),
+                                                             (0 => b"OggS" && 28 => b"Speex"),
+    Audio, "audio/vnd.wave",            "wav",               (0 => b"\x52\x49\x46\x46" && 8 => b"\x57\x41\x56\x45"),
+    Audio, "audio/wavpack",             "wv",                (0 => b"wvpk"),
     Font,  "font/otf",                  "otf",               (0 => b"\x4F\x54\x54\x4F\x00"),
     Font,  "font/ttf",                  "ttf",               (0 => b"\x00\x01\x00\x00\x00"),
     Font,  "font/woff",                 "woff",              (0 => b"wOFF"),
