@@ -68,6 +68,15 @@ assert_eq!(format.preferred_extension(), Some("tiff"));
 | Name                              | Media type                | Extensions    |
 |-----------------------------------|---------------------------|---------------|
 | Binary                            | application/octet-stream  | bin           |
+| Bzip2                             | application/x-bzip2       | bz2           |
+| GNU zip                           | application/gzip          | gz            |
+| Long Range ZIP                    | application/x-lrzip       | lrz           |
+| Lzip                              | application/x-lzip        | lz            |
+| LZ4                               | application/x-lz4         | lz4           |
+| Lempel-Ziv-Oberhumer              | application/x-lzop        | lzo           |
+| XZ                                | application/x-xz          | xz            |
+| Compress                          | application/x-compress    | Z             |
+| Zstandard                         | application/zstd          | zst           |
 | Audio Interchange File Format     | audio/aiff                | aif, aiff     |
 | Au                                | audio/basic               | au, snd       |
 | Free Lossless Audio Codec         | audio/x-flac              | flac          |
