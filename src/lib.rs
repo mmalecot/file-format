@@ -22,6 +22,7 @@
 //! | Adobe Photoshop bitmap            | image/vnd.adobe.photoshop | psd           |
 //! | Tagged Image File Format          | image/tiff                | tiff, tif     |
 //! | Weppy image format                | image/webp                | webp          |
+//! | GL Transmission Format binary     | model/gltf-binary         | glb           |
 //! | 3GPP                              | video/3gpp                | 3gp           |
 //! | Audio Video Interleave            | video/avi                 | avi           |
 //! | Flash Video                       | video/x-flv               | flv           |
@@ -169,6 +170,7 @@ file_formats! {
     Image, "image/vnd.adobe.photoshop", "psd",               (0 => b"8BPS"),
     Image, "image/tiff",                "tiff", "tif",       (0 => b"\x49\x49\x2A\x00"),
     Image, "image/webp",                "webp",              (8 => b"WEBP"),
+    Model, "model/gltf-binary",         "glb",               (0 => b"glTF"),
     Video, "video/3gpp",                "3gp",               (4 => b"ftyp3gp"),
     Video, "video/avi",                 "avi",               (0 => b"\x52\x49\x46\x46" && 8 => b"\x41\x56\x49"),
     Video, "video/x-flv",               "flv",               (0 => b"\x46\x4C\x56\x01"),

@@ -85,6 +85,7 @@ assert_eq!(format.preferred_extension(), Some("tiff"));
 | Adobe Photoshop bitmap            | image/vnd.adobe.photoshop | psd           |
 | Tagged Image File Format          | image/tiff                | tiff, tif     |
 | Weppy image format                | image/webp                | webp          |
+| GL Transmission Format binary     | model/gltf-binary         | glb           |
 | 3GPP                              | video/3gpp                | 3gp           |
 | Audio Video Interleave            | video/avi                 | avi           |
 | Flash Video                       | video/x-flv               | flv           |
