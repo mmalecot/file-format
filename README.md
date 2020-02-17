@@ -113,7 +113,7 @@ assert_eq!(format.preferred_extension(), Some("tiff"));
 | MPEG                              | video/mpeg                | mpg           |
 | Ogg                               | video/ogv                 | ogv           |
 | Weppy video format                | video/webp                | webp          |
-| Windows Media Video               | x-ms-asf                  | wmv, wm       |
+| Windows Media Video               | video/x-ms-asf            | wmv, wm       |
 | UTF-8 text                        | text/plain                | txt           |
 
 ## References
