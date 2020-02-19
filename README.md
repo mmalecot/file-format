@@ -122,7 +122,7 @@ assert_eq!(format.preferred_extension(), "tiff");
 | M4V                               | video/x-m4v                  | m4v                 |
 | Matroska Multimedia Container     | video/x-matroska             | mkv                 |
 | QuickTime File Format             | video/quicktime              | mov, qt             |
-| MPEG                              | video/mpeg                   | mpg                 |
+| MPEG                              | video/mpeg                   | mpg, mpeg           |
 | MPEG-4 Part 14                    | video/mp4                    | mp4                 |
 | Ogg                               | video/ogv                    | ogv                 |
 | Weppy video format                | video/webp                   | webp                |

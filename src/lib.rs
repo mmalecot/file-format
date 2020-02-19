@@ -59,7 +59,7 @@
 //! | M4V                               | video/x-m4v                  | m4v                 |
 //! | Matroska Multimedia Container     | video/x-matroska             | mkv                 |
 //! | QuickTime File Format             | video/quicktime              | mov, qt             |
-//! | MPEG                              | video/mpeg                   | mpg                 |
+//! | MPEG                              | video/mpeg                   | mpg, mpeg           |
 //! | MPEG-4 Part 14                    | video/mp4                    | mp4                 |
 //! | Ogg                               | video/ogv                    | ogv                 |
 //! | Weppy video format                | video/webp                   | webp                |
@@ -270,7 +270,7 @@ file_formats! {
                                                                             (4 => b"ftypNDXP"),
                                                                             (4 => b"ftypF4V "),
                                                                             (4 => b"ftypF4P "),
-    Video,       "video/mpeg",                   "mpg",                     (0 => b"\x00\x00\x01\xBA"),
+    Video,       "video/mpeg",                   "mpg", "mpeg",             (0 => b"\x00\x00\x01\xBA"),
                                                                             (0 => b"\x00\x00\x01\xB3"),
     Video,       "video/ogg",                    "ogv",                     (0 => b"OggS" && 29 => b"theora"),
     Video,       "video/webm",                   "webm",                    (0 => b"\x1A\x45\xDF\xA3" && 24 => b"webm"),
