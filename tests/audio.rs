@@ -1,6 +1,14 @@
 use file_format::{FileFormat, Kind};
 
 #[test]
+fn test_aac() {
+    let format = FileFormat::from_file("fixtures/audio/sample.aac").unwrap();
+    assert_eq!(format.kind(), Kind::Audio);
+    assert_eq!(format.media_type(), "audio/aac");
+    assert_eq!(format.preferred_extension(), Some("aac"));
+}
+
+#[test]
 fn test_aif() {
     let format = FileFormat::from_file("fixtures/audio/sample.aif").unwrap();
     assert_eq!(format.kind(), Kind::Audio);

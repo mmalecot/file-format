@@ -89,6 +89,7 @@ assert_eq!(format.preferred_extension(), Some("tiff"));
 | Compress                          | application/x-compress       | Z                   |
 | ZIP                               | application/zip              | zip                 |
 | Zstandard                         | application/zstd             | zst                 |
+| Advanced Audio Coding             | audio/aac                    | aac                 |
 | Audio Interchange File Format     | audio/aiff                   | aif, aiff           |
 | Au                                | audio/basic                  | au, snd             |
 | Free Lossless Audio Codec         | audio/x-flac                 | flac                |

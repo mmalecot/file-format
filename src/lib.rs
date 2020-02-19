@@ -26,6 +26,7 @@
 //! | Compress                          | application/x-compress       | Z                   |
 //! | ZIP                               | application/zip              | zip                 |
 //! | Zstandard                         | application/zstd             | zst                 |
+//! | Advanced Audio Coding             | audio/aac                    | aac                 |
 //! | Audio Interchange File Format     | audio/aiff                   | aif, aiff           |
 //! | Au                                | audio/basic                  | au, snd             |
 //! | Free Lossless Audio Codec         | audio/x-flac                 | flac                |
@@ -206,6 +207,8 @@ file_formats! {
                                                                             (0 => b"\x50\x4B\x05\x06"),
                                                                             (0 => b"\x50\x4B\x07\x08"),
     Application, "application/zstd",             "zst",                     (0 => b"\x28\xB5\x2F\xFD"),
+    Audio,       "audio/aac",                    "aac",                     (0 => b"\xFF\xF1"),
+                                                                            (0 => b"\xFF\xF9"),
     Audio,       "audio/aiff",                   "aif", "aiff",             (0 => b"FORM"),
     Audio,       "audio/basic",                  "au", "snd",               (0 => b".snd"),
     Audio,       "audio/x-flac",                 "flac",                    (0 => b"fLaC"),
