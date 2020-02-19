@@ -309,7 +309,7 @@ impl FileFormat {
     /// let format = FileFormat::from_bytes(b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A");
     /// assert_eq!(format.kind(), Kind::Image);
     /// assert_eq!(format.media_type(), "image/png");
-    /// assert_eq!(format.preferred_extension(), Some("png"));
+    /// assert_eq!(format.preferred_extension(), "png");
     ///```
     ///
     /// ## UTF-8 text
@@ -320,7 +320,7 @@ impl FileFormat {
     /// let format = FileFormat::from_bytes("Hello 😊!".as_bytes());
     /// assert_eq!(format.kind(), Kind::Text);
     /// assert_eq!(format.media_type(), "text/plain");
-    /// assert_eq!(format.preferred_extension(), Some("txt"));
+    /// assert_eq!(format.preferred_extension(), "txt");
     ///```
     ///
     /// ## 512 bytes
@@ -331,7 +331,7 @@ impl FileFormat {
     /// let format = FileFormat::from_bytes(&[0xFF; 512]);
     /// assert_eq!(format.kind(), Kind::Application);
     /// assert_eq!(format.media_type(), "application/octet-stream");
-    /// assert_eq!(format.preferred_extension(), Some("bin"));
+    /// assert_eq!(format.preferred_extension(), "bin");
     ///```
     pub fn from_bytes(bytes: &[u8]) -> FileFormat {
         FileFormat::from_bytes_impl(bytes)
@@ -349,7 +349,7 @@ impl FileFormat {
     /// let format = FileFormat::from_extension("jpeg").unwrap();
     /// assert_eq!(format.kind(), Kind::Image);
     /// assert_eq!(format.media_type(), "image/jpeg");
-    /// assert_eq!(format.preferred_extension(), Some("jpg"));
+    /// assert_eq!(format.preferred_extension(), "jpg");
     ///```
     ///
     /// ## From txt extension
@@ -360,7 +360,7 @@ impl FileFormat {
     /// let format = FileFormat::from_extension("txt").unwrap();
     /// assert_eq!(format.kind(), Kind::Text);
     /// assert_eq!(format.media_type(), "text/plain");
-    /// assert_eq!(format.preferred_extension(), Some("txt"));
+    /// assert_eq!(format.preferred_extension(), "txt");
     ///```
     ///
     /// ## Unknown extension
@@ -385,7 +385,7 @@ impl FileFormat {
     /// let format = FileFormat::from_media_type("image/png").unwrap();
     /// assert_eq!(format.kind(), Kind::Image);
     /// assert_eq!(format.media_type(), "image/png");
-    /// assert_eq!(format.preferred_extension(), Some("png"));
+    /// assert_eq!(format.preferred_extension(), "png");
     ///```
     pub fn from_media_type(media_type: &str) -> Option<FileFormat> {
         FileFormat::from_media_type_impl(media_type)
@@ -408,8 +408,7 @@ impl FileFormat {
     }
 
     /// Returns the preferred extension of the file format.
-    /// It can return `None` given that some file formats have no extension.
-    pub fn preferred_extension(&self) -> Option<&str> {
-        self.extensions.first().map(|string| string.as_str())
+    pub fn preferred_extension(&self) -> &str {
+        self.extensions.first().unwrap().as_str()
     }
 }
