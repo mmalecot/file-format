@@ -22,10 +22,9 @@ file_format = "0.1"
 ### Determine from a file
 
 ```rust
-use file_format::{FileFormat, Kind};
+use file_format::FileFormat;
 
 let format = FileFormat::from_file("fixtures/image/sample.jpg").unwrap();
-assert_eq!(format.kind(), Kind::Image);
 assert_eq!(format.media_type(), "image/jpeg");
 assert_eq!(format.preferred_extension(), "jpg");
 ```
@@ -33,10 +32,9 @@ assert_eq!(format.preferred_extension(), "jpg");
 ### Determine from bytes
 
 ```rust
-use file_format::{FileFormat, Kind};
+use file_format::FileFormat;
 
 let format = FileFormat::from_bytes("Hello 😊!".as_bytes());
-assert_eq!(format.kind(), Kind::Text);
 assert_eq!(format.media_type(), "text/plain");
 assert_eq!(format.preferred_extension(), "txt");
 ```
@@ -44,10 +42,9 @@ assert_eq!(format.preferred_extension(), "txt");
 ### Determine from an extension
 
 ```rust
-use file_format::{FileFormat, Kind};
+use file_format::FileFormat;
 
 let format = FileFormat::from_extension("wdp").unwrap();
-assert_eq!(format.kind(), Kind::Image);
 assert_eq!(format.media_type(), "image/jxr");
 assert_eq!(format.preferred_extension(), "jxr");
 ```
@@ -55,10 +52,9 @@ assert_eq!(format.preferred_extension(), "jxr");
 ### Determine from a media type
 
 ```rust
-use file_format::{FileFormat, Kind};
+use file_format::FileFormat;
 
 let format = FileFormat::from_media_type("image/tiff").unwrap();
-assert_eq!(format.kind(), Kind::Image);
 assert_eq!(format.media_type(), "image/tiff");
 assert_eq!(format.preferred_extension(), "tiff");
 ```
