@@ -8,15 +8,6 @@
 
 File format library for Rust.
 
-## Usage
-
-Add this to your `Cargo.toml`:
-
-```toml
-[dependencies]
-file_format = "0.1"
-```
-
 ## Examples
 
 ### Determine from a file
