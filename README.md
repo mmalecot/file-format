@@ -1,8 +1,6 @@
 # file-format
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/mmalecot/file-format/CI)
-[![Crates.io](https://img.shields.io/crates/v/file-format)](https://crates.io/crates/file-format)
-[![Docs.rs](https://docs.rs/file-format/badge.svg)](https://docs.rs/file-format)
 ![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg)
 ![Rust](https://img.shields.io/badge/rust-1.41+-blueviolet.svg?logo=rust)
 
