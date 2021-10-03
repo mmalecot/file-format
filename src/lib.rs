@@ -828,7 +828,7 @@ file_format! {
   - format: Ico
     description: "ICO"
     media_type: "image/x-icon"
-    extensions: ["ico"]
+    extensions: ["ico", "cur"]
     signatures:
       - parts:
         - offset: 0
