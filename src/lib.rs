@@ -5,7 +5,7 @@ mod macros;
 
 file_format! {
   - format: Dicom
-    description: "Digital imaging and communications in medicine"
+    description: "Digital Imaging and Communications in Medicine (DICOM)"
     media_type: "application/dicom"
     extensions: ["dcm"]
     signatures:
@@ -23,7 +23,7 @@ file_format! {
           value: b"\x1F\x8B"
 
   - format: JavaClass
-    description: "Java class file"
+    description: "Java class"
     media_type: "application/java-vm"
     extensions: ["class"]
     signatures:
@@ -32,7 +32,7 @@ file_format! {
           value: b"\xCA\xFE\xBA\xBE"
 
   - format: Pdf
-    description: "Portable Document Format"
+    description: "Portable Document Format (PDF)"
     media_type: "application/pdf"
     extensions: ["pdf"]
     signatures:
@@ -41,7 +41,7 @@ file_format! {
           value: b"%PDF-"
 
   - format: Dex
-    description: "Dalvik Executable format"
+    description: "Dalvik Executable"
     media_type: "application/vnd.android.dex"
     extensions: ["dex"]
     signatures:
@@ -50,7 +50,7 @@ file_format! {
           value: b"\x64\x65\x78\x0a"
 
   - format: Rar
-    description: "RAR"
+    description: "Roshal ARchive (RAR)"
     media_type: "application/vnd.rar"
     extensions: ["rar"]
     signatures:
@@ -62,7 +62,7 @@ file_format! {
           value: b"\x52\x61\x72\x21\x1A\x07\x01\x00"
 
   - format: Sqlite3
-    description: "SQLite 3 Database File Format"
+    description: "SQLite 3 Database"
     media_type: "application/vnd.sqlite3"
     extensions: ["sqlite", "sqlite3", "sqlitedb", "db"]
     signatures:
@@ -71,7 +71,7 @@ file_format! {
           value: b"\x53\x51\x4C\x69\x74\x65\x20\x66\x6F\x72\x6D\x61\x74\x20\x33\x00"
 
   - format: Pcap
-    description: "Libpcap File Format"
+    description: "Libpcap"
     media_type: "application/vnd.tcpdump.pcap"
     extensions: ["pcap", "cap", "dmp"]
     signatures:
@@ -83,7 +83,7 @@ file_format! {
           value: b"\xD4\xC3\xB2\xA1"
 
   - format: WebAssembly
-    description: "WebAssembly binary format"
+    description: "WebAssembly binary"
     media_type: "application/wasm"
     extensions: ["wasm"]
     signatures:
@@ -92,7 +92,7 @@ file_format! {
           value: b"\x00\x61\x73\x6D"
 
   - format: SevenZip
-    description: "7z"
+    description: "7-Zip"
     media_type: "application/x-7z-compressed"
     extensions: ["7z"]
     signatures:
@@ -110,7 +110,7 @@ file_format! {
           value: b"\x78\x01"
 
   - format: Blender
-    description: "Blender 3D Data File"
+    description: "Blender 3D Data"
     media_type: "application/x-blender"
     extensions: ["blend"]
     signatures:
@@ -128,7 +128,7 @@ file_format! {
           value: b"BZh"
 
   - format: Compress
-    description: "Unix Compressed File"
+    description: "Unix compress"
     media_type: "application/x-compress"
     extensions: ["Z"]
     signatures:
@@ -149,7 +149,7 @@ file_format! {
           value: b"\x21\x3C\x61\x72\x63\x68\x3E\x0A"
 
   - format: Elf
-    description: "Executable and Linkable Format"
+    description: "Executable and Linkable Format (ELF)"
     media_type: "application/x-executable"
     extensions: ["elf", "so"]
     signatures:
@@ -209,7 +209,7 @@ file_format! {
           value: b"CD001"
 
   - format: Lrzip
-    description: "Long Range ZIP"
+    description: "Long Range ZIP (lrzip)"
     media_type: "application/x-lrzip"
     extensions: ["lrz"]
     signatures:
@@ -245,7 +245,7 @@ file_format! {
           value: b"\x89\x4C\x5A\x4F\x00\x0D\x0A\x1A\x0A"
 
   - format: Exe
-    description: "Windows Executable File"
+    description: "Windows Executable"
     media_type: "application/x-msdownload"
     extensions: ["exe", "dll"]
     signatures:
@@ -293,7 +293,7 @@ file_format! {
           value: b"\x4E\x45\x53\x1A"
 
   - format: Pcapng
-    description: "Pcap-NG Packet Capture File"
+    description: "Pcap-NG Packet Capture"
     media_type: "application/x-pcapng"
     extensions: ["pcapng"]
     signatures:
@@ -302,7 +302,7 @@ file_format! {
           value: b"\x0A\x0D\x0D\x0A"
 
   - format: Rpm
-    description: "Red Hat Package Manager File"
+    description: "Red Hat Package Manager (RPM) package"
     media_type: "application/x-rpm"
     extensions: ["rpm"]
     signatures:
@@ -311,7 +311,7 @@ file_format! {
           value: b"\xED\xAB\xEE\xDB"
 
   - format: Swf
-    description: "Small Web Format"
+    description: "Small Web Format (SWF)"
     media_type: "application/x-shockwave-flash"
     extensions: ["swf"]
     signatures:
@@ -323,7 +323,7 @@ file_format! {
           value: b"\x46\x57\x53"
 
   - format: Tar
-    description: "Tar"
+    description: "Tape archive (tar)"
     media_type: "application/x-tar"
     extensions: ["tar"]
     signatures:
@@ -335,7 +335,7 @@ file_format! {
           value: b"\x75\x73\x74\x61\x72\x20\x20\x00"
 
   - format: Vdi
-    description: "VirtualBox Virtual Disk Image"
+    description: "VirtualBox Virtual Disk Image (VDI)"
     media_type: "application/x-virtualbox-vdi"
     extensions: ["vdi"]
     signatures:
@@ -344,7 +344,7 @@ file_format! {
           value: b"<<< Oracle VM VirtualBox Disk Image >>>"
 
   - format: Xar
-    description: "Xar"
+    description: "eXtensible ARchive format (XAR)"
     media_type: "application/x-xar"
     extensions: ["xar", "xip"]
     signatures:
@@ -386,7 +386,7 @@ file_format! {
           value: b"\x28\xB5\x2F\xFD"
 
   - format: Aac
-    description: "Advanced Audio Coding"
+    description: "Advanced Audio Coding (AAC)"
     media_type: "audio/aac"
     extensions: ["aac"]
     signatures:
@@ -398,7 +398,7 @@ file_format! {
           value: b"\xFF\xF9"
 
   - format: Aiff
-    description: "Audio Interchange File Format"
+    description: "Audio Interchange File Format (AIFF)"
     media_type: "audio/aiff"
     extensions: ["aif", "aiff"]
     signatures:
@@ -409,7 +409,7 @@ file_format! {
           value: b"AIFF"
 
   - format: Amr
-    description: "Adaptive Multi-Rate"
+    description: "Adaptive Multi-Rate (AMR)"
     media_type: "audio/amr"
     extensions: ["amr", "3ga"]
     signatures:
@@ -418,7 +418,7 @@ file_format! {
           value: b"#!AMR"
 
   - format: Snd
-    description: "SND"
+    description: "SouND (SND)"
     media_type: "audio/basic"
     extensions: ["au", "snd"]
     signatures:
@@ -427,7 +427,7 @@ file_format! {
           value: b".snd"
 
   - format: Midi
-    description: "Musical Instrument Digital Interface"
+    description: "Musical Instrument Digital Interface (MIDI)"
     media_type: "audio/midi"
     extensions: ["mid", "midi"]
     signatures:
@@ -436,7 +436,7 @@ file_format! {
           value: b"MThd"
 
   - format: Mp3
-    description: "MPEG-1/2 Audio Layer III"
+    description: "MPEG-1/2 Audio Layer III (MP3)"
     media_type: "audio/mpeg"
     extensions: ["mp3"]
     signatures:
@@ -466,7 +466,7 @@ file_format! {
           value: b"Speex"
 
   - format: Ac3
-    description: "Audio Codec 3"
+    description: "Audio Codec 3 (AC-3)"
     media_type: "audio/vnd.dolby.dd-raw"
     extensions: ["ac3"]
     signatures:
@@ -475,7 +475,7 @@ file_format! {
           value: b"\x0B\x77"
 
   - format: Wave
-    description: "Waveform Audio File Format"
+    description: "Waveform Audio (WAVE)"
     media_type: "audio/vnd.wave"
     extensions: ["wav"]
     signatures:
@@ -522,7 +522,7 @@ file_format! {
           value: b"ftypM4A"
 
   - format: Mpc
-    description: "Musepack"
+    description: "Musepack (MPC)"
     media_type: "audio/x-musepack"
     extensions: ["mpc", "mp+", "mpp", "mp"]
     signatures:
@@ -552,7 +552,7 @@ file_format! {
           value: b"\x00\x01\x00\x00\x00"
 
   - format: Woff
-    description: "Web Open Font Format"
+    description: "Web Open Font Format (WOFF)"
     media_type: "font/woff"
     extensions: ["woff"]
     signatures:
@@ -561,7 +561,7 @@ file_format! {
           value: b"wOFF"
 
   - format: Woff2
-    description: "Web Open Font Format 2"
+    description: "Web Open Font Format 2 (WOFF2)"
     media_type: "font/woff2"
     extensions: ["woff2"]
     signatures:
@@ -570,7 +570,7 @@ file_format! {
           value: b"wOF2"
 
   - format: Avif
-    description: "AV1 Image File Format"
+    description: "AV1 Image File Format (AVIF)"
     media_type: "image/avif"
     extensions: ["avif"]
     signatures:
@@ -579,7 +579,7 @@ file_format! {
           value: b"ftypavif"
 
   - format: Bmp
-    description: "Windows Bitmap"
+    description: "Windows Bitmap (BMP)"
     media_type: "image/bmp"
     extensions: ["bmp", "dib"]
     signatures:
@@ -588,7 +588,7 @@ file_format! {
           value: b"BM"
 
   - format: Bpg
-    description: "Better Portable Graphics"
+    description: "Better Portable Graphics (BPG)"
     media_type: "image/bpg"
     extensions: ["bpg"]
     signatures:
@@ -597,7 +597,7 @@ file_format! {
           value: b"\x42\x50\x47\xFB"
 
   - format: Cineon
-    description: "Cineon Image File Format"
+    description: "Cineon Image"
     media_type: "image/cineon"
     extensions: ["cin"]
     signatures:
@@ -606,7 +606,7 @@ file_format! {
           value: b"\x80\x2A\x5F\xD7"
 
   - format: Fits
-    description: "Flexible Image Transport System"
+    description: "Flexible Image Transport System (FITS)"
     media_type: "image/fits"
     extensions: ["fits", "fit", "fts"]
     signatures:
@@ -615,7 +615,7 @@ file_format! {
           value: b"\x53\x49\x4D\x50\x4C\x45\x20\x20\x3D\x20"
 
   - format: Flif
-    description: "Free Lossless Image Format"
+    description: "Free Lossless Image Format (FLIF)"
     media_type: "image/flif"
     extensions: ["flif"]
     signatures:
@@ -624,7 +624,7 @@ file_format! {
           value: b"FLIF"
 
   - format: Gif
-    description: "Graphics Interchange Format"
+    description: "Graphics Interchange Format (GIF)"
     media_type: "image/gif"
     extensions: ["gif"]
     signatures:
@@ -636,7 +636,7 @@ file_format! {
           value: b"GIF89a"
 
   - format: Heif
-    description: "High Efficiency Image File Format"
+    description: "High Efficiency Image File Format (HEIF)"
     media_type: "image/heic"
     extensions: ["heic"]
     signatures:
@@ -666,7 +666,7 @@ file_format! {
           value: b"ftypjp2"
 
   - format: Jpeg
-    description: "Joint Photographic Experts Group"
+    description: "Joint Photographic Experts Group (JPEG)"
     media_type: "image/jpeg"
     extensions: ["jpg", "jpeg"]
     signatures:
@@ -686,7 +686,7 @@ file_format! {
           value: b"\x45\x78\x69\x66\x00\x00"
 
   - format: JpegXr
-    description: "JPEG extended range"
+    description: "JPEG extended range (JPEG XR)"
     media_type: "image/jxr"
     extensions: ["jxr", "hdp", "wdp"]
     signatures:
@@ -707,7 +707,7 @@ file_format! {
           value: b"\x00\x00\x00\x0C\x4A\x58\x4C\x20\x0D\x0A\x87\x0A"
 
   - format: Png
-    description: "Portable Network Graphics"
+    description: "Portable Network Graphics (PNG)"
     media_type: "image/png"
     extensions: ["png"]
     signatures:
@@ -716,7 +716,7 @@ file_format! {
           value: b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"
 
   - format: Tiff
-    description: "Tag Image File Format"
+    description: "Tag Image File Format (TIFF)"
     media_type: "image/tiff"
     extensions: ["tiff", "tif"]
     signatures:
@@ -748,7 +748,7 @@ file_format! {
           value: b"WEBP"
 
   - format: Dpx
-    description: "Digital Picture Exchange"
+    description: "Digital Picture Exchange (DPX)"
     media_type: "image/x-dpx"
     extensions: ["dpx"]
     signatures:
@@ -778,7 +778,7 @@ file_format! {
           value: b"\x00\x00\x01\x00"
 
   - format: Xcf
-    description: "XCF"
+    description: "eXperimental Computing Facility (XCF)"
     media_type: "image/x-xcf"
     extensions: ["xcf"]
     signatures:
@@ -787,7 +787,7 @@ file_format! {
           value: b"gimp xcf"
 
   - format: Gltf
-    description: "GL Transmission Format binary"
+    description: "GL Transmission Format (glTF) binary"
     media_type: "model/gltf-binary"
     extensions: ["glb"]
     signatures:
@@ -814,7 +814,7 @@ file_format! {
           value: b"BEGIN:VCARD"
 
   - format: Xml
-    description: "Extensible Markup Language"
+    description: "Extensible Markup Language (XML)"
     media_type: "text/xml"
     extensions: ["xml"]
     signatures:
@@ -823,7 +823,7 @@ file_format! {
           value: b"<?xml "
 
   - format: ThirdGpp
-    description: "3GPP"
+    description: "3rd Generation Partnership Project (3GPP)"
     media_type: "video/3gpp"
     extensions: ["3gp"]
     signatures:
@@ -832,7 +832,7 @@ file_format! {
           value: b"ftyp3gp"
 
   - format: ThirdGpp2
-    description: "3GPP2"
+    description: "3rd Generation Partnership Project 2 (3GPP2)"
     media_type: "video/3gpp2"
     extensions: ["3g2"]
     signatures:
@@ -841,7 +841,7 @@ file_format! {
           value: b"ftyp3g2"
 
   - format: Avi
-    description: "Audio Video Interleave"
+    description: "Audio Video Interleave (AVI)"
     media_type: "video/avi"
     extensions: ["avi"]
     signatures:
@@ -852,7 +852,7 @@ file_format! {
           value: b"\x41\x56\x49\x20"
 
   - format: Mp4
-    description: "MPEG-4 Part 14"
+    description: "MPEG-4 Part 14 (MP4)"
     media_type: "video/mp4"
     extensions: ["mp4"]
     signatures:
@@ -981,7 +981,7 @@ file_format! {
           value: b"webm"
 
   - format: Flv
-    description: "Flash Video"
+    description: "Flash Video (FLV)"
     media_type: "video/x-flv"
     extensions: ["flv"]
     signatures:
@@ -1010,7 +1010,7 @@ file_format! {
           value: b"matroska"
 
   - format: Wmv
-    description: "Windows Media Video"
+    description: "Windows Media Video (WMV)"
     media_type: "video/x-ms-asf"
     extensions: ["wmv", "wm", "asf"]
     signatures:
