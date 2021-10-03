@@ -6,15 +6,6 @@
 
 File format library for Rust.
 
-## Usage
-
-Add this to your Cargo.toml:
-
-```toml
-[dependencies]
-file-format = { git = "https://github.com/mmalecot/file-format" }
-```
-
 ## Examples
 
 Determines from a file:
