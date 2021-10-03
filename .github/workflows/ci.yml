@@ -1,0 +1,40 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        build: [ubuntu, macos, windows]
+        include:
+          - build: ubuntu
+            os: ubuntu-latest
+            toolchain: stable
+          - build: macos
+            os: macos-latest
+            toolchain: stable
+          - build: windows
+            os: windows-latest
+            toolchain: stable
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install Rust (rustup)
+        run: |
+          rustup update ${{ matrix.toolchain }}
+          rustup default ${{ matrix.toolchain }}
+          rustup component add clippy
+      - name: Check warnings
+        run: cargo clippy -- -D warnings
+      - name: Run tests
+        run: cargo test --verbose
+
+  format:
+    name: Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Check format
+        run: cargo fmt -- --check
