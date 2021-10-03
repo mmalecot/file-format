@@ -49,6 +49,39 @@ file_format! {
         - offset: 0
           value: b"\x64\x65\x78\x0a"
 
+  - format: Cab
+    description: "Cabinet (CAB)"
+    media_type: "application/vnd.ms-cab-compressed"
+    extensions: ["cab"]
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"MSCF"
+      - parts:
+        - offset: 0
+          value: b"ISc("
+
+  - format: Eot
+    description: "Embedded OpenType (EOT)"
+    media_type: "application/vnd.ms-fontobject"
+    extensions: ["eot"]
+    signatures:
+      - parts:
+        - offset: 8
+          value: b"\x00\x00\x01"
+        - offset: 34
+          value: b"\x4C\x50"
+      - parts:
+        - offset: 8
+          value: b"\x01\x00\x02"
+        - offset: 34
+          value: b"\x4C\x50"
+      - parts:
+        - offset: 8
+          value: b"\x02\x00\x02"
+        - offset: 34
+          value: b"\x4C\x50"
+
   - format: Rar
     description: "Roshal ARchive (RAR)"
     media_type: "application/vnd.rar"
@@ -291,6 +324,15 @@ file_format! {
       - parts:
         - offset: 0
           value: b"\x4E\x45\x53\x1A"
+
+  - format: WindowsInstaller
+    description: "Windows Installer"
+    media_type: "application/x-ole-storage"
+    extensions: ["msi", "msp"]
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"
 
   - format: Pcapng
     description: "Pcap-NG Packet Capture"
@@ -746,6 +788,21 @@ file_format! {
           value: b"RIFF"
         - offset: 8
           value: b"WEBP"
+
+  - format: WindowsMetafile
+    description: "Windows Metafile (WMF)"
+    media_type: "image/wmf"
+    extensions: ["wmf"]
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\xD7\xCD\xC6\x9A"
+      - parts:
+        - offset: 0
+          value: b"\x02\x00\x09\x00"
+      - parts:
+        - offset: 0
+          value: b"\x01\x00\x09\x00"
 
   - format: Dpx
     description: "Digital Picture Exchange (DPX)"

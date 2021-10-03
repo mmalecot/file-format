@@ -33,6 +33,14 @@ fn test_bz2() {
 }
 
 #[test]
+fn test_cab() {
+    let format = FileFormat::from_file("fixtures/application/sample.cab").unwrap();
+    assert_eq!(format, FileFormat::Cab);
+    assert_eq!(format.media_type(), "application/vnd.ms-cab-compressed");
+    assert_eq!(format.preferred_extension(), "cab");
+}
+
+#[test]
 fn test_class() {
     let format = FileFormat::from_file("fixtures/application/sample.class").unwrap();
     assert_eq!(format, FileFormat::JavaClass);
@@ -86,6 +94,14 @@ fn test_elf() {
     assert_eq!(format, FileFormat::Elf);
     assert_eq!(format.media_type(), "application/x-executable");
     assert_eq!(format.preferred_extension(), "elf");
+}
+
+#[test]
+fn test_eot() {
+    let format = FileFormat::from_file("fixtures/application/sample.eot").unwrap();
+    assert_eq!(format, FileFormat::Eot);
+    assert_eq!(format.media_type(), "application/vnd.ms-fontobject");
+    assert_eq!(format.preferred_extension(), "eot");
 }
 
 #[test]
@@ -166,6 +182,14 @@ fn test_lzo() {
     assert_eq!(format, FileFormat::Lzop);
     assert_eq!(format.media_type(), "application/x-lzop");
     assert_eq!(format.preferred_extension(), "lzo");
+}
+
+#[test]
+fn test_msi() {
+    let format = FileFormat::from_file("fixtures/application/sample.msi").unwrap();
+    assert_eq!(format, FileFormat::WindowsInstaller);
+    assert_eq!(format.media_type(), "application/x-ole-storage");
+    assert_eq!(format.preferred_extension(), "msi");
 }
 
 #[test]
