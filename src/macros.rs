@@ -13,6 +13,7 @@ macro_rules! file_format {
     {
         $(
             -   format: $format:ident
+                description: $description:literal
                 media_type: $media_type:literal
                 extensions: [$($extension:literal),+]
                 signatures:
@@ -30,12 +31,12 @@ macro_rules! file_format {
         /// Represents a file format.
         #[derive(Clone, Debug, PartialEq)]
         pub enum FileFormat {
-            /// `text/plain`
+            /// UTF-8 encoded text
             Text,
-            /// `application/octet-stream`
+            /// Arbitrary binary data
             Binary,
             $(
-                #[doc=concat!("`", $media_type, "`")]
+                #[doc=$description]
                 $format
             ),*
         }
