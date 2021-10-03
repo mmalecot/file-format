@@ -50,8 +50,6 @@ assert_eq!(format, Some(FileFormat::Tiff));
 
 ## References
 
-* [Learn Rust](https://www.rust-lang.org/learn)
-* [Rust API Guidelines](https://rust-lang.github.io/api-guidelines/)
 * [IANA media types](https://www.iana.org/assignments/media-types/media-types.xhtml)
 
 ## License
