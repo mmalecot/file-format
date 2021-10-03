@@ -1,8 +1,10 @@
 # file-format
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/mmalecot/file-format/CI)
-![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg)
+![Build](https://img.shields.io/github/workflow/status/mmalecot/file-format/CI)
+[![Crates.io](https://img.shields.io/crates/v/file-format.svg)](https://crates.io/crates/file-format)
+[![Docs](https://docs.rs/file-format/badge.svg)](https://docs.rs/file-format)
 ![Rust](https://img.shields.io/badge/rust-1.54+-blueviolet.svg?logo=rust)
+![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg)
 
 File format library for Rust.
 
