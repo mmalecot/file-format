@@ -102,8 +102,8 @@ macro_rules! file_format {
             /// ```rust
             /// use file_format::FileFormat;
             ///
-            /// let format = FileFormat::from_extension("jpeg");
-            /// assert_eq!(format, Some(FileFormat::Jpeg));
+            /// let format = FileFormat::from_extension("ttf");
+            /// assert_eq!(format, Some(FileFormat::TrueType));
             ///```
             ///
             /// Detects from an unknown extension:
@@ -132,8 +132,8 @@ macro_rules! file_format {
             /// ```rust
             /// use file_format::FileFormat;
             ///
-            /// let format = FileFormat::from_media_type("image/png");
-            /// assert_eq!(format, Some(FileFormat::Png));
+            /// let format = FileFormat::from_media_type("video/mp4");
+            /// assert_eq!(format, Some(FileFormat::Mp4));
             ///```
             ///
             /// Detects from an unknown media type:

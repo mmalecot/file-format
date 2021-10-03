@@ -35,8 +35,8 @@ Determines from an extension:
 ```rust
 use file_format::FileFormat;
 
-let format = FileFormat::from_extension("sqlite3");
-assert_eq!(format, Some(FileFormat::Sqlite3));
+let format = FileFormat::from_extension("vcf");
+assert_eq!(format, Some(FileFormat::VCard));
 ```
 
 Determines from a media type:
@@ -44,8 +44,8 @@ Determines from a media type:
 ```rust
 use file_format::FileFormat;
 
-let format = FileFormat::from_media_type("image/tiff");
-assert_eq!(format, Some(FileFormat::Tiff));
+let format = FileFormat::from_media_type("image/vnd.adobe.photoshop");
+assert_eq!(format, Some(FileFormat::PhotoshopDocument));
 ```
 
 ## References
