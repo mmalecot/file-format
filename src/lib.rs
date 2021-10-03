@@ -286,6 +286,15 @@ file_format! {
         - offset: 0
           value: b"MZ"
 
+  - format: Lnk
+    description: "Windows shortcut"
+    media_type: "application/x-ms-shortcut"
+    extensions: ["lnk", "url", "cda"]
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x4C\x00\x00\x00\x01\x14\x02\x00"
+
   - format: N64Rom
     description: "Nintendo 64 ROM"
     media_type: "application/x-n64-rom"

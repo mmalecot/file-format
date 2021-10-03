@@ -153,6 +153,14 @@ fn test_iso() {
 }
 
 #[test]
+fn test_lnk() {
+    let format = FileFormat::from_file("fixtures/application/sample.lnk").unwrap();
+    assert_eq!(format, FileFormat::Lnk);
+    assert_eq!(format.media_type(), "application/x-ms-shortcut");
+    assert_eq!(format.preferred_extension(), "lnk");
+}
+
+#[test]
 fn test_lrz() {
     let format = FileFormat::from_file("fixtures/application/sample.lrz").unwrap();
     assert_eq!(format, FileFormat::Lrzip);
