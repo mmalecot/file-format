@@ -31,14 +31,14 @@ macro_rules! file_format {
         /// Represents a file format.
         #[derive(Clone, Debug, PartialEq)]
         pub enum FileFormat {
+            $(
+                #[doc=$description]
+                $format,
+            )*
             /// UTF-8 encoded text
             Text,
             /// Arbitrary binary data
             Binary,
-            $(
-                #[doc=$description]
-                $format
-            ),*
         }
 
         impl FileFormat {
