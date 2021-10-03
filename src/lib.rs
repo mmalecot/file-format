@@ -446,6 +446,14 @@ file_format! {
         - offset: 0
           value: b"wvpk"
 
+  - format: Ape
+    media_type: "audio/x-ape"
+    extensions: ["ape"]
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"MAC "
+
   - format: Flac
     media_type: "audio/x-flac"
     extensions: ["flac"]

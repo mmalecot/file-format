@@ -33,6 +33,14 @@ fn test_amr() {
 }
 
 #[test]
+fn test_ape() {
+    let format = FileFormat::from_file("fixtures/audio/sample.ape").unwrap();
+    assert_eq!(format, FileFormat::Ape);
+    assert_eq!(format.media_type(), "audio/x-ape");
+    assert_eq!(format.preferred_extension(), "ape");
+}
+
+#[test]
 fn test_au() {
     let format = FileFormat::from_file("fixtures/audio/sample.au").unwrap();
     assert_eq!(format, FileFormat::Snd);
