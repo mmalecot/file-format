@@ -45,12 +45,12 @@ macro_rules! file_format {
             /// Determines file format from bytes.
             ///
             /// If the signature of the file is not recognized,
-            /// it will try to detect if the file is an UTF-8 encoded text and if so return `text/plain`.
-            /// Otherwise, it will return `application/octet-stream` which corresponds to a generic binary type.
+            /// it will try to detect if the file is an UTF-8 encoded text and if so return [`FileFormat::Text`].
+            /// Otherwise, it will return [`FileFormat::Binary`] which corresponds to arbitrary binary data.
             ///
             /// # Examples
             ///
-            /// ## Detects from the first bytes of a PNG file
+            /// Detects from the first bytes of a PNG file:
             ///
             /// ```rust
             /// use file_format::FileFormat;
@@ -61,7 +61,7 @@ macro_rules! file_format {
             /// assert_eq!(format.preferred_extension(), "png");
             ///```
             ///
-            /// ## Detects from an UTF-8 text
+            /// Detects from an UTF-8 text:
             ///
             /// ```rust
             /// use file_format::FileFormat;
@@ -72,7 +72,7 @@ macro_rules! file_format {
             /// assert_eq!(format.preferred_extension(), "txt");
             ///```
             ///
-            /// ## Detects from a zeroed buffer
+            /// Detects from a zeroed buffer:
             ///
             /// ```rust
             /// use file_format::FileFormat;
@@ -97,7 +97,7 @@ macro_rules! file_format {
             ///
             /// # Examples
             ///
-            /// ## Detects from an extension
+            /// Detects from an extension:
             ///
             /// ```rust
             /// use file_format::FileFormat;
@@ -106,7 +106,7 @@ macro_rules! file_format {
             /// assert_eq!(format, Some(FileFormat::Jpeg));
             ///```
             ///
-            /// ## Detects from an unknown extension
+            /// Detects from an unknown extension:
             ///
             /// ```rust
             /// use file_format::FileFormat;
@@ -127,7 +127,7 @@ macro_rules! file_format {
             ///
             /// # Examples
             ///
-            /// ## Detects from a media type
+            /// Detects from a media type:
             ///
             /// ```rust
             /// use file_format::FileFormat;
@@ -136,7 +136,7 @@ macro_rules! file_format {
             /// assert_eq!(format, Some(FileFormat::Png));
             ///```
             ///
-            /// # Detects from an unknown media type
+            /// Detects from an unknown media type:
             ///
             /// ```rust
             /// use file_format::FileFormat;
@@ -155,7 +155,9 @@ macro_rules! file_format {
 
             /// Determines file format from a file.
             ///
-            /// # Example
+            /// # Examples
+            ///
+            /// Basic usage:
             ///
             /// ```rust
             /// use file_format::FileFormat;
@@ -170,7 +172,9 @@ macro_rules! file_format {
 
             /// Returns the media type (formerly known as MIME type) of the file format.
             ///
-            /// # Example
+            /// # Examples
+            ///
+            /// Basic usage:
             ///
             /// ```rust
             /// use file_format::FileFormat;
@@ -188,7 +192,9 @@ macro_rules! file_format {
 
             /// Returns the extensions list of the file format.
             ///
-            /// # Example
+            /// # Examples
+            ///
+            /// Basic usage:
             ///
             /// ```rust
             /// use file_format::FileFormat;
@@ -206,7 +212,9 @@ macro_rules! file_format {
 
             /// Returns the preferred extension of the file format.
             ///
-            /// # Example
+            /// # Examples
+            ///
+            /// Basic usage:
             ///
             /// ```rust
             /// use file_format::FileFormat;

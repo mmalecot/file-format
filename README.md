@@ -17,7 +17,7 @@ file-format = { git = "https://github.com/mmalecot/file-format" }
 
 ## Examples
 
-### Determines from a file
+Determines from a file:
 
 ```rust
 use file_format::FileFormat;
@@ -28,7 +28,7 @@ assert_eq!(format.media_type(), "image/jpeg");
 assert_eq!(format.preferred_extension(), "jpg");
 ```
 
-### Determines from bytes
+Determines from bytes:
 
 ```rust
 use file_format::FileFormat;
@@ -39,7 +39,7 @@ assert_eq!(format.media_type(), "text/plain");
 assert_eq!(format.preferred_extension(), "txt");
 ```
 
-### Determines from an extension
+Determines from an extension:
 
 ```rust
 use file_format::FileFormat;
@@ -48,7 +48,7 @@ let format = FileFormat::from_extension("sqlite3");
 assert_eq!(format, Some(FileFormat::Sqlite3));
 ```
 
-### Determines from a media type
+Determines from a media type:
 
 ```rust
 use file_format::FileFormat;
