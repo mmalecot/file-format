@@ -9,4 +9,5 @@ readme = "README.md"
 keywords = ["file-format", "file-type", "magic-number", "magic", "media-type", "mime", "file", "extension"]
 homepage = "https://github.com/mmalecot/file-format"
 repository = "https://github.com/mmalecot/file-format"
+documentation = "https://docs.rs/file-format"
 exclude = ["/.github/*", "/fixtures/*", "/tests/*"]
