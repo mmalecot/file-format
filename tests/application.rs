@@ -51,7 +51,7 @@ fn test_class() {
 #[test]
 fn test_crx() {
     let format = FileFormat::from_file("fixtures/application/sample.crx").unwrap();
-    assert_eq!(format, FileFormat::GoogleChromeExtension);
+    assert_eq!(format, FileFormat::ChromeExtension);
     assert_eq!(format.media_type(), "application/x-google-chrome-extension");
     assert_eq!(format.preferred_extension(), "crx");
 }
@@ -195,7 +195,7 @@ fn test_lzo() {
 #[test]
 fn test_msi() {
     let format = FileFormat::from_file("fixtures/application/sample.msi").unwrap();
-    assert_eq!(format, FileFormat::WindowsInstaller);
+    assert_eq!(format, FileFormat::Msi);
     assert_eq!(format.media_type(), "application/x-ole-storage");
     assert_eq!(format.preferred_extension(), "msi");
 }

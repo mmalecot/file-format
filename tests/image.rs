@@ -163,7 +163,7 @@ fn test_webp() {
 #[test]
 fn test_wmf() {
     let format = FileFormat::from_file("fixtures/image/sample.wmf").unwrap();
-    assert_eq!(format, FileFormat::WindowsMetafile);
+    assert_eq!(format, FileFormat::Wmf);
     assert_eq!(format.media_type(), "image/wmf");
     assert_eq!(format.preferred_extension(), "wmf");
 }

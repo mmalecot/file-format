@@ -208,7 +208,7 @@ file_format! {
         - offset: 4
           value: b"\x24\xFF\xAE\x51\x69\x9A\xA2\x21"
 
-  - format: GoogleChromeExtension
+  - format: ChromeExtension
     description: "Google Chrome Extension"
     media_type: "application/x-google-chrome-extension"
     extensions: ["crx"]
@@ -334,7 +334,7 @@ file_format! {
         - offset: 0
           value: b"\x4E\x45\x53\x1A"
 
-  - format: WindowsInstaller
+  - format: Msi
     description: "Windows Installer"
     media_type: "application/x-ole-storage"
     extensions: ["msi", "msp"]
@@ -798,7 +798,7 @@ file_format! {
         - offset: 8
           value: b"WEBP"
 
-  - format: WindowsMetafile
+  - format: Wmf
     description: "Windows Metafile (WMF)"
     media_type: "image/wmf"
     extensions: ["wmf"]
