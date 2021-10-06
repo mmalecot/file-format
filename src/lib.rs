@@ -153,6 +153,22 @@ file_format! {
         - offset: 0
           value: b"\x30\x26\xB2\x75\x8E\x66\xCF\x11\xA6\xD9"
 
+  - format: GbcRom
+    description: "Game Boy Color ROM"
+    media_type: "application/x-gameboy-color-rom"
+    extensions: ["gbc"]
+    signatures:
+      - parts:
+        - offset: 0x104
+          value: b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B"
+        - offset: 0x143
+          value: b"\x80"
+      - parts:
+        - offset: 0x104
+          value: b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B"
+        - offset: 0x143
+          value: b"\xC0"
+
   - format: Lzop
     description: "Lzop"
     media_type: "application/x-lzop"

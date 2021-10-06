@@ -129,6 +129,14 @@ fn test_gba() {
 }
 
 #[test]
+fn test_gbc() {
+    let format = FileFormat::from_file("fixtures/application/sample.gbc").unwrap();
+    assert_eq!(format, FileFormat::GbcRom);
+    assert_eq!(format.media_type(), "application/x-gameboy-color-rom");
+    assert_eq!(format.preferred_extension(), "gbc");
+}
+
+#[test]
 fn test_gz() {
     let format = FileFormat::from_file("fixtures/application/sample.gz").unwrap();
     assert_eq!(format, FileFormat::Gzip);
