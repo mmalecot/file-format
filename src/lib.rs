@@ -522,6 +522,15 @@ file_format! {
         - offset: 0
           value: b"gimp xcf"
 
+  - format: Ar
+    description: "Archiver"
+    media_type: "application/x-archive"
+    extensions: ["ar", "a", "lib"]
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"!<arch>"
+
   - format: Blender
     description: "Blender 3D Data"
     media_type: "application/x-blender"

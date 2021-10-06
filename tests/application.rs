@@ -9,6 +9,14 @@ fn test_7z() {
 }
 
 #[test]
+fn test_ar() {
+    let format = FileFormat::from_file("fixtures/application/sample.ar").unwrap();
+    assert_eq!(format, FileFormat::Ar);
+    assert_eq!(format.media_type(), "application/x-archive");
+    assert_eq!(format.preferred_extension(), "ar");
+}
+
+#[test]
 fn test_bin() {
     let format = FileFormat::from_file("fixtures/application/sample.bin").unwrap();
     assert_eq!(format, FileFormat::Binary);
