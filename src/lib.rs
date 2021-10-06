@@ -185,6 +185,24 @@ file_format! {
         - offset: 0
           value: b"\xFF\x0A"
 
+  - format: Ktx
+    description: "Khronos TeXture (KTX)"
+    media_type: "image/ktx"
+    extensions: ["ktx"]
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\xAB\x4B\x54\x58\x20\x31\x31\xBB\x0D\x0A\x1A\x0A"
+
+  - format: Ktx2
+    description: "Khronos TeXture 2 (KTX2)"
+    media_type: "image/ktx2"
+    extensions: ["ktx2"]
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\xAB\x4B\x54\x58\x20\x32\x30\xBB\x0D\x0A\x1A\x0A"
+
   - format: Matroska
     description: "Matroska Multimedia Container"
     media_type: "video/x-matroska"
