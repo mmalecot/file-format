@@ -107,6 +107,21 @@ file_format! {
         - offset: 0
           value: b"\x53\x51\x4C\x69\x74\x65\x20\x66\x6F\x72\x6D\x61\x74\x20\x33\x00"
 
+  - format: Html
+    description: "HyperText Markup Language (HTML)"
+    media_type: "text/html"
+    extensions: ["html", "htm"]
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"<!DOCTYPE HTML>"
+      - parts:
+        - offset: 0
+          value: b"<!DOCTYPE html>"
+      - parts:
+        - offset: 0
+          value: b"<!doctype html>"
+
   - format: ICalendar
     description: "iCalendar"
     media_type: "text/calendar"

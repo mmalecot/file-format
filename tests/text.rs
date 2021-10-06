@@ -1,6 +1,14 @@
 use file_format::FileFormat;
 
 #[test]
+fn test_html() {
+    let format = FileFormat::from_file("fixtures/text/sample.html").unwrap();
+    assert_eq!(format, FileFormat::Html);
+    assert_eq!(format.media_type(), "text/html");
+    assert_eq!(format.preferred_extension(), "html");
+}
+
+#[test]
 fn test_ics() {
     let format = FileFormat::from_file("fixtures/text/sample.ics").unwrap();
     assert_eq!(format, FileFormat::ICalendar);
