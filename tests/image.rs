@@ -1,6 +1,14 @@
 use file_format::FileFormat;
 
 #[test]
+fn test_apng() {
+    let format = FileFormat::from_file("fixtures/image/sample.apng").unwrap();
+    assert_eq!(format, FileFormat::Apng);
+    assert_eq!(format.media_type(), "image/apng");
+    assert_eq!(format.preferred_extension(), "apng");
+}
+
+#[test]
 fn test_avif() {
     let format = FileFormat::from_file("fixtures/image/sample.avif").unwrap();
     assert_eq!(format, FileFormat::Avif);
