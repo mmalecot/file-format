@@ -78,6 +78,17 @@ file_format! {
         - offset: 38
           value: b"application/epub+zip"
 
+  - format: Skp
+    description: "SketchUp Document"
+    media_type: "application/vnd.sketchup.skp"
+    extensions: ["skp"]
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\xFF\xFE\xFF\x0E\x53\x00\x6B\x00\x65\x00\x74\x00\x63\x00\x68\x00"
+        - offset: 16
+          value: b"\x55\x00\x70\x00\x20\x00\x4D\x00\x6F\x00\x64\x00\x65\x00\x6C\x00"
+
   - format: Deb
     description: "Debian package"
     media_type: "application/x-deb"
