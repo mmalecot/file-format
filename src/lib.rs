@@ -78,6 +78,17 @@ file_format! {
         - offset: 38
           value: b"application/epub+zip"
 
+  - format: Deb
+    description: "Debian package"
+    media_type: "application/x-deb"
+    extensions: ["deb"]
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x21\x3C\x61\x72\x63\x68\x3E\x0A"
+        - offset: 8
+          value: b"debian-binary"
+
   - format: InDesignDocument
     description: "Adobe InDesign document"
     media_type: "application/x-indesign"
@@ -273,15 +284,6 @@ file_format! {
       - parts:
         - offset: 4
           value: b"ftypavif"
-
-  - format: Deb
-    description: "Debian package"
-    media_type: "application/x-deb"
-    extensions: ["deb"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x21\x3C\x61\x72\x63\x68\x3E\x0A"
 
   - format: GbRom
     description: "Game Boy ROM"
