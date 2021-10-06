@@ -8,6 +8,8 @@
 
 File format library for Rust.
 
+This crate is for recognizing the format of a file by checking its signature.
+
 ## Examples
 
 Determines from a file:
