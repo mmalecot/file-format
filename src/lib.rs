@@ -280,6 +280,15 @@ file_format! {
         - offset: 0
           value: b"\x89\x4C\x5A\x4F\x00\x0D\x0A\x1A\x0A"
 
+  - format: Orf
+    description: "Olympus Raw Format (ORF)"
+    media_type: "image/x-olympus-orf"
+    extensions: ["orf"]
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x49\x49\x52\x4F\x08\x00\x00\x00\x18"
+
   - format: Aiff
     description: "Audio Interchange File Format (AIFF)"
     media_type: "audio/aiff"

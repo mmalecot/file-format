@@ -137,6 +137,14 @@ fn test_jxr() {
 }
 
 #[test]
+fn test_orf() {
+    let format = FileFormat::from_file("fixtures/image/sample.orf").unwrap();
+    assert_eq!(format, FileFormat::Orf);
+    assert_eq!(format.media_type(), "image/x-olympus-orf");
+    assert_eq!(format.preferred_extension(), "orf");
+}
+
+#[test]
 fn test_png() {
     let format = FileFormat::from_file("fixtures/image/sample.png").unwrap();
     assert_eq!(format, FileFormat::Png);
