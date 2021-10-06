@@ -265,6 +265,15 @@ file_format! {
         - offset: 8
           value: b"AIFF"
 
+  - format: Mobi
+    description: "Mobipocket"
+    media_type: "application/x-mobipocket-ebook"
+    extensions: ["mobi"]
+    signatures:
+      - parts:
+        - offset: 60
+          value: b"BOOKMOBI"
+
   - format: Avi
     description: "Audio Video Interleave (AVI)"
     media_type: "video/avi"
