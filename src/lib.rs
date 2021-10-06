@@ -611,6 +611,15 @@ file_format! {
         - offset: 0
           value: b"%PDF-"
 
+  - format: Rtf
+    description: "Rich Text Format (RTF)"
+    media_type: "text/rtf"
+    extensions: ["rtf"]
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"{\\rtf"
+
   - format: TrueType
     description: "TrueType"
     media_type: "font/ttf"

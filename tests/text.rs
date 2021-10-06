@@ -9,6 +9,14 @@ fn test_ics() {
 }
 
 #[test]
+fn test_rtf() {
+    let format = FileFormat::from_file("fixtures/text/sample.rtf").unwrap();
+    assert_eq!(format, FileFormat::Rtf);
+    assert_eq!(format.media_type(), "text/rtf");
+    assert_eq!(format.preferred_extension(), "rtf");
+}
+
+#[test]
 fn test_txt() {
     let format = FileFormat::from_file("fixtures/text/sample.txt").unwrap();
     assert_eq!(format, FileFormat::Text);
