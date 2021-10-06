@@ -105,6 +105,14 @@ fn test_eot() {
 }
 
 #[test]
+fn test_epub() {
+    let format = FileFormat::from_file("fixtures/application/sample.epub").unwrap();
+    assert_eq!(format, FileFormat::Epub);
+    assert_eq!(format.media_type(), "application/epub+zip");
+    assert_eq!(format.preferred_extension(), "epub");
+}
+
+#[test]
 fn test_exe() {
     let format = FileFormat::from_file("fixtures/application/sample.exe").unwrap();
     assert_eq!(format, FileFormat::Exe);
@@ -222,6 +230,50 @@ fn test_nes() {
     assert_eq!(format, FileFormat::NesRom);
     assert_eq!(format.media_type(), "application/x-nintendo-nes-rom");
     assert_eq!(format.preferred_extension(), "nes");
+}
+
+#[test]
+fn test_odg() {
+    let format = FileFormat::from_file("fixtures/application/sample.odg").unwrap();
+    assert_eq!(format, FileFormat::Odg);
+    assert_eq!(
+        format.media_type(),
+        "application/vnd.oasis.opendocument.graphics"
+    );
+    assert_eq!(format.preferred_extension(), "odg");
+}
+
+#[test]
+fn test_odp() {
+    let format = FileFormat::from_file("fixtures/application/sample.odp").unwrap();
+    assert_eq!(format, FileFormat::Odp);
+    assert_eq!(
+        format.media_type(),
+        "application/vnd.oasis.opendocument.presentation"
+    );
+    assert_eq!(format.preferred_extension(), "odp");
+}
+
+#[test]
+fn test_ods() {
+    let format = FileFormat::from_file("fixtures/application/sample.ods").unwrap();
+    assert_eq!(format, FileFormat::Ods);
+    assert_eq!(
+        format.media_type(),
+        "application/vnd.oasis.opendocument.spreadsheet"
+    );
+    assert_eq!(format.preferred_extension(), "ods");
+}
+
+#[test]
+fn test_odt() {
+    let format = FileFormat::from_file("fixtures/application/sample.odt").unwrap();
+    assert_eq!(format, FileFormat::Odt);
+    assert_eq!(
+        format.media_type(),
+        "application/vnd.oasis.opendocument.text"
+    );
+    assert_eq!(format.preferred_extension(), "odt");
 }
 
 #[test]

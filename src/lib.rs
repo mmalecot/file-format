@@ -4,6 +4,58 @@
 mod macros;
 
 file_format! {
+  - format: Odp
+    description: "OpenDocument Presentation (ODP)"
+    media_type: "application/vnd.oasis.opendocument.presentation"
+    extensions: ["odp", "fodp"]
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x50\x4B\x03\x04"
+        - offset: 30
+          value: b"mimetype"
+        - offset: 38
+          value: b"application/vnd.oasis.opendocument.presentation"
+
+  - format: Ods
+    description: "OpenDocument SpreadSheet (ODS)"
+    media_type: "application/vnd.oasis.opendocument.spreadsheet"
+    extensions: ["ods", "fods"]
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x50\x4B\x03\x04"
+        - offset: 30
+          value: b"mimetype"
+        - offset: 38
+          value: b"application/vnd.oasis.opendocument.spreadsheet"
+
+  - format: Odg
+    description: "OpenDocument Graphics (ODG)"
+    media_type: "application/vnd.oasis.opendocument.graphics"
+    extensions: ["odg", "fodg"]
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x50\x4B\x03\x04"
+        - offset: 30
+          value: b"mimetype"
+        - offset: 38
+          value: b"application/vnd.oasis.opendocument.graphics"
+
+  - format: Odt
+    description: "OpenDocument Text (ODT)"
+    media_type: "application/vnd.oasis.opendocument.text"
+    extensions: ["odt", "fodt"]
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x50\x4B\x03\x04"
+        - offset: 30
+          value: b"mimetype"
+        - offset: 38
+          value: b"application/vnd.oasis.opendocument.text"
+
   - format: Vdi
     description: "VirtualBox Virtual Disk Image (VDI)"
     media_type: "application/x-virtualbox-vdi"
@@ -12,6 +64,19 @@ file_format! {
       - parts:
         - offset: 0
           value: b"<<< Oracle VM VirtualBox Disk Image >>>"
+
+  - format: Epub
+    description: "Electronic Publication (EPUB)"
+    media_type: "application/epub+zip"
+    extensions: ["epub"]
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x50\x4B\x03\x04"
+        - offset: 30
+          value: b"mimetype"
+        - offset: 38
+          value: b"application/epub+zip"
 
   - format: InDesignDocument
     description: "Adobe InDesign document"
