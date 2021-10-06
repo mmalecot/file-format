@@ -875,7 +875,7 @@ file_format! {
           value: b"\x7F\x45\x4C\x46"
 
   - format: Flac
-    description: "Free Lossless Audio Codec"
+    description: "Free Lossless Audio Codec (FLAC)"
     media_type: "audio/x-flac"
     extensions: ["flac"]
     signatures:
