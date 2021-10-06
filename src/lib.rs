@@ -142,6 +142,17 @@ file_format! {
         - offset: 0
           value: b"BEGIN:VCALENDAR"
 
+  - format: Apng
+    description: "Animated Portable Network Graphics (APNG)"
+    media_type: "image/apng"
+    extensions: ["apng"]
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"
+        - offset: 0x25
+          value: b"acTL"
+
   - format: Jpeg
     description: "Joint Photographic Experts Group (JPEG)"
     media_type: "image/jpeg"
@@ -184,17 +195,6 @@ file_format! {
           value: b"\x1A\x45\xDF\xA3"
         - offset: 24
           value: b"matroska"
-
-  - format: Apng
-    description: "Animated Portable Network Graphics (APNG)"
-    media_type: "image/apng"
-    extensions: ["apng"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"
-        - offset: 0x25
-          value: b"acTL"
 
   - format: VCard
     description: "vCard"
