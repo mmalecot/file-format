@@ -341,19 +341,19 @@ fn test_rpm() {
 }
 
 #[test]
-fn test_sqlite() {
-    let format = FileFormat::from_file("fixtures/application/sample.sqlite").unwrap();
-    assert_eq!(format, FileFormat::Sqlite3);
-    assert_eq!(format.media_type(), "application/vnd.sqlite3");
-    assert_eq!(format.preferred_extension(), "sqlite");
-}
-
-#[test]
 fn test_skp() {
     let format = FileFormat::from_file("fixtures/application/sample.skp").unwrap();
     assert_eq!(format, FileFormat::Skp);
     assert_eq!(format.media_type(), "application/vnd.sketchup.skp");
     assert_eq!(format.preferred_extension(), "skp");
+}
+
+#[test]
+fn test_sqlite() {
+    let format = FileFormat::from_file("fixtures/application/sample.sqlite").unwrap();
+    assert_eq!(format, FileFormat::Sqlite3);
+    assert_eq!(format.media_type(), "application/vnd.sqlite3");
+    assert_eq!(format.preferred_extension(), "sqlite");
 }
 
 #[test]
