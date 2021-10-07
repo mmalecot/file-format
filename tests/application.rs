@@ -9,6 +9,14 @@ fn test_7z() {
 }
 
 #[test]
+fn test_ar() {
+    let format = FileFormat::from_file("fixtures/application/sample.ar").unwrap();
+    assert_eq!(format, FileFormat::Ar);
+    assert_eq!(format.media_type(), "application/x-archive");
+    assert_eq!(format.preferred_extension(), "ar");
+}
+
+#[test]
 fn test_bin() {
     let format = FileFormat::from_file("fixtures/application/sample.bin").unwrap();
     assert_eq!(format, FileFormat::Binary);
@@ -68,7 +76,7 @@ fn test_dcm() {
 fn test_deb() {
     let format = FileFormat::from_file("fixtures/application/sample.deb").unwrap();
     assert_eq!(format, FileFormat::Deb);
-    assert_eq!(format.media_type(), "application/x-deb");
+    assert_eq!(format.media_type(), "application/vnd.debian.binary-package");
     assert_eq!(format.preferred_extension(), "deb");
 }
 
@@ -105,6 +113,14 @@ fn test_eot() {
 }
 
 #[test]
+fn test_epub() {
+    let format = FileFormat::from_file("fixtures/application/sample.epub").unwrap();
+    assert_eq!(format, FileFormat::Epub);
+    assert_eq!(format.media_type(), "application/epub+zip");
+    assert_eq!(format.preferred_extension(), "epub");
+}
+
+#[test]
 fn test_exe() {
     let format = FileFormat::from_file("fixtures/application/sample.exe").unwrap();
     assert_eq!(format, FileFormat::Exe);
@@ -126,6 +142,14 @@ fn test_gba() {
     assert_eq!(format, FileFormat::GbaRom);
     assert_eq!(format.media_type(), "application/x-gba-rom");
     assert_eq!(format.preferred_extension(), "gba");
+}
+
+#[test]
+fn test_gbc() {
+    let format = FileFormat::from_file("fixtures/application/sample.gbc").unwrap();
+    assert_eq!(format, FileFormat::GbcRom);
+    assert_eq!(format.media_type(), "application/x-gameboy-color-rom");
+    assert_eq!(format.preferred_extension(), "gbc");
 }
 
 #[test]
@@ -193,11 +217,27 @@ fn test_lzo() {
 }
 
 #[test]
+fn test_mobi() {
+    let format = FileFormat::from_file("fixtures/application/sample.mobi").unwrap();
+    assert_eq!(format, FileFormat::Mobi);
+    assert_eq!(format.media_type(), "application/x-mobipocket-ebook");
+    assert_eq!(format.preferred_extension(), "mobi");
+}
+
+#[test]
 fn test_msi() {
     let format = FileFormat::from_file("fixtures/application/sample.msi").unwrap();
     assert_eq!(format, FileFormat::Msi);
     assert_eq!(format.media_type(), "application/x-ole-storage");
     assert_eq!(format.preferred_extension(), "msi");
+}
+
+#[test]
+fn test_mxf() {
+    let format = FileFormat::from_file("fixtures/application/sample.mxf").unwrap();
+    assert_eq!(format, FileFormat::Mxf);
+    assert_eq!(format.media_type(), "application/mxf");
+    assert_eq!(format.preferred_extension(), "mxf");
 }
 
 #[test]
@@ -214,6 +254,50 @@ fn test_nes() {
     assert_eq!(format, FileFormat::NesRom);
     assert_eq!(format.media_type(), "application/x-nintendo-nes-rom");
     assert_eq!(format.preferred_extension(), "nes");
+}
+
+#[test]
+fn test_odg() {
+    let format = FileFormat::from_file("fixtures/application/sample.odg").unwrap();
+    assert_eq!(format, FileFormat::Odg);
+    assert_eq!(
+        format.media_type(),
+        "application/vnd.oasis.opendocument.graphics"
+    );
+    assert_eq!(format.preferred_extension(), "odg");
+}
+
+#[test]
+fn test_odp() {
+    let format = FileFormat::from_file("fixtures/application/sample.odp").unwrap();
+    assert_eq!(format, FileFormat::Odp);
+    assert_eq!(
+        format.media_type(),
+        "application/vnd.oasis.opendocument.presentation"
+    );
+    assert_eq!(format.preferred_extension(), "odp");
+}
+
+#[test]
+fn test_ods() {
+    let format = FileFormat::from_file("fixtures/application/sample.ods").unwrap();
+    assert_eq!(format, FileFormat::Ods);
+    assert_eq!(
+        format.media_type(),
+        "application/vnd.oasis.opendocument.spreadsheet"
+    );
+    assert_eq!(format.preferred_extension(), "ods");
+}
+
+#[test]
+fn test_odt() {
+    let format = FileFormat::from_file("fixtures/application/sample.odt").unwrap();
+    assert_eq!(format, FileFormat::Odt);
+    assert_eq!(
+        format.media_type(),
+        "application/vnd.oasis.opendocument.text"
+    );
+    assert_eq!(format.preferred_extension(), "odt");
 }
 
 #[test]
@@ -254,6 +338,22 @@ fn test_rpm() {
     assert_eq!(format, FileFormat::Rpm);
     assert_eq!(format.media_type(), "application/x-rpm");
     assert_eq!(format.preferred_extension(), "rpm");
+}
+
+#[test]
+fn test_shp() {
+    let format = FileFormat::from_file("fixtures/application/sample.shp").unwrap();
+    assert_eq!(format, FileFormat::Shapefile);
+    assert_eq!(format.media_type(), "application/x-esri-shape");
+    assert_eq!(format.preferred_extension(), "shp");
+}
+
+#[test]
+fn test_skp() {
+    let format = FileFormat::from_file("fixtures/application/sample.skp").unwrap();
+    assert_eq!(format, FileFormat::Skp);
+    assert_eq!(format.media_type(), "application/vnd.sketchup.skp");
+    assert_eq!(format.preferred_extension(), "skp");
 }
 
 #[test]
@@ -313,19 +413,19 @@ fn test_xz() {
 }
 
 #[test]
-fn test_z64() {
-    let format = FileFormat::from_file("fixtures/application/sample.z64").unwrap();
-    assert_eq!(format, FileFormat::N64Rom);
-    assert_eq!(format.media_type(), "application/x-n64-rom");
-    assert_eq!(format.preferred_extension(), "z64");
-}
-
-#[test]
 fn test_z() {
     let format = FileFormat::from_file("fixtures/application/sample.Z").unwrap();
     assert_eq!(format, FileFormat::Compress);
     assert_eq!(format.media_type(), "application/x-compress");
     assert_eq!(format.preferred_extension(), "Z");
+}
+
+#[test]
+fn test_z64() {
+    let format = FileFormat::from_file("fixtures/application/sample.z64").unwrap();
+    assert_eq!(format, FileFormat::N64Rom);
+    assert_eq!(format.media_type(), "application/x-n64-rom");
+    assert_eq!(format.preferred_extension(), "z64");
 }
 
 #[test]

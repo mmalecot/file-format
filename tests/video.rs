@@ -33,6 +33,14 @@ fn test_flv() {
 }
 
 #[test]
+fn test_m2ts() {
+    let format = FileFormat::from_file("fixtures/video/sample.m2ts").unwrap();
+    assert_eq!(format, FileFormat::M2ts);
+    assert_eq!(format.media_type(), "video/mp2t");
+    assert_eq!(format.preferred_extension(), "m2ts");
+}
+
+#[test]
 fn test_m4v() {
     let format = FileFormat::from_file("fixtures/video/sample.m4v").unwrap();
     assert_eq!(format, FileFormat::M4v);

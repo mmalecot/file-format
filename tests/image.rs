@@ -1,6 +1,14 @@
 use file_format::FileFormat;
 
 #[test]
+fn test_apng() {
+    let format = FileFormat::from_file("fixtures/image/sample.apng").unwrap();
+    assert_eq!(format, FileFormat::Apng);
+    assert_eq!(format.media_type(), "image/apng");
+    assert_eq!(format.preferred_extension(), "apng");
+}
+
+#[test]
 fn test_avif() {
     let format = FileFormat::from_file("fixtures/image/sample.avif").unwrap();
     assert_eq!(format, FileFormat::Avif);
@@ -126,6 +134,30 @@ fn test_jxr() {
     assert_eq!(format, FileFormat::JpegXr);
     assert_eq!(format.media_type(), "image/jxr");
     assert_eq!(format.preferred_extension(), "jxr");
+}
+
+#[test]
+fn test_ktx() {
+    let format = FileFormat::from_file("fixtures/image/sample.ktx").unwrap();
+    assert_eq!(format, FileFormat::Ktx);
+    assert_eq!(format.media_type(), "image/ktx");
+    assert_eq!(format.preferred_extension(), "ktx");
+}
+
+#[test]
+fn test_ktx2() {
+    let format = FileFormat::from_file("fixtures/image/sample.ktx2").unwrap();
+    assert_eq!(format, FileFormat::Ktx2);
+    assert_eq!(format.media_type(), "image/ktx2");
+    assert_eq!(format.preferred_extension(), "ktx2");
+}
+
+#[test]
+fn test_orf() {
+    let format = FileFormat::from_file("fixtures/image/sample.orf").unwrap();
+    assert_eq!(format, FileFormat::Orf);
+    assert_eq!(format.media_type(), "image/x-olympus-orf");
+    assert_eq!(format.preferred_extension(), "orf");
 }
 
 #[test]

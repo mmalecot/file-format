@@ -1,11 +1,27 @@
 use file_format::FileFormat;
 
 #[test]
+fn test_html() {
+    let format = FileFormat::from_file("fixtures/text/sample.html").unwrap();
+    assert_eq!(format, FileFormat::Html);
+    assert_eq!(format.media_type(), "text/html");
+    assert_eq!(format.preferred_extension(), "html");
+}
+
+#[test]
 fn test_ics() {
     let format = FileFormat::from_file("fixtures/text/sample.ics").unwrap();
     assert_eq!(format, FileFormat::ICalendar);
     assert_eq!(format.media_type(), "text/calendar");
     assert_eq!(format.preferred_extension(), "ics");
+}
+
+#[test]
+fn test_rtf() {
+    let format = FileFormat::from_file("fixtures/text/sample.rtf").unwrap();
+    assert_eq!(format, FileFormat::Rtf);
+    assert_eq!(format.media_type(), "text/rtf");
+    assert_eq!(format.preferred_extension(), "rtf");
 }
 
 #[test]
