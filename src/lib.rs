@@ -1266,4 +1266,20 @@ file_format! {
       - parts:
         - offset: 0
           value: b"\x1F\x8B"
+
+  - format: M2ts
+    description: "MPEG-2 Transport Stream (M2TS)"
+    media_type: "video/mp2t"
+    extensions: ["m2ts", "mts", "ts", "m2t"]
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x47"
+        - offset: 188
+          value: b"\x47"
+      - parts:
+        - offset: 4
+          value: b"\x47"
+        - offset: 196
+          value: b"\x47"
 }
