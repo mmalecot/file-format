@@ -217,19 +217,19 @@ fn test_lzo() {
 }
 
 #[test]
-fn test_msi() {
-    let format = FileFormat::from_file("fixtures/application/sample.msi").unwrap();
-    assert_eq!(format, FileFormat::Msi);
-    assert_eq!(format.media_type(), "application/x-ole-storage");
-    assert_eq!(format.preferred_extension(), "msi");
-}
-
-#[test]
 fn test_mobi() {
     let format = FileFormat::from_file("fixtures/application/sample.mobi").unwrap();
     assert_eq!(format, FileFormat::Mobi);
     assert_eq!(format.media_type(), "application/x-mobipocket-ebook");
     assert_eq!(format.preferred_extension(), "mobi");
+}
+
+#[test]
+fn test_msi() {
+    let format = FileFormat::from_file("fixtures/application/sample.msi").unwrap();
+    assert_eq!(format, FileFormat::Msi);
+    assert_eq!(format.media_type(), "application/x-ole-storage");
+    assert_eq!(format.preferred_extension(), "msi");
 }
 
 #[test]
