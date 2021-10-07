@@ -341,6 +341,14 @@ fn test_rpm() {
 }
 
 #[test]
+fn test_shp() {
+    let format = FileFormat::from_file("fixtures/application/sample.shp").unwrap();
+    assert_eq!(format, FileFormat::Shapefile);
+    assert_eq!(format.media_type(), "application/x-esri-shape");
+    assert_eq!(format.preferred_extension(), "shp");
+}
+
+#[test]
 fn test_skp() {
     let format = FileFormat::from_file("fixtures/application/sample.skp").unwrap();
     assert_eq!(format, FileFormat::Skp);

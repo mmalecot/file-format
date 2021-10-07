@@ -1054,6 +1054,15 @@ file_format! {
         - offset: 0
           value: b"\xED\xAB\xEE\xDB"
 
+  - format: Shapefile
+    description: "Shapefile"
+    media_type: "application/x-esri-shape"
+    extensions: ["shp"]
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x00\x00\x27\x0A"
+
   - format: Snd
     description: "SouND (SND)"
     media_type: "audio/basic"
