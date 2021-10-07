@@ -91,8 +91,8 @@ file_format! {
 
   - format: Deb
     description: "Debian package"
-    media_type: "application/x-deb"
-    extensions: ["deb"]
+    media_type: "application/vnd.debian.binary-package"
+    extensions: ["deb", "udeb"]
     signatures:
       - parts:
         - offset: 0

@@ -76,7 +76,7 @@ fn test_dcm() {
 fn test_deb() {
     let format = FileFormat::from_file("fixtures/application/sample.deb").unwrap();
     assert_eq!(format, FileFormat::Deb);
-    assert_eq!(format.media_type(), "application/x-deb");
+    assert_eq!(format.media_type(), "application/vnd.debian.binary-package");
     assert_eq!(format.preferred_extension(), "deb");
 }
 
