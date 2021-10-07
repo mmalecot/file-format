@@ -142,6 +142,15 @@ file_format! {
         - offset: 0
           value: b"BEGIN:VCALENDAR"
 
+  - format: Mxf
+    description: "Material Exchange Format (MXF)"
+    media_type: "application/mxf"
+    extensions: ["mxf"]
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x06\x0E\x2B\x34\x02\x05\x01\x01\x0D\x01\x02\x01\x01\x02"
+
   - format: Apng
     description: "Animated Portable Network Graphics (APNG)"
     media_type: "image/apng"

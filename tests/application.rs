@@ -233,6 +233,14 @@ fn test_msi() {
 }
 
 #[test]
+fn test_mxf() {
+    let format = FileFormat::from_file("fixtures/application/sample.mxf").unwrap();
+    assert_eq!(format, FileFormat::Mxf);
+    assert_eq!(format.media_type(), "application/mxf");
+    assert_eq!(format.preferred_extension(), "mxf");
+}
+
+#[test]
 fn test_nds() {
     let format = FileFormat::from_file("fixtures/application/sample.nds").unwrap();
     assert_eq!(format, FileFormat::NdsRom);
