@@ -413,19 +413,19 @@ fn test_xz() {
 }
 
 #[test]
-fn test_z64() {
-    let format = FileFormat::from_file("fixtures/application/sample.z64").unwrap();
-    assert_eq!(format, FileFormat::N64Rom);
-    assert_eq!(format.media_type(), "application/x-n64-rom");
-    assert_eq!(format.preferred_extension(), "z64");
-}
-
-#[test]
 fn test_z() {
     let format = FileFormat::from_file("fixtures/application/sample.Z").unwrap();
     assert_eq!(format, FileFormat::Compress);
     assert_eq!(format.media_type(), "application/x-compress");
     assert_eq!(format.preferred_extension(), "Z");
+}
+
+#[test]
+fn test_z64() {
+    let format = FileFormat::from_file("fixtures/application/sample.z64").unwrap();
+    assert_eq!(format, FileFormat::N64Rom);
+    assert_eq!(format.media_type(), "application/x-n64-rom");
+    assert_eq!(format.preferred_extension(), "z64");
 }
 
 #[test]
