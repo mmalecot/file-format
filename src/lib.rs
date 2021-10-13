@@ -1,13 +1,163 @@
-#![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/README.md"))]
+#![doc = include_str ! (concat ! (env ! ("CARGO_MANIFEST_DIR"), "/README.md"))]
 
-#[macro_use]
-mod macros;
+use std::{
+    fs::File,
+    io::{Read, Result},
+    path::Path,
+};
 
-file_format! {
-  - format: Odp
-    description: "OpenDocument Presentation (ODP)"
-    media_type: "application/vnd.oasis.opendocument.presentation"
-    extensions: ["odp", "fodp"]
+/// A file format.
+#[derive(Clone, Debug, PartialEq)]
+pub struct FileFormat {
+    media_type: String,
+    extension: String,
+}
+
+impl FileFormat {
+    /// Maximum number of bytes to read to detect the `FileFormat`.
+    const MAX_BYTES: u64 = 36870;
+
+    /// Creates a new `FileFormat` from a media type and an extension.
+    fn new(media_type: &str, extension: &str) -> FileFormat {
+        FileFormat {
+            media_type: String::from(media_type),
+            extension: String::from(extension),
+        }
+    }
+
+    /// Determines `FileFormat` from bytes.
+    ///
+    /// If the `FileFormat` is not recognized, it will return the [default value].
+    ///
+    /// # Examples
+    ///
+    /// Detects from the first bytes of a PNG file:
+    ///
+    /// ```rust
+    /// use file_format::FileFormat;
+    ///
+    /// let format = FileFormat::from_bytes(b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A");
+    /// assert_eq!(format.media_type(), "image/png");
+    /// assert_eq!(format.extension(), "png");
+    ///```
+    ///
+    /// Detects from a zeroed buffer:
+    ///
+    /// ```rust
+    /// use file_format::FileFormat;
+    ///
+    /// let format = FileFormat::from_bytes(&[0; 1000]);
+    /// assert_eq!(format, FileFormat::default());
+    /// assert_eq!(format.media_type(), "application/octet-stream");
+    /// assert_eq!(format.extension(), "bin");
+    ///```
+    ///
+    /// [default value]: FileFormat::default
+    #[inline]
+    pub fn from_bytes(bytes: &[u8]) -> FileFormat {
+        FileFormat::from_signature(bytes).unwrap_or_default()
+    }
+
+    /// Determines `FileFormat` from a file.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use file_format::FileFormat;
+    ///
+    /// let format = FileFormat::from_file("fixtures/video/sample.mkv")?;
+    /// assert_eq!(format.media_type(), "video/x-matroska");
+    /// assert_eq!(format.extension(), "mkv");
+    /// # Ok::<(), std::io::Error>(())
+    ///```
+    pub fn from_file<P: AsRef<Path>>(path: P) -> Result<FileFormat> {
+        let file = File::open(path)?;
+        let mut handle = file.take(FileFormat::MAX_BYTES);
+        let mut buffer = [0; FileFormat::MAX_BYTES as usize];
+        let read = handle.read(&mut buffer)?;
+        Ok(FileFormat::from_bytes(&buffer[0..read]))
+    }
+
+    /// Returns the media type (formerly known as MIME type) of the `FileFormat`.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use file_format::FileFormat;
+    ///
+    /// let format = FileFormat::from_file("fixtures/application/sample.zst")?;
+    /// assert_eq!(format.media_type(), "application/zstd");
+    /// # Ok::<(), std::io::Error>(())
+    ///```
+    #[inline]
+    pub fn media_type(&self) -> &str {
+        &self.media_type
+    }
+
+    /// Returns the preferred extension of the `FileFormat`.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use file_format::FileFormat;
+    ///
+    /// let format = FileFormat::from_file("fixtures/video/sample.wmv")?;
+    /// assert_eq!(format.extension(), "wmv");
+    /// # Ok::<(), std::io::Error>(())
+    ///```
+    #[inline]
+    pub fn extension(&self) -> &str {
+        &self.extension
+    }
+}
+
+impl Default for FileFormat {
+    /// Returns the default `FileFormat` which corresponds to arbitrary binary data.
+    #[inline]
+    fn default() -> FileFormat {
+        FileFormat::new("application/octet-stream", "bin")
+    }
+}
+
+/// Generates [`FileFormat::from_signature`] using a database described in YAML-like format.
+macro_rules! signatures {
+    {
+        $(
+            -   media_type: $media_type:literal
+                extension: $extension:literal
+                signatures:
+                $(
+                    -   parts:
+                    $(
+                        -   offset: $offset:literal
+                            value: $signature:literal
+                    )+
+                )+
+        )*
+    } => {
+        impl FileFormat {
+            /// Determines `FileFormat` from bytes by checking the signature.
+            fn from_signature(bytes: &[u8]) -> Option<FileFormat> {
+                $(
+                    if
+                        $(
+                            $(
+                                bytes.len() >= $offset + $signature.len()
+                                    && &bytes[$offset..$offset + $signature.len()] == $signature
+                            )&&*
+                        )||*
+                    { return Some(FileFormat::new($media_type, $extension)); }
+                )*
+                None
+            }
+        }
+    };
+}
+
+signatures! {
+  // 59-byte signatures
+  - media_type: "application/vnd.oasis.opendocument.presentation"
+    extension: "odp"
     signatures:
       - parts:
         - offset: 0
@@ -17,10 +167,9 @@ file_format! {
         - offset: 38
           value: b"application/vnd.oasis.opendocument.presentation"
 
-  - format: Ods
-    description: "OpenDocument SpreadSheet (ODS)"
-    media_type: "application/vnd.oasis.opendocument.spreadsheet"
-    extensions: ["ods", "fods"]
+  // 58-byte signatures
+  - media_type: "application/vnd.oasis.opendocument.spreadsheet"
+    extension: "ods"
     signatures:
       - parts:
         - offset: 0
@@ -30,10 +179,9 @@ file_format! {
         - offset: 38
           value: b"application/vnd.oasis.opendocument.spreadsheet"
 
-  - format: Odg
-    description: "OpenDocument Graphics (ODG)"
-    media_type: "application/vnd.oasis.opendocument.graphics"
-    extensions: ["odg", "fodg"]
+  // 55-byte signatures
+  - media_type: "application/vnd.oasis.opendocument.graphics"
+    extension: "odg"
     signatures:
       - parts:
         - offset: 0
@@ -43,10 +191,9 @@ file_format! {
         - offset: 38
           value: b"application/vnd.oasis.opendocument.graphics"
 
-  - format: Odt
-    description: "OpenDocument Text (ODT)"
-    media_type: "application/vnd.oasis.opendocument.text"
-    extensions: ["odt", "fodt"]
+  // 51-byte signatures
+  - media_type: "application/vnd.oasis.opendocument.text"
+    extension: "odt"
     signatures:
       - parts:
         - offset: 0
@@ -56,19 +203,17 @@ file_format! {
         - offset: 38
           value: b"application/vnd.oasis.opendocument.text"
 
-  - format: Vdi
-    description: "VirtualBox Virtual Disk Image (VDI)"
-    media_type: "application/x-virtualbox-vdi"
-    extensions: ["vdi"]
+  // 39-byte signatures
+  - media_type: "application/x-virtualbox-vdi"
+    extension: "vdi"
     signatures:
       - parts:
         - offset: 0
           value: b"<<< Oracle VM VirtualBox Disk Image >>>"
 
-  - format: Epub
-    description: "Electronic Publication (EPUB)"
-    media_type: "application/epub+zip"
-    extensions: ["epub"]
+  // 32-byte signatures
+  - media_type: "application/epub+zip"
+    extension: "epub"
     signatures:
       - parts:
         - offset: 0
@@ -78,10 +223,8 @@ file_format! {
         - offset: 38
           value: b"application/epub+zip"
 
-  - format: Skp
-    description: "SketchUp Document"
-    media_type: "application/vnd.sketchup.skp"
-    extensions: ["skp"]
+  - media_type: "application/vnd.sketchup.skp"
+    extension: "skp"
     signatures:
       - parts:
         - offset: 0
@@ -89,10 +232,9 @@ file_format! {
         - offset: 16
           value: b"\x55\x00\x70\x00\x20\x00\x4D\x00\x6F\x00\x64\x00\x65\x00\x6C\x00"
 
-  - format: Deb
-    description: "Debian package"
-    media_type: "application/vnd.debian.binary-package"
-    extensions: ["deb", "udeb"]
+  // 21-byte signatures
+  - media_type: "application/vnd.debian.binary-package"
+    extension: "deb"
     signatures:
       - parts:
         - offset: 0
@@ -100,61 +242,32 @@ file_format! {
         - offset: 8
           value: b"debian-binary"
 
-  - format: InDesignDocument
-    description: "Adobe InDesign document"
-    media_type: "application/x-indesign"
-    extensions: ["indd"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x06\x06\xED\xF5\xD8\x1D\x46\xE5\xBD\x31\xEF\xE7\xFE\x74\xB7\x1D"
-
-  - format: Sqlite3
-    description: "SQLite 3 Database"
-    media_type: "application/vnd.sqlite3"
-    extensions: ["sqlite", "sqlite3", "sqlitedb", "db"]
+  // 16-byte signatures
+  - media_type: "application/vnd.sqlite3"
+    extension: "sqlite"
     signatures:
       - parts:
         - offset: 0
           value: b"\x53\x51\x4C\x69\x74\x65\x20\x66\x6F\x72\x6D\x61\x74\x20\x33\x00"
 
-  - format: Html
-    description: "HyperText Markup Language (HTML)"
-    media_type: "text/html"
-    extensions: ["html", "htm"]
+  - media_type: "application/x-indesign"
+    extension: "indd"
     signatures:
       - parts:
         - offset: 0
-          value: b"<!DOCTYPE HTML>"
-      - parts:
-        - offset: 0
-          value: b"<!DOCTYPE html>"
-      - parts:
-        - offset: 0
-          value: b"<!doctype html>"
+          value: b"\x06\x06\xED\xF5\xD8\x1D\x46\xE5\xBD\x31\xEF\xE7\xFE\x74\xB7\x1D"
 
-  - format: ICalendar
-    description: "iCalendar"
-    media_type: "text/calendar"
-    extensions: ["ics", "ical", "ifb", "icalendar"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"BEGIN:VCALENDAR"
-
-  - format: Mxf
-    description: "Material Exchange Format (MXF)"
-    media_type: "application/mxf"
-    extensions: ["mxf"]
+  // 14-byte signatures
+  - media_type: "application/mxf"
+    extension: "mxf"
     signatures:
       - parts:
         - offset: 0
           value: b"\x06\x0E\x2B\x34\x02\x05\x01\x01\x0D\x01\x02\x01\x01\x02"
 
-  - format: Apng
-    description: "Animated Portable Network Graphics (APNG)"
-    media_type: "image/apng"
-    extensions: ["apng"]
+  // 12-byte signatures
+  - media_type: "image/apng"
+    extension: "apng"
     signatures:
       - parts:
         - offset: 0
@@ -162,10 +275,8 @@ file_format! {
         - offset: 0x25
           value: b"acTL"
 
-  - format: Jpeg
-    description: "Joint Photographic Experts Group (JPEG)"
-    media_type: "image/jpeg"
-    extensions: ["jpg", "jpeg"]
+  - media_type: "image/jpeg"
+    extension: "jpg"
     signatures:
       - parts:
         - offset: 0
@@ -182,10 +293,8 @@ file_format! {
         - offset: 0
           value: b"\xFF\xD8\xFF\xEE"
 
-  - format: JpegXl
-    description: "JPEG XL"
-    media_type: "image/jxl"
-    extensions: ["jxl"]
+  - media_type: "image/jxl"
+    extension: "jxl"
     signatures:
       - parts:
         - offset: 0
@@ -194,28 +303,22 @@ file_format! {
         - offset: 0
           value: b"\xFF\x0A"
 
-  - format: Ktx
-    description: "Khronos TeXture (KTX)"
-    media_type: "image/ktx"
-    extensions: ["ktx"]
+  - media_type: "image/ktx"
+    extension: "ktx"
     signatures:
       - parts:
         - offset: 0
           value: b"\xAB\x4B\x54\x58\x20\x31\x31\xBB\x0D\x0A\x1A\x0A"
 
-  - format: Ktx2
-    description: "Khronos TeXture 2 (KTX2)"
-    media_type: "image/ktx2"
-    extensions: ["ktx2"]
+  - media_type: "image/ktx2"
+    extension: "ktx2"
     signatures:
       - parts:
         - offset: 0
           value: b"\xAB\x4B\x54\x58\x20\x32\x30\xBB\x0D\x0A\x1A\x0A"
 
-  - format: Matroska
-    description: "Matroska Multimedia Container"
-    media_type: "video/x-matroska"
-    extensions: ["mkv"]
+  - media_type: "video/x-matroska"
+    extension: "mkv"
     signatures:
       - parts:
         - offset: 0
@@ -223,28 +326,9 @@ file_format! {
         - offset: 24
           value: b"matroska"
 
-  - format: VCard
-    description: "vCard"
-    media_type: "text/vcard"
-    extensions: ["vcf", "vcard"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"BEGIN:VCARD"
-
-  - format: Fits
-    description: "Flexible Image Transport System (FITS)"
-    media_type: "image/fits"
-    extensions: ["fits", "fit", "fts"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x53\x49\x4D\x50\x4C\x45\x20\x20\x3D\x20"
-
-  - format: OggAudio
-    description: "Ogg audio"
-    media_type: "audio/ogg"
-    extensions: ["ogg", "oga", "spx"]
+  // 10-byte signatures
+  - media_type: "audio/ogg"
+    extension: "ogg"
     signatures:
       - parts:
         - offset: 0
@@ -262,10 +346,15 @@ file_format! {
         - offset: 29
           value: b"FLAC"
 
-  - format: OggVideo
-    description: "Ogg video"
-    media_type: "video/ogg"
-    extensions: ["ogv"]
+  - media_type: "image/fits"
+    extension: "fits"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x53\x49\x4D\x50\x4C\x45\x20\x20\x3D\x20"
+
+  - media_type: "video/ogg"
+    extension: "ogv"
     signatures:
       - parts:
         - offset: 0
@@ -273,10 +362,8 @@ file_format! {
         - offset: 29
           value: b"theora"
 
-  - format: QuickTime
-    description: "QuickTime Movie"
-    media_type: "video/quicktime"
-    extensions: ["mov", "qt"]
+  - media_type: "video/quicktime"
+    extension: "mov"
     signatures:
       - parts:
         - offset: 0
@@ -284,19 +371,16 @@ file_format! {
         - offset: 4
           value: b"ftypqt"
 
-  - format: Wmv
-    description: "Windows Media Video (WMV)"
-    media_type: "video/x-ms-asf"
-    extensions: ["wmv", "wm", "asf"]
+  - media_type: "video/x-ms-asf"
+    extension: "wmv"
     signatures:
       - parts:
         - offset: 0
           value: b"\x30\x26\xB2\x75\x8E\x66\xCF\x11\xA6\xD9"
 
-  - format: GbcRom
-    description: "Game Boy Color ROM"
-    media_type: "application/x-gameboy-color-rom"
-    extensions: ["gbc"]
+  // 9-byte signatures
+  - media_type: "application/x-gameboy-color-rom"
+    extension: "gbc"
     signatures:
       - parts:
         - offset: 0x104
@@ -309,28 +393,104 @@ file_format! {
         - offset: 0x143
           value: b"\xC0"
 
-  - format: Lzop
-    description: "Lzop"
-    media_type: "application/x-lzop"
-    extensions: ["lzo"]
+  - media_type: "application/x-lzop"
+    extension: "lzo"
     signatures:
       - parts:
         - offset: 0
           value: b"\x89\x4C\x5A\x4F\x00\x0D\x0A\x1A\x0A"
 
-  - format: Orf
-    description: "Olympus Raw Format (ORF)"
-    media_type: "image/x-olympus-orf"
-    extensions: ["orf"]
+  - media_type: "image/x-olympus-orf"
+    extension: "orf"
     signatures:
       - parts:
         - offset: 0
           value: b"\x49\x49\x52\x4F\x08\x00\x00\x00\x18"
 
-  - format: Aiff
-    description: "Audio Interchange File Format (AIFF)"
-    media_type: "audio/aiff"
-    extensions: ["aif", "aiff"]
+  // 8-byte signatures
+  - media_type: "application/vnd.rar"
+    extension: "rar"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x52\x61\x72\x21\x1A\x07\x01\x00"
+      - parts:
+        - offset: 0
+          value: b"\x52\x61\x72\x21\x1A\x07\x00"
+
+  - media_type: "application/x-gameboy-rom"
+    extension: "gb"
+    signatures:
+      - parts:
+        - offset: 0x104
+          value: b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B"
+
+  - media_type: "application/x-gba-rom"
+    extension: "gba"
+    signatures:
+      - parts:
+        - offset: 4
+          value: b"\x24\xFF\xAE\x51\x69\x9A\xA2\x21"
+
+  - media_type: "application/x-mobipocket-ebook"
+    extension: "mobi"
+    signatures:
+      - parts:
+        - offset: 60
+          value: b"BOOKMOBI"
+
+  - media_type: "application/x-ms-shortcut"
+    extension: "lnk"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x4C\x00\x00\x00\x01\x14\x02\x00"
+
+  - media_type: "application/x-n64-rom"
+    extension: "z64"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x80\x37\x12\x40\x00\x00\x00\x0F"
+      - parts:
+        - offset: 0
+          value: b"\x37\x80\x40\x12\x00\x00\x0F\x00"
+      - parts:
+        - offset: 0
+          value: b"\x12\x40\x80\x37\x00\x0F\x00\x00"
+      - parts:
+        - offset: 0
+          value: b"\x40\x12\x37\x80\x0F\x00\x00\x00"
+
+  - media_type: "application/x-nintendo-ds-rom"
+    extension: "nds"
+    signatures:
+      - parts:
+        - offset: 0xC0
+          value: b"\x24\xFF\xAE\x51\x69\x9A\xA2\x21"
+      - parts:
+        - offset: 0xC0
+          value: b"\xC8\x60\x4F\xE2\x01\x70\x8F\xE2"
+
+  - media_type: "application/x-ole-storage"
+    extension: "msi"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"
+
+  - media_type: "application/x-tar"
+    extension: "tar"
+    signatures:
+      - parts:
+        - offset: 257
+          value: b"\x75\x73\x74\x61\x72\x00\x30\x30"
+      - parts:
+        - offset: 257
+          value: b"\x75\x73\x74\x61\x72\x20\x20\x00"
+
+  - media_type: "audio/aiff"
+    extension: "aif"
     signatures:
       - parts:
         - offset: 0
@@ -338,57 +498,24 @@ file_format! {
         - offset: 8
           value: b"AIFF"
 
-  - format: Mobi
-    description: "Mobipocket"
-    media_type: "application/x-mobipocket-ebook"
-    extensions: ["mobi"]
-    signatures:
-      - parts:
-        - offset: 60
-          value: b"BOOKMOBI"
-
-  - format: Avi
-    description: "Audio Video Interleave (AVI)"
-    media_type: "video/avi"
-    extensions: ["avi"]
+  - media_type: "audio/vnd.wave"
+    extension: "wav"
     signatures:
       - parts:
         - offset: 0
           value: b"RIFF"
         - offset: 8
-          value: b"\x41\x56\x49\x20"
+          value: b"WAVE"
 
-  - format: Avif
-    description: "AV1 Image File Format (AVIF)"
-    media_type: "image/avif"
-    extensions: ["avif"]
+  - media_type: "image/avif"
+    extension: "avif"
     signatures:
       - parts:
         - offset: 4
           value: b"ftypavif"
 
-  - format: GbRom
-    description: "Game Boy ROM"
-    media_type: "application/x-gameboy-rom"
-    extensions: ["gb"]
-    signatures:
-      - parts:
-        - offset: 0x104
-          value: b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B"
-
-  - format: GbaRom
-    description: "Game Boy Advance ROM"
-    media_type: "application/x-gba-rom"
-    extensions: ["gba"]
-    signatures:
-      - parts:
-        - offset: 4
-          value: b"\x24\xFF\xAE\x51\x69\x9A\xA2\x21"
-
-  - format: Heif
-    description: "High Efficiency Image File Format (HEIF)"
-    media_type: "image/heic"
-    extensions: ["heic"]
+  - media_type: "image/heic"
+    extension: "heic"
     signatures:
       - parts:
         - offset: 4
@@ -397,19 +524,40 @@ file_format! {
         - offset: 4
           value: b"ftypheix"
 
-  - format: Lnk
-    description: "Windows shortcut"
-    media_type: "application/x-ms-shortcut"
-    extensions: ["lnk", "url", "cda"]
+  - media_type: "image/png"
+    extension: "png"
     signatures:
       - parts:
         - offset: 0
-          value: b"\x4C\x00\x00\x00\x01\x14\x02\x00"
+          value: b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"
 
-  - format: Mp4
-    description: "MPEG-4 Part 14 (MP4)"
-    media_type: "video/mp4"
-    extensions: ["mp4"]
+  - media_type: "image/webp"
+    extension: "webp"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"RIFF"
+        - offset: 8
+          value: b"WEBP"
+
+  - media_type: "image/x-xcf"
+    extension: "xcf"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"gimp xcf"
+
+  - media_type: "video/avi"
+    extension: "avi"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"RIFF"
+        - offset: 8
+          value: b"\x41\x56\x49\x20"
+
+  - media_type: "video/mp4"
+    extension: "mp4"
     signatures:
       - parts:
         - offset: 4
@@ -490,93 +638,8 @@ file_format! {
         - offset: 4
           value: b"ftypF4P"
 
-  - format: Msi
-    description: "Windows Installer"
-    media_type: "application/x-ole-storage"
-    extensions: ["msi", "msp"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"
-
-  - format: N64Rom
-    description: "Nintendo 64 ROM"
-    media_type: "application/x-n64-rom"
-    extensions: ["z64"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x80\x37\x12\x40\x00\x00\x00\x0F"
-      - parts:
-        - offset: 0
-          value: b"\x37\x80\x40\x12\x00\x00\x0F\x00"
-      - parts:
-        - offset: 0
-          value: b"\x12\x40\x80\x37\x00\x0F\x00\x00"
-      - parts:
-        - offset: 0
-          value: b"\x40\x12\x37\x80\x0F\x00\x00\x00"
-
-  - format: NdsRom
-    description: "Nintendo DS ROM"
-    media_type: "application/x-nintendo-ds-rom"
-    extensions: ["nds"]
-    signatures:
-      - parts:
-        - offset: 0xC0
-          value: b"\x24\xFF\xAE\x51\x69\x9A\xA2\x21"
-      - parts:
-        - offset: 0xC0
-          value: b"\xC8\x60\x4F\xE2\x01\x70\x8F\xE2"
-
-  - format: Png
-    description: "Portable Network Graphics (PNG)"
-    media_type: "image/png"
-    extensions: ["png"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"
-
-  - format: Rar
-    description: "Roshal ARchive (RAR)"
-    media_type: "application/vnd.rar"
-    extensions: ["rar"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x52\x61\x72\x21\x1A\x07\x01\x00"
-      - parts:
-        - offset: 0
-          value: b"\x52\x61\x72\x21\x1A\x07\x00"
-
-  - format: Tar
-    description: "Tape archive (tar)"
-    media_type: "application/x-tar"
-    extensions: ["tar"]
-    signatures:
-      - parts:
-        - offset: 257
-          value: b"\x75\x73\x74\x61\x72\x00\x30\x30"
-      - parts:
-        - offset: 257
-          value: b"\x75\x73\x74\x61\x72\x20\x20\x00"
-
-  - format: Wave
-    description: "Waveform Audio (WAVE)"
-    media_type: "audio/vnd.wave"
-    extensions: ["wav"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"RIFF"
-        - offset: 8
-          value: b"WAVE"
-
-  - format: WebM
-    description: "WebM"
-    media_type: "video/webm"
-    extensions: ["webm"]
+  - media_type: "video/webm"
+    extension: "webm"
     signatures:
       - parts:
         - offset: 0
@@ -584,93 +647,73 @@ file_format! {
         - offset: 24
           value: b"webm"
 
-  - format: WebP
-    description: "WebP"
-    media_type: "image/webp"
-    extensions: ["webp"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"RIFF"
-        - offset: 8
-          value: b"WEBP"
-
-  - format: Xcf
-    description: "eXperimental Computing Facility (XCF)"
-    media_type: "image/x-xcf"
-    extensions: ["xcf"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"gimp xcf"
-
-  - format: Ar
-    description: "Archiver"
-    media_type: "application/x-archive"
-    extensions: ["ar", "a", "lib"]
+  // 7-byte signatures
+  - media_type: "application/x-archive"
+    extension: "ar"
     signatures:
       - parts:
         - offset: 0
           value: b"!<arch>"
 
-  - format: Blender
-    description: "Blender 3D Data"
-    media_type: "application/x-blender"
-    extensions: ["blend"]
+  - media_type: "application/x-blender"
+    extension: "blend"
     signatures:
       - parts:
         - offset: 0
           value: b"BLENDER"
 
-  - format: Jp2
-    description: "JPEG 2000"
-    media_type: "image/jp2"
-    extensions: ["jp2"]
-    signatures:
-      - parts:
-        - offset: 16
-          value: b"ftypjp2"
-
-  - format: M4a
-    description: "Audio-only MPEG-4"
-    media_type: "audio/x-m4a"
-    extensions: ["m4a"]
+  - media_type: "audio/x-m4a"
+    extension: "m4a"
     signatures:
       - parts:
         - offset: 4
           value: b"ftypM4A"
 
-  - format: M4v
-    description: "M4V"
-    media_type: "video/x-m4v"
-    extensions: ["m4v"]
+  - media_type: "image/jp2"
+    extension: "jp2"
     signatures:
       - parts:
-        - offset: 4
-          value: b"ftypM4V"
+        - offset: 16
+          value: b"ftypjp2"
 
-  - format: ThirdGpp
-    description: "3rd Generation Partnership Project (3GPP)"
-    media_type: "video/3gpp"
-    extensions: ["3gp"]
+  - media_type: "video/3gpp"
+    extension: "3gp"
     signatures:
       - parts:
         - offset: 4
           value: b"ftyp3gp"
 
-  - format: ThirdGpp2
-    description: "3rd Generation Partnership Project 2 (3GPP2)"
-    media_type: "video/3gpp2"
-    extensions: ["3g2"]
+  - media_type: "video/3gpp2"
+    extension: "3g2"
     signatures:
       - parts:
         - offset: 4
           value: b"ftyp3g2"
 
-  - format: Gif
-    description: "Graphics Interchange Format (GIF)"
-    media_type: "image/gif"
-    extensions: ["gif"]
+  - media_type: "video/x-m4v"
+    extension: "m4v"
+    signatures:
+      - parts:
+        - offset: 4
+          value: b"ftypM4V"
+
+  // 6-byte signatures
+  - media_type: "application/x-7z-compressed"
+    extension: "7z"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x37\x7A\xBC\xAF\x27\x1C"
+
+  - media_type: "application/x-xz"
+    extension: "xz"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\xFD\x37\x7A\x58\x5A\x00"
+
+  - media_type: "image/gif"
+    extension: "gif"
     signatures:
       - parts:
         - offset: 0
@@ -679,46 +722,16 @@ file_format! {
         - offset: 0
           value: b"GIF89a"
 
-  - format: SevenZip
-    description: "7-Zip"
-    media_type: "application/x-7z-compressed"
-    extensions: ["7z"]
+  // 5-byte signatures
+  - media_type: "application/pdf"
+    extension: "pdf"
     signatures:
       - parts:
         - offset: 0
-          value: b"\x37\x7A\xBC\xAF\x27\x1C"
+          value: b"%PDF-"
 
-  - format: Xml
-    description: "Extensible Markup Language (XML)"
-    media_type: "text/xml"
-    extensions: ["xml"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"<?xml "
-
-  - format: Xz
-    description: "XZ"
-    media_type: "application/x-xz"
-    extensions: ["xz"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\xFD\x37\x7A\x58\x5A\x00"
-
-  - format: Amr
-    description: "Adaptive Multi-Rate (AMR)"
-    media_type: "audio/amr"
-    extensions: ["amr", "3ga"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"#!AMR"
-
-  - format: Eot
-    description: "Embedded OpenType (EOT)"
-    media_type: "application/vnd.ms-fontobject"
-    extensions: ["eot"]
+  - media_type: "application/vnd.ms-fontobject"
+    extension: "eot"
     signatures:
       - parts:
         - offset: 8
@@ -736,10 +749,8 @@ file_format! {
         - offset: 34
           value: b"\x4C\x50"
 
-  - format: Iso
-    description: "ISO image"
-    media_type: "application/x-iso9660-image"
-    extensions: ["iso"]
+  - media_type: "application/x-iso9660-image"
+    extension: "iso"
     signatures:
       - parts:
         - offset: 0x8001
@@ -751,73 +762,51 @@ file_format! {
         - offset: 0x9001
           value: b"CD001"
 
-  - format: OpenType
-    description: "OpenType"
-    media_type: "font/otf"
-    extensions: ["otf"]
+  - media_type: "audio/amr"
+    extension: "amr"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"#!AMR"
+
+  - media_type: "font/otf"
+    extension: "otf"
     signatures:
       - parts:
         - offset: 0
           value: b"\x4F\x54\x54\x4F\x00"
 
-  - format: Pdf
-    description: "Portable Document Format (PDF)"
-    media_type: "application/pdf"
-    extensions: ["pdf"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"%PDF-"
-
-  - format: Rtf
-    description: "Rich Text Format (RTF)"
-    media_type: "text/rtf"
-    extensions: ["rtf"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"{\\rtf"
-
-  - format: TrueType
-    description: "TrueType"
-    media_type: "font/ttf"
-    extensions: ["ttf"]
+  - media_type: "font/ttf"
+    extension: "ttf"
     signatures:
       - parts:
         - offset: 0
           value: b"\x00\x01\x00\x00\x00"
 
-  - format: Ape
-    description: "Monkey's Audio"
-    media_type: "audio/x-ape"
-    extensions: ["ape"]
+  // 4-byte signatures
+  - media_type: "application/dicom"
+    extension: "dcm"
+    signatures:
+      - parts:
+        - offset: 128
+          value: b"\x44\x49\x43\x4D"
+
+  - media_type: "application/java-vm"
+    extension: "class"
     signatures:
       - parts:
         - offset: 0
-          value: b"MAC "
+          value: b"\xCA\xFE\xBA\xBE"
 
-  - format: AppleIconImage
-    description: "Apple Icon Image"
-    media_type: "image/icns"
-    extensions: ["icns"]
+  - media_type: "application/vnd.android.dex"
+    extension: "dex"
     signatures:
       - parts:
         - offset: 0
-          value: b"icns"
+          value: b"\x64\x65\x78\x0a"
 
-  - format: Bpg
-    description: "Better Portable Graphics (BPG)"
-    media_type: "image/bpg"
-    extensions: ["bpg"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x42\x50\x47\xFB"
-
-  - format: Cab
-    description: "Cabinet (CAB)"
-    media_type: "application/vnd.ms-cab-compressed"
-    extensions: ["cab"]
+  - media_type: "application/vnd.ms-cab-compressed"
+    extension: "cab"
     signatures:
       - parts:
         - offset: 0
@@ -826,199 +815,8 @@ file_format! {
         - offset: 0
           value: b"ISc("
 
-  - format: ChromeExtension
-    description: "Google Chrome Extension"
-    media_type: "application/x-google-chrome-extension"
-    extensions: ["crx"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"Cr24"
-
-  - format: Cineon
-    description: "Cineon Image"
-    media_type: "image/cineon"
-    extensions: ["cin"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x80\x2A\x5F\xD7"
-
-  - format: Dex
-    description: "Dalvik Executable"
-    media_type: "application/vnd.android.dex"
-    extensions: ["dex"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x64\x65\x78\x0a"
-
-  - format: Dicom
-    description: "Digital Imaging and Communications in Medicine (DICOM)"
-    media_type: "application/dicom"
-    extensions: ["dcm"]
-    signatures:
-      - parts:
-        - offset: 128
-          value: b"\x44\x49\x43\x4D"
-
-  - format: Dpx
-    description: "Digital Picture Exchange (DPX)"
-    media_type: "image/x-dpx"
-    extensions: ["dpx"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"SDPX"
-      - parts:
-        - offset: 0
-          value: b"XPDS"
-
-  - format: Elf
-    description: "Executable and Linkable Format (ELF)"
-    media_type: "application/x-executable"
-    extensions: ["elf", "so"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x7F\x45\x4C\x46"
-
-  - format: Flac
-    description: "Free Lossless Audio Codec (FLAC)"
-    media_type: "audio/x-flac"
-    extensions: ["flac"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"fLaC"
-
-  - format: Flif
-    description: "Free Lossless Image Format (FLIF)"
-    media_type: "image/flif"
-    extensions: ["flif"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"FLIF"
-
-  - format: Flv
-    description: "Flash Video (FLV)"
-    media_type: "video/x-flv"
-    extensions: ["flv"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x46\x4C\x56\x01"
-
-  - format: Gltf
-    description: "GL Transmission Format (glTF) binary"
-    media_type: "model/gltf-binary"
-    extensions: ["glb"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"glTF"
-
-  - format: Ico
-    description: "ICO"
-    media_type: "image/x-icon"
-    extensions: ["ico", "cur"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x00\x00\x01\x00"
-
-  - format: JavaClass
-    description: "Java class"
-    media_type: "application/java-vm"
-    extensions: ["class"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\xCA\xFE\xBA\xBE"
-
-  - format: Lrzip
-    description: "Long Range ZIP (lrzip)"
-    media_type: "application/x-lrzip"
-    extensions: ["lrz"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"LRZI"
-
-  - format: Lz4
-    description: "LZ4"
-    media_type: "application/x-lz4"
-    extensions: ["lz4"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x04\x22\x4D\x18"
-
-  - format: Lzip
-    description: "Lzip"
-    media_type: "application/x-lzip"
-    extensions: ["lz"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"LZIP"
-
-  - format: Midi
-    description: "Musical Instrument Digital Interface (MIDI)"
-    media_type: "audio/midi"
-    extensions: ["mid", "midi"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"MThd"
-
-  - format: Mpc
-    description: "Musepack (MPC)"
-    media_type: "audio/x-musepack"
-    extensions: ["mpc", "mp+", "mpp", "mp"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"MPCK"
-      - parts:
-        - offset: 0
-          value: b"MP+"
-
-  - format: Mpeg
-    description: "MPEG-1 video"
-    media_type: "video/mpeg"
-    extensions: ["mpg", "mpeg"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x00\x00\x01\xBA"
-      - parts:
-        - offset: 0
-          value: b"\x00\x00\x01\xB3"
-
-  - format: NesRom
-    description: "Nintendo Entertainment System ROM"
-    media_type: "application/x-nintendo-nes-rom"
-    extensions: ["nes"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x4E\x45\x53\x1A"
-
-  - format: OpenExr
-    description: "OpenEXR"
-    media_type: "image/x-exr"
-    extensions: ["exr"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x76\x2F\x31\x01"
-
-  - format: Pcap
-    description: "Libpcap"
-    media_type: "application/vnd.tcpdump.pcap"
-    extensions: ["pcap", "cap", "dmp"]
+  - media_type: "application/vnd.tcpdump.pcap"
+    extension: "pcap"
     signatures:
       - parts:
         - offset: 0
@@ -1027,127 +825,85 @@ file_format! {
         - offset: 0
           value: b"\xD4\xC3\xB2\xA1"
 
-  - format: Pcapng
-    description: "Pcap-NG Packet Capture"
-    media_type: "application/x-pcapng"
-    extensions: ["pcapng"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x0A\x0D\x0D\x0A"
-
-  - format: PhotoshopDocument
-    description: "Adobe Photoshop document"
-    media_type: "image/vnd.adobe.photoshop"
-    extensions: ["psd"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"8BPS"
-
-  - format: Rpm
-    description: "Red Hat Package Manager (RPM) package"
-    media_type: "application/x-rpm"
-    extensions: ["rpm"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\xED\xAB\xEE\xDB"
-
-  - format: Shapefile
-    description: "Shapefile"
-    media_type: "application/x-esri-shape"
-    extensions: ["shp"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x00\x00\x27\x0A"
-
-  - format: Snd
-    description: "SouND (SND)"
-    media_type: "audio/basic"
-    extensions: ["au", "snd"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b".snd"
-
-  - format: Tiff
-    description: "Tag Image File Format (TIFF)"
-    media_type: "image/tiff"
-    extensions: ["tiff", "tif"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x49\x49\x2A\x00"
-      - parts:
-        - offset: 0
-          value: b"\x4D\x4D\x00\x20"
-
-  - format: WavPack
-    description: "WavPack"
-    media_type: "audio/wavpack"
-    extensions: ["wv"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"wvpk"
-
-  - format: WebAssembly
-    description: "WebAssembly binary"
-    media_type: "application/wasm"
-    extensions: ["wasm"]
+  - media_type: "application/wasm"
+    extension: "wasm"
     signatures:
       - parts:
         - offset: 0
           value: b"\x00\x61\x73\x6D"
 
-  - format: Wmf
-    description: "Windows Metafile (WMF)"
-    media_type: "image/wmf"
-    extensions: ["wmf"]
+  - media_type: "application/x-esri-shape"
+    extension: "shp"
     signatures:
       - parts:
         - offset: 0
-          value: b"\xD7\xCD\xC6\x9A"
-      - parts:
-        - offset: 0
-          value: b"\x02\x00\x09\x00"
-      - parts:
-        - offset: 0
-          value: b"\x01\x00\x09\x00"
+          value: b"\x00\x00\x27\x0A"
 
-  - format: Woff
-    description: "Web Open Font Format (WOFF)"
-    media_type: "font/woff"
-    extensions: ["woff"]
+  - media_type: "application/x-executable"
+    extension: "elf"
     signatures:
       - parts:
         - offset: 0
-          value: b"wOFF"
+          value: b"\x7F\x45\x4C\x46"
 
-  - format: Woff2
-    description: "Web Open Font Format 2 (WOFF2)"
-    media_type: "font/woff2"
-    extensions: ["woff2"]
+  - media_type: "application/x-google-chrome-extension"
+    extension: "crx"
     signatures:
       - parts:
         - offset: 0
-          value: b"wOF2"
+          value: b"Cr24"
 
-  - format: Xar
-    description: "eXtensible ARchive format (XAR)"
-    media_type: "application/x-xar"
-    extensions: ["xar", "xip"]
+  - media_type: "application/x-lrzip"
+    extension: "lrz"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"LRZI"
+
+  - media_type: "application/x-lz4"
+    extension: "lz4"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x04\x22\x4D\x18"
+
+  - media_type: "application/x-lzip"
+    extension: "lz"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"LZIP"
+
+  - media_type: "application/x-nintendo-nes-rom"
+    extension: "nes"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x4E\x45\x53\x1A"
+
+  - media_type: "application/x-pcapng"
+    extension: "pcapng"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x0A\x0D\x0D\x0A"
+
+  - media_type: "application/x-rpm"
+    extension: "rpm"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\xED\xAB\xEE\xDB"
+
+  - media_type: "application/x-xar"
+    extension: "xar"
     signatures:
       - parts:
         - offset: 0
           value: b"xar!"
 
-  - format: Zip
-    description: "ZIP"
-    media_type: "application/zip"
-    extensions: ["zip"]
+  - media_type: "application/zip"
+    extension: "zip"
     signatures:
       - parts:
         - offset: 0
@@ -1159,46 +915,189 @@ file_format! {
         - offset: 0
           value: b"\x50\x4B\x07\x08"
 
-  - format: Zstandard
-    description: "Zstandard"
-    media_type: "application/zstd"
-    extensions: ["zst"]
+  - media_type: "application/zstd"
+    extension: "zst"
     signatures:
       - parts:
         - offset: 0
           value: b"\x28\xB5\x2F\xFD"
 
-  - format: Bzip2
-    description: "Bzip2"
-    media_type: "application/x-bzip2"
-    extensions: ["bz2"]
+  - media_type: "audio/basic"
+    extension: "au"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b".snd"
+
+  - media_type: "audio/midi"
+    extension: "mid"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"MThd"
+
+  - media_type: "audio/wavpack"
+    extension: "wv"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"wvpk"
+
+  - media_type: "audio/x-ape"
+    extension: "ape"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"MAC "
+
+
+  - media_type: "audio/x-flac"
+    extension: "flac"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"fLaC"
+
+  - media_type: "audio/x-musepack"
+    extension: "mpc"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"MPCK"
+      - parts:
+        - offset: 0
+          value: b"MP+"
+
+  - media_type: "font/woff"
+    extension: "woff"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"wOFF"
+
+  - media_type: "font/woff2"
+    extension: "woff2"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"wOF2"
+
+  - media_type: "image/bpg"
+    extension: "bpg"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x42\x50\x47\xFB"
+
+  - media_type: "image/cineon"
+    extension: "cin"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x80\x2A\x5F\xD7"
+
+  - media_type: "image/flif"
+    extension: "flif"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"FLIF"
+
+  - media_type: "image/icns"
+    extension: "icns"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"icns"
+
+  - media_type: "image/tiff"
+    extension: "tiff"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"MM\x00*"
+      - parts:
+        - offset: 0
+          value: b"II*\x00"
+
+  - media_type: "image/vnd.adobe.photoshop"
+    extension: "psd"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"8BPS"
+
+  - media_type: "image/wmf"
+    extension: "wmf"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\xD7\xCD\xC6\x9A"
+      - parts:
+        - offset: 0
+          value: b"\x02\x00\x09\x00"
+      - parts:
+        - offset: 0
+          value: b"\x01\x00\x09\x00"
+
+  - media_type: "image/x-dpx"
+    extension: "dpx"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"SDPX"
+      - parts:
+        - offset: 0
+          value: b"XPDS"
+
+  - media_type: "image/x-exr"
+    extension: "exr"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x76\x2F\x31\x01"
+
+  - media_type: "image/x-icon"
+    extension: "ico"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x00\x00\x01\x00"
+
+  - media_type: "model/gltf-binary"
+    extension: "glb"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"glTF"
+
+  - media_type: "video/mpeg"
+    extension: "mpg"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x00\x00\x01\xBA"
+      - parts:
+        - offset: 0
+          value: b"\x00\x00\x01\xB3"
+
+  - media_type: "video/x-flv"
+    extension: "flv"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x46\x4C\x56\x01"
+
+  // 3-byte signatures
+  - media_type: "application/x-bzip2"
+    extension: "bz2"
     signatures:
       - parts:
         - offset: 0
           value: b"BZh"
 
-  - format: JpegXr
-    description: "JPEG extended range (JPEG XR)"
-    media_type: "image/jxr"
-    extensions: ["jxr", "hdp", "wdp"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x49\x49\xBC"
-
-  - format: Mp3
-    description: "MPEG-1/2 Audio Layer III (MP3)"
-    media_type: "audio/mpeg"
-    extensions: ["mp3"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"ID3"
-
-  - format: Swf
-    description: "Small Web Format (SWF)"
-    media_type: "application/x-shockwave-flash"
-    extensions: ["swf"]
+  - media_type: "application/x-shockwave-flash"
+    extension: "swf"
     signatures:
       - parts:
         - offset: 0
@@ -1207,49 +1106,37 @@ file_format! {
         - offset: 0
           value: b"\x46\x57\x53"
 
-  - format: Aac
-    description: "Advanced Audio Coding (AAC)"
-    media_type: "audio/aac"
-    extensions: ["aac"]
+  - media_type: "audio/mpeg"
+    extension: "mp3"
     signatures:
       - parts:
         - offset: 0
-          value: b"\xFF\xF1"
-      - parts:
-        - offset: 0
-          value: b"\xFF\xF9"
+          value: b"ID3"
 
-  - format: Ac3
-    description: "Audio Codec 3 (AC-3)"
-    media_type: "audio/vnd.dolby.dd-raw"
-    extensions: ["ac3"]
+  - media_type: "image/jxr"
+    extension: "jxr"
     signatures:
       - parts:
         - offset: 0
-          value: b"\x0B\x77"
+          value: b"\x49\x49\xBC"
 
-  - format: AppleDiskImage
-    description: "Apple Disk Image"
-    media_type: "application/x-apple-diskimage"
-    extensions: ["dmg", "smi", "img"]
+  // 2-byte signatures
+  - media_type: "application/gzip"
+    extension: "gz"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x1F\x8B"
+
+  - media_type: "application/x-apple-diskimage"
+    extension: "dmg"
     signatures:
       - parts:
         - offset: 0
           value: b"\x78\x01"
 
-  - format: Bmp
-    description: "Windows Bitmap (BMP)"
-    media_type: "image/bmp"
-    extensions: ["bmp", "dib"]
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"BM"
-
-  - format: Compress
-    description: "Unix compress"
-    media_type: "application/x-compress"
-    extensions: ["Z"]
+  - media_type: "application/x-compress"
+    extension: "Z"
     signatures:
       - parts:
         - offset: 0
@@ -1258,28 +1145,39 @@ file_format! {
         - offset: 0
           value: b"\x1F\x9D"
 
-  - format: Exe
-    description: "Windows Executable"
-    media_type: "application/x-msdownload"
-    extensions: ["exe", "dll"]
+  - media_type: "application/x-msdownload"
+    extension: "exe"
     signatures:
       - parts:
         - offset: 0
           value: b"MZ"
 
-  - format: Gzip
-    description: "Gzip"
-    media_type: "application/gzip"
-    extensions: ["gz"]
+  - media_type: "audio/aac"
+    extension: "aac"
     signatures:
       - parts:
         - offset: 0
-          value: b"\x1F\x8B"
+          value: b"\xFF\xF1"
+      - parts:
+        - offset: 0
+          value: b"\xFF\xF9"
 
-  - format: M2ts
-    description: "MPEG-2 Transport Stream (M2TS)"
-    media_type: "video/mp2t"
-    extensions: ["m2ts", "mts", "ts", "m2t"]
+  - media_type: "audio/vnd.dolby.dd-raw"
+    extension: "ac3"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x0B\x77"
+
+  - media_type: "image/bmp"
+    extension: "bmp"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"BM"
+
+  - media_type: "video/mp2t"
+    extension: "m2ts"
     signatures:
       - parts:
         - offset: 0
