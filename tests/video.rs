@@ -73,7 +73,7 @@ fn test_mp4() {
 }
 
 #[test]
-fn test_mpeg() {
+fn test_mpg() {
     let format = FileFormat::from_file("fixtures/video/sample.mpg").unwrap();
     assert_eq!(format, FileFormat::Mpeg);
     assert_eq!(format.media_type(), "video/mpeg");
