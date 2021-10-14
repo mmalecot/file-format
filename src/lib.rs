@@ -712,6 +712,27 @@ signatures! {
         - offset: 0
           value: b"BLENDER"
 
+  - media_type: "audio/mp4"
+    extension: "f4a"
+    signatures:
+      - parts:
+        - offset: 4
+          value: b"ftypF4A"
+
+  - media_type: "audio/mp4"
+    extension: "f4b"
+    signatures:
+      - parts:
+        - offset: 4
+          value: b"ftypF4B"
+
+  - media_type: "audio/mp4"
+    extension: "m4b"
+    signatures:
+      - parts:
+        - offset: 4
+          value: b"ftypM4B"
+
   - media_type: "audio/x-m4a"
     extension: "m4a"
     signatures:

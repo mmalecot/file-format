@@ -43,6 +43,20 @@ fn test_au() {
 }
 
 #[test]
+fn test_f4a() {
+    let format = FileFormat::from_file("fixtures/audio/sample.f4a").unwrap();
+    assert_eq!(format.media_type(), "audio/mp4");
+    assert_eq!(format.extension(), "f4a");
+}
+
+#[test]
+fn test_f4b() {
+    let format = FileFormat::from_file("fixtures/audio/sample.f4b").unwrap();
+    assert_eq!(format.media_type(), "audio/mp4");
+    assert_eq!(format.extension(), "f4b");
+}
+
+#[test]
 fn test_flac() {
     let format = FileFormat::from_file("fixtures/audio/sample.flac").unwrap();
     assert_eq!(format.media_type(), "audio/x-flac");
@@ -54,6 +68,13 @@ fn test_m4a() {
     let format = FileFormat::from_file("fixtures/audio/sample.m4a").unwrap();
     assert_eq!(format.media_type(), "audio/x-m4a");
     assert_eq!(format.extension(), "m4a");
+}
+
+#[test]
+fn test_m4b() {
+    let format = FileFormat::from_file("fixtures/audio/sample.m4b").unwrap();
+    assert_eq!(format.media_type(), "audio/mp4");
+    assert_eq!(format.extension(), "m4b");
 }
 
 #[test]

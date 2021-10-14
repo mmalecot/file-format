@@ -96,6 +96,9 @@ assert_eq!(format.extension(), "flac");
 | audio/amr                                       | amr       | Adaptive Multi-Rate                            |
 | audio/basic                                     | au        | Au                                             |
 | audio/midi                                      | mid       | Musical Instrument Digital Interface           |
+| audio/mp4                                       | f4a       | Adobe Flash Player Audio                       |
+| audio/mp4                                       | f4b       | Adobe Flash Player Audiobook                   |
+| audio/mp4                                       | m4b       | Apple iTunes ALAC/AAC-LC Audiobook             |
 | audio/mpeg                                      | mp3       | MPEG-1/2 Audio Layer III                       |
 | audio/ogg                                       | oga       | Ogg FLAC                                       |
 | audio/ogg                                       | ogg       | Ogg Vorbis                                     |
@@ -106,7 +109,7 @@ assert_eq!(format.extension(), "flac");
 | audio/wavpack                                   | wv        | WavPack                                        |
 | audio/x-ape                                     | ape       | Monkey's Audio                                 |
 | audio/x-flac                                    | flac      | Free Lossless Audio Codec                      |
-| audio/x-m4a                                     | m4a       | Audio-only MPEG-4                              |
+| audio/x-m4a                                     | m4a       | Apple iTunes ALAC/AAC-LC Audio                 |
 | audio/x-musepack                                | mpc       | Musepack                                       |
 | font/otf                                        | otf       | OpenType                                       |
 | font/ttf                                        | ttf       | TrueType                                       |
