@@ -574,6 +574,34 @@ signatures! {
         - offset: 4
           value: b"ftypmsf1"
 
+  - media_type: "image/jp2"
+    extension: "jp2"
+    signatures:
+      - parts:
+        - offset: 16
+          value: b"ftypjp2 "
+
+  - media_type: "image/jpm"
+    extension: "jpm"
+    signatures:
+      - parts:
+        - offset: 16
+          value: b"ftypjpm "
+
+  - media_type: "image/jpx"
+    extension: "jpx"
+    signatures:
+      - parts:
+        - offset: 16
+          value: b"ftypjpx "
+
+  - media_type: "image/mj2"
+    extension: "mj2"
+    signatures:
+      - parts:
+        - offset: 16
+          value: b"ftypmjp2"
+
   - media_type: "image/png"
     extension: "png"
     signatures:
@@ -739,13 +767,6 @@ signatures! {
       - parts:
         - offset: 4
           value: b"ftypM4A"
-
-  - media_type: "image/jp2"
-    extension: "jp2"
-    signatures:
-      - parts:
-        - offset: 16
-          value: b"ftypjp2"
 
   - media_type: "image/x-canon-cr3"
     extension: "cr3"

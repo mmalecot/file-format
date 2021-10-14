@@ -132,12 +132,15 @@ assert_eq!(format.extension(), "flac");
 | image/heif                                      | heic      | High Efficiency Image File Format              |
 | image/heif-sequence                             | heic      | High Efficiency Image File Format Sequence     |
 | image/icns                                      | icns      | Apple Icon Image                               |
-| image/jp2                                       | jp2       | JPEG 2000                                      |
+| image/jp2                                       | jp2       | JPEG 2000 Part 1 (JP2)                         |
 | image/jpeg                                      | jpg       | Joint Photographic Experts Group               |
+| image/jpm                                       | jpm       | JPEG 2000 Part 6 (JPM)                         |
+| image/jpx                                       | jpx       | JPEG 2000 Part 2 (JPX)                         |
 | image/jxl                                       | jxl       | JPEG XL                                        |
 | image/jxr                                       | jxr       | JPEG extended range                            |
 | image/ktx                                       | ktx       | Khronos TeXture                                |
 | image/ktx2                                      | ktx2      | Khronos TeXture 2                              |
+| image/mj2                                       | mj2       | JPEG 2000 Part 3 (MJ2)                         |
 | image/png                                       | png       | Portable Network Graphics                      |
 | image/tiff                                      | tiff      | Tag Image File Format                          |
 | image/vnd.adobe.photoshop                       | psd       | Adobe Photoshop document                       |

@@ -113,6 +113,20 @@ fn test_jpg() {
 }
 
 #[test]
+fn test_jpm() {
+    let format = FileFormat::from_file("fixtures/image/sample.jpm").unwrap();
+    assert_eq!(format.media_type(), "image/jpm");
+    assert_eq!(format.extension(), "jpm");
+}
+
+#[test]
+fn test_jpx() {
+    let format = FileFormat::from_file("fixtures/image/sample.jpx").unwrap();
+    assert_eq!(format.media_type(), "image/jpx");
+    assert_eq!(format.extension(), "jpx");
+}
+
+#[test]
 fn test_jxl() {
     let format = FileFormat::from_file("fixtures/image/sample.jxl").unwrap();
     assert_eq!(format.media_type(), "image/jxl");
@@ -138,6 +152,13 @@ fn test_ktx2() {
     let format = FileFormat::from_file("fixtures/image/sample.ktx2").unwrap();
     assert_eq!(format.media_type(), "image/ktx2");
     assert_eq!(format.extension(), "ktx2");
+}
+
+#[test]
+fn test_mj2() {
+    let format = FileFormat::from_file("fixtures/image/sample.mj2").unwrap();
+    assert_eq!(format.media_type(), "image/mj2");
+    assert_eq!(format.extension(), "mj2");
 }
 
 #[test]
