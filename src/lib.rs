@@ -747,6 +747,13 @@ signatures! {
         - offset: 16
           value: b"ftypjp2"
 
+  - media_type: "image/x-canon-cr3"
+    extension: "cr3"
+    signatures:
+      - parts:
+        - offset: 4
+          value: b"ftypcrx"
+
   - media_type: "video/3gpp"
     extension: "3gp"
     signatures:

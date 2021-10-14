@@ -36,6 +36,13 @@ fn test_cin() {
 }
 
 #[test]
+fn test_cr3() {
+    let format = FileFormat::from_file("fixtures/image/sample.cr3").unwrap();
+    assert_eq!(format.media_type(), "image/x-canon-cr3");
+    assert_eq!(format.extension(), "cr3");
+}
+
+#[test]
 fn test_dpx() {
     let format = FileFormat::from_file("fixtures/image/sample.dpx").unwrap();
     assert_eq!(format.media_type(), "image/x-dpx");
