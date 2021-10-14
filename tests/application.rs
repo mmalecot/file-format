@@ -43,6 +43,13 @@ fn test_cab() {
 }
 
 #[test]
+fn test_chm() {
+    let format = FileFormat::from_file("fixtures/application/sample.chm").unwrap();
+    assert_eq!(format.media_type(), "application/vnd.ms-htmlhelp");
+    assert_eq!(format.extension(), "chm");
+}
+
+#[test]
 fn test_class() {
     let format = FileFormat::from_file("fixtures/application/sample.class").unwrap();
     assert_eq!(format.media_type(), "application/java-vm");

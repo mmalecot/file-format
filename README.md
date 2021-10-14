@@ -48,6 +48,7 @@ assert_eq!(format.extension(), "flac");
 | application/vnd.debian.binary-package           | deb       | Debian package                                 |
 | application/vnd.ms-cab-compressed               | cab       | Cabinet                                        |
 | application/vnd.ms-fontobject                   | eot       | Embedded OpenType                              |
+| application/vnd.ms-htmlhelp                     | chm       | Microsoft Compiled HTML Help                   |
 | application/vnd.oasis.opendocument.graphics     | odg       | OpenDocument Graphics                          |
 | application/vnd.oasis.opendocument.presentation | odp       | OpenDocument Presentation                      |
 | application/vnd.oasis.opendocument.spreadsheet  | ods       | OpenDocument SpreadSheet                       |

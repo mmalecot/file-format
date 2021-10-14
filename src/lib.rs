@@ -940,6 +940,13 @@ signatures! {
         - offset: 0
           value: b"ISc("
 
+  - media_type: "application/vnd.ms-htmlhelp"
+    extension: "chm"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"ITSF"
+
   - media_type: "application/vnd.tcpdump.pcap"
     extension: "pcap"
     signatures:
