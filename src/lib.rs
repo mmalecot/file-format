@@ -550,6 +550,30 @@ signatures! {
         - offset: 4
           value: b"ftypheix"
 
+  - media_type: "image/heic-sequence"
+    extension: "heic"
+    signatures:
+      - parts:
+        - offset: 4
+          value: b"ftyphevc"
+      - parts:
+        - offset: 4
+          value: b"ftyphevx"
+
+  - media_type: "image/heif"
+    extension: "heic"
+    signatures:
+      - parts:
+        - offset: 4
+          value: b"ftypmif1"
+
+  - media_type: "image/heif-sequence"
+    extension: "heic"
+    signatures:
+      - parts:
+        - offset: 4
+          value: b"ftypmsf1"
+
   - media_type: "image/png"
     extension: "png"
     signatures:

@@ -120,7 +120,10 @@ assert_eq!(format.extension(), "flac");
 | image/fits                                      | fits      | Flexible Image Transport System                |
 | image/flif                                      | flif      | Free Lossless Image Format                     |
 | image/gif                                       | gif       | Graphics Interchange Format                    |
-| image/heic                                      | heic      | High Efficiency Image File Format              |
+| image/heic                                      | heic      | High Efficiency Image Coding                   |
+| image/heic-sequence                             | heic      | High Efficiency Image Coding Sequence          |
+| image/heif                                      | heic      | High Efficiency Image File Format              |
+| image/heif-sequence                             | heic      | High Efficiency Image File Format Sequence     |
 | image/icns                                      | icns      | Apple Icon Image                               |
 | image/jp2                                       | jp2       | JPEG 2000                                      |
 | image/jpeg                                      | jpg       | Joint Photographic Experts Group               |
