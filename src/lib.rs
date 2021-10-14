@@ -783,6 +783,13 @@ signatures! {
         - offset: 0
           value: b"\x37\x7A\xBC\xAF\x27\x1C"
 
+  - media_type: "application/x-apache-arrow"
+    extension: "arrow"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"ARROW1"
+
   - media_type: "application/x-xz"
     extension: "xz"
     signatures:
