@@ -109,6 +109,7 @@ assert_eq!(format.extension(), "flac");
 | audio/wavpack                                   | wv        | WavPack                                        |
 | audio/x-ape                                     | ape       | Monkey's Audio                                 |
 | audio/x-flac                                    | flac      | Free Lossless Audio Codec                      |
+| audio/x-it                                      | it        | Impulse Tracker Module                         |
 | audio/x-m4a                                     | m4a       | Apple iTunes ALAC/AAC-LC Audio                 |
 | audio/x-musepack                                | mpc       | Musepack                                       |
 | font/otf                                        | otf       | OpenType                                       |

@@ -1042,6 +1042,13 @@ signatures! {
         - offset: 0
           value: b"fLaC"
 
+  - media_type: "audio/x-it"
+    extension: "it"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"IMPM"
+
   - media_type: "audio/x-musepack"
     extension: "mpc"
     signatures:

@@ -64,6 +64,13 @@ fn test_flac() {
 }
 
 #[test]
+fn test_it() {
+    let format = FileFormat::from_file("fixtures/audio/sample.it").unwrap();
+    assert_eq!(format.media_type(), "audio/x-it");
+    assert_eq!(format.extension(), "it");
+}
+
+#[test]
 fn test_m4a() {
     let format = FileFormat::from_file("fixtures/audio/sample.m4a").unwrap();
     assert_eq!(format.media_type(), "audio/x-m4a");
