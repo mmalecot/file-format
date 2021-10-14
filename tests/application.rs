@@ -183,6 +183,13 @@ fn test_lz4() {
 }
 
 #[test]
+fn test_lzh() {
+    let format = FileFormat::from_file("fixtures/application/sample.lzh").unwrap();
+    assert_eq!(format.media_type(), "application/x-lzh-compressed");
+    assert_eq!(format.extension(), "lzh");
+}
+
+#[test]
 fn test_lzo() {
     let format = FileFormat::from_file("fixtures/application/sample.lzo").unwrap();
     assert_eq!(format.media_type(), "application/x-lzop");

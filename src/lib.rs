@@ -840,6 +840,46 @@ signatures! {
         - offset: 0x9001
           value: b"CD001"
 
+  - media_type: "application/x-lzh-compressed"
+    extension: "lzh"
+    signatures:
+      - parts:
+        - offset: 2
+          value: b"-lh0-"
+      - parts:
+        - offset: 2
+          value: b"-lh1-"
+      - parts:
+        - offset: 2
+          value: b"-lh2-"
+      - parts:
+        - offset: 2
+          value: b"-lh3-"
+      - parts:
+        - offset: 2
+          value: b"-lh4-"
+      - parts:
+        - offset: 2
+          value: b"-lh5-"
+      - parts:
+        - offset: 2
+          value: b"-lh6-"
+      - parts:
+        - offset: 2
+          value: b"-lh7-"
+      - parts:
+        - offset: 2
+          value: b"-lzs-"
+      - parts:
+        - offset: 2
+          value: b"-lz4-"
+      - parts:
+        - offset: 2
+          value: b"-lz5-"
+      - parts:
+        - offset: 2
+          value: b"-lhd-"
+
   - media_type: "audio/amr"
     extension: "amr"
     signatures:

@@ -73,6 +73,7 @@ assert_eq!(format.extension(), "flac");
 | application/x-iso9660-image                     | iso       | ISO image                                      |
 | application/x-lrzip                             | lrz       | Long Range ZIP                                 |
 | application/x-lz4                               | lz4       | LZ4                                            |
+| application/x-lzh-compressed                    | lzh       | LHA                                            |
 | application/x-lzip                              | lz        | Lzip                                           |
 | application/x-lzop                              | lzo       | Lzop                                           |
 | application/x-mobipocket-ebook                  | mobi      | Mobipocket                                     |
