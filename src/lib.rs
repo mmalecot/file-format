@@ -1079,10 +1079,10 @@ file_format! {
     signatures:
       - parts:
         - offset: 0
-          value: b"\x49\x49\x2A\x00"
+          value: b"MM\x00*"
       - parts:
         - offset: 0
-          value: b"\x4D\x4D\x00\x20"
+          value: b"II*\x00"
 
   - format: WavPack
     description: "WavPack"
