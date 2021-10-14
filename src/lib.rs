@@ -1035,7 +1035,6 @@ signatures! {
         - offset: 0
           value: b"MAC "
 
-
   - media_type: "audio/x-flac"
     extension: "flac"
     signatures:
