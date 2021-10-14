@@ -149,6 +149,7 @@ assert_eq!(format.extension(), "flac");
 | image/x-canon-cr3                               | cr3       | Canon Raw 3                                    |
 | image/x-dpx                                     | dpx       | Digital Picture Exchange                       |
 | image/x-exr                                     | exr       | OpenEXR                                        |
+| image/x-icon                                    | cur       | CUR                                            |
 | image/x-icon                                    | ico       | ICO                                            |
 | image/x-olympus-orf                             | orf       | Olympus Raw Format                             |
 | image/x-xcf                                     | xcf       | eXperimental Computing Facility                |

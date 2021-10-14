@@ -43,6 +43,13 @@ fn test_cr3() {
 }
 
 #[test]
+fn test_cur() {
+    let format = FileFormat::from_file("fixtures/image/sample.cur").unwrap();
+    assert_eq!(format.media_type(), "image/x-icon");
+    assert_eq!(format.extension(), "cur");
+}
+
+#[test]
 fn test_dpx() {
     let format = FileFormat::from_file("fixtures/image/sample.dpx").unwrap();
     assert_eq!(format.media_type(), "image/x-dpx");

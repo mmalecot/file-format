@@ -1224,6 +1224,13 @@ signatures! {
           value: b"\x76\x2F\x31\x01"
 
   - media_type: "image/x-icon"
+    extension: "cur"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x00\x00\x02\x00"
+
+  - media_type: "image/x-icon"
     extension: "ico"
     signatures:
       - parts:
