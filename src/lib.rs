@@ -266,6 +266,15 @@ signatures! {
           value: b"\x06\x0E\x2B\x34\x02\x05\x01\x01\x0D\x01\x02\x01\x01\x02"
 
   // 12-byte signatures
+  - media_type: "audio/opus"
+    extension: "opus"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"OggS"
+        - offset: 28
+          value: b"OpusHead"
+
   - media_type: "image/apng"
     extension: "apng"
     signatures:
@@ -335,16 +344,6 @@ signatures! {
           value: b"OggS"
         - offset: 29
           value: b"vorbis"
-      - parts:
-        - offset: 0
-          value: b"OggS"
-        - offset: 28
-          value: b"Speex"
-      - parts:
-        - offset: 0
-          value: b"OggS"
-        - offset: 29
-          value: b"FLAC"
 
   - media_type: "image/fits"
     extension: "fits"
@@ -400,12 +399,30 @@ signatures! {
         - offset: 0
           value: b"\x89\x4C\x5A\x4F\x00\x0D\x0A\x1A\x0A"
 
+  - media_type: "audio/ogg"
+    extension: "spx"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"OggS"
+        - offset: 28
+          value: b"Speex"
+
   - media_type: "image/x-olympus-orf"
     extension: "orf"
     signatures:
       - parts:
         - offset: 0
           value: b"\x49\x49\x52\x4F\x08\x00\x00\x00\x18"
+
+  - media_type: "video/ogg"
+    extension: "ogm"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"OggS"
+        - offset: 29
+          value: b"video"
 
   // 8-byte signatures
   - media_type: "application/vnd.rar"
@@ -497,6 +514,15 @@ signatures! {
           value: b"FORM"
         - offset: 8
           value: b"AIFF"
+
+  - media_type: "audio/ogg"
+    extension: "oga"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"OggS"
+        - offset: 29
+          value: b"FLAC"
 
   - media_type: "audio/vnd.wave"
     extension: "wav"
@@ -797,6 +823,13 @@ signatures! {
       - parts:
         - offset: 0
           value: b"\xCA\xFE\xBA\xBE"
+
+  - media_type: "application/ogg"
+    extension: "ogx"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"OggS"
 
   - media_type: "application/vnd.android.dex"
     extension: "dex"

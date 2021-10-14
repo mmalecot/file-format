@@ -71,6 +71,13 @@ fn test_mpg() {
 }
 
 #[test]
+fn test_ogm() {
+    let format = FileFormat::from_file("fixtures/video/sample.ogm").unwrap();
+    assert_eq!(format.media_type(), "video/ogg");
+    assert_eq!(format.extension(), "ogm");
+}
+
+#[test]
 fn test_ogv() {
     let format = FileFormat::from_file("fixtures/video/sample.ogv").unwrap();
     assert_eq!(format.media_type(), "video/ogg");

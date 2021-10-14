@@ -265,6 +265,13 @@ fn test_odt() {
 }
 
 #[test]
+fn test_ogx() {
+    let format = FileFormat::from_file("fixtures/application/sample.ogx").unwrap();
+    assert_eq!(format.media_type(), "application/ogg");
+    assert_eq!(format.extension(), "ogx");
+}
+
+#[test]
 fn test_pcap() {
     let format = FileFormat::from_file("fixtures/application/sample.pcap").unwrap();
     assert_eq!(format.media_type(), "application/vnd.tcpdump.pcap");

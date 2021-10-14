@@ -42,6 +42,7 @@ assert_eq!(format.extension(), "flac");
 | application/java-vm                             | class     | Java class                                     |
 | application/mxf                                 | mxf       | Material Exchange Format                       |
 | application/octet-stream                        | bin       | Arbitrary binary data                          |
+| application/ogg                                 | ogx       | Ogg Multiplexed Media                          |
 | application/pdf                                 | pdf       | Portable Document Format                       |
 | application/vnd.android.dex                     | dex       | Dalvik Executable                              |
 | application/vnd.debian.binary-package           | deb       | Debian package                                 |
@@ -96,7 +97,10 @@ assert_eq!(format.extension(), "flac");
 | audio/basic                                     | au        | Au                                             |
 | audio/midi                                      | mid       | Musical Instrument Digital Interface           |
 | audio/mpeg                                      | mp3       | MPEG-1/2 Audio Layer III                       |
-| audio/ogg                                       | ogg       | Ogg audio                                      |
+| audio/ogg                                       | oga       | Ogg FLAC                                       |
+| audio/ogg                                       | ogg       | Ogg Vorbis                                     |
+| audio/ogg                                       | spx       | Ogg Speex                                      |
+| audio/opus                                      | opus      | Ogg Opus                                       |
 | audio/vnd.dolby.dd-raw                          | ac3       | Audio Codec 3 (AC-3)                           |
 | audio/vnd.wave                                  | wav       | Waveform Audio                                 |
 | audio/wavpack                                   | wv        | WavPack                                        |
@@ -141,7 +145,8 @@ assert_eq!(format.extension(), "flac");
 | video/mp2t                                      | m2ts      | MPEG-2 Transport Stream                        |
 | video/mp4                                       | mp4       | MPEG-4 Part 14                                 |
 | video/mpeg                                      | mpg       | MPEG-1 video                                   |
-| video/ogg                                       | ogv       | Ogg video                                      |
+| video/ogg                                       | ogm       | Ogg Media                                      |
+| video/ogg                                       | ogv       | Ogg Theora                                     |
 | video/quicktime                                 | mov       | QuickTime Movie                                |
 | video/webm                                      | webm      | WebM                                           |
 | video/x-flv                                     | flv       | Flash Video                                    |

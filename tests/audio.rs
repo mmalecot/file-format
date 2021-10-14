@@ -78,10 +78,31 @@ fn test_mpc() {
 }
 
 #[test]
+fn test_oga() {
+    let format = FileFormat::from_file("fixtures/audio/sample.oga").unwrap();
+    assert_eq!(format.media_type(), "audio/ogg");
+    assert_eq!(format.extension(), "oga");
+}
+
+#[test]
 fn test_ogg() {
     let format = FileFormat::from_file("fixtures/audio/sample.ogg").unwrap();
     assert_eq!(format.media_type(), "audio/ogg");
     assert_eq!(format.extension(), "ogg");
+}
+
+#[test]
+fn test_opus() {
+    let format = FileFormat::from_file("fixtures/audio/sample.opus").unwrap();
+    assert_eq!(format.media_type(), "audio/opus");
+    assert_eq!(format.extension(), "opus");
+}
+
+#[test]
+fn test_spx() {
+    let format = FileFormat::from_file("fixtures/audio/sample.spx").unwrap();
+    assert_eq!(format.media_type(), "audio/ogg");
+    assert_eq!(format.extension(), "spx");
 }
 
 #[test]
