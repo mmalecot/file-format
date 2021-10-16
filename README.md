@@ -59,6 +59,7 @@ assert_eq!(format.extension(), "flac");
 | application/vnd.tcpdump.pcap                    | pcap      | Libpcap                                        |
 | application/wasm                                | wasm      | WebAssembly binary                             |
 | application/x-7z-compressed                     | 7z        | 7z                                             |
+| application/x-alz-compressed                    | alz       | ALZip                                          |
 | application/x-apache-arrow                      | arrow     | Apache Arrow Columnar                          |
 | application/x-apple-diskimage                   | dmg       | Apple Disk Image                               |
 | application/x-archive                           | ar        | Unix Archiver                                  |

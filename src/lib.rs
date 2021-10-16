@@ -999,6 +999,13 @@ signatures! {
         - offset: 0
           value: b"\x00\x61\x73\x6D"
 
+  - media_type: "application/x-alz-compressed"
+    extension: "alz"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x41\x4C\x5A\x01"
+
   - media_type: "application/x-esri-shape"
     extension: "shp"
     signatures:
