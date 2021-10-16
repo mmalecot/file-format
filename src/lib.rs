@@ -1300,6 +1300,13 @@ signatures! {
         - offset: 0
           value: b"\x46\x57\x53"
 
+  - media_type: "application/x-zoo"
+    extension: "zoo"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"ZOO"
+
   - media_type: "audio/mpeg"
     extension: "mp3"
     signatures:

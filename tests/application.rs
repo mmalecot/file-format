@@ -447,6 +447,13 @@ fn test_zip() {
 }
 
 #[test]
+fn test_zoo() {
+    let format = FileFormat::from_file("fixtures/application/sample.zoo").unwrap();
+    assert_eq!(format.media_type(), "application/x-zoo");
+    assert_eq!(format.extension(), "zoo");
+}
+
+#[test]
 fn test_zst() {
     let format = FileFormat::from_file("fixtures/application/sample.zst").unwrap();
     assert_eq!(format.media_type(), "application/zstd");

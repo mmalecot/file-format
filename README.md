@@ -97,6 +97,7 @@ assert_eq!(format.extension(), "flac");
 | application/x-virtualbox-vdi                    | vdi       | VirtualBox Virtual Disk Image                  |
 | application/x-xar                               | xar       | eXtensible ARchive format                      |
 | application/x-xz                                | xz        | XZ                                             |
+| application/x-zoo                               | zoo       | Zoo                                            |
 | application/zip                                 | zip       | ZIP                                            |
 | application/zstd                                | zst       | Zstandard                                      |
 | audio/aac                                       | aac       | Advanced Audio Coding                          |
