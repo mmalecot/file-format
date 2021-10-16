@@ -1176,6 +1176,13 @@ signatures! {
         - offset: 0
           value: b"MAC "
 
+  - media_type: "audio/x-dsf"
+    extension: "dsf"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"DSD "
+
   - media_type: "audio/x-flac"
     extension: "flac"
     signatures:

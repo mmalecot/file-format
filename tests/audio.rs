@@ -43,6 +43,13 @@ fn test_au() {
 }
 
 #[test]
+fn test_dsf() {
+    let format = FileFormat::from_file("fixtures/audio/sample.dsf").unwrap();
+    assert_eq!(format.media_type(), "audio/x-dsf");
+    assert_eq!(format.extension(), "dsf");
+}
+
+#[test]
 fn test_f4a() {
     let format = FileFormat::from_file("fixtures/audio/sample.f4a").unwrap();
     assert_eq!(format.media_type(), "audio/mp4");
