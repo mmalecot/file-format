@@ -336,6 +336,13 @@ signatures! {
           value: b"matroska"
 
   // 10-byte signatures
+  - media_type: "application/x-snappy-framed"
+    extension: "sz"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\xFF\x06\x00\x00sNaPpY"
+
   - media_type: "audio/ogg"
     extension: "ogg"
     signatures:

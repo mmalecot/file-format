@@ -90,6 +90,7 @@ assert_eq!(format.extension(), "flac");
 | application/x-rpm                               | rpm       | Red Hat Package Manager package                |
 | application/x-sbx                               | sbx       | SeqBox                                         |
 | application/x-shockwave-flash                   | swf       | Small Web Format                               |
+| application/x-snappy-framed                     | sz        | Snappy                                         |
 | application/x-tar                               | tar       | Tape archive                                   |
 | application/x-virtualbox-vdi                    | vdi       | VirtualBox Virtual Disk Image                  |
 | application/x-xar                               | xar       | eXtensible ARchive format                      |

@@ -370,6 +370,13 @@ fn test_swf() {
 }
 
 #[test]
+fn test_sz() {
+    let format = FileFormat::from_file("fixtures/application/sample.sz").unwrap();
+    assert_eq!(format.media_type(), "application/x-snappy-framed");
+    assert_eq!(format.extension(), "sz");
+}
+
+#[test]
 fn test_tar() {
     let format = FileFormat::from_file("fixtures/application/sample.tar").unwrap();
     assert_eq!(format.media_type(), "application/x-tar");
