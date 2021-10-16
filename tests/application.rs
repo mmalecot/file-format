@@ -15,6 +15,13 @@ fn test_alz() {
 }
 
 #[test]
+fn test_ani() {
+    let format = FileFormat::from_file("fixtures/application/sample.ani").unwrap();
+    assert_eq!(format.media_type(), "application/x-navi-animation");
+    assert_eq!(format.extension(), "ani");
+}
+
+#[test]
 fn test_ar() {
     let format = FileFormat::from_file("fixtures/application/sample.ar").unwrap();
     assert_eq!(format.media_type(), "application/x-archive");

@@ -85,6 +85,7 @@ assert_eq!(format.extension(), "flac");
 | application/x-ms-shortcut                       | lnk       | Windows shortcut                               |
 | application/x-msdownload                        | exe       | Windows executable                             |
 | application/x-n64-rom                           | z64       | Nintendo 64 ROM                                |
+| application/x-navi-animation                    | ani       | ANI                                            |
 | application/x-nintendo-ds-rom                   | nds       | Nintendo DS ROM                                |
 | application/x-nintendo-nes-rom                  | nes       | Nintendo Entertainment System ROM              |
 | application/x-ole-storage                       | msi       | Windows Installer                              |

@@ -493,6 +493,15 @@ signatures! {
         - offset: 0
           value: b"\x40\x12\x37\x80\x0F\x00\x00\x00"
 
+  - media_type: "application/x-navi-animation"
+    extension: "ani"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"RIFF"
+        - offset: 8
+          value: b"ACON"
+
   - media_type: "application/x-nintendo-ds-rom"
     extension: "nds"
     signatures:
