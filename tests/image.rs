@@ -204,6 +204,13 @@ fn test_psd() {
 }
 
 #[test]
+fn test_raf() {
+    let format = FileFormat::from_file("fixtures/image/sample.raf").unwrap();
+    assert_eq!(format.media_type(), "image/x-fuji-raf");
+    assert_eq!(format.extension(), "raf");
+}
+
+#[test]
 fn test_rw2() {
     let format = FileFormat::from_file("fixtures/image/sample.rw2").unwrap();
     assert_eq!(format.media_type(), "image/x-panasonic-rw2");
