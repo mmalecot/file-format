@@ -165,6 +165,7 @@ assert_eq!(format.extension(), "flac");
 | image/x-icon                                    | ico       | ICO                                            |
 | image/x-nikon-nef                               | nef       | Nikon Electronic File                          |
 | image/x-olympus-orf                             | orf       | Olympus Raw Format                             |
+| image/x-panasonic-rw2                           | rw2       | Panasonic Raw                                  |
 | image/x-xcf                                     | xcf       | eXperimental Computing Facility                |
 | model/gltf-binary                               | glb       | GL Transmission Format binary                  |
 | video/3gpp                                      | 3gp       | 3rd Generation Partnership Project             |

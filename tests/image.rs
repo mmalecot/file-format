@@ -204,6 +204,13 @@ fn test_psd() {
 }
 
 #[test]
+fn test_rw2() {
+    let format = FileFormat::from_file("fixtures/image/sample.rw2").unwrap();
+    assert_eq!(format.media_type(), "image/x-panasonic-rw2");
+    assert_eq!(format.extension(), "rw2");
+}
+
+#[test]
 fn test_tiff() {
     let format = FileFormat::from_file("fixtures/image/sample.tiff").unwrap();
     assert_eq!(format.media_type(), "image/tiff");

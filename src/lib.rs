@@ -326,6 +326,13 @@ signatures! {
         - offset: 0
           value: b"\xAB\x4B\x54\x58\x20\x32\x30\xBB\x0D\x0A\x1A\x0A"
 
+  - media_type: "image/x-panasonic-rw2"
+    extension: "rw2"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x49\x49\x55\x00\x18\x00\x00\x00\x88\xE7\x74\xD8"
+
   - media_type: "video/x-matroska"
     extension: "mkv"
     signatures:
