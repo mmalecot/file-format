@@ -545,6 +545,15 @@ signatures! {
         - offset: 29
           value: b"FLAC"
 
+  - media_type: "audio/qcelp"
+    extension: "qcp"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"RIFF"
+        - offset: 8
+          value: b"QLCM"
+
   - media_type: "audio/vnd.wave"
     extension: "wav"
     signatures:

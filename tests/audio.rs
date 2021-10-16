@@ -134,6 +134,13 @@ fn test_opus() {
 }
 
 #[test]
+fn test_qcp() {
+    let format = FileFormat::from_file("fixtures/audio/sample.qcp").unwrap();
+    assert_eq!(format.media_type(), "audio/qcelp");
+    assert_eq!(format.extension(), "qcp");
+}
+
+#[test]
 fn test_spx() {
     let format = FileFormat::from_file("fixtures/audio/sample.spx").unwrap();
     assert_eq!(format.media_type(), "audio/ogg");
