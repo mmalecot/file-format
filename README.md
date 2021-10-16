@@ -126,6 +126,8 @@ assert_eq!(format.extension(), "flac");
 | audio/x-it                                      | it        | Impulse Tracker Module                         |
 | audio/x-m4a                                     | m4a       | Apple iTunes ALAC/AAC-LC Audio                 |
 | audio/x-musepack                                | mpc       | Musepack                                       |
+| audio/x-s3m                                     | s3m       | ScreamTracker 3 Module                         |
+| audio/x-xm                                      | xm        | FastTracker 2 Module                           |
 | font/otf                                        | otf       | OpenType                                       |
 | font/ttf                                        | ttf       | TrueType                                       |
 | font/woff                                       | woff      | Web Open Font Format                           |

@@ -141,6 +141,13 @@ fn test_qcp() {
 }
 
 #[test]
+fn test_s3m() {
+    let format = FileFormat::from_file("fixtures/audio/sample.s3m").unwrap();
+    assert_eq!(format.media_type(), "audio/x-s3m");
+    assert_eq!(format.extension(), "s3m");
+}
+
+#[test]
 fn test_spx() {
     let format = FileFormat::from_file("fixtures/audio/sample.spx").unwrap();
     assert_eq!(format.media_type(), "audio/ogg");
@@ -159,4 +166,11 @@ fn test_wv() {
     let format = FileFormat::from_file("fixtures/audio/sample.wv").unwrap();
     assert_eq!(format.media_type(), "audio/wavpack");
     assert_eq!(format.extension(), "wv");
+}
+
+#[test]
+fn test_xm() {
+    let format = FileFormat::from_file("fixtures/audio/sample.xm").unwrap();
+    assert_eq!(format.media_type(), "audio/x-xm");
+    assert_eq!(format.extension(), "xm");
 }

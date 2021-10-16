@@ -257,6 +257,13 @@ signatures! {
         - offset: 0
           value: b"\x06\x06\xED\xF5\xD8\x1D\x46\xE5\xBD\x31\xEF\xE7\xFE\x74\xB7\x1D"
 
+  - media_type: "audio/x-xm"
+    extension: "xm"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"Extended Module:"
+
   // 15-byte signatures
   - media_type: "image/x-fuji-raf"
     extension: "raf"
@@ -1239,6 +1246,13 @@ signatures! {
       - parts:
         - offset: 0
           value: b"MP+"
+
+  - media_type: "audio/x-s3m"
+    extension: "s3m"
+    signatures:
+      - parts:
+        - offset: 44
+          value: b"SCRM"
 
   - media_type: "font/woff"
     extension: "woff"
