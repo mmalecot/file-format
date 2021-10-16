@@ -65,6 +65,7 @@ assert_eq!(format.extension(), "flac");
 | application/x-blender                           | blend     | Blender 3D data                                |
 | application/x-bzip2                             | bz2       | Bzip2                                          |
 | application/x-compress                          | Z         | Unix compress                                  |
+| application/x-cpio                              | cpio      | Cpio                                           |
 | application/x-esri-shape                        | shp       | Shapefile                                      |
 | application/x-executable                        | elf       | Executable and Linkable Format                 |
 | application/x-gameboy-color-rom                 | gbc       | Game Boy Color ROM                             |

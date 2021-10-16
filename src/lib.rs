@@ -1318,6 +1318,16 @@ signatures! {
         - offset: 0
           value: b"\x1F\x9D"
 
+  - media_type: "application/x-cpio"
+    extension: "cpio"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\xC7\x71"
+      - parts:
+        - offset: 0
+          value: b"\x71\xC7"
+
   - media_type: "application/x-msdownload"
     extension: "exe"
     signatures:

@@ -64,6 +64,13 @@ fn test_class() {
 }
 
 #[test]
+fn test_cpio() {
+    let format = FileFormat::from_file("fixtures/application/sample.cpio").unwrap();
+    assert_eq!(format.media_type(), "application/x-cpio");
+    assert_eq!(format.extension(), "cpio");
+}
+
+#[test]
 fn test_crx() {
     let format = FileFormat::from_file("fixtures/application/sample.crx").unwrap();
     assert_eq!(format.media_type(), "application/x-google-chrome-extension");
