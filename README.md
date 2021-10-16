@@ -61,7 +61,7 @@ assert_eq!(format.extension(), "flac");
 | application/x-7z-compressed                     | 7z        | 7-Zip                                          |
 | application/x-apache-arrow                      | arrow     | Apache Arrow Columnar                          |
 | application/x-apple-diskimage                   | dmg       | Apple Disk Image                               |
-| application/x-archive                           | ar        | Archiver                                       |
+| application/x-archive                           | ar        | Unix Archiver                                  |
 | application/x-blender                           | blend     | Blender 3D data                                |
 | application/x-bzip2                             | bz2       | Bzip2                                          |
 | application/x-compress                          | Z         | Unix compress                                  |
@@ -73,7 +73,7 @@ assert_eq!(format.extension(), "flac");
 | application/x-gba-rom                           | gba       | Game Boy Advance ROM                           |
 | application/x-google-chrome-extension           | crx       | Google Chrome Extension                        |
 | application/x-indesign                          | indd      | Adobe InDesign document                        |
-| application/x-iso9660-image                     | iso       | ISO image                                      |
+| application/x-iso9660-image                     | iso       | ISO 9660 image                                 |
 | application/x-lrzip                             | lrz       | Long Range ZIP                                 |
 | application/x-lz4                               | lz4       | LZ4                                            |
 | application/x-lzh-compressed                    | lzh       | LHA                                            |
