@@ -36,6 +36,13 @@ fn test_cin() {
 }
 
 #[test]
+fn test_cr2() {
+    let format = FileFormat::from_file("fixtures/image/sample.cr2").unwrap();
+    assert_eq!(format.media_type(), "image/x-canon-cr2");
+    assert_eq!(format.extension(), "cr2");
+}
+
+#[test]
 fn test_cr3() {
     let format = FileFormat::from_file("fixtures/image/sample.cr3").unwrap();
     assert_eq!(format.media_type(), "image/x-canon-cr3");
@@ -166,6 +173,13 @@ fn test_mj2() {
     let format = FileFormat::from_file("fixtures/image/sample.mj2").unwrap();
     assert_eq!(format.media_type(), "image/mj2");
     assert_eq!(format.extension(), "mj2");
+}
+
+#[test]
+fn test_nef() {
+    let format = FileFormat::from_file("fixtures/image/sample.nef").unwrap();
+    assert_eq!(format.media_type(), "image/x-nikon-nef");
+    assert_eq!(format.extension(), "nef");
 }
 
 #[test]

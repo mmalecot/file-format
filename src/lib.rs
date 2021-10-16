@@ -625,6 +625,30 @@ signatures! {
         - offset: 8
           value: b"WEBP"
 
+  - media_type: "image/x-nikon-nef"
+    extension: "nef"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x4D\x4D\x00\x2A"
+        - offset: 8
+          value: b"\x1C\x00\xFE\x00"
+      - parts:
+        - offset: 0
+          value: b"\x4D\x4D\x00\x2A"
+        - offset: 8
+          value: b"\x1F\x00\x0B\x00"
+      - parts:
+        - offset: 0
+          value: b"\x49\x49\x2A\x00"
+        - offset: 8
+          value: b"\x1C\x00\xFE\x00"
+      - parts:
+        - offset: 0
+          value: b"\x49\x49\x2A\x00"
+        - offset: 8
+          value: b"\x1F\x00\x0B\x00"
+
   - media_type: "image/x-xcf"
     extension: "xcf"
     signatures:
@@ -834,6 +858,20 @@ signatures! {
       - parts:
         - offset: 0
           value: b"GIF89a"
+
+  - media_type: "image/x-canon-cr2"
+    extension: "cr2"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x4D\x4D\x00\x2A"
+        - offset: 8
+          value: b"CR"
+      - parts:
+        - offset: 0
+          value: b"\x49\x49\x2A\x00"
+        - offset: 8
+          value: b"CR"
 
   // 5-byte signatures
   - media_type: "application/pdf"
@@ -1195,10 +1233,16 @@ signatures! {
     signatures:
       - parts:
         - offset: 0
-          value: b"MM\x00*"
+          value: b"\x4D\x4D\x00\x2A"
       - parts:
         - offset: 0
-          value: b"II*\x00"
+          value: b"\x49\x49\x2A\x00"
+      - parts:
+        - offset: 0
+          value: b"\x4D\x4D\x00\x2B"
+      - parts:
+        - offset: 0
+          value: b"\x49\x49\x2B\x00"
 
   - media_type: "image/vnd.adobe.photoshop"
     extension: "psd"
