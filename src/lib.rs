@@ -1269,6 +1269,13 @@ signatures! {
         - offset: 0
           value: b"BZh"
 
+  - media_type: "application/x-sbx"
+    extension: "sbx"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"SBx"
+
   - media_type: "application/x-shockwave-flash"
     extension: "swf"
     signatures:

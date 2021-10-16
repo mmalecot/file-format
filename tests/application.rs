@@ -335,6 +335,13 @@ fn test_rpm() {
 }
 
 #[test]
+fn test_sbx() {
+    let format = FileFormat::from_file("fixtures/application/sample.sbx").unwrap();
+    assert_eq!(format.media_type(), "application/x-sbx");
+    assert_eq!(format.extension(), "sbx");
+}
+
+#[test]
 fn test_shp() {
     let format = FileFormat::from_file("fixtures/application/sample.shp").unwrap();
     assert_eq!(format.media_type(), "application/x-esri-shape");

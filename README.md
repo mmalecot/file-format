@@ -88,6 +88,7 @@ assert_eq!(format.extension(), "flac");
 | application/x-ole-storage                       | msi       | Windows Installer                              |
 | application/x-pcapng                            | pcapng    | Pcap-NG Packet Capture                         |
 | application/x-rpm                               | rpm       | Red Hat Package Manager package                |
+| application/x-sbx                               | sbx       | SeqBox                                         |
 | application/x-shockwave-flash                   | swf       | Small Web Format                               |
 | application/x-tar                               | tar       | Tape archive                                   |
 | application/x-virtualbox-vdi                    | vdi       | VirtualBox Virtual Disk Image                  |
