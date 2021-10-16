@@ -193,7 +193,7 @@ fn test_psd() {
 fn test_tiff() {
     let format = FileFormat::from_file("fixtures/image/sample.tiff").unwrap();
     assert_eq!(format.media_type(), "image/tiff");
-    assert_eq!(format.extension(), "tiff");
+    assert_eq!(format.extension(), "tif");
 }
 
 #[test]

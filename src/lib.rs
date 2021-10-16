@@ -1191,7 +1191,7 @@ signatures! {
           value: b"icns"
 
   - media_type: "image/tiff"
-    extension: "tiff"
+    extension: "tif"
     signatures:
       - parts:
         - offset: 0
