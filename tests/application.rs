@@ -22,6 +22,13 @@ fn test_ar() {
 }
 
 #[test]
+fn test_arj() {
+    let format = FileFormat::from_file("fixtures/application/sample.arj").unwrap();
+    assert_eq!(format.media_type(), "application/x-arj");
+    assert_eq!(format.extension(), "arj");
+}
+
+#[test]
 fn test_arrow() {
     let format = FileFormat::from_file("fixtures/application/sample.arrow").unwrap();
     assert_eq!(format.media_type(), "application/x-apache-arrow");

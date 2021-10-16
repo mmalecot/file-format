@@ -63,6 +63,7 @@ assert_eq!(format.extension(), "flac");
 | application/x-apache-arrow                      | arrow     | Apache Arrow Columnar                          |
 | application/x-apple-diskimage                   | dmg       | Apple Disk Image                               |
 | application/x-archive                           | ar        | Unix Archiver                                  |
+| application/x-arj                               | arj       | Archived by Robert Jung                        |
 | application/x-blender                           | blend     | Blender 3D data                                |
 | application/x-bzip2                             | bz2       | Bzip2                                          |
 | application/x-compress                          | Z         | Unix compress                                  |

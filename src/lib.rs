@@ -1329,6 +1329,13 @@ signatures! {
         - offset: 0
           value: b"\x78\x01"
 
+  - media_type: "application/x-arj"
+    extension: "arj"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x60\xEA"
+
   - media_type: "application/x-compress"
     extension: "Z"
     signatures:
