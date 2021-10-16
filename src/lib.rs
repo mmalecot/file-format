@@ -406,6 +406,13 @@ signatures! {
         - offset: 0
           value: b"\x89\x4C\x5A\x4F\x00\x0D\x0A\x1A\x0A"
 
+  - media_type: "application/x-vhd"
+    extension: "vhd"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"connectix"
+
   - media_type: "audio/ogg"
     extension: "spx"
     signatures:
@@ -512,6 +519,13 @@ signatures! {
       - parts:
         - offset: 257
           value: b"\x75\x73\x74\x61\x72\x20\x20\x00"
+
+  - media_type: "application/x-vhdx"
+    extension: "vhdx"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"vhdxfile"
 
   - media_type: "audio/aiff"
     extension: "aif"

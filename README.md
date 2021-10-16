@@ -94,6 +94,8 @@ assert_eq!(format.extension(), "flac");
 | application/x-shockwave-flash                   | swf       | Small Web Format                               |
 | application/x-snappy-framed                     | sz        | Snappy                                         |
 | application/x-tar                               | tar       | Tape archive                                   |
+| application/x-vhd                               | vhd       | Microsoft Virtual Hard Disk                    |
+| application/x-vhdx                              | vhdx      | Microsoft Virtual Hard Disk 2                  |
 | application/x-virtualbox-vdi                    | vdi       | VirtualBox Virtual Disk Image                  |
 | application/x-xar                               | xar       | eXtensible ARchive format                      |
 | application/x-xz                                | xz        | XZ                                             |

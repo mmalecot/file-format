@@ -405,6 +405,20 @@ fn test_vdi() {
 }
 
 #[test]
+fn test_vhd() {
+    let format = FileFormat::from_file("fixtures/application/sample.vhd").unwrap();
+    assert_eq!(format.media_type(), "application/x-vhd");
+    assert_eq!(format.extension(), "vhd");
+}
+
+#[test]
+fn test_vhdx() {
+    let format = FileFormat::from_file("fixtures/application/sample.vhdx").unwrap();
+    assert_eq!(format.media_type(), "application/x-vhdx");
+    assert_eq!(format.extension(), "vhdx");
+}
+
+#[test]
 fn test_wasm() {
     let format = FileFormat::from_file("fixtures/application/sample.wasm").unwrap();
     assert_eq!(format.media_type(), "application/wasm");
