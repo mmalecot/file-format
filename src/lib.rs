@@ -71,10 +71,10 @@ impl FileFormat {
     /// # Ok::<(), std::io::Error>(())
     ///```
     pub fn from_file<P: AsRef<Path>>(path: P) -> Result<FileFormat> {
-        let file = File::open(path)?;
-        let mut handle = file.take(FileFormat::MAX_BYTES);
         let mut buffer = [0; FileFormat::MAX_BYTES as usize];
-        let read = handle.read(&mut buffer)?;
+        let read = File::open(path)?
+            .take(FileFormat::MAX_BYTES)
+            .read(&mut buffer)?;
         Ok(FileFormat::from_bytes(&buffer[0..read]))
     }
 
