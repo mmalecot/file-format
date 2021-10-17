@@ -566,6 +566,11 @@ signatures! {
           value: b"FORM"
         - offset: 8
           value: b"AIFF"
+      - parts:
+        - offset: 0
+          value: b"FORM"
+        - offset: 8
+          value: b"AIFC"
 
   - media_type: "audio/ogg"
     extension: "oga"
