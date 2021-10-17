@@ -1150,6 +1150,22 @@ signatures! {
         - offset: 0
           value: b"\x04\x22\x4D\x18"
 
+  - media_type: "application/x-lzfse"
+    extension: "lzfse"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"bvx-"
+      - parts:
+        - offset: 0
+          value: b"bvx1"
+      - parts:
+        - offset: 0
+          value: b"bvx2"
+      - parts:
+        - offset: 0
+          value: b"bvxn"
+
   - media_type: "application/x-lzip"
     extension: "lz"
     signatures:

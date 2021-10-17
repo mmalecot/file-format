@@ -79,6 +79,7 @@ assert_eq!(format.extension(), "flac");
 | application/x-iso9660-image                     | iso       | ISO 9660 image                                 |
 | application/x-lrzip                             | lrz       | Long Range ZIP                                 |
 | application/x-lz4                               | lz4       | LZ4                                            |
+| application/x-lzfse                             | lzfse     | Lempel–Ziv Finite State Entropy                |
 | application/x-lzh-compressed                    | lzh       | LHA                                            |
 | application/x-lzip                              | lz        | Lzip                                           |
 | application/x-lzop                              | lzo       | Lzop                                           |
