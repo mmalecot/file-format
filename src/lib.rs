@@ -27,7 +27,7 @@ impl FileFormat {
 
     /// Determines `FileFormat` from bytes.
     ///
-    /// If the `FileFormat` is not recognized, it will return the [default value].
+    /// If the `FileFormat` is not recognized, the [default value] will be returned.
     ///
     /// # Examples
     ///
