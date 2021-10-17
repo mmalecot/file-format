@@ -113,6 +113,7 @@ assert_eq!(format.extension(), "flac");
 | audio/mp4                                       | f4a       | Adobe Flash Player Audio                       |
 | audio/mp4                                       | f4b       | Adobe Flash Player Audiobook                   |
 | audio/mp4                                       | m4b       | Apple iTunes ALAC/AAC-LC Audiobook             |
+| audio/mp4                                       | m4p       | Apple iTunes ALAC/AAC-LC Protected Audio       |
 | audio/mpeg                                      | mp3       | MPEG-1/2 Audio Layer III                       |
 | audio/ogg                                       | oga       | Ogg FLAC                                       |
 | audio/ogg                                       | ogg       | Ogg Vorbis                                     |
@@ -177,6 +178,8 @@ assert_eq!(format.extension(), "flac");
 | video/3gpp2                                     | 3g2       | 3rd Generation Partnership Project 2           |
 | video/avi                                       | avi       | Audio Video Interleave                         |
 | video/mp2t                                      | m2ts      | MPEG-2 Transport Stream                        |
+| video/mp4                                       | f4p       | Adobe Flash Player Protected Video             |
+| video/mp4                                       | f4v       | Adobe Flash Player Video                       |
 | video/mp4                                       | mp4       | MPEG-4 Part 14                                 |
 | video/mpeg                                      | mpg       | MPEG-1 video                                   |
 | video/ogg                                       | ogm       | Ogg Media                                      |

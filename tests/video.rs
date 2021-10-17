@@ -22,6 +22,20 @@ fn test_avi() {
 }
 
 #[test]
+fn test_f4p() {
+    let format = FileFormat::from_file("fixtures/video/sample.f4p").unwrap();
+    assert_eq!(format.media_type(), "video/mp4");
+    assert_eq!(format.extension(), "f4p");
+}
+
+#[test]
+fn test_f4v() {
+    let format = FileFormat::from_file("fixtures/video/sample.f4v").unwrap();
+    assert_eq!(format.media_type(), "video/mp4");
+    assert_eq!(format.extension(), "f4v");
+}
+
+#[test]
 fn test_flv() {
     let format = FileFormat::from_file("fixtures/video/sample.flv").unwrap();
     assert_eq!(format.media_type(), "video/x-flv");

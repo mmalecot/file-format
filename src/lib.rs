@@ -821,12 +821,6 @@ signatures! {
       - parts:
         - offset: 4
           value: b"ftypNDXP"
-      - parts:
-        - offset: 4
-          value: b"ftypF4V"
-      - parts:
-        - offset: 4
-          value: b"ftypF4P"
 
   - media_type: "video/webm"
     extension: "webm"
@@ -866,6 +860,13 @@ signatures! {
         - offset: 4
           value: b"ftypF4B"
 
+  - media_type: "audio/x-m4a"
+    extension: "m4a"
+    signatures:
+      - parts:
+        - offset: 4
+          value: b"ftypM4A"
+
   - media_type: "audio/mp4"
     extension: "m4b"
     signatures:
@@ -873,12 +874,12 @@ signatures! {
         - offset: 4
           value: b"ftypM4B"
 
-  - media_type: "audio/x-m4a"
-    extension: "m4a"
+  - media_type: "audio/mp4"
+    extension: "m4p"
     signatures:
       - parts:
         - offset: 4
-          value: b"ftypM4A"
+          value: b"ftypM4P"
 
   - media_type: "image/x-canon-cr3"
     extension: "cr3"
@@ -900,6 +901,20 @@ signatures! {
       - parts:
         - offset: 4
           value: b"ftyp3g2"
+
+  - media_type: "video/mp4"
+    extension: "f4p"
+    signatures:
+      - parts:
+        - offset: 4
+          value: b"ftypF4P"
+
+  - media_type: "video/mp4"
+    extension: "f4v"
+    signatures:
+      - parts:
+        - offset: 4
+          value: b"ftypF4V"
 
   - media_type: "video/x-m4v"
     extension: "m4v"

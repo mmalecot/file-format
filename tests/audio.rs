@@ -92,6 +92,13 @@ fn test_m4b() {
 }
 
 #[test]
+fn test_m4p() {
+    let format = FileFormat::from_file("fixtures/audio/sample.m4p").unwrap();
+    assert_eq!(format.media_type(), "audio/mp4");
+    assert_eq!(format.extension(), "m4p");
+}
+
+#[test]
 fn test_mid() {
     let format = FileFormat::from_file("fixtures/audio/sample.mid").unwrap();
     assert_eq!(format.media_type(), "audio/midi");
