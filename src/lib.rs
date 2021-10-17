@@ -398,6 +398,18 @@ signatures! {
           value: b"\x00\x00\x00\x14"
         - offset: 4
           value: b"ftypqt"
+      - parts:
+        - offset: 4
+          value: b"\x66\x72\x65\x65"
+      - parts:
+        - offset: 4
+          value: b"\x6D\x64\x61\x74"
+      - parts:
+        - offset: 4
+          value: b"\x6D\x6F\x6F\x76"
+      - parts:
+        - offset: 4
+          value: b"\x77\x69\x64\x65"
 
   - media_type: "video/x-ms-asf"
     extension: "wmv"
