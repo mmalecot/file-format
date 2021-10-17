@@ -120,7 +120,7 @@ assert_eq!(format.extension(), "flac");
 | audio/ogg                                       | spx       | Ogg Speex                                      |
 | audio/opus                                      | opus      | Ogg Opus                                       |
 | audio/qcelp                                     | qcp       | Qualcomm PureVoice                             |
-| audio/vnd.dolby.dd-raw                          | ac3       | Audio Codec 3 (AC-3)                           |
+| audio/vnd.dolby.dd-raw                          | ac3       | Audio Codec 3                                  |
 | audio/vnd.wave                                  | wav       | Waveform Audio                                 |
 | audio/wavpack                                   | wv        | WavPack                                        |
 | audio/x-ape                                     | ape       | Monkey's Audio                                 |
