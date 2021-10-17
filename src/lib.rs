@@ -1,4 +1,4 @@
-#![doc = include_str ! (concat ! (env ! ("CARGO_MANIFEST_DIR"), "/README.md"))]
+#![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/README.md"))]
 
 use std::{
     fs::File,
@@ -119,7 +119,7 @@ impl Default for FileFormat {
     }
 }
 
-/// Generates [`FileFormat::from_signature`] using a database described in YAML-like format.
+/// Generates `from_signature` function using a database described in YAML-like format.
 macro_rules! signatures {
     {
         $(
