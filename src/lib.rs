@@ -1097,7 +1097,7 @@ signatures! {
     signatures:
       - parts:
         - offset: 0
-          value: b"\x64\x65\x78\x0a"
+          value: b"\x64\x65\x78\x0A"
 
   - media_type: "application/vnd.ms-cab-compressed"
     extension: "cab"
