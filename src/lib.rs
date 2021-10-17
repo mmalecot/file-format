@@ -119,7 +119,7 @@ impl Default for FileFormat {
     }
 }
 
-/// Generates `from_signature` function using a database described in YAML-like format.
+/// Generates [`FileFormat::from_signature`] function using a database described in YAML-like format.
 macro_rules! signatures {
     {
         $(
@@ -136,7 +136,7 @@ macro_rules! signatures {
         )*
     } => {
         impl FileFormat {
-            /// Determines `FileFormat` from bytes by checking the signature.
+            /// Determines `FileFormat` by checking its signature.
             fn from_signature(bytes: &[u8]) -> Option<FileFormat> {
                 $(
                     if
