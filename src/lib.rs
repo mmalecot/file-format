@@ -355,6 +355,34 @@ signatures! {
         - offset: 24
           value: b"matroska"
 
+  // 11-byte signatures
+  - media_type: "audio/ogg"
+    extension: "ogg"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"OggS"
+        - offset: 28
+          value: b"\x01vorbis"
+
+  - media_type: "audio/ogg"
+    extension: "spx"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"OggS"
+        - offset: 28
+          value: b"Speex  "
+
+  - media_type: "video/ogg"
+    extension: "ogv"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"OggS"
+        - offset: 28
+          value: b"\x80theora"
+
   // 10-byte signatures
   - media_type: "application/x-snappy-framed"
     extension: "sz"
@@ -362,15 +390,6 @@ signatures! {
       - parts:
         - offset: 0
           value: b"\xFF\x06\x00\x00sNaPpY"
-
-  - media_type: "audio/ogg"
-    extension: "ogg"
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"OggS"
-        - offset: 29
-          value: b"vorbis"
 
   - media_type: "image/fits"
     extension: "fits"
@@ -380,13 +399,13 @@ signatures! {
           value: b"\x53\x49\x4D\x50\x4C\x45\x20\x20\x3D\x20"
 
   - media_type: "video/ogg"
-    extension: "ogv"
+    extension: "ogm"
     signatures:
       - parts:
         - offset: 0
           value: b"OggS"
-        - offset: 29
-          value: b"theora"
+        - offset: 28
+          value: b"\x01video"
 
   - media_type: "video/quicktime"
     extension: "mov"
@@ -446,13 +465,13 @@ signatures! {
           value: b"connectix"
 
   - media_type: "audio/ogg"
-    extension: "spx"
+    extension: "oga"
     signatures:
       - parts:
         - offset: 0
           value: b"OggS"
         - offset: 28
-          value: b"Speex"
+          value: b"\x7FFLAC"
 
   - media_type: "image/x-olympus-orf"
     extension: "orf"
@@ -460,15 +479,6 @@ signatures! {
       - parts:
         - offset: 0
           value: b"\x49\x49\x52\x4F\x08\x00\x00\x00\x18"
-
-  - media_type: "video/ogg"
-    extension: "ogm"
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"OggS"
-        - offset: 29
-          value: b"video"
 
   // 8-byte signatures
   - media_type: "application/vnd.rar"
@@ -581,15 +591,6 @@ signatures! {
           value: b"FORM"
         - offset: 8
           value: b"AIFC"
-
-  - media_type: "audio/ogg"
-    extension: "oga"
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"OggS"
-        - offset: 29
-          value: b"FLAC"
 
   - media_type: "audio/qcelp"
     extension: "qcp"
