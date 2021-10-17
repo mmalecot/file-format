@@ -232,6 +232,16 @@ signatures! {
         - offset: 16
           value: b"\x55\x00\x70\x00\x20\x00\x4D\x00\x6F\x00\x64\x00\x65\x00\x6C\x00"
 
+  // 29-byte signatures
+  - media_type: "image/fits"
+    extension: "fits"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x49\x4D\x50\x4C\x45\x20\x20\x3D\x20\x20\x20\x20\x20\x20\x20"
+        - offset: 15
+          value: b"\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x54"
+
   // 21-byte signatures
   - media_type: "application/vnd.debian.binary-package"
     extension: "deb"
@@ -390,13 +400,6 @@ signatures! {
       - parts:
         - offset: 0
           value: b"\xFF\x06\x00\x00sNaPpY"
-
-  - media_type: "image/fits"
-    extension: "fits"
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x53\x49\x4D\x50\x4C\x45\x20\x20\x3D\x20"
 
   - media_type: "video/ogg"
     extension: "ogm"
