@@ -483,6 +483,13 @@ signatures! {
         - offset: 0
           value: b"\x52\x61\x72\x21\x1A\x07\x00"
 
+  - media_type: "application/x-cfb"
+    extension: "cfb"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"
+
   - media_type: "application/x-gameboy-rom"
     extension: "gb"
     signatures:
@@ -545,13 +552,6 @@ signatures! {
       - parts:
         - offset: 0xC0
           value: b"\xC8\x60\x4F\xE2\x01\x70\x8F\xE2"
-
-  - media_type: "application/x-ole-storage"
-    extension: "msi"
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"
 
   - media_type: "application/x-tar"
     extension: "tar"

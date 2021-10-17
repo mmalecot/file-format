@@ -71,6 +71,13 @@ fn test_cab() {
 }
 
 #[test]
+fn test_cfb() {
+    let format = FileFormat::from_file("fixtures/application/sample.cfb").unwrap();
+    assert_eq!(format.media_type(), "application/x-cfb");
+    assert_eq!(format.extension(), "cfb");
+}
+
+#[test]
 fn test_chm() {
     let format = FileFormat::from_file("fixtures/application/sample.chm").unwrap();
     assert_eq!(format.media_type(), "application/vnd.ms-htmlhelp");
@@ -243,13 +250,6 @@ fn test_mobi() {
     let format = FileFormat::from_file("fixtures/application/sample.mobi").unwrap();
     assert_eq!(format.media_type(), "application/x-mobipocket-ebook");
     assert_eq!(format.extension(), "mobi");
-}
-
-#[test]
-fn test_msi() {
-    let format = FileFormat::from_file("fixtures/application/sample.msi").unwrap();
-    assert_eq!(format.media_type(), "application/x-ole-storage");
-    assert_eq!(format.extension(), "msi");
 }
 
 #[test]

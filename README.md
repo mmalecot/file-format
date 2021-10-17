@@ -66,6 +66,7 @@ assert_eq!(format.extension(), "flac");
 | application/x-arj                               | arj       | Archived by Robert Jung                        |
 | application/x-blender                           | blend     | Blender 3D data                                |
 | application/x-bzip2                             | bz2       | Bzip2                                          |
+| application/x-cfb                               | cfb       | Compound File Binary                           |
 | application/x-compress                          | Z         | Unix compress                                  |
 | application/x-cpio                              | cpio      | Cpio                                           |
 | application/x-esri-shape                        | shp       | Shapefile                                      |
@@ -88,7 +89,6 @@ assert_eq!(format.extension(), "flac");
 | application/x-navi-animation                    | ani       | ANI                                            |
 | application/x-nintendo-ds-rom                   | nds       | Nintendo DS ROM                                |
 | application/x-nintendo-nes-rom                  | nes       | Nintendo Entertainment System ROM              |
-| application/x-ole-storage                       | msi       | Windows Installer                              |
 | application/x-pcapng                            | pcapng    | Pcap-NG Packet Capture                         |
 | application/x-rpm                               | rpm       | Red Hat Package Manager package                |
 | application/x-sbx                               | sbx       | SeqBox                                         |
