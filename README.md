@@ -162,7 +162,7 @@ assert_eq!(format.extension(), "flac");
 | image/vnd.adobe.photoshop                       | psd       | Adobe Photoshop document                       |
 | image/webp                                      | webp      | WebP                                           |
 | image/wmf                                       | wmf       | Windows Metafile                               |
-| image/x-canon-cr2                               | cr2       | Canon Raw 3                                    |
+| image/x-canon-cr2                               | cr2       | Canon Raw 2                                    |
 | image/x-canon-cr3                               | cr3       | Canon Raw 3                                    |
 | image/x-dpx                                     | dpx       | Digital Picture Exchange                       |
 | image/x-exr                                     | exr       | OpenEXR                                        |
