@@ -250,6 +250,14 @@ signatures! {
         - offset: 0
           value: b"!<arch>\ndebian-binary"
 
+  // 20-byte signatures
+  - media_type: "application/x-ms-shortcut"
+    extension: "lnk"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x4C\x00\x00\x00\x01\x14\x02\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x00\x46"
+
   // 16-byte signatures
   - media_type: "application/vnd.sqlite3"
     extension: "sqlite"
@@ -521,13 +529,6 @@ signatures! {
       - parts:
         - offset: 60
           value: b"BOOKMOBI"
-
-  - media_type: "application/x-ms-shortcut"
-    extension: "lnk"
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x4C\x00\x00\x00\x01\x14\x02\x00"
 
   - media_type: "application/x-n64-rom"
     extension: "z64"
