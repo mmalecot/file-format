@@ -266,6 +266,13 @@ signatures! {
         - offset: 0
           value: b"\x53\x51\x4C\x69\x74\x65\x20\x66\x6F\x72\x6D\x61\x74\x20\x33\x00"
 
+  - media_type: "application/x-apple-alias"
+    extension: "alias"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x62\x6F\x6F\x6B\x00\x00\x00\x00\x6D\x61\x72\x6B\x00\x00\x00\x00"
+
   - media_type: "application/x-indesign"
     extension: "indd"
     signatures:

@@ -8,6 +8,13 @@ fn test_7z() {
 }
 
 #[test]
+fn test_alias() {
+    let format = FileFormat::from_file("fixtures/application/sample.alias").unwrap();
+    assert_eq!(format.media_type(), "application/x-apple-alias");
+    assert_eq!(format.extension(), "alias");
+}
+
+#[test]
 fn test_alz() {
     let format = FileFormat::from_file("fixtures/application/sample.alz").unwrap();
     assert_eq!(format.media_type(), "application/x-alz-compressed");
