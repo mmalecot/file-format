@@ -395,7 +395,7 @@ signatures! {
         - offset: 0
           value: b"OggS"
         - offset: 28
-          value: b"\x01vorbis"
+          value: b"\x01\x76\x6F\x72\x62\x69\x73"
 
   - media_type: "audio/ogg"
     extension: "spx"
@@ -413,7 +413,7 @@ signatures! {
         - offset: 0
           value: b"OggS"
         - offset: 28
-          value: b"\x80theora"
+          value: b"\x80\x74\x68\x65\x6F\x72\x61"
 
   // 10-byte signatures
   - media_type: "application/x-snappy-framed"
@@ -421,7 +421,7 @@ signatures! {
     signatures:
       - parts:
         - offset: 0
-          value: b"\xFF\x06\x00\x00sNaPpY"
+          value: b"\xFF\x06\x00\x00\x73\x4E\x61\x50\x70\x59"
 
   - media_type: "video/ogg"
     extension: "ogm"
@@ -430,7 +430,7 @@ signatures! {
         - offset: 0
           value: b"OggS"
         - offset: 28
-          value: b"\x01video"
+          value: b"\x01\x76\x69\x64\x65\x6F"
 
   - media_type: "video/quicktime"
     extension: "mov"
@@ -489,7 +489,7 @@ signatures! {
         - offset: 0
           value: b"OggS"
         - offset: 28
-          value: b"\x7FFLAC"
+          value: b"\x7F\x46\x4C\x41\x43"
 
   - media_type: "image/x-olympus-orf"
     extension: "orf"
