@@ -272,6 +272,13 @@ signatures! {
         - offset: 0
           value: b"Extended Module:"
 
+  - media_type: "video/x-ms-asf"
+    extension: "wmv"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x30\x26\xB2\x75\x8E\x66\xCF\x11\xA6\xD9\x00\xAA\x00\x62\xCE\x6C"
+
   // 15-byte signatures
   - media_type: "image/x-fuji-raf"
     extension: "raf"
@@ -430,13 +437,6 @@ signatures! {
       - parts:
         - offset: 4
           value: b"\x77\x69\x64\x65"
-
-  - media_type: "video/x-ms-asf"
-    extension: "wmv"
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x30\x26\xB2\x75\x8E\x66\xCF\x11\xA6\xD9"
 
   // 9-byte signatures
   - media_type: "application/x-gameboy-color-rom"
