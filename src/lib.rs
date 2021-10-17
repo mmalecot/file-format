@@ -238,9 +238,7 @@ signatures! {
     signatures:
       - parts:
         - offset: 0
-          value: b"\x21\x3C\x61\x72\x63\x68\x3E\x0A"
-        - offset: 8
-          value: b"debian-binary"
+          value: b"!<arch>\ndebian-binary"
 
   // 16-byte signatures
   - media_type: "application/vnd.sqlite3"
