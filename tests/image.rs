@@ -57,6 +57,13 @@ fn test_cur() {
 }
 
 #[test]
+fn test_dds() {
+    let format = FileFormat::from_file("fixtures/image/sample.dds").unwrap();
+    assert_eq!(format.media_type(), "image/vnd-ms.dds");
+    assert_eq!(format.extension(), "dds");
+}
+
+#[test]
 fn test_dpx() {
     let format = FileFormat::from_file("fixtures/image/sample.dpx").unwrap();
     assert_eq!(format.media_type(), "image/x-dpx");

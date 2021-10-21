@@ -1377,6 +1377,13 @@ signatures! {
         - offset: 0
           value: b"\x49\x49\x2B\x00"
 
+  - media_type: "image/vnd-ms.dds"
+    extension: "dds"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"DDS "
+
   - media_type: "image/vnd.adobe.photoshop"
     extension: "psd"
     signatures:

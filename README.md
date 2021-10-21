@@ -159,6 +159,7 @@ assert_eq!(format.extension(), "flac");
 | JPEG 2000 Part 3 (MJ2)                         | image/mj2                                       | mj2       |
 | Portable Network Graphics                      | image/png                                       | png       |
 | Tag Image File Format                          | image/tiff                                      | tiff      |
+| DirectDraw Surface                             | image/vnd-ms.dds                                | dds       |
 | Adobe Photoshop document                       | image/vnd.adobe.photoshop                       | psd       |
 | Radiance HDR                                   | image/vnd.radiance                              | hdr       |
 | WebP                                           | image/webp                                      | webp      |
