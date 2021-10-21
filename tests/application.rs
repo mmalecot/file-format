@@ -141,6 +141,16 @@ fn test_dmg() {
 }
 
 #[test]
+fn test_docx() {
+    let format = FileFormat::from_file("fixtures/application/sample.docx").unwrap();
+    assert_eq!(
+        format.media_type(),
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    );
+    assert_eq!(format.extension(), "docx");
+}
+
+#[test]
 fn test_elf() {
     let format = FileFormat::from_file("fixtures/application/sample.elf").unwrap();
     assert_eq!(format.media_type(), "application/x-executable");
@@ -208,6 +218,13 @@ fn test_iso() {
     let format = FileFormat::from_file("fixtures/application/sample.iso").unwrap();
     assert_eq!(format.media_type(), "application/x-iso9660-image");
     assert_eq!(format.extension(), "iso");
+}
+
+#[test]
+fn test_jar() {
+    let format = FileFormat::from_file("fixtures/application/sample.jar").unwrap();
+    assert_eq!(format.media_type(), "application/java-archive");
+    assert_eq!(format.extension(), "jar");
 }
 
 #[test]
@@ -356,6 +373,16 @@ fn test_pdf() {
 }
 
 #[test]
+fn test_pptx() {
+    let format = FileFormat::from_file("fixtures/application/sample.pptx").unwrap();
+    assert_eq!(
+        format.media_type(),
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+    );
+    assert_eq!(format.extension(), "pptx");
+}
+
+#[test]
 fn test_rar() {
     let format = FileFormat::from_file("fixtures/application/sample.rar").unwrap();
     assert_eq!(format.media_type(), "application/vnd.rar");
@@ -440,6 +467,23 @@ fn test_vhdx() {
 }
 
 #[test]
+fn test_vsdx() {
+    let format = FileFormat::from_file("fixtures/application/sample.vsdx").unwrap();
+    assert_eq!(
+        format.media_type(),
+        "application/vnd.ms-visio.drawing.main+xml"
+    );
+    assert_eq!(format.extension(), "vsdx");
+}
+
+#[test]
+fn test_war() {
+    let format = FileFormat::from_file("fixtures/application/sample.war").unwrap();
+    assert_eq!(format.media_type(), "application/java-archive");
+    assert_eq!(format.extension(), "war");
+}
+
+#[test]
 fn test_wasm() {
     let format = FileFormat::from_file("fixtures/application/sample.wasm").unwrap();
     assert_eq!(format.media_type(), "application/wasm");
@@ -447,10 +491,34 @@ fn test_wasm() {
 }
 
 #[test]
+fn test_xap() {
+    let format = FileFormat::from_file("fixtures/application/sample.xap").unwrap();
+    assert_eq!(format.media_type(), "application/x-silverlight-app");
+    assert_eq!(format.extension(), "xap");
+}
+
+#[test]
 fn test_xar() {
     let format = FileFormat::from_file("fixtures/application/sample.xar").unwrap();
     assert_eq!(format.media_type(), "application/x-xar");
     assert_eq!(format.extension(), "xar");
+}
+
+#[test]
+fn test_xlsx() {
+    let format = FileFormat::from_file("fixtures/application/sample.xlsx").unwrap();
+    assert_eq!(
+        format.media_type(),
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    );
+    assert_eq!(format.extension(), "xlsx");
+}
+
+#[test]
+fn test_xpi() {
+    let format = FileFormat::from_file("fixtures/application/sample.xpi").unwrap();
+    assert_eq!(format.media_type(), "application/x-xpinstall");
+    assert_eq!(format.extension(), "xpi");
 }
 
 #[test]
