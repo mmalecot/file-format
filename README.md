@@ -160,6 +160,7 @@ assert_eq!(format.extension(), "flac");
 | Portable Network Graphics                      | image/png                                       | png       |
 | Tag Image File Format                          | image/tiff                                      | tiff      |
 | Adobe Photoshop document                       | image/vnd.adobe.photoshop                       | psd       |
+| Radiance HDR                                   | image/vnd.radiance                              | hdr       |
 | WebP                                           | image/webp                                      | webp      |
 | Windows Metafile                               | image/wmf                                       | wmf       |
 | Canon Raw 2                                    | image/x-canon-cr2                               | cr2       |

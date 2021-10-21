@@ -92,6 +92,13 @@ fn test_gif() {
 }
 
 #[test]
+fn test_hdr() {
+    let format = FileFormat::from_file("fixtures/image/sample.hdr").unwrap();
+    assert_eq!(format.media_type(), "image/vnd.radiance");
+    assert_eq!(format.extension(), "hdr");
+}
+
+#[test]
 fn test_heic_1() {
     let format = FileFormat::from_file("fixtures/image/sample.1.heic").unwrap();
     assert_eq!(format.media_type(), "image/heic");

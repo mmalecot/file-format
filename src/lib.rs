@@ -406,6 +406,13 @@ signatures! {
         - offset: 28
           value: b"Speex  "
 
+  - media_type: "image/vnd.radiance"
+    extension: "hdr"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x23\x3F\x52\x41\x44\x49\x41\x4E\x43\x45\x0A"
+
   - media_type: "video/ogg"
     extension: "ogv"
     signatures:
