@@ -34,162 +34,162 @@ assert_eq!(format.extension(), "flac");
 
 ## Supported file formats
 
-| Media type                                      | Extension | Description                                    |
-|-------------------------------------------------|-----------|------------------------------------------------|
-| application/dicom                               | dcm       | Digital Imaging and Communications in Medicine |
-| application/epub+zip                            | epub      | Electronic Publication                         |
-| application/gzip                                | gz        | Gzip                                           |
-| application/java-vm                             | class     | Java class                                     |
-| application/mxf                                 | mxf       | Material Exchange Format                       |
-| application/octet-stream                        | bin       | Arbitrary binary data                          |
-| application/ogg                                 | ogx       | Ogg Multiplexed Media                          |
-| application/pdf                                 | pdf       | Portable Document Format                       |
-| application/vnd.android.dex                     | dex       | Dalvik Executable                              |
-| application/vnd.debian.binary-package           | deb       | Debian package                                 |
-| application/vnd.ms-cab-compressed               | cab       | Cabinet                                        |
-| application/vnd.ms-fontobject                   | eot       | Embedded OpenType                              |
-| application/vnd.ms-htmlhelp                     | chm       | Microsoft Compiled HTML Help                   |
-| application/vnd.oasis.opendocument.graphics     | odg       | OpenDocument Graphics                          |
-| application/vnd.oasis.opendocument.presentation | odp       | OpenDocument Presentation                      |
-| application/vnd.oasis.opendocument.spreadsheet  | ods       | OpenDocument SpreadSheet                       |
-| application/vnd.oasis.opendocument.text         | odt       | OpenDocument Text                              |
-| application/vnd.rar                             | rar       | Roshal ARchive                                 |
-| application/vnd.sketchup.skp                    | skp       | SketchUp document                              |
-| application/vnd.sqlite3                         | sqlite    | SQLite 3 database                              |
-| application/vnd.tcpdump.pcap                    | pcap      | Libpcap                                        |
-| application/wasm                                | wasm      | WebAssembly binary                             |
-| application/x-7z-compressed                     | 7z        | 7z                                             |
-| application/x-alz-compressed                    | alz       | ALZip                                          |
-| application/x-apache-arrow                      | arrow     | Apache Arrow Columnar                          |
-| application/x-apple-alias                       | alias     | macOS Alias                                    |
-| application/x-apple-diskimage                   | dmg       | Apple Disk Image                               |
-| application/x-archive                           | ar        | Unix Archiver                                  |
-| application/x-arj                               | arj       | Archived by Robert Jung                        |
-| application/x-blender                           | blend     | Blender 3D data                                |
-| application/x-bzip2                             | bz2       | Bzip2                                          |
-| application/x-cfb                               | cfb       | Compound File Binary                           |
-| application/x-compress                          | Z         | Unix compress                                  |
-| application/x-cpio                              | cpio      | Cpio                                           |
-| application/x-esri-shape                        | shp       | Shapefile                                      |
-| application/x-executable                        | elf       | Executable and Linkable Format                 |
-| application/x-gameboy-color-rom                 | gbc       | Game Boy Color ROM                             |
-| application/x-gameboy-rom                       | gb        | Game Boy ROM                                   |
-| application/x-gba-rom                           | gba       | Game Boy Advance ROM                           |
-| application/x-google-chrome-extension           | crx       | Google Chrome Extension                        |
-| application/x-indesign                          | indd      | Adobe InDesign document                        |
-| application/x-iso9660-image                     | iso       | ISO 9660 image                                 |
-| application/x-lrzip                             | lrz       | Long Range ZIP                                 |
-| application/x-lz4                               | lz4       | LZ4                                            |
-| application/x-lzfse                             | lzfse     | Lempel–Ziv Finite State Entropy                |
-| application/x-lzh-compressed                    | lzh       | LHA                                            |
-| application/x-lzip                              | lz        | Lzip                                           |
-| application/x-lzop                              | lzo       | Lzop                                           |
-| application/x-mobipocket-ebook                  | mobi      | Mobipocket                                     |
-| application/x-ms-shortcut                       | lnk       | Windows shortcut                               |
-| application/x-msdownload                        | exe       | Windows executable                             |
-| application/x-n64-rom                           | z64       | Nintendo 64 ROM                                |
-| application/x-navi-animation                    | ani       | ANI                                            |
-| application/x-nintendo-ds-rom                   | nds       | Nintendo DS ROM                                |
-| application/x-nintendo-nes-rom                  | nes       | Nintendo Entertainment System ROM              |
-| application/x-pcapng                            | pcapng    | Pcap-NG Packet Capture                         |
-| application/x-rpm                               | rpm       | Red Hat Package Manager package                |
-| application/x-sbx                               | sbx       | SeqBox                                         |
-| application/x-shockwave-flash                   | swf       | Small Web Format                               |
-| application/x-snappy-framed                     | sz        | Snappy                                         |
-| application/x-tar                               | tar       | Tape archive                                   |
-| application/x-vhd                               | vhd       | Microsoft Virtual Hard Disk                    |
-| application/x-vhdx                              | vhdx      | Microsoft Virtual Hard Disk 2                  |
-| application/x-virtualbox-vdi                    | vdi       | VirtualBox Virtual Disk Image                  |
-| application/x-xar                               | xar       | eXtensible ARchive format                      |
-| application/x-xz                                | xz        | XZ                                             |
-| application/x-zoo                               | zoo       | Zoo                                            |
-| application/zip                                 | zip       | ZIP                                            |
-| application/zstd                                | zst       | Zstandard                                      |
-| audio/aac                                       | aac       | Advanced Audio Coding                          |
-| audio/aiff                                      | aif       | Audio Interchange File Format                  |
-| audio/amr                                       | amr       | Adaptive Multi-Rate                            |
-| audio/basic                                     | au        | Au                                             |
-| audio/midi                                      | mid       | Musical Instrument Digital Interface           |
-| audio/mp4                                       | f4a       | Adobe Flash Player Audio                       |
-| audio/mp4                                       | f4b       | Adobe Flash Player Audiobook                   |
-| audio/mp4                                       | m4b       | Apple iTunes ALAC/AAC-LC Audiobook             |
-| audio/mp4                                       | m4p       | Apple iTunes ALAC/AAC-LC Protected Audio       |
-| audio/mpeg                                      | mp3       | MPEG-1/2 Audio Layer III                       |
-| audio/ogg                                       | oga       | Ogg FLAC                                       |
-| audio/ogg                                       | ogg       | Ogg Vorbis                                     |
-| audio/ogg                                       | spx       | Ogg Speex                                      |
-| audio/opus                                      | opus      | Ogg Opus                                       |
-| audio/qcelp                                     | qcp       | Qualcomm PureVoice                             |
-| audio/vnd.dolby.dd-raw                          | ac3       | Audio Codec 3                                  |
-| audio/vnd.wave                                  | wav       | Waveform Audio                                 |
-| audio/wavpack                                   | wv        | WavPack                                        |
-| audio/x-ape                                     | ape       | Monkey's Audio                                 |
-| audio/x-dsf                                     | dsf       | Sony DSD Stream File                           |
-| audio/x-flac                                    | flac      | Free Lossless Audio Codec                      |
-| audio/x-it                                      | it        | Impulse Tracker Module                         |
-| audio/x-m4a                                     | m4a       | Apple iTunes ALAC/AAC-LC Audio                 |
-| audio/x-musepack                                | mpc       | Musepack                                       |
-| audio/x-s3m                                     | s3m       | ScreamTracker 3 Module                         |
-| audio/x-xm                                      | xm        | FastTracker 2 Module                           |
-| font/otf                                        | otf       | OpenType                                       |
-| font/ttf                                        | ttf       | TrueType                                       |
-| font/woff                                       | woff      | Web Open Font Format                           |
-| font/woff2                                      | woff2     | Web Open Font Format 2                         |
-| image/apng                                      | apng      | Animated Portable Network Graphics             |
-| image/avif                                      | avif      | AV1 Image File Format                          |
-| image/bmp                                       | bmp       | Windows Bitmap                                 |
-| image/bpg                                       | bpg       | Better Portable Graphics                       |
-| image/cineon                                    | cin       | Cineon Image                                   |
-| image/fits                                      | fits      | Flexible Image Transport System                |
-| image/flif                                      | flif      | Free Lossless Image Format                     |
-| image/gif                                       | gif       | Graphics Interchange Format                    |
-| image/heic                                      | heic      | High Efficiency Image Coding                   |
-| image/heic-sequence                             | heic      | High Efficiency Image Coding Sequence          |
-| image/heif                                      | heic      | High Efficiency Image File Format              |
-| image/heif-sequence                             | heic      | High Efficiency Image File Format Sequence     |
-| image/icns                                      | icns      | Apple Icon Image                               |
-| image/jp2                                       | jp2       | JPEG 2000 Part 1 (JP2)                         |
-| image/jpeg                                      | jpg       | Joint Photographic Experts Group               |
-| image/jpm                                       | jpm       | JPEG 2000 Part 6 (JPM)                         |
-| image/jpx                                       | jpx       | JPEG 2000 Part 2 (JPX)                         |
-| image/jxl                                       | jxl       | JPEG XL                                        |
-| image/jxr                                       | jxr       | JPEG extended range                            |
-| image/ktx                                       | ktx       | Khronos TeXture                                |
-| image/ktx2                                      | ktx2      | Khronos TeXture 2                              |
-| image/mj2                                       | mj2       | JPEG 2000 Part 3 (MJ2)                         |
-| image/png                                       | png       | Portable Network Graphics                      |
-| image/tiff                                      | tiff      | Tag Image File Format                          |
-| image/vnd.adobe.photoshop                       | psd       | Adobe Photoshop document                       |
-| image/webp                                      | webp      | WebP                                           |
-| image/wmf                                       | wmf       | Windows Metafile                               |
-| image/x-canon-cr2                               | cr2       | Canon Raw 2                                    |
-| image/x-canon-cr3                               | cr3       | Canon Raw 3                                    |
-| image/x-dpx                                     | dpx       | Digital Picture Exchange                       |
-| image/x-exr                                     | exr       | OpenEXR                                        |
-| image/x-fujifilm-raf                            | raf       | Fujifilm Raw                                   |
-| image/x-icon                                    | cur       | CUR                                            |
-| image/x-icon                                    | ico       | ICO                                            |
-| image/x-nikon-nef                               | nef       | Nikon Electronic File                          |
-| image/x-olympus-orf                             | orf       | Olympus Raw Format                             |
-| image/x-panasonic-rw2                           | rw2       | Panasonic Raw                                  |
-| image/x-xcf                                     | xcf       | eXperimental Computing Facility                |
-| model/gltf-binary                               | glb       | GL Transmission Format binary                  |
-| video/3gpp                                      | 3gp       | 3rd Generation Partnership Project             |
-| video/3gpp2                                     | 3g2       | 3rd Generation Partnership Project 2           |
-| video/avi                                       | avi       | Audio Video Interleave                         |
-| video/mp2t                                      | m2ts      | MPEG-2 Transport Stream                        |
-| video/mp4                                       | f4p       | Adobe Flash Player Protected Video             |
-| video/mp4                                       | f4v       | Adobe Flash Player Video                       |
-| video/mp4                                       | mp4       | MPEG-4 Part 14                                 |
-| video/mpeg                                      | mpg       | MPEG-1 video                                   |
-| video/ogg                                       | ogm       | Ogg Media                                      |
-| video/ogg                                       | ogv       | Ogg Theora                                     |
-| video/quicktime                                 | mov       | QuickTime Movie                                |
-| video/webm                                      | webm      | WebM                                           |
-| video/x-flv                                     | flv       | Flash Video                                    |
-| video/x-m4v                                     | m4v       | M4V                                            |
-| video/x-matroska                                | mkv       | Matroska Multimedia Container                  |
-| video/x-ms-asf                                  | wmv       | Windows Media Video                            |
+| Name                                           | Media type                                      | Extension |
+|------------------------------------------------|-------------------------------------------------|-----------|
+| Digital Imaging and Communications in Medicine | application/dicom                               | dcm       |
+| Electronic Publication                         | application/epub+zip                            | epub      |
+| gzip                                           | application/gzip                                | gz        |
+| Java Class                                     | application/java-vm                             | class     |
+| Material Exchange Format                       | application/mxf                                 | mxf       |
+| Arbitrary Binary Data                          | application/octet-stream                        | bin       |
+| Ogg Multiplexed Media                          | application/ogg                                 | ogx       |
+| Portable Document Format                       | application/pdf                                 | pdf       |
+| Dalvik Executable                              | application/vnd.android.dex                     | dex       |
+| Debian Package                                 | application/vnd.debian.binary-package           | deb       |
+| Cabinet                                        | application/vnd.ms-cab-compressed               | cab       |
+| Embedded OpenType                              | application/vnd.ms-fontobject                   | eot       |
+| Microsoft Compiled HTML Help                   | application/vnd.ms-htmlhelp                     | chm       |
+| OpenDocument Graphics                          | application/vnd.oasis.opendocument.graphics     | odg       |
+| OpenDocument Presentation                      | application/vnd.oasis.opendocument.presentation | odp       |
+| OpenDocument SpreadSheet                       | application/vnd.oasis.opendocument.spreadsheet  | ods       |
+| OpenDocument Text                              | application/vnd.oasis.opendocument.text         | odt       |
+| Roshal Archive                                 | application/vnd.rar                             | rar       |
+| SketchUp Document                              | application/vnd.sketchup.skp                    | skp       |
+| SQLite 3 Database                              | application/vnd.sqlite3                         | sqlite    |
+| libpcap                                        | application/vnd.tcpdump.pcap                    | pcap      |
+| WebAssembly Binary                             | application/wasm                                | wasm      |
+| 7z                                             | application/x-7z-compressed                     | 7z        |
+| ALZip                                          | application/x-alz-compressed                    | alz       |
+| Apache Arrow Columnar                          | application/x-apache-arrow                      | arrow     |
+| macOS Alias                                    | application/x-apple-alias                       | alias     |
+| Apple Disk Image                               | application/x-apple-diskimage                   | dmg       |
+| UNIX archiver                                  | application/x-archive                           | ar        |
+| Archived by Robert Jung                        | application/x-arj                               | arj       |
+| Blender 3D Data                                | application/x-blender                           | blend     |
+| bzip2                                          | application/x-bzip2                             | bz2       |
+| Compound File Binary                           | application/x-cfb                               | cfb       |
+| UNIX compress                                  | application/x-compress                          | Z         |
+| cpio                                           | application/x-cpio                              | cpio      |
+| Shapefile                                      | application/x-esri-shape                        | shp       |
+| Executable and Linkable Format                 | application/x-executable                        | elf       |
+| Game Boy Color ROM                             | application/x-gameboy-color-rom                 | gbc       |
+| Game Boy ROM                                   | application/x-gameboy-rom                       | gb        |
+| Game Boy Advance ROM                           | application/x-gba-rom                           | gba       |
+| Google Chrome Extension                        | application/x-google-chrome-extension           | crx       |
+| Adobe InDesign Document                        | application/x-indesign                          | indd      |
+| ISO 9660 image                                 | application/x-iso9660-image                     | iso       |
+| Long Range ZIP                                 | application/x-lrzip                             | lrz       |
+| LZ4                                            | application/x-lz4                               | lz4       |
+| Lempel–Ziv Finite State Entropy                | application/x-lzfse                             | lzfse     |
+| LHA                                            | application/x-lzh-compressed                    | lzh       |
+| lzip                                           | application/x-lzip                              | lz        |
+| lzop                                           | application/x-lzop                              | lzo       |
+| Mobipocket                                     | application/x-mobipocket-ebook                  | mobi      |
+| Windows Shortcut                               | application/x-ms-shortcut                       | lnk       |
+| Windows Executable                             | application/x-msdownload                        | exe       |
+| Nintendo 64 ROM                                | application/x-n64-rom                           | z64       |
+| ANI                                            | application/x-navi-animation                    | ani       |
+| Nintendo DS ROM                                | application/x-nintendo-ds-rom                   | nds       |
+| Nintendo Entertainment System ROM              | application/x-nintendo-nes-rom                  | nes       |
+| PCAP Next Generation Dump                      | application/x-pcapng                            | pcapng    |
+| Red Hat Package Manager Package                | application/x-rpm                               | rpm       |
+| SeqBox                                         | application/x-sbx                               | sbx       |
+| Small Web Format                               | application/x-shockwave-flash                   | swf       |
+| Snappy                                         | application/x-snappy-framed                     | sz        |
+| Tape Archive                                   | application/x-tar                               | tar       |
+| Microsoft Virtual Hard Disk                    | application/x-vhd                               | vhd       |
+| Microsoft Virtual Hard Disk 2                  | application/x-vhdx                              | vhdx      |
+| VirtualBox Virtual Disk Image                  | application/x-virtualbox-vdi                    | vdi       |
+| Extensible Archive                             | application/x-xar                               | xar       |
+| XZ                                             | application/x-xz                                | xz        |
+| zoo                                            | application/x-zoo                               | zoo       |
+| ZIP                                            | application/zip                                 | zip       |
+| Zstandard                                      | application/zstd                                | zst       |
+| Advanced Audio Coding                          | audio/aac                                       | aac       |
+| Audio Interchange File Format                  | audio/aiff                                      | aif       |
+| Adaptive Multi-Rate                            | audio/amr                                       | amr       |
+| Au                                             | audio/basic                                     | au        |
+| Musical Instrument Digital Interface           | audio/midi                                      | mid       |
+| Adobe Flash Player Audio                       | audio/mp4                                       | f4a       |
+| Adobe Flash Player Audiobook                   | audio/mp4                                       | f4b       |
+| Apple iTunes ALAC/AAC-LC Audiobook             | audio/mp4                                       | m4b       |
+| Apple iTunes ALAC/AAC-LC Protected Audio       | audio/mp4                                       | m4p       |
+| MPEG-1/2 Audio Layer III                       | audio/mpeg                                      | mp3       |
+| Ogg FLAC                                       | audio/ogg                                       | oga       |
+| Ogg Vorbis                                     | audio/ogg                                       | ogg       |
+| Ogg Speex                                      | audio/ogg                                       | spx       |
+| Ogg Opus                                       | audio/opus                                      | opus      |
+| Qualcomm PureVoice                             | audio/qcelp                                     | qcp       |
+| Audio Codec 3                                  | audio/vnd.dolby.dd-raw                          | ac3       |
+| Waveform Audio                                 | audio/vnd.wave                                  | wav       |
+| WavPack                                        | audio/wavpack                                   | wv        |
+| Monkey's Audio                                 | audio/x-ape                                     | ape       |
+| Sony DSD Stream File                           | audio/x-dsf                                     | dsf       |
+| Free Lossless Audio Codec                      | audio/x-flac                                    | flac      |
+| Impulse Tracker Module                         | audio/x-it                                      | it        |
+| Apple iTunes ALAC/AAC-LC Audio                 | audio/x-m4a                                     | m4a       |
+| Musepack                                       | audio/x-musepack                                | mpc       |
+| ScreamTracker 3 Module                         | audio/x-s3m                                     | s3m       |
+| FastTracker 2 Module                           | audio/x-xm                                      | xm        |
+| OpenType                                       | font/otf                                        | otf       |
+| TrueType                                       | font/ttf                                        | ttf       |
+| Web Open Font Format                           | font/woff                                       | woff      |
+| Web Open Font Format 2                         | font/woff2                                      | woff2     |
+| Animated Portable Network Graphics             | image/apng                                      | apng      |
+| AV1 Image File Format                          | image/avif                                      | avif      |
+| Windows Bitmap                                 | image/bmp                                       | bmp       |
+| Better Portable Graphics                       | image/bpg                                       | bpg       |
+| Cineon Image                                   | image/cineon                                    | cin       |
+| Flexible Image Transport System                | image/fits                                      | fits      |
+| Free Lossless Image Format                     | image/flif                                      | flif      |
+| Graphics Interchange Format                    | image/gif                                       | gif       |
+| High Efficiency Image Coding                   | image/heic                                      | heic      |
+| High Efficiency Image Coding Sequence          | image/heic-sequence                             | heic      |
+| High Efficiency Image File Format              | image/heif                                      | heic      |
+| High Efficiency Image File Format Sequence     | image/heif-sequence                             | heic      |
+| Apple Icon Image                               | image/icns                                      | icns      |
+| JPEG 2000 Part 1 (JP2)                         | image/jp2                                       | jp2       |
+| Joint Photographic Experts Group               | image/jpeg                                      | jpg       |
+| JPEG 2000 Part 6 (JPM)                         | image/jpm                                       | jpm       |
+| JPEG 2000 Part 2 (JPX)                         | image/jpx                                       | jpx       |
+| JPEG XL                                        | image/jxl                                       | jxl       |
+| JPEG Extended Range                            | image/jxr                                       | jxr       |
+| Khronos Texture                                | image/ktx                                       | ktx       |
+| Khronos Texture 2                              | image/ktx2                                      | ktx2      |
+| JPEG 2000 Part 3 (MJ2)                         | image/mj2                                       | mj2       |
+| Portable Network Graphics                      | image/png                                       | png       |
+| Tag Image File Format                          | image/tiff                                      | tiff      |
+| Adobe Photoshop document                       | image/vnd.adobe.photoshop                       | psd       |
+| WebP                                           | image/webp                                      | webp      |
+| Windows Metafile                               | image/wmf                                       | wmf       |
+| Canon Raw 2                                    | image/x-canon-cr2                               | cr2       |
+| Canon Raw 3                                    | image/x-canon-cr3                               | cr3       |
+| Digital Picture Exchange                       | image/x-dpx                                     | dpx       |
+| OpenEXR                                        | image/x-exr                                     | exr       |
+| Fujifilm Raw                                   | image/x-fujifilm-raf                            | raf       |
+| CUR                                            | image/x-icon                                    | cur       |
+| ICO                                            | image/x-icon                                    | ico       |
+| Nikon Electronic File                          | image/x-nikon-nef                               | nef       |
+| Olympus Raw Format                             | image/x-olympus-orf                             | orf       |
+| Panasonic Raw                                  | image/x-panasonic-rw2                           | rw2       |
+| Experimental Computing Facility                | image/x-xcf                                     | xcf       |
+| GL Transmission Format Binary                  | model/gltf-binary                               | glb       |
+| 3rd Generation Partnership Project             | video/3gpp                                      | 3gp       |
+| 3rd Generation Partnership Project 2           | video/3gpp2                                     | 3g2       |
+| Audio Video Interleave                         | video/avi                                       | avi       |
+| MPEG-2 Transport Stream                        | video/mp2t                                      | m2ts      |
+| Adobe Flash Player Protected Video             | video/mp4                                       | f4p       |
+| Adobe Flash Player Video                       | video/mp4                                       | f4v       |
+| MPEG-4 Part 14                                 | video/mp4                                       | mp4       |
+| MPEG-1 video                                   | video/mpeg                                      | mpg       |
+| Ogg Media                                      | video/ogg                                       | ogm       |
+| Ogg Theora                                     | video/ogg                                       | ogv       |
+| QuickTime Movie                                | video/quicktime                                 | mov       |
+| WebM                                           | video/webm                                      | webm      |
+| Flash Video                                    | video/x-flv                                     | flv       |
+| M4V                                            | video/x-m4v                                     | m4v       |
+| Matroska Multimedia Container                  | video/x-matroska                                | mkv       |
+| Windows Media Video                            | video/x-ms-asf                                  | wmv       |
 
 ## References
 
