@@ -92,9 +92,29 @@ fn test_gif() {
 }
 
 #[test]
-fn test_heic() {
-    let format = FileFormat::from_file("fixtures/image/sample.heic").unwrap();
+fn test_heic_1() {
+    let format = FileFormat::from_file("fixtures/image/sample.1.heic").unwrap();
     assert_eq!(format.media_type(), "image/heic");
+    assert_eq!(format.extension(), "heic");
+}
+
+#[test]
+fn test_heic_2() {
+    let format = FileFormat::from_file("fixtures/image/sample.2.heic").unwrap();
+    assert_eq!(format.media_type(), "image/heic-sequence");
+    assert_eq!(format.extension(), "heic");
+}
+#[test]
+fn test_heic_3() {
+    let format = FileFormat::from_file("fixtures/image/sample.3.heic").unwrap();
+    assert_eq!(format.media_type(), "image/heif");
+    assert_eq!(format.extension(), "heic");
+}
+
+#[test]
+fn test_heic_4() {
+    let format = FileFormat::from_file("fixtures/image/sample.4.heic").unwrap();
+    assert_eq!(format.media_type(), "image/heif-sequence");
     assert_eq!(format.extension(), "heic");
 }
 
