@@ -1,9 +1,11 @@
 #![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/README.md"))]
 
 use std::{
+    convert::TryInto,
     fs::File,
     io::{Read, Result},
     path::Path,
+    str,
 };
 
 /// A file format.
@@ -22,6 +24,117 @@ impl FileFormat {
         FileFormat {
             media_type: String::from(media_type),
             extension: String::from(extension),
+        }
+    }
+
+    /// Determines `FileFormat` by checking the ZIP content.
+    fn from_zip(bytes: &[u8]) -> Option<FileFormat> {
+        let mut offset = 0;
+
+        // Loops on local file headers
+        while bytes.len() >= offset + 30 && &bytes[offset..offset + 4] == b"\x50\x4B\x03\x04" {
+            let compressed_size =
+                u32::from_le_bytes(bytes[offset + 18..offset + 22].try_into().unwrap()) as usize;
+            let uncompressed_size =
+                u32::from_le_bytes(bytes[offset + 22..offset + 26].try_into().unwrap()) as usize;
+            let filename_len =
+                u16::from_le_bytes(bytes[offset + 26..offset + 28].try_into().unwrap()) as usize;
+            let extra_field_len =
+                u16::from_le_bytes(bytes[offset + 28..offset + 30].try_into().unwrap()) as usize;
+            let header_len = 30 + filename_len + extra_field_len;
+
+            // Checks that the length is sufficient
+            if bytes.len() < offset + header_len {
+                break;
+            }
+
+            // Retrieves the filename
+            let filename = match str::from_utf8(&bytes[offset + 30..offset + 30 + filename_len]) {
+                Ok(filename) => filename,
+                Err(_) => break,
+            };
+
+            // Checks with filename
+            if filename == "META-INF/mozilla.rsa" {
+                return Some(FileFormat::new("application/x-xpinstall", "xpi"));
+            } else if filename == "AppManifest.xaml" {
+                return Some(FileFormat::new("application/x-silverlight-app", "xap"));
+            } else if filename.starts_with("WEB-INF/") {
+                return Some(FileFormat::new("application/java-archive", "war"));
+            } else if filename.starts_with("word/") {
+                return Some(FileFormat::new(
+                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "docx",
+                ));
+            } else if filename.starts_with("ppt/") {
+                return Some(FileFormat::new(
+                    "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                    "pptx",
+                ));
+            } else if filename.starts_with("xl/") {
+                return Some(FileFormat::new(
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    "xlsx",
+                ));
+            } else if filename.starts_with("visio/") {
+                return Some(FileFormat::new(
+                    "application/vnd.ms-visio.drawing.main+xml",
+                    "vsdx",
+                ));
+            } else if filename.starts_with("3D/") && filename.ends_with(".model") {
+                return Some(FileFormat::new("model/3mf", "3mf"));
+            } else if filename.ends_with(".class") {
+                return Some(FileFormat::new("application/java-archive", "jar"));
+            } else if filename == "mimetype"
+                && compressed_size == uncompressed_size
+                && bytes.len() >= offset + header_len + compressed_size
+            {
+                // Retrieves the media type
+                let media_type = match str::from_utf8(
+                    &bytes[offset + header_len..offset + header_len + compressed_size],
+                ) {
+                    Ok(media_type) => media_type,
+                    Err(_) => break,
+                };
+
+                // Checks the media type
+                match media_type {
+                    "application/epub+zip" => {
+                        return Some(FileFormat::new(media_type, "epub"));
+                    }
+                    "application/vnd.oasis.opendocument.text" => {
+                        return Some(FileFormat::new(media_type, "odt"));
+                    }
+                    "application/vnd.oasis.opendocument.spreadsheet" => {
+                        return Some(FileFormat::new(media_type, "ods"));
+                    }
+                    "application/vnd.oasis.opendocument.presentation" => {
+                        return Some(FileFormat::new(media_type, "odp"));
+                    }
+                    "application/vnd.oasis.opendocument.graphics" => {
+                        return Some(FileFormat::new(media_type, "odg"));
+                    }
+                    _ => {}
+                }
+            }
+
+            // Computes next offset
+            offset += header_len;
+            if compressed_size == 0 {
+                // Searches for the next header
+                let mut index = offset;
+                while bytes.len() >= index + 4 && &bytes[index..index + 4] != b"\x50\x4B\x03\x04" {
+                    index += 1;
+                }
+                offset = index;
+            } else {
+                offset += compressed_size;
+            }
+        }
+        if offset > 0 {
+            Some(FileFormat::new("application/zip", "zip"))
+        } else {
+            None
         }
     }
 
@@ -55,7 +168,9 @@ impl FileFormat {
     /// [default value]: FileFormat::default
     #[inline]
     pub fn from_bytes(bytes: &[u8]) -> FileFormat {
-        FileFormat::from_signature(bytes).unwrap_or_default()
+        FileFormat::from_signature(bytes)
+            .or_else(|| FileFormat::from_zip(bytes))
+            .unwrap_or_default()
     }
 
     /// Determines `FileFormat` from a file.
@@ -155,54 +270,6 @@ macro_rules! signatures {
 }
 
 signatures! {
-  // 59-byte signatures
-  - media_type: "application/vnd.oasis.opendocument.presentation"
-    extension: "odp"
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x50\x4B\x03\x04"
-        - offset: 30
-          value: b"mimetype"
-        - offset: 38
-          value: b"application/vnd.oasis.opendocument.presentation"
-
-  // 58-byte signatures
-  - media_type: "application/vnd.oasis.opendocument.spreadsheet"
-    extension: "ods"
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x50\x4B\x03\x04"
-        - offset: 30
-          value: b"mimetype"
-        - offset: 38
-          value: b"application/vnd.oasis.opendocument.spreadsheet"
-
-  // 55-byte signatures
-  - media_type: "application/vnd.oasis.opendocument.graphics"
-    extension: "odg"
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x50\x4B\x03\x04"
-        - offset: 30
-          value: b"mimetype"
-        - offset: 38
-          value: b"application/vnd.oasis.opendocument.graphics"
-
-  // 51-byte signatures
-  - media_type: "application/vnd.oasis.opendocument.text"
-    extension: "odt"
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x50\x4B\x03\x04"
-        - offset: 30
-          value: b"mimetype"
-        - offset: 38
-          value: b"application/vnd.oasis.opendocument.text"
-
   // 39-byte signatures
   - media_type: "application/x-virtualbox-vdi"
     extension: "vdi"
@@ -212,17 +279,6 @@ signatures! {
           value: b"<<< Oracle VM VirtualBox Disk Image >>>"
 
   // 32-byte signatures
-  - media_type: "application/epub+zip"
-    extension: "epub"
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x50\x4B\x03\x04"
-        - offset: 30
-          value: b"mimetype"
-        - offset: 38
-          value: b"application/epub+zip"
-
   - media_type: "application/vnd.sketchup.skp"
     extension: "skp"
     signatures:
@@ -1236,9 +1292,6 @@ signatures! {
   - media_type: "application/zip"
     extension: "zip"
     signatures:
-      - parts:
-        - offset: 0
-          value: b"\x50\x4B\x03\x04"
       - parts:
         - offset: 0
           value: b"\x50\x4B\x05\x06"
