@@ -562,6 +562,13 @@ signatures! {
           value: b"\x49\x49\x52\x4F\x08\x00\x00\x00\x18"
 
   // 8-byte signatures
+  - media_type: "application/vnd.android.dex"
+    extension: "dex"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x64\x65\x78\x0A\x30\x33\x35\x00"
+
   - media_type: "application/vnd.rar"
     extension: "rar"
     signatures:
@@ -1154,13 +1161,6 @@ signatures! {
       - parts:
         - offset: 0
           value: b"OggS"
-
-  - media_type: "application/vnd.android.dex"
-    extension: "dex"
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x64\x65\x78\x0A"
 
   - media_type: "application/vnd.ms-cab-compressed"
     extension: "cab"
