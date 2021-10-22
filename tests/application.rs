@@ -228,6 +228,13 @@ fn test_jar() {
 }
 
 #[test]
+fn test_jks() {
+    let format = FileFormat::from_file("fixtures/application/sample.jks").unwrap();
+    assert_eq!(format.media_type(), "application/x-java-keystore");
+    assert_eq!(format.extension(), "jks");
+}
+
+#[test]
 fn test_lnk() {
     let format = FileFormat::from_file("fixtures/application/sample.lnk").unwrap();
     assert_eq!(format.media_type(), "application/x-ms-shortcut");

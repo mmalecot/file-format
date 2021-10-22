@@ -84,6 +84,7 @@ assert_eq!(format.extension(), "flac");
 | Google Chrome Extension                        | application/x-google-chrome-extension                                     | crx       |
 | Adobe InDesign Document                        | application/x-indesign                                                    | indd      |
 | ISO 9660 image                                 | application/x-iso9660-image                                               | iso       |
+| Java KeyStore                                  | application/x-java-keystore                                               | jks       |
 | Long Range ZIP                                 | application/x-lrzip                                                       | lrz       |
 | LZ4                                            | application/x-lz4                                                         | lz4       |
 | Lempel–Ziv Finite State Entropy                | application/x-lzfse                                                       | lzfse     |

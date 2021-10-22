@@ -1224,6 +1224,13 @@ signatures! {
         - offset: 0
           value: b"Cr24"
 
+  - media_type: "application/x-java-keystore"
+    extension: "jks"
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\xFE\xED\xFE\xED"
+
   - media_type: "application/x-lrzip"
     extension: "lrz"
     signatures:
