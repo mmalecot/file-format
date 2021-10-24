@@ -1,7 +1,6 @@
 #![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/README.md"))]
 
 use std::{
-    convert::TryInto,
     fs::File,
     io::{Read, Result},
     path::Path,
