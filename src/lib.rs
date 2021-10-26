@@ -890,11 +890,6 @@ file_formats! {
     media_type: "font/woff2"
     extension: "woff2"
 
-  - variant: WebM
-    name: "WebM"
-    media_type: "video/webm"
-    extension: "webm"
-
   - variant: WebP
     name: "WebP"
     media_type: "image/webp"
@@ -1515,14 +1510,6 @@ signatures! {
           value: b"RIFF"
         - offset: 8
           value: b"WAVE"
-
-  - file_format: WebM
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x1A\x45\xDF\xA3"
-        - offset: 24
-          value: b"webm"
 
   - file_format: WebP
     signatures:

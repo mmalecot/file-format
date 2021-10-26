@@ -85,12 +85,6 @@ fn test_ogv() {
 }
 
 #[test]
-fn test_webm() {
-    let format = FileFormat::from_file("fixtures/video/sample.webm").unwrap();
-    assert_eq!(format, FileFormat::WebM);
-}
-
-#[test]
 fn test_wmv() {
     let format = FileFormat::from_file("fixtures/video/sample.wmv").unwrap();
     assert_eq!(format, FileFormat::WindowsMediaVideo);
