@@ -3,111 +3,95 @@ use file_format::FileFormat;
 #[test]
 fn test_3g2() {
     let format = FileFormat::from_file("fixtures/video/sample.3g2").unwrap();
-    assert_eq!(format.media_type(), "video/3gpp2");
-    assert_eq!(format.extension(), "3g2");
+    assert_eq!(format, FileFormat::ThirdGenerationPartnershipProject2);
 }
 
 #[test]
 fn test_3gp() {
     let format = FileFormat::from_file("fixtures/video/sample.3gp").unwrap();
-    assert_eq!(format.media_type(), "video/3gpp");
-    assert_eq!(format.extension(), "3gp");
+    assert_eq!(format, FileFormat::ThirdGenerationPartnershipProject);
 }
 
 #[test]
 fn test_avi() {
     let format = FileFormat::from_file("fixtures/video/sample.avi").unwrap();
-    assert_eq!(format.media_type(), "video/avi");
-    assert_eq!(format.extension(), "avi");
+    assert_eq!(format, FileFormat::AudioVideoInterleave);
 }
 
 #[test]
 fn test_f4p() {
     let format = FileFormat::from_file("fixtures/video/sample.f4p").unwrap();
-    assert_eq!(format.media_type(), "video/mp4");
-    assert_eq!(format.extension(), "f4p");
+    assert_eq!(format, FileFormat::AdobeFlashPlayerProtectedVideo);
 }
 
 #[test]
 fn test_f4v() {
     let format = FileFormat::from_file("fixtures/video/sample.f4v").unwrap();
-    assert_eq!(format.media_type(), "video/mp4");
-    assert_eq!(format.extension(), "f4v");
+    assert_eq!(format, FileFormat::AdobeFlashPlayerVideo);
 }
 
 #[test]
 fn test_flv() {
     let format = FileFormat::from_file("fixtures/video/sample.flv").unwrap();
-    assert_eq!(format.media_type(), "video/x-flv");
-    assert_eq!(format.extension(), "flv");
+    assert_eq!(format, FileFormat::FlashVideo);
 }
 
 #[test]
 fn test_m2ts() {
     let format = FileFormat::from_file("fixtures/video/sample.m2ts").unwrap();
-    assert_eq!(format.media_type(), "video/mp2t");
-    assert_eq!(format.extension(), "m2ts");
+    assert_eq!(format, FileFormat::Mpeg2TransportStream);
 }
 
 #[test]
 fn test_m4v() {
     let format = FileFormat::from_file("fixtures/video/sample.m4v").unwrap();
-    assert_eq!(format.media_type(), "video/x-m4v");
-    assert_eq!(format.extension(), "m4v");
+    assert_eq!(format, FileFormat::AppleItunesVideo);
 }
 
 #[test]
 fn test_mkv() {
     let format = FileFormat::from_file("fixtures/video/sample.mkv").unwrap();
-    assert_eq!(format.media_type(), "video/x-matroska");
-    assert_eq!(format.extension(), "mkv");
+    assert_eq!(format, FileFormat::MatroskaVideo);
 }
 
 #[test]
 fn test_mov() {
     let format = FileFormat::from_file("fixtures/video/sample.mov").unwrap();
-    assert_eq!(format.media_type(), "video/quicktime");
-    assert_eq!(format.extension(), "mov");
+    assert_eq!(format, FileFormat::AppleQuickTime);
 }
 
 #[test]
 fn test_mp4() {
     let format = FileFormat::from_file("fixtures/video/sample.mp4").unwrap();
-    assert_eq!(format.media_type(), "video/mp4");
-    assert_eq!(format.extension(), "mp4");
+    assert_eq!(format, FileFormat::Mpeg4Part14Video);
 }
 
 #[test]
 fn test_mpg() {
     let format = FileFormat::from_file("fixtures/video/sample.mpg").unwrap();
-    assert_eq!(format.media_type(), "video/mpeg");
-    assert_eq!(format.extension(), "mpg");
+    assert_eq!(format, FileFormat::Mpeg1Video);
 }
 
 #[test]
 fn test_ogm() {
     let format = FileFormat::from_file("fixtures/video/sample.ogm").unwrap();
-    assert_eq!(format.media_type(), "video/ogg");
-    assert_eq!(format.extension(), "ogm");
+    assert_eq!(format, FileFormat::OggMedia);
 }
 
 #[test]
 fn test_ogv() {
     let format = FileFormat::from_file("fixtures/video/sample.ogv").unwrap();
-    assert_eq!(format.media_type(), "video/ogg");
-    assert_eq!(format.extension(), "ogv");
+    assert_eq!(format, FileFormat::OggTheora);
 }
 
 #[test]
 fn test_webm() {
     let format = FileFormat::from_file("fixtures/video/sample.webm").unwrap();
-    assert_eq!(format.media_type(), "video/webm");
-    assert_eq!(format.extension(), "webm");
+    assert_eq!(format, FileFormat::WebM);
 }
 
 #[test]
 fn test_wmv() {
     let format = FileFormat::from_file("fixtures/video/sample.wmv").unwrap();
-    assert_eq!(format.media_type(), "video/x-ms-asf");
-    assert_eq!(format.extension(), "wmv");
+    assert_eq!(format, FileFormat::WindowsMediaVideo);
 }
