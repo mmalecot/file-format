@@ -606,7 +606,7 @@ file_formats! {
     extension: "ape"
 
   - variant: Mpeg1Video
-    name: "MPEG-1"
+    name: "MPEG-1 Video"
     media_type: "video/mpeg"
     extension: "mpg"
 
