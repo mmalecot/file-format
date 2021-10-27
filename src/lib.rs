@@ -1,6 +1,7 @@
 #![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/README.md"))]
 
 use std::{
+    fmt::{self, Display, Formatter},
     fs::File,
     io::{Read, Result},
     path::Path,
@@ -2324,5 +2325,11 @@ impl Default for FileFormat {
     #[inline]
     fn default() -> FileFormat {
         FileFormat::ArbitraryBinaryData
+    }
+}
+
+impl Display for FileFormat {
+    fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
