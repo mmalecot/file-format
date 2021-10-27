@@ -610,11 +610,6 @@ file_formats! {
     media_type: "video/mpeg"
     extension: "mpg"
 
-  - variant: Mpeg2TransportStream
-    name: "MPEG-2 Transport Stream"
-    media_type: "video/mp2t"
-    extension: "m2ts"
-
   - variant: Mpeg4Part14Video
     name: "MPEG-4 Part 14 Video"
     media_type: "video/mp4"
@@ -2146,19 +2141,6 @@ signatures! {
       - parts:
         - offset: 0
           value: b"\x1F\x8B"
-
-  - file_format: Mpeg2TransportStream
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x47"
-        - offset: 188
-          value: b"\x47"
-      - parts:
-        - offset: 4
-          value: b"\x47"
-        - offset: 196
-          value: b"\x47"
 
   - file_format: UnixCompress
     signatures:

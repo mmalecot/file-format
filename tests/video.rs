@@ -37,12 +37,6 @@ fn test_flv() {
 }
 
 #[test]
-fn test_m2ts() {
-    let format = FileFormat::from_file("fixtures/video/sample.m2ts").unwrap();
-    assert_eq!(format, FileFormat::Mpeg2TransportStream);
-}
-
-#[test]
 fn test_m4v() {
     let format = FileFormat::from_file("fixtures/video/sample.m4v").unwrap();
     assert_eq!(format, FileFormat::AppleItunesVideo);
