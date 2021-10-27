@@ -616,7 +616,7 @@ file_formats! {
     extension: "m2ts"
 
   - variant: Mpeg4Part14Video
-    name: "MPEG-4 Part 14"
+    name: "MPEG-4 Part 14 Video"
     media_type: "video/mp4"
     extension: "mp4"
 
