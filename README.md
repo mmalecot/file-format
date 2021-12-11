@@ -10,7 +10,7 @@ File format library for Rust.
 
 This crate is for determining binary-based file formats.
 
-## Examples
+## Example
 
 Determines from a file:
 
@@ -22,18 +22,6 @@ assert_eq!(format, FileFormat::Zip);
 assert_eq!(format.name(), "ZIP");
 assert_eq!(format.media_type(), "application/zip");
 assert_eq!(format.extension(), "zip");
-```
-
-Determines from bytes:
-
-```rust
-use file_format::FileFormat;
-
-let format = FileFormat::from_bytes(&[0x47, 0x49, 0x46, 0x38, 0x37, 0x61]);
-assert_eq!(format, FileFormat::GraphicsInterchangeFormat);
-assert_eq!(format.name(), "Graphics Interchange Format");
-assert_eq!(format.media_type(), "image/gif");
-assert_eq!(format.extension(), "gif");
 ```
 
 ## License
