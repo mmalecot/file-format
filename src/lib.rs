@@ -2102,6 +2102,36 @@ impl FileFormat {
     /// Maximum number of bytes to read to detect the `FileFormat`.
     const MAX_BYTES: u64 = 36870;
 
+    /// Determines `FileFormat` from bytes.
+    ///
+    /// If the `FileFormat` is not recognized, the [default value] will be returned.
+    ///
+    /// # Examples
+    ///
+    /// Detects from the first bytes of a PNG file:
+    ///
+    /// ```rust
+    /// use file_format::FileFormat;
+    ///
+    /// let format = FileFormat::from_bytes(b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A");
+    /// assert_eq!(format, FileFormat::PortableNetworkGraphics);
+    ///```
+    ///
+    /// Detects from a zeroed buffer:
+    ///
+    /// ```rust
+    /// use file_format::FileFormat;
+    ///
+    /// let format = FileFormat::from_bytes(&[0; 1000]);
+    /// assert_eq!(format, FileFormat::ArbitraryBinaryData);
+    ///```
+    ///
+    /// [default value]: FileFormat::default
+    #[inline]
+    pub fn from_bytes(bytes: &[u8]) -> FileFormat {
+        FileFormat::from_signature(bytes).unwrap_or_default()
+    }
+
     /// Determines `FileFormat` from a file.
     ///
     /// # Examples
@@ -2118,7 +2148,7 @@ impl FileFormat {
         let read = File::open(path)?
             .take(FileFormat::MAX_BYTES)
             .read(&mut buffer)?;
-        Ok(FileFormat::from_signature(&buffer[0..read]).unwrap_or_default())
+        Ok(FileFormat::from_bytes(&buffer[0..read]))
     }
 }
 
