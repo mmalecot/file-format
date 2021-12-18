@@ -24,6 +24,18 @@ assert_eq!(format.media_type(), "application/zip");
 assert_eq!(format.extension(), "zip");
 ```
 
+Determines from bytes:
+
+```rust
+use file_format::FileFormat;
+
+let format = FileFormat::from_bytes(&[0xFF, 0xD8, 0xFF, 0xEE]);
+assert_eq!(format, FileFormat::JointPhotographicExpertsGroup);
+assert_eq!(format.name(), "Joint Photographic Experts Group");
+assert_eq!(format.media_type(), "image/jpeg");
+assert_eq!(format.extension(), "jpg");
+```
+
 ## License
 
 This project is licensed under either of [Apache License, Version 2.0](LICENSE-APACHE) or [MIT license](LICENSE-MIT) at your option.
