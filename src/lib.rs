@@ -2157,7 +2157,7 @@ impl FileFormat {
     /// ```rust
     /// use file_format::FileFormat;
     ///
-    /// let format = FileFormat::from_bytes(&[0xff; 1000]);
+    /// let format = FileFormat::from_bytes(&[0; 1000]);
     /// assert_eq!(format, FileFormat::ArbitraryBinaryData);
     ///```
     ///
