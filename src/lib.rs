@@ -114,7 +114,6 @@ macro_rules! signatures {
                         )||*
                     { return Some(FileFormat::$file_format); }
                 )*
-
                 None
             }
         }
