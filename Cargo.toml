@@ -3,7 +3,10 @@ name = "file-format"
 version = "0.7.0"
 authors = ["Mickaël Malécot <mickael.malecot@gmail.com>"]
 edition = "2021"
-description = "File format library for Rust"
+description = """
+File format library for Rust.
+This crate is for determining binary-based file formats.
+"""
 license = "MIT/Apache-2.0"
 readme = "README.md"
 keywords = ["file-format", "file-type", "magic-number", "media-type", "mime"]
