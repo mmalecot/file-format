@@ -115,48 +115,30 @@ macro_rules! signatures {
                     { return Some(FileFormat::$file_format); }
                 )*
 
-                if bytes.is_ascii() {
-                  return Some(FileFormat::ASCIIText);
-                }
-
-                if str::from_utf8(bytes).is_err() {
-                    return None;
-                }
-
-                Some(FileFormat::UTF8Text)
+                None
             }
         }
     };
 }
 
 file_formats! {
-  - variant: ASCIIText
-    name: "ASCII text"
-    media_type: "text/plain"
-    extension: "txt"
-
-  - variant: UTF8Text
-    name: "Unicode text, UTF-8 text"
-    media_type: "text/plain"
-    extension: "txt"
-
-  - variant: DEX
-    name: "Android Dalvik Executable Format"
+  - variant: DalvikExecutable
+    name: "Dalvik Executable"
     media_type: "application/vnd.android.dex"
     extension: "dex"
 
-  - variant: DEY
-    name: "Android Optimized Dalvik Executable Format"
+  - variant: OptimizedDalvikExecutable
+    name: "Optimized Dalvik Executable"
     media_type: "application/vnd.android.dey"
     extension: "dey"
 
-  - variant: ARSC
-    name: "Android Resources File"
+  - variant: AndroidCompiledResources
+    name: "Android Compiled Resources"
     media_type: "application/vnd.android.arsc"
     extension: "arsc"
 
-  - variant: AXML
-    name: "Android binary XML"
+  - variant: AndroidBinaryXml
+    name: "Android Binary XML"
     media_type: "application/vnd.android.axml"
     extension: "xml"
 
@@ -345,10 +327,6 @@ file_formats! {
     media_type: "image/x-icon"
     extension: "cur"
 
-  - variant: DalvikExecutable
-    name: "Dalvik Executable"
-    media_type: "application/vnd.android.dex"
-    extension: "dex"
 
   - variant: DebianBinaryPackage
     name: "Debian Binary Package"
@@ -2136,32 +2114,24 @@ signatures! {
         - offset: 0
           value: b"MZ"
 
-  - file_format: DEX
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"dex\n"
 
-  - file_format: DEY
+  - file_format: OptimizedDalvikExecutable
     signatures:
       - parts:
         - offset: 0
           value: b"dey\n"
 
-  - file_format: ARSC
+  - file_format: AndroidCompiledResources
     signatures:
       - parts:
         - offset: 0
           value: b"\x02\x00\x0c\x00"
 
-  - file_format: AXML
+  - file_format: AndroidBinaryXml
     signatures:
       - parts:
         - offset: 0
           value: b"\x03\x00\x08\x00"
-      - parts:
-        - offset: 0
-          value: b"\x00\x00\x08\x00"
 }
 
 impl FileFormat {
@@ -2187,9 +2157,6 @@ impl FileFormat {
     ///
     /// ```rust
     /// use file_format::FileFormat;
-    ///
-    /// let format = FileFormat::from_bytes(&[0; 1000]);
-    /// assert_eq!(format, FileFormat::ASCIIText);
     ///
     /// let format = FileFormat::from_bytes(&[0xff; 1000]);
     /// assert_eq!(format, FileFormat::ArbitraryBinaryData);

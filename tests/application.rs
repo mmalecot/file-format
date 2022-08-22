@@ -49,18 +49,6 @@ fn test_bin() {
 }
 
 #[test]
-fn test_unicode_txt() {
-    let format = FileFormat::from_file("fixtures/application/sample.txt").unwrap();
-    assert_eq!(format, FileFormat::UTF8Text);
-}
-
-#[test]
-fn test_ascii_txt() {
-    let format = FileFormat::from_file("fixtures/application/sample.txt2").unwrap();
-    assert_eq!(format, FileFormat::ASCIIText);
-}
-
-#[test]
 fn test_blend() {
     let format = FileFormat::from_file("fixtures/application/sample.blend").unwrap();
     assert_eq!(format, FileFormat::Blender);
