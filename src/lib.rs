@@ -121,26 +121,6 @@ macro_rules! signatures {
 }
 
 file_formats! {
-  - variant: DalvikExecutable
-    name: "Dalvik Executable"
-    media_type: "application/vnd.android.dex"
-    extension: "dex"
-
-  - variant: OptimizedDalvikExecutable
-    name: "Optimized Dalvik Executable"
-    media_type: "application/vnd.android.dey"
-    extension: "dey"
-
-  - variant: AndroidCompiledResources
-    name: "Android Compiled Resources"
-    media_type: "application/vnd.android.arsc"
-    extension: "arsc"
-
-  - variant: AndroidBinaryXml
-    name: "Android Binary XML"
-    media_type: "application/vnd.android.axml"
-    extension: "xml"
-
   - variant: AdaptiveMultiRate
     name: "Adaptive Multi-Rate"
     media_type: "audio/amr"
@@ -185,6 +165,16 @@ file_formats! {
     name: "ALZ"
     media_type: "application/x-alz-compressed"
     extension: "alz"
+
+  - variant: AndroidBinaryXml
+    name: "Android Binary XML"
+    media_type: "application/vnd.android.axml"
+    extension: "xml"
+
+  - variant: AndroidCompiledResources
+    name: "Android Compiled Resources"
+    media_type: "application/vnd.android.arsc"
+    extension: "arsc"
 
   - variant: Ani
     name: "ANI"
@@ -326,6 +316,10 @@ file_formats! {
     media_type: "image/x-icon"
     extension: "cur"
 
+  - variant: DalvikExecutable
+    name: "Dalvik Executable"
+    media_type: "application/vnd.android.dex"
+    extension: "dex"
 
   - variant: DebianBinaryPackage
     name: "Debian Binary Package"
@@ -686,6 +680,11 @@ file_formats! {
     name: "OpenType"
     media_type: "font/otf"
     extension: "otf"
+
+  - variant: OptimizedDalvikExecutable
+    name: "Optimized Dalvik Executable"
+    media_type: "application/vnd.android.dey"
+    extension: "dey"
 
   - variant: PanasonicRaw
     name: "Panasonic Raw"
