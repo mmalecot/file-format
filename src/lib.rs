@@ -114,6 +114,7 @@ macro_rules! signatures {
                         )||*
                     { return Some(FileFormat::$file_format); }
                 )*
+
                 None
             }
         }
@@ -121,6 +122,26 @@ macro_rules! signatures {
 }
 
 file_formats! {
+  - variant: DalvikExecutable
+    name: "Dalvik Executable"
+    media_type: "application/vnd.android.dex"
+    extension: "dex"
+
+  - variant: OptimizedDalvikExecutable
+    name: "Optimized Dalvik Executable"
+    media_type: "application/vnd.android.dey"
+    extension: "dey"
+
+  - variant: AndroidCompiledResources
+    name: "Android Compiled Resources"
+    media_type: "application/vnd.android.arsc"
+    extension: "arsc"
+
+  - variant: AndroidBinaryXml
+    name: "Android Binary XML"
+    media_type: "application/vnd.android.axml"
+    extension: "xml"
+
   - variant: AdaptiveMultiRate
     name: "Adaptive Multi-Rate"
     media_type: "audio/amr"
@@ -306,10 +327,6 @@ file_formats! {
     media_type: "image/x-icon"
     extension: "cur"
 
-  - variant: DalvikExecutable
-    name: "Dalvik Executable"
-    media_type: "application/vnd.android.dex"
-    extension: "dex"
 
   - variant: DebianBinaryPackage
     name: "Debian Binary Package"
@@ -2096,6 +2113,25 @@ signatures! {
       - parts:
         - offset: 0
           value: b"MZ"
+
+
+  - file_format: OptimizedDalvikExecutable
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"dey\n"
+
+  - file_format: AndroidCompiledResources
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x02\x00\x0c\x00"
+
+  - file_format: AndroidBinaryXml
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x03\x00\x08\x00"
 }
 
 impl FileFormat {
@@ -2122,7 +2158,7 @@ impl FileFormat {
     /// ```rust
     /// use file_format::FileFormat;
     ///
-    /// let format = FileFormat::from_bytes(&[0; 1000]);
+    /// let format = FileFormat::from_bytes(&[0xff; 1000]);
     /// assert_eq!(format, FileFormat::ArbitraryBinaryData);
     ///```
     ///
