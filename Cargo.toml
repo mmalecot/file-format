@@ -1,6 +1,6 @@
 [package]
 name = "file-format"
-version = "0.6.0"
+version = "0.7.0"
 authors = ["Mickaël Malécot <mickael.malecot@gmail.com>"]
 edition = "2021"
 description = "File format library for Rust"
