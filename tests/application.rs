@@ -43,6 +43,12 @@ fn test_arrow() {
 }
 
 #[test]
+fn test_arsc() {
+    let format = FileFormat::from_file("fixtures/application/sample.arsc").unwrap();
+    assert_eq!(format, FileFormat::AndroidCompiledResources);
+}
+
+#[test]
 fn test_bin() {
     let format = FileFormat::from_file("fixtures/application/sample.bin").unwrap();
     assert_eq!(format, FileFormat::ArbitraryBinaryData);
@@ -115,6 +121,12 @@ fn test_deb() {
 fn test_dex() {
     let format = FileFormat::from_file("fixtures/application/sample.dex").unwrap();
     assert_eq!(format, FileFormat::DalvikExecutable);
+}
+
+#[test]
+fn test_dey() {
+    let format = FileFormat::from_file("fixtures/application/sample.dey").unwrap();
+    assert_eq!(format, FileFormat::OptimizedDalvikExecutable);
 }
 
 #[test]
@@ -355,6 +367,12 @@ fn test_wasm() {
 fn test_xar() {
     let format = FileFormat::from_file("fixtures/application/sample.xar").unwrap();
     assert_eq!(format, FileFormat::ExtensibleArchive);
+}
+
+#[test]
+fn test_xml() {
+    let format = FileFormat::from_file("fixtures/application/sample.xml").unwrap();
+    assert_eq!(format, FileFormat::AndroidBinaryXml);
 }
 
 #[test]
