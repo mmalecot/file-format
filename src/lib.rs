@@ -1687,6 +1687,18 @@ signatures! {
         - offset: 0
           value: b"\x41\x4C\x5A\x01"
 
+  - file_format: AndroidBinaryXml
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x03\x00\x08\x00"
+
+  - file_format: AndroidCompiledResources
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"\x02\x00\x0C\x00"
+
   - file_format: AppleIconImage
     signatures:
       - parts:
@@ -1900,6 +1912,12 @@ signatures! {
         - offset: 0
           value: b"\x76\x2F\x31\x01"
 
+  - file_format: OptimizedDalvikExecutable
+    signatures:
+      - parts:
+        - offset: 0
+          value: b"dey\n"
+
   - file_format: PcapDump
     signatures:
       - parts:
@@ -2111,25 +2129,6 @@ signatures! {
       - parts:
         - offset: 0
           value: b"MZ"
-
-
-  - file_format: OptimizedDalvikExecutable
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"dey\n"
-
-  - file_format: AndroidCompiledResources
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x02\x00\x0c\x00"
-
-  - file_format: AndroidBinaryXml
-    signatures:
-      - parts:
-        - offset: 0
-          value: b"\x03\x00\x08\x00"
 }
 
 impl FileFormat {
