@@ -16,7 +16,6 @@ macro_rules! file_formats {
                 name: $name:literal
                 media_type: $media_type:literal
                 extension: $extension:literal
-
         )*
     } => {
         /// A file format.
