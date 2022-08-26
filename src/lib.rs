@@ -94,8 +94,8 @@ macro_rules! signatures {
                 $(
                     -   parts:
                     $(
-                        -   offset: $offset:literal
-                            value: $signature:literal
+                        - value: $signature:literal
+                          $(offset: $offset:literal)?
                     )+
                 )+
         )*
@@ -107,8 +107,8 @@ macro_rules! signatures {
                     if
                         $(
                             $(
-                                bytes.len() >= $offset + $signature.len()
-                                    && &bytes[$offset..$offset + $signature.len()] == $signature
+                                bytes.len() >= $($offset +)? $signature.len()
+                                    && &bytes[$($offset)?..$($offset +)? $signature.len()] == $signature
                             )&&*
                         )||*
                     { return Some(FileFormat::$file_format); }
@@ -892,1242 +892,1088 @@ file_formats! {
 }
 
 signatures! {
-  // 39-byte signatures
   - file_format: VirtualBoxVirtualDiskImage
     signatures:
       - parts:
-        - offset: 0
-          value: b"<<< Oracle VM VirtualBox Disk Image >>>"
+        - value: b"<<< Oracle VM VirtualBox Disk Image >>>"
 
   // 32-byte signatures
   - file_format: SketchUp
     signatures:
       - parts:
-        - offset: 0
-          value: b"\xFF\xFE\xFF\x0E\x53\x00\x6B\x00\x65\x00\x74\x00\x63\x00\x68\x00"
-        - offset: 16
-          value: b"\x55\x00\x70\x00\x20\x00\x4D\x00\x6F\x00\x64\x00\x65\x00\x6C\x00"
+        - value: b"\xFF\xFE\xFF\x0E\x53\x00\x6B\x00\x65\x00\x74\x00\x63\x00\x68\x00"
+        - value: b"\x55\x00\x70\x00\x20\x00\x4D\x00\x6F\x00\x64\x00\x65\x00\x6C\x00"
+          offset: 16
 
   // 29-byte signatures
   - file_format: FlexibleImageTransportSystem
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x49\x4D\x50\x4C\x45\x20\x20\x3D\x20\x20\x20\x20\x20\x20\x20"
-        - offset: 15
-          value: b"\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x54"
+        - value: b"\x49\x4D\x50\x4C\x45\x20\x20\x3D\x20\x20\x20\x20\x20\x20\x20"
+        - value: b"\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x54"
+          offset: 15
 
   // 21-byte signatures
   - file_format: DebianBinaryPackage
     signatures:
       - parts:
-        - offset: 0
-          value: b"!<arch>\ndebian-binary"
+        - value: b"!<arch>\ndebian-binary"
 
   // 20-byte signatures
   - file_format: WindowsShortcut
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x4C\x00\x00\x00\x01\x14\x02\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x00\x46"
+        - value: b"\x4C\x00\x00\x00\x01\x14\x02\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x00\x46"
 
   // 16-byte signatures
   - file_format: AdobeInDesignDocument
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x06\x06\xED\xF5\xD8\x1D\x46\xE5\xBD\x31\xEF\xE7\xFE\x74\xB7\x1D"
+        - value: b"\x06\x06\xED\xF5\xD8\x1D\x46\xE5\xBD\x31\xEF\xE7\xFE\x74\xB7\x1D"
 
   - file_format: FastTracker2ExtendedModule
     signatures:
       - parts:
-        - offset: 0
-          value: b"Extended Module:"
+        - value: b"Extended Module:"
 
   - file_format: MacOsAlias
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x62\x6F\x6F\x6B\x00\x00\x00\x00\x6D\x61\x72\x6B\x00\x00\x00\x00"
+        - value: b"\x62\x6F\x6F\x6B\x00\x00\x00\x00\x6D\x61\x72\x6B\x00\x00\x00\x00"
 
   - file_format: Sqlite3
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x53\x51\x4C\x69\x74\x65\x20\x66\x6F\x72\x6D\x61\x74\x20\x33\x00"
+        - value: b"\x53\x51\x4C\x69\x74\x65\x20\x66\x6F\x72\x6D\x61\x74\x20\x33\x00"
 
   - file_format: WindowsMediaVideo
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x30\x26\xB2\x75\x8E\x66\xCF\x11\xA6\xD9\x00\xAA\x00\x62\xCE\x6C"
+        - value: b"\x30\x26\xB2\x75\x8E\x66\xCF\x11\xA6\xD9\x00\xAA\x00\x62\xCE\x6C"
 
   // 15-byte signatures
   - file_format: FujifilmRaw
     signatures:
       - parts:
-        - offset: 0
-          value: b"FUJIFILMCCD-RAW"
+        - value: b"FUJIFILMCCD-RAW"
 
   // 14-byte signatures
   - file_format: MaterialExchangeFormat
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x06\x0E\x2B\x34\x02\x05\x01\x01\x0D\x01\x02\x01\x01\x02"
+        - value: b"\x06\x0E\x2B\x34\x02\x05\x01\x01\x0D\x01\x02\x01\x01\x02"
 
   // 12-byte signatures
   - file_format: AnimatedPortableNetworkGraphics
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"
-        - offset: 0x25
-          value: b"acTL"
+        - value: b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"
+        - value: b"acTL"
+          offset: 0x25
 
   - file_format: JointPhotographicExpertsGroup
     signatures:
       - parts:
-        - offset: 0
-          value: b"\xFF\xD8\xFF\xE0\x00\x10\x4A\x46\x49\x46\x00\x01"
+        - value: b"\xFF\xD8\xFF\xE0\x00\x10\x4A\x46\x49\x46\x00\x01"
       - parts:
-        - offset: 0
-          value: b"\xFF\xD8\xFF\xE1"
-        - offset: 6
-          value: b"\x45\x78\x69\x66\x00\x00"
+        - value: b"\xFF\xD8\xFF\xE1"
+        - value: b"\x45\x78\x69\x66\x00\x00"
+          offset: 6
       - parts:
-        - offset: 0
-          value: b"\xFF\xD8\xFF\xDB"
+        - value: b"\xFF\xD8\xFF\xDB"
       - parts:
-        - offset: 0
-          value: b"\xFF\xD8\xFF\xEE"
+        - value: b"\xFF\xD8\xFF\xEE"
 
   - file_format: JpegXl
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x00\x00\x00\x0C\x4A\x58\x4C\x20\x0D\x0A\x87\x0A"
+        - value: b"\x00\x00\x00\x0C\x4A\x58\x4C\x20\x0D\x0A\x87\x0A"
       - parts:
-        - offset: 0
-          value: b"\xFF\x0A"
+        - value: b"\xFF\x0A"
 
   - file_format: KhronosTexture
     signatures:
       - parts:
-        - offset: 0
-          value: b"\xAB\x4B\x54\x58\x20\x31\x31\xBB\x0D\x0A\x1A\x0A"
+        - value: b"\xAB\x4B\x54\x58\x20\x31\x31\xBB\x0D\x0A\x1A\x0A"
 
   - file_format: KhronosTexture2
     signatures:
       - parts:
-        - offset: 0
-          value: b"\xAB\x4B\x54\x58\x20\x32\x30\xBB\x0D\x0A\x1A\x0A"
+        - value: b"\xAB\x4B\x54\x58\x20\x32\x30\xBB\x0D\x0A\x1A\x0A"
 
   - file_format: MatroskaVideo
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x1A\x45\xDF\xA3"
-        - offset: 24
-          value: b"matroska"
+        - value: b"\x1A\x45\xDF\xA3"
+        - value: b"matroska"
+          offset: 24
 
   - file_format: OggOpus
     signatures:
       - parts:
-        - offset: 0
-          value: b"OggS"
-        - offset: 28
-          value: b"OpusHead"
+        - value: b"OggS"
+        - value: b"OpusHead"
+          offset: 28
 
   - file_format: PanasonicRaw
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x49\x49\x55\x00\x18\x00\x00\x00\x88\xE7\x74\xD8"
+        - value: b"\x49\x49\x55\x00\x18\x00\x00\x00\x88\xE7\x74\xD8"
 
   // 11-byte signatures
   - file_format: OggSpeex
     signatures:
       - parts:
-        - offset: 0
-          value: b"OggS"
-        - offset: 28
-          value: b"Speex  "
+        - value: b"OggS"
+        - value: b"Speex  "
+          offset: 28
 
   - file_format: OggTheora
     signatures:
       - parts:
-        - offset: 0
-          value: b"OggS"
-        - offset: 28
-          value: b"\x80\x74\x68\x65\x6F\x72\x61"
+        - value: b"OggS"
+        - value: b"\x80\x74\x68\x65\x6F\x72\x61"
+          offset: 28
 
   - file_format: OggVorbis
     signatures:
       - parts:
-        - offset: 0
-          value: b"OggS"
-        - offset: 28
-          value: b"\x01\x76\x6F\x72\x62\x69\x73"
+        - value: b"OggS"
+        - value: b"\x01\x76\x6F\x72\x62\x69\x73"
+          offset: 28
 
   - file_format: RadianceHdr
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x23\x3F\x52\x41\x44\x49\x41\x4E\x43\x45\x0A"
+        - value: b"\x23\x3F\x52\x41\x44\x49\x41\x4E\x43\x45\x0A"
 
   // 10-byte signatures
   - file_format: AppleQuickTime
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x00\x00\x00\x14"
-        - offset: 4
-          value: b"ftypqt"
+        - value: b"\x00\x00\x00\x14"
+        - value: b"ftypqt"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"\x66\x72\x65\x65"
+        - value: b"\x66\x72\x65\x65"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"\x6D\x64\x61\x74"
+        - value: b"\x6D\x64\x61\x74"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"\x6D\x6F\x6F\x76"
+        - value: b"\x6D\x6F\x6F\x76"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"\x77\x69\x64\x65"
+        - value: b"\x77\x69\x64\x65"
+          offset: 4
 
   - file_format: OggMedia
     signatures:
       - parts:
-        - offset: 0
-          value: b"OggS"
-        - offset: 28
-          value: b"\x01\x76\x69\x64\x65\x6F"
+        - value: b"OggS"
+        - value: b"\x01\x76\x69\x64\x65\x6F"
+          offset: 28
 
   - file_format: Snappy
     signatures:
       - parts:
-        - offset: 0
-          value: b"\xFF\x06\x00\x00\x73\x4E\x61\x50\x70\x59"
+        - value: b"\xFF\x06\x00\x00\x73\x4E\x61\x50\x70\x59"
 
   // 9-byte signatures
   - file_format: GameBoyColorRom
     signatures:
       - parts:
-        - offset: 0x104
-          value: b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B"
-        - offset: 0x143
-          value: b"\x80"
+        - value: b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B"
+          offset: 0x104
+        - value: b"\x80"
+          offset: 0x143
       - parts:
-        - offset: 0x104
-          value: b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B"
-        - offset: 0x143
-          value: b"\xC0"
+        - value: b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B"
+          offset: 0x104
+        - value: b"\xC0"
+          offset: 0x143
 
   - file_format: Lzop
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x89\x4C\x5A\x4F\x00\x0D\x0A\x1A\x0A"
+        - value: b"\x89\x4C\x5A\x4F\x00\x0D\x0A\x1A\x0A"
 
   - file_format: MicrosoftVirtualHardDisk
     signatures:
       - parts:
-        - offset: 0
-          value: b"connectix"
+        - value: b"connectix"
 
   - file_format: OggFlac
     signatures:
       - parts:
-        - offset: 0
-          value: b"OggS"
-        - offset: 28
-          value: b"\x7F\x46\x4C\x41\x43"
+        - value: b"OggS"
+        - value: b"\x7F\x46\x4C\x41\x43"
+          offset: 28
 
   - file_format: OlympusRawFormat
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x49\x49\x52\x4F\x08\x00\x00\x00\x18"
+        - value: b"\x49\x49\x52\x4F\x08\x00\x00\x00\x18"
 
   // 8-byte signatures
   - file_format: Ani
     signatures:
       - parts:
-        - offset: 0
-          value: b"RIFF"
-        - offset: 8
-          value: b"ACON"
+        - value: b"RIFF"
+        - value: b"ACON"
+          offset: 8
 
   - file_format: AudioInterchangeFileFormat
     signatures:
       - parts:
-        - offset: 0
-          value: b"FORM"
-        - offset: 8
-          value: b"AIFF"
+        - value: b"FORM"
+        - value: b"AIFF"
+          offset: 8
       - parts:
-        - offset: 0
-          value: b"FORM"
-        - offset: 8
-          value: b"AIFC"
+        - value: b"FORM"
+        - value: b"AIFC"
+          offset: 8
 
   - file_format: AudioVideoInterleave
     signatures:
       - parts:
-        - offset: 0
-          value: b"RIFF"
-        - offset: 8
-          value: b"\x41\x56\x49\x20"
+        - value: b"RIFF"
+        - value: b"\x41\x56\x49\x20"
+          offset: 8
 
   - file_format: Av1ImageFileFormat
     signatures:
       - parts:
-        - offset: 4
-          value: b"ftypavif"
+        - value: b"ftypavif"
+          offset: 4
 
   - file_format: Av1ImageFileFormatSequence
     signatures:
       - parts:
-        - offset: 4
-          value: b"ftypavis"
+        - value: b"ftypavis"
+          offset: 4
 
   - file_format: CompoundFileBinary
     signatures:
       - parts:
-        - offset: 0
-          value: b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"
+        - value: b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"
 
   - file_format: DalvikExecutable
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x64\x65\x78\x0A\x30\x33\x35\x00"
+        - value: b"\x64\x65\x78\x0A\x30\x33\x35\x00"
 
   - file_format: ExperimentalComputingFacility
     signatures:
       - parts:
-        - offset: 0
-          value: b"gimp xcf"
+        - value: b"gimp xcf"
 
   - file_format: GameBoyAdvanceRom
     signatures:
       - parts:
-        - offset: 4
-          value: b"\x24\xFF\xAE\x51\x69\x9A\xA2\x21"
+        - value: b"\x24\xFF\xAE\x51\x69\x9A\xA2\x21"
+          offset: 4
 
   - file_format: GameBoyRom
     signatures:
       - parts:
-        - offset: 0x104
-          value: b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B"
+        - value: b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B"
+          offset: 0x104
 
   - file_format: HighEfficiencyImageCoding
     signatures:
       - parts:
-        - offset: 4
-          value: b"ftypheic"
+        - value: b"ftypheic"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypheix"
+        - value: b"ftypheix"
+          offset: 4
 
   - file_format: HighEfficiencyImageCodingSequence
     signatures:
       - parts:
-        - offset: 4
-          value: b"ftyphevc"
+        - value: b"ftyphevc"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftyphevx"
+        - value: b"ftyphevx"
+          offset: 4
 
   - file_format: HighEfficiencyImageFileFormat
     signatures:
       - parts:
-        - offset: 4
-          value: b"ftypmif1"
+        - value: b"ftypmif1"
+          offset: 4
 
   - file_format: HighEfficiencyImageFileFormatSequence
     signatures:
       - parts:
-        - offset: 4
-          value: b"ftypmsf1"
+        - value: b"ftypmsf1"
+          offset: 4
 
   - file_format: Jpeg2000Part1
     signatures:
       - parts:
-        - offset: 16
-          value: b"ftypjp2 "
+        - value: b"ftypjp2 "
+          offset: 16
 
   - file_format: Jpeg2000Part2
     signatures:
       - parts:
-        - offset: 16
-          value: b"ftypjpx "
+        - value: b"ftypjpx "
+          offset: 16
 
   - file_format: Jpeg2000Part3
     signatures:
       - parts:
-        - offset: 16
-          value: b"ftypmjp2"
+        - value: b"ftypmjp2"
+          offset: 16
 
   - file_format: Jpeg2000Part6
     signatures:
       - parts:
-        - offset: 16
-          value: b"ftypjpm "
+        - value: b"ftypjpm "
+          offset: 16
 
   - file_format: MicrosoftVirtualHardDisk2
     signatures:
       - parts:
-        - offset: 0
-          value: b"vhdxfile"
+        - value: b"vhdxfile"
 
   - file_format: Mobipocket
     signatures:
       - parts:
-        - offset: 60
-          value: b"BOOKMOBI"
+        - value: b"BOOKMOBI"
+          offset: 60
 
   - file_format: Mpeg4Part14Video
     signatures:
       - parts:
-        - offset: 4
-          value: b"ftypavc1"
+        - value: b"ftypavc1"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypdash"
+        - value: b"ftypdash"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypiso2"
+        - value: b"ftypiso2"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypiso3"
+        - value: b"ftypiso3"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypiso4"
+        - value: b"ftypiso4"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypiso5"
+        - value: b"ftypiso5"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypiso6"
+        - value: b"ftypiso6"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypisom"
+        - value: b"ftypisom"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypmmp4"
+        - value: b"ftypmmp4"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypmp41"
+        - value: b"ftypmp41"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypmp42"
+        - value: b"ftypmp42"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypmp4v"
+        - value: b"ftypmp4v"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypmp71"
+        - value: b"ftypmp71"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypMSNV"
+        - value: b"ftypMSNV"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypNDAS"
+        - value: b"ftypNDAS"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypNDSC"
+        - value: b"ftypNDSC"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypNDSH"
+        - value: b"ftypNDSH"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypNDSM"
+        - value: b"ftypNDSM"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypNDSP"
+        - value: b"ftypNDSP"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypNDSS"
+        - value: b"ftypNDSS"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypNDXC"
+        - value: b"ftypNDXC"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypNDXH"
+        - value: b"ftypNDXH"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypNDXM"
+        - value: b"ftypNDXM"
+          offset: 4
       - parts:
-        - offset: 4
-          value: b"ftypNDXP"
+        - value: b"ftypNDXP"
+          offset: 4
 
   - file_format: NikonElectronicFile
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x4D\x4D\x00\x2A"
-        - offset: 8
-          value: b"\x1C\x00\xFE\x00"
+        - value: b"\x4D\x4D\x00\x2A"
+        - value: b"\x1C\x00\xFE\x00"
+          offset: 8
       - parts:
-        - offset: 0
-          value: b"\x4D\x4D\x00\x2A"
-        - offset: 8
-          value: b"\x1F\x00\x0B\x00"
+        - value: b"\x4D\x4D\x00\x2A"
+        - value: b"\x1F\x00\x0B\x00"
+          offset: 8
       - parts:
-        - offset: 0
-          value: b"\x49\x49\x2A\x00"
-        - offset: 8
-          value: b"\x1C\x00\xFE\x00"
+        - value: b"\x49\x49\x2A\x00"
+        - value: b"\x1C\x00\xFE\x00"
+          offset: 8
       - parts:
-        - offset: 0
-          value: b"\x49\x49\x2A\x00"
-        - offset: 8
-          value: b"\x1F\x00\x0B\x00"
+        - value: b"\x49\x49\x2A\x00"
+        - value: b"\x1F\x00\x0B\x00"
+          offset: 8
 
   - file_format: Nintendo64Rom
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x80\x37\x12\x40\x00\x00\x00\x0F"
+        - value: b"\x80\x37\x12\x40\x00\x00\x00\x0F"
       - parts:
-        - offset: 0
-          value: b"\x37\x80\x40\x12\x00\x00\x0F\x00"
+        - value: b"\x37\x80\x40\x12\x00\x00\x0F\x00"
       - parts:
-        - offset: 0
-          value: b"\x12\x40\x80\x37\x00\x0F\x00\x00"
+        - value: b"\x12\x40\x80\x37\x00\x0F\x00\x00"
       - parts:
-        - offset: 0
-          value: b"\x40\x12\x37\x80\x0F\x00\x00\x00"
+        - value: b"\x40\x12\x37\x80\x0F\x00\x00\x00"
 
   - file_format: NintendoDsRom
     signatures:
       - parts:
-        - offset: 0xC0
-          value: b"\x24\xFF\xAE\x51\x69\x9A\xA2\x21"
+        - value: b"\x24\xFF\xAE\x51\x69\x9A\xA2\x21"
+          offset: 0xC0
       - parts:
-        - offset: 0xC0
-          value: b"\xC8\x60\x4F\xE2\x01\x70\x8F\xE2"
+        - value: b"\xC8\x60\x4F\xE2\x01\x70\x8F\xE2"
+          offset: 0xC0
 
   - file_format: PortableNetworkGraphics
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"
+        - value: b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"
 
   - file_format: QualcommPureVoice
     signatures:
       - parts:
-        - offset: 0
-          value: b"RIFF"
-        - offset: 8
-          value: b"QLCM"
+        - value: b"RIFF"
+        - value: b"QLCM"
+          offset: 8
 
   - file_format: RoshalArchive
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x52\x61\x72\x21\x1A\x07\x01\x00"
+        - value: b"\x52\x61\x72\x21\x1A\x07\x01\x00"
       - parts:
-        - offset: 0
-          value: b"\x52\x61\x72\x21\x1A\x07\x00"
+        - value: b"\x52\x61\x72\x21\x1A\x07\x00"
 
   - file_format: TapeArchive
     signatures:
       - parts:
-        - offset: 257
-          value: b"\x75\x73\x74\x61\x72\x00\x30\x30"
+        - value: b"\x75\x73\x74\x61\x72\x00\x30\x30"
+          offset: 257
       - parts:
-        - offset: 257
-          value: b"\x75\x73\x74\x61\x72\x20\x20\x00"
+        - value: b"\x75\x73\x74\x61\x72\x20\x20\x00"
+          offset: 257
 
   - file_format: WaveformAudio
     signatures:
       - parts:
-        - offset: 0
-          value: b"RIFF"
-        - offset: 8
-          value: b"WAVE"
+        - value: b"RIFF"
+        - value: b"WAVE"
+          offset: 8
 
   - file_format: WebP
     signatures:
       - parts:
-        - offset: 0
-          value: b"RIFF"
-        - offset: 8
-          value: b"WEBP"
+        - value: b"RIFF"
+        - value: b"WEBP"
+          offset: 8
 
   // 7-byte signatures
   - file_format: AdobeFlashPlayerAudio
     signatures:
       - parts:
-        - offset: 4
-          value: b"ftypF4A"
+        - value: b"ftypF4A"
+          offset: 4
 
   - file_format: AdobeFlashPlayerAudiobook
     signatures:
       - parts:
-        - offset: 4
-          value: b"ftypF4B"
+        - value: b"ftypF4B"
+          offset: 4
 
   - file_format: AdobeFlashPlayerProtectedVideo
     signatures:
       - parts:
-        - offset: 4
-          value: b"ftypF4P"
+        - value: b"ftypF4P"
+          offset: 4
 
   - file_format: AdobeFlashPlayerVideo
     signatures:
       - parts:
-        - offset: 4
-          value: b"ftypF4V"
+        - value: b"ftypF4V"
+          offset: 4
 
   - file_format: AppleItunesAudio
     signatures:
       - parts:
-        - offset: 4
-          value: b"ftypM4A"
+        - value: b"ftypM4A"
+          offset: 4
 
   - file_format: AppleItunesAudiobook
     signatures:
       - parts:
-        - offset: 4
-          value: b"ftypM4B"
+        - value: b"ftypM4B"
+          offset: 4
 
   - file_format: AppleItunesProtectedAudio
     signatures:
       - parts:
-        - offset: 4
-          value: b"ftypM4P"
+        - value: b"ftypM4P"
+          offset: 4
 
   - file_format: AppleItunesVideo
     signatures:
       - parts:
-        - offset: 4
-          value: b"ftypM4V"
+        - value: b"ftypM4V"
+          offset: 4
 
   - file_format: Blender
     signatures:
       - parts:
-        - offset: 0
-          value: b"BLENDER"
+        - value: b"BLENDER"
 
   - file_format: CanonRaw3
     signatures:
       - parts:
-        - offset: 4
-          value: b"ftypcrx"
+        - value: b"ftypcrx"
+          offset: 4
 
   - file_format: ThirdGenerationPartnershipProject
     signatures:
       - parts:
-        - offset: 4
-          value: b"ftyp3gp"
+        - value: b"ftyp3gp"
+          offset: 4
 
   - file_format: ThirdGenerationPartnershipProject2
     signatures:
       - parts:
-        - offset: 4
-          value: b"ftyp3g2"
+        - value: b"ftyp3g2"
+          offset: 4
 
   - file_format: UnixArchiver
     signatures:
       - parts:
-        - offset: 0
-          value: b"!<arch>"
+        - value: b"!<arch>"
 
   // 6-byte signatures
   - file_format: ApacheArrowColumnar
     signatures:
       - parts:
-        - offset: 0
-          value: b"ARROW1"
+        - value: b"ARROW1"
 
   - file_format: CanonRaw2
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x4D\x4D\x00\x2A"
-        - offset: 8
-          value: b"CR"
+        - value: b"\x4D\x4D\x00\x2A"
+        - value: b"CR"
+          offset: 8
       - parts:
-        - offset: 0
-          value: b"\x49\x49\x2A\x00"
-        - offset: 8
-          value: b"CR"
+        - value: b"\x49\x49\x2A\x00"
+        - value: b"CR"
+          offset: 8
 
   - file_format: GraphicsInterchangeFormat
     signatures:
       - parts:
-        - offset: 0
-          value: b"GIF87a"
+        - value: b"GIF87a"
       - parts:
-        - offset: 0
-          value: b"GIF89a"
+        - value: b"GIF89a"
 
   - file_format: SevenZip
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x37\x7A\xBC\xAF\x27\x1C"
+        - value: b"\x37\x7A\xBC\xAF\x27\x1C"
 
   - file_format: Xz
     signatures:
       - parts:
-        - offset: 0
-          value: b"\xFD\x37\x7A\x58\x5A\x00"
+        - value: b"\xFD\x37\x7A\x58\x5A\x00"
 
   // 5-byte signatures
   - file_format: AdaptiveMultiRate
     signatures:
       - parts:
-        - offset: 0
-          value: b"#!AMR"
+        - value: b"#!AMR"
 
   - file_format: EmbeddedOpenType
     signatures:
       - parts:
-        - offset: 8
-          value: b"\x00\x00\x01"
-        - offset: 34
-          value: b"\x4C\x50"
+        - value: b"\x00\x00\x01"
+          offset: 8
+        - value: b"\x4C\x50"
+          offset: 34
       - parts:
-        - offset: 8
-          value: b"\x01\x00\x02"
-        - offset: 34
-          value: b"\x4C\x50"
+        - value: b"\x01\x00\x02"
+          offset: 8
+        - value: b"\x4C\x50"
+          offset: 34
       - parts:
-        - offset: 8
-          value: b"\x02\x00\x02"
-        - offset: 34
-          value: b"\x4C\x50"
+        - value: b"\x02\x00\x02"
+          offset: 8
+        - value: b"\x4C\x50"
+          offset: 34
 
   - file_format: Iso9660
     signatures:
       - parts:
-        - offset: 0x8001
-          value: b"CD001"
+        - value: b"CD001"
+          offset: 0x8001
       - parts:
-        - offset: 0x8801
-          value: b"CD001"
+        - value: b"CD001"
+          offset: 0x8801
       - parts:
-        - offset: 0x9001
-          value: b"CD001"
+        - value: b"CD001"
+          offset: 0x9001
 
   - file_format: Lha
     signatures:
       - parts:
-        - offset: 2
-          value: b"-lh0-"
+        - value: b"-lh0-"
+          offset: 2
       - parts:
-        - offset: 2
-          value: b"-lh1-"
+        - value: b"-lh1-"
+          offset: 2
       - parts:
-        - offset: 2
-          value: b"-lh2-"
+        - value: b"-lh2-"
+          offset: 2
       - parts:
-        - offset: 2
-          value: b"-lh3-"
+        - value: b"-lh3-"
+          offset: 2
       - parts:
-        - offset: 2
-          value: b"-lh4-"
+        - value: b"-lh4-"
+          offset: 2
       - parts:
-        - offset: 2
-          value: b"-lh5-"
+        - value: b"-lh5-"
+          offset: 2
       - parts:
-        - offset: 2
-          value: b"-lh6-"
+        - value: b"-lh6-"
+          offset: 2
       - parts:
-        - offset: 2
-          value: b"-lh7-"
+        - value: b"-lh7-"
+          offset: 2
       - parts:
-        - offset: 2
-          value: b"-lzs-"
+        - value: b"-lzs-"
+          offset: 2
       - parts:
-        - offset: 2
-          value: b"-lz4-"
+        - value: b"-lz4-"
+          offset: 2
       - parts:
-        - offset: 2
-          value: b"-lz5-"
+        - value: b"-lz5-"
+          offset: 2
       - parts:
-        - offset: 2
-          value: b"-lhd-"
+        - value: b"-lhd-"
+          offset: 2
 
   - file_format: OpenType
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x4F\x54\x54\x4F\x00"
+        - value: b"\x4F\x54\x54\x4F\x00"
 
   - file_format: PortableDocumentFormat
     signatures:
       - parts:
-        - offset: 0
-          value: b"%PDF-"
+        - value: b"%PDF-"
 
   - file_format: TrueType
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x00\x01\x00\x00\x00"
+        - value: b"\x00\x01\x00\x00\x00"
 
   // 4-byte signatures
   - file_format: AdobePhotoshopDocument
     signatures:
       - parts:
-        - offset: 0
-          value: b"8BPS"
+        - value: b"8BPS"
 
   - file_format: Alz
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x41\x4C\x5A\x01"
+        - value: b"\x41\x4C\x5A\x01"
 
   - file_format: AndroidBinaryXml
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x03\x00\x08\x00"
+        - value: b"\x03\x00\x08\x00"
 
   - file_format: AndroidCompiledResources
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x02\x00\x0C\x00"
+        - value: b"\x02\x00\x0C\x00"
 
   - file_format: AppleIconImage
     signatures:
       - parts:
-        - offset: 0
-          value: b"icns"
+        - value: b"icns"
 
   - file_format: Au
     signatures:
       - parts:
-        - offset: 0
-          value: b".snd"
+        - value: b".snd"
 
   - file_format: BetterPortableGraphics
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x42\x50\x47\xFB"
+        - value: b"\x42\x50\x47\xFB"
 
   - file_format: Cabinet
     signatures:
       - parts:
-        - offset: 0
-          value: b"MSCF"
+        - value: b"MSCF"
       - parts:
-        - offset: 0
-          value: b"ISc("
+        - value: b"ISc("
 
   - file_format: Cineon
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x80\x2A\x5F\xD7"
+        - value: b"\x80\x2A\x5F\xD7"
 
   - file_format: Cur
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x00\x00\x02\x00"
+        - value: b"\x00\x00\x02\x00"
 
   - file_format: DigitalImagingAndCommunicationsInMedicine
     signatures:
       - parts:
-        - offset: 128
-          value: b"\x44\x49\x43\x4D"
+        - value: b"\x44\x49\x43\x4D"
+          offset: 128
 
   - file_format: DigitalPictureExchange
     signatures:
       - parts:
-        - offset: 0
-          value: b"SDPX"
+        - value: b"SDPX"
       - parts:
-        - offset: 0
-          value: b"XPDS"
+        - value: b"XPDS"
 
   - file_format: ExecutableAndLinkableFormat
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x7F\x45\x4C\x46"
+        - value: b"\x7F\x45\x4C\x46"
 
   - file_format: ExtensibleArchive
     signatures:
       - parts:
-        - offset: 0
-          value: b"xar!"
+        - value: b"xar!"
 
   - file_format: FlashVideo
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x46\x4C\x56\x01"
+        - value: b"\x46\x4C\x56\x01"
 
   - file_format: FreeLosslessAudioCodec
     signatures:
       - parts:
-        - offset: 0
-          value: b"fLaC"
+        - value: b"fLaC"
 
   - file_format: FreeLosslessImageFormat
     signatures:
       - parts:
-        - offset: 0
-          value: b"FLIF"
+        - value: b"FLIF"
 
   - file_format: GlTransmissionFormatBinary
     signatures:
       - parts:
-        - offset: 0
-          value: b"glTF"
+        - value: b"glTF"
 
   - file_format: GoogleChromeExtension
     signatures:
       - parts:
-        - offset: 0
-          value: b"Cr24"
+        - value: b"Cr24"
 
   - file_format: Ico
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x00\x00\x01\x00"
+        - value: b"\x00\x00\x01\x00"
 
   - file_format: ImpulseTrackerModule
     signatures:
       - parts:
-        - offset: 0
-          value: b"IMPM"
+        - value: b"IMPM"
 
   - file_format: JavaClass
     signatures:
       - parts:
-        - offset: 0
-          value: b"\xCA\xFE\xBA\xBE"
+        - value: b"\xCA\xFE\xBA\xBE"
 
   - file_format: JavaKeyStore
     signatures:
       - parts:
-        - offset: 0
-          value: b"\xFE\xED\xFE\xED"
+        - value: b"\xFE\xED\xFE\xED"
 
   - file_format: LempelZivFiniteStateEntropy
     signatures:
       - parts:
-        - offset: 0
-          value: b"bvx-"
+        - value: b"bvx-"
       - parts:
-        - offset: 0
-          value: b"bvx1"
+        - value: b"bvx1"
       - parts:
-        - offset: 0
-          value: b"bvx2"
+        - value: b"bvx2"
       - parts:
-        - offset: 0
-          value: b"bvxn"
+        - value: b"bvxn"
 
   - file_format: LongRangeZip
     signatures:
       - parts:
-        - offset: 0
-          value: b"LRZI"
+        - value: b"LRZI"
 
   - file_format: Lz4
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x04\x22\x4D\x18"
+        - value: b"\x04\x22\x4D\x18"
 
   - file_format: Lzip
     signatures:
       - parts:
-        - offset: 0
-          value: b"LZIP"
+        - value: b"LZIP"
 
   - file_format: MicrosoftCompiledHtmlHelp
     signatures:
       - parts:
-        - offset: 0
-          value: b"ITSF"
+        - value: b"ITSF"
 
   - file_format: MicrosoftDirectDrawSurface
     signatures:
       - parts:
-        - offset: 0
-          value: b"DDS "
+        - value: b"DDS "
 
   - file_format: MonkeysAudio
     signatures:
       - parts:
-        - offset: 0
-          value: b"MAC "
+        - value: b"MAC "
 
   - file_format: Mpeg1Video
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x00\x00\x01\xBA"
+        - value: b"\x00\x00\x01\xBA"
       - parts:
-        - offset: 0
-          value: b"\x00\x00\x01\xB3"
+        - value: b"\x00\x00\x01\xB3"
 
   - file_format: Musepack
     signatures:
       - parts:
-        - offset: 0
-          value: b"MPCK"
+        - value: b"MPCK"
       - parts:
-        - offset: 0
-          value: b"MP+"
+        - value: b"MP+"
 
   - file_format: MusicalInstrumentDigitalInterface
     signatures:
       - parts:
-        - offset: 0
-          value: b"MThd"
+        - value: b"MThd"
 
   - file_format: NintendoEntertainmentSystemRom
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x4E\x45\x53\x1A"
+        - value: b"\x4E\x45\x53\x1A"
 
   - file_format: OggMultiplexedMedia
     signatures:
       - parts:
-        - offset: 0
-          value: b"OggS"
+        - value: b"OggS"
 
   - file_format: OpenExr
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x76\x2F\x31\x01"
+        - value: b"\x76\x2F\x31\x01"
 
   - file_format: OptimizedDalvikExecutable
     signatures:
       - parts:
-        - offset: 0
-          value: b"dey\n"
+        - value: b"dey\n"
 
   - file_format: PcapDump
     signatures:
       - parts:
-        - offset: 0
-          value: b"\xA1\xB2\xC3\xD4"
+        - value: b"\xA1\xB2\xC3\xD4"
       - parts:
-        - offset: 0
-          value: b"\xD4\xC3\xB2\xA1"
+        - value: b"\xD4\xC3\xB2\xA1"
 
   - file_format: PcapNextGenerationDump
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x0A\x0D\x0D\x0A"
+        - value: b"\x0A\x0D\x0D\x0A"
 
   - file_format: RedHatPackageManager
     signatures:
       - parts:
-        - offset: 0
-          value: b"\xED\xAB\xEE\xDB"
+        - value: b"\xED\xAB\xEE\xDB"
 
   - file_format: ScreamTracker3Module
     signatures:
       - parts:
-        - offset: 44
-          value: b"SCRM"
+        - value: b"SCRM"
+          offset: 44
 
   - file_format: Shapefile
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x00\x00\x27\x0A"
+        - value: b"\x00\x00\x27\x0A"
 
   - file_format: SonyDsdStreamFile
     signatures:
       - parts:
-        - offset: 0
-          value: b"DSD "
+        - value: b"DSD "
 
   - file_format: TagImageFileFormat
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x4D\x4D\x00\x2A"
+        - value: b"\x4D\x4D\x00\x2A"
       - parts:
-        - offset: 0
-          value: b"\x49\x49\x2A\x00"
+        - value: b"\x49\x49\x2A\x00"
       - parts:
-        - offset: 0
-          value: b"\x4D\x4D\x00\x2B"
+        - value: b"\x4D\x4D\x00\x2B"
       - parts:
-        - offset: 0
-          value: b"\x49\x49\x2B\x00"
+        - value: b"\x49\x49\x2B\x00"
 
   - file_format: WavPack
     signatures:
       - parts:
-        - offset: 0
-          value: b"wvpk"
+        - value: b"wvpk"
 
   - file_format: WebAssemblyBinary
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x00\x61\x73\x6D"
+        - value: b"\x00\x61\x73\x6D"
 
   - file_format: WebOpenFontFormat
     signatures:
       - parts:
-        - offset: 0
-          value: b"wOFF"
+        - value: b"wOFF"
 
   - file_format: WebOpenFontFormat2
     signatures:
       - parts:
-        - offset: 0
-          value: b"wOF2"
+        - value: b"wOF2"
 
   - file_format: WindowsMetafile
     signatures:
       - parts:
-        - offset: 0
-          value: b"\xD7\xCD\xC6\x9A"
+        - value: b"\xD7\xCD\xC6\x9A"
       - parts:
-        - offset: 0
-          value: b"\x02\x00\x09\x00"
+        - value: b"\x02\x00\x09\x00"
       - parts:
-        - offset: 0
-          value: b"\x01\x00\x09\x00"
+        - value: b"\x01\x00\x09\x00"
 
   - file_format: Zip
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x50\x4B\x03\x04"
+        - value: b"\x50\x4B\x03\x04"
       - parts:
-        - offset: 0
-          value: b"\x50\x4B\x05\x06"
+        - value: b"\x50\x4B\x05\x06"
       - parts:
-        - offset: 0
-          value: b"\x50\x4B\x07\x08"
+        - value: b"\x50\x4B\x07\x08"
 
   - file_format: Zstandard
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x28\xB5\x2F\xFD"
+        - value: b"\x28\xB5\x2F\xFD"
 
   // 3-byte signatures
   - file_format: Bzip2
     signatures:
       - parts:
-        - offset: 0
-          value: b"BZh"
+        - value: b"BZh"
 
   - file_format: JpegExtendedRange
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x49\x49\xBC"
+        - value: b"\x49\x49\xBC"
 
   - file_format: MpegAudioLayer3
     signatures:
       - parts:
-        - offset: 0
-          value: b"ID3"
+        - value: b"ID3"
 
   - file_format: SeqBox
     signatures:
       - parts:
-        - offset: 0
-          value: b"SBx"
+        - value: b"SBx"
 
   - file_format: SmallWebFormat
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x43\x57\x53"
+        - value: b"\x43\x57\x53"
       - parts:
-        - offset: 0
-          value: b"\x46\x57\x53"
+        - value: b"\x46\x57\x53"
 
   - file_format: Zoo
     signatures:
       - parts:
-        - offset: 0
-          value: b"ZOO"
+        - value: b"ZOO"
 
   // 2-byte signatures
   - file_format: AdvancedAudioCoding
     signatures:
       - parts:
-        - offset: 0
-          value: b"\xFF\xF1"
+        - value: b"\xFF\xF1"
       - parts:
-        - offset: 0
-          value: b"\xFF\xF9"
+        - value: b"\xFF\xF9"
 
   - file_format: AppleDiskImage
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x78\x01"
+        - value: b"\x78\x01"
 
   - file_format: ArchivedByRobertJung
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x60\xEA"
+        - value: b"\x60\xEA"
 
   - file_format: AudioCodec3
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x0B\x77"
+        - value: b"\x0B\x77"
 
   - file_format: Cpio
     signatures:
       - parts:
-        - offset: 0
-          value: b"\xC7\x71"
+        - value: b"\xC7\x71"
       - parts:
-        - offset: 0
-          value: b"\x71\xC7"
+        - value: b"\x71\xC7"
 
   - file_format: Gzip
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x1F\x8B"
+        - value: b"\x1F\x8B"
 
   - file_format: UnixCompress
     signatures:
       - parts:
-        - offset: 0
-          value: b"\x1F\xA0"
+        - value: b"\x1F\xA0"
       - parts:
-        - offset: 0
-          value: b"\x1F\x9D"
+        - value: b"\x1F\x9D"
 
   - file_format: WindowsBitmap
     signatures:
       - parts:
-        - offset: 0
-          value: b"BM"
+        - value: b"BM"
 
   - file_format: WindowsExecutable
     signatures:
       - parts:
-        - offset: 0
-          value: b"MZ"
+        - value: b"MZ"
 }
 
 impl FileFormat {
