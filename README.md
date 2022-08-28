@@ -10,7 +10,7 @@ File format library for Rust.
 
 This crate is for determining binary-based file formats.
 
-## Example
+## Examples
 
 Determines from a file:
 
