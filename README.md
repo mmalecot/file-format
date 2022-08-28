@@ -3,7 +3,7 @@
 ![Build](https://img.shields.io/github/workflow/status/mmalecot/file-format/CI)
 [![Crates.io](https://img.shields.io/crates/v/file-format.svg)](https://crates.io/crates/file-format)
 [![Docs](https://docs.rs/file-format/badge.svg)](https://docs.rs/file-format)
-![Rust](https://img.shields.io/badge/rust-1.56+-blueviolet.svg?logo=rust)
+![Rust](https://img.shields.io/badge/rust-1.60+-blueviolet.svg?logo=rust)
 ![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg)
 
 File format library for Rust.
@@ -36,8 +36,25 @@ assert_eq!(format.media_type(), "image/jpeg");
 assert_eq!(format.extension(), "jpg");
 ```
 
+# Usage
+
+Add this to your `Cargo.toml`:
+
+```toml
+[dependencies]
+file-format = "0.8"
+```
+
+If you want to enable Zip-based file formats:
+
+```toml
+[dependencies]
+file-format = { version = "0.8", features = ["zip"] }
+```
+
 ## Supported formats
 
+- 3D Manufacturing Format (3mf)
 - 3rd Generation Partnership Project (3gp)
 - 3rd Generation Partnership Project 2 (3g2)
 - 7-Zip (7z)
@@ -55,6 +72,7 @@ assert_eq!(format.extension(), "jpg");
 - Advanced Audio Coding (aac)
 - Android Binary XML (xml)
 - Android Compiled Resources (arsc)
+- Android Package (apk)
 - Animated Portable Network Graphics (apng)
 - Apache Arrow Columnar (arrow)
 - Apple Disk Image (dmg)
@@ -80,9 +98,13 @@ assert_eq!(format.extension(), "jpg");
 - Compound File Binary (cfb)
 - Dalvik Executable (dex)
 - Debian Binary Package (deb)
+- Design Web Format (dwf)
+- Design Web Format XPS (dwfx)
 - Digital Imaging and Communications in Medicine (dcm)
 - Digital Picture Exchange (dpx)
+- Electronic Publication (epub)
 - Embedded OpenType (eot)
+- Enterprise Application Archive (ear)
 - Executable and Linkable Format (elf)
 - Experimental Computing Facility (xcf)
 - Extensible Archive (xar)
@@ -111,6 +133,7 @@ assert_eq!(format.extension(), "jpg");
 - JPEG 2000 Part 6 (jpm)
 - JPEG Extended Range (jxr)
 - JPEG XL (jxl)
+- Java Archive (jar)
 - Java Class (class)
 - Java KeyStore (jks)
 - Joint Photographic Experts Group (jpg)
@@ -129,6 +152,8 @@ assert_eq!(format.extension(), "jpg");
 - Microsoft DirectDraw Surface (dds)
 - Microsoft Virtual Hard Disk (vhd)
 - Microsoft Virtual Hard Disk 2 (vhdx)
+- Microsoft Visio Drawing (vsdx)
+- Microsoft Visual Studio Extension (vsix)
 - Mobipocket (mobi)
 - Monkey’s Audio (ape)
 - Musepack (mpc)
@@ -137,6 +162,9 @@ assert_eq!(format.extension(), "jpg");
 - Nintendo 64 ROM (z64)
 - Nintendo DS ROM (nds)
 - Nintendo Entertainment System ROM (nes)
+- Office Open XML Document (docx)
+- Office Open XML Presentation (pptx)
+- Office Open XML Workbook (xlsx)
 - Ogg FLAC (oga)
 - Ogg Media (ogm)
 - Ogg Multiplexed Media (ogx)
@@ -145,6 +173,10 @@ assert_eq!(format.extension(), "jpg");
 - Ogg Theora (ogv)
 - Ogg Vorbis (ogg)
 - Olympus Raw Format (orf)
+- OpenDocument Graphics (odg)
+- OpenDocument Presentation (odp)
+- OpenDocument Spreadsheet (ods)
+- OpenDocument Text (odt)
 - OpenEXR (exr)
 - OpenType (otf)
 - Optimized Dalvik Executable (dey)
@@ -173,6 +205,7 @@ assert_eq!(format.extension(), "jpg");
 - VirtualBox Virtual Disk Image (vdi)
 - WavPack (wv)
 - Waveform Audio (wav)
+- Web Application Resource (war)
 - Web Open Font Format (woff)
 - Web Open Font Format 2 (woff2)
 - WebAssembly Binary (wasm)
@@ -182,6 +215,8 @@ assert_eq!(format.extension(), "jpg");
 - Windows Media Video (wmv)
 - Windows Metafile (wmf)
 - Windows Shortcut (lnk)
+- XAP (xap)
+- XPInstall (xpi)
 - XZ (xz)
 - ZIP (zip)
 - Zstandard (zst)

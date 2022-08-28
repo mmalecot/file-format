@@ -11,3 +11,9 @@ homepage = "https://github.com/mmalecot/file-format"
 repository = "https://github.com/mmalecot/file-format"
 documentation = "https://docs.rs/file-format"
 exclude = ["/.github/*", "/fixtures/*", "/tests/*"]
+
+[dependencies]
+zip = { version = "0.6", optional = true }
+
+[features]
+zip = ["dep:zip"]

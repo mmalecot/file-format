@@ -3,10 +3,13 @@
 use std::{
     fmt::{self, Display, Formatter},
     fs::File,
-    io::{Read, Result},
+    io::{BufRead, BufReader, Cursor, Read, Result, Seek},
     path::Path,
     str,
 };
+
+#[cfg(feature = "zip")]
+use zip::ZipArchive;
 
 /// Generates [`FileFormat`] enum.
 macro_rules! file_formats {
@@ -175,6 +178,11 @@ file_formats! {
     media_type: "application/vnd.android.arsc"
     extension: "arsc"
 
+  - variant: AndroidPackage
+    name: "Android Package"
+    media_type: "application/vnd.android.package-archive"
+    extension: "apk"
+
   - variant: Ani
     name: "ANI"
     media_type: "application/x-navi-animation"
@@ -325,6 +333,16 @@ file_formats! {
     media_type: "application/vnd.debian.binary-package"
     extension: "deb"
 
+  - variant: DesignWebFormat
+    name: "Design Web Format"
+    media_type: "model/vnd-dwf"
+    extension: "dwf"
+
+  - variant: DesignWebFormatXps
+    name: "Design Web Format XPS"
+    media_type: "model/vnd.dwfx+xps"
+    extension: "dwfx"
+
   - variant: DigitalImagingAndCommunicationsInMedicine
     name: "Digital Imaging and Communications in Medicine"
     media_type: "application/dicom"
@@ -335,10 +353,20 @@ file_formats! {
     media_type: "image/x-dpx"
     extension: "dpx"
 
+  - variant: ElectronicPublication
+    name: "Electronic Publication"
+    media_type: "application/epub+zip"
+    extension: "epub"
+
   - variant: EmbeddedOpenType
     name: "Embedded OpenType"
     media_type: "application/vnd.ms-fontobject"
     extension: "eot"
+
+  - variant: EnterpriseApplicationArchive
+    name: "Enterprise Application Archive"
+    media_type: "application/java-archive"
+    extension: "ear"
 
   - variant: ExecutableAndLinkableFormat
     name: "Executable and Linkable Format"
@@ -454,6 +482,11 @@ file_formats! {
     name: "ISO 9660"
     media_type: "application/x-iso9660-image"
     extension: "iso"
+
+  - variant: JavaArchive
+    name: "Java Archive"
+    media_type: "application/java-archive"
+    extension: "jar"
 
   - variant: JavaClass
     name: "Java Class"
@@ -575,6 +608,16 @@ file_formats! {
     media_type: "application/x-vhdx"
     extension: "vhdx"
 
+  - variant: MicrosoftVisioDrawing
+    name: "Microsoft Visio Drawing"
+    media_type: "application/vnd.ms-visio.drawing.main+xml"
+    extension: "vsdx"
+
+  - variant: MicrosoftVisualStudioExtension
+    name: "Microsoft Visual Studio Extension"
+    media_type: "application/vsix"
+    extension: "vsix"
+
   - variant: Mobipocket
     name: "Mobipocket"
     media_type: "application/x-mobipocket-ebook"
@@ -630,6 +673,21 @@ file_formats! {
     media_type: "application/x-nintendo-nes-rom"
     extension: "nes"
 
+  - variant: OfficeOpenXmlDocument
+    name: "Office Open XML Document"
+    media_type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    extension: "docx"
+
+  - variant: OfficeOpenXmlPresentation
+    name: "Office Open XML Presentation"
+    media_type: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+    extension: "pptx"
+
+  - variant: OfficeOpenXmlWorkbook
+    name: "Office Open XML Workbook"
+    media_type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    extension: "xlsx"
+
   - variant: OggFlac
     name: "Ogg FLAC"
     media_type: "audio/ogg"
@@ -669,6 +727,26 @@ file_formats! {
     name: "Olympus Raw Format"
     media_type: "image/x-olympus-orf"
     extension: "orf"
+
+  - variant: OpenDocumentGraphics
+    name: "OpenDocument Graphics"
+    media_type: "application/vnd.oasis.opendocument.graphics"
+    extension: "odg"
+
+  - variant: OpenDocumentPresentation
+    name: "OpenDocument Presentation"
+    media_type: "application/vnd.oasis.opendocument.presentation"
+    extension: "odp"
+
+  - variant: OpenDocumentSpreadsheet
+    name: "OpenDocument Spreadsheet"
+    media_type: "application/vnd.oasis.opendocument.spreadsheet"
+    extension: "ods"
+
+  - variant: OpenDocumentText
+    name: "OpenDocument Text"
+    media_type: "application/vnd.oasis.opendocument.text"
+    extension: "odt"
 
   - variant: OpenExr
     name: "OpenEXR"
@@ -795,6 +873,11 @@ file_formats! {
     media_type: "video/3gpp2"
     extension: "3g2"
 
+  - variant: ThreeDimensionalManufacturingFormat
+    name: "3D Manufacturing Format"
+    media_type: "application/vnd.ms-package.3dmanufacturing-3dmodel+xml"
+    extension: "3mf"
+
   - variant: TrueType
     name: "TrueType"
     media_type: "font/ttf"
@@ -824,6 +907,11 @@ file_formats! {
     name: "Waveform Audio"
     media_type: "audio/vnd.wave"
     extension: "wav"
+
+  - variant: WebApplicationResource
+    name: "Web Application Resource"
+    media_type: "application/java-archive"
+    extension: "war"
 
   - variant: WebAssemblyBinary
     name: "WebAssembly Binary"
@@ -869,6 +957,16 @@ file_formats! {
     name: "Windows Shortcut"
     media_type: "application/x-ms-shortcut"
     extension: "lnk"
+
+  - variant: Xap
+    name: "XAP"
+    media_type: "application/x-silverlight-app"
+    extension: "xap"
+
+  - variant: XpInstall
+    name: "XPInstall"
+    media_type: "application/x-xpinstall"
+    extension: "xpi"
 
   - variant: Xz
     name: "XZ"
@@ -1978,7 +2076,7 @@ signatures! {
 
 impl FileFormat {
     /// Maximum number of bytes to read to detect the `FileFormat`.
-    const MAX_BYTES: u64 = 36870;
+    const MAX_BYTES: usize = 36870;
 
     /// Determines `FileFormat` from bytes.
     ///
@@ -2007,7 +2105,7 @@ impl FileFormat {
     /// [default value]: FileFormat::default
     #[inline]
     pub fn from_bytes(bytes: &[u8]) -> FileFormat {
-        FileFormat::from_signature(bytes).unwrap_or_default()
+        FileFormat::from_reader(Cursor::new(bytes)).unwrap_or_default()
     }
 
     /// Determines `FileFormat` from a file.
@@ -2021,12 +2119,107 @@ impl FileFormat {
     /// assert_eq!(format, FileFormat::MatroskaVideo);
     /// # Ok::<(), std::io::Error>(())
     ///```
+    #[inline]
     pub fn from_file<P: AsRef<Path>>(path: P) -> Result<FileFormat> {
-        let mut buffer = [0; FileFormat::MAX_BYTES as usize];
-        let read = File::open(path)?
-            .take(FileFormat::MAX_BYTES)
-            .read(&mut buffer)?;
-        Ok(FileFormat::from_bytes(&buffer[0..read]))
+        FileFormat::from_reader(File::open(path)?)
+    }
+
+    /// Determines `FileFormat` from a reader.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use file_format::FileFormat;
+    ///
+    /// let format = FileFormat::from_reader(std::io::empty())?;
+    /// assert_eq!(format, FileFormat::default());
+    /// # Ok::<(), std::io::Error>(())
+    ///```
+    #[cfg(not(feature = "zip"))]
+    pub fn from_reader<R: Read + Seek>(reader: R) -> Result<FileFormat> {
+        let mut reader = BufReader::with_capacity(FileFormat::MAX_BYTES, reader);
+        Ok(FileFormat::from_signature(reader.fill_buf()?).unwrap_or_default())
+    }
+
+    /// Determines `FileFormat` from a reader.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use file_format::FileFormat;
+    ///
+    /// let format = FileFormat::from_reader(std::io::empty())?;
+    /// assert_eq!(format, FileFormat::default());
+    /// # Ok::<(), std::io::Error>(())
+    ///```
+    #[cfg(feature = "zip")]
+    pub fn from_reader<R: Read + Seek>(reader: R) -> Result<FileFormat> {
+        let mut reader = BufReader::with_capacity(FileFormat::MAX_BYTES, reader);
+        Ok(match FileFormat::from_signature(reader.fill_buf()?) {
+            Some(FileFormat::Zip) => FileFormat::from_zip(reader).unwrap_or_default(),
+            Some(format) => format,
+            _ => FileFormat::default(),
+        })
+    }
+
+    #[cfg(feature = "zip")]
+    fn from_zip<R: Read + Seek>(reader: R) -> Result<FileFormat> {
+        let mut archive = ZipArchive::new(reader)?;
+        for index in 0..archive.len() {
+            let mut file = archive.by_index(index)?;
+            let filename = file.name();
+            if filename == "AndroidManifest.xml" {
+                return Ok(FileFormat::AndroidPackage);
+            } else if filename == "AppManifest.xaml" {
+                return Ok(FileFormat::Xap);
+            } else if filename == "application.xml" {
+                return Ok(FileFormat::DesignWebFormat);
+            } else if filename == "extension.vsixmanifest" {
+                return Ok(FileFormat::MicrosoftVisualStudioExtension);
+            } else if filename == "META-INF/mozilla.rsa" {
+                return Ok(FileFormat::XpInstall);
+            } else if filename == "META-INF/MANIFEST.MF" {
+                return Ok(FileFormat::JavaArchive);
+            } else if filename == "META-INF/application.xml" {
+                return Ok(FileFormat::EnterpriseApplicationArchive);
+            } else if filename == "WEB-INF/classes/" {
+                return Ok(FileFormat::WebApplicationResource);
+            } else if filename == "mimetype" {
+                let mut content = String::new();
+                file.read_to_string(&mut content)?;
+                match content.as_str() {
+                    "application/epub+zip" => {
+                        return Ok(FileFormat::ElectronicPublication);
+                    }
+                    "application/vnd.oasis.opendocument.text" => {
+                        return Ok(FileFormat::OpenDocumentText);
+                    }
+                    "application/vnd.oasis.opendocument.spreadsheet" => {
+                        return Ok(FileFormat::OpenDocumentSpreadsheet);
+                    }
+                    "application/vnd.oasis.opendocument.presentation" => {
+                        return Ok(FileFormat::OpenDocumentPresentation);
+                    }
+                    "application/vnd.oasis.opendocument.graphics" => {
+                        return Ok(FileFormat::OpenDocumentGraphics);
+                    }
+                    _ => {}
+                }
+            } else if filename.starts_with("dwf/") {
+                return Ok(FileFormat::DesignWebFormatXps);
+            } else if filename.starts_with("word/") {
+                return Ok(FileFormat::OfficeOpenXmlDocument);
+            } else if filename.starts_with("ppt/") {
+                return Ok(FileFormat::OfficeOpenXmlPresentation);
+            } else if filename.starts_with("xl/") {
+                return Ok(FileFormat::OfficeOpenXmlWorkbook);
+            } else if filename.starts_with("visio/") {
+                return Ok(FileFormat::MicrosoftVisioDrawing);
+            } else if filename.starts_with("3D/") && filename.ends_with(".model") {
+                return Ok(FileFormat::ThreeDimensionalManufacturingFormat);
+            }
+        }
+        Ok(FileFormat::Zip)
     }
 }
 
