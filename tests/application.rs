@@ -125,13 +125,6 @@ fn test_embedded_open_type() {
     assert_eq!(format, FileFormat::EmbeddedOpenType);
 }
 
-#[cfg(feature = "zip")]
-#[test]
-fn test_enterprise_application_archive() {
-    let format = FileFormat::from_file("fixtures/application/sample.ear").unwrap();
-    assert_eq!(format, FileFormat::EnterpriseApplicationArchive);
-}
-
 #[test]
 fn test_executable_and_linkable_format() {
     let format = FileFormat::from_file("fixtures/application/sample.elf").unwrap();
@@ -465,13 +458,6 @@ fn test_unix_compress() {
 fn test_virtual_box_virtual_disk_image() {
     let format = FileFormat::from_file("fixtures/application/sample.vdi").unwrap();
     assert_eq!(format, FileFormat::VirtualBoxVirtualDiskImage);
-}
-
-#[cfg(feature = "zip")]
-#[test]
-fn test_web_application_resource() {
-    let format = FileFormat::from_file("fixtures/application/sample.war").unwrap();
-    assert_eq!(format, FileFormat::WebApplicationResource);
 }
 
 #[test]

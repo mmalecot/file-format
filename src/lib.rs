@@ -333,11 +333,6 @@ file_formats! {
     media_type: "application/vnd.debian.binary-package"
     extension: "deb"
 
-  - variant: DesignWebFormat
-    name: "Design Web Format"
-    media_type: "model/vnd-dwf"
-    extension: "dwf"
-
   - variant: DesignWebFormatXps
     name: "Design Web Format XPS"
     media_type: "model/vnd.dwfx+xps"
@@ -362,11 +357,6 @@ file_formats! {
     name: "Embedded OpenType"
     media_type: "application/vnd.ms-fontobject"
     extension: "eot"
-
-  - variant: EnterpriseApplicationArchive
-    name: "Enterprise Application Archive"
-    media_type: "application/java-archive"
-    extension: "ear"
 
   - variant: ExecutableAndLinkableFormat
     name: "Executable and Linkable Format"
@@ -907,11 +897,6 @@ file_formats! {
     name: "Waveform Audio"
     media_type: "audio/vnd.wave"
     extension: "wav"
-
-  - variant: WebApplicationResource
-    name: "Web Application Resource"
-    media_type: "application/java-archive"
-    extension: "war"
 
   - variant: WebAssemblyBinary
     name: "WebAssembly Binary"
@@ -2172,18 +2157,12 @@ impl FileFormat {
                 return Ok(FileFormat::AndroidPackage);
             } else if filename == "AppManifest.xaml" {
                 return Ok(FileFormat::Xap);
-            } else if filename == "application.xml" {
-                return Ok(FileFormat::DesignWebFormat);
             } else if filename == "extension.vsixmanifest" {
                 return Ok(FileFormat::MicrosoftVisualStudioExtension);
             } else if filename == "META-INF/mozilla.rsa" {
                 return Ok(FileFormat::XpInstall);
             } else if filename == "META-INF/MANIFEST.MF" {
                 return Ok(FileFormat::JavaArchive);
-            } else if filename == "META-INF/application.xml" {
-                return Ok(FileFormat::EnterpriseApplicationArchive);
-            } else if filename == "WEB-INF/classes/" {
-                return Ok(FileFormat::WebApplicationResource);
             } else if filename == "mimetype" {
                 let mut content = String::new();
                 file.read_to_string(&mut content)?;
