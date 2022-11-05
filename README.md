@@ -43,7 +43,7 @@ Add this to your `Cargo.toml`:
 file-format = "0.8"
 ```
 
-If you want to enable Zip-based file formats:
+If you want to enable ZIP-based file formats:
 
 ```toml
 [dependencies]
@@ -208,7 +208,7 @@ Default:
 - macOS Alias - `alias`
 - zoo - `zoo`
 
-Zip:
+ZIP:
 - 3D Manufacturing Format - `3mf`
 - Android Package - `apk`
 - Design Web Format XPS - `dwfx`
