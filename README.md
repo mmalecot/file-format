@@ -6,9 +6,7 @@
 ![Rust](https://img.shields.io/badge/rust-1.60+-blueviolet.svg?logo=rust)
 ![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg)
 
-File format library for Rust.
-
-This crate is for determining binary-based file formats.
+Crate for determining binary-based file formats.
 
 ## Examples
 
