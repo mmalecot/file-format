@@ -103,13 +103,6 @@ fn test_debian_binary_package() {
     assert_eq!(format, FileFormat::DebianBinaryPackage);
 }
 
-#[cfg(feature = "zip")]
-#[test]
-fn test_design_web_format_xps() {
-    let format = FileFormat::from_file("fixtures/application/sample.dwfx").unwrap();
-    assert_eq!(format, FileFormat::DesignWebFormatXps);
-}
-
 #[test]
 fn test_digital_imaging_and_communications_in_medicine() {
     let format = FileFormat::from_file("fixtures/application/sample.dcm").unwrap();
