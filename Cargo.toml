@@ -3,17 +3,20 @@ name = "file-format"
 version = "0.8.0"
 authors = ["Mickaël Malécot <mickael.malecot@gmail.com>"]
 edition = "2021"
-description = "File format library for Rust. This crate is for determining binary-based file formats."
+description = "Crate for determining binary-based file formats."
 license = "MIT/Apache-2.0"
 readme = "README.md"
 keywords = ["file-format", "file-type", "magic-number", "media-type", "mime"]
 homepage = "https://github.com/mmalecot/file-format"
 repository = "https://github.com/mmalecot/file-format"
 documentation = "https://docs.rs/file-format"
-exclude = ["/.github/*", "/fixtures/*", "/tests/*"]
+exclude = ["/.github/*", "/fixtures/*", "/tests/*", "/examples/*"]
 
 [dependencies]
 zip = { version = "0.6", optional = true }
 
 [features]
 zip = ["dep:zip"]
+
+[package.metadata.docs.rs]
+all-features = true
