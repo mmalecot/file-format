@@ -12,6 +12,9 @@ repository = "https://github.com/mmalecot/file-format"
 documentation = "https://docs.rs/file-format"
 exclude = ["/.github/*", "/fixtures/*", "/tests/*", "/examples/*"]
 
+[package.metadata.docs.rs]
+all-features = true
+
 [dependencies]
 zip = { version = "0.6", optional = true }
 
@@ -21,6 +24,3 @@ colored = { version = "2.0" }
 
 [features]
 zip = ["dep:zip"]
-
-[package.metadata.docs.rs]
-all-features = true
