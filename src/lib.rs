@@ -1015,7 +1015,7 @@ impl FileFormat {
     /// [default value]: FileFormat::default
     #[inline]
     pub fn from_bytes(bytes: &[u8]) -> FileFormat {
-        FileFormat::from_reader(Cursor::new(bytes)).unwrap_or_default()
+        FileFormat::from(bytes)
     }
 
     /// Determines `FileFormat` from a file.
@@ -1138,6 +1138,13 @@ impl Default for FileFormat {
 impl Display for FileFormat {
     fn fmt(&self, formatter: &mut Formatter<'_>) -> fmt::Result {
         write!(formatter, "{}", self.name())
+    }
+}
+
+impl From<&[u8]> for FileFormat {
+    #[inline]
+    fn from(value: &[u8]) -> FileFormat {
+        FileFormat::from_reader(Cursor::new(value)).unwrap_or_default()
     }
 }
 
