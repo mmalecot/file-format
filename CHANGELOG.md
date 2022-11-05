@@ -44,9 +44,9 @@
 
 # Version 0.6.0 (2021-12-18)
 
-## Improvements
+## API
 
-- Add file format detection from bytes
+- Add FileFormat::from_bytes
 
 # Version 0.5.0 (2021-12-12)
 
