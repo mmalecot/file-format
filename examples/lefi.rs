@@ -4,7 +4,7 @@ use file_format::FileFormat;
 use std::{io::Result, path::Path};
 
 #[derive(Debug, Parser)]
-#[clap(author, version, about, long_about = None)]
+#[clap(about = "Simplified version of the UNIX file command.")]
 struct Args {
     #[clap(value_parser)]
     input: Vec<String>,
