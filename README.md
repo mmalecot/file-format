@@ -53,7 +53,6 @@ file-format = { version = "0.8", features = ["zip"] }
 ## Supported formats
 
 Default:
-
 - 3rd Generation Partnership Project - `3gp`
 - 3rd Generation Partnership Project 2 - `3g2`
 - 7-Zip - `7z`
@@ -210,7 +209,6 @@ Default:
 - zoo - `zoo`
 
 Zip:
-
 - 3D Manufacturing Format - `3mf`
 - Android Package - `apk`
 - Design Web Format XPS - `dwfx`
