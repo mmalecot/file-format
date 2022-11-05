@@ -8,84 +8,1137 @@ use std::{
     str,
 };
 
-#[cfg(feature = "zip")]
-use zip::ZipArchive;
+/// A file format.
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub enum FileFormat {
+    /// Adaptive Multi-Rate - `amr`
+    AdaptiveMultiRate,
+    /// Adobe Flash Player Audio - `f4a`
+    AdobeFlashPlayerAudio,
+    /// Adobe Flash Player Audiobook - `f4b`
+    AdobeFlashPlayerAudiobook,
+    /// Adobe Flash Player Protected Video - `f4p`
+    AdobeFlashPlayerProtectedVideo,
+    /// Adobe Flash Player Video - `f4v`
+    AdobeFlashPlayerVideo,
+    /// Adobe InDesign Document - `indd`
+    AdobeInDesignDocument,
+    /// Adobe Photoshop Document - `psd`
+    AdobePhotoshopDocument,
+    /// Advanced Audio Coding - `aac`
+    AdvancedAudioCoding,
+    /// ALZ - `alz`
+    Alz,
+    /// Android Binary XML - `xml`
+    AndroidBinaryXml,
+    /// Android Compiled Resources - `arsc`
+    AndroidCompiledResources,
+    /// Android Package - `apk`
+    #[cfg(feature = "zip")]
+    AndroidPackage,
+    /// ANI - `ani`
+    Ani,
+    /// Animated Portable Network Graphics - `apng`
+    AnimatedPortableNetworkGraphics,
+    /// Apache Arrow Columnar - `arrow`
+    ApacheArrowColumnar,
+    /// Apple Disk Image - `dmg`
+    AppleDiskImage,
+    /// Apple Icon Image - `icns`
+    AppleIconImage,
+    /// Apple iTunes Audio - `m4a`
+    AppleItunesAudio,
+    /// Apple iTunes Audiobook - `m4b`
+    AppleItunesAudiobook,
+    /// Apple iTunes Protected Audio - `m4p`
+    AppleItunesProtectedAudio,
+    /// Apple iTunes Video - `m4v`
+    AppleItunesVideo,
+    /// Apple QuickTime - `mov`
+    AppleQuickTime,
+    /// Arbitrary Binary Data - `bin`
+    ArbitraryBinaryData,
+    /// Archived by Robert Jung - `arj`
+    ArchivedByRobertJung,
+    /// Au - `au`
+    Au,
+    /// Audio Codec 3 - `ac3`
+    AudioCodec3,
+    /// Audio Interchange File Format - `aiff`
+    AudioInterchangeFileFormat,
+    /// Audio Video Interleave - `avi`
+    AudioVideoInterleave,
+    /// AV1 Image File Format - `avif`
+    Av1ImageFileFormat,
+    /// AV1 Image File Format Sequence - `avifs`
+    Av1ImageFileFormatSequence,
+    /// Better Portable Graphics - `bpg`
+    BetterPortableGraphics,
+    /// Blender - `blend`
+    Blender,
+    /// bzip2 - `bz2`
+    Bzip2,
+    /// Cabinet - `cab`
+    Cabinet,
+    /// Canon Raw 2 - `cr2`
+    CanonRaw2,
+    /// Canon Raw 3 - `cr3`
+    CanonRaw3,
+    /// Cineon - `cin`
+    Cineon,
+    /// Compound File Binary - `cfb`
+    CompoundFileBinary,
+    /// cpio - `cpio`
+    Cpio,
+    /// CUR - `cur`
+    Cur,
+    /// Dalvik Executable - `dex`
+    DalvikExecutable,
+    /// Debian Binary Package - `deb`
+    DebianBinaryPackage,
+    /// Design Web Format XPS - `dwfx`
+    #[cfg(feature = "zip")]
+    DesignWebFormatXps,
+    /// Digital Imaging and Communications in Medicine - `dcm`
+    DigitalImagingAndCommunicationsInMedicine,
+    /// Digital Picture Exchange - `dpx`
+    DigitalPictureExchange,
+    /// Electronic Publication - `epub`
+    #[cfg(feature = "zip")]
+    ElectronicPublication,
+    /// Embedded OpenType - `eot`
+    EmbeddedOpenType,
+    /// Executable and Linkable Format - `elf`
+    ExecutableAndLinkableFormat,
+    /// Experimental Computing Facility - `xcf`
+    ExperimentalComputingFacility,
+    /// Extensible Archive - `xar`
+    ExtensibleArchive,
+    /// FastTracker 2 Extended Module - `xm`
+    FastTracker2ExtendedModule,
+    /// Flash Video - `flv`
+    FlashVideo,
+    /// Flexible Image Transport System - `fits`
+    FlexibleImageTransportSystem,
+    /// Free Lossless Audio Codec - `flac`
+    FreeLosslessAudioCodec,
+    /// Free Lossless Image Format - `flif`
+    FreeLosslessImageFormat,
+    /// Fujifilm Raw - `raf`
+    FujifilmRaw,
+    /// Game Boy Advance ROM - `gba`
+    GameBoyAdvanceRom,
+    /// Game Boy Color ROM - `gbc`
+    GameBoyColorRom,
+    /// Game Boy ROM - `gb`
+    GameBoyRom,
+    /// GL Transmission Format Binary - `glb`
+    GlTransmissionFormatBinary,
+    /// Google Chrome Extension - `crx`
+    GoogleChromeExtension,
+    /// Graphics Interchange Format - `gif`
+    GraphicsInterchangeFormat,
+    /// gzip - `gz`
+    Gzip,
+    /// High Efficiency Image Coding - `heic`
+    HighEfficiencyImageCoding,
+    /// High Efficiency Image Coding Sequence - `heics`
+    HighEfficiencyImageCodingSequence,
+    /// High Efficiency Image File Format - `heif`
+    HighEfficiencyImageFileFormat,
+    /// High Efficiency Image File Format Sequence - `heifs`
+    HighEfficiencyImageFileFormatSequence,
+    /// ICO - `ico`
+    Ico,
+    /// Impulse Tracker Module - `it`
+    ImpulseTrackerModule,
+    /// ISO 9660 - `iso`
+    Iso9660,
+    /// Java Archive - `jar`
+    #[cfg(feature = "zip")]
+    JavaArchive,
+    /// Java Class - `class`
+    JavaClass,
+    /// Java KeyStore - `jks`
+    JavaKeyStore,
+    /// Joint Photographic Experts Group - `jpg`
+    JointPhotographicExpertsGroup,
+    /// JPEG 2000 Part 1 - `jp2`
+    Jpeg2000Part1,
+    /// JPEG 2000 Part 2 - `jpx`
+    Jpeg2000Part2,
+    /// JPEG 2000 Part 3 - `mj2`
+    Jpeg2000Part3,
+    /// JPEG 2000 Part 6 - `jpm`
+    Jpeg2000Part6,
+    /// JPEG Extended Range - `jxr`
+    JpegExtendedRange,
+    /// JPEG XL - `jxl`
+    JpegXl,
+    /// Khronos Texture - `ktx`
+    KhronosTexture,
+    /// Khronos Texture 2 - `ktx2`
+    KhronosTexture2,
+    /// Lempel–Ziv Finite State Entropy - `lzfse`
+    LempelZivFiniteStateEntropy,
+    /// LHA - `lzh`
+    Lha,
+    /// Long Range ZIP - `lrz`
+    LongRangeZip,
+    /// LZ4 - `lz4`
+    Lz4,
+    /// lzip - `lz`
+    Lzip,
+    /// lzop - `lzo`
+    Lzop,
+    /// macOS Alias - `alias`
+    MacOsAlias,
+    /// Material Exchange Format - `mxf`
+    MaterialExchangeFormat,
+    /// Matroska Video - `mkv`
+    MatroskaVideo,
+    /// Microsoft Compiled HTML Help - `chm`
+    MicrosoftCompiledHtmlHelp,
+    /// Microsoft DirectDraw Surface - `dds`
+    MicrosoftDirectDrawSurface,
+    /// Microsoft Virtual Hard Disk - `vhd`
+    MicrosoftVirtualHardDisk,
+    /// Microsoft Virtual Hard Disk 2 - `vhdx`
+    MicrosoftVirtualHardDisk2,
+    /// Microsoft Visio Drawing - `vsdx`
+    #[cfg(feature = "zip")]
+    MicrosoftVisioDrawing,
+    /// Microsoft Visual Studio Extension - `vsix`
+    #[cfg(feature = "zip")]
+    MicrosoftVisualStudioExtension,
+    /// Mobipocket - `mobi`
+    Mobipocket,
+    /// Monkey's Audio - `ape`
+    MonkeysAudio,
+    /// MPEG-1 Video - `mpg`
+    Mpeg1Video,
+    /// MPEG-4 Part 14 Video - `mp4`
+    Mpeg4Part14Video,
+    /// MPEG-1/2 Audio Layer III - `mp3`
+    MpegAudioLayer3,
+    /// Musepack - `mpc`
+    Musepack,
+    /// Musical Instrument Digital Interface - `mid`
+    MusicalInstrumentDigitalInterface,
+    /// Nikon Electronic File - `nef`
+    NikonElectronicFile,
+    /// Nintendo 64 ROM - `z64`
+    Nintendo64Rom,
+    /// Nintendo DS ROM - `nds`
+    NintendoDsRom,
+    /// Nintendo Entertainment System ROM - `nes`
+    NintendoEntertainmentSystemRom,
+    /// Office Open XML Document - `docx`
+    #[cfg(feature = "zip")]
+    OfficeOpenXmlDocument,
+    /// Office Open XML Presentation - `pptx`
+    #[cfg(feature = "zip")]
+    OfficeOpenXmlPresentation,
+    /// Office Open XML Workbook - `xlsx`
+    #[cfg(feature = "zip")]
+    OfficeOpenXmlWorkbook,
+    /// Ogg FLAC - `oga`
+    OggFlac,
+    /// Ogg Media - `ogm`
+    OggMedia,
+    /// Ogg Multiplexed Media - `ogx`
+    OggMultiplexedMedia,
+    /// Ogg Opus - `opus`
+    OggOpus,
+    /// Ogg Speex - `spx`
+    OggSpeex,
+    /// Ogg Theora - `ogv`
+    OggTheora,
+    /// Ogg Vorbis - `ogg`
+    OggVorbis,
+    /// Olympus Raw Format - `orf`
+    OlympusRawFormat,
+    /// OpenDocument Graphics - `odg`
+    #[cfg(feature = "zip")]
+    OpenDocumentGraphics,
+    /// OpenDocument Presentation - `odp`
+    #[cfg(feature = "zip")]
+    OpenDocumentPresentation,
+    /// OpenDocument Spreadsheet - `ods`
+    #[cfg(feature = "zip")]
+    OpenDocumentSpreadsheet,
+    /// OpenDocument Text - `odt`
+    #[cfg(feature = "zip")]
+    OpenDocumentText,
+    /// OpenEXR - `exr`
+    OpenExr,
+    /// OpenType - `otf`
+    OpenType,
+    /// Optimized Dalvik Executable - `dey`
+    OptimizedDalvikExecutable,
+    /// Panasonic Raw - `rw2`
+    PanasonicRaw,
+    /// PCAP Dump - `pcap`
+    PcapDump,
+    /// PCAP Next Generation Dump - `pcapng`
+    PcapNextGenerationDump,
+    /// Portable Document Format - `pdf`
+    PortableDocumentFormat,
+    /// Portable Network Graphics - `png`
+    PortableNetworkGraphics,
+    /// Qualcomm PureVoice - `qcp`
+    QualcommPureVoice,
+    /// Radiance HDR - `hdr`
+    RadianceHdr,
+    /// Red Hat Package Manager - `rpm`
+    RedHatPackageManager,
+    /// Roshal Archive - `rar`
+    RoshalArchive,
+    /// ScreamTracker 3 Module - `s3m`
+    ScreamTracker3Module,
+    /// SeqBox - `sbx`
+    SeqBox,
+    /// 7-Zip - `7z`
+    SevenZip,
+    /// Shapefile - `shp`
+    Shapefile,
+    /// SketchUp - `skp`
+    SketchUp,
+    /// Small Web Format - `swf`
+    SmallWebFormat,
+    /// Snappy - `sz`
+    Snappy,
+    /// Sony DSD Stream File - `dsf`
+    SonyDsdStreamFile,
+    /// SQLite 3 - `sqlite`
+    Sqlite3,
+    /// Tag Image File Format - `tiff`
+    TagImageFileFormat,
+    /// Tape Archive - `tar`
+    TapeArchive,
+    /// 3rd Generation Partnership Project - `3gp`
+    ThirdGenerationPartnershipProject,
+    /// 3rd Generation Partnership Project 2 - `3g2`
+    ThirdGenerationPartnershipProject2,
+    /// 3D Manufacturing Format - `3mf`
+    #[cfg(feature = "zip")]
+    ThreeDimensionalManufacturingFormat,
+    /// TrueType - `ttf`
+    TrueType,
+    /// UNIX archiver - `ar`
+    UnixArchiver,
+    /// UNIX compress - `Z`
+    UnixCompress,
+    /// VirtualBox Virtual Disk Image - `vdi`
+    VirtualBoxVirtualDiskImage,
+    /// WavPack - `wv`
+    WavPack,
+    /// Waveform Audio - `wav`
+    WaveformAudio,
+    /// WebAssembly Binary - `wasm`
+    WebAssemblyBinary,
+    /// Web Open Font Format - `woff`
+    WebOpenFontFormat,
+    /// Web Open Font Format 2 - `woff2`
+    WebOpenFontFormat2,
+    /// WebP - `webp`
+    WebP,
+    /// Windows Bitmap - `bmp`
+    WindowsBitmap,
+    /// Windows Executable - `exe`
+    WindowsExecutable,
+    /// Windows Media Video - `wmv`
+    WindowsMediaVideo,
+    /// Windows Metafile - `wmf`
+    WindowsMetafile,
+    /// Windows Shortcut - `lnk`
+    WindowsShortcut,
+    /// XAP - `xap`
+    #[cfg(feature = "zip")]
+    Xap,
+    /// XPInstall - `xpi`
+    #[cfg(feature = "zip")]
+    XpInstall,
+    /// XZ - `xz`
+    Xz,
+    /// ZIP - `zip`
+    Zip,
+    /// zoo - `zoo`
+    Zoo,
+    /// Zstandard - `zst`
+    Zstandard,
+}
 
-/// Generates [`FileFormat`] enum.
-macro_rules! file_formats {
-    {
-        $(
-            -   variant: $variant:ident
-                name: $name:literal
-                media_type: $media_type:literal
-                extension: $extension:literal
-        )*
-    } => {
-        /// A file format.
-        #[derive(Clone, Debug, Eq, PartialEq)]
-        pub enum FileFormat {
-            $(
-                #[doc=concat!($name, " (", $extension, ")")]
-                $variant,
-            )*
+impl FileFormat {
+    /// Maximum number of bytes to read to detect the `FileFormat`.
+    const MAX_BYTES: usize = 36870;
+
+    /// Returns the name of the `FileFormat`.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use file_format::FileFormat;
+    ///
+    /// let format = FileFormat::MpegAudioLayer3;
+    /// assert_eq!(format.name(), "MPEG-1/2 Audio Layer III");
+    ///```
+    pub fn name(&self) -> &str {
+        match self {
+            Self::AdaptiveMultiRate => "Adaptive Multi-Rate",
+            Self::AdobeFlashPlayerAudio => "Adobe Flash Player Audio",
+            Self::AdobeFlashPlayerAudiobook => "Adobe Flash Player Audiobook ",
+            Self::AdobeFlashPlayerProtectedVideo => "Adobe Flash Player Protected Video",
+            Self::AdobeFlashPlayerVideo => "Adobe Flash Player Video",
+            Self::AdobeInDesignDocument => "Adobe InDesign Document",
+            Self::AdobePhotoshopDocument => "Adobe Photoshop Document",
+            Self::AdvancedAudioCoding => "Advanced Audio Coding",
+            Self::Alz => "ALZ",
+            Self::AndroidBinaryXml => "Android Binary XML",
+            Self::AndroidCompiledResources => "Android Compiled Resources",
+            #[cfg(feature = "zip")]
+            Self::AndroidPackage => "Android Package",
+            Self::Ani => "ANI",
+            Self::AnimatedPortableNetworkGraphics => "Animated Portable Network Graphics",
+            Self::ApacheArrowColumnar => "Apache Arrow Columnar",
+            Self::AppleDiskImage => "Apple Disk Image",
+            Self::AppleIconImage => "Apple Icon Image",
+            Self::AppleItunesAudio => "Apple iTunes Audio",
+            Self::AppleItunesAudiobook => "Apple iTunes Audiobook",
+            Self::AppleItunesProtectedAudio => "Apple iTunes Protected Audio",
+            Self::AppleItunesVideo => "Apple iTunes Video",
+            Self::AppleQuickTime => "Apple QuickTime",
+            Self::ArbitraryBinaryData => "Arbitrary Binary Data",
+            Self::ArchivedByRobertJung => "Archived by Robert Jung",
+            Self::Au => "Au",
+            Self::AudioCodec3 => "Audio Codec 3",
+            Self::AudioInterchangeFileFormat => "Audio Interchange File Format",
+            Self::AudioVideoInterleave => "Audio Video Interleave",
+            Self::Av1ImageFileFormat => "AV1 Image File Format",
+            Self::Av1ImageFileFormatSequence => "AV1 Image File Format Sequence",
+            Self::BetterPortableGraphics => "Better Portable Graphics",
+            Self::Blender => "Blender",
+            Self::Bzip2 => "bzip2",
+            Self::Cabinet => "Cabinet",
+            Self::CanonRaw2 => "Canon Raw 2",
+            Self::CanonRaw3 => "Canon Raw 3",
+            Self::Cineon => "Cineon",
+            Self::CompoundFileBinary => "Compound File Binary",
+            Self::Cpio => "cpio",
+            Self::Cur => "CUR",
+            Self::DalvikExecutable => "Dalvik Executable",
+            Self::DebianBinaryPackage => "Debian Binary Package",
+            #[cfg(feature = "zip")]
+            Self::DesignWebFormatXps => "Design Web Format XPS",
+            Self::DigitalImagingAndCommunicationsInMedicine => {
+                "Digital Imaging and Communications in Medicine"
+            }
+            Self::DigitalPictureExchange => "Digital Picture Exchange",
+            #[cfg(feature = "zip")]
+            Self::ElectronicPublication => "Electronic Publication",
+            Self::EmbeddedOpenType => "Embedded OpenType",
+            Self::ExecutableAndLinkableFormat => "Executable and Linkable Format",
+            Self::ExperimentalComputingFacility => "Experimental Computing Facility",
+            Self::ExtensibleArchive => "Extensible Archive",
+            Self::FastTracker2ExtendedModule => "FastTracker 2 Extended Module",
+            Self::FlashVideo => "Flash Video",
+            Self::FlexibleImageTransportSystem => "Flexible Image Transport System",
+            Self::FreeLosslessAudioCodec => "Free Lossless Audio Codec",
+            Self::FreeLosslessImageFormat => "Free Lossless Image Format",
+            Self::FujifilmRaw => "Fujifilm Raw",
+            Self::GameBoyAdvanceRom => "Game Boy Advance ROM",
+            Self::GameBoyColorRom => "Game Boy Color ROM",
+            Self::GameBoyRom => "Game Boy ROM",
+            Self::GlTransmissionFormatBinary => "GL Transmission Format Binary",
+            Self::GoogleChromeExtension => "Google Chrome Extension",
+            Self::GraphicsInterchangeFormat => "Graphics Interchange Format",
+            Self::Gzip => "gzip",
+            Self::HighEfficiencyImageCoding => "High Efficiency Image Coding",
+            Self::HighEfficiencyImageCodingSequence => "High Efficiency Image Coding Sequence",
+            Self::HighEfficiencyImageFileFormat => "High Efficiency Image File Format",
+            Self::HighEfficiencyImageFileFormatSequence => {
+                "High Efficiency Image File Format Sequence"
+            }
+            Self::Ico => "ICO",
+            Self::ImpulseTrackerModule => "Impulse Tracker Module",
+            Self::Iso9660 => "ISO 9660",
+            #[cfg(feature = "zip")]
+            Self::JavaArchive => "Java Archive",
+            Self::JavaClass => "Java Class",
+            Self::JavaKeyStore => "Java KeyStore",
+            Self::JointPhotographicExpertsGroup => "Joint Photographic Experts Group",
+            Self::Jpeg2000Part1 => "JPEG 2000 Part 1",
+            Self::Jpeg2000Part2 => "JPEG 2000 Part 2",
+            Self::Jpeg2000Part3 => "JPEG 2000 Part 3",
+            Self::Jpeg2000Part6 => "JPEG 2000 Part 6",
+            Self::JpegExtendedRange => "PEG Extended Range",
+            Self::JpegXl => "JPEG XL",
+            Self::KhronosTexture => "Khronos Texture",
+            Self::KhronosTexture2 => "Khronos Texture 2",
+            Self::LempelZivFiniteStateEntropy => "Lempel–Ziv Finite State Entropy",
+            Self::Lha => "LHA",
+            Self::LongRangeZip => "Long Range ZIP",
+            Self::Lz4 => "LZ4",
+            Self::Lzip => "lzip",
+            Self::Lzop => "lzop",
+            Self::MacOsAlias => "macOS Alias",
+            Self::MaterialExchangeFormat => "Material Exchange Format",
+            Self::MatroskaVideo => "Matroska Video",
+            Self::MicrosoftCompiledHtmlHelp => "Microsoft Compiled HTML Help",
+            Self::MicrosoftDirectDrawSurface => "Microsoft DirectDraw Surface",
+            Self::MicrosoftVirtualHardDisk => "Microsoft Virtual Hard Disk",
+            Self::MicrosoftVirtualHardDisk2 => "Microsoft Virtual Hard Disk 2",
+            #[cfg(feature = "zip")]
+            Self::MicrosoftVisioDrawing => "Microsoft Visio Drawing",
+            #[cfg(feature = "zip")]
+            Self::MicrosoftVisualStudioExtension => "Microsoft Visual Studio Extension",
+            Self::Mobipocket => "Mobipocket",
+            Self::MonkeysAudio => "Monkey's Audio",
+            Self::Mpeg1Video => "MPEG-1 Video",
+            Self::Mpeg4Part14Video => "MPEG-4 Part 14 Video",
+            Self::MpegAudioLayer3 => "MPEG-1/2 Audio Layer III",
+            Self::Musepack => "Musepack",
+            Self::MusicalInstrumentDigitalInterface => "Musical Instrument Digital Interface",
+            Self::NikonElectronicFile => "Nikon Electronic File",
+            Self::Nintendo64Rom => "Nintendo 64 ROM",
+            Self::NintendoDsRom => "Nintendo DS ROM",
+            Self::NintendoEntertainmentSystemRom => "Nintendo Entertainment System ROM",
+            #[cfg(feature = "zip")]
+            Self::OfficeOpenXmlDocument => "Office Open XML Document",
+            #[cfg(feature = "zip")]
+            Self::OfficeOpenXmlPresentation => "Office Open XML Presentation",
+            #[cfg(feature = "zip")]
+            Self::OfficeOpenXmlWorkbook => "Office Open XML Workbook",
+            Self::OggFlac => "Ogg FLAC",
+            Self::OggMedia => "Ogg Media",
+            Self::OggMultiplexedMedia => "Ogg Multiplexed Media",
+            Self::OggOpus => "Ogg Opus",
+            Self::OggSpeex => "Ogg Speex",
+            Self::OggTheora => "Ogg Theora",
+            Self::OggVorbis => "Ogg Vorbis",
+            Self::OlympusRawFormat => "Olympus Raw Format",
+            #[cfg(feature = "zip")]
+            Self::OpenDocumentGraphics => "OpenDocument Graphics",
+            #[cfg(feature = "zip")]
+            Self::OpenDocumentPresentation => "OpenDocument Presentation",
+            #[cfg(feature = "zip")]
+            Self::OpenDocumentSpreadsheet => "OpenDocument Spreadsheet",
+            #[cfg(feature = "zip")]
+            Self::OpenDocumentText => "OpenDocument Text",
+            Self::OpenExr => "OpenEXR",
+            Self::OpenType => "OpenType",
+            Self::OptimizedDalvikExecutable => "Optimized Dalvik Executable",
+            Self::PanasonicRaw => "Panasonic Raw",
+            Self::PcapDump => "PCAP Dump",
+            Self::PcapNextGenerationDump => "PCAP Next Generation Dump",
+            Self::PortableDocumentFormat => "Portable Document Format",
+            Self::PortableNetworkGraphics => "Portable Network Graphics",
+            Self::QualcommPureVoice => "Qualcomm PureVoice",
+            Self::RadianceHdr => "Radiance HDR",
+            Self::RedHatPackageManager => "Red Hat Package Manager",
+            Self::RoshalArchive => "Roshal Archive",
+            Self::ScreamTracker3Module => "ScreamTracker 3 Module",
+            Self::SeqBox => "SeqBox",
+            Self::SevenZip => "7-Zip",
+            Self::Shapefile => "Shapefile",
+            Self::SketchUp => "SketchUp",
+            Self::SmallWebFormat => "Small Web Format",
+            Self::Snappy => "Snappy",
+            Self::SonyDsdStreamFile => "Sony DSD Stream File",
+            Self::Sqlite3 => "SQLite 3",
+            Self::TagImageFileFormat => "Tag Image File Format",
+            Self::TapeArchive => "Tape Archive",
+            Self::ThirdGenerationPartnershipProject => "3rd Generation Partnership Project",
+            Self::ThirdGenerationPartnershipProject2 => "3rd Generation Partnership Project 2",
+            #[cfg(feature = "zip")]
+            Self::ThreeDimensionalManufacturingFormat => "3D Manufacturing Format",
+            Self::TrueType => "TrueType",
+            Self::UnixArchiver => "UNIX archiver",
+            Self::UnixCompress => "UNIX compress",
+            Self::VirtualBoxVirtualDiskImage => "VirtualBox Virtual Disk Image",
+            Self::WavPack => "WavPack",
+            Self::WaveformAudio => "Waveform Audio",
+            Self::WebAssemblyBinary => "WebAssembly Binary",
+            Self::WebOpenFontFormat => "Web Open Font Format",
+            Self::WebOpenFontFormat2 => "Web Open Font Format 2",
+            Self::WebP => "WebP",
+            Self::WindowsBitmap => "Windows Bitmap",
+            Self::WindowsExecutable => "Windows Executable",
+            Self::WindowsMediaVideo => "Windows Media Video",
+            Self::WindowsMetafile => "Windows Metafile",
+            Self::WindowsShortcut => "Windows Shortcut",
+            #[cfg(feature = "zip")]
+            Self::Xap => "XAP",
+            #[cfg(feature = "zip")]
+            Self::XpInstall => "XPInstall",
+            Self::Xz => "XZ",
+            Self::Zip => "ZIP",
+            Self::Zoo => "zoo",
+            Self::Zstandard => "Zstandard",
         }
+    }
 
-        impl FileFormat {
-            /// Returns the name of the `FileFormat`.
-            ///
-            /// # Examples
-            ///
-            /// ```rust
-            /// use file_format::FileFormat;
-            ///
-            /// let format = FileFormat::MpegAudioLayer3;
-            /// assert_eq!(format.name(), "MPEG-1/2 Audio Layer III");
-            ///```
-            pub fn name(&self) -> &str {
-                match self {
-                    $(
-                        FileFormat::$variant => $name,
-                    )*
-                }
+    /// Returns the media type (formerly known as MIME type) of the `FileFormat`.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use file_format::FileFormat;
+    ///
+    /// let format = FileFormat::Zstandard;
+    /// assert_eq!(format.media_type(), "application/zstd");
+    ///```
+    pub fn media_type(&self) -> &str {
+        match self {
+            Self::AdaptiveMultiRate => "audio/amr",
+            Self::AdobeFlashPlayerAudio => "audio/mp4",
+            Self::AdobeFlashPlayerAudiobook => "audio/mp4",
+            Self::AdobeFlashPlayerProtectedVideo => "video/mp4",
+            Self::AdobeFlashPlayerVideo => "video/mp4",
+            Self::AdobeInDesignDocument => "application/x-indesign",
+            Self::AdobePhotoshopDocument => "image/vnd.adobe.photoshop",
+            Self::AdvancedAudioCoding => "audio/aac",
+            Self::Alz => "application/x-alz-compressed",
+            Self::AndroidBinaryXml => "application/vnd.android.axml",
+            Self::AndroidCompiledResources => "application/vnd.android.arsc",
+            #[cfg(feature = "zip")]
+            Self::AndroidPackage => "application/vnd.android.package-archive",
+            Self::Ani => "application/x-navi-animation",
+            Self::AnimatedPortableNetworkGraphics => "image/apng",
+            Self::ApacheArrowColumnar => "application/x-apache-arrow",
+            Self::AppleDiskImage => "application/x-apple-diskimage",
+            Self::AppleIconImage => "image/x-icns",
+            Self::AppleItunesAudio => "audio/x-m4a",
+            Self::AppleItunesAudiobook => "audio/mp4",
+            Self::AppleItunesProtectedAudio => "audio/mp4",
+            Self::AppleItunesVideo => "video/x-m4v",
+            Self::AppleQuickTime => "video/quicktime",
+            Self::ArbitraryBinaryData => "application/octet-stream",
+            Self::ArchivedByRobertJung => "application/x-arj",
+            Self::Au => "audio/basic",
+            Self::AudioCodec3 => "audio/vnd.dolby.dd-raw",
+            Self::AudioInterchangeFileFormat => "audio/aiff",
+            Self::AudioVideoInterleave => "video/avi",
+            Self::Av1ImageFileFormat => "image/avif",
+            Self::Av1ImageFileFormatSequence => "image/avif-sequence",
+            Self::BetterPortableGraphics => "image/bpg",
+            Self::Blender => "application/x-blender",
+            Self::Bzip2 => "application/x-bzip2",
+            Self::Cabinet => "application/vnd.ms-cab-compressed",
+            Self::CanonRaw2 => "image/x-canon-cr2",
+            Self::CanonRaw3 => "image/x-canon-cr3",
+            Self::Cineon => "image/cineon",
+            Self::CompoundFileBinary => "application/x-cfb",
+            Self::Cpio => "application/x-cpio",
+            Self::Cur => "image/x-icon",
+            Self::DalvikExecutable => "application/vnd.android.dex",
+            Self::DebianBinaryPackage => "application/vnd.debian.binary-package",
+            #[cfg(feature = "zip")]
+            Self::DesignWebFormatXps => "model/vnd.dwfx+xps",
+            Self::DigitalImagingAndCommunicationsInMedicine => "application/dicom",
+            Self::DigitalPictureExchange => "image/x-dpx",
+            #[cfg(feature = "zip")]
+            Self::ElectronicPublication => "application/epub+zip",
+            Self::EmbeddedOpenType => "application/vnd.ms-fontobject",
+            Self::ExecutableAndLinkableFormat => "application/x-executable",
+            Self::ExperimentalComputingFacility => "image/x-xcf",
+            Self::ExtensibleArchive => "application/x-xar",
+            Self::FastTracker2ExtendedModule => "audio/x-xm",
+            Self::FlashVideo => "video/x-flv",
+            Self::FlexibleImageTransportSystem => "image/fits",
+            Self::FreeLosslessAudioCodec => "audio/x-flac",
+            Self::FreeLosslessImageFormat => "image/flif",
+            Self::FujifilmRaw => "image/x-fuji-raf",
+            Self::GameBoyAdvanceRom => "application/x-gba-rom",
+            Self::GameBoyColorRom => "application/x-gameboy-color-rom",
+            Self::GameBoyRom => "application/x-gameboy-rom",
+            Self::GlTransmissionFormatBinary => "model/gltf-binary",
+            Self::GoogleChromeExtension => "application/x-google-chrome-extension",
+            Self::GraphicsInterchangeFormat => "image/gif",
+            Self::Gzip => "application/gzip",
+            Self::HighEfficiencyImageCoding => "image/heic",
+            Self::HighEfficiencyImageCodingSequence => "image/heic-sequence",
+            Self::HighEfficiencyImageFileFormat => "image/heif",
+            Self::HighEfficiencyImageFileFormatSequence => "image/heif-sequence",
+            Self::Ico => "image/x-icon",
+            Self::ImpulseTrackerModule => "audio/x-it",
+            Self::Iso9660 => "application/x-iso9660-image",
+            #[cfg(feature = "zip")]
+            Self::JavaArchive => "application/java-archive",
+            Self::JavaClass => "application/java-vm",
+            Self::JavaKeyStore => "application/x-java-keystore",
+            Self::JointPhotographicExpertsGroup => "image/jpeg",
+            Self::Jpeg2000Part1 => "image/jp2",
+            Self::Jpeg2000Part2 => "image/jpx",
+            Self::Jpeg2000Part3 => "image/mj2",
+            Self::Jpeg2000Part6 => "image/jpm",
+            Self::JpegExtendedRange => "image/jxr",
+            Self::JpegXl => "image/jxl",
+            Self::KhronosTexture => "image/ktx",
+            Self::KhronosTexture2 => "image/ktx2",
+            Self::LempelZivFiniteStateEntropy => "application/x-lzfse",
+            Self::Lha => "application/x-lzh-compressed",
+            Self::LongRangeZip => "application/x-lrzip",
+            Self::Lz4 => "application/x-lz4",
+            Self::Lzip => "application/x-lzip",
+            Self::Lzop => "application/x-lzop",
+            Self::MacOsAlias => "application/x-apple-alias",
+            Self::MaterialExchangeFormat => "application/mxf",
+            Self::MatroskaVideo => "video/x-matroska",
+            Self::MicrosoftCompiledHtmlHelp => "application/vnd.ms-htmlhelp",
+            Self::MicrosoftDirectDrawSurface => "image/vnd-ms.dds",
+            Self::MicrosoftVirtualHardDisk => "application/x-vhd",
+            Self::MicrosoftVirtualHardDisk2 => "application/x-vhdx",
+            #[cfg(feature = "zip")]
+            Self::MicrosoftVisioDrawing => "application/vnd.ms-visio.drawing.main+xml",
+            #[cfg(feature = "zip")]
+            Self::MicrosoftVisualStudioExtension => "application/vsix",
+            Self::Mobipocket => "application/x-mobipocket-ebook",
+            Self::MonkeysAudio => "audio/x-ape",
+            Self::Mpeg1Video => "video/mpeg",
+            Self::Mpeg4Part14Video => "video/mp4",
+            Self::MpegAudioLayer3 => "audio/mpeg",
+            Self::Musepack => "audio/x-musepack",
+            Self::MusicalInstrumentDigitalInterface => "audio/midi",
+            Self::NikonElectronicFile => "image/x-nikon-nef",
+            Self::Nintendo64Rom => "application/x-n64-rom",
+            Self::NintendoDsRom => "application/x-nintendo-ds-rom",
+            Self::NintendoEntertainmentSystemRom => "application/x-nintendo-nes-rom",
+            #[cfg(feature = "zip")]
+            Self::OfficeOpenXmlDocument => {
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
             }
-
-            /// Returns the media type (formerly known as MIME type) of the `FileFormat`.
-            ///
-            /// # Examples
-            ///
-            /// ```rust
-            /// use file_format::FileFormat;
-            ///
-            /// let format = FileFormat::Zstandard;
-            /// assert_eq!(format.media_type(), "application/zstd");
-            ///```
-            pub fn media_type(&self) -> &str {
-                match self {
-                    $(
-                        FileFormat::$variant => $media_type,
-                    )*
-                }
+            #[cfg(feature = "zip")]
+            Self::OfficeOpenXmlPresentation => {
+                "application/vnd.openxmlformats-officedocument.presentationml.presentation"
             }
+            #[cfg(feature = "zip")]
+            Self::OfficeOpenXmlWorkbook => {
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            }
+            Self::OggFlac => "audio/ogg",
+            Self::OggMedia => "video/ogg",
+            Self::OggMultiplexedMedia => "application/ogg",
+            Self::OggOpus => "audio/opus",
+            Self::OggSpeex => "audio/ogg",
+            Self::OggTheora => "video/ogg",
+            Self::OggVorbis => "audio/ogg",
+            Self::OlympusRawFormat => "image/x-olympus-orf",
+            #[cfg(feature = "zip")]
+            Self::OpenDocumentGraphics => "application/vnd.oasis.opendocument.graphics",
+            #[cfg(feature = "zip")]
+            Self::OpenDocumentPresentation => "application/vnd.oasis.opendocument.presentation",
+            #[cfg(feature = "zip")]
+            Self::OpenDocumentSpreadsheet => "application/vnd.oasis.opendocument.spreadsheet",
+            #[cfg(feature = "zip")]
+            Self::OpenDocumentText => "application/vnd.oasis.opendocument.text",
+            Self::OpenExr => "image/x-exr",
+            Self::OpenType => "font/otf",
+            Self::OptimizedDalvikExecutable => "application/vnd.android.dey",
+            Self::PanasonicRaw => "image/x-panasonic-rw2",
+            Self::PcapDump => "application/vnd.tcpdump.pcap",
+            Self::PcapNextGenerationDump => "application/x-pcapng",
+            Self::PortableDocumentFormat => "application/pdf",
+            Self::PortableNetworkGraphics => "image/png",
+            Self::QualcommPureVoice => "audio/qcelp",
+            Self::RadianceHdr => "image/vnd.radiance",
+            Self::RedHatPackageManager => "application/x-rpm",
+            Self::RoshalArchive => "application/vnd.rar",
+            Self::ScreamTracker3Module => "audio/x-s3m",
+            Self::SeqBox => "application/x-sbx",
+            Self::SevenZip => "application/x-7z-compressed",
+            Self::Shapefile => "application/x-esri-shape",
+            Self::SketchUp => "application/vnd.sketchup.skp",
+            Self::SmallWebFormat => "application/x-shockwave-flash",
+            Self::Snappy => "application/x-snappy-framed",
+            Self::SonyDsdStreamFile => "audio/x-dsf",
+            Self::Sqlite3 => "application/vnd.sqlite3",
+            Self::TagImageFileFormat => "image/tiff",
+            Self::TapeArchive => "application/x-tar",
+            Self::ThirdGenerationPartnershipProject => "video/3gpp",
+            Self::ThirdGenerationPartnershipProject2 => "video/3gpp2",
+            #[cfg(feature = "zip")]
+            Self::ThreeDimensionalManufacturingFormat => {
+                "application/vnd.ms-package.3dmanufacturing-3dmodel+xml"
+            }
+            Self::TrueType => "font/ttf",
+            Self::UnixArchiver => "application/x-archive",
+            Self::UnixCompress => "application/x-compress",
+            Self::VirtualBoxVirtualDiskImage => "application/x-virtualbox-vdi",
+            Self::WavPack => "audio/wavpack",
+            Self::WaveformAudio => "audio/vnd.wave",
+            Self::WebAssemblyBinary => "application/wasm",
+            Self::WebOpenFontFormat => "font/woff",
+            Self::WebOpenFontFormat2 => "font/woff2",
+            Self::WebP => "image/webp",
+            Self::WindowsBitmap => "image/bmp",
+            Self::WindowsExecutable => "application/x-msdownload",
+            Self::WindowsMediaVideo => "video/x-ms-asf",
+            Self::WindowsMetafile => "image/wmf",
+            Self::WindowsShortcut => "application/x-ms-shortcut",
+            #[cfg(feature = "zip")]
+            Self::Xap => "application/x-silverlight-app",
+            #[cfg(feature = "zip")]
+            Self::XpInstall => "application/x-xpinstall",
+            Self::Xz => "application/x-xz",
+            Self::Zip => "application/zip",
+            Self::Zoo => "application/x-zoo",
+            Self::Zstandard => "application/zstd",
+        }
+    }
 
-            /// Returns the extension of the `FileFormat`.
-            ///
-            /// # Examples
-            ///
-            /// ```rust
-            /// use file_format::FileFormat;
-            ///
-            /// let format = FileFormat::WindowsMediaVideo;
-            /// assert_eq!(format.extension(), "wmv");
-            ///```
-            pub fn extension(&self) -> &str {
-                match self {
-                    $(
-                        FileFormat::$variant => $extension,
-                    )*
+    /// Returns the extension of the `FileFormat`.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use file_format::FileFormat;
+    ///
+    /// let format = FileFormat::WindowsMediaVideo;
+    /// assert_eq!(format.extension(), "wmv");
+    ///```
+    pub fn extension(&self) -> &str {
+        match self {
+            Self::AdaptiveMultiRate => "amr",
+            Self::AdobeFlashPlayerAudio => "f4a",
+            Self::AdobeFlashPlayerAudiobook => "f4b",
+            Self::AdobeFlashPlayerProtectedVideo => "f4p",
+            Self::AdobeFlashPlayerVideo => "f4v",
+            Self::AdobeInDesignDocument => "indd",
+            Self::AdobePhotoshopDocument => "psd",
+            Self::AdvancedAudioCoding => "aac",
+            Self::Alz => "alz",
+            Self::AndroidBinaryXml => "xml",
+            Self::AndroidCompiledResources => "arsc",
+            #[cfg(feature = "zip")]
+            Self::AndroidPackage => "apk",
+            Self::Ani => "ani",
+            Self::AnimatedPortableNetworkGraphics => "apng",
+            Self::ApacheArrowColumnar => "arrow",
+            Self::AppleDiskImage => "dmg",
+            Self::AppleIconImage => "icns",
+            Self::AppleItunesAudio => "m4a",
+            Self::AppleItunesAudiobook => "m4b",
+            Self::AppleItunesProtectedAudio => "m4p",
+            Self::AppleItunesVideo => "m4v",
+            Self::AppleQuickTime => "mov",
+            Self::ArbitraryBinaryData => "bin",
+            Self::ArchivedByRobertJung => "arj",
+            Self::Au => "au",
+            Self::AudioCodec3 => "ac3",
+            Self::AudioInterchangeFileFormat => "aiff",
+            Self::AudioVideoInterleave => "avi",
+            Self::Av1ImageFileFormat => "avif",
+            Self::Av1ImageFileFormatSequence => "avifs",
+            Self::BetterPortableGraphics => "bpg",
+            Self::Blender => "blend",
+            Self::Bzip2 => "bz2",
+            Self::Cabinet => "cab",
+            Self::CanonRaw2 => "cr2",
+            Self::CanonRaw3 => "cr3",
+            Self::Cineon => "cin",
+            Self::CompoundFileBinary => "cfb",
+            Self::Cpio => "cpio",
+            Self::Cur => "cur",
+            Self::DalvikExecutable => "dex",
+            Self::DebianBinaryPackage => "deb",
+            #[cfg(feature = "zip")]
+            Self::DesignWebFormatXps => "dwfx",
+            Self::DigitalImagingAndCommunicationsInMedicine => "dcm",
+            Self::DigitalPictureExchange => "dpx",
+            #[cfg(feature = "zip")]
+            Self::ElectronicPublication => "epub",
+            Self::EmbeddedOpenType => "eot",
+            Self::ExecutableAndLinkableFormat => "elf",
+            Self::ExperimentalComputingFacility => "xcf",
+            Self::ExtensibleArchive => "xar",
+            Self::FastTracker2ExtendedModule => "xm",
+            Self::FlashVideo => "flv",
+            Self::FlexibleImageTransportSystem => "fits",
+            Self::FreeLosslessAudioCodec => "flac",
+            Self::FreeLosslessImageFormat => "flif",
+            Self::FujifilmRaw => "raf",
+            Self::GameBoyAdvanceRom => "gba",
+            Self::GameBoyColorRom => "gbc",
+            Self::GameBoyRom => "gb",
+            Self::GlTransmissionFormatBinary => "glb",
+            Self::GoogleChromeExtension => "crx",
+            Self::GraphicsInterchangeFormat => "gif",
+            Self::Gzip => "gz",
+            Self::HighEfficiencyImageCoding => "heic",
+            Self::HighEfficiencyImageCodingSequence => "heics",
+            Self::HighEfficiencyImageFileFormat => "heif",
+            Self::HighEfficiencyImageFileFormatSequence => "heifs",
+            Self::Ico => "ico",
+            Self::ImpulseTrackerModule => "it",
+            Self::Iso9660 => "iso",
+            #[cfg(feature = "zip")]
+            Self::JavaArchive => "jar",
+            Self::JavaClass => "class",
+            Self::JavaKeyStore => "jks",
+            Self::JointPhotographicExpertsGroup => "jpg",
+            Self::Jpeg2000Part1 => "jp2",
+            Self::Jpeg2000Part2 => "jpx",
+            Self::Jpeg2000Part3 => "mj2",
+            Self::Jpeg2000Part6 => "jpm",
+            Self::JpegExtendedRange => "jxr",
+            Self::JpegXl => "jxl",
+            Self::KhronosTexture => "ktx",
+            Self::KhronosTexture2 => "ktx2",
+            Self::LempelZivFiniteStateEntropy => "lzfse",
+            Self::Lha => "lzh",
+            Self::LongRangeZip => "lrz",
+            Self::Lz4 => "lz4",
+            Self::Lzip => "lz",
+            Self::Lzop => "lzo",
+            Self::MacOsAlias => "alias",
+            Self::MaterialExchangeFormat => "mxf",
+            Self::MatroskaVideo => "mkv",
+            Self::MicrosoftCompiledHtmlHelp => "chm",
+            Self::MicrosoftDirectDrawSurface => "dds",
+            Self::MicrosoftVirtualHardDisk => "vhd",
+            Self::MicrosoftVirtualHardDisk2 => "vhdx",
+            #[cfg(feature = "zip")]
+            Self::MicrosoftVisioDrawing => "vsdx",
+            #[cfg(feature = "zip")]
+            Self::MicrosoftVisualStudioExtension => "vsix",
+            Self::Mobipocket => "mobi",
+            Self::MonkeysAudio => "ape",
+            Self::Mpeg1Video => "mpg",
+            Self::Mpeg4Part14Video => "mp4",
+            Self::MpegAudioLayer3 => "mp3",
+            Self::Musepack => "mpc",
+            Self::MusicalInstrumentDigitalInterface => "mid",
+            Self::NikonElectronicFile => "nef",
+            Self::Nintendo64Rom => "z64",
+            Self::NintendoDsRom => "nds",
+            Self::NintendoEntertainmentSystemRom => "nes",
+            #[cfg(feature = "zip")]
+            Self::OfficeOpenXmlDocument => "docx",
+            #[cfg(feature = "zip")]
+            Self::OfficeOpenXmlPresentation => "pptx",
+            #[cfg(feature = "zip")]
+            Self::OfficeOpenXmlWorkbook => "xlsx",
+            Self::OggFlac => "oga",
+            Self::OggMedia => "ogm",
+            Self::OggMultiplexedMedia => "ogx",
+            Self::OggOpus => "opus",
+            Self::OggSpeex => "spx",
+            Self::OggTheora => "ogv",
+            Self::OggVorbis => "ogg",
+            Self::OlympusRawFormat => "orf",
+            #[cfg(feature = "zip")]
+            Self::OpenDocumentGraphics => "odg",
+            #[cfg(feature = "zip")]
+            Self::OpenDocumentPresentation => "odp",
+            #[cfg(feature = "zip")]
+            Self::OpenDocumentSpreadsheet => "ods",
+            #[cfg(feature = "zip")]
+            Self::OpenDocumentText => "odt",
+            Self::OpenExr => "exr",
+            Self::OpenType => "otf",
+            Self::OptimizedDalvikExecutable => "dey",
+            Self::PanasonicRaw => "rw2",
+            Self::PcapDump => "pcap",
+            Self::PcapNextGenerationDump => "pcapng",
+            Self::PortableDocumentFormat => "pdf",
+            Self::PortableNetworkGraphics => "png",
+            Self::QualcommPureVoice => "qcp",
+            Self::RadianceHdr => "hdr",
+            Self::RedHatPackageManager => "rpm",
+            Self::RoshalArchive => "rar",
+            Self::ScreamTracker3Module => "s3m",
+            Self::SeqBox => "sbx",
+            Self::SevenZip => "7z",
+            Self::Shapefile => "shp",
+            Self::SketchUp => "skp",
+            Self::SmallWebFormat => "swf",
+            Self::Snappy => "sz",
+            Self::SonyDsdStreamFile => "dsf",
+            Self::Sqlite3 => "sqlite",
+            Self::TagImageFileFormat => "tiff",
+            Self::TapeArchive => "tar",
+            Self::ThirdGenerationPartnershipProject => "3gp",
+            Self::ThirdGenerationPartnershipProject2 => "3g2",
+            #[cfg(feature = "zip")]
+            Self::ThreeDimensionalManufacturingFormat => "3mf",
+            Self::TrueType => "ttf",
+            Self::UnixArchiver => "ar",
+            Self::UnixCompress => "Z",
+            Self::VirtualBoxVirtualDiskImage => "vdi",
+            Self::WavPack => "wv",
+            Self::WaveformAudio => "wav",
+            Self::WebAssemblyBinary => "wasm",
+            Self::WebOpenFontFormat => "woff",
+            Self::WebOpenFontFormat2 => "woff2",
+            Self::WebP => "webp",
+            Self::WindowsBitmap => "bmp",
+            Self::WindowsExecutable => "exe",
+            Self::WindowsMediaVideo => "wmv",
+            Self::WindowsMetafile => "wmf",
+            Self::WindowsShortcut => "lnk",
+            #[cfg(feature = "zip")]
+            Self::Xap => "xap",
+            #[cfg(feature = "zip")]
+            Self::XpInstall => "xpi",
+            Self::Xz => "xz",
+            Self::Zip => "zip",
+            Self::Zoo => "zoo",
+            Self::Zstandard => "zst",
+        }
+    }
+
+    /// Determines `FileFormat` from bytes.
+    ///
+    /// If the `FileFormat` is not recognized, the [default value] will be returned.
+    ///
+    /// # Examples
+    ///
+    /// Detects from the first bytes of a PNG file:
+    ///
+    /// ```rust
+    /// use file_format::FileFormat;
+    ///
+    /// let format = FileFormat::from_bytes(b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A");
+    /// assert_eq!(format, FileFormat::PortableNetworkGraphics);
+    ///```
+    ///
+    /// Detects from a zeroed buffer:
+    ///
+    /// ```rust
+    /// use file_format::FileFormat;
+    ///
+    /// let format = FileFormat::from_bytes(&[0; 1000]);
+    /// assert_eq!(format, FileFormat::ArbitraryBinaryData);
+    ///```
+    ///
+    /// [default value]: FileFormat::default
+    #[inline]
+    pub fn from_bytes(bytes: &[u8]) -> FileFormat {
+        FileFormat::from_reader(Cursor::new(bytes)).unwrap_or_default()
+    }
+
+    /// Determines `FileFormat` from a file.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use file_format::FileFormat;
+    ///
+    /// let format = FileFormat::from_file("fixtures/video/sample.mkv")?;
+    /// assert_eq!(format, FileFormat::MatroskaVideo);
+    /// # Ok::<(), std::io::Error>(())
+    ///```
+    #[inline]
+    pub fn from_file<P: AsRef<Path>>(path: P) -> Result<FileFormat> {
+        FileFormat::from_reader(File::open(path)?)
+    }
+
+    /// Determines `FileFormat` from a reader.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use file_format::FileFormat;
+    ///
+    /// let format = FileFormat::from_reader(std::io::empty())?;
+    /// assert_eq!(format, FileFormat::default());
+    /// # Ok::<(), std::io::Error>(())
+    ///```
+    #[cfg(not(feature = "zip"))]
+    pub fn from_reader<R: Read + Seek>(reader: R) -> Result<FileFormat> {
+        let mut reader = BufReader::with_capacity(FileFormat::MAX_BYTES, reader);
+        Ok(FileFormat::from_signature(reader.fill_buf()?).unwrap_or_default())
+    }
+
+    /// Determines `FileFormat` from a reader.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use file_format::FileFormat;
+    ///
+    /// let format = FileFormat::from_reader(std::io::empty())?;
+    /// assert_eq!(format, FileFormat::default());
+    /// # Ok::<(), std::io::Error>(())
+    ///```
+    #[cfg(feature = "zip")]
+    pub fn from_reader<R: Read + Seek>(reader: R) -> Result<FileFormat> {
+        let mut reader = BufReader::with_capacity(FileFormat::MAX_BYTES, reader);
+        Ok(match FileFormat::from_signature(reader.fill_buf()?) {
+            Some(FileFormat::Zip) => FileFormat::from_zip(reader).unwrap_or_default(),
+            Some(format) => format,
+            _ => FileFormat::default(),
+        })
+    }
+
+    #[cfg(feature = "zip")]
+    fn from_zip<R: Read + Seek>(reader: R) -> Result<FileFormat> {
+        let mut archive = zip::ZipArchive::new(reader)?;
+        for index in 0..archive.len() {
+            let mut file = archive.by_index(index)?;
+            let filename = file.name();
+            if filename == "AndroidManifest.xml" {
+                return Ok(FileFormat::AndroidPackage);
+            } else if filename == "AppManifest.xaml" {
+                return Ok(FileFormat::Xap);
+            } else if filename == "extension.vsixmanifest" {
+                return Ok(FileFormat::MicrosoftVisualStudioExtension);
+            } else if filename == "META-INF/mozilla.rsa" {
+                return Ok(FileFormat::XpInstall);
+            } else if filename == "META-INF/MANIFEST.MF" {
+                return Ok(FileFormat::JavaArchive);
+            } else if filename == "mimetype" {
+                let mut content = String::new();
+                file.read_to_string(&mut content)?;
+                match content.as_str() {
+                    "application/epub+zip" => {
+                        return Ok(FileFormat::ElectronicPublication);
+                    }
+                    "application/vnd.oasis.opendocument.text" => {
+                        return Ok(FileFormat::OpenDocumentText);
+                    }
+                    "application/vnd.oasis.opendocument.spreadsheet" => {
+                        return Ok(FileFormat::OpenDocumentSpreadsheet);
+                    }
+                    "application/vnd.oasis.opendocument.presentation" => {
+                        return Ok(FileFormat::OpenDocumentPresentation);
+                    }
+                    "application/vnd.oasis.opendocument.graphics" => {
+                        return Ok(FileFormat::OpenDocumentGraphics);
+                    }
+                    _ => {}
                 }
+            } else if filename.starts_with("dwf/") {
+                return Ok(FileFormat::DesignWebFormatXps);
+            } else if filename.starts_with("word/") {
+                return Ok(FileFormat::OfficeOpenXmlDocument);
+            } else if filename.starts_with("ppt/") {
+                return Ok(FileFormat::OfficeOpenXmlPresentation);
+            } else if filename.starts_with("xl/") {
+                return Ok(FileFormat::OfficeOpenXmlWorkbook);
+            } else if filename.starts_with("visio/") {
+                return Ok(FileFormat::MicrosoftVisioDrawing);
+            } else if filename.starts_with("3D/") && filename.ends_with(".model") {
+                return Ok(FileFormat::ThreeDimensionalManufacturingFormat);
             }
         }
-    };
+        Ok(FileFormat::Zip)
+    }
+}
+
+impl Default for FileFormat {
+    /// Returns the default `FileFormat` which corresponds to [`FileFormat::ArbitraryBinaryData`].
+    #[inline]
+    fn default() -> FileFormat {
+        FileFormat::ArbitraryBinaryData
+    }
+}
+
+impl Display for FileFormat {
+    fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
+        write!(f, "{}", self.name())
+    }
 }
 
 /// Generates [`FileFormat::from_signature`] function.
@@ -120,858 +1173,6 @@ macro_rules! signatures {
             }
         }
     };
-}
-
-file_formats! {
-  - variant: AdaptiveMultiRate
-    name: "Adaptive Multi-Rate"
-    media_type: "audio/amr"
-    extension: "amr"
-
-  - variant: AdobeFlashPlayerAudio
-    name: "Adobe Flash Player Audio"
-    media_type: "audio/mp4"
-    extension: "f4a"
-
-  - variant: AdobeFlashPlayerAudiobook
-    name: "Adobe Flash Player Audiobook"
-    media_type: "audio/mp4"
-    extension: "f4b"
-
-  - variant: AdobeFlashPlayerProtectedVideo
-    name: "Adobe Flash Player Protected Video"
-    media_type: "video/mp4"
-    extension: "f4p"
-
-  - variant: AdobeFlashPlayerVideo
-    name: "Adobe Flash Player Video"
-    media_type: "video/mp4"
-    extension: "f4v"
-
-  - variant: AdobeInDesignDocument
-    name: "Adobe InDesign Document"
-    media_type: "application/x-indesign"
-    extension: "indd"
-
-  - variant: AdobePhotoshopDocument
-    name: "Adobe Photoshop Document"
-    media_type: "image/vnd.adobe.photoshop"
-    extension: "psd"
-
-  - variant: AdvancedAudioCoding
-    name: "Advanced Audio Coding"
-    media_type: "audio/aac"
-    extension: "aac"
-
-  - variant: Alz
-    name: "ALZ"
-    media_type: "application/x-alz-compressed"
-    extension: "alz"
-
-  - variant: AndroidBinaryXml
-    name: "Android Binary XML"
-    media_type: "application/vnd.android.axml"
-    extension: "xml"
-
-  - variant: AndroidCompiledResources
-    name: "Android Compiled Resources"
-    media_type: "application/vnd.android.arsc"
-    extension: "arsc"
-
-  - variant: AndroidPackage
-    name: "Android Package"
-    media_type: "application/vnd.android.package-archive"
-    extension: "apk"
-
-  - variant: Ani
-    name: "ANI"
-    media_type: "application/x-navi-animation"
-    extension: "ani"
-
-  - variant: AnimatedPortableNetworkGraphics
-    name: "Animated Portable Network Graphics"
-    media_type: "image/apng"
-    extension: "apng"
-
-  - variant: ApacheArrowColumnar
-    name: "Apache Arrow Columnar"
-    media_type: "application/x-apache-arrow"
-    extension: "arrow"
-
-  - variant: AppleDiskImage
-    name: "Apple Disk Image"
-    media_type: "application/x-apple-diskimage"
-    extension: "dmg"
-
-  - variant: AppleIconImage
-    name: "Apple Icon Image"
-    media_type: "image/x-icns"
-    extension: "icns"
-
-  - variant: AppleItunesAudio
-    name: "Apple iTunes Audio"
-    media_type: "audio/x-m4a"
-    extension: "m4a"
-
-  - variant: AppleItunesAudiobook
-    name: "Apple iTunes Audiobook"
-    media_type: "audio/mp4"
-    extension: "m4b"
-
-  - variant: AppleItunesProtectedAudio
-    name: "Apple iTunes Protected Audio"
-    media_type: "audio/mp4"
-    extension: "m4p"
-
-  - variant: AppleItunesVideo
-    name: "Apple iTunes Video"
-    media_type: "video/x-m4v"
-    extension: "m4v"
-
-  - variant: AppleQuickTime
-    name: "Apple QuickTime"
-    media_type: "video/quicktime"
-    extension: "mov"
-
-  - variant: ArbitraryBinaryData
-    name: "Arbitrary Binary Data"
-    media_type: "application/octet-stream"
-    extension: "bin"
-
-  - variant: ArchivedByRobertJung
-    name: "Archived by Robert Jung"
-    media_type: "application/x-arj"
-    extension: "arj"
-
-  - variant: Au
-    name: "Au"
-    media_type: "audio/basic"
-    extension: "au"
-
-  - variant: AudioCodec3
-    name: "Audio Codec 3"
-    media_type: "audio/vnd.dolby.dd-raw"
-    extension: "ac3"
-
-  - variant: AudioInterchangeFileFormat
-    name: "Audio Interchange File Format"
-    media_type: "audio/aiff"
-    extension: "aiff"
-
-  - variant: AudioVideoInterleave
-    name: "Audio Video Interleave"
-    media_type: "video/avi"
-    extension: "avi"
-
-  - variant: Av1ImageFileFormat
-    name: "AV1 Image File Format"
-    media_type: "image/avif"
-    extension: "avif"
-
-  - variant: Av1ImageFileFormatSequence
-    name: "AV1 Image File Format Sequence"
-    media_type: "image/avif-sequence"
-    extension: "avifs"
-
-  - variant: BetterPortableGraphics
-    name: "Better Portable Graphics"
-    media_type: "image/bpg"
-    extension: "bpg"
-
-  - variant: Blender
-    name: "Blender"
-    media_type: "application/x-blender"
-    extension: "blend"
-
-  - variant: Bzip2
-    name: "bzip2"
-    media_type: "application/x-bzip2"
-    extension: "bz2"
-
-  - variant: Cabinet
-    name: "Cabinet"
-    media_type: "application/vnd.ms-cab-compressed"
-    extension: "cab"
-
-  - variant: CanonRaw2
-    name: "Canon Raw 2"
-    media_type: "image/x-canon-cr2"
-    extension: "cr2"
-
-  - variant: CanonRaw3
-    name: "Canon Raw 3"
-    media_type: "image/x-canon-cr3"
-    extension: "cr3"
-
-  - variant: Cineon
-    name: "Cineon"
-    media_type: "image/cineon"
-    extension: "cin"
-
-  - variant: CompoundFileBinary
-    name: "Compound File Binary"
-    media_type: "application/x-cfb"
-    extension: "cfb"
-
-  - variant: Cpio
-    name: "cpio"
-    media_type: "application/x-cpio"
-    extension: "cpio"
-
-  - variant: Cur
-    name: "CUR"
-    media_type: "image/x-icon"
-    extension: "cur"
-
-  - variant: DalvikExecutable
-    name: "Dalvik Executable"
-    media_type: "application/vnd.android.dex"
-    extension: "dex"
-
-  - variant: DebianBinaryPackage
-    name: "Debian Binary Package"
-    media_type: "application/vnd.debian.binary-package"
-    extension: "deb"
-
-  - variant: DesignWebFormatXps
-    name: "Design Web Format XPS"
-    media_type: "model/vnd.dwfx+xps"
-    extension: "dwfx"
-
-  - variant: DigitalImagingAndCommunicationsInMedicine
-    name: "Digital Imaging and Communications in Medicine"
-    media_type: "application/dicom"
-    extension: "dcm"
-
-  - variant: DigitalPictureExchange
-    name: "Digital Picture Exchange"
-    media_type: "image/x-dpx"
-    extension: "dpx"
-
-  - variant: ElectronicPublication
-    name: "Electronic Publication"
-    media_type: "application/epub+zip"
-    extension: "epub"
-
-  - variant: EmbeddedOpenType
-    name: "Embedded OpenType"
-    media_type: "application/vnd.ms-fontobject"
-    extension: "eot"
-
-  - variant: ExecutableAndLinkableFormat
-    name: "Executable and Linkable Format"
-    media_type: "application/x-executable"
-    extension: "elf"
-
-  - variant: ExperimentalComputingFacility
-    name: "Experimental Computing Facility"
-    media_type: "image/x-xcf"
-    extension: "xcf"
-
-  - variant: ExtensibleArchive
-    name: "Extensible Archive"
-    media_type: "application/x-xar"
-    extension: "xar"
-
-  - variant: FastTracker2ExtendedModule
-    name: "FastTracker 2 Extended Module"
-    media_type: "audio/x-xm"
-    extension: "xm"
-
-  - variant: FlashVideo
-    name: "Flash Video"
-    media_type: "video/x-flv"
-    extension: "flv"
-
-  - variant: FlexibleImageTransportSystem
-    name: "Flexible Image Transport System"
-    media_type: "image/fits"
-    extension: "fits"
-
-  - variant: FreeLosslessAudioCodec
-    name: "Free Lossless Audio Codec"
-    media_type: "audio/x-flac"
-    extension: "flac"
-
-  - variant: FreeLosslessImageFormat
-    name: "Free Lossless Image Format"
-    media_type: "image/flif"
-    extension: "flif"
-
-  - variant: FujifilmRaw
-    name: "Fujifilm Raw"
-    media_type: "image/x-fuji-raf"
-    extension: "raf"
-
-  - variant: GameBoyAdvanceRom
-    name: "Game Boy Advance ROM"
-    media_type: "application/x-gba-rom"
-    extension: "gba"
-
-  - variant: GameBoyColorRom
-    name: "Game Boy Color ROM"
-    media_type: "application/x-gameboy-color-rom"
-    extension: "gbc"
-
-  - variant: GameBoyRom
-    name: "Game Boy ROM"
-    media_type: "application/x-gameboy-rom"
-    extension: "gb"
-
-  - variant: GlTransmissionFormatBinary
-    name: "GL Transmission Format Binary"
-    media_type: "model/gltf-binary"
-    extension: "glb"
-
-  - variant: GoogleChromeExtension
-    name: "Google Chrome Extension"
-    media_type: "application/x-google-chrome-extension"
-    extension: "crx"
-
-  - variant: GraphicsInterchangeFormat
-    name: "Graphics Interchange Format"
-    media_type: "image/gif"
-    extension: "gif"
-
-  - variant: Gzip
-    name: "gzip"
-    media_type: "application/gzip"
-    extension: "gz"
-
-  - variant: HighEfficiencyImageCoding
-    name: "High Efficiency Image Coding"
-    media_type: "image/heic"
-    extension: "heic"
-
-  - variant: HighEfficiencyImageCodingSequence
-    name: "High Efficiency Image Coding Sequence"
-    media_type: "image/heic-sequence"
-    extension: "heics"
-
-  - variant: HighEfficiencyImageFileFormat
-    name: "High Efficiency Image File Format"
-    media_type: "image/heif"
-    extension: "heif"
-
-  - variant: HighEfficiencyImageFileFormatSequence
-    name: "High Efficiency Image File Format Sequence"
-    media_type: "image/heif-sequence"
-    extension: "heifs"
-
-  - variant: Ico
-    name: "ICO"
-    media_type: "image/x-icon"
-    extension: "ico"
-
-  - variant: ImpulseTrackerModule
-    name: "Impulse Tracker Module"
-    media_type: "audio/x-it"
-    extension: "it"
-
-  - variant: Iso9660
-    name: "ISO 9660"
-    media_type: "application/x-iso9660-image"
-    extension: "iso"
-
-  - variant: JavaArchive
-    name: "Java Archive"
-    media_type: "application/java-archive"
-    extension: "jar"
-
-  - variant: JavaClass
-    name: "Java Class"
-    media_type: "application/java-vm"
-    extension: "class"
-
-  - variant: JavaKeyStore
-    name: "Java KeyStore"
-    media_type: "application/x-java-keystore"
-    extension: "jks"
-
-  - variant: JointPhotographicExpertsGroup
-    name: "Joint Photographic Experts Group"
-    media_type: "image/jpeg"
-    extension: "jpg"
-
-  - variant: Jpeg2000Part1
-    name: "JPEG 2000 Part 1"
-    media_type: "image/jp2"
-    extension: "jp2"
-
-  - variant: Jpeg2000Part2
-    name: "JPEG 2000 Part 1"
-    media_type: "image/jpx"
-    extension: "jpx"
-
-  - variant: Jpeg2000Part3
-    name: "JPEG 2000 Part 3"
-    media_type: "image/mj2"
-    extension: "mj2"
-
-  - variant: Jpeg2000Part6
-    name: "JPEG 2000 Part 6"
-    media_type: "image/jpm"
-    extension: "jpm"
-
-  - variant: JpegExtendedRange
-    name: "JPEG Extended Range"
-    media_type: "image/jxr"
-    extension: "jxr"
-
-  - variant: JpegXl
-    name: "JPEG XL"
-    media_type: "image/jxl"
-    extension: "jxl"
-
-  - variant: KhronosTexture
-    name: "Khronos Texture"
-    media_type: "image/ktx"
-    extension: "ktx"
-
-  - variant: KhronosTexture2
-    name: "Khronos Texture 2"
-    media_type: "image/ktx2"
-    extension: "ktx2"
-
-  - variant: LempelZivFiniteStateEntropy
-    name: "Lempel–Ziv Finite State Entropy"
-    media_type: "application/x-lzfse"
-    extension: "lzfse"
-
-  - variant: Lha
-    name: "LHA"
-    media_type: "application/x-lzh-compressed"
-    extension: "lzh"
-
-  - variant: LongRangeZip
-    name: "Long Range ZIP"
-    media_type: "application/x-lrzip"
-    extension: "lrz"
-
-  - variant: Lz4
-    name: "LZ4"
-    media_type: "application/x-lz4"
-    extension: "lz4"
-
-  - variant: Lzip
-    name: "lzip"
-    media_type: "application/x-lzip"
-    extension: "lz"
-
-  - variant: Lzop
-    name: "lzop"
-    media_type: "application/x-lzop"
-    extension: "lzo"
-
-  - variant: MacOsAlias
-    name: "macOS Alias"
-    media_type: "application/x-apple-alias"
-    extension: "alias"
-
-  - variant: MaterialExchangeFormat
-    name: "Material Exchange Format"
-    media_type: "application/mxf"
-    extension: "mxf"
-
-  - variant: MatroskaVideo
-    name: "Matroska Video"
-    media_type: "video/x-matroska"
-    extension: "mkv"
-
-  - variant: MicrosoftCompiledHtmlHelp
-    name: "Microsoft Compiled HTML Help"
-    media_type: "application/vnd.ms-htmlhelp"
-    extension: "chm"
-
-  - variant: MicrosoftDirectDrawSurface
-    name: "Microsoft DirectDraw Surface"
-    media_type: "image/vnd-ms.dds"
-    extension: "dds"
-
-  - variant: MicrosoftVirtualHardDisk
-    name: "Microsoft Virtual Hard Disk"
-    media_type: "application/x-vhd"
-    extension: "vhd"
-
-  - variant: MicrosoftVirtualHardDisk2
-    name: "Microsoft Virtual Hard Disk 2"
-    media_type: "application/x-vhdx"
-    extension: "vhdx"
-
-  - variant: MicrosoftVisioDrawing
-    name: "Microsoft Visio Drawing"
-    media_type: "application/vnd.ms-visio.drawing.main+xml"
-    extension: "vsdx"
-
-  - variant: MicrosoftVisualStudioExtension
-    name: "Microsoft Visual Studio Extension"
-    media_type: "application/vsix"
-    extension: "vsix"
-
-  - variant: Mobipocket
-    name: "Mobipocket"
-    media_type: "application/x-mobipocket-ebook"
-    extension: "mobi"
-
-  - variant: MonkeysAudio
-    name: "Monkey's Audio"
-    media_type: "audio/x-ape"
-    extension: "ape"
-
-  - variant: Mpeg1Video
-    name: "MPEG-1 Video"
-    media_type: "video/mpeg"
-    extension: "mpg"
-
-  - variant: Mpeg4Part14Video
-    name: "MPEG-4 Part 14 Video"
-    media_type: "video/mp4"
-    extension: "mp4"
-
-  - variant: MpegAudioLayer3
-    name: "MPEG-1/2 Audio Layer III"
-    media_type: "audio/mpeg"
-    extension: "mp3"
-
-  - variant: Musepack
-    name: "Musepack"
-    media_type: "audio/x-musepack"
-    extension: "mpc"
-
-  - variant: MusicalInstrumentDigitalInterface
-    name: "Musical Instrument Digital Interface"
-    media_type: "audio/midi"
-    extension: "mid"
-
-  - variant: NikonElectronicFile
-    name: "Nikon Electronic File"
-    media_type: "image/x-nikon-nef"
-    extension: "nef"
-
-  - variant: Nintendo64Rom
-    name: "Nintendo 64 ROM"
-    media_type: "application/x-n64-rom"
-    extension: "z64"
-
-  - variant: NintendoDsRom
-    name: "Nintendo DS ROM"
-    media_type: "application/x-nintendo-ds-rom"
-    extension: "nds"
-
-  - variant: NintendoEntertainmentSystemRom
-    name: "Nintendo Entertainment System ROM"
-    media_type: "application/x-nintendo-nes-rom"
-    extension: "nes"
-
-  - variant: OfficeOpenXmlDocument
-    name: "Office Open XML Document"
-    media_type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-    extension: "docx"
-
-  - variant: OfficeOpenXmlPresentation
-    name: "Office Open XML Presentation"
-    media_type: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
-    extension: "pptx"
-
-  - variant: OfficeOpenXmlWorkbook
-    name: "Office Open XML Workbook"
-    media_type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    extension: "xlsx"
-
-  - variant: OggFlac
-    name: "Ogg FLAC"
-    media_type: "audio/ogg"
-    extension: "oga"
-
-  - variant: OggMedia
-    name: "Ogg Media"
-    media_type: "video/ogg"
-    extension: "ogm"
-
-  - variant: OggMultiplexedMedia
-    name: "Ogg Multiplexed Media"
-    media_type: "application/ogg"
-    extension: "ogx"
-
-  - variant: OggOpus
-    name: "Ogg Opus"
-    media_type: "audio/opus"
-    extension: "opus"
-
-  - variant: OggSpeex
-    name: "Ogg Speex"
-    media_type: "audio/ogg"
-    extension: "spx"
-
-  - variant: OggTheora
-    name: "Ogg Theora"
-    media_type: "video/ogg"
-    extension: "ogv"
-
-  - variant: OggVorbis
-    name: "Ogg Vorbis"
-    media_type: "audio/ogg"
-    extension: "ogg"
-
-  - variant: OlympusRawFormat
-    name: "Olympus Raw Format"
-    media_type: "image/x-olympus-orf"
-    extension: "orf"
-
-  - variant: OpenDocumentGraphics
-    name: "OpenDocument Graphics"
-    media_type: "application/vnd.oasis.opendocument.graphics"
-    extension: "odg"
-
-  - variant: OpenDocumentPresentation
-    name: "OpenDocument Presentation"
-    media_type: "application/vnd.oasis.opendocument.presentation"
-    extension: "odp"
-
-  - variant: OpenDocumentSpreadsheet
-    name: "OpenDocument Spreadsheet"
-    media_type: "application/vnd.oasis.opendocument.spreadsheet"
-    extension: "ods"
-
-  - variant: OpenDocumentText
-    name: "OpenDocument Text"
-    media_type: "application/vnd.oasis.opendocument.text"
-    extension: "odt"
-
-  - variant: OpenExr
-    name: "OpenEXR"
-    media_type: "image/x-exr"
-    extension: "exr"
-
-  - variant: OpenType
-    name: "OpenType"
-    media_type: "font/otf"
-    extension: "otf"
-
-  - variant: OptimizedDalvikExecutable
-    name: "Optimized Dalvik Executable"
-    media_type: "application/vnd.android.dey"
-    extension: "dey"
-
-  - variant: PanasonicRaw
-    name: "Panasonic Raw"
-    media_type: "image/x-panasonic-rw2"
-    extension: "rw2"
-
-  - variant: PcapDump
-    name: "PCAP Dump"
-    media_type: "application/vnd.tcpdump.pcap"
-    extension: "pcap"
-
-  - variant: PcapNextGenerationDump
-    name: "PCAP Next Generation Dump"
-    media_type: "application/x-pcapng"
-    extension: "pcapng"
-
-  - variant: PortableDocumentFormat
-    name: "Portable Document Format"
-    media_type: "application/pdf"
-    extension: "pdf"
-
-  - variant: PortableNetworkGraphics
-    name: "Portable Network Graphics"
-    media_type: "image/png"
-    extension: "png"
-
-  - variant: QualcommPureVoice
-    name: "Qualcomm PureVoice"
-    media_type: "audio/qcelp"
-    extension: "qcp"
-
-  - variant: RadianceHdr
-    name: "Radiance HDR"
-    media_type: "image/vnd.radiance"
-    extension: "hdr"
-
-  - variant: RedHatPackageManager
-    name: "Red Hat Package Manager"
-    media_type: "application/x-rpm"
-    extension: "rpm"
-
-  - variant: RoshalArchive
-    name: "Roshal Archive"
-    media_type: "application/vnd.rar"
-    extension: "rar"
-
-  - variant: ScreamTracker3Module
-    name: "ScreamTracker 3 Module"
-    media_type: "audio/x-s3m"
-    extension: "s3m"
-
-  - variant: SeqBox
-    name: "SeqBox"
-    media_type: "application/x-sbx"
-    extension: "sbx"
-
-  - variant: SevenZip
-    name: "7-Zip"
-    media_type: "application/x-7z-compressed"
-    extension: "7z"
-
-  - variant: Shapefile
-    name: "Shapefile"
-    media_type: "application/x-esri-shape"
-    extension: "shp"
-
-  - variant: SketchUp
-    name: "SketchUp"
-    media_type: "application/vnd.sketchup.skp"
-    extension: "skp"
-
-  - variant: SmallWebFormat
-    name: "Small Web Format"
-    media_type: "application/x-shockwave-flash"
-    extension: "swf"
-
-  - variant: Snappy
-    name: "Snappy"
-    media_type: "application/x-snappy-framed"
-    extension: "sz"
-
-  - variant: SonyDsdStreamFile
-    name: "Sony DSD Stream File"
-    media_type: "audio/x-dsf"
-    extension: "dsf"
-
-  - variant: Sqlite3
-    name: "SQLite 3"
-    media_type: "application/vnd.sqlite3"
-    extension: "sqlite"
-
-  - variant: TagImageFileFormat
-    name: "Tag Image File Format"
-    media_type: "image/tiff"
-    extension: "tiff"
-
-  - variant: TapeArchive
-    name: "Tape Archive"
-    media_type: "application/x-tar"
-    extension: "tar"
-
-  - variant: ThirdGenerationPartnershipProject
-    name: "3rd Generation Partnership Project"
-    media_type: "video/3gpp"
-    extension: "3gp"
-
-  - variant: ThirdGenerationPartnershipProject2
-    name: "3rd Generation Partnership Project 2"
-    media_type: "video/3gpp2"
-    extension: "3g2"
-
-  - variant: ThreeDimensionalManufacturingFormat
-    name: "3D Manufacturing Format"
-    media_type: "application/vnd.ms-package.3dmanufacturing-3dmodel+xml"
-    extension: "3mf"
-
-  - variant: TrueType
-    name: "TrueType"
-    media_type: "font/ttf"
-    extension: "ttf"
-
-  - variant: UnixArchiver
-    name: "UNIX archiver"
-    media_type: "application/x-archive"
-    extension: "ar"
-
-  - variant: UnixCompress
-    name: "UNIX compress"
-    media_type: "application/x-compress"
-    extension: "Z"
-
-  - variant: VirtualBoxVirtualDiskImage
-    name: "VirtualBox Virtual Disk Image"
-    media_type: "application/x-virtualbox-vdi"
-    extension: "vdi"
-
-  - variant: WavPack
-    name: "WavPack"
-    media_type: "audio/wavpack"
-    extension: "wv"
-
-  - variant: WaveformAudio
-    name: "Waveform Audio"
-    media_type: "audio/vnd.wave"
-    extension: "wav"
-
-  - variant: WebAssemblyBinary
-    name: "WebAssembly Binary"
-    media_type: "application/wasm"
-    extension: "wasm"
-
-  - variant: WebOpenFontFormat
-    name: "Web Open Font Format"
-    media_type: "font/woff"
-    extension: "woff"
-
-  - variant: WebOpenFontFormat2
-    name: "Web Open Font Format 2"
-    media_type: "font/woff2"
-    extension: "woff2"
-
-  - variant: WebP
-    name: "WebP"
-    media_type: "image/webp"
-    extension: "webp"
-
-  - variant: WindowsBitmap
-    name: "Windows Bitmap"
-    media_type: "image/bmp"
-    extension: "bmp"
-
-  - variant: WindowsExecutable
-    name: "Windows Executable"
-    media_type: "application/x-msdownload"
-    extension: "exe"
-
-  - variant: WindowsMediaVideo
-    name: "Windows Media Video"
-    media_type: "video/x-ms-asf"
-    extension: "wmv"
-
-  - variant: WindowsMetafile
-    name: "Windows Metafile"
-    media_type: "image/wmf"
-    extension: "wmf"
-
-  - variant: WindowsShortcut
-    name: "Windows Shortcut"
-    media_type: "application/x-ms-shortcut"
-    extension: "lnk"
-
-  - variant: Xap
-    name: "XAP"
-    media_type: "application/x-silverlight-app"
-    extension: "xap"
-
-  - variant: XpInstall
-    name: "XPInstall"
-    media_type: "application/x-xpinstall"
-    extension: "xpi"
-
-  - variant: Xz
-    name: "XZ"
-    media_type: "application/x-xz"
-    extension: "xz"
-
-  - variant: Zip
-    name: "ZIP"
-    media_type: "application/zip"
-    extension: "zip"
-
-  - variant: Zoo
-    name: "zoo"
-    media_type: "application/x-zoo"
-    extension: "zoo"
-
-  - variant: Zstandard
-    name: "Zstandard"
-    media_type: "application/zstd"
-    extension: "zst"
 }
 
 signatures! {
@@ -2057,161 +2258,4 @@ signatures! {
     signatures:
       - parts:
         - value: b"MZ"
-}
-
-impl FileFormat {
-    /// Maximum number of bytes to read to detect the `FileFormat`.
-    const MAX_BYTES: usize = 36870;
-
-    /// Determines `FileFormat` from bytes.
-    ///
-    /// If the `FileFormat` is not recognized, the [default value] will be returned.
-    ///
-    /// # Examples
-    ///
-    /// Detects from the first bytes of a PNG file:
-    ///
-    /// ```rust
-    /// use file_format::FileFormat;
-    ///
-    /// let format = FileFormat::from_bytes(b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A");
-    /// assert_eq!(format, FileFormat::PortableNetworkGraphics);
-    ///```
-    ///
-    /// Detects from a zeroed buffer:
-    ///
-    /// ```rust
-    /// use file_format::FileFormat;
-    ///
-    /// let format = FileFormat::from_bytes(&[0; 1000]);
-    /// assert_eq!(format, FileFormat::ArbitraryBinaryData);
-    ///```
-    ///
-    /// [default value]: FileFormat::default
-    #[inline]
-    pub fn from_bytes(bytes: &[u8]) -> FileFormat {
-        FileFormat::from_reader(Cursor::new(bytes)).unwrap_or_default()
-    }
-
-    /// Determines `FileFormat` from a file.
-    ///
-    /// # Examples
-    ///
-    /// ```rust
-    /// use file_format::FileFormat;
-    ///
-    /// let format = FileFormat::from_file("fixtures/video/sample.mkv")?;
-    /// assert_eq!(format, FileFormat::MatroskaVideo);
-    /// # Ok::<(), std::io::Error>(())
-    ///```
-    #[inline]
-    pub fn from_file<P: AsRef<Path>>(path: P) -> Result<FileFormat> {
-        FileFormat::from_reader(File::open(path)?)
-    }
-
-    /// Determines `FileFormat` from a reader.
-    ///
-    /// # Examples
-    ///
-    /// ```rust
-    /// use file_format::FileFormat;
-    ///
-    /// let format = FileFormat::from_reader(std::io::empty())?;
-    /// assert_eq!(format, FileFormat::default());
-    /// # Ok::<(), std::io::Error>(())
-    ///```
-    #[cfg(not(feature = "zip"))]
-    pub fn from_reader<R: Read + Seek>(reader: R) -> Result<FileFormat> {
-        let mut reader = BufReader::with_capacity(FileFormat::MAX_BYTES, reader);
-        Ok(FileFormat::from_signature(reader.fill_buf()?).unwrap_or_default())
-    }
-
-    /// Determines `FileFormat` from a reader.
-    ///
-    /// # Examples
-    ///
-    /// ```rust
-    /// use file_format::FileFormat;
-    ///
-    /// let format = FileFormat::from_reader(std::io::empty())?;
-    /// assert_eq!(format, FileFormat::default());
-    /// # Ok::<(), std::io::Error>(())
-    ///```
-    #[cfg(feature = "zip")]
-    pub fn from_reader<R: Read + Seek>(reader: R) -> Result<FileFormat> {
-        let mut reader = BufReader::with_capacity(FileFormat::MAX_BYTES, reader);
-        Ok(match FileFormat::from_signature(reader.fill_buf()?) {
-            Some(FileFormat::Zip) => FileFormat::from_zip(reader).unwrap_or_default(),
-            Some(format) => format,
-            _ => FileFormat::default(),
-        })
-    }
-
-    #[cfg(feature = "zip")]
-    fn from_zip<R: Read + Seek>(reader: R) -> Result<FileFormat> {
-        let mut archive = ZipArchive::new(reader)?;
-        for index in 0..archive.len() {
-            let mut file = archive.by_index(index)?;
-            let filename = file.name();
-            if filename == "AndroidManifest.xml" {
-                return Ok(FileFormat::AndroidPackage);
-            } else if filename == "AppManifest.xaml" {
-                return Ok(FileFormat::Xap);
-            } else if filename == "extension.vsixmanifest" {
-                return Ok(FileFormat::MicrosoftVisualStudioExtension);
-            } else if filename == "META-INF/mozilla.rsa" {
-                return Ok(FileFormat::XpInstall);
-            } else if filename == "META-INF/MANIFEST.MF" {
-                return Ok(FileFormat::JavaArchive);
-            } else if filename == "mimetype" {
-                let mut content = String::new();
-                file.read_to_string(&mut content)?;
-                match content.as_str() {
-                    "application/epub+zip" => {
-                        return Ok(FileFormat::ElectronicPublication);
-                    }
-                    "application/vnd.oasis.opendocument.text" => {
-                        return Ok(FileFormat::OpenDocumentText);
-                    }
-                    "application/vnd.oasis.opendocument.spreadsheet" => {
-                        return Ok(FileFormat::OpenDocumentSpreadsheet);
-                    }
-                    "application/vnd.oasis.opendocument.presentation" => {
-                        return Ok(FileFormat::OpenDocumentPresentation);
-                    }
-                    "application/vnd.oasis.opendocument.graphics" => {
-                        return Ok(FileFormat::OpenDocumentGraphics);
-                    }
-                    _ => {}
-                }
-            } else if filename.starts_with("dwf/") {
-                return Ok(FileFormat::DesignWebFormatXps);
-            } else if filename.starts_with("word/") {
-                return Ok(FileFormat::OfficeOpenXmlDocument);
-            } else if filename.starts_with("ppt/") {
-                return Ok(FileFormat::OfficeOpenXmlPresentation);
-            } else if filename.starts_with("xl/") {
-                return Ok(FileFormat::OfficeOpenXmlWorkbook);
-            } else if filename.starts_with("visio/") {
-                return Ok(FileFormat::MicrosoftVisioDrawing);
-            } else if filename.starts_with("3D/") && filename.ends_with(".model") {
-                return Ok(FileFormat::ThreeDimensionalManufacturingFormat);
-            }
-        }
-        Ok(FileFormat::Zip)
-    }
-}
-
-impl Default for FileFormat {
-    /// Returns the default `FileFormat` which corresponds to [`FileFormat::ArbitraryBinaryData`].
-    #[inline]
-    fn default() -> FileFormat {
-        FileFormat::ArbitraryBinaryData
-    }
-}
-
-impl Display for FileFormat {
-    fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
-        write!(f, "{}", self.name())
-    }
 }
