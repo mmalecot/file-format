@@ -1,3 +1,39 @@
+# Version 0.8.0 (2022-11-xx)
+
+## API
+
+- Add FileFormat::from_reader
+- Add impl From<&[u8]> for FileFormat
+
+## Docs
+
+- Add `lefi` example
+- Add changelog
+
+## Internal changes
+
+- Make signature offset optional
+- Remove FileFormat enum generation with macro
+
+## New formats support
+
+- 3D Manufacturing Format - `3mf`
+- Android Package - `apk`
+- Design Web Format XPS - `dwfx`
+- Electronic Publication - `epub`
+- Java Archive - `jar`
+- Microsoft Visio Drawing - `vsdx`
+- Microsoft Visual Studio Extension - `vsix`
+- Office Open XML Document - `docx`
+- Office Open XML Presentation - `pptx`
+- Office Open XML Workbook - `xlsx`
+- OpenDocument Graphics - `odg`
+- OpenDocument Presentation - `odp`
+- OpenDocument Spreadsheet - `ods`
+- OpenDocument Text - `odt`
+- XAP - `xap`
+- XPInstall - `xpi`
+
 # Version 0.7.0 (2022-08-22)
 
 ## New formats support
