@@ -34,7 +34,7 @@ assert_eq!(format.media_type(), "image/jpeg");
 assert_eq!(format.extension(), "jpg");
 ```
 
-# Usage
+## Usage
 
 Add this to your `Cargo.toml`:
 
@@ -52,7 +52,8 @@ file-format = { version = "0.8", features = ["zip"] }
 
 ## Supported formats
 
-- 3D Manufacturing Format - `3mf`
+Default:
+
 - 3rd Generation Partnership Project - `3gp`
 - 3rd Generation Partnership Project 2 - `3g2`
 - 7-Zip - `7z`
@@ -70,7 +71,6 @@ file-format = { version = "0.8", features = ["zip"] }
 - Advanced Audio Coding - `aac`
 - Android Binary XML - `xml`
 - Android Compiled Resources - `arsc`
-- Android Package - `apk`
 - Animated Portable Network Graphics - `apng`
 - Apache Arrow Columnar - `arrow`
 - Apple Disk Image - `dmg`
@@ -96,10 +96,8 @@ file-format = { version = "0.8", features = ["zip"] }
 - Compound File Binary - `cfb`
 - Dalvik Executable - `dex`
 - Debian Binary Package - `deb`
-- Design Web Format XPS - `dwfx`
 - Digital Imaging and Communications in Medicine - `dcm`
 - Digital Picture Exchange - `dpx`
-- Electronic Publication - `epub`
 - Embedded OpenType - `eot`
 - Executable and Linkable Format - `elf`
 - Experimental Computing Facility - `xcf`
@@ -129,7 +127,6 @@ file-format = { version = "0.8", features = ["zip"] }
 - JPEG 2000 Part 6 - `jpm`
 - JPEG Extended Range - `jxr`
 - JPEG XL - `jxl`
-- Java Archive - `jar`
 - Java Class - `class`
 - Java KeyStore - `jks`
 - Joint Photographic Experts Group - `jpg`
@@ -148,8 +145,6 @@ file-format = { version = "0.8", features = ["zip"] }
 - Microsoft DirectDraw Surface - `dds`
 - Microsoft Virtual Hard Disk - `vhd`
 - Microsoft Virtual Hard Disk 2 - `vhdx`
-- Microsoft Visio Drawing - `vsdx`
-- Microsoft Visual Studio Extension - `vsix`
 - Mobipocket - `mobi`
 - Monkey’s Audio - `ape`
 - Musepack - `mpc`
@@ -158,9 +153,6 @@ file-format = { version = "0.8", features = ["zip"] }
 - Nintendo 64 ROM - `z64`
 - Nintendo DS ROM - `nds`
 - Nintendo Entertainment System ROM - `nes`
-- Office Open XML Document - `docx`
-- Office Open XML Presentation - `pptx`
-- Office Open XML Workbook - `xlsx`
 - Ogg FLAC - `oga`
 - Ogg Media - `ogm`
 - Ogg Multiplexed Media - `ogx`
@@ -169,10 +161,6 @@ file-format = { version = "0.8", features = ["zip"] }
 - Ogg Theora - `ogv`
 - Ogg Vorbis - `ogg`
 - Olympus Raw Format - `orf`
-- OpenDocument Graphics - `odg`
-- OpenDocument Presentation - `odp`
-- OpenDocument Spreadsheet - `ods`
-- OpenDocument Text - `odt`
 - OpenEXR - `exr`
 - OpenType - `otf`
 - Optimized Dalvik Executable - `dey`
@@ -210,8 +198,6 @@ file-format = { version = "0.8", features = ["zip"] }
 - Windows Media Video - `wmv`
 - Windows Metafile - `wmf`
 - Windows Shortcut - `lnk`
-- XAP - `xap`
-- XPInstall - `xpi`
 - XZ - `xz`
 - ZIP - `zip`
 - Zstandard - `zst`
@@ -222,6 +208,25 @@ file-format = { version = "0.8", features = ["zip"] }
 - lzop - `lzo`
 - macOS Alias - `alias`
 - zoo - `zoo`
+
+Zip:
+
+- 3D Manufacturing Format - `3mf`
+- Android Package - `apk`
+- Design Web Format XPS - `dwfx`
+- Electronic Publication - `epub`
+- Java Archive - `jar`
+- Microsoft Visio Drawing - `vsdx`
+- Microsoft Visual Studio Extension - `vsix`
+- Office Open XML Document - `docx`
+- Office Open XML Presentation - `pptx`
+- Office Open XML Workbook - `xlsx`
+- OpenDocument Graphics - `odg`
+- OpenDocument Presentation - `odp`
+- OpenDocument Spreadsheet - `ods`
+- OpenDocument Text - `odt`
+- XAP - `xap`
+- XPInstall - `xpi`
 
 ## License
 
