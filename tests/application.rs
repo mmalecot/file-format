@@ -24,6 +24,13 @@ fn test_android_compiled_resources() {
     assert_eq!(format, FileFormat::AndroidCompiledResources);
 }
 
+#[cfg(feature = "zip")]
+#[test]
+fn test_android_package() {
+    let format = FileFormat::from_file("fixtures/application/sample.apk").unwrap();
+    assert_eq!(format, FileFormat::AndroidPackage);
+}
+
 #[test]
 fn test_ani() {
     let format = FileFormat::from_file("fixtures/application/sample.ani").unwrap();
@@ -105,6 +112,13 @@ fn test_digital_imaging_and_communications_in_medicine() {
     );
 }
 
+#[cfg(feature = "zip")]
+#[test]
+fn test_electronic_publication() {
+    let format = FileFormat::from_file("fixtures/application/sample.epub").unwrap();
+    assert_eq!(format, FileFormat::ElectronicPublication);
+}
+
 #[test]
 fn test_embedded_open_type() {
     let format = FileFormat::from_file("fixtures/application/sample.eot").unwrap();
@@ -157,6 +171,13 @@ fn test_gzip() {
 fn test_iso9660() {
     let format = FileFormat::from_file("fixtures/application/sample.iso").unwrap();
     assert_eq!(format, FileFormat::Iso9660);
+}
+
+#[cfg(feature = "zip")]
+#[test]
+fn test_java_archive() {
+    let format = FileFormat::from_file("fixtures/application/sample.jar").unwrap();
+    assert_eq!(format, FileFormat::JavaArchive);
 }
 
 #[test]
@@ -237,6 +258,20 @@ fn test_microsoft_virtual_hard_disk2() {
     assert_eq!(format, FileFormat::MicrosoftVirtualHardDisk2);
 }
 
+#[cfg(feature = "zip")]
+#[test]
+fn test_microsoft_visio_drawing() {
+    let format = FileFormat::from_file("fixtures/application/sample.vsdx").unwrap();
+    assert_eq!(format, FileFormat::MicrosoftVisioDrawing);
+}
+
+#[cfg(feature = "zip")]
+#[test]
+fn test_microsoft_visual_studio_extension() {
+    let format = FileFormat::from_file("fixtures/application/sample.vsix").unwrap();
+    assert_eq!(format, FileFormat::MicrosoftVisualStudioExtension);
+}
+
 #[test]
 fn test_mobipocket() {
     let format = FileFormat::from_file("fixtures/application/sample.mobi").unwrap();
@@ -261,10 +296,59 @@ fn test_nintendo_entertainment_system_rom() {
     assert_eq!(format, FileFormat::NintendoEntertainmentSystemRom);
 }
 
+#[cfg(feature = "zip")]
+#[test]
+fn test_office_open_xml_document() {
+    let format = FileFormat::from_file("fixtures/application/sample.docx").unwrap();
+    assert_eq!(format, FileFormat::OfficeOpenXmlDocument);
+}
+
+#[cfg(feature = "zip")]
+#[test]
+fn test_office_open_xml_presentation() {
+    let format = FileFormat::from_file("fixtures/application/sample.pptx").unwrap();
+    assert_eq!(format, FileFormat::OfficeOpenXmlPresentation);
+}
+
+#[cfg(feature = "zip")]
+#[test]
+fn test_office_open_xml_workbook() {
+    let format = FileFormat::from_file("fixtures/application/sample.xlsx").unwrap();
+    assert_eq!(format, FileFormat::OfficeOpenXmlWorkbook);
+}
+
 #[test]
 fn test_ogg_multiplexed_media() {
     let format = FileFormat::from_file("fixtures/application/sample.ogx").unwrap();
     assert_eq!(format, FileFormat::OggMultiplexedMedia);
+}
+
+#[cfg(feature = "zip")]
+#[test]
+fn test_open_document_graphics() {
+    let format = FileFormat::from_file("fixtures/application/sample.odg").unwrap();
+    assert_eq!(format, FileFormat::OpenDocumentGraphics);
+}
+
+#[cfg(feature = "zip")]
+#[test]
+fn test_open_document_presentation() {
+    let format = FileFormat::from_file("fixtures/application/sample.odp").unwrap();
+    assert_eq!(format, FileFormat::OpenDocumentPresentation);
+}
+
+#[cfg(feature = "zip")]
+#[test]
+fn test_open_document_spreadsheet() {
+    let format = FileFormat::from_file("fixtures/application/sample.ods").unwrap();
+    assert_eq!(format, FileFormat::OpenDocumentSpreadsheet);
+}
+
+#[cfg(feature = "zip")]
+#[test]
+fn test_open_document_text() {
+    let format = FileFormat::from_file("fixtures/application/sample.odt").unwrap();
+    assert_eq!(format, FileFormat::OpenDocumentText);
 }
 
 #[test]
@@ -351,6 +435,13 @@ fn test_tape_archive() {
     assert_eq!(format, FileFormat::TapeArchive);
 }
 
+#[cfg(feature = "zip")]
+#[test]
+fn test_three_dimensional_manufacturing_format() {
+    let format = FileFormat::from_file("fixtures/application/sample.3mf").unwrap();
+    assert_eq!(format, FileFormat::ThreeDimensionalManufacturingFormat);
+}
+
 #[test]
 fn test_unix_archiver() {
     let format = FileFormat::from_file("fixtures/application/sample.ar").unwrap();
@@ -385,6 +476,20 @@ fn test_windows_executable() {
 fn test_windows_shortcut() {
     let format = FileFormat::from_file("fixtures/application/sample.lnk").unwrap();
     assert_eq!(format, FileFormat::WindowsShortcut);
+}
+
+#[cfg(feature = "zip")]
+#[test]
+fn test_xap() {
+    let format = FileFormat::from_file("fixtures/application/sample.xap").unwrap();
+    assert_eq!(format, FileFormat::Xap);
+}
+
+#[cfg(feature = "zip")]
+#[test]
+fn test_xp_install() {
+    let format = FileFormat::from_file("fixtures/application/sample.xpi").unwrap();
+    assert_eq!(format, FileFormat::XpInstall);
 }
 
 #[test]
