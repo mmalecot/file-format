@@ -6,7 +6,6 @@ use std::{io::Result, path::Path};
 #[derive(Debug, Parser)]
 #[clap(about = "Simplified version of the UNIX file command.")]
 struct Args {
-    #[clap(value_parser)]
     input: Vec<String>,
 }
 
