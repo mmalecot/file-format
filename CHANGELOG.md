@@ -14,6 +14,7 @@
 
 - Make signature offset optional
 - Remove FileFormat enum generation with macro
+- Simplify signatures macro
 
 ## New formats support
 
