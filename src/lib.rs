@@ -1077,18 +1077,17 @@ impl FileFormat {
         let mut archive = zip::ZipArchive::new(reader)?;
         for index in 0..archive.len() {
             let mut file = archive.by_index(index)?;
-            let filename = file.name();
-            if filename == "AndroidManifest.xml" {
+            if file.name() == "AndroidManifest.xml" {
                 return Ok(FileFormat::AndroidPackage);
-            } else if filename == "AppManifest.xaml" {
+            } else if file.name() == "AppManifest.xaml" {
                 return Ok(FileFormat::Xap);
-            } else if filename == "extension.vsixmanifest" {
+            } else if file.name() == "extension.vsixmanifest" {
                 return Ok(FileFormat::MicrosoftVisualStudioExtension);
-            } else if filename == "META-INF/mozilla.rsa" {
+            } else if file.name() == "META-INF/mozilla.rsa" {
                 return Ok(FileFormat::XpInstall);
-            } else if filename == "META-INF/MANIFEST.MF" {
+            } else if file.name() == "META-INF/MANIFEST.MF" {
                 return Ok(FileFormat::JavaArchive);
-            } else if filename == "mimetype" {
+            } else if file.name() == "mimetype" {
                 let mut content = String::new();
                 file.read_to_string(&mut content)?;
                 match content.as_str() {
@@ -1109,17 +1108,17 @@ impl FileFormat {
                     }
                     _ => {}
                 }
-            } else if filename.starts_with("dwf/") {
+            } else if file.name().starts_with("dwf/") {
                 return Ok(FileFormat::DesignWebFormatXps);
-            } else if filename.starts_with("word/") {
+            } else if file.name().starts_with("word/") {
                 return Ok(FileFormat::OfficeOpenXmlDocument);
-            } else if filename.starts_with("ppt/") {
+            } else if file.name().starts_with("ppt/") {
                 return Ok(FileFormat::OfficeOpenXmlPresentation);
-            } else if filename.starts_with("xl/") {
+            } else if file.name().starts_with("xl/") {
                 return Ok(FileFormat::OfficeOpenXmlWorkbook);
-            } else if filename.starts_with("visio/") {
+            } else if file.name().starts_with("visio/") {
                 return Ok(FileFormat::MicrosoftVisioDrawing);
-            } else if filename.starts_with("3D/") && filename.ends_with(".model") {
+            } else if file.name().starts_with("3D/") && file.name().ends_with(".model") {
                 return Ok(FileFormat::ThreeDimensionalManufacturingFormat);
             }
         }
