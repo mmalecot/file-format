@@ -370,7 +370,7 @@ pub enum FileFormat {
 }
 
 impl FileFormat {
-    /// Maximum number of bytes to read to detect the `FileFormat`.
+    /// Maximum number of bytes to read to detect a `FileFormat` from its signature.
     const MAX_BYTES: usize = 36870;
 
     /// Returns the name of the `FileFormat`.
