@@ -210,6 +210,7 @@ file-format = { version = "0.8", features = ["zip"] }
 ZIP-based:
 - 3D Manufacturing Format - `3mf`
 - Android Package - `apk`
+- Circuit Diagram Document - `cddx`
 - Design Web Format XPS - `dwfx`
 - Electronic Publication - `epub`
 - Java Archive - `jar`

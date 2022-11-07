@@ -86,6 +86,9 @@ pub enum FileFormat {
     CanonRaw3,
     /// Cineon - `cin`
     Cineon,
+    /// Circuit Diagram Document - `cddx`
+    #[cfg(feature = "zip")]
+    CircuitDiagramDocument,
     /// Compound File Binary - `cfb`
     CompoundFileBinary,
     /// cpio - `cpio`
@@ -423,6 +426,8 @@ impl FileFormat {
             Self::CanonRaw2 => "Canon Raw 2",
             Self::CanonRaw3 => "Canon Raw 3",
             Self::Cineon => "Cineon",
+            #[cfg(feature = "zip")]
+            Self::CircuitDiagramDocument => "Circuit Diagram Document",
             Self::CompoundFileBinary => "Compound File Binary",
             Self::Cpio => "cpio",
             Self::Cur => "CUR",
@@ -628,6 +633,8 @@ impl FileFormat {
             Self::CanonRaw2 => "image/x-canon-cr2",
             Self::CanonRaw3 => "image/x-canon-cr3",
             Self::Cineon => "image/cineon",
+            #[cfg(feature = "zip")]
+            Self::CircuitDiagramDocument => "application/vnd.circuitdiagram.document.main+xml",
             Self::CompoundFileBinary => "application/x-cfb",
             Self::Cpio => "application/x-cpio",
             Self::Cur => "image/x-icon",
@@ -837,6 +844,8 @@ impl FileFormat {
             Self::CanonRaw2 => "cr2",
             Self::CanonRaw3 => "cr3",
             Self::Cineon => "cin",
+            #[cfg(feature = "zip")]
+            Self::CircuitDiagramDocument => "cddx",
             Self::CompoundFileBinary => "cfb",
             Self::Cpio => "cpio",
             Self::Cur => "cur",
@@ -1118,6 +1127,8 @@ impl FileFormat {
                 return Ok(FileFormat::OfficeOpenXmlWorkbook);
             } else if file.name().starts_with("visio/") {
                 return Ok(FileFormat::MicrosoftVisioDrawing);
+            } else if file.name().starts_with("circuitdiagram/") {
+                return Ok(FileFormat::CircuitDiagramDocument);
             } else if file.name().starts_with("3D/") && file.name().ends_with(".model") {
                 return Ok(FileFormat::ThreeDimensionalManufacturingFormat);
             }

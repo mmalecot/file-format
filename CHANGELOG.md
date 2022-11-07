@@ -1,3 +1,9 @@
+# Version 0.9.0
+
+## New formats support
+
+- Circuit Diagram Document - `cddx`
+
 # Version 0.8.0 (2022-11-06)
 
 ## API

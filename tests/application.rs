@@ -79,6 +79,13 @@ fn test_cabinet() {
     assert_eq!(format, FileFormat::Cabinet);
 }
 
+#[cfg(feature = "zip")]
+#[test]
+fn test_circuit_diagram_document() {
+    let format = FileFormat::from_file("fixtures/application/sample.cddx").unwrap();
+    assert_eq!(format, FileFormat::CircuitDiagramDocument);
+}
+
 #[test]
 fn test_compound_file_binary() {
     let format = FileFormat::from_file("fixtures/application/sample.cfb").unwrap();
