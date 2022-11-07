@@ -1151,17 +1151,18 @@ impl From<&[u8]> for FileFormat {
 macro_rules! signatures {
     {
         $(
-            format = $file_format:ident
-            $(value = $($signature:literal $(offset = $offset:literal)?),+)+
+            format = $format:ident
+            $(value = $($value:literal $(offset = $offset:literal)?),+)+
         )*
     } => {
         impl FileFormat {
             /// Determines `FileFormat` by checking its signature.
             fn from_signature(bytes: &[u8]) -> Option<FileFormat> {
                 $(
-                    if $($(bytes.len() >= $($offset +)? $signature.len()
-                        && &bytes[$($offset)?..$($offset +)? $signature.len()] == $signature)&&*)||*
-                    { return Some(FileFormat::$file_format); }
+                    if $($(bytes.len() >= $($offset +)? $value.len()
+                        && &bytes[$($offset)?..$($offset +)? $value.len()] == $value)&&*)||* {
+                        return Some(FileFormat::$format);
+                    }
                 )*
                 None
             }
