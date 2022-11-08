@@ -13,25 +13,27 @@ Crate for determining binary-based file formats.
 Determines from a file:
 
 ```rust
-use file_format::FileFormat;
+use file_format::{FileFormat, Kind};
 
 let format = FileFormat::from_file("fixtures/application/sample.zip").unwrap();
 assert_eq!(format, FileFormat::Zip);
 assert_eq!(format.name(), "ZIP");
 assert_eq!(format.media_type(), "application/zip");
 assert_eq!(format.extension(), "zip");
+assert_eq!(format.kind(), Kind::Application);
 ```
 
 Determines from bytes:
 
 ```rust
-use file_format::FileFormat;
+use file_format::{FileFormat, Kind};
 
 let format = FileFormat::from_bytes(&[0xFF, 0xD8, 0xFF, 0xEE]);
 assert_eq!(format, FileFormat::JointPhotographicExpertsGroup);
 assert_eq!(format.name(), "Joint Photographic Experts Group");
 assert_eq!(format.media_type(), "image/jpeg");
 assert_eq!(format.extension(), "jpg");
+assert_eq!(format.kind(), Kind::Image);
 ```
 
 ## Usage

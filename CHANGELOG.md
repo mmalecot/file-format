@@ -1,5 +1,9 @@
 # Version 0.9.0
 
+## API
+
+- Add FileFormat::kind
+
 ## New formats support
 
 - Circuit Diagram Document - `cddx`

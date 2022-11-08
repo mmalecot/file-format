@@ -997,6 +997,209 @@ impl FileFormat {
         }
     }
 
+    /// Returns the `Kind` of the `FileFormat`.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use file_format::{FileFormat, Kind};
+    ///
+    /// let format = FileFormat::MpegAudioLayer3;
+    /// assert_eq!(format.kind(), Kind::Audio);
+    ///```
+    pub fn kind(&self) -> Kind {
+        match self {
+            Self::AdaptiveMultiRate => Kind::Audio,
+            Self::AdobeFlashPlayerAudio => Kind::Audio,
+            Self::AdobeFlashPlayerAudiobook => Kind::Audio,
+            Self::AdobeFlashPlayerProtectedVideo => Kind::Video,
+            Self::AdobeFlashPlayerVideo => Kind::Video,
+            Self::AdobeInDesignDocument => Kind::Application,
+            Self::AdobePhotoshopDocument => Kind::Image,
+            Self::AdvancedAudioCoding => Kind::Audio,
+            Self::Alz => Kind::Application,
+            Self::AndroidBinaryXml => Kind::Application,
+            Self::AndroidCompiledResources => Kind::Application,
+            #[cfg(feature = "zip")]
+            Self::AndroidPackage => Kind::Application,
+            Self::Ani => Kind::Application,
+            Self::AnimatedPortableNetworkGraphics => Kind::Image,
+            Self::ApacheArrowColumnar => Kind::Application,
+            Self::AppleDiskImage => Kind::Application,
+            Self::AppleIconImage => Kind::Image,
+            Self::AppleItunesAudio => Kind::Audio,
+            Self::AppleItunesAudiobook => Kind::Audio,
+            Self::AppleItunesProtectedAudio => Kind::Audio,
+            Self::AppleItunesVideo => Kind::Video,
+            Self::AppleQuickTime => Kind::Video,
+            Self::ArbitraryBinaryData => Kind::Application,
+            Self::ArchivedByRobertJung => Kind::Application,
+            Self::Au => Kind::Audio,
+            Self::AudioCodec3 => Kind::Audio,
+            Self::AudioInterchangeFileFormat => Kind::Audio,
+            Self::AudioVideoInterleave => Kind::Video,
+            Self::Av1ImageFileFormat => Kind::Image,
+            Self::Av1ImageFileFormatSequence => Kind::Image,
+            Self::BetterPortableGraphics => Kind::Image,
+            Self::Blender => Kind::Application,
+            Self::Bzip2 => Kind::Application,
+            Self::Cabinet => Kind::Application,
+            Self::CanonRaw2 => Kind::Image,
+            Self::CanonRaw3 => Kind::Image,
+            Self::Cineon => Kind::Image,
+            #[cfg(feature = "zip")]
+            Self::CircuitDiagramDocument => Kind::Application,
+            Self::CompoundFileBinary => Kind::Application,
+            Self::Cpio => Kind::Application,
+            Self::Cur => Kind::Image,
+            Self::DalvikExecutable => Kind::Application,
+            Self::DebianBinaryPackage => Kind::Application,
+            #[cfg(feature = "zip")]
+            Self::DesignWebFormatXps => Kind::Model,
+            Self::DigitalImagingAndCommunicationsInMedicine => Kind::Application,
+            Self::DigitalPictureExchange => Kind::Image,
+            #[cfg(feature = "zip")]
+            Self::ElectronicPublication => Kind::Application,
+            Self::EmbeddedOpenType => Kind::Application,
+            Self::ExecutableAndLinkableFormat => Kind::Application,
+            Self::ExperimentalComputingFacility => Kind::Image,
+            Self::ExtensibleArchive => Kind::Application,
+            Self::FastTracker2ExtendedModule => Kind::Audio,
+            Self::FlashVideo => Kind::Video,
+            Self::FlexibleImageTransportSystem => Kind::Image,
+            Self::FreeLosslessAudioCodec => Kind::Audio,
+            Self::FreeLosslessImageFormat => Kind::Image,
+            Self::FujifilmRaw => Kind::Image,
+            Self::GameBoyAdvanceRom => Kind::Application,
+            Self::GameBoyColorRom => Kind::Application,
+            Self::GameBoyRom => Kind::Application,
+            Self::GlTransmissionFormatBinary => Kind::Model,
+            Self::GoogleChromeExtension => Kind::Application,
+            Self::GraphicsInterchangeFormat => Kind::Image,
+            Self::Gzip => Kind::Application,
+            Self::HighEfficiencyImageCoding => Kind::Image,
+            Self::HighEfficiencyImageCodingSequence => Kind::Image,
+            Self::HighEfficiencyImageFileFormat => Kind::Image,
+            Self::HighEfficiencyImageFileFormatSequence => Kind::Image,
+            Self::Ico => Kind::Image,
+            Self::ImpulseTrackerModule => Kind::Audio,
+            Self::Iso9660 => Kind::Application,
+            #[cfg(feature = "zip")]
+            Self::JavaArchive => Kind::Application,
+            Self::JavaClass => Kind::Application,
+            Self::JavaKeyStore => Kind::Application,
+            Self::JointPhotographicExpertsGroup => Kind::Image,
+            Self::Jpeg2000Part1 => Kind::Image,
+            Self::Jpeg2000Part2 => Kind::Image,
+            Self::Jpeg2000Part3 => Kind::Image,
+            Self::Jpeg2000Part6 => Kind::Image,
+            Self::JpegExtendedRange => Kind::Image,
+            Self::JpegXl => Kind::Image,
+            Self::KhronosTexture => Kind::Image,
+            Self::KhronosTexture2 => Kind::Image,
+            Self::LempelZivFiniteStateEntropy => Kind::Application,
+            Self::Lha => Kind::Application,
+            Self::LongRangeZip => Kind::Application,
+            Self::Lz4 => Kind::Application,
+            Self::Lzip => Kind::Application,
+            Self::Lzop => Kind::Application,
+            Self::MacOsAlias => Kind::Application,
+            Self::MaterialExchangeFormat => Kind::Application,
+            Self::MatroskaVideo => Kind::Video,
+            Self::MicrosoftCompiledHtmlHelp => Kind::Application,
+            Self::MicrosoftDirectDrawSurface => Kind::Image,
+            Self::MicrosoftVirtualHardDisk => Kind::Application,
+            Self::MicrosoftVirtualHardDisk2 => Kind::Application,
+            #[cfg(feature = "zip")]
+            Self::MicrosoftVisioDrawing => Kind::Application,
+            #[cfg(feature = "zip")]
+            Self::MicrosoftVisualStudioExtension => Kind::Application,
+            Self::Mobipocket => Kind::Application,
+            Self::MonkeysAudio => Kind::Audio,
+            Self::Mpeg1Video => Kind::Video,
+            Self::Mpeg4Part14Video => Kind::Video,
+            Self::MpegAudioLayer3 => Kind::Audio,
+            Self::Musepack => Kind::Audio,
+            Self::MusicalInstrumentDigitalInterface => Kind::Audio,
+            Self::NikonElectronicFile => Kind::Image,
+            Self::Nintendo64Rom => Kind::Application,
+            Self::NintendoDsRom => Kind::Application,
+            Self::NintendoEntertainmentSystemRom => Kind::Application,
+            #[cfg(feature = "zip")]
+            Self::OfficeOpenXmlDocument => Kind::Application,
+            #[cfg(feature = "zip")]
+            Self::OfficeOpenXmlPresentation => Kind::Application,
+            #[cfg(feature = "zip")]
+            Self::OfficeOpenXmlWorkbook => Kind::Application,
+            Self::OggFlac => Kind::Audio,
+            Self::OggMedia => Kind::Video,
+            Self::OggMultiplexedMedia => Kind::Application,
+            Self::OggOpus => Kind::Audio,
+            Self::OggSpeex => Kind::Audio,
+            Self::OggTheora => Kind::Video,
+            Self::OggVorbis => Kind::Audio,
+            Self::OlympusRawFormat => Kind::Image,
+            #[cfg(feature = "zip")]
+            Self::OpenDocumentGraphics => Kind::Application,
+            #[cfg(feature = "zip")]
+            Self::OpenDocumentPresentation => Kind::Application,
+            #[cfg(feature = "zip")]
+            Self::OpenDocumentSpreadsheet => Kind::Application,
+            #[cfg(feature = "zip")]
+            Self::OpenDocumentText => Kind::Application,
+            Self::OpenExr => Kind::Image,
+            Self::OpenType => Kind::Font,
+            Self::OptimizedDalvikExecutable => Kind::Application,
+            Self::PanasonicRaw => Kind::Image,
+            Self::PcapDump => Kind::Application,
+            Self::PcapNextGenerationDump => Kind::Application,
+            Self::PortableDocumentFormat => Kind::Application,
+            Self::PortableNetworkGraphics => Kind::Image,
+            Self::QualcommPureVoice => Kind::Audio,
+            Self::RadianceHdr => Kind::Image,
+            Self::RedHatPackageManager => Kind::Application,
+            Self::RoshalArchive => Kind::Application,
+            Self::ScreamTracker3Module => Kind::Audio,
+            Self::SeqBox => Kind::Application,
+            Self::SevenZip => Kind::Application,
+            Self::Shapefile => Kind::Application,
+            Self::SketchUp => Kind::Application,
+            Self::SmallWebFormat => Kind::Application,
+            Self::Snappy => Kind::Application,
+            Self::SonyDsdStreamFile => Kind::Audio,
+            Self::Sqlite3 => Kind::Application,
+            Self::TagImageFileFormat => Kind::Image,
+            Self::TapeArchive => Kind::Application,
+            Self::ThirdGenerationPartnershipProject => Kind::Video,
+            Self::ThirdGenerationPartnershipProject2 => Kind::Video,
+            #[cfg(feature = "zip")]
+            Self::ThreeDimensionalManufacturingFormat => Kind::Application,
+            Self::TrueType => Kind::Font,
+            Self::UnixArchiver => Kind::Application,
+            Self::UnixCompress => Kind::Application,
+            Self::VirtualBoxVirtualDiskImage => Kind::Application,
+            Self::WavPack => Kind::Audio,
+            Self::WaveformAudio => Kind::Audio,
+            Self::WebAssemblyBinary => Kind::Application,
+            Self::WebOpenFontFormat => Kind::Font,
+            Self::WebOpenFontFormat2 => Kind::Font,
+            Self::WebP => Kind::Image,
+            Self::WindowsBitmap => Kind::Image,
+            Self::WindowsExecutable => Kind::Application,
+            Self::WindowsMediaVideo => Kind::Video,
+            Self::WindowsMetafile => Kind::Image,
+            Self::WindowsShortcut => Kind::Application,
+            #[cfg(feature = "zip")]
+            Self::Xap => Kind::Application,
+            #[cfg(feature = "zip")]
+            Self::XpInstall => Kind::Application,
+            Self::Xz => Kind::Application,
+            Self::Zip => Kind::Application,
+            Self::Zoo => Kind::Application,
+            Self::Zstandard => Kind::Application,
+        }
+    }
+
     /// Determines `FileFormat` from bytes.
     ///
     /// If the `FileFormat` is not recognized, the [default value] will be returned.
@@ -1744,4 +1947,15 @@ signatures! {
 
     format = WindowsExecutable
     value = b"MZ"
+}
+
+/// Kind of [`FileFormat`].
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub enum Kind {
+    Application,
+    Audio,
+    Font,
+    Image,
+    Model,
+    Video,
 }

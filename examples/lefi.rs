@@ -1,6 +1,6 @@
 use clap::Parser;
 use colored::*;
-use file_format::FileFormat;
+use file_format::{FileFormat, Kind};
 use std::{io::Result, path::Path};
 
 #[derive(Debug, Parser)]
@@ -37,13 +37,13 @@ fn main() -> Result<()> {
             let format = FileFormat::from_file(path)?;
             println!(
                 "{input:width$} {name} ({extension}) - {media_type}",
-                name = match format.media_type().split('/').next().unwrap_or_default() {
-                    "audio" => format.name().cyan(),
-                    "font" => format.name().yellow(),
-                    "image" => format.name().magenta(),
-                    "model" => format.name().blue(),
-                    "video" => format.name().green(),
-                    _ => format.name().white(),
+                name = match format.kind() {
+                    Kind::Application => format.name().white(),
+                    Kind::Audio => format.name().cyan(),
+                    Kind::Font => format.name().yellow(),
+                    Kind::Image => format.name().magenta(),
+                    Kind::Model => format.name().blue(),
+                    Kind::Video => format.name().green(),
                 },
                 extension = format.extension(),
                 media_type = format.media_type().underline(),
