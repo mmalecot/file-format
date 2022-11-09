@@ -14,7 +14,7 @@ fn main() -> Result<()> {
     let width = args
         .input
         .iter()
-        .map(|input| input.len())
+        .map(|input| input.chars().count())
         .collect::<Vec<usize>>()
         .into_iter()
         .max()
