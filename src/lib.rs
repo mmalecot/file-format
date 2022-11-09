@@ -190,6 +190,8 @@ pub enum FileFormat {
     Lha,
     /// Long Range ZIP - `lrz`
     LongRangeZip,
+    /// Lua Bytecode - `luac`
+    LuaBytecode,
     /// LZ4 - `lz4`
     Lz4,
     /// lzip - `lz`
@@ -486,6 +488,7 @@ impl FileFormat {
             Self::LempelZivFiniteStateEntropy => "Lempel–Ziv Finite State Entropy",
             Self::Lha => "LHA",
             Self::LongRangeZip => "Long Range ZIP",
+            Self::LuaBytecode => "Lua Bytecode",
             Self::Lz4 => "LZ4",
             Self::Lzip => "lzip",
             Self::Lzop => "lzop",
@@ -690,6 +693,7 @@ impl FileFormat {
             Self::LempelZivFiniteStateEntropy => "application/x-lzfse",
             Self::Lha => "application/x-lzh-compressed",
             Self::LongRangeZip => "application/x-lrzip",
+            Self::LuaBytecode => "application/x-lua-bytecode",
             Self::Lz4 => "application/x-lz4",
             Self::Lzip => "application/x-lzip",
             Self::Lzop => "application/x-lzop",
@@ -902,6 +906,7 @@ impl FileFormat {
             Self::LempelZivFiniteStateEntropy => "lzfse",
             Self::Lha => "lzh",
             Self::LongRangeZip => "lrz",
+            Self::LuaBytecode => "luac",
             Self::Lz4 => "lz4",
             Self::Lzip => "lz",
             Self::Lzop => "lzo",
@@ -1106,6 +1111,7 @@ impl FileFormat {
             Self::LempelZivFiniteStateEntropy => Kind::Application,
             Self::Lha => Kind::Application,
             Self::LongRangeZip => Kind::Application,
+            Self::LuaBytecode => Kind::Application,
             Self::Lz4 => Kind::Application,
             Self::Lzip => Kind::Application,
             Self::Lzop => Kind::Application,
@@ -1820,6 +1826,9 @@ signatures! {
 
     format = LongRangeZip
     value = b"LRZI"
+
+    format = LuaBytecode
+    value = b"\x1B\x4C\x75\x61"
 
     format = Lz4
     value = b"\x04\x22\x4D\x18"

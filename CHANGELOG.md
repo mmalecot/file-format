@@ -8,6 +8,7 @@
 
 - Circuit Diagram Document - `cddx`
 - DjVu - `djvu`
+- Lua Bytecode - `luac`
 
 # Version 0.8.0 (2022-11-06)
 

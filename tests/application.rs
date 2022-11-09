@@ -218,6 +218,12 @@ fn test_long_range_zip() {
 }
 
 #[test]
+fn test_lua_bytecode() {
+    let format = FileFormat::from_file("fixtures/application/sample.luac").unwrap();
+    assert_eq!(format, FileFormat::LuaBytecode);
+}
+
+#[test]
 fn test_lz4() {
     let format = FileFormat::from_file("fixtures/application/sample.lz4").unwrap();
     assert_eq!(format, FileFormat::Lz4);

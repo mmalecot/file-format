@@ -137,6 +137,7 @@ file-format = { version = "0.9", features = ["zip"] }
 - LZ4 - `lz4`
 - Lempel–Ziv Finite State Entropy - `lzfse`
 - Long Range ZIP - `lrz`
+- Lua Bytecode - `luac`
 - MPEG-1 Video - `mpg`
 - MPEG-1/2 Audio Layer III - `mp3`
 - MPEG-4 Part 14 Video - `mp4`
