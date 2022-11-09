@@ -45,12 +45,9 @@ Add this to your `Cargo.toml`:
 file-format = "0.9"
 ```
 
-If you want to enable ZIP-based file formats:
+## Features
 
-```toml
-[dependencies]
-file-format = { version = "0.9", features = ["zip"] }
-```
+- `zip` - ZIP-based file formats support.
 
 ## Supported formats
 
