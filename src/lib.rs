@@ -106,6 +106,8 @@ pub enum FileFormat {
     DigitalImagingAndCommunicationsInMedicine,
     /// Digital Picture Exchange - `dpx`
     DigitalPictureExchange,
+    /// DjVu - `djvu`
+    DjVu,
     /// Electronic Publication - `epub`
     #[cfg(feature = "zip")]
     ElectronicPublication,
@@ -439,6 +441,7 @@ impl FileFormat {
                 "Digital Imaging and Communications in Medicine"
             }
             Self::DigitalPictureExchange => "Digital Picture Exchange",
+            Self::DjVu => "DjVu",
             #[cfg(feature = "zip")]
             Self::ElectronicPublication => "Electronic Publication",
             Self::EmbeddedOpenType => "Embedded OpenType",
@@ -644,6 +647,7 @@ impl FileFormat {
             Self::DesignWebFormatXps => "model/vnd.dwfx+xps",
             Self::DigitalImagingAndCommunicationsInMedicine => "application/dicom",
             Self::DigitalPictureExchange => "image/x-dpx",
+            Self::DjVu => "image/vnd.djvu",
             #[cfg(feature = "zip")]
             Self::ElectronicPublication => "application/epub+zip",
             Self::EmbeddedOpenType => "application/vnd.ms-fontobject",
@@ -855,6 +859,7 @@ impl FileFormat {
             Self::DesignWebFormatXps => "dwfx",
             Self::DigitalImagingAndCommunicationsInMedicine => "dcm",
             Self::DigitalPictureExchange => "dpx",
+            Self::DjVu => "djvu",
             #[cfg(feature = "zip")]
             Self::ElectronicPublication => "epub",
             Self::EmbeddedOpenType => "eot",
@@ -1058,6 +1063,7 @@ impl FileFormat {
             Self::DesignWebFormatXps => Kind::Model,
             Self::DigitalImagingAndCommunicationsInMedicine => Kind::Application,
             Self::DigitalPictureExchange => Kind::Image,
+            Self::DjVu => Kind::Image,
             #[cfg(feature = "zip")]
             Self::ElectronicPublication => Kind::Application,
             Self::EmbeddedOpenType => Kind::Application,
@@ -1436,6 +1442,12 @@ signatures! {
     // 12-byte signatures
     format = AnimatedPortableNetworkGraphics
     value = b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A", b"acTL" offset = 0x25
+
+    format = DjVu
+    value = b"AT&TFORM", b"DJVM" offset = 12
+    value = b"AT&TFORM", b"DJVU" offset = 12
+    value = b"AT&TFORM", b"DJVI" offset = 12
+    value = b"AT&TFORM", b"THUM" offset = 12
 
     format = JointPhotographicExpertsGroup
     value = b"\xFF\xD8\xFF\xE0\x00\x10\x4A\x46\x49\x46\x00\x01"

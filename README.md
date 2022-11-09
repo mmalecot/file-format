@@ -98,6 +98,7 @@ file-format = { version = "0.9", features = ["zip"] }
 - Debian Binary Package - `deb`
 - Digital Imaging and Communications in Medicine - `dcm`
 - Digital Picture Exchange - `dpx`
+- DjVu - `djvu`
 - Embedded OpenType - `eot`
 - Executable and Linkable Format - `elf`
 - Experimental Computing Facility - `xcf`

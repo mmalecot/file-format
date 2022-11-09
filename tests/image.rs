@@ -67,6 +67,12 @@ fn test_digital_picture_exchange() {
 }
 
 #[test]
+fn test_dj_vu() {
+    let format = FileFormat::from_file("fixtures/image/sample.djvu").unwrap();
+    assert_eq!(format, FileFormat::DjVu);
+}
+
+#[test]
 fn test_experimental_computing_facility() {
     let format = FileFormat::from_file("fixtures/image/sample.xcf").unwrap();
     assert_eq!(format, FileFormat::ExperimentalComputingFacility);

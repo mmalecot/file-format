@@ -7,6 +7,7 @@
 ## New formats support
 
 - Circuit Diagram Document - `cddx`
+- DjVu - `djvu`
 
 # Version 0.8.0 (2022-11-06)
 
