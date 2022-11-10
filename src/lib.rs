@@ -1338,6 +1338,7 @@ impl FileFormat {
         })
     }
 
+    /// Determines `FileFormat` from a Compound File Binary reader.
     #[cfg(feature = "cfb")]
     fn from_cfb<R: Read + Seek>(reader: R) -> Result<FileFormat> {
         let file = cfb::CompoundFile::open(reader)?;
@@ -1351,6 +1352,7 @@ impl FileFormat {
         })
     }
 
+    /// Determines `FileFormat` from a ZIP reader.
     #[cfg(feature = "zip")]
     fn from_zip<R: Read + Seek>(reader: R) -> Result<FileFormat> {
         let mut archive = zip::ZipArchive::new(reader)?;
