@@ -3,12 +3,19 @@
 ## API
 
 - Add FileFormat::kind
+- Rename FileFormat variant MicrosoftVisioDrawing to OfficeOpenXmlDrawing
+- Rename FileFormat variant OfficeOpenXmlWorkbook to OfficeOpenXmlSpreadsheet
 
 ## New formats support
 
 - Circuit Diagram Document - `cddx`
 - DjVu - `djvu`
 - Lua Bytecode - `luac`
+- Microsoft Excel Spreadsheet - `xls`
+- Microsoft PowerPoint Presentation - `ppt`
+- Microsoft Software Installer - `msi`
+- Microsoft Visio Drawing - `vsd`
+- Microsoft Word Document - `doc`
 
 # Version 0.8.0 (2022-11-06)
 

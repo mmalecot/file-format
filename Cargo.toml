@@ -16,6 +16,7 @@ exclude = ["/.github/*", "/fixtures/*", "/tests/*", "/examples/*"]
 all-features = true
 
 [dependencies]
+cfb = { version = "0.7", optional = true }
 zip = { version = "0.6", optional = true }
 
 [dev-dependencies]
@@ -23,4 +24,5 @@ clap = { version = "4.0", features = ["derive"] }
 colored = { version = "2.0" }
 
 [features]
+cfb = ["dep:cfb"]
 zip = ["dep:zip"]
