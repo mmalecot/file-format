@@ -47,7 +47,8 @@ file-format = "0.9"
 
 ## Features
 
-- `zip` - ZIP-based file formats support.
+- `cfb` - Compound File Binary formats support.
+- `zip` - ZIP formats support.
 
 ## Supported formats
 
@@ -208,18 +209,25 @@ file-format = "0.9"
 - macOS Alias - `alias`
 - zoo - `zoo`
 
-ZIP-based:
+Compound File Binary:
+- Microsoft Excel Spreadsheet - `xls`
+- Microsoft PowerPoint Presentation - `ppt`
+- Microsoft Software Installer - `msi`
+- Microsoft Visio Drawing - `vsd`
+- Microsoft Word Document - `doc`
+
+ZIP:
 - 3D Manufacturing Format - `3mf`
 - Android Package - `apk`
 - Circuit Diagram Document - `cddx`
 - Design Web Format XPS - `dwfx`
 - Electronic Publication - `epub`
 - Java Archive - `jar`
-- Microsoft Visio Drawing - `vsdx`
 - Microsoft Visual Studio Extension - `vsix`
 - Office Open XML Document - `docx`
+- Office Open XML Drawing - `vsdx`
 - Office Open XML Presentation - `pptx`
-- Office Open XML Workbook - `xlsx`
+- Office Open XML Spreadsheet - `xlsx`
 - OpenDocument Graphics - `odg`
 - OpenDocument Presentation - `odp`
 - OpenDocument Spreadsheet - `ods`

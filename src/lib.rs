@@ -212,12 +212,24 @@ pub enum FileFormat {
     MicrosoftVirtualHardDisk,
     /// Microsoft Virtual Hard Disk 2 - `vhdx`
     MicrosoftVirtualHardDisk2,
-    /// Microsoft Visio Drawing - `vsdx`
-    #[cfg(feature = "zip")]
-    MicrosoftVisioDrawing,
     /// Microsoft Visual Studio Extension - `vsix`
     #[cfg(feature = "zip")]
     MicrosoftVisualStudioExtension,
+    /// Microsoft Excel Spreadsheet - `xls`
+    #[cfg(feature = "cfb")]
+    MicrosoftExcelSpreadsheet,
+    /// Microsoft PowerPoint Presentation - `ppt`
+    #[cfg(feature = "cfb")]
+    MicrosoftPowerPointPresentation,
+    /// Microsoft Software Installer - `msi`
+    #[cfg(feature = "cfb")]
+    MicrosoftSoftwareInstaller,
+    /// Microsoft Visio Drawing - `vsd`
+    #[cfg(feature = "cfb")]
+    MicrosoftVisioDrawing,
+    /// Microsoft Word Document - `doc`
+    #[cfg(feature = "cfb")]
+    MicrosoftWordDocument,
     /// Mobipocket - `mobi`
     Mobipocket,
     /// Monkey's Audio - `ape`
@@ -243,12 +255,15 @@ pub enum FileFormat {
     /// Office Open XML Document - `docx`
     #[cfg(feature = "zip")]
     OfficeOpenXmlDocument,
+    /// Office Open XML Drawing - `vsdx`
+    #[cfg(feature = "zip")]
+    OfficeOpenXmlDrawing,
     /// Office Open XML Presentation - `pptx`
     #[cfg(feature = "zip")]
     OfficeOpenXmlPresentation,
-    /// Office Open XML Workbook - `xlsx`
+    /// Office Open XML Spreadsheet - `xlsx`
     #[cfg(feature = "zip")]
-    OfficeOpenXmlWorkbook,
+    OfficeOpenXmlSpreadsheet,
     /// Ogg FLAC - `oga`
     OggFlac,
     /// Ogg Media - `ogm`
@@ -500,9 +515,17 @@ impl FileFormat {
             Self::MicrosoftVirtualHardDisk => "Microsoft Virtual Hard Disk",
             Self::MicrosoftVirtualHardDisk2 => "Microsoft Virtual Hard Disk 2",
             #[cfg(feature = "zip")]
-            Self::MicrosoftVisioDrawing => "Microsoft Visio Drawing",
-            #[cfg(feature = "zip")]
             Self::MicrosoftVisualStudioExtension => "Microsoft Visual Studio Extension",
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftExcelSpreadsheet => "Microsoft Excel Spreadsheet",
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftPowerPointPresentation => "Microsoft PowerPoint Presentation",
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftSoftwareInstaller => "Microsoft Software Installer",
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftVisioDrawing => "Microsoft Visio Drawing",
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftWordDocument => "Microsoft Word Document",
             Self::Mobipocket => "Mobipocket",
             Self::MonkeysAudio => "Monkey's Audio",
             Self::Mpeg1Video => "MPEG-1 Video",
@@ -517,9 +540,11 @@ impl FileFormat {
             #[cfg(feature = "zip")]
             Self::OfficeOpenXmlDocument => "Office Open XML Document",
             #[cfg(feature = "zip")]
+            Self::OfficeOpenXmlDrawing => "Office Open XML Drawing",
+            #[cfg(feature = "zip")]
             Self::OfficeOpenXmlPresentation => "Office Open XML Presentation",
             #[cfg(feature = "zip")]
-            Self::OfficeOpenXmlWorkbook => "Office Open XML Workbook",
+            Self::OfficeOpenXmlSpreadsheet => "Office Open XML Spreadsheet",
             Self::OggFlac => "Ogg FLAC",
             Self::OggMedia => "Ogg Media",
             Self::OggMultiplexedMedia => "Ogg Multiplexed Media",
@@ -705,9 +730,17 @@ impl FileFormat {
             Self::MicrosoftVirtualHardDisk => "application/x-vhd",
             Self::MicrosoftVirtualHardDisk2 => "application/x-vhdx",
             #[cfg(feature = "zip")]
-            Self::MicrosoftVisioDrawing => "application/vnd.ms-visio.drawing.main+xml",
-            #[cfg(feature = "zip")]
             Self::MicrosoftVisualStudioExtension => "application/vsix",
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftExcelSpreadsheet => "application/vnd.ms-excel",
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftPowerPointPresentation => "application/vnd.ms-powerpoint",
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftSoftwareInstaller => "application/x-msi",
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftVisioDrawing => "pplication/vnd.visio",
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftWordDocument => "application/msword",
             Self::Mobipocket => "application/x-mobipocket-ebook",
             Self::MonkeysAudio => "audio/x-ape",
             Self::Mpeg1Video => "video/mpeg",
@@ -724,11 +757,13 @@ impl FileFormat {
                 "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
             }
             #[cfg(feature = "zip")]
+            Self::OfficeOpenXmlDrawing => "application/vnd.ms-visio.drawing.main+xml",
+            #[cfg(feature = "zip")]
             Self::OfficeOpenXmlPresentation => {
                 "application/vnd.openxmlformats-officedocument.presentationml.presentation"
             }
             #[cfg(feature = "zip")]
-            Self::OfficeOpenXmlWorkbook => {
+            Self::OfficeOpenXmlSpreadsheet => {
                 "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             }
             Self::OggFlac => "audio/ogg",
@@ -918,9 +953,17 @@ impl FileFormat {
             Self::MicrosoftVirtualHardDisk => "vhd",
             Self::MicrosoftVirtualHardDisk2 => "vhdx",
             #[cfg(feature = "zip")]
-            Self::MicrosoftVisioDrawing => "vsdx",
-            #[cfg(feature = "zip")]
             Self::MicrosoftVisualStudioExtension => "vsix",
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftExcelSpreadsheet => "xls",
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftPowerPointPresentation => "ppt",
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftSoftwareInstaller => "msi",
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftVisioDrawing => "vsd",
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftWordDocument => "doc",
             Self::Mobipocket => "mobi",
             Self::MonkeysAudio => "ape",
             Self::Mpeg1Video => "mpg",
@@ -935,9 +978,11 @@ impl FileFormat {
             #[cfg(feature = "zip")]
             Self::OfficeOpenXmlDocument => "docx",
             #[cfg(feature = "zip")]
+            Self::OfficeOpenXmlDrawing => "vsdx",
+            #[cfg(feature = "zip")]
             Self::OfficeOpenXmlPresentation => "pptx",
             #[cfg(feature = "zip")]
-            Self::OfficeOpenXmlWorkbook => "xlsx",
+            Self::OfficeOpenXmlSpreadsheet => "xlsx",
             Self::OggFlac => "oga",
             Self::OggMedia => "ogm",
             Self::OggMultiplexedMedia => "ogx",
@@ -1123,9 +1168,17 @@ impl FileFormat {
             Self::MicrosoftVirtualHardDisk => Kind::Application,
             Self::MicrosoftVirtualHardDisk2 => Kind::Application,
             #[cfg(feature = "zip")]
-            Self::MicrosoftVisioDrawing => Kind::Application,
-            #[cfg(feature = "zip")]
             Self::MicrosoftVisualStudioExtension => Kind::Application,
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftExcelSpreadsheet => Kind::Application,
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftPowerPointPresentation => Kind::Application,
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftSoftwareInstaller => Kind::Application,
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftVisioDrawing => Kind::Application,
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftWordDocument => Kind::Application,
             Self::Mobipocket => Kind::Application,
             Self::MonkeysAudio => Kind::Audio,
             Self::Mpeg1Video => Kind::Video,
@@ -1140,9 +1193,11 @@ impl FileFormat {
             #[cfg(feature = "zip")]
             Self::OfficeOpenXmlDocument => Kind::Application,
             #[cfg(feature = "zip")]
+            Self::OfficeOpenXmlDrawing => Kind::Application,
+            #[cfg(feature = "zip")]
             Self::OfficeOpenXmlPresentation => Kind::Application,
             #[cfg(feature = "zip")]
-            Self::OfficeOpenXmlWorkbook => Kind::Application,
+            Self::OfficeOpenXmlSpreadsheet => Kind::Application,
             Self::OggFlac => Kind::Audio,
             Self::OggMedia => Kind::Video,
             Self::OggMultiplexedMedia => Kind::Application,
@@ -1269,30 +1324,30 @@ impl FileFormat {
     /// assert_eq!(format, FileFormat::default());
     /// # Ok::<(), std::io::Error>(())
     ///```
-    #[cfg(not(feature = "zip"))]
-    pub fn from_reader<R: Read + Seek>(reader: R) -> Result<FileFormat> {
-        let mut reader = BufReader::with_capacity(FileFormat::MAX_BYTES, reader);
-        Ok(FileFormat::from_signature(reader.fill_buf()?).unwrap_or_default())
-    }
-
-    /// Determines `FileFormat` from a reader.
-    ///
-    /// # Examples
-    ///
-    /// ```rust
-    /// use file_format::FileFormat;
-    ///
-    /// let format = FileFormat::from_reader(std::io::empty())?;
-    /// assert_eq!(format, FileFormat::default());
-    /// # Ok::<(), std::io::Error>(())
-    ///```
-    #[cfg(feature = "zip")]
     pub fn from_reader<R: Read + Seek>(reader: R) -> Result<FileFormat> {
         let mut reader = BufReader::with_capacity(FileFormat::MAX_BYTES, reader);
         Ok(match FileFormat::from_signature(reader.fill_buf()?) {
-            Some(FileFormat::Zip) => FileFormat::from_zip(reader).unwrap_or_default(),
-            Some(format) => format,
+            Some(format) => match format {
+                #[cfg(feature = "cfb")]
+                FileFormat::CompoundFileBinary => FileFormat::from_cfb(reader).unwrap_or_default(),
+                #[cfg(feature = "zip")]
+                FileFormat::Zip => FileFormat::from_zip(reader).unwrap_or_default(),
+                _ => format,
+            },
             _ => FileFormat::default(),
+        })
+    }
+
+    #[cfg(feature = "cfb")]
+    fn from_cfb<R: Read + Seek>(reader: R) -> Result<FileFormat> {
+        let file = cfb::CompoundFile::open(reader)?;
+        Ok(match file.root_entry().clsid().to_string().as_str() {
+            "00020810-0000-0000-c000-000000000046" => FileFormat::MicrosoftExcelSpreadsheet,
+            "64818d10-4f9b-11cf-86ea-00aa00b929e8" => FileFormat::MicrosoftPowerPointPresentation,
+            "000c1084-0000-0000-c000-000000000046" => FileFormat::MicrosoftSoftwareInstaller,
+            "00021a14-0000-0000-c000-000000000046" => FileFormat::MicrosoftVisioDrawing,
+            "00020906-0000-0000-c000-000000000046" => FileFormat::MicrosoftWordDocument,
+            _ => FileFormat::CompoundFileBinary,
         })
     }
 
@@ -1303,14 +1358,14 @@ impl FileFormat {
             let mut file = archive.by_index(index)?;
             if file.name() == "AndroidManifest.xml" {
                 return Ok(FileFormat::AndroidPackage);
-            } else if file.name() == "AppManifest.xaml" {
-                return Ok(FileFormat::Xap);
-            } else if file.name() == "extension.vsixmanifest" {
-                return Ok(FileFormat::MicrosoftVisualStudioExtension);
-            } else if file.name() == "META-INF/mozilla.rsa" {
-                return Ok(FileFormat::XpInstall);
             } else if file.name() == "META-INF/MANIFEST.MF" {
                 return Ok(FileFormat::JavaArchive);
+            } else if file.name() == "extension.vsixmanifest" {
+                return Ok(FileFormat::MicrosoftVisualStudioExtension);
+            } else if file.name() == "AppManifest.xaml" {
+                return Ok(FileFormat::Xap);
+            } else if file.name() == "META-INF/mozilla.rsa" {
+                return Ok(FileFormat::XpInstall);
             } else if file.name() == "mimetype" {
                 let mut content = String::new();
                 file.read_to_string(&mut content)?;
@@ -1318,32 +1373,32 @@ impl FileFormat {
                     "application/epub+zip" => {
                         return Ok(FileFormat::ElectronicPublication);
                     }
-                    "application/vnd.oasis.opendocument.text" => {
-                        return Ok(FileFormat::OpenDocumentText);
-                    }
-                    "application/vnd.oasis.opendocument.spreadsheet" => {
-                        return Ok(FileFormat::OpenDocumentSpreadsheet);
+                    "application/vnd.oasis.opendocument.graphics" => {
+                        return Ok(FileFormat::OpenDocumentGraphics);
                     }
                     "application/vnd.oasis.opendocument.presentation" => {
                         return Ok(FileFormat::OpenDocumentPresentation);
                     }
-                    "application/vnd.oasis.opendocument.graphics" => {
-                        return Ok(FileFormat::OpenDocumentGraphics);
+                    "application/vnd.oasis.opendocument.spreadsheet" => {
+                        return Ok(FileFormat::OpenDocumentSpreadsheet);
+                    }
+                    "application/vnd.oasis.opendocument.text" => {
+                        return Ok(FileFormat::OpenDocumentText);
                     }
                     _ => {}
                 }
+            } else if file.name().starts_with("circuitdiagram/") {
+                return Ok(FileFormat::CircuitDiagramDocument);
             } else if file.name().starts_with("dwf/") {
                 return Ok(FileFormat::DesignWebFormatXps);
             } else if file.name().starts_with("word/") {
                 return Ok(FileFormat::OfficeOpenXmlDocument);
+            } else if file.name().starts_with("visio/") {
+                return Ok(FileFormat::OfficeOpenXmlDrawing);
             } else if file.name().starts_with("ppt/") {
                 return Ok(FileFormat::OfficeOpenXmlPresentation);
             } else if file.name().starts_with("xl/") {
-                return Ok(FileFormat::OfficeOpenXmlWorkbook);
-            } else if file.name().starts_with("visio/") {
-                return Ok(FileFormat::MicrosoftVisioDrawing);
-            } else if file.name().starts_with("circuitdiagram/") {
-                return Ok(FileFormat::CircuitDiagramDocument);
+                return Ok(FileFormat::OfficeOpenXmlSpreadsheet);
             } else if file.name().starts_with("3D/") && file.name().ends_with(".model") {
                 return Ok(FileFormat::ThreeDimensionalManufacturingFormat);
             }

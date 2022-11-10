@@ -273,16 +273,44 @@ fn test_microsoft_virtual_hard_disk2() {
 
 #[cfg(feature = "zip")]
 #[test]
-fn test_microsoft_visio_drawing() {
-    let format = FileFormat::from_file("fixtures/application/sample.vsdx").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftVisioDrawing);
-}
-
-#[cfg(feature = "zip")]
-#[test]
 fn test_microsoft_visual_studio_extension() {
     let format = FileFormat::from_file("fixtures/application/sample.vsix").unwrap();
     assert_eq!(format, FileFormat::MicrosoftVisualStudioExtension);
+}
+
+#[cfg(feature = "cfb")]
+#[test]
+fn test_microsoft_excel_spreadsheet() {
+    let format = FileFormat::from_file("fixtures/application/sample.xls").unwrap();
+    assert_eq!(format, FileFormat::MicrosoftExcelSpreadsheet);
+}
+
+#[cfg(feature = "cfb")]
+#[test]
+fn test_microsoft_power_point_presentation() {
+    let format = FileFormat::from_file("fixtures/application/sample.ppt").unwrap();
+    assert_eq!(format, FileFormat::MicrosoftPowerPointPresentation);
+}
+
+#[cfg(feature = "cfb")]
+#[test]
+fn test_microsoft_software_installer() {
+    let format = FileFormat::from_file("fixtures/application/sample.msi").unwrap();
+    assert_eq!(format, FileFormat::MicrosoftSoftwareInstaller);
+}
+
+#[cfg(feature = "cfb")]
+#[test]
+fn test_microsoft_visio_drawing() {
+    let format = FileFormat::from_file("fixtures/application/sample.vsd").unwrap();
+    assert_eq!(format, FileFormat::MicrosoftVisioDrawing);
+}
+
+#[cfg(feature = "cfb")]
+#[test]
+fn test_microsoft_word_document() {
+    let format = FileFormat::from_file("fixtures/application/sample.doc").unwrap();
+    assert_eq!(format, FileFormat::MicrosoftWordDocument);
 }
 
 #[test]
@@ -318,6 +346,13 @@ fn test_office_open_xml_document() {
 
 #[cfg(feature = "zip")]
 #[test]
+fn test_office_open_xml_drawing() {
+    let format = FileFormat::from_file("fixtures/application/sample.vsdx").unwrap();
+    assert_eq!(format, FileFormat::OfficeOpenXmlDrawing);
+}
+
+#[cfg(feature = "zip")]
+#[test]
 fn test_office_open_xml_presentation() {
     let format = FileFormat::from_file("fixtures/application/sample.pptx").unwrap();
     assert_eq!(format, FileFormat::OfficeOpenXmlPresentation);
@@ -325,9 +360,9 @@ fn test_office_open_xml_presentation() {
 
 #[cfg(feature = "zip")]
 #[test]
-fn test_office_open_xml_workbook() {
+fn test_office_open_xml_spreadsheet() {
     let format = FileFormat::from_file("fixtures/application/sample.xlsx").unwrap();
-    assert_eq!(format, FileFormat::OfficeOpenXmlWorkbook);
+    assert_eq!(format, FileFormat::OfficeOpenXmlSpreadsheet);
 }
 
 #[test]
