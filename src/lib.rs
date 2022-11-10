@@ -738,7 +738,7 @@ impl FileFormat {
             #[cfg(feature = "cfb")]
             Self::MicrosoftSoftwareInstaller => "application/x-msi",
             #[cfg(feature = "cfb")]
-            Self::MicrosoftVisioDrawing => "pplication/vnd.visio",
+            Self::MicrosoftVisioDrawing => "application/vnd.visio",
             #[cfg(feature = "cfb")]
             Self::MicrosoftWordDocument => "application/msword",
             Self::Mobipocket => "application/x-mobipocket-ebook",
