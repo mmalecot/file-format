@@ -1410,7 +1410,7 @@ impl FileFormat {
             } else if file.name() == "mimetype" {
                 let mut content = String::new();
                 file.read_to_string(&mut content)?;
-                match content.as_str() {
+                match content.trim() {
                     "application/epub+zip" => {
                         return Ok(FileFormat::ElectronicPublication);
                     }
