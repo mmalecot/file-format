@@ -1590,13 +1590,6 @@ signatures! {
     value = b"\x23\x3F\x52\x41\x44\x49\x41\x4E\x43\x45\x0A"
 
     // 10-byte signatures
-    format = AppleQuickTime
-    value = b"\x00\x00\x00\x14", b"ftypqt" offset = 4
-    value = b"\x66\x72\x65\x65" offset = 4
-    value = b"\x6D\x64\x61\x74" offset = 4
-    value = b"\x6D\x6F\x6F\x76" offset = 4
-    value = b"\x77\x69\x64\x65" offset = 4
-
     format = OggMedia
     value = b"OggS", b"\x01\x76\x69\x64\x65\x6F" offset = 28
 
@@ -1789,6 +1782,14 @@ signatures! {
     // 6-byte signatures
     format = ApacheArrowColumnar
     value = b"ARROW1"
+
+    format = AppleQuickTime
+    value = b"ftypqt" offset = 4
+    value = b"moov" offset = 4
+    value = b"mdat" offset = 4
+    value = b"wide" offset = 4
+    value = b"skip" offset = 4
+    value = b"free" offset = 4
 
     format = CanonRaw2
     value = b"\x4D\x4D\x00\x2A", b"CR" offset = 8

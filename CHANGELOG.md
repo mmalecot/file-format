@@ -7,6 +7,10 @@
 - Rename FileFormat variant OfficeOpenXmlWorkbook to OfficeOpenXmlSpreadsheet
 - Rename FileFormat variant WindowsExecutable to MsDosExecutable
 
+## Fixes
+
+- Fix `Apple QuickTime` signature
+
 ## New formats support
 
 - Circuit Diagram Document - `cddx`
