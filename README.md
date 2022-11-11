@@ -187,7 +187,7 @@ file-format = "0.9"
 - Tag Image File Format - `tiff`
 - Tape Archive - `tar`
 - TrueType - `ttf`
-- UNIX archiver - `ar`
+- UNIX archiver - `a`
 - UNIX compress - `Z`
 - VirtualBox Virtual Disk Image - `vdi`
 - WavPack - `wv`

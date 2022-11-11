@@ -353,7 +353,7 @@ pub enum FileFormat {
     ThreeDimensionalManufacturingFormat,
     /// TrueType - `ttf`
     TrueType,
-    /// UNIX archiver - `ar`
+    /// UNIX archiver - `a`
     UnixArchiver,
     /// UNIX compress - `Z`
     UnixCompress,
@@ -1038,7 +1038,7 @@ impl FileFormat {
             #[cfg(feature = "zip")]
             Self::ThreeDimensionalManufacturingFormat => "3mf",
             Self::TrueType => "ttf",
-            Self::UnixArchiver => "ar",
+            Self::UnixArchiver => "a",
             Self::UnixCompress => "Z",
             Self::VirtualBoxVirtualDiskImage => "vdi",
             Self::WavPack => "wv",

@@ -12,6 +12,7 @@
 - Fix `Apple QuickTime` signature
 - Fix `Joint Photographic Experts Group` signature
 - Fix `Matroska Video` signature
+- Change UNIX archiver extension from `ar` to `a` (preferred)
 
 ## New formats support
 
