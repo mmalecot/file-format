@@ -3,7 +3,7 @@
 use std::{
     fmt::{self, Display, Formatter},
     fs::File,
-    io::{BufRead, BufReader, Cursor, Read, Result, Seek},
+    io::{BufRead, BufReader, Cursor, Read, Result, Seek, SeekFrom},
     path::Path,
     str,
 };
@@ -108,6 +108,8 @@ pub enum FileFormat {
     DigitalPictureExchange,
     /// DjVu - `djvu`
     DjVu,
+    /// Dynamic Link Library - `dll`
+    DynamicLinkLibrary,
     /// Electronic Publication - `epub`
     #[cfg(feature = "zip")]
     ElectronicPublication,
@@ -240,6 +242,8 @@ pub enum FileFormat {
     Mpeg4Part14Video,
     /// MPEG-1/2 Audio Layer III - `mp3`
     MpegAudioLayer3,
+    /// MS-DOS Executable - `exe`
+    MsDosExecutable,
     /// Musepack - `mpc`
     Musepack,
     /// Musical Instrument Digital Interface - `mid`
@@ -308,6 +312,8 @@ pub enum FileFormat {
     PortableDocumentFormat,
     /// Portable Network Graphics - `png`
     PortableNetworkGraphics,
+    /// Portable Executable - `exe`
+    PortableExecutable,
     /// Qualcomm PureVoice - `qcp`
     QualcommPureVoice,
     /// Radiance HDR - `hdr`
@@ -367,8 +373,6 @@ pub enum FileFormat {
     WebP,
     /// Windows Bitmap - `bmp`
     WindowsBitmap,
-    /// Windows Executable - `exe`
-    WindowsExecutable,
     /// Windows Media Video - `wmv`
     WindowsMediaVideo,
     /// Windows Metafile - `wmf`
@@ -459,6 +463,7 @@ impl FileFormat {
             }
             Self::DigitalPictureExchange => "Digital Picture Exchange",
             Self::DjVu => "DjVu",
+            Self::DynamicLinkLibrary => "Dynamic Link Library",
             #[cfg(feature = "zip")]
             Self::ElectronicPublication => "Electronic Publication",
             Self::EmbeddedOpenType => "Embedded OpenType",
@@ -531,6 +536,7 @@ impl FileFormat {
             Self::Mpeg1Video => "MPEG-1 Video",
             Self::Mpeg4Part14Video => "MPEG-4 Part 14 Video",
             Self::MpegAudioLayer3 => "MPEG-1/2 Audio Layer III",
+            Self::MsDosExecutable => "MS-DOS Executable",
             Self::Musepack => "Musepack",
             Self::MusicalInstrumentDigitalInterface => "Musical Instrument Digital Interface",
             Self::NikonElectronicFile => "Nikon Electronic File",
@@ -568,6 +574,7 @@ impl FileFormat {
             Self::PcapDump => "PCAP Dump",
             Self::PcapNextGenerationDump => "PCAP Next Generation Dump",
             Self::PortableDocumentFormat => "Portable Document Format",
+            Self::PortableExecutable => "Portable Executable",
             Self::PortableNetworkGraphics => "Portable Network Graphics",
             Self::QualcommPureVoice => "Qualcomm PureVoice",
             Self::RadianceHdr => "Radiance HDR",
@@ -599,7 +606,6 @@ impl FileFormat {
             Self::WebOpenFontFormat2 => "Web Open Font Format 2",
             Self::WebP => "WebP",
             Self::WindowsBitmap => "Windows Bitmap",
-            Self::WindowsExecutable => "Windows Executable",
             Self::WindowsMediaVideo => "Windows Media Video",
             Self::WindowsMetafile => "Windows Metafile",
             Self::WindowsShortcut => "Windows Shortcut",
@@ -676,6 +682,7 @@ impl FileFormat {
             Self::DigitalImagingAndCommunicationsInMedicine => "application/dicom",
             Self::DigitalPictureExchange => "image/x-dpx",
             Self::DjVu => "image/vnd.djvu",
+            Self::DynamicLinkLibrary => "application/vnd.microsoft.portable-executable",
             #[cfg(feature = "zip")]
             Self::ElectronicPublication => "application/epub+zip",
             Self::EmbeddedOpenType => "application/vnd.ms-fontobject",
@@ -746,6 +753,7 @@ impl FileFormat {
             Self::Mpeg1Video => "video/mpeg",
             Self::Mpeg4Part14Video => "video/mp4",
             Self::MpegAudioLayer3 => "audio/mpeg",
+            Self::MsDosExecutable => "application/x-dosexec",
             Self::Musepack => "audio/x-musepack",
             Self::MusicalInstrumentDigitalInterface => "audio/midi",
             Self::NikonElectronicFile => "image/x-nikon-nef",
@@ -789,6 +797,7 @@ impl FileFormat {
             Self::PcapDump => "application/vnd.tcpdump.pcap",
             Self::PcapNextGenerationDump => "application/x-pcapng",
             Self::PortableDocumentFormat => "application/pdf",
+            Self::PortableExecutable => "application/vnd.microsoft.portable-executable",
             Self::PortableNetworkGraphics => "image/png",
             Self::QualcommPureVoice => "audio/qcelp",
             Self::RadianceHdr => "image/vnd.radiance",
@@ -822,7 +831,6 @@ impl FileFormat {
             Self::WebOpenFontFormat2 => "font/woff2",
             Self::WebP => "image/webp",
             Self::WindowsBitmap => "image/bmp",
-            Self::WindowsExecutable => "application/x-msdownload",
             Self::WindowsMediaVideo => "video/x-ms-asf",
             Self::WindowsMetafile => "image/wmf",
             Self::WindowsShortcut => "application/x-ms-shortcut",
@@ -899,6 +907,7 @@ impl FileFormat {
             Self::DigitalImagingAndCommunicationsInMedicine => "dcm",
             Self::DigitalPictureExchange => "dpx",
             Self::DjVu => "djvu",
+            Self::DynamicLinkLibrary => "dll",
             #[cfg(feature = "zip")]
             Self::ElectronicPublication => "epub",
             Self::EmbeddedOpenType => "eot",
@@ -969,6 +978,7 @@ impl FileFormat {
             Self::Mpeg1Video => "mpg",
             Self::Mpeg4Part14Video => "mp4",
             Self::MpegAudioLayer3 => "mp3",
+            Self::MsDosExecutable => "exe",
             Self::Musepack => "mpc",
             Self::MusicalInstrumentDigitalInterface => "mid",
             Self::NikonElectronicFile => "nef",
@@ -1006,6 +1016,7 @@ impl FileFormat {
             Self::PcapDump => "pcap",
             Self::PcapNextGenerationDump => "pcapng",
             Self::PortableDocumentFormat => "pdf",
+            Self::PortableExecutable => "exe",
             Self::PortableNetworkGraphics => "png",
             Self::QualcommPureVoice => "qcp",
             Self::RadianceHdr => "hdr",
@@ -1037,7 +1048,6 @@ impl FileFormat {
             Self::WebOpenFontFormat2 => "woff2",
             Self::WebP => "webp",
             Self::WindowsBitmap => "bmp",
-            Self::WindowsExecutable => "exe",
             Self::WindowsMediaVideo => "wmv",
             Self::WindowsMetafile => "wmf",
             Self::WindowsShortcut => "lnk",
@@ -1114,6 +1124,7 @@ impl FileFormat {
             Self::DigitalImagingAndCommunicationsInMedicine => Kind::Application,
             Self::DigitalPictureExchange => Kind::Image,
             Self::DjVu => Kind::Image,
+            Self::DynamicLinkLibrary => Kind::Application,
             #[cfg(feature = "zip")]
             Self::ElectronicPublication => Kind::Application,
             Self::EmbeddedOpenType => Kind::Application,
@@ -1184,6 +1195,7 @@ impl FileFormat {
             Self::Mpeg1Video => Kind::Video,
             Self::Mpeg4Part14Video => Kind::Video,
             Self::MpegAudioLayer3 => Kind::Audio,
+            Self::MsDosExecutable => Kind::Application,
             Self::Musepack => Kind::Audio,
             Self::MusicalInstrumentDigitalInterface => Kind::Audio,
             Self::NikonElectronicFile => Kind::Image,
@@ -1220,6 +1232,7 @@ impl FileFormat {
             Self::PanasonicRaw => Kind::Image,
             Self::PcapDump => Kind::Application,
             Self::PcapNextGenerationDump => Kind::Application,
+            Self::PortableExecutable => Kind::Application,
             Self::PortableDocumentFormat => Kind::Application,
             Self::PortableNetworkGraphics => Kind::Image,
             Self::QualcommPureVoice => Kind::Audio,
@@ -1252,7 +1265,6 @@ impl FileFormat {
             Self::WebOpenFontFormat2 => Kind::Font,
             Self::WebP => Kind::Image,
             Self::WindowsBitmap => Kind::Image,
-            Self::WindowsExecutable => Kind::Application,
             Self::WindowsMediaVideo => Kind::Video,
             Self::WindowsMetafile => Kind::Image,
             Self::WindowsShortcut => Kind::Application,
@@ -1330,12 +1342,39 @@ impl FileFormat {
             Some(format) => match format {
                 #[cfg(feature = "cfb")]
                 FileFormat::CompoundFileBinary => FileFormat::from_cfb(reader).unwrap_or_default(),
+                FileFormat::MsDosExecutable => {
+                    FileFormat::from_ms_dos_executable(reader).unwrap_or_default()
+                }
                 #[cfg(feature = "zip")]
                 FileFormat::Zip => FileFormat::from_zip(reader).unwrap_or_default(),
                 _ => format,
             },
             _ => FileFormat::default(),
         })
+    }
+
+    /// Determines `FileFormat` from a MS-DOS Executable reader.
+    fn from_ms_dos_executable<R: Read + Seek>(mut reader: R) -> Result<FileFormat> {
+        // Retrieves PE header address
+        let mut address = [0; 4];
+        reader.seek(SeekFrom::Start(0x3C))?;
+        reader.read_exact(&mut address)?;
+        // Retrieves PE signature
+        let mut signature = [0; 4];
+        reader.seek(SeekFrom::Start(u32::from_le_bytes(address) as u64))?;
+        reader.read_exact(&mut signature)?;
+        if &signature == b"PE\x00\x00" {
+            // Retrieves PE characteristics
+            let mut characteristics = [0; 2];
+            reader.seek(SeekFrom::Current(0x12))?;
+            reader.read_exact(&mut characteristics)?;
+            return Ok(if u16::from_le_bytes(characteristics) & 0x2000 == 0x2000 {
+                FileFormat::DynamicLinkLibrary
+            } else {
+                FileFormat::PortableExecutable
+            });
+        }
+        Ok(FileFormat::MsDosExecutable)
     }
 
     /// Determines `FileFormat` from a Compound File Binary reader.
@@ -2016,15 +2055,15 @@ signatures! {
     format = Gzip
     value = b"\x1F\x8B"
 
+    format = MsDosExecutable
+    value = b"MZ"
+
     format = UnixCompress
     value = b"\x1F\xA0"
     value = b"\x1F\x9D"
 
     format = WindowsBitmap
     value = b"BM"
-
-    format = WindowsExecutable
-    value = b"MZ"
 }
 
 /// Kind of [`FileFormat`].

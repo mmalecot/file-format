@@ -119,6 +119,12 @@ fn test_digital_imaging_and_communications_in_medicine() {
     );
 }
 
+#[test]
+fn test_dynamic_link_library() {
+    let format = FileFormat::from_file("fixtures/application/sample.dll").unwrap();
+    assert_eq!(format, FileFormat::DynamicLinkLibrary);
+}
+
 #[cfg(feature = "zip")]
 #[test]
 fn test_electronic_publication() {
@@ -320,6 +326,12 @@ fn test_mobipocket() {
 }
 
 #[test]
+fn test_ms_dos_executable() {
+    let format = FileFormat::from_file("fixtures/application/sample1.exe").unwrap();
+    assert_eq!(format, FileFormat::MsDosExecutable);
+}
+
+#[test]
 fn test_nintendo64_rom() {
     let format = FileFormat::from_file("fixtures/application/sample.z64").unwrap();
     assert_eq!(format, FileFormat::Nintendo64Rom);
@@ -424,6 +436,12 @@ fn test_portable_document_format() {
 }
 
 #[test]
+fn test_portable_executable() {
+    let format = FileFormat::from_file("fixtures/application/sample2.exe").unwrap();
+    assert_eq!(format, FileFormat::PortableExecutable);
+}
+
+#[test]
 fn test_red_hat_package_manager() {
     let format = FileFormat::from_file("fixtures/application/sample.rpm").unwrap();
     assert_eq!(format, FileFormat::RedHatPackageManager);
@@ -512,12 +530,6 @@ fn test_virtual_box_virtual_disk_image() {
 fn test_web_assembly_binary() {
     let format = FileFormat::from_file("fixtures/application/sample.wasm").unwrap();
     assert_eq!(format, FileFormat::WebAssemblyBinary);
-}
-
-#[test]
-fn test_windows_executable() {
-    let format = FileFormat::from_file("fixtures/application/sample.exe").unwrap();
-    assert_eq!(format, FileFormat::WindowsExecutable);
 }
 
 #[test]

@@ -97,6 +97,7 @@ file-format = "0.9"
 - Digital Imaging and Communications in Medicine - `dcm`
 - Digital Picture Exchange - `dpx`
 - DjVu - `djvu`
+- Dynamic Link Library - `dll`
 - Embedded OpenType - `eot`
 - Executable and Linkable Format - `elf`
 - Experimental Computing Facility - `xcf`
@@ -147,6 +148,7 @@ file-format = "0.9"
 - Microsoft Virtual Hard Disk 2 - `vhdx`
 - Mobipocket - `mobi`
 - Monkey’s Audio - `ape`
+- MS-DOS Executable - `exe`
 - Musepack - `mpc`
 - Musical Instrument Digital Interface - `mid`
 - Nikon Electronic File - `nef`
@@ -168,6 +170,7 @@ file-format = "0.9"
 - PCAP Next Generation Dump - `pcapng`
 - Panasonic Raw - `rw2`
 - Portable Document Format - `pdf`
+- Portable Executable - `exe`
 - Portable Network Graphics - `png`
 - Qualcomm PureVoice - `qcp`
 - Radiance HDR - `hdr`
@@ -194,7 +197,6 @@ file-format = "0.9"
 - WebAssembly Binary - `wasm`
 - WebP - `webp`
 - Windows Bitmap - `bmp`
-- Windows Executable - `exe`
 - Windows Media Video - `wmv`
 - Windows Metafile - `wmf`
 - Windows Shortcut - `lnk`
