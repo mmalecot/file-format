@@ -11,6 +11,7 @@
 
 - Fix `Apple QuickTime` signature
 - Fix `Joint Photographic Experts Group` signature
+- Fix `Matroska Video` signature
 
 ## New formats support
 

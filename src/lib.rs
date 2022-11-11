@@ -1563,6 +1563,7 @@ signatures! {
 
     format = MatroskaVideo
     value = b"\x1A\x45\xDF\xA3", b"matroska" offset = 24
+    value = b"\x1A\x45\xDF\xA3", b"matroska" offset = 31
 
     format = OggOpus
     value = b"OggS", b"OpusHead" offset = 28
