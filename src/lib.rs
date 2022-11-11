@@ -1551,12 +1551,6 @@ signatures! {
     value = b"AT&TFORM", b"DJVI" offset = 12
     value = b"AT&TFORM", b"THUM" offset = 12
 
-    format = JointPhotographicExpertsGroup
-    value = b"\xFF\xD8\xFF\xE0\x00\x10\x4A\x46\x49\x46\x00\x01"
-    value = b"\xFF\xD8\xFF\xE1", b"\x45\x78\x69\x66\x00\x00" offset = 6
-    value = b"\xFF\xD8\xFF\xDB"
-    value = b"\xFF\xD8\xFF\xEE"
-
     format = JpegXl
     value = b"\x00\x00\x00\x0C\x4A\x58\x4C\x20\x0D\x0A\x87\x0A"
     value = b"\xFF\x0A"
@@ -2018,6 +2012,9 @@ signatures! {
     // 3-byte signatures
     format = Bzip2
     value = b"BZh"
+
+    format = JointPhotographicExpertsGroup
+    value = b"\xFF\xD8\xFF"
 
     format = JpegExtendedRange
     value = b"\x49\x49\xBC"

@@ -10,6 +10,7 @@
 ## Fixes
 
 - Fix `Apple QuickTime` signature
+- Fix `Joint Photographic Experts Group` signature
 
 ## New formats support
 
