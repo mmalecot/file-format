@@ -1336,21 +1336,18 @@ impl FileFormat {
     /// assert_eq!(format, FileFormat::default());
     /// # Ok::<(), std::io::Error>(())
     ///```
-    pub fn from_reader<R: Read + Seek>(reader: R) -> Result<FileFormat> {
-        let mut reader = BufReader::with_capacity(FileFormat::MAX_BYTES, reader);
-        Ok(match FileFormat::from_signature(reader.fill_buf()?) {
-            Some(format) => match format {
+    pub fn from_reader<R: Read + Seek>(reader: R) -> Result<Self> {
+        let mut reader = BufReader::with_capacity(Self::MAX_BYTES, reader);
+        Ok(Self::from_signature(reader.fill_buf()?)
+            .map(|format| match format {
                 #[cfg(feature = "cfb")]
-                FileFormat::CompoundFileBinary => FileFormat::from_cfb(reader).unwrap_or_default(),
-                FileFormat::MsDosExecutable => {
-                    FileFormat::from_ms_dos_executable(reader).unwrap_or_default()
-                }
+                Self::CompoundFileBinary => Self::from_cfb(reader).unwrap_or_default(),
+                Self::MsDosExecutable => Self::from_ms_dos_executable(reader).unwrap_or_default(),
                 #[cfg(feature = "zip")]
-                FileFormat::Zip => FileFormat::from_zip(reader).unwrap_or_default(),
+                Self::Zip => Self::from_zip(reader).unwrap_or_default(),
                 _ => format,
-            },
-            _ => FileFormat::default(),
-        })
+            })
+            .unwrap_or_default())
     }
 
     /// Determines `FileFormat` from a MS-DOS Executable reader.
