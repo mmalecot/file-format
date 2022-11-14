@@ -1305,8 +1305,8 @@ impl FileFormat {
     ///
     /// [default value]: FileFormat::default
     #[inline]
-    pub fn from_bytes(bytes: &[u8]) -> FileFormat {
-        FileFormat::from(bytes)
+    pub fn from_bytes(bytes: &[u8]) -> Self {
+        Self::from(bytes)
     }
 
     /// Determines `FileFormat` from a file.
@@ -1321,8 +1321,8 @@ impl FileFormat {
     /// # Ok::<(), std::io::Error>(())
     ///```
     #[inline]
-    pub fn from_file<P: AsRef<Path>>(path: P) -> Result<FileFormat> {
-        FileFormat::from_reader(File::open(path)?)
+    pub fn from_file<P: AsRef<Path>>(path: P) -> Result<Self> {
+        Self::from_reader(File::open(path)?)
     }
 
     /// Determines `FileFormat` from a reader.
@@ -1351,7 +1351,7 @@ impl FileFormat {
     }
 
     /// Determines `FileFormat` from a MS-DOS Executable reader.
-    fn from_ms_dos_executable<R: Read + Seek>(mut reader: R) -> Result<FileFormat> {
+    fn from_ms_dos_executable<R: Read + Seek>(mut reader: R) -> Result<Self> {
         // Retrieves PE header address
         let mut address = [0; 4];
         reader.seek(SeekFrom::Start(0x3C))?;
@@ -1366,90 +1366,90 @@ impl FileFormat {
             reader.seek(SeekFrom::Current(0x12))?;
             reader.read_exact(&mut characteristics)?;
             return Ok(if u16::from_le_bytes(characteristics) & 0x2000 == 0x2000 {
-                FileFormat::DynamicLinkLibrary
+                Self::DynamicLinkLibrary
             } else {
-                FileFormat::PortableExecutable
+                Self::PortableExecutable
             });
         }
-        Ok(FileFormat::MsDosExecutable)
+        Ok(Self::MsDosExecutable)
     }
 
     /// Determines `FileFormat` from a Compound File Binary reader.
     #[cfg(feature = "cfb")]
-    fn from_cfb<R: Read + Seek>(reader: R) -> Result<FileFormat> {
+    fn from_cfb<R: Read + Seek>(reader: R) -> Result<Self> {
         let file = cfb::CompoundFile::open(reader)?;
         Ok(match file.root_entry().clsid().to_string().as_str() {
-            "00020810-0000-0000-c000-000000000046" => FileFormat::MicrosoftExcelSpreadsheet,
-            "64818d10-4f9b-11cf-86ea-00aa00b929e8" => FileFormat::MicrosoftPowerPointPresentation,
-            "000c1084-0000-0000-c000-000000000046" => FileFormat::MicrosoftSoftwareInstaller,
-            "00021a14-0000-0000-c000-000000000046" => FileFormat::MicrosoftVisioDrawing,
-            "00020906-0000-0000-c000-000000000046" => FileFormat::MicrosoftWordDocument,
-            _ => FileFormat::CompoundFileBinary,
+            "00020810-0000-0000-c000-000000000046" => Self::MicrosoftExcelSpreadsheet,
+            "64818d10-4f9b-11cf-86ea-00aa00b929e8" => Self::MicrosoftPowerPointPresentation,
+            "000c1084-0000-0000-c000-000000000046" => Self::MicrosoftSoftwareInstaller,
+            "00021a14-0000-0000-c000-000000000046" => Self::MicrosoftVisioDrawing,
+            "00020906-0000-0000-c000-000000000046" => Self::MicrosoftWordDocument,
+            _ => Self::CompoundFileBinary,
         })
     }
 
     /// Determines `FileFormat` from a ZIP reader.
     #[cfg(feature = "zip")]
-    fn from_zip<R: Read + Seek>(reader: R) -> Result<FileFormat> {
+    fn from_zip<R: Read + Seek>(reader: R) -> Result<Self> {
         let mut archive = zip::ZipArchive::new(reader)?;
         for index in 0..archive.len() {
             let mut file = archive.by_index(index)?;
             if file.name() == "AndroidManifest.xml" {
-                return Ok(FileFormat::AndroidPackage);
+                return Ok(Self::AndroidPackage);
             } else if file.name() == "META-INF/MANIFEST.MF" {
-                return Ok(FileFormat::JavaArchive);
+                return Ok(Self::JavaArchive);
             } else if file.name() == "extension.vsixmanifest" {
-                return Ok(FileFormat::MicrosoftVisualStudioExtension);
+                return Ok(Self::MicrosoftVisualStudioExtension);
             } else if file.name() == "AppManifest.xaml" {
-                return Ok(FileFormat::Xap);
+                return Ok(Self::Xap);
             } else if file.name() == "META-INF/mozilla.rsa" {
-                return Ok(FileFormat::XpInstall);
+                return Ok(Self::XpInstall);
             } else if file.name() == "mimetype" {
                 let mut content = String::new();
                 file.read_to_string(&mut content)?;
                 match content.trim() {
                     "application/epub+zip" => {
-                        return Ok(FileFormat::ElectronicPublication);
+                        return Ok(Self::ElectronicPublication);
                     }
                     "application/vnd.oasis.opendocument.graphics" => {
-                        return Ok(FileFormat::OpenDocumentGraphics);
+                        return Ok(Self::OpenDocumentGraphics);
                     }
                     "application/vnd.oasis.opendocument.presentation" => {
-                        return Ok(FileFormat::OpenDocumentPresentation);
+                        return Ok(Self::OpenDocumentPresentation);
                     }
                     "application/vnd.oasis.opendocument.spreadsheet" => {
-                        return Ok(FileFormat::OpenDocumentSpreadsheet);
+                        return Ok(Self::OpenDocumentSpreadsheet);
                     }
                     "application/vnd.oasis.opendocument.text" => {
-                        return Ok(FileFormat::OpenDocumentText);
+                        return Ok(Self::OpenDocumentText);
                     }
                     _ => {}
                 }
             } else if file.name().starts_with("circuitdiagram/") {
-                return Ok(FileFormat::CircuitDiagramDocument);
+                return Ok(Self::CircuitDiagramDocument);
             } else if file.name().starts_with("dwf/") {
-                return Ok(FileFormat::DesignWebFormatXps);
+                return Ok(Self::DesignWebFormatXps);
             } else if file.name().starts_with("word/") {
-                return Ok(FileFormat::OfficeOpenXmlDocument);
+                return Ok(Self::OfficeOpenXmlDocument);
             } else if file.name().starts_with("visio/") {
-                return Ok(FileFormat::OfficeOpenXmlDrawing);
+                return Ok(Self::OfficeOpenXmlDrawing);
             } else if file.name().starts_with("ppt/") {
-                return Ok(FileFormat::OfficeOpenXmlPresentation);
+                return Ok(Self::OfficeOpenXmlPresentation);
             } else if file.name().starts_with("xl/") {
-                return Ok(FileFormat::OfficeOpenXmlSpreadsheet);
+                return Ok(Self::OfficeOpenXmlSpreadsheet);
             } else if file.name().starts_with("3D/") && file.name().ends_with(".model") {
-                return Ok(FileFormat::ThreeDimensionalManufacturingFormat);
+                return Ok(Self::ThreeDimensionalManufacturingFormat);
             }
         }
-        Ok(FileFormat::Zip)
+        Ok(Self::Zip)
     }
 }
 
 impl Default for FileFormat {
     /// Returns the default `FileFormat` which corresponds to [`FileFormat::ArbitraryBinaryData`].
     #[inline]
-    fn default() -> FileFormat {
-        FileFormat::ArbitraryBinaryData
+    fn default() -> Self {
+        Self::ArbitraryBinaryData
     }
 }
 
@@ -1461,8 +1461,8 @@ impl Display for FileFormat {
 
 impl From<&[u8]> for FileFormat {
     #[inline]
-    fn from(value: &[u8]) -> FileFormat {
-        FileFormat::from_reader(Cursor::new(value)).unwrap_or_default()
+    fn from(value: &[u8]) -> Self {
+        Self::from_reader(Cursor::new(value)).unwrap_or_default()
     }
 }
 
@@ -1476,11 +1476,11 @@ macro_rules! signatures {
     } => {
         impl FileFormat {
             /// Determines `FileFormat` by checking its signature.
-            fn from_signature(bytes: &[u8]) -> Option<FileFormat> {
+            fn from_signature(bytes: &[u8]) -> Option<Self> {
                 $(
                     if $($(bytes.len() >= $($offset +)? $value.len()
                         && &bytes[$($offset)?..$($offset +)? $value.len()] == $value)&&*)||* {
-                        return Some(FileFormat::$format);
+                        return Some(Self::$format);
                     }
                 )*
                 None
