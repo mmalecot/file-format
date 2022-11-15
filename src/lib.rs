@@ -2001,8 +2001,6 @@ signatures! {
 
     format = Zip
     value = b"\x50\x4B\x03\x04"
-    value = b"\x50\x4B\x05\x06"
-    value = b"\x50\x4B\x07\x08"
 
     format = Zstandard
     value = b"\x28\xB5\x2F\xFD"
