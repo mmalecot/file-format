@@ -1352,18 +1352,15 @@ impl FileFormat {
 
     /// Determines `FileFormat` from a MS-DOS Executable reader.
     fn from_ms_dos_executable<R: Read + Seek>(mut reader: R) -> Result<Self> {
-        // Retrieves PE header address
-        let mut address = [0; 4];
         reader.seek(SeekFrom::Start(0x3C))?;
+        let mut address = [0; 4];
         reader.read_exact(&mut address)?;
-        // Retrieves PE signature
-        let mut signature = [0; 4];
         reader.seek(SeekFrom::Start(u32::from_le_bytes(address) as u64))?;
+        let mut signature = [0; 4];
         reader.read_exact(&mut signature)?;
         if &signature == b"PE\x00\x00" {
-            // Retrieves PE characteristics
-            let mut characteristics = [0; 2];
             reader.seek(SeekFrom::Current(0x12))?;
+            let mut characteristics = [0; 2];
             reader.read_exact(&mut characteristics)?;
             return Ok(if u16::from_le_bytes(characteristics) & 0x2000 == 0x2000 {
                 Self::DynamicLinkLibrary
