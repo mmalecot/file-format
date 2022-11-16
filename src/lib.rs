@@ -1386,6 +1386,7 @@ impl FileFormat {
         let file = cfb::CompoundFile::open(reader)?;
         Ok(match file.root_entry().clsid().to_string().as_str() {
             "00020810-0000-0000-c000-000000000046" => Self::MicrosoftExcelSpreadsheet,
+            "00020820-0000-0000-c000-000000000046" => Self::MicrosoftExcelSpreadsheet,
             "64818d10-4f9b-11cf-86ea-00aa00b929e8" => Self::MicrosoftPowerPointPresentation,
             "74b78f3a-c8c8-11d1-be11-00c04fb6faf1" => Self::MicrosoftProjectPlan,
             "00021201-0000-0000-00c0-000000000046" => Self::MicrosoftPublisherDocument,
