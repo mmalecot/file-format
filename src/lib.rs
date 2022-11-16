@@ -223,6 +223,12 @@ pub enum FileFormat {
     /// Microsoft PowerPoint Presentation - `ppt`
     #[cfg(feature = "cfb")]
     MicrosoftPowerPointPresentation,
+    /// Microsoft Project Plan - `mpp`
+    #[cfg(feature = "cfb")]
+    MicrosoftProjectPlan,
+    /// Microsoft Publisher Document - `pub`
+    #[cfg(feature = "cfb")]
+    MicrosoftPublisherDocument,
     /// Microsoft Software Installer - `msi`
     #[cfg(feature = "cfb")]
     MicrosoftSoftwareInstaller,
@@ -526,6 +532,10 @@ impl FileFormat {
             #[cfg(feature = "cfb")]
             Self::MicrosoftPowerPointPresentation => "Microsoft PowerPoint Presentation",
             #[cfg(feature = "cfb")]
+            Self::MicrosoftProjectPlan => "Microsoft Project Plan",
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftPublisherDocument => "Microsoft Publisher Document",
+            #[cfg(feature = "cfb")]
             Self::MicrosoftSoftwareInstaller => "Microsoft Software Installer",
             #[cfg(feature = "cfb")]
             Self::MicrosoftVisioDrawing => "Microsoft Visio Drawing",
@@ -742,6 +752,10 @@ impl FileFormat {
             Self::MicrosoftExcelSpreadsheet => "application/vnd.ms-excel",
             #[cfg(feature = "cfb")]
             Self::MicrosoftPowerPointPresentation => "application/vnd.ms-powerpoint",
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftProjectPlan => "application/vnd.ms-project",
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftPublisherDocument => "application/vnd.ms-publisher",
             #[cfg(feature = "cfb")]
             Self::MicrosoftSoftwareInstaller => "application/x-msi",
             #[cfg(feature = "cfb")]
@@ -968,6 +982,10 @@ impl FileFormat {
             #[cfg(feature = "cfb")]
             Self::MicrosoftPowerPointPresentation => "ppt",
             #[cfg(feature = "cfb")]
+            Self::MicrosoftProjectPlan => "mpp",
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftPublisherDocument => "pub",
+            #[cfg(feature = "cfb")]
             Self::MicrosoftSoftwareInstaller => "msi",
             #[cfg(feature = "cfb")]
             Self::MicrosoftVisioDrawing => "vsd",
@@ -1185,6 +1203,10 @@ impl FileFormat {
             #[cfg(feature = "cfb")]
             Self::MicrosoftPowerPointPresentation => Kind::Application,
             #[cfg(feature = "cfb")]
+            Self::MicrosoftProjectPlan => Kind::Application,
+            #[cfg(feature = "cfb")]
+            Self::MicrosoftPublisherDocument => Kind::Application,
+            #[cfg(feature = "cfb")]
             Self::MicrosoftSoftwareInstaller => Kind::Application,
             #[cfg(feature = "cfb")]
             Self::MicrosoftVisioDrawing => Kind::Application,
@@ -1378,6 +1400,8 @@ impl FileFormat {
         Ok(match file.root_entry().clsid().to_string().as_str() {
             "00020810-0000-0000-c000-000000000046" => Self::MicrosoftExcelSpreadsheet,
             "64818d10-4f9b-11cf-86ea-00aa00b929e8" => Self::MicrosoftPowerPointPresentation,
+            "74b78f3a-c8c8-11d1-be11-00c04fb6faf1" => Self::MicrosoftProjectPlan,
+            "00021201-0000-0000-00c0-000000000046" => Self::MicrosoftPublisherDocument,
             "000c1084-0000-0000-c000-000000000046" => Self::MicrosoftSoftwareInstaller,
             "00021a14-0000-0000-c000-000000000046" => Self::MicrosoftVisioDrawing,
             "00020906-0000-0000-c000-000000000046" => Self::MicrosoftWordDocument,

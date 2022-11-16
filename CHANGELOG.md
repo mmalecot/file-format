@@ -22,6 +22,8 @@
 - Lua Bytecode - `luac`
 - Microsoft Excel Spreadsheet - `xls`
 - Microsoft PowerPoint Presentation - `ppt`
+- Microsoft Project Plan - `mpp`
+- Microsoft Publisher Document - `pub`
 - Microsoft Software Installer - `msi`
 - Microsoft Visio Drawing - `vsd`
 - Microsoft Word Document - `doc`

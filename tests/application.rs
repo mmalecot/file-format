@@ -300,6 +300,20 @@ fn test_microsoft_power_point_presentation() {
 
 #[cfg(feature = "cfb")]
 #[test]
+fn test_microsoft_project_plan() {
+    let format = FileFormat::from_file("fixtures/application/sample.mpp").unwrap();
+    assert_eq!(format, FileFormat::MicrosoftProjectPlan);
+}
+
+#[cfg(feature = "cfb")]
+#[test]
+fn test_microsoft_publisher_document() {
+    let format = FileFormat::from_file("fixtures/application/sample.pub").unwrap();
+    assert_eq!(format, FileFormat::MicrosoftPublisherDocument);
+}
+
+#[cfg(feature = "cfb")]
+#[test]
 fn test_microsoft_software_installer() {
     let format = FileFormat::from_file("fixtures/application/sample.msi").unwrap();
     assert_eq!(format, FileFormat::MicrosoftSoftwareInstaller);
