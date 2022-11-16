@@ -93,6 +93,7 @@ file-format = "0.9"
 - Canon Raw 3 - `cr3`
 - Cineon - `cin`
 - Compound File Binary - `cfb`
+- Creative Voice - `voc`
 - Dalvik Executable - `dex`
 - Debian Binary Package - `deb`
 - Digital Imaging and Communications in Medicine - `dcm`

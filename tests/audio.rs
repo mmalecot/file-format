@@ -61,6 +61,12 @@ fn test_audio_interchange_file_format() {
 }
 
 #[test]
+fn test_creative_voice() {
+    let format = FileFormat::from_file("fixtures/audio/sample.voc").unwrap();
+    assert_eq!(format, FileFormat::CreativeVoice);
+}
+
+#[test]
 fn test_fast_tracker2_extended_module() {
     let format = FileFormat::from_file("fixtures/audio/sample.xm").unwrap();
     assert_eq!(format, FileFormat::FastTracker2ExtendedModule);

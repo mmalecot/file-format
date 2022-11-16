@@ -96,6 +96,8 @@ pub enum FileFormat {
     CompoundFileBinary,
     /// cpio - `cpio`
     Cpio,
+    /// Creative Voice - `voc`
+    CreativeVoice,
     /// CUR - `cur`
     Cur,
     /// Dalvik Executable - `dex`
@@ -471,6 +473,7 @@ impl FileFormat {
             Self::CircuitDiagramDocument => "Circuit Diagram Document",
             Self::CompoundFileBinary => "Compound File Binary",
             Self::Cpio => "cpio",
+            Self::CreativeVoice => "Creative Voice",
             Self::Cur => "CUR",
             Self::DalvikExecutable => "Dalvik Executable",
             Self::DebianBinaryPackage => "Debian Binary Package",
@@ -702,6 +705,7 @@ impl FileFormat {
             Self::CircuitDiagramDocument => "application/vnd.circuitdiagram.document.main+xml",
             Self::CompoundFileBinary => "application/x-cfb",
             Self::Cpio => "application/x-cpio",
+            Self::CreativeVoice => "audio/x-voc",
             Self::Cur => "image/x-icon",
             Self::DalvikExecutable => "application/vnd.android.dex",
             Self::DebianBinaryPackage => "application/vnd.debian.binary-package",
@@ -937,6 +941,7 @@ impl FileFormat {
             Self::CircuitDiagramDocument => "cddx",
             Self::CompoundFileBinary => "cfb",
             Self::Cpio => "cpio",
+            Self::CreativeVoice => "voc",
             Self::Cur => "cur",
             Self::DalvikExecutable => "dex",
             Self::DebianBinaryPackage => "deb",
@@ -1164,6 +1169,7 @@ impl FileFormat {
             Self::CircuitDiagramDocument => Kind::Application,
             Self::CompoundFileBinary => Kind::Application,
             Self::Cpio => Kind::Application,
+            Self::CreativeVoice => Kind::Audio,
             Self::Cur => Kind::Image,
             Self::DalvikExecutable => Kind::Application,
             Self::DebianBinaryPackage => Kind::Application,
@@ -1601,6 +1607,10 @@ signatures! {
     value =
         b"\x49\x4D\x50\x4C\x45\x20\x20\x3D\x20\x20\x20\x20\x20\x20\x20",
         b"\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x54" offset = 15
+
+    // 22-byte signatures
+    format = CreativeVoice
+    value = b"Creative Voice File\x1A\x1A\x00"
 
     // 21-byte signatures
     format = DebianBinaryPackage

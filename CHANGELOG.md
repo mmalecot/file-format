@@ -18,6 +18,7 @@
 
 - Adobe Illustrator Artwork - `ai`
 - Circuit Diagram Document - `cddx`
+- Creative Voice - `voc`
 - DjVu - `djvu`
 - Dynamic Link Library - `dll`
 - Enterprise Application Archive - `ear`
