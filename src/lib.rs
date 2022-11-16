@@ -378,6 +378,8 @@ pub enum FileFormat {
     WebOpenFontFormat,
     /// Web Open Font Format 2 - `woff2`
     WebOpenFontFormat2,
+    /// WebM - `webm`
+    WebM,
     /// WebP - `webp`
     WebP,
     /// Windows Bitmap - `bmp`
@@ -618,6 +620,7 @@ impl FileFormat {
             Self::WebAssemblyBinary => "WebAssembly Binary",
             Self::WebOpenFontFormat => "Web Open Font Format",
             Self::WebOpenFontFormat2 => "Web Open Font Format 2",
+            Self::WebM => "WebM",
             Self::WebP => "WebP",
             Self::WindowsBitmap => "Windows Bitmap",
             Self::WindowsMediaVideo => "Windows Media Video",
@@ -848,6 +851,7 @@ impl FileFormat {
             Self::WebAssemblyBinary => "application/wasm",
             Self::WebOpenFontFormat => "font/woff",
             Self::WebOpenFontFormat2 => "font/woff2",
+            Self::WebM => "video/webm",
             Self::WebP => "image/webp",
             Self::WindowsBitmap => "image/bmp",
             Self::WindowsMediaVideo => "video/x-ms-asf",
@@ -1070,6 +1074,7 @@ impl FileFormat {
             Self::WebAssemblyBinary => "wasm",
             Self::WebOpenFontFormat => "woff",
             Self::WebOpenFontFormat2 => "woff2",
+            Self::WebM => "webm",
             Self::WebP => "webp",
             Self::WindowsBitmap => "bmp",
             Self::WindowsMediaVideo => "wmv",
@@ -1292,6 +1297,7 @@ impl FileFormat {
             Self::WebAssemblyBinary => Kind::Application,
             Self::WebOpenFontFormat => Kind::Font,
             Self::WebOpenFontFormat2 => Kind::Font,
+            Self::WebM => Kind::Video,
             Self::WebP => Kind::Image,
             Self::WindowsBitmap => Kind::Image,
             Self::WindowsMediaVideo => Kind::Video,
@@ -1371,6 +1377,7 @@ impl FileFormat {
             .map(|format| match format {
                 #[cfg(feature = "cfb")]
                 Self::CompoundFileBinary => Self::from_cfb(reader).unwrap_or_default(),
+                Self::MatroskaVideo => Self::from_mkv(reader).unwrap_or_default(),
                 Self::MsDosExecutable => Self::from_ms_dos_executable(reader).unwrap_or_default(),
                 Self::PortableDocumentFormat => Self::from_pdf(reader).unwrap_or_default(),
                 #[cfg(feature = "zip")]
@@ -1395,6 +1402,25 @@ impl FileFormat {
             "00020906-0000-0000-c000-000000000046" => Self::MicrosoftWordDocument,
             _ => Self::CompoundFileBinary,
         })
+    }
+
+    /// Determines `FileFormat` from a Matroska Video reader.
+    fn from_mkv<R: Read + Seek>(mut reader: R) -> Result<Self> {
+        let length = reader.seek(SeekFrom::End(0))?;
+        reader.rewind()?;
+        let mut buf = vec![0; cmp::min(4096, length as usize)];
+        reader.read_exact(&mut buf)?;
+        if buf
+            .windows(2)
+            .position(|bytes| bytes == b"\x42\x82")
+            .map(|pos| &buf[pos + 3..pos + 7])
+            .filter(|bytes| bytes == b"webm")
+            .is_some()
+        {
+            Ok(Self::WebM)
+        } else {
+            Ok(Self::MatroskaVideo)
+        }
     }
 
     /// Determines `FileFormat` from a MS-DOS Executable reader.
@@ -1602,8 +1628,7 @@ signatures! {
     value = b"\xAB\x4B\x54\x58\x20\x32\x30\xBB\x0D\x0A\x1A\x0A"
 
     format = MatroskaVideo
-    value = b"\x1A\x45\xDF\xA3", b"matroska" offset = 24
-    value = b"\x1A\x45\xDF\xA3", b"matroska" offset = 31
+    value = b"\x1A\x45\xDF\xA3"
 
     format = OggOpus
     value = b"OggS", b"OpusHead" offset = 28

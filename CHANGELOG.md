@@ -29,6 +29,7 @@
 - Microsoft Visio Drawing - `vsd`
 - Microsoft Word Document - `doc`
 - Portable Executable - `exe`
+- WebM - `webm`
 
 # Version 0.8.0 (2022-11-06)
 

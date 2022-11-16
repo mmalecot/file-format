@@ -196,6 +196,7 @@ file-format = "0.9"
 - Web Open Font Format - `woff`
 - Web Open Font Format 2 - `woff2`
 - WebAssembly Binary - `wasm`
+- WebM - `webm`
 - WebP - `webp`
 - Windows Bitmap - `bmp`
 - Windows Media Video - `wmv`

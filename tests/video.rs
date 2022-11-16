@@ -79,6 +79,12 @@ fn test_third_generation_partnership_project2() {
 }
 
 #[test]
+fn test_web_m() {
+    let format = FileFormat::from_file("fixtures/video/sample.webm").unwrap();
+    assert_eq!(format, FileFormat::WebM);
+}
+
+#[test]
 fn test_windows_media_video() {
     let format = FileFormat::from_file("fixtures/video/sample.wmv").unwrap();
     assert_eq!(format, FileFormat::WindowsMediaVideo);
