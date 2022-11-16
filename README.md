@@ -228,6 +228,7 @@ ZIP:
 - Circuit Diagram Document - `cddx`
 - Design Web Format XPS - `dwfx`
 - Electronic Publication - `epub`
+- Enterprise Application Archive - `ear`
 - Java Archive - `jar`
 - Microsoft Visual Studio Extension - `vsix`
 - Office Open XML Document - `docx`
@@ -238,6 +239,7 @@ ZIP:
 - OpenDocument Presentation - `odp`
 - OpenDocument Spreadsheet - `ods`
 - OpenDocument Text - `odt`
+- Web Application Archive - `war`
 - XAP - `xap`
 - XPInstall - `xpi`
 

@@ -20,6 +20,7 @@
 - Circuit Diagram Document - `cddx`
 - DjVu - `djvu`
 - Dynamic Link Library - `dll`
+- Enterprise Application Archive - `ear`
 - Lua Bytecode - `luac`
 - Microsoft Excel Spreadsheet - `xls`
 - Microsoft PowerPoint Presentation - `ppt`
@@ -29,6 +30,7 @@
 - Microsoft Visio Drawing - `vsd`
 - Microsoft Word Document - `doc`
 - Portable Executable - `exe`
+- Web Application Archive - `war`
 - WebM - `webm`
 
 # Version 0.8.0 (2022-11-06)

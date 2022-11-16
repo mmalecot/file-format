@@ -118,6 +118,9 @@ pub enum FileFormat {
     ElectronicPublication,
     /// Embedded OpenType - `eot`
     EmbeddedOpenType,
+    /// Enterprise Application Archive - `ear`
+    #[cfg(feature = "zip")]
+    EnterpriseApplicationArchive,
     /// Executable and Linkable Format - `elf`
     ExecutableAndLinkableFormat,
     /// Experimental Computing Facility - `xcf`
@@ -372,6 +375,9 @@ pub enum FileFormat {
     WavPack,
     /// Waveform Audio - `wav`
     WaveformAudio,
+    /// Web Application Archive - `war`
+    #[cfg(feature = "zip")]
+    WebApplicationArchive,
     /// WebAssembly Binary - `wasm`
     WebAssemblyBinary,
     /// Web Open Font Format - `woff`
@@ -479,6 +485,8 @@ impl FileFormat {
             #[cfg(feature = "zip")]
             Self::ElectronicPublication => "Electronic Publication",
             Self::EmbeddedOpenType => "Embedded OpenType",
+            #[cfg(feature = "zip")]
+            Self::EnterpriseApplicationArchive => "Enterprise Application Archive",
             Self::ExecutableAndLinkableFormat => "Executable and Linkable Format",
             Self::ExperimentalComputingFacility => "Experimental Computing Facility",
             Self::ExtensibleArchive => "Extensible Archive",
@@ -617,6 +625,8 @@ impl FileFormat {
             Self::VirtualBoxVirtualDiskImage => "VirtualBox Virtual Disk Image",
             Self::WavPack => "WavPack",
             Self::WaveformAudio => "Waveform Audio",
+            #[cfg(feature = "zip")]
+            Self::WebApplicationArchive => "Web Application Archive",
             Self::WebAssemblyBinary => "WebAssembly Binary",
             Self::WebOpenFontFormat => "Web Open Font Format",
             Self::WebOpenFontFormat2 => "Web Open Font Format 2",
@@ -704,6 +714,8 @@ impl FileFormat {
             #[cfg(feature = "zip")]
             Self::ElectronicPublication => "application/epub+zip",
             Self::EmbeddedOpenType => "application/vnd.ms-fontobject",
+            #[cfg(feature = "zip")]
+            Self::EnterpriseApplicationArchive => "application/java-archive",
             Self::ExecutableAndLinkableFormat => "application/x-executable",
             Self::ExperimentalComputingFacility => "image/x-xcf",
             Self::ExtensibleArchive => "application/x-xar",
@@ -848,6 +860,8 @@ impl FileFormat {
             Self::VirtualBoxVirtualDiskImage => "application/x-virtualbox-vdi",
             Self::WavPack => "audio/wavpack",
             Self::WaveformAudio => "audio/vnd.wave",
+            #[cfg(feature = "zip")]
+            Self::WebApplicationArchive => "application/java-archive",
             Self::WebAssemblyBinary => "application/wasm",
             Self::WebOpenFontFormat => "font/woff",
             Self::WebOpenFontFormat2 => "font/woff2",
@@ -935,6 +949,8 @@ impl FileFormat {
             #[cfg(feature = "zip")]
             Self::ElectronicPublication => "epub",
             Self::EmbeddedOpenType => "eot",
+            #[cfg(feature = "zip")]
+            Self::EnterpriseApplicationArchive => "ear",
             Self::ExecutableAndLinkableFormat => "elf",
             Self::ExperimentalComputingFacility => "xcf",
             Self::ExtensibleArchive => "xar",
@@ -1071,6 +1087,8 @@ impl FileFormat {
             Self::VirtualBoxVirtualDiskImage => "vdi",
             Self::WavPack => "wv",
             Self::WaveformAudio => "wav",
+            #[cfg(feature = "zip")]
+            Self::WebApplicationArchive => "war",
             Self::WebAssemblyBinary => "wasm",
             Self::WebOpenFontFormat => "woff",
             Self::WebOpenFontFormat2 => "woff2",
@@ -1158,6 +1176,8 @@ impl FileFormat {
             #[cfg(feature = "zip")]
             Self::ElectronicPublication => Kind::Application,
             Self::EmbeddedOpenType => Kind::Application,
+            #[cfg(feature = "zip")]
+            Self::EnterpriseApplicationArchive => Kind::Application,
             Self::ExecutableAndLinkableFormat => Kind::Application,
             Self::ExperimentalComputingFacility => Kind::Image,
             Self::ExtensibleArchive => Kind::Application,
@@ -1294,6 +1314,8 @@ impl FileFormat {
             Self::VirtualBoxVirtualDiskImage => Kind::Application,
             Self::WavPack => Kind::Audio,
             Self::WaveformAudio => Kind::Audio,
+            #[cfg(feature = "zip")]
+            Self::WebApplicationArchive => Kind::Application,
             Self::WebAssemblyBinary => Kind::Application,
             Self::WebOpenFontFormat => Kind::Font,
             Self::WebOpenFontFormat2 => Kind::Font,
@@ -1461,14 +1483,19 @@ impl FileFormat {
     #[cfg(feature = "zip")]
     fn from_zip<R: Read + Seek>(reader: R) -> Result<Self> {
         let mut archive = zip::ZipArchive::new(reader)?;
+        let mut format = Self::Zip;
         for index in 0..archive.len() {
             let mut file = archive.by_index(index)?;
             if file.name() == "AndroidManifest.xml" {
                 return Ok(Self::AndroidPackage);
+            } else if file.name() == "META-INF/application.xml" {
+                return Ok(Self::EnterpriseApplicationArchive);
             } else if file.name() == "META-INF/MANIFEST.MF" {
-                return Ok(Self::JavaArchive);
+                format = Self::JavaArchive;
             } else if file.name() == "extension.vsixmanifest" {
                 return Ok(Self::MicrosoftVisualStudioExtension);
+            } else if file.name() == "WEB-INF/web.xml" {
+                return Ok(Self::WebApplicationArchive);
             } else if file.name() == "AppManifest.xaml" {
                 return Ok(Self::Xap);
             } else if file.name() == "META-INF/mozilla.rsa" {
@@ -1510,7 +1537,7 @@ impl FileFormat {
                 return Ok(Self::ThreeDimensionalManufacturingFormat);
             }
         }
-        Ok(Self::Zip)
+        Ok(format)
     }
 }
 
