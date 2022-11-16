@@ -1372,6 +1372,22 @@ impl FileFormat {
             .unwrap_or_default())
     }
 
+    /// Determines `FileFormat` from a Compound File Binary reader.
+    #[cfg(feature = "cfb")]
+    fn from_cfb<R: Read + Seek>(reader: R) -> Result<Self> {
+        let file = cfb::CompoundFile::open(reader)?;
+        Ok(match file.root_entry().clsid().to_string().as_str() {
+            "00020810-0000-0000-c000-000000000046" => Self::MicrosoftExcelSpreadsheet,
+            "64818d10-4f9b-11cf-86ea-00aa00b929e8" => Self::MicrosoftPowerPointPresentation,
+            "74b78f3a-c8c8-11d1-be11-00c04fb6faf1" => Self::MicrosoftProjectPlan,
+            "00021201-0000-0000-00c0-000000000046" => Self::MicrosoftPublisherDocument,
+            "000c1084-0000-0000-c000-000000000046" => Self::MicrosoftSoftwareInstaller,
+            "00021a14-0000-0000-c000-000000000046" => Self::MicrosoftVisioDrawing,
+            "00020906-0000-0000-c000-000000000046" => Self::MicrosoftWordDocument,
+            _ => Self::CompoundFileBinary,
+        })
+    }
+
     /// Determines `FileFormat` from a MS-DOS Executable reader.
     fn from_ms_dos_executable<R: Read + Seek>(mut reader: R) -> Result<Self> {
         reader.seek(SeekFrom::Start(0x3C))?;
@@ -1391,22 +1407,6 @@ impl FileFormat {
             });
         }
         Ok(Self::MsDosExecutable)
-    }
-
-    /// Determines `FileFormat` from a Compound File Binary reader.
-    #[cfg(feature = "cfb")]
-    fn from_cfb<R: Read + Seek>(reader: R) -> Result<Self> {
-        let file = cfb::CompoundFile::open(reader)?;
-        Ok(match file.root_entry().clsid().to_string().as_str() {
-            "00020810-0000-0000-c000-000000000046" => Self::MicrosoftExcelSpreadsheet,
-            "64818d10-4f9b-11cf-86ea-00aa00b929e8" => Self::MicrosoftPowerPointPresentation,
-            "74b78f3a-c8c8-11d1-be11-00c04fb6faf1" => Self::MicrosoftProjectPlan,
-            "00021201-0000-0000-00c0-000000000046" => Self::MicrosoftPublisherDocument,
-            "000c1084-0000-0000-c000-000000000046" => Self::MicrosoftSoftwareInstaller,
-            "00021a14-0000-0000-c000-000000000046" => Self::MicrosoftVisioDrawing,
-            "00020906-0000-0000-c000-000000000046" => Self::MicrosoftWordDocument,
-            _ => Self::CompoundFileBinary,
-        })
     }
 
     /// Determines `FileFormat` from a ZIP reader.
