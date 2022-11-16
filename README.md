@@ -64,6 +64,7 @@ file-format = "0.9"
 - Adobe Flash Player Audiobook - `f4b`
 - Adobe Flash Player Protected Video - `f4p`
 - Adobe Flash Player Video - `f4v`
+- Adobe Illustrator Artwork - `ai`
 - Adobe InDesign Document - `indd`
 - Adobe Photoshop Document - `psd`
 - Advanced Audio Coding - `aac`

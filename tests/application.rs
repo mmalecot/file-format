@@ -1,6 +1,12 @@
 use file_format::FileFormat;
 
 #[test]
+fn test_adobe_illustrator_artwork() {
+    let format = FileFormat::from_file("fixtures/application/sample.ai").unwrap();
+    assert_eq!(format, FileFormat::AdobeIllustratorArtwork);
+}
+
+#[test]
 fn test_adobe_in_design_document() {
     let format = FileFormat::from_file("fixtures/application/sample.indd").unwrap();
     assert_eq!(format, FileFormat::AdobeInDesignDocument);

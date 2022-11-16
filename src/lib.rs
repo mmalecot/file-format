@@ -1,6 +1,7 @@
 #![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/README.md"))]
 
 use std::{
+    cmp,
     fmt::{self, Display, Formatter},
     fs::File,
     io::{BufRead, BufReader, Cursor, Read, Result, Seek, SeekFrom},
@@ -21,6 +22,8 @@ pub enum FileFormat {
     AdobeFlashPlayerProtectedVideo,
     /// Adobe Flash Player Video - `f4v`
     AdobeFlashPlayerVideo,
+    /// Adobe Illustrator Artwork - `ai`
+    AdobeIllustratorArtwork,
     /// Adobe InDesign Document - `indd`
     AdobeInDesignDocument,
     /// Adobe Photoshop Document - `psd`
@@ -422,6 +425,7 @@ impl FileFormat {
             Self::AdobeFlashPlayerAudiobook => "Adobe Flash Player Audiobook ",
             Self::AdobeFlashPlayerProtectedVideo => "Adobe Flash Player Protected Video",
             Self::AdobeFlashPlayerVideo => "Adobe Flash Player Video",
+            Self::AdobeIllustratorArtwork => "Adobe Illustrator Artwork",
             Self::AdobeInDesignDocument => "Adobe InDesign Document",
             Self::AdobePhotoshopDocument => "Adobe Photoshop Document",
             Self::AdvancedAudioCoding => "Advanced Audio Coding",
@@ -647,6 +651,7 @@ impl FileFormat {
             Self::AdobeFlashPlayerAudiobook => "audio/mp4",
             Self::AdobeFlashPlayerProtectedVideo => "video/mp4",
             Self::AdobeFlashPlayerVideo => "video/mp4",
+            Self::AdobeIllustratorArtwork => "application/pdf",
             Self::AdobeInDesignDocument => "application/x-indesign",
             Self::AdobePhotoshopDocument => "image/vnd.adobe.photoshop",
             Self::AdvancedAudioCoding => "audio/aac",
@@ -876,6 +881,7 @@ impl FileFormat {
             Self::AdobeFlashPlayerAudiobook => "f4b",
             Self::AdobeFlashPlayerProtectedVideo => "f4p",
             Self::AdobeFlashPlayerVideo => "f4v",
+            Self::AdobeIllustratorArtwork => "ai",
             Self::AdobeInDesignDocument => "indd",
             Self::AdobePhotoshopDocument => "psd",
             Self::AdvancedAudioCoding => "aac",
@@ -1097,6 +1103,7 @@ impl FileFormat {
             Self::AdobeFlashPlayerAudiobook => Kind::Audio,
             Self::AdobeFlashPlayerProtectedVideo => Kind::Video,
             Self::AdobeFlashPlayerVideo => Kind::Video,
+            Self::AdobeIllustratorArtwork => Kind::Application,
             Self::AdobeInDesignDocument => Kind::Application,
             Self::AdobePhotoshopDocument => Kind::Image,
             Self::AdvancedAudioCoding => Kind::Audio,
@@ -1365,6 +1372,7 @@ impl FileFormat {
                 #[cfg(feature = "cfb")]
                 Self::CompoundFileBinary => Self::from_cfb(reader).unwrap_or_default(),
                 Self::MsDosExecutable => Self::from_ms_dos_executable(reader).unwrap_or_default(),
+                Self::PortableDocumentFormat => Self::from_pdf(reader).unwrap_or_default(),
                 #[cfg(feature = "zip")]
                 Self::Zip => Self::from_zip(reader).unwrap_or_default(),
                 _ => format,
@@ -1407,6 +1415,19 @@ impl FileFormat {
             });
         }
         Ok(Self::MsDosExecutable)
+    }
+
+    /// Determines `FileFormat` from a Portable Document Format reader.
+    fn from_pdf<R: Read + Seek>(mut reader: R) -> Result<Self> {
+        let length = reader.seek(SeekFrom::End(0))?;
+        reader.rewind()?;
+        let mut buf = vec![0; cmp::min(10 * 1024 * 1024, length as usize)];
+        reader.read_exact(&mut buf)?;
+        Ok(if buf.windows(13).any(|bytes| bytes == b"AIPrivateData") {
+            Self::AdobeIllustratorArtwork
+        } else {
+            Self::PortableDocumentFormat
+        })
     }
 
     /// Determines `FileFormat` from a ZIP reader.

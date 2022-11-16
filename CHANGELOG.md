@@ -16,6 +16,7 @@
 
 ## New formats support
 
+- Adobe Illustrator Artwork - `ai`
 - Circuit Diagram Document - `cddx`
 - DjVu - `djvu`
 - Dynamic Link Library - `dll`
