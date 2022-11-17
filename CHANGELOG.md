@@ -23,6 +23,7 @@
 - Dynamic Link Library - `dll`
 - Enterprise Application Archive - `ear`
 - iOS App Store Package - `ipa`
+- Keyhole Markup Language Zipped - `kmz`
 - Lua Bytecode - `luac`
 - Meta Information Encapsulation - `mie`
 - Microsoft Excel Spreadsheet - `xls`

@@ -232,6 +232,7 @@ ZIP:
 - Electronic Publication - `epub`
 - Enterprise Application Archive - `ear`
 - Java Archive - `jar`
+- Keyhole Markup Language Zipped - `kmz`
 - Microsoft Visual Studio Extension - `vsix`
 - Office Open XML Document - `docx`
 - Office Open XML Drawing - `vsdx`

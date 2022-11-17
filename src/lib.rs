@@ -193,6 +193,9 @@ pub enum FileFormat {
     JpegExtendedRange,
     /// JPEG XL - `jxl`
     JpegXl,
+    /// Keyhole Markup Language Zipped - `kmz`
+    #[cfg(feature = "zip")]
+    KeyholeMarkupLanguageZipped,
     /// Khronos Texture - `ktx`
     KhronosTexture,
     /// Khronos Texture 2 - `ktx2`
@@ -536,6 +539,8 @@ impl FileFormat {
             Self::Jpeg2000Part6 => "JPEG 2000 Part 6",
             Self::JpegExtendedRange => "PEG Extended Range",
             Self::JpegXl => "JPEG XL",
+            #[cfg(feature = "zip")]
+            Self::KeyholeMarkupLanguageZipped => "Keyhole Markup Language Zipped",
             Self::KhronosTexture => "Khronos Texture",
             Self::KhronosTexture2 => "Khronos Texture 2",
             Self::LempelZivFiniteStateEntropy => "Lempel–Ziv Finite State Entropy",
@@ -769,6 +774,8 @@ impl FileFormat {
             Self::Jpeg2000Part6 => "image/jpm",
             Self::JpegExtendedRange => "image/jxr",
             Self::JpegXl => "image/jxl",
+            #[cfg(feature = "zip")]
+            Self::KeyholeMarkupLanguageZipped => "application/vnd.google-earth.kmz",
             Self::KhronosTexture => "image/ktx",
             Self::KhronosTexture2 => "image/ktx2",
             Self::LempelZivFiniteStateEntropy => "application/x-lzfse",
@@ -1010,6 +1017,8 @@ impl FileFormat {
             Self::Jpeg2000Part6 => "jpm",
             Self::JpegExtendedRange => "jxr",
             Self::JpegXl => "jxl",
+            #[cfg(feature = "zip")]
+            Self::KeyholeMarkupLanguageZipped => "kmz",
             Self::KhronosTexture => "ktx",
             Self::KhronosTexture2 => "ktx2",
             Self::LempelZivFiniteStateEntropy => "lzfse",
@@ -1402,6 +1411,8 @@ impl FileFormat {
                 format = Self::JavaArchive;
             } else if file.name() == "extension.vsixmanifest" {
                 return Ok(Self::MicrosoftVisualStudioExtension);
+            } else if file.name() == "doc.kml" {
+                return Ok(Self::KeyholeMarkupLanguageZipped);
             } else if file.name() == "WEB-INF/web.xml" {
                 return Ok(Self::WebApplicationArchive);
             } else if file.name() == "AppxManifest.xml" {

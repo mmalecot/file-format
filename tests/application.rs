@@ -225,6 +225,13 @@ fn test_java_key_store() {
     assert_eq!(format, FileFormat::JavaKeyStore);
 }
 
+#[cfg(feature = "zip")]
+#[test]
+fn test_keyhole_markup_language_zipped() {
+    let format = FileFormat::from_file("fixtures/application/sample.kmz").unwrap();
+    assert_eq!(format, FileFormat::KeyholeMarkupLanguageZipped);
+}
+
 #[test]
 fn test_lempel_ziv_finite_state_entropy() {
     let format = FileFormat::from_file("fixtures/application/sample.lzfse").unwrap();
