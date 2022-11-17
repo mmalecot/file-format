@@ -34,6 +34,7 @@
 - Microsoft Visio Drawing - `vsd`
 - Microsoft Word Document - `doc`
 - Portable Executable - `exe`
+- Sony Movie - `mqv`
 - Web Application Archive - `war`
 - WebM - `webm`
 - Windows App Package - `appx`

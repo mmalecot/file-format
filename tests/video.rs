@@ -67,6 +67,12 @@ fn test_ogg_theora() {
 }
 
 #[test]
+fn test_sony_movie() {
+    let format = FileFormat::from_file("fixtures/video/sample.mqv").unwrap();
+    assert_eq!(format, FileFormat::SonyMovie);
+}
+
+#[test]
 fn test_third_generation_partnership_project() {
     let format = FileFormat::from_file("fixtures/video/sample.3gp").unwrap();
     assert_eq!(format, FileFormat::ThirdGenerationPartnershipProject);

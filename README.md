@@ -187,6 +187,7 @@ file-format = "0.9"
 - Small Web Format - `swf`
 - Snappy - `sz`
 - Sony DSD Stream File - `dsf`
+- Sony Movie - `mqv`
 - Tag Image File Format - `tiff`
 - Tape Archive - `tar`
 - TrueType - `ttf`

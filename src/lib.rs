@@ -360,6 +360,8 @@ pub enum FileFormat {
     Snappy,
     /// Sony DSD Stream File - `dsf`
     SonyDsdStreamFile,
+    /// Sony Movie - `mqv`
+    SonyMovie,
     /// SQLite 3 - `sqlite`
     Sqlite3,
     /// Tag Image File Format - `tiff`
@@ -631,6 +633,7 @@ impl FileFormat {
             Self::SmallWebFormat => "Small Web Format",
             Self::Snappy => "Snappy",
             Self::SonyDsdStreamFile => "Sony DSD Stream File",
+            Self::SonyMovie => "Sony Movie",
             Self::Sqlite3 => "SQLite 3",
             Self::TagImageFileFormat => "Tag Image File Format",
             Self::TapeArchive => "Tape Archive",
@@ -872,6 +875,7 @@ impl FileFormat {
             Self::SmallWebFormat => "application/x-shockwave-flash",
             Self::Snappy => "application/x-snappy-framed",
             Self::SonyDsdStreamFile => "audio/x-dsf",
+            Self::SonyMovie => "video/quicktime",
             Self::Sqlite3 => "application/vnd.sqlite3",
             Self::TagImageFileFormat => "image/tiff",
             Self::TapeArchive => "application/x-tar",
@@ -1109,6 +1113,7 @@ impl FileFormat {
             Self::SmallWebFormat => "swf",
             Self::Snappy => "sz",
             Self::SonyDsdStreamFile => "dsf",
+            Self::SonyMovie => "mqv",
             Self::Sqlite3 => "sqlite",
             Self::TagImageFileFormat => "tiff",
             Self::TapeArchive => "tar",
@@ -1236,6 +1241,7 @@ impl FileFormat {
             Self::RadianceHdr => Kind::Image,
             Self::ScreamTracker3Module => Kind::Audio,
             Self::SonyDsdStreamFile => Kind::Audio,
+            Self::SonyMovie => Kind::Video,
             Self::TagImageFileFormat => Kind::Image,
             Self::ThirdGenerationPartnershipProject => Kind::Video,
             Self::ThirdGenerationPartnershipProject2 => Kind::Video,
@@ -1787,6 +1793,9 @@ signatures! {
     format = MetaInformationEncapsulation
     value = b"\x7E\x10\x04", b"\x30\x4D\x49\x45" offset = 4
     value = b"\x7E\x18\x04", b"\x30\x4D\x49\x45" offset = 4
+
+    format = SonyMovie
+    value = b"ftypmqt" offset = 4
 
     format = ThirdGenerationPartnershipProject
     value = b"ftyp3gp" offset = 4
