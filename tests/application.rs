@@ -273,6 +273,12 @@ fn test_material_exchange_format() {
 }
 
 #[test]
+fn test_meta_information_encapsulation() {
+    let format = FileFormat::from_file("fixtures/application/sample.mie").unwrap();
+    assert_eq!(format, FileFormat::MetaInformationEncapsulation);
+}
+
+#[test]
 fn test_microsoft_compiled_html_help() {
     let format = FileFormat::from_file("fixtures/application/sample.chm").unwrap();
     assert_eq!(format, FileFormat::MicrosoftCompiledHtmlHelp);

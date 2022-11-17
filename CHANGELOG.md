@@ -23,6 +23,7 @@
 - Dynamic Link Library - `dll`
 - Enterprise Application Archive - `ear`
 - Lua Bytecode - `luac`
+- Meta Information Encapsulation - `mie`
 - Microsoft Excel Spreadsheet - `xls`
 - Microsoft PowerPoint Presentation - `ppt`
 - Microsoft Project Plan - `mpp`

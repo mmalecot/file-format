@@ -144,6 +144,7 @@ file-format = "0.9"
 - MPEG-4 Part 14 Video - `mp4`
 - Material Exchange Format - `mxf`
 - Matroska Video - `mkv`
+- Meta Information Encapsulation - `mie`
 - Microsoft Compiled HTML Help - `chm`
 - Microsoft DirectDraw Surface - `dds`
 - Microsoft Virtual Hard Disk - `vhd`

@@ -214,6 +214,8 @@ pub enum FileFormat {
     MaterialExchangeFormat,
     /// Matroska Video - `mkv`
     MatroskaVideo,
+    /// Meta Information Encapsulation - `mie`
+    MetaInformationEncapsulation,
     /// Microsoft Compiled HTML Help - `chm`
     MicrosoftCompiledHtmlHelp,
     /// Microsoft DirectDraw Surface - `dds`
@@ -537,7 +539,8 @@ impl FileFormat {
             Self::Lzop => "lzop",
             Self::MacOsAlias => "macOS Alias",
             Self::MaterialExchangeFormat => "Material Exchange Format",
-            Self::MatroskaVideo => "Matroska Video",
+            Self::MatroskaVideo => "Meta Information Encapsulation",
+            Self::MetaInformationEncapsulation => "Matroska Video",
             Self::MicrosoftCompiledHtmlHelp => "Microsoft Compiled HTML Help",
             Self::MicrosoftDirectDrawSurface => "Microsoft DirectDraw Surface",
             Self::MicrosoftVirtualHardDisk => "Microsoft Virtual Hard Disk",
@@ -766,6 +769,7 @@ impl FileFormat {
             Self::MacOsAlias => "application/x-apple-alias",
             Self::MaterialExchangeFormat => "application/mxf",
             Self::MatroskaVideo => "video/x-matroska",
+            Self::MetaInformationEncapsulation => "application/x-mie",
             Self::MicrosoftCompiledHtmlHelp => "application/vnd.ms-htmlhelp",
             Self::MicrosoftDirectDrawSurface => "image/vnd-ms.dds",
             Self::MicrosoftVirtualHardDisk => "application/x-vhd",
@@ -1002,6 +1006,7 @@ impl FileFormat {
             Self::MacOsAlias => "alias",
             Self::MaterialExchangeFormat => "mxf",
             Self::MatroskaVideo => "mkv",
+            Self::MetaInformationEncapsulation => "mie",
             Self::MicrosoftCompiledHtmlHelp => "chm",
             Self::MicrosoftDirectDrawSurface => "dds",
             Self::MicrosoftVirtualHardDisk => "vhd",
@@ -1745,6 +1750,10 @@ signatures! {
 
     format = CanonRaw3
     value = b"ftypcrx" offset = 4
+
+    format = MetaInformationEncapsulation
+    value = b"\x7E\x10\x04", b"\x30\x4D\x49\x45" offset = 4
+    value = b"\x7E\x18\x04", b"\x30\x4D\x49\x45" offset = 4
 
     format = ThirdGenerationPartnershipProject
     value = b"ftyp3gp" offset = 4
