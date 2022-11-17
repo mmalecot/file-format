@@ -124,7 +124,6 @@ file-format = "0.9"
 - ISO 9660 - `iso`
 - Impulse Tracker Module - `it`
 - JPEG 2000 Part 1 - `jp2`
-- iOS App Store Package - `ipa`
 - JPEG 2000 Part 2 - `jpx`
 - JPEG 2000 Part 3 - `mj2`
 - JPEG 2000 Part 6 - `jpm`
@@ -246,6 +245,7 @@ ZIP:
 - Windows App Package - `appx`
 - XAP - `xap`
 - XPInstall - `xpi`
+- iOS App Store Package - `ipa`
 
 ## License
 
