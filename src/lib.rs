@@ -428,7 +428,7 @@ impl FileFormat {
     /// let format = FileFormat::MpegAudioLayer3;
     /// assert_eq!(format.name(), "MPEG-1/2 Audio Layer III");
     ///```
-    pub fn name(&self) -> &str {
+    pub const fn name(&self) -> &str {
         match self {
             Self::AdaptiveMultiRate => "Adaptive Multi-Rate",
             Self::AdobeFlashPlayerAudio => "Adobe Flash Player Audio",
@@ -660,7 +660,7 @@ impl FileFormat {
     /// let format = FileFormat::Zstandard;
     /// assert_eq!(format.media_type(), "application/zstd");
     ///```
-    pub fn media_type(&self) -> &str {
+    pub const fn media_type(&self) -> &str {
         match self {
             Self::AdaptiveMultiRate => "audio/amr",
             Self::AdobeFlashPlayerAudio => "audio/mp4",
@@ -896,7 +896,7 @@ impl FileFormat {
     /// let format = FileFormat::WindowsMediaVideo;
     /// assert_eq!(format.extension(), "wmv");
     ///```
-    pub fn extension(&self) -> &str {
+    pub const fn extension(&self) -> &str {
         match self {
             Self::AdaptiveMultiRate => "amr",
             Self::AdobeFlashPlayerAudio => "f4a",
@@ -1124,7 +1124,7 @@ impl FileFormat {
     /// let format = FileFormat::MpegAudioLayer3;
     /// assert_eq!(format.kind(), Kind::Audio);
     ///```
-    pub fn kind(&self) -> Kind {
+    pub const fn kind(&self) -> Kind {
         match self {
             Self::AdaptiveMultiRate => Kind::Audio,
             Self::AdobeFlashPlayerAudio => Kind::Audio,
