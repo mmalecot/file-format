@@ -243,6 +243,7 @@ ZIP:
 - OpenDocument Spreadsheet - `ods`
 - OpenDocument Text - `odt`
 - Web Application Archive - `war`
+- Windows App Package - `appx`
 - XAP - `xap`
 - XPInstall - `xpi`
 

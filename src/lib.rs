@@ -395,6 +395,9 @@ pub enum FileFormat {
     WebM,
     /// WebP - `webp`
     WebP,
+    /// Windows App Package - `appx`
+    #[cfg(feature = "zip")]
+    WindowsAppPackage,
     /// Windows Bitmap - `bmp`
     WindowsBitmap,
     /// Windows Media Video - `wmv`
@@ -643,6 +646,8 @@ impl FileFormat {
             Self::WebOpenFontFormat2 => "Web Open Font Format 2",
             Self::WebM => "WebM",
             Self::WebP => "WebP",
+            #[cfg(feature = "zip")]
+            Self::WindowsAppPackage => "Windows App Package",
             Self::WindowsBitmap => "Windows Bitmap",
             Self::WindowsMediaVideo => "Windows Media Video",
             Self::WindowsMetafile => "Windows Metafile",
@@ -882,6 +887,8 @@ impl FileFormat {
             Self::WebOpenFontFormat2 => "font/woff2",
             Self::WebM => "video/webm",
             Self::WebP => "image/webp",
+            #[cfg(feature = "zip")]
+            Self::WindowsAppPackage => "application/vnd.ms-appx",
             Self::WindowsBitmap => "image/bmp",
             Self::WindowsMediaVideo => "video/x-ms-asf",
             Self::WindowsMetafile => "image/wmf",
@@ -1113,6 +1120,8 @@ impl FileFormat {
             Self::WebOpenFontFormat2 => "woff2",
             Self::WebM => "webm",
             Self::WebP => "webp",
+            #[cfg(feature = "zip")]
+            Self::WindowsAppPackage => "appx",
             Self::WindowsBitmap => "bmp",
             Self::WindowsMediaVideo => "wmv",
             Self::WindowsMetafile => "wmf",
@@ -1395,6 +1404,8 @@ impl FileFormat {
                 return Ok(Self::MicrosoftVisualStudioExtension);
             } else if file.name() == "WEB-INF/web.xml" {
                 return Ok(Self::WebApplicationArchive);
+            } else if file.name() == "AppxManifest.xml" {
+                return Ok(Self::WindowsAppPackage);
             } else if file.name() == "AppManifest.xaml" {
                 return Ok(Self::Xap);
             } else if file.name() == "META-INF/mozilla.rsa" {

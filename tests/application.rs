@@ -579,6 +579,13 @@ fn test_web_assembly_binary() {
     assert_eq!(format, FileFormat::WebAssemblyBinary);
 }
 
+#[cfg(feature = "zip")]
+#[test]
+fn test_windows_app_package() {
+    let format = FileFormat::from_file("fixtures/application/sample.appx").unwrap();
+    assert_eq!(format, FileFormat::WindowsAppPackage);
+}
+
 #[test]
 fn test_windows_shortcut() {
     let format = FileFormat::from_file("fixtures/application/sample.lnk").unwrap();

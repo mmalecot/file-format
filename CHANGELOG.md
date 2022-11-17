@@ -35,6 +35,7 @@
 - Portable Executable - `exe`
 - Web Application Archive - `war`
 - WebM - `webm`
+- Windows App Package - `appx`
 
 # Version 0.8.0 (2022-11-06)
 
