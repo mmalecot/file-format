@@ -167,6 +167,9 @@ pub enum FileFormat {
     Ico,
     /// Impulse Tracker Module - `it`
     ImpulseTrackerModule,
+    /// iOS App Store Package - `ipa`
+    #[cfg(feature = "zip")]
+    IosAppStorePackage,
     /// ISO 9660 - `iso`
     Iso9660,
     /// Java Archive - `jar`
@@ -516,6 +519,8 @@ impl FileFormat {
             }
             Self::Ico => "ICO",
             Self::ImpulseTrackerModule => "Impulse Tracker Module",
+            #[cfg(feature = "zip")]
+            Self::IosAppStorePackage => "iOS App Store Package",
             Self::Iso9660 => "ISO 9660",
             #[cfg(feature = "zip")]
             Self::JavaArchive => "Java Archive",
@@ -745,6 +750,8 @@ impl FileFormat {
             Self::HighEfficiencyImageFileFormatSequence => "image/heif-sequence",
             Self::Ico => "image/x-icon",
             Self::ImpulseTrackerModule => "audio/x-it",
+            #[cfg(feature = "zip")]
+            Self::IosAppStorePackage => "application/x-ios-app",
             Self::Iso9660 => "application/x-iso9660-image",
             #[cfg(feature = "zip")]
             Self::JavaArchive => "application/java-archive",
@@ -982,6 +989,8 @@ impl FileFormat {
             Self::HighEfficiencyImageFileFormatSequence => "heifs",
             Self::Ico => "ico",
             Self::ImpulseTrackerModule => "it",
+            #[cfg(feature = "zip")]
+            Self::IosAppStorePackage => "ipa",
             Self::Iso9660 => "iso",
             #[cfg(feature = "zip")]
             Self::JavaArchive => "jar",
@@ -1425,6 +1434,8 @@ impl FileFormat {
                 return Ok(Self::OfficeOpenXmlSpreadsheet);
             } else if file.name().starts_with("3D/") && file.name().ends_with(".model") {
                 return Ok(Self::ThreeDimensionalManufacturingFormat);
+            } else if file.name().starts_with("Payload/") && file.name().contains(".app/") {
+                return Ok(Self::IosAppStorePackage);
             }
         }
         Ok(format)

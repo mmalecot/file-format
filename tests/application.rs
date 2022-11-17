@@ -193,6 +193,13 @@ fn test_gzip() {
     assert_eq!(format, FileFormat::Gzip);
 }
 
+#[cfg(feature = "zip")]
+#[test]
+fn test_ios_app_store_package() {
+    let format = FileFormat::from_file("fixtures/application/sample.ipa").unwrap();
+    assert_eq!(format, FileFormat::IosAppStorePackage);
+}
+
 #[test]
 fn test_iso9660() {
     let format = FileFormat::from_file("fixtures/application/sample.iso").unwrap();

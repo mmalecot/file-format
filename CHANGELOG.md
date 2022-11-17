@@ -22,6 +22,7 @@
 - DjVu - `djvu`
 - Dynamic Link Library - `dll`
 - Enterprise Application Archive - `ear`
+- iOS App Store Package - `ipa`
 - Lua Bytecode - `luac`
 - Meta Information Encapsulation - `mie`
 - Microsoft Excel Spreadsheet - `xls`
