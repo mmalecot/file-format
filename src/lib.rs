@@ -1409,61 +1409,55 @@ impl FileFormat {
         let mut format = Self::Zip;
         for index in 0..archive.len() {
             let mut file = archive.by_index(index)?;
-            if file.name() == "AndroidManifest.xml" {
-                return Ok(Self::AndroidPackage);
-            } else if file.name() == "META-INF/application.xml" {
-                return Ok(Self::EnterpriseApplicationArchive);
-            } else if file.name() == "META-INF/MANIFEST.MF" {
-                format = Self::JavaArchive;
-            } else if file.name() == "extension.vsixmanifest" {
-                return Ok(Self::MicrosoftVisualStudioExtension);
-            } else if file.name() == "doc.kml" {
-                return Ok(Self::KeyholeMarkupLanguageZipped);
-            } else if file.name() == "WEB-INF/web.xml" {
-                return Ok(Self::WebApplicationArchive);
-            } else if file.name() == "AppxManifest.xml" {
-                return Ok(Self::WindowsAppPackage);
-            } else if file.name() == "AppManifest.xaml" {
-                return Ok(Self::Xap);
-            } else if file.name() == "META-INF/mozilla.rsa" {
-                return Ok(Self::XpInstall);
-            } else if file.name() == "mimetype" {
-                let mut content = String::new();
-                file.read_to_string(&mut content)?;
-                match content.trim() {
-                    "application/epub+zip" => {
-                        return Ok(Self::ElectronicPublication);
+            match file.name() {
+                "AndroidManifest.xml" => return Ok(Self::AndroidPackage),
+                "AppManifest.xaml" => return Ok(Self::Xap),
+                "AppxManifest.xml" => return Ok(Self::WindowsAppPackage),
+                "META-INF/MANIFEST.MF" => format = Self::JavaArchive,
+                "META-INF/application.xml" => return Ok(Self::EnterpriseApplicationArchive),
+                "META-INF/mozilla.rsa" => return Ok(Self::XpInstall),
+                "WEB-INF/web.xml" => return Ok(Self::WebApplicationArchive),
+                "doc.kml" => return Ok(Self::KeyholeMarkupLanguageZipped),
+                "extension.vsixmanifest" => return Ok(Self::MicrosoftVisualStudioExtension),
+                "mimetype" => {
+                    let mut content = String::new();
+                    file.read_to_string(&mut content)?;
+                    match content.trim() {
+                        "application/epub+zip" => return Ok(Self::ElectronicPublication),
+                        "application/vnd.oasis.opendocument.graphics" => {
+                            return Ok(Self::OpenDocumentGraphics)
+                        }
+                        "application/vnd.oasis.opendocument.presentation" => {
+                            return Ok(Self::OpenDocumentPresentation);
+                        }
+                        "application/vnd.oasis.opendocument.spreadsheet" => {
+                            return Ok(Self::OpenDocumentSpreadsheet);
+                        }
+                        "application/vnd.oasis.opendocument.text" => {
+                            return Ok(Self::OpenDocumentText);
+                        }
+                        _ => {}
                     }
-                    "application/vnd.oasis.opendocument.graphics" => {
-                        return Ok(Self::OpenDocumentGraphics);
-                    }
-                    "application/vnd.oasis.opendocument.presentation" => {
-                        return Ok(Self::OpenDocumentPresentation);
-                    }
-                    "application/vnd.oasis.opendocument.spreadsheet" => {
-                        return Ok(Self::OpenDocumentSpreadsheet);
-                    }
-                    "application/vnd.oasis.opendocument.text" => {
-                        return Ok(Self::OpenDocumentText);
-                    }
-                    _ => {}
                 }
-            } else if file.name().starts_with("circuitdiagram/") {
-                return Ok(Self::CircuitDiagramDocument);
-            } else if file.name().starts_with("dwf/") {
-                return Ok(Self::DesignWebFormatXps);
-            } else if file.name().starts_with("word/") {
-                return Ok(Self::OfficeOpenXmlDocument);
-            } else if file.name().starts_with("visio/") {
-                return Ok(Self::OfficeOpenXmlDrawing);
-            } else if file.name().starts_with("ppt/") {
-                return Ok(Self::OfficeOpenXmlPresentation);
-            } else if file.name().starts_with("xl/") {
-                return Ok(Self::OfficeOpenXmlSpreadsheet);
-            } else if file.name().starts_with("3D/") && file.name().ends_with(".model") {
-                return Ok(Self::ThreeDimensionalManufacturingFormat);
-            } else if file.name().starts_with("Payload/") && file.name().contains(".app/") {
-                return Ok(Self::IosAppStorePackage);
+                _ => {
+                    if file.name().starts_with("circuitdiagram/") {
+                        return Ok(Self::CircuitDiagramDocument);
+                    } else if file.name().starts_with("dwf/") {
+                        return Ok(Self::DesignWebFormatXps);
+                    } else if file.name().starts_with("word/") {
+                        return Ok(Self::OfficeOpenXmlDocument);
+                    } else if file.name().starts_with("visio/") {
+                        return Ok(Self::OfficeOpenXmlDrawing);
+                    } else if file.name().starts_with("ppt/") {
+                        return Ok(Self::OfficeOpenXmlPresentation);
+                    } else if file.name().starts_with("xl/") {
+                        return Ok(Self::OfficeOpenXmlSpreadsheet);
+                    } else if file.name().starts_with("3D/") && file.name().ends_with(".model") {
+                        return Ok(Self::ThreeDimensionalManufacturingFormat);
+                    } else if file.name().starts_with("Payload/") && file.name().contains(".app/") {
+                        return Ok(Self::IosAppStorePackage);
+                    }
+                }
             }
         }
         Ok(format)
