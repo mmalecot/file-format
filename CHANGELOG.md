@@ -28,8 +28,8 @@
 
 - Fix `Apple QuickTime` signature
 - Fix `Joint Photographic Experts Group` signature
-- Fix `Matroska Video` signature
 - Add `MPEG-1/2 Audio Layer 3` signature
+- Add `Matroska Video` signature
 - Change UNIX archiver extension from `ar` to `a` (preferred)
 
 ## New formats support
