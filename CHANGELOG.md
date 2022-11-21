@@ -52,6 +52,7 @@
 - Microsoft Word Document - `doc`
 - Portable Executable - `exe`
 - Sony Movie - `mqv`
+- TASTy - `tasty`
 - Web Application Archive - `war`
 - WebM - `webm`
 - Windows App Package - `appx`

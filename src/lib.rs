@@ -368,6 +368,8 @@ pub enum FileFormat {
     TagImageFileFormat,
     /// Tape Archive - `tar`
     TapeArchive,
+    /// TASTy - `tasty`
+    Tasty,
     /// 3rd Generation Partnership Project - `3gp`
     ThirdGenerationPartnershipProject,
     /// 3rd Generation Partnership Project 2 - `3g2`
@@ -637,6 +639,7 @@ impl FileFormat {
             Self::Sqlite3 => "SQLite 3",
             Self::TagImageFileFormat => "Tag Image File Format",
             Self::TapeArchive => "Tape Archive",
+            Self::Tasty => "TASTy",
             Self::ThirdGenerationPartnershipProject => "3rd Generation Partnership Project",
             Self::ThirdGenerationPartnershipProject2 => "3rd Generation Partnership Project 2",
             #[cfg(feature = "zip")]
@@ -879,6 +882,7 @@ impl FileFormat {
             Self::Sqlite3 => "application/vnd.sqlite3",
             Self::TagImageFileFormat => "image/tiff",
             Self::TapeArchive => "application/x-tar",
+            Self::Tasty => "application/x-tasty",
             Self::ThirdGenerationPartnershipProject => "video/3gpp",
             Self::ThirdGenerationPartnershipProject2 => "video/3gpp2",
             #[cfg(feature = "zip")]
@@ -1117,6 +1121,7 @@ impl FileFormat {
             Self::Sqlite3 => "sqlite",
             Self::TagImageFileFormat => "tiff",
             Self::TapeArchive => "tar",
+            Self::Tasty => "tasty",
             Self::ThirdGenerationPartnershipProject => "3gp",
             Self::ThirdGenerationPartnershipProject2 => "3g2",
             #[cfg(feature = "zip")]
@@ -2010,6 +2015,9 @@ signatures! {
     value = b"\x49\x49\x2A\x00"
     value = b"\x4D\x4D\x00\x2B"
     value = b"\x49\x49\x2B\x00"
+
+    format = Tasty
+    value = b"\x5C\xA1\xAB\x1F"
 
     format = Wavpack
     value = b"wvpk"

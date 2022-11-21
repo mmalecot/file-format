@@ -190,6 +190,7 @@ All of these are disabled by default.
 - Snappy - `sz`
 - Sony DSD Stream File - `dsf`
 - Sony Movie - `mqv`
+- TASTy - `tasty`
 - Tag Image File Format - `tiff`
 - Tape Archive - `tar`
 - TrueType - `ttf`

@@ -548,6 +548,12 @@ fn test_tape_archive() {
     assert_eq!(format, FileFormat::TapeArchive);
 }
 
+#[test]
+fn test_tasty() {
+    let format = FileFormat::from_file("fixtures/application/sample.tasty").unwrap();
+    assert_eq!(format, FileFormat::Tasty);
+}
+
 #[cfg(feature = "zip")]
 #[test]
 fn test_three_dimensional_manufacturing_format() {
