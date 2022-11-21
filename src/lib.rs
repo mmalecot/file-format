@@ -25,7 +25,7 @@ pub enum FileFormat {
     /// Adobe Illustrator Artwork - `ai`
     AdobeIllustratorArtwork,
     /// Adobe InDesign Document - `indd`
-    AdobeInDesignDocument,
+    AdobeIndesignDocument,
     /// Adobe Photoshop Document - `psd`
     AdobePhotoshopDocument,
     /// Advanced Audio Coding - `aac`
@@ -58,7 +58,7 @@ pub enum FileFormat {
     /// Apple iTunes Video - `m4v`
     AppleItunesVideo,
     /// Apple QuickTime - `mov`
-    AppleQuickTime,
+    AppleQuicktime,
     /// Arbitrary Binary Data - `bin`
     ArbitraryBinaryData,
     /// Archived by Robert Jung - `arj`
@@ -112,14 +112,14 @@ pub enum FileFormat {
     /// Digital Picture Exchange - `dpx`
     DigitalPictureExchange,
     /// DjVu - `djvu`
-    DjVu,
+    Djvu,
     /// Dynamic Link Library - `dll`
     DynamicLinkLibrary,
     /// Electronic Publication - `epub`
     #[cfg(feature = "zip")]
     ElectronicPublication,
     /// Embedded OpenType - `eot`
-    EmbeddedOpenType,
+    EmbeddedOpentype,
     /// Enterprise Application Archive - `ear`
     #[cfg(feature = "zip")]
     EnterpriseApplicationArchive,
@@ -178,7 +178,7 @@ pub enum FileFormat {
     /// Java Class - `class`
     JavaClass,
     /// Java KeyStore - `jks`
-    JavaKeyStore,
+    JavaKeystore,
     /// Joint Photographic Experts Group - `jpg`
     JointPhotographicExpertsGroup,
     /// JPEG 2000 Part 1 - `jp2`
@@ -215,7 +215,7 @@ pub enum FileFormat {
     /// lzop - `lzo`
     Lzop,
     /// macOS Alias - `alias`
-    MacOsAlias,
+    MacosAlias,
     /// Material Exchange Format - `mxf`
     MaterialExchangeFormat,
     /// Matroska Video - `mkv`
@@ -238,7 +238,7 @@ pub enum FileFormat {
     MicrosoftExcelSpreadsheet,
     /// Microsoft PowerPoint Presentation - `ppt`
     #[cfg(feature = "cfb")]
-    MicrosoftPowerPointPresentation,
+    MicrosoftPowerpointPresentation,
     /// Microsoft Project Plan - `mpp`
     #[cfg(feature = "cfb")]
     MicrosoftProjectPlan,
@@ -262,8 +262,8 @@ pub enum FileFormat {
     Mpeg1Video,
     /// MPEG-4 Part 14 Video - `mp4`
     Mpeg4Part14Video,
-    /// MPEG-1/2 Audio Layer III - `mp3`
-    MpegAudioLayer3,
+    /// MPEG-1/2 Audio Layer 3 - `mp3`
+    Mpeg12AudioLayer3,
     /// MS-DOS Executable - `exe`
     MsDosExecutable,
     /// Musepack - `mpc`
@@ -319,9 +319,9 @@ pub enum FileFormat {
     #[cfg(feature = "zip")]
     OpenDocumentText,
     /// OpenEXR - `exr`
-    OpenExr,
+    Openexr,
     /// OpenType - `otf`
-    OpenType,
+    Opentype,
     /// Optimized Dalvik Executable - `dey`
     OptimizedDalvikExecutable,
     /// Panasonic Raw - `rw2`
@@ -345,15 +345,15 @@ pub enum FileFormat {
     /// Roshal Archive - `rar`
     RoshalArchive,
     /// ScreamTracker 3 Module - `s3m`
-    ScreamTracker3Module,
+    Screamtracker3Module,
     /// SeqBox - `sbx`
-    SeqBox,
+    Seqbox,
     /// 7-Zip - `7z`
     SevenZip,
     /// Shapefile - `shp`
     Shapefile,
     /// SketchUp - `skp`
-    SketchUp,
+    Sketchup,
     /// Small Web Format - `swf`
     SmallWebFormat,
     /// Snappy - `sz`
@@ -376,30 +376,30 @@ pub enum FileFormat {
     #[cfg(feature = "zip")]
     ThreeDimensionalManufacturingFormat,
     /// TrueType - `ttf`
-    TrueType,
+    Truetype,
     /// UNIX archiver - `a`
     UnixArchiver,
     /// UNIX compress - `Z`
     UnixCompress,
     /// VirtualBox Virtual Disk Image - `vdi`
-    VirtualBoxVirtualDiskImage,
+    VirtualboxVirtualDiskImage,
     /// WavPack - `wv`
-    WavPack,
+    Wavpack,
     /// Waveform Audio - `wav`
     WaveformAudio,
     /// Web Application Archive - `war`
     #[cfg(feature = "zip")]
     WebApplicationArchive,
     /// WebAssembly Binary - `wasm`
-    WebAssemblyBinary,
+    WebassemblyBinary,
     /// Web Open Font Format - `woff`
     WebOpenFontFormat,
     /// Web Open Font Format 2 - `woff2`
     WebOpenFontFormat2,
     /// WebM - `webm`
-    WebM,
+    Webm,
     /// WebP - `webp`
-    WebP,
+    Webp,
     /// Windows App Package - `appx`
     #[cfg(feature = "zip")]
     WindowsAppPackage,
@@ -416,7 +416,7 @@ pub enum FileFormat {
     Xap,
     /// XPInstall - `xpi`
     #[cfg(feature = "zip")]
-    XpInstall,
+    Xpinstall,
     /// XZ - `xz`
     Xz,
     /// ZIP - `zip`
@@ -438,8 +438,8 @@ impl FileFormat {
     /// ```rust
     /// use file_format::FileFormat;
     ///
-    /// let format = FileFormat::MpegAudioLayer3;
-    /// assert_eq!(format.name(), "MPEG-1/2 Audio Layer III");
+    /// let format = FileFormat::Mpeg12AudioLayer3;
+    /// assert_eq!(format.name(), "MPEG-1/2 Audio Layer 3");
     ///```
     pub const fn name(&self) -> &str {
         match self {
@@ -449,7 +449,7 @@ impl FileFormat {
             Self::AdobeFlashPlayerProtectedVideo => "Adobe Flash Player Protected Video",
             Self::AdobeFlashPlayerVideo => "Adobe Flash Player Video",
             Self::AdobeIllustratorArtwork => "Adobe Illustrator Artwork",
-            Self::AdobeInDesignDocument => "Adobe InDesign Document",
+            Self::AdobeIndesignDocument => "Adobe InDesign Document",
             Self::AdobePhotoshopDocument => "Adobe Photoshop Document",
             Self::AdvancedAudioCoding => "Advanced Audio Coding",
             Self::Alz => "ALZ",
@@ -466,7 +466,7 @@ impl FileFormat {
             Self::AppleItunesAudiobook => "Apple iTunes Audiobook",
             Self::AppleItunesProtectedAudio => "Apple iTunes Protected Audio",
             Self::AppleItunesVideo => "Apple iTunes Video",
-            Self::AppleQuickTime => "Apple QuickTime",
+            Self::AppleQuicktime => "Apple QuickTime",
             Self::ArbitraryBinaryData => "Arbitrary Binary Data",
             Self::ArchivedByRobertJung => "Archived by Robert Jung",
             Self::Au => "Au",
@@ -496,11 +496,11 @@ impl FileFormat {
                 "Digital Imaging and Communications in Medicine"
             }
             Self::DigitalPictureExchange => "Digital Picture Exchange",
-            Self::DjVu => "DjVu",
+            Self::Djvu => "DjVu",
             Self::DynamicLinkLibrary => "Dynamic Link Library",
             #[cfg(feature = "zip")]
             Self::ElectronicPublication => "Electronic Publication",
-            Self::EmbeddedOpenType => "Embedded OpenType",
+            Self::EmbeddedOpentype => "Embedded OpenType",
             #[cfg(feature = "zip")]
             Self::EnterpriseApplicationArchive => "Enterprise Application Archive",
             Self::ExecutableAndLinkableFormat => "Executable and Linkable Format",
@@ -533,7 +533,7 @@ impl FileFormat {
             #[cfg(feature = "zip")]
             Self::JavaArchive => "Java Archive",
             Self::JavaClass => "Java Class",
-            Self::JavaKeyStore => "Java KeyStore",
+            Self::JavaKeystore => "Java KeyStore",
             Self::JointPhotographicExpertsGroup => "Joint Photographic Experts Group",
             Self::Jpeg2000Part1 => "JPEG 2000 Part 1",
             Self::Jpeg2000Part2 => "JPEG 2000 Part 2",
@@ -552,7 +552,7 @@ impl FileFormat {
             Self::Lz4 => "LZ4",
             Self::Lzip => "lzip",
             Self::Lzop => "lzop",
-            Self::MacOsAlias => "macOS Alias",
+            Self::MacosAlias => "macOS Alias",
             Self::MaterialExchangeFormat => "Material Exchange Format",
             Self::MatroskaVideo => "Meta Information Encapsulation",
             Self::MetaInformationEncapsulation => "Matroska Video",
@@ -565,7 +565,7 @@ impl FileFormat {
             #[cfg(feature = "cfb")]
             Self::MicrosoftExcelSpreadsheet => "Microsoft Excel Spreadsheet",
             #[cfg(feature = "cfb")]
-            Self::MicrosoftPowerPointPresentation => "Microsoft PowerPoint Presentation",
+            Self::MicrosoftPowerpointPresentation => "Microsoft PowerPoint Presentation",
             #[cfg(feature = "cfb")]
             Self::MicrosoftProjectPlan => "Microsoft Project Plan",
             #[cfg(feature = "cfb")]
@@ -580,7 +580,7 @@ impl FileFormat {
             Self::MonkeysAudio => "Monkey's Audio",
             Self::Mpeg1Video => "MPEG-1 Video",
             Self::Mpeg4Part14Video => "MPEG-4 Part 14 Video",
-            Self::MpegAudioLayer3 => "MPEG-1/2 Audio Layer III",
+            Self::Mpeg12AudioLayer3 => "MPEG-1/2 Audio Layer 3",
             Self::MsDosExecutable => "MS-DOS Executable",
             Self::Musepack => "Musepack",
             Self::MusicalInstrumentDigitalInterface => "Musical Instrument Digital Interface",
@@ -612,8 +612,8 @@ impl FileFormat {
             Self::OpenDocumentSpreadsheet => "OpenDocument Spreadsheet",
             #[cfg(feature = "zip")]
             Self::OpenDocumentText => "OpenDocument Text",
-            Self::OpenExr => "OpenEXR",
-            Self::OpenType => "OpenType",
+            Self::Openexr => "OpenEXR",
+            Self::Opentype => "OpenType",
             Self::OptimizedDalvikExecutable => "Optimized Dalvik Executable",
             Self::PanasonicRaw => "Panasonic Raw",
             Self::PcapDump => "PCAP Dump",
@@ -625,11 +625,11 @@ impl FileFormat {
             Self::RadianceHdr => "Radiance HDR",
             Self::RedHatPackageManager => "Red Hat Package Manager",
             Self::RoshalArchive => "Roshal Archive",
-            Self::ScreamTracker3Module => "ScreamTracker 3 Module",
-            Self::SeqBox => "SeqBox",
+            Self::Screamtracker3Module => "ScreamTracker 3 Module",
+            Self::Seqbox => "SeqBox",
             Self::SevenZip => "7-Zip",
             Self::Shapefile => "Shapefile",
-            Self::SketchUp => "SketchUp",
+            Self::Sketchup => "SketchUp",
             Self::SmallWebFormat => "Small Web Format",
             Self::Snappy => "Snappy",
             Self::SonyDsdStreamFile => "Sony DSD Stream File",
@@ -641,19 +641,19 @@ impl FileFormat {
             Self::ThirdGenerationPartnershipProject2 => "3rd Generation Partnership Project 2",
             #[cfg(feature = "zip")]
             Self::ThreeDimensionalManufacturingFormat => "3D Manufacturing Format",
-            Self::TrueType => "TrueType",
+            Self::Truetype => "TrueType",
             Self::UnixArchiver => "UNIX archiver",
             Self::UnixCompress => "UNIX compress",
-            Self::VirtualBoxVirtualDiskImage => "VirtualBox Virtual Disk Image",
-            Self::WavPack => "WavPack",
+            Self::VirtualboxVirtualDiskImage => "VirtualBox Virtual Disk Image",
+            Self::Wavpack => "WavPack",
             Self::WaveformAudio => "Waveform Audio",
             #[cfg(feature = "zip")]
             Self::WebApplicationArchive => "Web Application Archive",
-            Self::WebAssemblyBinary => "WebAssembly Binary",
+            Self::WebassemblyBinary => "WebAssembly Binary",
             Self::WebOpenFontFormat => "Web Open Font Format",
             Self::WebOpenFontFormat2 => "Web Open Font Format 2",
-            Self::WebM => "WebM",
-            Self::WebP => "WebP",
+            Self::Webm => "WebM",
+            Self::Webp => "WebP",
             #[cfg(feature = "zip")]
             Self::WindowsAppPackage => "Windows App Package",
             Self::WindowsBitmap => "Windows Bitmap",
@@ -663,7 +663,7 @@ impl FileFormat {
             #[cfg(feature = "zip")]
             Self::Xap => "XAP",
             #[cfg(feature = "zip")]
-            Self::XpInstall => "XPInstall",
+            Self::Xpinstall => "XPInstall",
             Self::Xz => "XZ",
             Self::Zip => "ZIP",
             Self::Zoo => "zoo",
@@ -689,7 +689,7 @@ impl FileFormat {
             Self::AdobeFlashPlayerProtectedVideo => "video/mp4",
             Self::AdobeFlashPlayerVideo => "video/mp4",
             Self::AdobeIllustratorArtwork => "application/pdf",
-            Self::AdobeInDesignDocument => "application/x-indesign",
+            Self::AdobeIndesignDocument => "application/x-indesign",
             Self::AdobePhotoshopDocument => "image/vnd.adobe.photoshop",
             Self::AdvancedAudioCoding => "audio/aac",
             Self::Alz => "application/x-alz-compressed",
@@ -706,7 +706,7 @@ impl FileFormat {
             Self::AppleItunesAudiobook => "audio/mp4",
             Self::AppleItunesProtectedAudio => "audio/mp4",
             Self::AppleItunesVideo => "video/x-m4v",
-            Self::AppleQuickTime => "video/quicktime",
+            Self::AppleQuicktime => "video/quicktime",
             Self::ArbitraryBinaryData => "application/octet-stream",
             Self::ArchivedByRobertJung => "application/x-arj",
             Self::Au => "audio/basic",
@@ -734,11 +734,11 @@ impl FileFormat {
             Self::DesignWebFormatXps => "model/vnd.dwfx+xps",
             Self::DigitalImagingAndCommunicationsInMedicine => "application/dicom",
             Self::DigitalPictureExchange => "image/x-dpx",
-            Self::DjVu => "image/vnd.djvu",
+            Self::Djvu => "image/vnd.djvu",
             Self::DynamicLinkLibrary => "application/vnd.microsoft.portable-executable",
             #[cfg(feature = "zip")]
             Self::ElectronicPublication => "application/epub+zip",
-            Self::EmbeddedOpenType => "application/vnd.ms-fontobject",
+            Self::EmbeddedOpentype => "application/vnd.ms-fontobject",
             #[cfg(feature = "zip")]
             Self::EnterpriseApplicationArchive => "application/java-archive",
             Self::ExecutableAndLinkableFormat => "application/x-executable",
@@ -769,7 +769,7 @@ impl FileFormat {
             #[cfg(feature = "zip")]
             Self::JavaArchive => "application/java-archive",
             Self::JavaClass => "application/java-vm",
-            Self::JavaKeyStore => "application/x-java-keystore",
+            Self::JavaKeystore => "application/x-java-keystore",
             Self::JointPhotographicExpertsGroup => "image/jpeg",
             Self::Jpeg2000Part1 => "image/jp2",
             Self::Jpeg2000Part2 => "image/jpx",
@@ -788,7 +788,7 @@ impl FileFormat {
             Self::Lz4 => "application/x-lz4",
             Self::Lzip => "application/x-lzip",
             Self::Lzop => "application/x-lzop",
-            Self::MacOsAlias => "application/x-apple-alias",
+            Self::MacosAlias => "application/x-apple-alias",
             Self::MaterialExchangeFormat => "application/mxf",
             Self::MatroskaVideo => "video/x-matroska",
             Self::MetaInformationEncapsulation => "application/x-mie",
@@ -801,7 +801,7 @@ impl FileFormat {
             #[cfg(feature = "cfb")]
             Self::MicrosoftExcelSpreadsheet => "application/vnd.ms-excel",
             #[cfg(feature = "cfb")]
-            Self::MicrosoftPowerPointPresentation => "application/vnd.ms-powerpoint",
+            Self::MicrosoftPowerpointPresentation => "application/vnd.ms-powerpoint",
             #[cfg(feature = "cfb")]
             Self::MicrosoftProjectPlan => "application/vnd.ms-project",
             #[cfg(feature = "cfb")]
@@ -816,7 +816,7 @@ impl FileFormat {
             Self::MonkeysAudio => "audio/x-ape",
             Self::Mpeg1Video => "video/mpeg",
             Self::Mpeg4Part14Video => "video/mp4",
-            Self::MpegAudioLayer3 => "audio/mpeg",
+            Self::Mpeg12AudioLayer3 => "audio/mpeg",
             Self::MsDosExecutable => "application/x-dosexec",
             Self::Musepack => "audio/x-musepack",
             Self::MusicalInstrumentDigitalInterface => "audio/midi",
@@ -854,8 +854,8 @@ impl FileFormat {
             Self::OpenDocumentSpreadsheet => "application/vnd.oasis.opendocument.spreadsheet",
             #[cfg(feature = "zip")]
             Self::OpenDocumentText => "application/vnd.oasis.opendocument.text",
-            Self::OpenExr => "image/x-exr",
-            Self::OpenType => "font/otf",
+            Self::Openexr => "image/x-exr",
+            Self::Opentype => "font/otf",
             Self::OptimizedDalvikExecutable => "application/vnd.android.dey",
             Self::PanasonicRaw => "image/x-panasonic-rw2",
             Self::PcapDump => "application/vnd.tcpdump.pcap",
@@ -867,11 +867,11 @@ impl FileFormat {
             Self::RadianceHdr => "image/vnd.radiance",
             Self::RedHatPackageManager => "application/x-rpm",
             Self::RoshalArchive => "application/vnd.rar",
-            Self::ScreamTracker3Module => "audio/x-s3m",
-            Self::SeqBox => "application/x-sbx",
+            Self::Screamtracker3Module => "audio/x-s3m",
+            Self::Seqbox => "application/x-sbx",
             Self::SevenZip => "application/x-7z-compressed",
             Self::Shapefile => "application/x-esri-shape",
-            Self::SketchUp => "application/vnd.sketchup.skp",
+            Self::Sketchup => "application/vnd.sketchup.skp",
             Self::SmallWebFormat => "application/x-shockwave-flash",
             Self::Snappy => "application/x-snappy-framed",
             Self::SonyDsdStreamFile => "audio/x-dsf",
@@ -885,19 +885,19 @@ impl FileFormat {
             Self::ThreeDimensionalManufacturingFormat => {
                 "application/vnd.ms-package.3dmanufacturing-3dmodel+xml"
             }
-            Self::TrueType => "font/ttf",
+            Self::Truetype => "font/ttf",
             Self::UnixArchiver => "application/x-archive",
             Self::UnixCompress => "application/x-compress",
-            Self::VirtualBoxVirtualDiskImage => "application/x-virtualbox-vdi",
-            Self::WavPack => "audio/wavpack",
+            Self::VirtualboxVirtualDiskImage => "application/x-virtualbox-vdi",
+            Self::Wavpack => "audio/wavpack",
             Self::WaveformAudio => "audio/vnd.wave",
             #[cfg(feature = "zip")]
             Self::WebApplicationArchive => "application/java-archive",
-            Self::WebAssemblyBinary => "application/wasm",
+            Self::WebassemblyBinary => "application/wasm",
             Self::WebOpenFontFormat => "font/woff",
             Self::WebOpenFontFormat2 => "font/woff2",
-            Self::WebM => "video/webm",
-            Self::WebP => "image/webp",
+            Self::Webm => "video/webm",
+            Self::Webp => "image/webp",
             #[cfg(feature = "zip")]
             Self::WindowsAppPackage => "application/vnd.ms-appx",
             Self::WindowsBitmap => "image/bmp",
@@ -907,7 +907,7 @@ impl FileFormat {
             #[cfg(feature = "zip")]
             Self::Xap => "application/x-silverlight-app",
             #[cfg(feature = "zip")]
-            Self::XpInstall => "application/x-xpinstall",
+            Self::Xpinstall => "application/x-xpinstall",
             Self::Xz => "application/x-xz",
             Self::Zip => "application/zip",
             Self::Zoo => "application/x-zoo",
@@ -933,7 +933,7 @@ impl FileFormat {
             Self::AdobeFlashPlayerProtectedVideo => "f4p",
             Self::AdobeFlashPlayerVideo => "f4v",
             Self::AdobeIllustratorArtwork => "ai",
-            Self::AdobeInDesignDocument => "indd",
+            Self::AdobeIndesignDocument => "indd",
             Self::AdobePhotoshopDocument => "psd",
             Self::AdvancedAudioCoding => "aac",
             Self::Alz => "alz",
@@ -950,7 +950,7 @@ impl FileFormat {
             Self::AppleItunesAudiobook => "m4b",
             Self::AppleItunesProtectedAudio => "m4p",
             Self::AppleItunesVideo => "m4v",
-            Self::AppleQuickTime => "mov",
+            Self::AppleQuicktime => "mov",
             Self::ArbitraryBinaryData => "bin",
             Self::ArchivedByRobertJung => "arj",
             Self::Au => "au",
@@ -978,11 +978,11 @@ impl FileFormat {
             Self::DesignWebFormatXps => "dwfx",
             Self::DigitalImagingAndCommunicationsInMedicine => "dcm",
             Self::DigitalPictureExchange => "dpx",
-            Self::DjVu => "djvu",
+            Self::Djvu => "djvu",
             Self::DynamicLinkLibrary => "dll",
             #[cfg(feature = "zip")]
             Self::ElectronicPublication => "epub",
-            Self::EmbeddedOpenType => "eot",
+            Self::EmbeddedOpentype => "eot",
             #[cfg(feature = "zip")]
             Self::EnterpriseApplicationArchive => "ear",
             Self::ExecutableAndLinkableFormat => "elf",
@@ -1013,7 +1013,7 @@ impl FileFormat {
             #[cfg(feature = "zip")]
             Self::JavaArchive => "jar",
             Self::JavaClass => "class",
-            Self::JavaKeyStore => "jks",
+            Self::JavaKeystore => "jks",
             Self::JointPhotographicExpertsGroup => "jpg",
             Self::Jpeg2000Part1 => "jp2",
             Self::Jpeg2000Part2 => "jpx",
@@ -1032,7 +1032,7 @@ impl FileFormat {
             Self::Lz4 => "lz4",
             Self::Lzip => "lz",
             Self::Lzop => "lzo",
-            Self::MacOsAlias => "alias",
+            Self::MacosAlias => "alias",
             Self::MaterialExchangeFormat => "mxf",
             Self::MatroskaVideo => "mkv",
             Self::MetaInformationEncapsulation => "mie",
@@ -1045,7 +1045,7 @@ impl FileFormat {
             #[cfg(feature = "cfb")]
             Self::MicrosoftExcelSpreadsheet => "xls",
             #[cfg(feature = "cfb")]
-            Self::MicrosoftPowerPointPresentation => "ppt",
+            Self::MicrosoftPowerpointPresentation => "ppt",
             #[cfg(feature = "cfb")]
             Self::MicrosoftProjectPlan => "mpp",
             #[cfg(feature = "cfb")]
@@ -1060,7 +1060,7 @@ impl FileFormat {
             Self::MonkeysAudio => "ape",
             Self::Mpeg1Video => "mpg",
             Self::Mpeg4Part14Video => "mp4",
-            Self::MpegAudioLayer3 => "mp3",
+            Self::Mpeg12AudioLayer3 => "mp3",
             Self::MsDosExecutable => "exe",
             Self::Musepack => "mpc",
             Self::MusicalInstrumentDigitalInterface => "mid",
@@ -1092,8 +1092,8 @@ impl FileFormat {
             Self::OpenDocumentSpreadsheet => "ods",
             #[cfg(feature = "zip")]
             Self::OpenDocumentText => "odt",
-            Self::OpenExr => "exr",
-            Self::OpenType => "otf",
+            Self::Openexr => "exr",
+            Self::Opentype => "otf",
             Self::OptimizedDalvikExecutable => "dey",
             Self::PanasonicRaw => "rw2",
             Self::PcapDump => "pcap",
@@ -1105,11 +1105,11 @@ impl FileFormat {
             Self::RadianceHdr => "hdr",
             Self::RedHatPackageManager => "rpm",
             Self::RoshalArchive => "rar",
-            Self::ScreamTracker3Module => "s3m",
-            Self::SeqBox => "sbx",
+            Self::Screamtracker3Module => "s3m",
+            Self::Seqbox => "sbx",
             Self::SevenZip => "7z",
             Self::Shapefile => "shp",
-            Self::SketchUp => "skp",
+            Self::Sketchup => "skp",
             Self::SmallWebFormat => "swf",
             Self::Snappy => "sz",
             Self::SonyDsdStreamFile => "dsf",
@@ -1121,19 +1121,19 @@ impl FileFormat {
             Self::ThirdGenerationPartnershipProject2 => "3g2",
             #[cfg(feature = "zip")]
             Self::ThreeDimensionalManufacturingFormat => "3mf",
-            Self::TrueType => "ttf",
+            Self::Truetype => "ttf",
             Self::UnixArchiver => "a",
             Self::UnixCompress => "Z",
-            Self::VirtualBoxVirtualDiskImage => "vdi",
-            Self::WavPack => "wv",
+            Self::VirtualboxVirtualDiskImage => "vdi",
+            Self::Wavpack => "wv",
             Self::WaveformAudio => "wav",
             #[cfg(feature = "zip")]
             Self::WebApplicationArchive => "war",
-            Self::WebAssemblyBinary => "wasm",
+            Self::WebassemblyBinary => "wasm",
             Self::WebOpenFontFormat => "woff",
             Self::WebOpenFontFormat2 => "woff2",
-            Self::WebM => "webm",
-            Self::WebP => "webp",
+            Self::Webm => "webm",
+            Self::Webp => "webp",
             #[cfg(feature = "zip")]
             Self::WindowsAppPackage => "appx",
             Self::WindowsBitmap => "bmp",
@@ -1143,7 +1143,7 @@ impl FileFormat {
             #[cfg(feature = "zip")]
             Self::Xap => "xap",
             #[cfg(feature = "zip")]
-            Self::XpInstall => "xpi",
+            Self::Xpinstall => "xpi",
             Self::Xz => "xz",
             Self::Zip => "zip",
             Self::Zoo => "zoo",
@@ -1158,7 +1158,7 @@ impl FileFormat {
     /// ```rust
     /// use file_format::{FileFormat, Kind};
     ///
-    /// let format = FileFormat::MpegAudioLayer3;
+    /// let format = FileFormat::Mpeg12AudioLayer3;
     /// assert_eq!(format.kind(), Kind::Audio);
     ///```
     pub const fn kind(&self) -> Kind {
@@ -1176,7 +1176,7 @@ impl FileFormat {
             Self::AppleItunesAudiobook => Kind::Audio,
             Self::AppleItunesProtectedAudio => Kind::Audio,
             Self::AppleItunesVideo => Kind::Video,
-            Self::AppleQuickTime => Kind::Video,
+            Self::AppleQuicktime => Kind::Video,
             Self::Au => Kind::Audio,
             Self::AudioCodec3 => Kind::Audio,
             Self::AudioInterchangeFileFormat => Kind::Audio,
@@ -1192,7 +1192,7 @@ impl FileFormat {
             #[cfg(feature = "zip")]
             Self::DesignWebFormatXps => Kind::Model,
             Self::DigitalPictureExchange => Kind::Image,
-            Self::DjVu => Kind::Image,
+            Self::Djvu => Kind::Image,
             Self::ExperimentalComputingFacility => Kind::Image,
             Self::FastTracker2ExtendedModule => Kind::Audio,
             Self::FlashVideo => Kind::Video,
@@ -1222,7 +1222,7 @@ impl FileFormat {
             Self::MonkeysAudio => Kind::Audio,
             Self::Mpeg1Video => Kind::Video,
             Self::Mpeg4Part14Video => Kind::Video,
-            Self::MpegAudioLayer3 => Kind::Audio,
+            Self::Mpeg12AudioLayer3 => Kind::Audio,
             Self::Musepack => Kind::Audio,
             Self::MusicalInstrumentDigitalInterface => Kind::Audio,
             Self::NikonElectronicFile => Kind::Image,
@@ -1233,25 +1233,25 @@ impl FileFormat {
             Self::OggTheora => Kind::Video,
             Self::OggVorbis => Kind::Audio,
             Self::OlympusRawFormat => Kind::Image,
-            Self::OpenExr => Kind::Image,
-            Self::OpenType => Kind::Font,
+            Self::Openexr => Kind::Image,
+            Self::Opentype => Kind::Font,
             Self::PanasonicRaw => Kind::Image,
             Self::PortableNetworkGraphics => Kind::Image,
             Self::QualcommPureVoice => Kind::Audio,
             Self::RadianceHdr => Kind::Image,
-            Self::ScreamTracker3Module => Kind::Audio,
+            Self::Screamtracker3Module => Kind::Audio,
             Self::SonyDsdStreamFile => Kind::Audio,
             Self::SonyMovie => Kind::Video,
             Self::TagImageFileFormat => Kind::Image,
             Self::ThirdGenerationPartnershipProject => Kind::Video,
             Self::ThirdGenerationPartnershipProject2 => Kind::Video,
-            Self::TrueType => Kind::Font,
-            Self::WavPack => Kind::Audio,
+            Self::Truetype => Kind::Font,
+            Self::Wavpack => Kind::Audio,
             Self::WaveformAudio => Kind::Audio,
             Self::WebOpenFontFormat => Kind::Font,
             Self::WebOpenFontFormat2 => Kind::Font,
-            Self::WebM => Kind::Video,
-            Self::WebP => Kind::Image,
+            Self::Webm => Kind::Video,
+            Self::Webp => Kind::Image,
             Self::WindowsBitmap => Kind::Image,
             Self::WindowsMediaVideo => Kind::Video,
             Self::WindowsMetafile => Kind::Image,
@@ -1339,7 +1339,7 @@ impl FileFormat {
         Ok(match file.root_entry().clsid().to_string().as_str() {
             "00020810-0000-0000-c000-000000000046" => Self::MicrosoftExcelSpreadsheet,
             "00020820-0000-0000-c000-000000000046" => Self::MicrosoftExcelSpreadsheet,
-            "64818d10-4f9b-11cf-86ea-00aa00b929e8" => Self::MicrosoftPowerPointPresentation,
+            "64818d10-4f9b-11cf-86ea-00aa00b929e8" => Self::MicrosoftPowerpointPresentation,
             "74b78f3a-c8c8-11d1-be11-00c04fb6faf1" => Self::MicrosoftProjectPlan,
             "00021201-0000-0000-00c0-000000000046" => Self::MicrosoftPublisherDocument,
             "000c1084-0000-0000-c000-000000000046" => Self::MicrosoftSoftwareInstaller,
@@ -1362,7 +1362,7 @@ impl FileFormat {
             .filter(|bytes| bytes == b"webm")
             .is_some()
         {
-            Ok(Self::WebM)
+            Ok(Self::Webm)
         } else {
             Ok(Self::MatroskaVideo)
         }
@@ -1415,7 +1415,7 @@ impl FileFormat {
                 "AppxManifest.xml" => return Ok(Self::WindowsAppPackage),
                 "META-INF/MANIFEST.MF" => format = Self::JavaArchive,
                 "META-INF/application.xml" => return Ok(Self::EnterpriseApplicationArchive),
-                "META-INF/mozilla.rsa" => return Ok(Self::XpInstall),
+                "META-INF/mozilla.rsa" => return Ok(Self::Xpinstall),
                 "WEB-INF/web.xml" => return Ok(Self::WebApplicationArchive),
                 "doc.kml" => return Ok(Self::KeyholeMarkupLanguageZipped),
                 "extension.vsixmanifest" => return Ok(Self::MicrosoftVisualStudioExtension),
@@ -1510,11 +1510,11 @@ macro_rules! signatures {
 
 signatures! {
     // 39-byte signatures
-    format = VirtualBoxVirtualDiskImage
+    format = VirtualboxVirtualDiskImage
     value = b"<<< Oracle VM VirtualBox Disk Image >>>"
 
     // 32-byte signatures
-    format = SketchUp
+    format = Sketchup
     value =
         b"\xFF\xFE\xFF\x0E\x53\x00\x6B\x00\x65\x00\x74\x00\x63\x00\x68\x00",
         b"\x55\x00\x70\x00\x20\x00\x4D\x00\x6F\x00\x64\x00\x65\x00\x6C\x00" offset = 16
@@ -1538,13 +1538,13 @@ signatures! {
     value = b"\x4C\x00\x00\x00\x01\x14\x02\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x00\x46"
 
     // 16-byte signatures
-    format = AdobeInDesignDocument
+    format = AdobeIndesignDocument
     value = b"\x06\x06\xED\xF5\xD8\x1D\x46\xE5\xBD\x31\xEF\xE7\xFE\x74\xB7\x1D"
 
     format = FastTracker2ExtendedModule
     value = b"Extended Module:"
 
-    format = MacOsAlias
+    format = MacosAlias
     value = b"\x62\x6F\x6F\x6B\x00\x00\x00\x00\x6D\x61\x72\x6B\x00\x00\x00\x00"
 
     format = Sqlite3
@@ -1565,7 +1565,7 @@ signatures! {
     format = AnimatedPortableNetworkGraphics
     value = b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A", b"acTL" offset = 0x25
 
-    format = DjVu
+    format = Djvu
     value = b"AT&TFORM", b"DJVM" offset = 12
     value = b"AT&TFORM", b"DJVU" offset = 12
     value = b"AT&TFORM", b"DJVI" offset = 12
@@ -1750,7 +1750,7 @@ signatures! {
     format = WaveformAudio
     value = b"RIFF", b"WAVE" offset = 8
 
-    format = WebP
+    format = Webp
     value = b"RIFF", b"WEBP" offset = 8
 
     // 7-byte signatures
@@ -1804,7 +1804,7 @@ signatures! {
     format = ApacheArrowColumnar
     value = b"ARROW1"
 
-    format = AppleQuickTime
+    format = AppleQuicktime
     value = b"ftypqt" offset = 4
     value = b"moov" offset = 4
     value = b"mdat" offset = 4
@@ -1831,7 +1831,7 @@ signatures! {
     format = AdaptiveMultiRate
     value = b"#!AMR"
 
-    format = EmbeddedOpenType
+    format = EmbeddedOpentype
     value = b"\x00\x00\x01" offset = 8, b"\x4C\x50" offset = 34
     value = b"\x01\x00\x02" offset = 8, b"\x4C\x50" offset = 34
     value = b"\x02\x00\x02" offset = 8, b"\x4C\x50" offset = 34
@@ -1855,13 +1855,13 @@ signatures! {
     value = b"-lz5-" offset = 2
     value = b"-lhd-" offset = 2
 
-    format = OpenType
+    format = Opentype
     value = b"\x4F\x54\x54\x4F\x00"
 
     format = PortableDocumentFormat
     value = b"%PDF-"
 
-    format = TrueType
+    format = Truetype
     value = b"\x00\x01\x00\x00\x00"
 
     // 4-byte signatures
@@ -1933,7 +1933,7 @@ signatures! {
     format = JavaClass
     value = b"\xCA\xFE\xBA\xBE"
 
-    format = JavaKeyStore
+    format = JavaKeystore
     value = b"\xFE\xED\xFE\xED"
 
     format = LempelZivFiniteStateEntropy
@@ -1980,7 +1980,7 @@ signatures! {
     format = OggMultiplexedMedia
     value = b"OggS"
 
-    format = OpenExr
+    format = Openexr
     value = b"\x76\x2F\x31\x01"
 
     format = OptimizedDalvikExecutable
@@ -1996,7 +1996,7 @@ signatures! {
     format = RedHatPackageManager
     value = b"\xED\xAB\xEE\xDB"
 
-    format = ScreamTracker3Module
+    format = Screamtracker3Module
     value = b"SCRM" offset = 44
 
     format = Shapefile
@@ -2011,10 +2011,10 @@ signatures! {
     value = b"\x4D\x4D\x00\x2B"
     value = b"\x49\x49\x2B\x00"
 
-    format = WavPack
+    format = Wavpack
     value = b"wvpk"
 
-    format = WebAssemblyBinary
+    format = WebassemblyBinary
     value = b"\x00\x61\x73\x6D"
 
     format = WebOpenFontFormat
@@ -2044,10 +2044,10 @@ signatures! {
     format = JpegExtendedRange
     value = b"\x49\x49\xBC"
 
-    format = MpegAudioLayer3
+    format = Mpeg12AudioLayer3
     value = b"ID3"
 
-    format = SeqBox
+    format = Seqbox
     value = b"SBx"
 
     format = SmallWebFormat

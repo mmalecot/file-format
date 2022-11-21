@@ -3,9 +3,26 @@
 ## API
 
 - Add FileFormat::kind
-- Rename FileFormat variant MicrosoftVisioDrawing to OfficeOpenXmlDrawing
-- Rename FileFormat variant OfficeOpenXmlWorkbook to OfficeOpenXmlSpreadsheet
-- Rename FileFormat variant WindowsExecutable to MsDosExecutable
+- Rename AdobeInDesignDocument to AdobeIndesignDocument
+- Rename AppleQuickTime to AppleQuicktime
+- Rename EmbeddedOpenType to EmbeddedOpentype
+- Rename JavaKeyStore to JavaKeystore
+- Rename MacOsAlias to MacosAlias
+- Rename MicrosoftVisioDrawing to OfficeOpenXmlDrawing
+- Rename MpegAudioLayer3 to Mpeg12AudioLayer3
+- Rename OfficeOpenXmlWorkbook to OfficeOpenXmlSpreadsheet
+- Rename OpenExr to Openexr
+- Rename OpenType to Opentype
+- Rename ScreamTracker3Module to Screamtracker3Module
+- Rename SeqBox to Seqbox
+- Rename SketchUp to Sketchup
+- Rename TrueType to Truetype
+- Rename VirtualBoxVirtualDiskImage to VirtualboxVirtualDiskImage
+- Rename WavPack to Wavpack
+- Rename WebAssemblyBinary to WebassemblyBinary
+- Rename WebP to Webp
+- Rename WindowsExecutable to MsDosExecutable
+- Rename XpInstall to Xpinstall
 
 ## Fixes
 

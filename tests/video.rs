@@ -19,9 +19,9 @@ fn test_apple_itunes_video() {
 }
 
 #[test]
-fn test_apple_quick_time() {
+fn test_apple_quicktime() {
     let format = FileFormat::from_file("fixtures/video/sample.mov").unwrap();
-    assert_eq!(format, FileFormat::AppleQuickTime);
+    assert_eq!(format, FileFormat::AppleQuicktime);
 }
 
 #[test]
@@ -85,9 +85,9 @@ fn test_third_generation_partnership_project2() {
 }
 
 #[test]
-fn test_web_m() {
+fn test_webm() {
     let format = FileFormat::from_file("fixtures/video/sample.webm").unwrap();
-    assert_eq!(format, FileFormat::WebM);
+    assert_eq!(format, FileFormat::Webm);
 }
 
 #[test]

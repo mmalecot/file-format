@@ -67,9 +67,9 @@ fn test_digital_picture_exchange() {
 }
 
 #[test]
-fn test_dj_vu() {
+fn test_djvu() {
     let format = FileFormat::from_file("fixtures/image/sample.djvu").unwrap();
-    assert_eq!(format, FileFormat::DjVu);
+    assert_eq!(format, FileFormat::Djvu);
 }
 
 #[test]
@@ -204,9 +204,9 @@ fn test_olympus_raw_format() {
 }
 
 #[test]
-fn test_open_exr() {
+fn test_openexr() {
     let format = FileFormat::from_file("fixtures/image/sample.exr").unwrap();
-    assert_eq!(format, FileFormat::OpenExr);
+    assert_eq!(format, FileFormat::Openexr);
 }
 
 #[test]
@@ -234,9 +234,9 @@ fn test_tag_image_file_format() {
 }
 
 #[test]
-fn test_web_p() {
+fn test_webp() {
     let format = FileFormat::from_file("fixtures/image/sample.webp").unwrap();
-    assert_eq!(format, FileFormat::WebP);
+    assert_eq!(format, FileFormat::Webp);
 }
 
 #[test]

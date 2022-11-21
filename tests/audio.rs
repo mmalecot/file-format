@@ -91,9 +91,9 @@ fn test_monkeys_audio() {
 }
 
 #[test]
-fn test_mpeg_audio_layer3() {
+fn test_mpeg12_audio_layer3() {
     let format = FileFormat::from_file("fixtures/audio/sample.mp3").unwrap();
-    assert_eq!(format, FileFormat::MpegAudioLayer3);
+    assert_eq!(format, FileFormat::Mpeg12AudioLayer3);
 }
 
 #[test]
@@ -139,9 +139,9 @@ fn test_qualcomm_pure_voice() {
 }
 
 #[test]
-fn test_scream_tracker3_module() {
+fn test_screamtracker3_module() {
     let format = FileFormat::from_file("fixtures/audio/sample.s3m").unwrap();
-    assert_eq!(format, FileFormat::ScreamTracker3Module);
+    assert_eq!(format, FileFormat::Screamtracker3Module);
 }
 
 #[test]
@@ -151,9 +151,9 @@ fn test_sony_dsd_stream_file() {
 }
 
 #[test]
-fn test_wav_pack() {
+fn test_wavpack() {
     let format = FileFormat::from_file("fixtures/audio/sample.wv").unwrap();
-    assert_eq!(format, FileFormat::WavPack);
+    assert_eq!(format, FileFormat::Wavpack);
 }
 
 #[test]

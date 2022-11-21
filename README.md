@@ -142,7 +142,7 @@ All of these are disabled by default.
 - Long Range ZIP - `lrz`
 - Lua Bytecode - `luac`
 - MPEG-1 Video - `mpg`
-- MPEG-1/2 Audio Layer III - `mp3`
+- MPEG-1/2 Audio Layer 3 - `mp3`
 - MPEG-4 Part 14 Video - `mp4`
 - Material Exchange Format - `mxf`
 - Matroska Video - `mkv`
