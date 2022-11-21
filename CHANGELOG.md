@@ -32,6 +32,10 @@
 - Add `Matroska Video` signature
 - Change UNIX archiver extension from `ar` to `a` (preferred)
 
+## Internal changes
+
+- Split items into modules
+
 ## New formats support
 
 - Adobe Illustrator Artwork - `ai`
