@@ -91,6 +91,18 @@ fn test_monkeys_audio() {
 }
 
 #[test]
+fn test_mpeg1_audio_layer1() {
+    let format = FileFormat::from_file("fixtures/audio/sample.mp1").unwrap();
+    assert_eq!(format, FileFormat::Mpeg1AudioLayer1);
+}
+
+#[test]
+fn test_mpeg1_audio_layer2() {
+    let format = FileFormat::from_file("fixtures/audio/sample.mp2").unwrap();
+    assert_eq!(format, FileFormat::Mpeg1AudioLayer2);
+}
+
+#[test]
 fn test_mpeg12_audio_layer3() {
     let format = FileFormat::from_file("fixtures/audio/sample.mp3").unwrap();
     assert_eq!(format, FileFormat::Mpeg12AudioLayer3);

@@ -264,6 +264,10 @@ pub enum FileFormat {
     Mpeg4Part14Video,
     /// MPEG-1/2 Audio Layer 3 - `mp3`
     Mpeg12AudioLayer3,
+    /// MPEG-1 Audio Layer 1 - `mp1`
+    Mpeg1AudioLayer1,
+    /// MPEG-1 Audio Layer 2 - `mp2`
+    Mpeg1AudioLayer2,
     /// MS-DOS Executable - `exe`
     MsDosExecutable,
     /// Musepack - `mpc`
@@ -583,6 +587,8 @@ impl FileFormat {
             Self::Mpeg1Video => "MPEG-1 Video",
             Self::Mpeg4Part14Video => "MPEG-4 Part 14 Video",
             Self::Mpeg12AudioLayer3 => "MPEG-1/2 Audio Layer 3",
+            Self::Mpeg1AudioLayer1 => "MPEG-1 Audio Layer 1",
+            Self::Mpeg1AudioLayer2 => "MPEG-1 Audio Layer 2",
             Self::MsDosExecutable => "MS-DOS Executable",
             Self::Musepack => "Musepack",
             Self::MusicalInstrumentDigitalInterface => "Musical Instrument Digital Interface",
@@ -820,6 +826,8 @@ impl FileFormat {
             Self::Mpeg1Video => "video/mpeg",
             Self::Mpeg4Part14Video => "video/mp4",
             Self::Mpeg12AudioLayer3 => "audio/mpeg",
+            Self::Mpeg1AudioLayer1 => "audio/mpeg",
+            Self::Mpeg1AudioLayer2 => "audio/mpeg",
             Self::MsDosExecutable => "application/x-dosexec",
             Self::Musepack => "audio/x-musepack",
             Self::MusicalInstrumentDigitalInterface => "audio/midi",
@@ -1065,6 +1073,8 @@ impl FileFormat {
             Self::Mpeg1Video => "mpg",
             Self::Mpeg4Part14Video => "mp4",
             Self::Mpeg12AudioLayer3 => "mp3",
+            Self::Mpeg1AudioLayer1 => "mp1",
+            Self::Mpeg1AudioLayer2 => "mp2",
             Self::MsDosExecutable => "exe",
             Self::Musepack => "mpc",
             Self::MusicalInstrumentDigitalInterface => "mid",
@@ -1228,6 +1238,8 @@ impl FileFormat {
             Self::Mpeg1Video => Kind::Video,
             Self::Mpeg4Part14Video => Kind::Video,
             Self::Mpeg12AudioLayer3 => Kind::Audio,
+            Self::Mpeg1AudioLayer1 => Kind::Audio,
+            Self::Mpeg1AudioLayer2 => Kind::Audio,
             Self::Musepack => Kind::Audio,
             Self::MusicalInstrumentDigitalInterface => Kind::Audio,
             Self::NikonElectronicFile => Kind::Image,
@@ -2054,6 +2066,9 @@ signatures! {
 
     format = Mpeg12AudioLayer3
     value = b"ID3"
+    value = b"\xFF\xE3"
+    value = b"\xFF\xF3"
+    value = b"\xFF\xFB"
 
     format = Seqbox
     value = b"SBx"
@@ -2085,6 +2100,17 @@ signatures! {
 
     format = Gzip
     value = b"\x1F\x8B"
+
+    format = Mpeg1AudioLayer1
+    value = b"\xFF\xFE"
+    value = b"\xFF\xF6"
+    value = b"\xFF\xFF"
+
+    format = Mpeg1AudioLayer2
+    value = b"\xFF\xF4"
+    value = b"\xFF\xF5"
+    value = b"\xFF\xFC"
+    value = b"\xFF\xFD"
 
     format = MsDosExecutable
     value = b"MZ"

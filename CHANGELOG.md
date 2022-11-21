@@ -29,6 +29,7 @@
 - Fix `Apple QuickTime` signature
 - Fix `Joint Photographic Experts Group` signature
 - Fix `Matroska Video` signature
+- Add `MPEG-1/2 Audio Layer 3` signature
 - Change UNIX archiver extension from `ar` to `a` (preferred)
 
 ## New formats support
@@ -42,6 +43,8 @@
 - iOS App Store Package - `ipa`
 - Keyhole Markup Language Zipped - `kmz`
 - Lua Bytecode - `luac`
+- MPEG-1 Audio Layer 1 - `mp1`
+- MPEG-1 Audio Layer 2 - `mp2`
 - Meta Information Encapsulation - `mie`
 - Microsoft Excel Spreadsheet - `xls`
 - Microsoft PowerPoint Presentation - `ppt`
