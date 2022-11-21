@@ -45,6 +45,7 @@
 - Lua Bytecode - `luac`
 - MPEG-1 Audio Layer 1 - `mp1`
 - MPEG-1 Audio Layer 2 - `mp2`
+- MPEG-2 Transport Stream - `mts`
 - Meta Information Encapsulation - `mie`
 - Microsoft Excel Spreadsheet - `xls`
 - Microsoft PowerPoint Presentation - `ppt`

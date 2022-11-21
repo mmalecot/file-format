@@ -260,6 +260,8 @@ pub enum FileFormat {
     MonkeysAudio,
     /// MPEG-1 Video - `mpg`
     Mpeg1Video,
+    /// MPEG-2 Transport Stream - `mts`
+    Mpeg2TransportStream,
     /// MPEG-4 Part 14 Video - `mp4`
     Mpeg4Part14Video,
     /// MPEG-1/2 Audio Layer 3 - `mp3`
@@ -585,6 +587,7 @@ impl FileFormat {
             Self::Mobipocket => "Mobipocket",
             Self::MonkeysAudio => "Monkey's Audio",
             Self::Mpeg1Video => "MPEG-1 Video",
+            Self::Mpeg2TransportStream => "MPEG-2 Transport Stream",
             Self::Mpeg4Part14Video => "MPEG-4 Part 14 Video",
             Self::Mpeg12AudioLayer3 => "MPEG-1/2 Audio Layer 3",
             Self::Mpeg1AudioLayer1 => "MPEG-1 Audio Layer 1",
@@ -824,6 +827,7 @@ impl FileFormat {
             Self::Mobipocket => "application/x-mobipocket-ebook",
             Self::MonkeysAudio => "audio/x-ape",
             Self::Mpeg1Video => "video/mpeg",
+            Self::Mpeg2TransportStream => "video/mp2t",
             Self::Mpeg4Part14Video => "video/mp4",
             Self::Mpeg12AudioLayer3 => "audio/mpeg",
             Self::Mpeg1AudioLayer1 => "audio/mpeg",
@@ -1071,6 +1075,7 @@ impl FileFormat {
             Self::Mobipocket => "mobi",
             Self::MonkeysAudio => "ape",
             Self::Mpeg1Video => "mpg",
+            Self::Mpeg2TransportStream => "mts",
             Self::Mpeg4Part14Video => "mp4",
             Self::Mpeg12AudioLayer3 => "mp3",
             Self::Mpeg1AudioLayer1 => "mp1",
@@ -1236,6 +1241,7 @@ impl FileFormat {
             Self::MicrosoftDirectDrawSurface => Kind::Image,
             Self::MonkeysAudio => Kind::Audio,
             Self::Mpeg1Video => Kind::Video,
+            Self::Mpeg2TransportStream => Kind::Video,
             Self::Mpeg4Part14Video => Kind::Video,
             Self::Mpeg12AudioLayer3 => Kind::Audio,
             Self::Mpeg1AudioLayer1 => Kind::Audio,
@@ -2111,6 +2117,10 @@ signatures! {
     value = b"\xFF\xF5"
     value = b"\xFF\xFC"
     value = b"\xFF\xFD"
+
+    format = Mpeg2TransportStream
+    value = b"\x47", b"\x47" offset = 188
+    value = b"\x47" offset = 4, b"\x47" offset = 196
 
     format = MsDosExecutable
     value = b"MZ"
