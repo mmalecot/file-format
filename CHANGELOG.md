@@ -34,6 +34,7 @@
 
 ## Internal changes
 
+- Add formats macro
 - Split items into modules
 
 ## New formats support

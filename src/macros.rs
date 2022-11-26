@@ -1,5 +1,101 @@
 //! Convenient macros.
 
+/// Generates [`FileFormat`] enum with methods.
+macro_rules! formats {
+    {
+        $(
+            format = $format:ident
+            name = $name:literal
+            media_type = $media_type:literal
+            extension = $extension:literal
+            kind = $kind:ident
+        )*
+    } => {
+        /// A file format.
+        #[derive(Clone, Debug, Eq, PartialEq)]
+        pub enum FileFormat {
+            $(
+                #[doc=concat!($name, " - `", $extension, "`")]
+                $format,
+            )*
+        }
+
+        impl crate::FileFormat {
+            /// Returns the name of the `FileFormat`.
+            ///
+            /// # Examples
+            ///
+            /// ```rust
+            /// use file_format::FileFormat;
+            ///
+            /// let format = FileFormat::Mpeg12AudioLayer3;
+            /// assert_eq!(format.name(), "MPEG-1/2 Audio Layer 3");
+            ///```
+            pub const fn name(&self) -> &str {
+                match self {
+                    $(
+                        Self::$format => $name,
+                    )*
+                }
+            }
+
+            /// Returns the media type (formerly known as MIME type) of the `FileFormat`.
+            ///
+            /// # Examples
+            ///
+            /// ```rust
+            /// use file_format::FileFormat;
+            ///
+            /// let format = FileFormat::Zstandard;
+            /// assert_eq!(format.media_type(), "application/zstd");
+            ///```
+            pub const fn media_type(&self) -> &str {
+                match self {
+                    $(
+                        Self::$format => $media_type,
+                    )*
+                }
+            }
+
+            /// Returns the extension of the `FileFormat`.
+            ///
+            /// # Examples
+            ///
+            /// ```rust
+            /// use file_format::FileFormat;
+            ///
+            /// let format = FileFormat::WindowsMediaVideo;
+            /// assert_eq!(format.extension(), "wmv");
+            ///```
+            pub const fn extension(&self) -> &str {
+                match self {
+                    $(
+                        Self::$format => $extension,
+                    )*
+                }
+            }
+
+            /// Returns the `Kind` of the `FileFormat`.
+            ///
+            /// # Examples
+            ///
+            /// ```rust
+            /// use file_format::{FileFormat, Kind};
+            ///
+            /// let format = FileFormat::Mpeg12AudioLayer3;
+            /// assert_eq!(format.kind(), Kind::Audio);
+            ///```
+            pub const fn kind(&self) -> crate::Kind {
+                match self {
+                    $(
+                        Self::$format => crate::Kind::$kind,
+                    )*
+                }
+            }
+        }
+    };
+}
+
 /// Generates [`FileFormat::from_signature`] function.
 macro_rules! signatures {
     {
