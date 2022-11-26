@@ -1,9 +1,42 @@
-//! Binary-based file formats.
+//! Read.
 
 use std::{
     cmp,
     io::{Read, Result, Seek, SeekFrom},
 };
+
+/// Extends [`Read`] and [`Seek`].
+trait AdvancedRead: Read + Seek {
+    /// Reads an unsigned 16 bit integer in little endian.
+    #[inline]
+    fn read_le_u16(&mut self) -> Result<u16> {
+        let mut buffer = [0; 2];
+        self.read_exact(&mut buffer)?;
+        Ok(u16::from_le_bytes(buffer))
+    }
+
+    /// Reads an unsigned 32 bit integer in little endian.
+    #[inline]
+    fn read_le_u32(&mut self) -> Result<u32> {
+        let mut buffer = [0; 4];
+        self.read_exact(&mut buffer)?;
+        Ok(u32::from_le_bytes(buffer))
+    }
+
+    /// Searches for bytes.
+    #[inline]
+    fn search(&mut self, bytes: &[u8], size: u64) -> Result<bool> {
+        let position = self.stream_position()?;
+        let length = self.seek(SeekFrom::End(0))?;
+        self.seek(SeekFrom::Start(position))?;
+        let mut buffer = vec![0; cmp::min(size as usize, length.saturating_sub(position) as usize)];
+        self.read_exact(&mut buffer)?;
+        self.seek(SeekFrom::Start(position))?;
+        Ok(buffer.windows(bytes.len()).any(|window| window == bytes))
+    }
+}
+
+impl<R: Read + Seek + ?Sized> AdvancedRead for R {}
 
 impl crate::FileFormat {
     /// Determines `FileFormat` from a Compound File Binary reader.
@@ -25,36 +58,21 @@ impl crate::FileFormat {
 
     /// Determines `FileFormat` from a Matroska Video reader.
     pub(crate) fn from_mkv<R: Read + Seek>(mut reader: R) -> Result<Self> {
-        let length = reader.seek(SeekFrom::End(0))?;
-        reader.rewind()?;
-        let mut buf = vec![0; cmp::min(4096, length as usize)];
-        reader.read_exact(&mut buf)?;
-        if buf
-            .windows(2)
-            .position(|bytes| bytes == b"\x42\x82")
-            .map(|pos| &buf[pos + 3..pos + 7])
-            .filter(|bytes| bytes == b"webm")
-            .is_some()
-        {
-            Ok(Self::Webm)
+        Ok(if reader.search(b"webm", 4096)? {
+            Self::Webm
         } else {
-            Ok(Self::MatroskaVideo)
-        }
+            Self::MatroskaVideo
+        })
     }
 
     /// Determines `FileFormat` from a MS-DOS Executable reader.
     pub(crate) fn from_ms_dos_executable<R: Read + Seek>(mut reader: R) -> Result<Self> {
         reader.seek(SeekFrom::Start(0x3C))?;
-        let mut address = [0; 4];
-        reader.read_exact(&mut address)?;
-        reader.seek(SeekFrom::Start(u32::from_le_bytes(address) as u64))?;
-        let mut signature = [0; 4];
-        reader.read_exact(&mut signature)?;
-        if &signature == b"PE\x00\x00" {
+        let address = reader.read_le_u32()?;
+        reader.seek(SeekFrom::Start(address as u64))?;
+        if reader.read_le_u32()? == 0x4550 {
             reader.seek(SeekFrom::Current(0x12))?;
-            let mut characteristics = [0; 2];
-            reader.read_exact(&mut characteristics)?;
-            return Ok(if u16::from_le_bytes(characteristics) & 0x2000 == 0x2000 {
+            return Ok(if reader.read_le_u16()? & 0x2000 == 0x2000 {
                 Self::DynamicLinkLibrary
             } else {
                 Self::PortableExecutable
@@ -65,11 +83,7 @@ impl crate::FileFormat {
 
     /// Determines `FileFormat` from a Portable Document Format reader.
     pub(crate) fn from_pdf<R: Read + Seek>(mut reader: R) -> Result<Self> {
-        let length = reader.seek(SeekFrom::End(0))?;
-        reader.rewind()?;
-        let mut buf = vec![0; cmp::min(10 * 1024 * 1024, length as usize)];
-        reader.read_exact(&mut buf)?;
-        Ok(if buf.windows(13).any(|bytes| bytes == b"AIPrivateData") {
+        Ok(if reader.search(b"AIPrivateData", 10 * 1024 * 1024)? {
             Self::AdobeIllustratorArtwork
         } else {
             Self::PortableDocumentFormat
@@ -82,7 +96,7 @@ impl crate::FileFormat {
         let mut archive = zip::ZipArchive::new(reader)?;
         let mut format = Self::Zip;
         for index in 0..archive.len() {
-            let mut file = archive.by_index(index)?;
+            let file = archive.by_index(index)?;
             match file.name() {
                 "AndroidManifest.xml" => return Ok(Self::AndroidPackage),
                 "AppManifest.xaml" => return Ok(Self::Xap),
@@ -93,26 +107,22 @@ impl crate::FileFormat {
                 "WEB-INF/web.xml" => return Ok(Self::WebApplicationArchive),
                 "doc.kml" => return Ok(Self::KeyholeMarkupLanguageZipped),
                 "extension.vsixmanifest" => return Ok(Self::MicrosoftVisualStudioExtension),
-                "mimetype" => {
-                    let mut content = String::new();
-                    file.read_to_string(&mut content)?;
-                    match content.trim() {
-                        "application/epub+zip" => return Ok(Self::ElectronicPublication),
-                        "application/vnd.oasis.opendocument.graphics" => {
-                            return Ok(Self::OpenDocumentGraphics)
-                        }
-                        "application/vnd.oasis.opendocument.presentation" => {
-                            return Ok(Self::OpenDocumentPresentation);
-                        }
-                        "application/vnd.oasis.opendocument.spreadsheet" => {
-                            return Ok(Self::OpenDocumentSpreadsheet);
-                        }
-                        "application/vnd.oasis.opendocument.text" => {
-                            return Ok(Self::OpenDocumentText);
-                        }
-                        _ => {}
+                "mimetype" => match std::io::read_to_string(file)?.trim() {
+                    "application/epub+zip" => return Ok(Self::ElectronicPublication),
+                    "application/vnd.oasis.opendocument.graphics" => {
+                        return Ok(Self::OpenDocumentGraphics)
                     }
-                }
+                    "application/vnd.oasis.opendocument.presentation" => {
+                        return Ok(Self::OpenDocumentPresentation);
+                    }
+                    "application/vnd.oasis.opendocument.spreadsheet" => {
+                        return Ok(Self::OpenDocumentSpreadsheet);
+                    }
+                    "application/vnd.oasis.opendocument.text" => {
+                        return Ok(Self::OpenDocumentText);
+                    }
+                    _ => {}
+                },
                 _ => {
                     if file.name().starts_with("circuitdiagram/") {
                         return Ok(Self::CircuitDiagramDocument);

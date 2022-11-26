@@ -11,7 +11,7 @@ use std::{
 #[macro_use]
 mod macros;
 
-mod binary;
+mod read;
 mod signatures;
 
 /// A file format.
