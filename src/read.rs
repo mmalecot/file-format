@@ -95,7 +95,7 @@ impl crate::FileFormat {
     pub(crate) fn from_zip<R: Read + Seek>(reader: R) -> Result<Self> {
         let mut archive = zip::ZipArchive::new(reader)?;
         let mut format = Self::Zip;
-        for index in 0..archive.len() {
+        for index in 0..cmp::min(archive.len(), 1024) {
             let file = archive.by_index(index)?;
             match file.name() {
                 "AndroidManifest.xml" => return Ok(Self::AndroidPackage),
