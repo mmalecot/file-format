@@ -17,7 +17,7 @@ all-features = true
 
 [dependencies]
 cfb = { version = "0.7", optional = true }
-zip = { version = "0.6", optional = true }
+zip = { version = "0.6", optional = true, features = ["deflate-miniz"], default-features = false }
 
 [dev-dependencies]
 clap = { version = "4.0", features = ["derive"] }
