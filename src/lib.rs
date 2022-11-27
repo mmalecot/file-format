@@ -1193,9 +1193,6 @@ formats! {
 }
 
 impl FileFormat {
-    /// Maximum number of bytes to read to detect a `FileFormat` from its signature.
-    const MAX_BYTES: usize = 36870;
-
     /// Determines `FileFormat` from bytes.
     ///
     /// If the `FileFormat` is not recognized, the [default value] will be returned.
@@ -1254,7 +1251,7 @@ impl FileFormat {
     /// # Ok::<(), std::io::Error>(())
     ///```
     pub fn from_reader<R: Read + Seek>(reader: R) -> Result<Self> {
-        let mut reader = BufReader::with_capacity(Self::MAX_BYTES, reader);
+        let mut reader = BufReader::with_capacity(36870, reader);
         Ok(Self::from_signature(reader.fill_buf()?)
             .map(|format| match format {
                 #[cfg(feature = "cfb")]
