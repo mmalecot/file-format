@@ -12,9 +12,6 @@ repository = "https://github.com/mmalecot/file-format"
 documentation = "https://docs.rs/file-format"
 exclude = ["/.github/*", "/fixtures/*", "/tests/*", "/examples/*"]
 
-[package.metadata.docs.rs]
-all-features = true
-
 [dependencies]
 cfb = { version = "0.7", optional = true }
 zip = { version = "0.6", optional = true, features = ["deflate-miniz"], default-features = false }
