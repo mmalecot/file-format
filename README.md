@@ -47,10 +47,10 @@ file-format = "0.9"
 
 ## Features
 
-- `cfb`: Enables Compound File Binary formats support.
-- `zip`: Enables ZIP formats support.
- 
-All of these are disabled by default.
+- **cfb** - Enables **Compound File Binary** formats support. 
+- **zip** - Enables **ZIP** formats support.
+
+All these features are disabled by default.
 
 ## Supported formats
 

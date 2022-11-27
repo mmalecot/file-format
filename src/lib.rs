@@ -1,4 +1,53 @@
-#![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/README.md"))]
+/*!
+Crate for determining binary-based file formats.
+
+## Examples
+
+Determines from a file:
+
+```rust
+use file_format::{FileFormat, Kind};
+
+let format = FileFormat::from_file("fixtures/application/sample.zip")?;
+assert_eq!(format, FileFormat::Zip);
+assert_eq!(format.name(), "ZIP");
+assert_eq!(format.media_type(), "application/zip");
+assert_eq!(format.extension(), "zip");
+assert_eq!(format.kind(), Kind::Application);
+# Ok::<(), std::io::Error>(())
+```
+
+Determines from bytes:
+
+```rust
+use file_format::{FileFormat, Kind};
+
+let format = FileFormat::from_bytes(&[0xFF, 0xD8, 0xFF, 0xEE]);
+assert_eq!(format, FileFormat::JointPhotographicExpertsGroup);
+assert_eq!(format.name(), "Joint Photographic Experts Group");
+assert_eq!(format.media_type(), "image/jpeg");
+assert_eq!(format.extension(), "jpg");
+assert_eq!(format.kind(), Kind::Image);
+```
+
+## Usage
+
+Add this to your `Cargo.toml`:
+
+```toml
+[dependencies]
+file-format = "0.9"
+```
+
+## Features
+
+* **cfb** - Enables **Compound File Binary** formats support.
+* **zip** - Enables **ZIP** formats support.
+
+All these features are disabled by default.
+*/
+
+#![deny(missing_docs)]
 
 use std::{
     fmt::{self, Display, Formatter},
@@ -1193,9 +1242,7 @@ formats! {
 }
 
 impl FileFormat {
-    /// Determines `FileFormat` from bytes.
-    ///
-    /// If the `FileFormat` is not recognized, the [default value] will be returned.
+    /// Determines [`FileFormat`] from bytes.
     ///
     /// # Examples
     ///
@@ -1223,7 +1270,7 @@ impl FileFormat {
         Self::from(bytes)
     }
 
-    /// Determines `FileFormat` from a file.
+    /// Determines [`FileFormat`] from a file.
     ///
     /// # Examples
     ///
@@ -1239,7 +1286,7 @@ impl FileFormat {
         Self::from_reader(File::open(path)?)
     }
 
-    /// Determines `FileFormat` from a reader.
+    /// Determines [`FileFormat`] from a reader.
     ///
     /// # Examples
     ///
@@ -1268,7 +1315,7 @@ impl FileFormat {
 }
 
 impl Default for FileFormat {
-    /// Returns the default `FileFormat` which corresponds to [`FileFormat::ArbitraryBinaryData`].
+    /// Returns the default [`FileFormat`] which corresponds to [`FileFormat::ArbitraryBinaryData`].
     #[inline]
     fn default() -> Self {
         Self::ArbitraryBinaryData
@@ -1288,13 +1335,19 @@ impl From<&[u8]> for FileFormat {
     }
 }
 
-/// Kind of [`FileFormat`].
+/// A kind of [`FileFormat`] according to the media type.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum Kind {
+    /// Data to be processed by some type of application program.
     Application,
+    /// Audio.
     Audio,
+    /// Font.
     Font,
+    /// One or more individual images.
     Image,
+    /// 3D model.
     Model,
+    /// Video.
     Video,
 }

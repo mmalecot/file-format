@@ -39,7 +39,7 @@ trait AdvancedRead: Read + Seek {
 impl<R: Read + Seek + ?Sized> AdvancedRead for R {}
 
 impl crate::FileFormat {
-    /// Determines `FileFormat` from a Compound File Binary reader.
+    /// Determines [`FileFormat`] from a **Compound File Binary** reader.
     #[cfg(feature = "cfb")]
     pub(crate) fn from_cfb<R: Read + Seek>(reader: R) -> Result<Self> {
         let file = cfb::CompoundFile::open(reader)?;
@@ -56,7 +56,7 @@ impl crate::FileFormat {
         })
     }
 
-    /// Determines `FileFormat` from a Matroska Video reader.
+    /// Determines [`FileFormat`] from a **Matroska Video** reader.
     pub(crate) fn from_mkv<R: Read + Seek>(mut reader: R) -> Result<Self> {
         Ok(if reader.search(b"webm", 4096)? {
             Self::Webm
@@ -65,7 +65,7 @@ impl crate::FileFormat {
         })
     }
 
-    /// Determines `FileFormat` from a MS-DOS Executable reader.
+    /// Determines [`FileFormat`] from a **MS-DOS Executable** reader.
     pub(crate) fn from_ms_dos_executable<R: Read + Seek>(mut reader: R) -> Result<Self> {
         reader.seek(SeekFrom::Start(0x3C))?;
         let address = reader.read_le_u32()?;
@@ -81,7 +81,7 @@ impl crate::FileFormat {
         Ok(Self::MsDosExecutable)
     }
 
-    /// Determines `FileFormat` from a Portable Document Format reader.
+    /// Determines [`FileFormat`] from a **Portable Document Format** reader.
     pub(crate) fn from_pdf<R: Read + Seek>(mut reader: R) -> Result<Self> {
         Ok(if reader.search(b"AIPrivateData", 10 * 1024 * 1024)? {
             Self::AdobeIllustratorArtwork
@@ -90,7 +90,7 @@ impl crate::FileFormat {
         })
     }
 
-    /// Determines `FileFormat` from a ZIP reader.
+    /// Determines [`FileFormat`] from a **ZIP** reader.
     #[cfg(feature = "zip")]
     pub(crate) fn from_zip<R: Read + Seek>(reader: R) -> Result<Self> {
         let mut archive = zip::ZipArchive::new(reader)?;

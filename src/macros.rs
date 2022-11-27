@@ -15,13 +15,13 @@ macro_rules! formats {
         #[derive(Clone, Debug, Eq, PartialEq)]
         pub enum FileFormat {
             $(
-                #[doc=concat!($name, " - `", $extension, "`")]
+                #[doc=concat!($name, " (`", $extension, "`).")]
                 $format,
             )*
         }
 
         impl crate::FileFormat {
-            /// Returns the name of the `FileFormat`.
+            /// Returns the name of the [`FileFormat`].
             ///
             /// # Examples
             ///
@@ -39,7 +39,7 @@ macro_rules! formats {
                 }
             }
 
-            /// Returns the media type (formerly known as MIME type) of the `FileFormat`.
+            /// Returns the media type (formerly known as MIME type) of the [`FileFormat`].
             ///
             /// # Examples
             ///
@@ -57,7 +57,7 @@ macro_rules! formats {
                 }
             }
 
-            /// Returns the extension of the `FileFormat`.
+            /// Returns the extension of the [`FileFormat`].
             ///
             /// # Examples
             ///
@@ -75,14 +75,14 @@ macro_rules! formats {
                 }
             }
 
-            /// Returns the `Kind` of the `FileFormat`.
+            /// Returns the [`Kind`] of the [`FileFormat`].
             ///
             /// # Examples
             ///
             /// ```rust
             /// use file_format::{FileFormat, Kind};
             ///
-            /// let format = FileFormat::Mpeg12AudioLayer3;
+            /// let format = FileFormat::FreeLosslessAudioCodec;
             /// assert_eq!(format.kind(), Kind::Audio);
             ///```
             pub const fn kind(&self) -> crate::Kind {
@@ -105,7 +105,7 @@ macro_rules! signatures {
         )*
     } => {
         impl crate::FileFormat {
-            /// Determines `FileFormat` by checking its signature.
+            /// Determines [`FileFormat`] by checking its signature.
             pub(crate) fn from_signature(bytes: &[u8]) -> Option<Self> {
                 $(
                     if $($(bytes.len() >= $($offset +)? $value.len()
