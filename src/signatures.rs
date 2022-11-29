@@ -1,27 +1,27 @@
 //! Signatures.
 
 signatures! {
-    // 39-byte signatures
+    // 39 bytes
     format = VirtualboxVirtualDiskImage
     value = b"<<< Oracle VM VirtualBox Disk Image >>>"
 
-    // 37-byte signatures
+    // 37 bytes
     format = PgpPrivateKeyBlock
     value = b"-----BEGIN PGP PRIVATE KEY BLOCK-----"
 
-    // 36-byte signatures
+    // 36 bytes
     format = PgpPublicKeyBlock
     value = b"-----BEGIN PGP PUBLIC KEY BLOCK-----"
 
-    // 35-byte signatures
+    // 35 bytes
     format = PemCertificateSigningRequest
     value = b"-----BEGIN CERTIFICATE REQUEST-----"
 
-    // 34-byte signatures
+    // 34 bytes
     format = PgpSignedMessage
     value = b"-----BEGIN PGP SIGNED MESSAGE-----"
 
-    // 33-byte signatures
+    // 33 bytes
     format = PemPrivateKey
     value = b"-----BEGIN ECDSA PRIVATE KEY-----"
     value = b"-----BEGIN DSA PRIVATE KEY-----"
@@ -29,13 +29,13 @@ signatures! {
     value = b"-----BEGIN EC PRIVATE KEY-----"
     value = b"-----BEGIN PRIVATE KEY-----"
 
-    // 32-byte signatures
+    // 32 bytes
     format = Sketchup
     value =
         b"\xFF\xFE\xFF\x0E\x53\x00\x6B\x00\x65\x00\x74\x00\x63\x00\x68\x00",
         b"\x55\x00\x70\x00\x20\x00\x4D\x00\x6F\x00\x64\x00\x65\x00\x6C\x00" offset = 16
 
-    // 29-byte signatures
+    // 29 bytes
     format = FlexibleImageTransportSystem
     value =
         b"\x49\x4D\x50\x4C\x45\x20\x20\x3D\x20\x20\x20\x20\x20\x20\x20",
@@ -44,31 +44,31 @@ signatures! {
     format = PgpSignature
     value = b"-----BEGIN PGP SIGNATURE-----"
 
-    // 27-byte signatures
+    // 27 bytes
     format = PemCertificate
     value = b"-----BEGIN CERTIFICATE-----"
 
     format = PgpMessage
     value = b"-----BEGIN PGP MESSAGE-----"
 
-    // 22-byte signatures
+    // 22 bytes
     format = CreativeVoice
     value = b"Creative Voice File\x1A\x1A\x00"
 
-    // 21-byte signatures
+    // 21 bytes
     format = DebianBinaryPackage
     value = b"!<arch>\ndebian-binary"
 
-    // 20-byte signatures
+    // 20 bytes
     format = WindowsShortcut
     value = b"\x4C\x00\x00\x00\x01\x14\x02\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x00\x46"
 
-    // 17-bytes signatures
+    // 17 bytess
     format = EncapsulatedPostscript
     value = b"%!PS-Adobe-", b" EPSF-" offset = 14
     value = b"\xC5\xD0\xD3\xC6"
 
-    // 16-byte signatures
+    // 16 bytes
     format = AdobeIndesignDocument
     value = b"\x06\x06\xED\xF5\xD8\x1D\x46\xE5\xBD\x31\xEF\xE7\xFE\x74\xB7\x1D"
 
@@ -84,7 +84,7 @@ signatures! {
     format = WindowsMediaVideo
     value = b"\x30\x26\xB2\x75\x8E\x66\xCF\x11\xA6\xD9\x00\xAA\x00\x62\xCE\x6C"
 
-    // 15-byte signatures
+    // 15 bytes
     format = FujifilmRaw
     value = b"FUJIFILMCCD-RAW"
 
@@ -94,11 +94,11 @@ signatures! {
     format = MicrosoftAccess2007Database
     value = b"Standard ACE DB" offset = 4
 
-    // 14-byte signatures
+    // 14 bytes
     format = MaterialExchangeFormat
     value = b"\x06\x0E\x2B\x34\x02\x05\x01\x01\x0D\x01\x02\x01\x01\x02"
 
-    // 12-byte signatures
+    // 12 bytes
     format = AnimatedPortableNetworkGraphics
     value = b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A", b"acTL" offset = 0x25
 
@@ -127,7 +127,7 @@ signatures! {
     format = PanasonicRaw
     value = b"\x49\x49\x55\x00\x18\x00\x00\x00\x88\xE7\x74\xD8"
 
-    // 11-byte signatures
+    // 11 bytes
     format = OggSpeex
     value = b"OggS", b"Speex  " offset = 28
 
@@ -140,14 +140,14 @@ signatures! {
     format = RadianceHdr
     value = b"\x23\x3F\x52\x41\x44\x49\x41\x4E\x43\x45\x0A"
 
-    // 10-byte signatures
+    // 10 bytes
     format = OggMedia
     value = b"OggS", b"\x01\x76\x69\x64\x65\x6F" offset = 28
 
     format = Snappy
     value = b"\xFF\x06\x00\x00\x73\x4E\x61\x50\x70\x59"
 
-    // 9-byte signatures
+    // 9 bytes
     format = GameBoyColorRom
     value = b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B" offset = 0x104, b"\x80" offset = 0x143
     value = b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B" offset = 0x104, b"\xC0" offset = 0x143
@@ -164,7 +164,7 @@ signatures! {
     format = OlympusRawFormat
     value = b"\x49\x49\x52\x4F\x08\x00\x00\x00\x18"
 
-    // 8-byte signatures
+    // 8 bytes
     format = Ani
     value = b"RIFF", b"ACON" offset = 8
 
@@ -290,7 +290,7 @@ signatures! {
     format = Webp
     value = b"RIFF", b"WEBP" offset = 8
 
-    // 7-byte signatures
+    // 7 bytes
     format = AdobeFlashPlayerAudio
     value = b"ftypF4A" offset = 4
 
@@ -337,7 +337,7 @@ signatures! {
     format = UnixArchiver
     value = b"!<arch>"
 
-    // 6-byte signatures
+    // 6 bytes
     format = ApacheArrowColumnar
     value = b"ARROW1"
 
@@ -364,7 +364,7 @@ signatures! {
     format = Xz
     value = b"\xFD\x37\x7A\x58\x5A\x00"
 
-    // 5-byte signatures
+    // 5 bytes
     format = AdaptiveMultiRate
     value = b"#!AMR"
 
@@ -404,7 +404,7 @@ signatures! {
     format = Truetype
     value = b"\x00\x01\x00\x00\x00"
 
-    // 4-byte signatures
+    // 4 bytes
     format = AdobePhotoshopDocument
     value = b"8BPS"
 
@@ -577,7 +577,7 @@ signatures! {
     format = Zstandard
     value = b"\x28\xB5\x2F\xFD"
 
-    // 3-byte signatures
+    // 3 bytes
     format = Bzip2
     value = b"BZh"
 
@@ -603,7 +603,7 @@ signatures! {
     format = Zoo
     value = b"ZOO"
 
-    // 2-byte signatures
+    // 2 bytes
     format = AdvancedAudioCoding
     value = b"\xFF\xF1"
     value = b"\xFF\xF9"
