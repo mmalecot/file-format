@@ -38,12 +38,6 @@ fn test_android_package() {
 }
 
 #[test]
-fn test_ani() {
-    let format = FileFormat::from_file("fixtures/application/sample.ani").unwrap();
-    assert_eq!(format, FileFormat::Ani);
-}
-
-#[test]
 fn test_apache_arrow_columnar() {
     let format = FileFormat::from_file("fixtures/application/sample.arrow").unwrap();
     assert_eq!(format, FileFormat::ApacheArrowColumnar);
@@ -674,6 +668,12 @@ fn test_web_application_archive() {
 fn test_webassembly_binary() {
     let format = FileFormat::from_file("fixtures/application/sample.wasm").unwrap();
     assert_eq!(format, FileFormat::WebassemblyBinary);
+}
+
+#[test]
+fn test_windows_animated_cursor() {
+    let format = FileFormat::from_file("fixtures/application/sample.ani").unwrap();
+    assert_eq!(format, FileFormat::WindowsAnimatedCursor);
 }
 
 #[cfg(feature = "zip")]

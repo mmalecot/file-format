@@ -142,12 +142,6 @@ formats! {
     extension = "apk"
     kind = Application
 
-    format = Ani
-    name = "ANI"
-    media_type = "application/x-navi-animation"
-    extension = "ani"
-    kind = Application
-
     format = AnimatedPortableNetworkGraphics
     name = "Animated Portable Network Graphics"
     media_type = "image/apng"
@@ -315,12 +309,6 @@ formats! {
     media_type = "audio/x-voc"
     extension = "voc"
     kind = Audio
-
-    format = Cur
-    name = "CUR"
-    media_type = "image/x-icon"
-    extension = "cur"
-    kind = Image
 
     format = DalvikExecutable
     name = "Dalvik Executable"
@@ -512,12 +500,6 @@ formats! {
     name = "High Efficiency Image File Format Sequence"
     media_type = "image/heif-sequence"
     extension = "heifs"
-    kind = Image
-
-    format = Ico
-    name = "ICO"
-    media_type = "image/x-icon"
-    extension = "ico"
     kind = Image
 
     format = ImpulseTrackerModule
@@ -1264,6 +1246,12 @@ formats! {
     extension = "webp"
     kind = Image
 
+    format = WindowsAnimatedCursor
+    name = "Windows Animated Cursor"
+    media_type = "application/x-navi-animation"
+    extension = "ani"
+    kind = Application
+
     format = WindowsAppPackage
     name = "Windows App Package"
     media_type = "application/vnd.ms-appx"
@@ -1274,6 +1262,18 @@ formats! {
     name = "Windows Bitmap"
     media_type = "image/bmp"
     extension = "bmp"
+    kind = Image
+
+    format = WindowsCursor
+    name = "Windows Cursor"
+    media_type = "image/x-icon"
+    extension = "cur"
+    kind = Image
+
+    format = WindowsIcon
+    name = "Windows Icon"
+    media_type = "image/x-icon"
+    extension = "ico"
     kind = Image
 
     format = WindowsMediaVideo

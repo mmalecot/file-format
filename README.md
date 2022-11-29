@@ -58,7 +58,6 @@ All these features are disabled by default.
 - 3rd Generation Partnership Project 2 - `3g2`
 - 7-Zip - `7z`
 - ALZ - `alz`
-- ANI - `ani`
 - AV1 Image File Format - `avif`
 - AV1 Image File Format Sequence - `avifs`
 - Adaptive Multi-Rate - `amr`
@@ -89,7 +88,6 @@ All these features are disabled by default.
 - Audio Video Interleave - `avi`
 - Better Portable Graphics - `bpg`
 - Blender - `blend`
-- CUR - `cur`
 - Cabinet - `cab`
 - Canon Raw 2 - `cr2`
 - Canon Raw 3 - `cr3`
@@ -124,7 +122,6 @@ All these features are disabled by default.
 - High Efficiency Image Coding Sequence - `heics`
 - High Efficiency Image File Format - `heif`
 - High Efficiency Image File Format Sequence - `heifs`
-- ICO - `ico`
 - ISO 9660 - `iso`
 - Impulse Tracker Module - `it`
 - JPEG 2000 Part 1 - `jp2`
@@ -220,7 +217,10 @@ All these features are disabled by default.
 - WebAssembly Binary - `wasm`
 - WebM - `webm`
 - WebP - `webp`
+- Windows Animated Cursor - `ani`
 - Windows Bitmap - `bmp`
+- Windows Cursor - `cur`
+- Windows Icon - `ico`
 - Windows Media Video - `wmv`
 - Windows Metafile - `wmf`
 - Windows Shortcut - `lnk`

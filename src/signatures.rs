@@ -165,9 +165,6 @@ signatures! {
     value = b"\x49\x49\x52\x4F\x08\x00\x00\x00\x18"
 
     // 8 bytes
-    format = Ani
-    value = b"RIFF", b"ACON" offset = 8
-
     format = AudioInterchangeFileFormat
     value = b"FORM", b"AIFF" offset = 8
     value = b"FORM", b"AIFC" offset = 8
@@ -289,6 +286,9 @@ signatures! {
 
     format = Webp
     value = b"RIFF", b"WEBP" offset = 8
+
+    format = WindowsAnimatedCursor
+    value = b"RIFF", b"ACON" offset = 8
 
     // 7 bytes
     format = AdobeFlashPlayerAudio
@@ -433,9 +433,6 @@ signatures! {
     format = Cineon
     value = b"\x80\x2A\x5F\xD7"
 
-    format = Cur
-    value = b"\x00\x00\x02\x00"
-
     format = DigitalImagingAndCommunicationsInMedicine
     value = b"\x44\x49\x43\x4D" offset = 128
 
@@ -463,9 +460,6 @@ signatures! {
 
     format = GoogleChromeExtension
     value = b"Cr24"
-
-    format = Ico
-    value = b"\x00\x00\x01\x00"
 
     format = ImpulseTrackerModule
     value = b"IMPM"
@@ -565,6 +559,12 @@ signatures! {
 
     format = WebOpenFontFormat2
     value = b"wOF2"
+
+    format = WindowsCursor
+    value = b"\x00\x00\x02\x00"
+
+    format = WindowsIcon
+    value = b"\x00\x00\x01\x00"
 
     format = WindowsMetafile
     value = b"\xD7\xCD\xC6\x9A"

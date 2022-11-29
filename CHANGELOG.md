@@ -4,8 +4,11 @@
 
 - Add FileFormat::kind
 - Rename AdobeInDesignDocument to AdobeIndesignDocument
+- Rename Ani to WindowsAnimatedCursor
 - Rename AppleQuickTime to AppleQuicktime
+- Rename Cur to WindowsCursor
 - Rename EmbeddedOpenType to EmbeddedOpentype
+- Rename Ico to WindowsIcon
 - Rename JavaKeyStore to JavaKeystore
 - Rename MacOsAlias to MacosAlias
 - Rename MicrosoftVisioDrawing to OfficeOpenXmlDrawing

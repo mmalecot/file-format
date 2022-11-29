@@ -55,12 +55,6 @@ fn test_cineon() {
 }
 
 #[test]
-fn test_cur() {
-    let format = FileFormat::from_file("fixtures/image/sample.cur").unwrap();
-    assert_eq!(format, FileFormat::Cur);
-}
-
-#[test]
 fn test_digital_picture_exchange() {
     let format = FileFormat::from_file("fixtures/image/sample.dpx").unwrap();
     assert_eq!(format, FileFormat::DigitalPictureExchange);
@@ -123,12 +117,6 @@ fn test_high_efficiency_image_file_format() {
 fn test_high_efficiency_image_file_format_sequence() {
     let format = FileFormat::from_file("fixtures/image/sample.heifs").unwrap();
     assert_eq!(format, FileFormat::HighEfficiencyImageFileFormatSequence);
-}
-
-#[test]
-fn test_ico() {
-    let format = FileFormat::from_file("fixtures/image/sample.ico").unwrap();
-    assert_eq!(format, FileFormat::Ico);
 }
 
 #[test]
@@ -243,6 +231,18 @@ fn test_webp() {
 fn test_windows_bitmap() {
     let format = FileFormat::from_file("fixtures/image/sample.bmp").unwrap();
     assert_eq!(format, FileFormat::WindowsBitmap);
+}
+
+#[test]
+fn test_windows_cursor() {
+    let format = FileFormat::from_file("fixtures/image/sample.cur").unwrap();
+    assert_eq!(format, FileFormat::WindowsCursor);
+}
+
+#[test]
+fn test_windows_icon() {
+    let format = FileFormat::from_file("fixtures/image/sample.ico").unwrap();
+    assert_eq!(format, FileFormat::WindowsIcon);
 }
 
 #[test]
