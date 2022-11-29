@@ -1,5 +1,5 @@
 /*!
-Crate for determining binary-based file formats.
+Crate for determining **binary-based** file formats.
 
 ## Examples
 
