@@ -49,15 +49,15 @@ fn test_mpeg1_video() {
 }
 
 #[test]
-fn test_mpeg4_part14_video() {
-    let format = FileFormat::from_file("fixtures/video/sample.mp4").unwrap();
-    assert_eq!(format, FileFormat::Mpeg4Part14Video);
-}
-
-#[test]
 fn test_mpeg2_transport_stream() {
     let format = FileFormat::from_file("fixtures/video/sample.mts").unwrap();
     assert_eq!(format, FileFormat::Mpeg2TransportStream);
+}
+
+#[test]
+fn test_mpeg4_part14_video() {
+    let format = FileFormat::from_file("fixtures/video/sample.mp4").unwrap();
+    assert_eq!(format, FileFormat::Mpeg4Part14Video);
 }
 
 #[test]

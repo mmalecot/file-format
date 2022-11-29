@@ -316,25 +316,6 @@ fn test_microsoft_compiled_html_help() {
     assert_eq!(format, FileFormat::MicrosoftCompiledHtmlHelp);
 }
 
-#[test]
-fn test_microsoft_virtual_hard_disk() {
-    let format = FileFormat::from_file("fixtures/application/sample.vhd").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftVirtualHardDisk);
-}
-
-#[test]
-fn test_microsoft_virtual_hard_disk2() {
-    let format = FileFormat::from_file("fixtures/application/sample.vhdx").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftVirtualHardDisk2);
-}
-
-#[cfg(feature = "zip")]
-#[test]
-fn test_microsoft_visual_studio_extension() {
-    let format = FileFormat::from_file("fixtures/application/sample.vsix").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftVisualStudioExtension);
-}
-
 #[cfg(feature = "cfb")]
 #[test]
 fn test_microsoft_excel_spreadsheet() {
@@ -370,11 +351,30 @@ fn test_microsoft_software_installer() {
     assert_eq!(format, FileFormat::MicrosoftSoftwareInstaller);
 }
 
+#[test]
+fn test_microsoft_virtual_hard_disk() {
+    let format = FileFormat::from_file("fixtures/application/sample.vhd").unwrap();
+    assert_eq!(format, FileFormat::MicrosoftVirtualHardDisk);
+}
+
+#[test]
+fn test_microsoft_virtual_hard_disk2() {
+    let format = FileFormat::from_file("fixtures/application/sample.vhdx").unwrap();
+    assert_eq!(format, FileFormat::MicrosoftVirtualHardDisk2);
+}
+
 #[cfg(feature = "cfb")]
 #[test]
 fn test_microsoft_visio_drawing() {
     let format = FileFormat::from_file("fixtures/application/sample.vsd").unwrap();
     assert_eq!(format, FileFormat::MicrosoftVisioDrawing);
+}
+
+#[cfg(feature = "zip")]
+#[test]
+fn test_microsoft_visual_studio_extension() {
+    let format = FileFormat::from_file("fixtures/application/sample.vsix").unwrap();
+    assert_eq!(format, FileFormat::MicrosoftVisualStudioExtension);
 }
 
 #[cfg(feature = "cfb")]
