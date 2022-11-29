@@ -1413,6 +1413,7 @@ impl Default for FileFormat {
 }
 
 impl Display for FileFormat {
+    #[inline]
     fn fmt(&self, formatter: &mut Formatter<'_>) -> fmt::Result {
         write!(formatter, "{}", self.name())
     }
