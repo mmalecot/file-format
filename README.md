@@ -141,6 +141,8 @@ All these features are disabled by default.
 - Lempel–Ziv Finite State Entropy - `lzfse`
 - Long Range ZIP - `lrz`
 - Lua Bytecode - `luac`
+- MPEG-1 Audio Layer 1 - `mp1`
+- MPEG-1 Audio Layer 2 - `mp2`
 - MPEG-1 Video - `mpg`
 - MPEG-1/2 Audio Layer 3 - `mp3`
 - MPEG-2 Transport Stream - `mts`
