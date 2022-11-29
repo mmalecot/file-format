@@ -15,7 +15,11 @@ macro_rules! formats {
         #[derive(Clone, Debug, Eq, PartialEq)]
         pub enum FileFormat {
             $(
-                #[doc=concat!($name, " (`", $extension, "`).")]
+                #[doc=concat!($name, ".")]
+                #[doc=""]
+                #[doc=concat!("**Media type**: `", $media_type, "`")]
+                #[doc=""]
+                #[doc=concat!("**Extension**: `", $extension, "`")]
                 $format,
             )*
         }
