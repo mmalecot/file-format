@@ -694,24 +694,6 @@ formats! {
     extension = "dds"
     kind = Image
 
-    format = MicrosoftVirtualHardDisk
-    name = "Microsoft Virtual Hard Disk"
-    media_type = "application/x-vhd"
-    extension = "vhd"
-    kind = Application
-
-    format = MicrosoftVirtualHardDisk2
-    name = "Microsoft Virtual Hard Disk 2"
-    media_type = "application/x-vhdx"
-    extension = "vhdx"
-    kind = Application
-
-    format = MicrosoftVisualStudioExtension
-    name = "Microsoft Visual Studio Extension"
-    media_type = "application/vsix"
-    extension = "vsix"
-    kind = Application
-
     format = MicrosoftExcelSpreadsheet
     name = "Microsoft Excel Spreadsheet"
     media_type = "application/vnd.ms-excel"
@@ -742,10 +724,28 @@ formats! {
     extension = "msi"
     kind = Application
 
+    format = MicrosoftVirtualHardDisk
+    name = "Microsoft Virtual Hard Disk"
+    media_type = "application/x-vhd"
+    extension = "vhd"
+    kind = Application
+
+    format = MicrosoftVirtualHardDisk2
+    name = "Microsoft Virtual Hard Disk 2"
+    media_type = "application/x-vhdx"
+    extension = "vhdx"
+    kind = Application
+
     format = MicrosoftVisioDrawing
     name = "Microsoft Visio Drawing"
     media_type = "application/vnd.visio"
     extension = "vsd"
+    kind = Application
+
+    format = MicrosoftVisualStudioExtension
+    name = "Microsoft Visual Studio Extension"
+    media_type = "application/vsix"
+    extension = "vsix"
     kind = Application
 
     format = MicrosoftWordDocument
@@ -766,24 +766,6 @@ formats! {
     extension = "ape"
     kind = Audio
 
-    format = Mpeg1Video
-    name = "MPEG-1 Video"
-    media_type = "video/mpeg"
-    extension = "mpg"
-    kind = Video
-
-    format = Mpeg2TransportStream
-    name = "MPEG-2 Transport Stream"
-    media_type = "video/mp2t"
-    extension = "mts"
-    kind = Video
-
-    format = Mpeg4Part14Video
-    name = "MPEG-4 Part 14 Video"
-    media_type = "video/mp4"
-    extension = "mp4"
-    kind = Video
-
     format = Mpeg12AudioLayer3
     name = "MPEG-1/2 Audio Layer 3"
     media_type = "audio/mpeg"
@@ -801,6 +783,24 @@ formats! {
     media_type = "audio/mpeg"
     extension = "mp2"
     kind = Audio
+
+    format = Mpeg1Video
+    name = "MPEG-1 Video"
+    media_type = "video/mpeg"
+    extension = "mpg"
+    kind = Video
+
+    format = Mpeg2TransportStream
+    name = "MPEG-2 Transport Stream"
+    media_type = "video/mp2t"
+    extension = "mts"
+    kind = Video
+
+    format = Mpeg4Part14Video
+    name = "MPEG-4 Part 14 Video"
+    media_type = "video/mp4"
+    extension = "mp4"
+    kind = Video
 
     format = MsDosExecutable
     name = "MS-DOS Executable"
@@ -1030,17 +1030,17 @@ formats! {
     extension = "pdf"
     kind = Application
 
-    format = PortableNetworkGraphics
-    name = "Portable Network Graphics"
-    media_type = "image/png"
-    extension = "png"
-    kind = Image
-
     format = PortableExecutable
     name = "Portable Executable"
     media_type = "application/vnd.microsoft.portable-executable"
     extension = "exe"
     kind = Application
+
+    format = PortableNetworkGraphics
+    name = "Portable Network Graphics"
+    media_type = "image/png"
+    extension = "png"
+    kind = Image
 
     format = Postscript
     name = "PostScript"
@@ -1198,28 +1198,22 @@ formats! {
     extension = "vdi"
     kind = Application
 
-    format = Wavpack
-    name = "WavPack"
-    media_type = "audio/wavpack"
-    extension = "wv"
-    kind = Audio
-
     format = WaveformAudio
     name = "Waveform Audio"
     media_type = "audio/vnd.wave"
     extension = "wav"
     kind = Audio
 
+    format = Wavpack
+    name = "WavPack"
+    media_type = "audio/wavpack"
+    extension = "wv"
+    kind = Audio
+
     format = WebApplicationArchive
     name = "Web Application Archive"
     media_type = "application/java-archive"
     extension = "war"
-    kind = Application
-
-    format = WebassemblyBinary
-    name = "WebAssembly Binary"
-    media_type = "application/wasm"
-    extension = "wasm"
     kind = Application
 
     format = WebOpenFontFormat
@@ -1233,6 +1227,12 @@ formats! {
     media_type = "font/woff2"
     extension = "woff2"
     kind = Font
+
+    format = WebassemblyBinary
+    name = "WebAssembly Binary"
+    media_type = "application/wasm"
+    extension = "wasm"
+    kind = Application
 
     format = Webm
     name = "WebM"
