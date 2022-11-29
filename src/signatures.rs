@@ -88,11 +88,11 @@ signatures! {
     format = FujifilmRaw
     value = b"FUJIFILMCCD-RAW"
 
-    format = MicrosoftAccessDatabase
-    value = b"Standard Jet DB" offset = 4
-
     format = MicrosoftAccess2007Database
     value = b"Standard ACE DB" offset = 4
+
+    format = MicrosoftAccessDatabase
+    value = b"Standard Jet DB" offset = 4
 
     // 14 bytes
     format = MaterialExchangeFormat
