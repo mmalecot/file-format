@@ -63,7 +63,7 @@ signatures! {
     format = WindowsShortcut
     value = b"\x4C\x00\x00\x00\x01\x14\x02\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x00\x46"
 
-    // 17 bytess
+    // 17 bytes
     format = EncapsulatedPostscript
     value = b"%!PS-Adobe-", b" EPSF-" offset = 14
     value = b"\xC5\xD0\xD3\xC6"
