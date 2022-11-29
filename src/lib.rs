@@ -334,6 +334,12 @@ formats! {
     extension = "deb"
     kind = Application
 
+    format = DerCertificate
+    name = "DER Certificate"
+    media_type = "application/x-x509-ca-cert"
+    extension = "der"
+    kind = Application
+
     format = DesignWebFormatXps
     name = "Design Web Format XPS"
     media_type = "model/vnd.dwfx+xps"
@@ -374,6 +380,12 @@ formats! {
     name = "Embedded OpenType"
     media_type = "application/vnd.ms-fontobject"
     extension = "eot"
+    kind = Application
+
+    format = EncapsulatedPostscript
+    name = "Encapsulated PostScript"
+    media_type = "application/eps"
+    extension = "eps"
     kind = Application
 
     format = EnterpriseApplicationArchive
@@ -616,6 +628,12 @@ formats! {
     extension = "lzh"
     kind = Application
 
+    format = LlvmBitcode
+    name = "LLVM Bitcode"
+    media_type = "application/x-llvm"
+    extension = "bc"
+    kind = Application
+
     format = LongRangeZip
     name = "Long Range ZIP"
     media_type = "application/x-lrzip"
@@ -668,6 +686,18 @@ formats! {
     name = "Matroska Video"
     media_type = "application/x-mie"
     extension = "mie"
+    kind = Application
+
+    format = MicrosoftAccess2007Database
+    name = "Microsoft Access 2007 Database"
+    media_type = "application/x-msaccess"
+    extension = "accdb"
+    kind = Application
+
+    format = MicrosoftAccessDatabase
+    name = "Microsoft Access Database"
+    media_type = "application/x-msaccess"
+    extension = "mdb"
     kind = Application
 
     format = MicrosoftCompiledHtmlHelp
@@ -964,6 +994,54 @@ formats! {
     extension = "pcapng"
     kind = Application
 
+    format = PemCertificate
+    name = "PEM Certificate"
+    media_type = "application/x-pem-file"
+    extension = "crt"
+    kind = Application
+
+    format = PemCertificateSigningRequest
+    name = "PEM Certificate Signing Request"
+    media_type = "application/x-pem-file"
+    extension = "csr"
+    kind = Application
+
+    format = PemPrivateKey
+    name = "PEM Private Key"
+    media_type = "application/x-pem-file"
+    extension = "key"
+    kind = Application
+
+    format = PgpMessage
+    name = "PGP Message"
+    media_type = "application/pgp"
+    extension = "asc"
+    kind = Application
+
+    format = PgpPrivateKeyBlock
+    name = "PGP Private Key Block"
+    media_type = "application/pgp-keys"
+    extension = "asc"
+    kind = Application
+
+    format = PgpPublicKeyBlock
+    name = "PGP Public Key Block"
+    media_type = "application/pgp-keys"
+    extension = "asc"
+    kind = Application
+
+    format = PgpSignature
+    name = "PGP Signature"
+    media_type = "application/pgp-signature"
+    extension = "asc"
+    kind = Application
+
+    format = PgpSignedMessage
+    name = "PGP Signed Message"
+    media_type = "application/pgp"
+    extension = "asc"
+    kind = Application
+
     format = PortableDocumentFormat
     name = "Portable Document Format"
     media_type = "application/pdf"
@@ -982,6 +1060,12 @@ formats! {
     extension = "exe"
     kind = Application
 
+    format = Postscript
+    name = "PostScript"
+    media_type = "application/postscript"
+    extension = "ps"
+    kind = Application
+
     format = QualcommPureVoice
     name = "Qualcomm PureVoice"
     media_type = "audio/qcelp"
@@ -998,6 +1082,12 @@ formats! {
     name = "Red Hat Package Manager"
     media_type = "application/x-rpm"
     extension = "rpm"
+    kind = Application
+
+    format = RichTextFormat
+    name = "Rich Text Format"
+    media_type = "application/rtf"
+    extension = "rtf"
     kind = Application
 
     format = RoshalArchive

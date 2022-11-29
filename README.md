@@ -96,6 +96,7 @@ All these features are disabled by default.
 - Cineon - `cin`
 - Compound File Binary - `cfb`
 - Creative Voice - `voc`
+- DER Certificate - `der`
 - Dalvik Executable - `dex`
 - Debian Binary Package - `deb`
 - Digital Imaging and Communications in Medicine - `dcm`
@@ -103,6 +104,7 @@ All these features are disabled by default.
 - DjVu - `djvu`
 - Dynamic Link Library - `dll`
 - Embedded OpenType - `eot`
+- Encapsulated PostScript - `eps`
 - Executable and Linkable Format - `elf`
 - Experimental Computing Facility - `xcf`
 - Extensible Archive - `xar`
@@ -137,6 +139,7 @@ All these features are disabled by default.
 - Khronos Texture - `ktx`
 - Khronos Texture 2 - `ktx2`
 - LHA - `lzh`
+- LLVM Bitcode - `bc`
 - LZ4 - `lz4`
 - Lempel–Ziv Finite State Entropy - `lzfse`
 - Long Range ZIP - `lrz`
@@ -145,16 +148,18 @@ All these features are disabled by default.
 - MPEG-1/2 Audio Layer 3 - `mp3`
 - MPEG-2 Transport Stream - `mts`
 - MPEG-4 Part 14 Video - `mp4`
+- MS-DOS Executable - `exe`
 - Material Exchange Format - `mxf`
 - Matroska Video - `mkv`
 - Meta Information Encapsulation - `mie`
+- Microsoft Access 2007 Database - `accdb`
+- Microsoft Access Database - `mdb`
 - Microsoft Compiled HTML Help - `chm`
 - Microsoft DirectDraw Surface - `dds`
 - Microsoft Virtual Hard Disk - `vhd`
 - Microsoft Virtual Hard Disk 2 - `vhdx`
 - Mobipocket - `mobi`
 - Monkey’s Audio - `ape`
-- MS-DOS Executable - `exe`
 - Musepack - `mpc`
 - Musical Instrument Digital Interface - `mid`
 - Nikon Electronic File - `nef`
@@ -174,13 +179,23 @@ All these features are disabled by default.
 - Optimized Dalvik Executable - `dey`
 - PCAP Dump - `pcap`
 - PCAP Next Generation Dump - `pcapng`
+- PEM Certificate - `crt`
+- PEM Certificate Signing Request - `csr`
+- PEM Private Key - `key`
+- PGP Message - `asc`
+- PGP Private Key Block - `asc`
+- PGP Public Key Block - `asc`
+- PGP Signature - `asc`
 - Panasonic Raw - `rw2`
+- PgpSignedMessage - `asc`
 - Portable Document Format - `pdf`
 - Portable Executable - `exe`
 - Portable Network Graphics - `png`
+- PostScript - `ps`
 - Qualcomm PureVoice - `qcp`
 - Radiance HDR - `hdr`
 - Red Hat Package Manager - `rpm`
+- Rich Text Format - `rtf`
 - Roshal Archive - `rar`
 - SQLite 3 - `sqlite`
 - ScreamTracker 3 Module - `s3m`

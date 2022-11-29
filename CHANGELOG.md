@@ -42,16 +42,20 @@
 - Adobe Illustrator Artwork - `ai`
 - Circuit Diagram Document - `cddx`
 - Creative Voice - `voc`
+- DER Certificate - `der`
 - DjVu - `djvu`
 - Dynamic Link Library - `dll`
+- Encapsulated PostScript - `eps`
 - Enterprise Application Archive - `ear`
-- iOS App Store Package - `ipa`
 - Keyhole Markup Language Zipped - `kmz`
+- LLVM Bitcode - `bc`
 - Lua Bytecode - `luac`
 - MPEG-1 Audio Layer 1 - `mp1`
 - MPEG-1 Audio Layer 2 - `mp2`
 - MPEG-2 Transport Stream - `mts`
 - Meta Information Encapsulation - `mie`
+- Microsoft Access 2007 Database - `accdb`
+- Microsoft Access Database - `mdb`
 - Microsoft Excel Spreadsheet - `xls`
 - Microsoft PowerPoint Presentation - `ppt`
 - Microsoft Project Plan - `mpp`
@@ -59,12 +63,23 @@
 - Microsoft Software Installer - `msi`
 - Microsoft Visio Drawing - `vsd`
 - Microsoft Word Document - `doc`
+- PEM Certificate - `crt`
+- PEM Certificate Signing Request - `csr`
+- PEM Private Key - `key`
+- PGP Message - `asc`
+- PGP Private Key Block - `asc`
+- PGP Public Key Block - `asc`
+- PGP Signature - `asc`
+- PgpSignedMessage - `asc`
 - Portable Executable - `exe`
+- PostScript - `ps`
+- Rich Text Format - `rtf`
 - Sony Movie - `mqv`
 - TASTy - `tasty`
 - Web Application Archive - `war`
 - WebM - `webm`
 - Windows App Package - `appx`
+- iOS App Store Package - `ipa`
 
 # Version 0.8.0 (2022-11-06)
 

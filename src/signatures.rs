@@ -5,6 +5,30 @@ signatures! {
     format = VirtualboxVirtualDiskImage
     value = b"<<< Oracle VM VirtualBox Disk Image >>>"
 
+    // 37-byte signatures
+    format = PgpPrivateKeyBlock
+    value = b"-----BEGIN PGP PRIVATE KEY BLOCK-----"
+
+    // 36-byte signatures
+    format = PgpPublicKeyBlock
+    value = b"-----BEGIN PGP PUBLIC KEY BLOCK-----"
+
+    // 35-byte signatures
+    format = PemCertificateSigningRequest
+    value = b"-----BEGIN CERTIFICATE REQUEST-----"
+
+    // 34-byte signatures
+    format = PgpSignedMessage
+    value = b"-----BEGIN PGP SIGNED MESSAGE-----"
+
+    // 33-byte signatures
+    format = PemPrivateKey
+    value = b"-----BEGIN ECDSA PRIVATE KEY-----"
+    value = b"-----BEGIN DSA PRIVATE KEY-----"
+    value = b"-----BEGIN DSA PRIVATE KEY-----"
+    value = b"-----BEGIN EC PRIVATE KEY-----"
+    value = b"-----BEGIN PRIVATE KEY-----"
+
     // 32-byte signatures
     format = Sketchup
     value =
@@ -17,6 +41,16 @@ signatures! {
         b"\x49\x4D\x50\x4C\x45\x20\x20\x3D\x20\x20\x20\x20\x20\x20\x20",
         b"\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x54" offset = 15
 
+    format = PgpSignature
+    value = b"-----BEGIN PGP SIGNATURE-----"
+
+    // 27-byte signatures
+    format = PemCertificate
+    value = b"-----BEGIN CERTIFICATE-----"
+
+    format = PgpMessage
+    value = b"-----BEGIN PGP MESSAGE-----"
+
     // 22-byte signatures
     format = CreativeVoice
     value = b"Creative Voice File\x1A\x1A\x00"
@@ -28,6 +62,11 @@ signatures! {
     // 20-byte signatures
     format = WindowsShortcut
     value = b"\x4C\x00\x00\x00\x01\x14\x02\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x00\x46"
+
+    // 17-bytes signatures
+    format = EncapsulatedPostscript
+    value = b"%!PS-Adobe-", b" EPSF-" offset = 14
+    value = b"\xC5\xD0\xD3\xC6"
 
     // 16-byte signatures
     format = AdobeIndesignDocument
@@ -48,6 +87,12 @@ signatures! {
     // 15-byte signatures
     format = FujifilmRaw
     value = b"FUJIFILMCCD-RAW"
+
+    format = MicrosoftAccessDatabase
+    value = b"Standard Jet DB" offset = 4
+
+    format = MicrosoftAccess2007Database
+    value = b"Standard ACE DB" offset = 4
 
     // 14-byte signatures
     format = MaterialExchangeFormat
@@ -353,6 +398,9 @@ signatures! {
     format = PortableDocumentFormat
     value = b"%PDF-"
 
+    format = RichTextFormat
+    value = b"\x7B\x5C\x72\x74\x66"
+
     format = Truetype
     value = b"\x00\x01\x00\x00\x00"
 
@@ -573,8 +621,14 @@ signatures! {
     value = b"\xC7\x71"
     value = b"\x71\xC7"
 
+    format = DerCertificate
+    value = b"\x30\x82"
+
     format = Gzip
     value = b"\x1F\x8B"
+
+    format = LlvmBitcode
+    value = b"BC"
 
     format = Mpeg1AudioLayer1
     value = b"\xFF\xFE"
@@ -593,6 +647,9 @@ signatures! {
 
     format = MsDosExecutable
     value = b"MZ"
+
+    format = Postscript
+    value = b"%!"
 
     format = UnixCompress
     value = b"\x1F\xA0"

@@ -117,6 +117,12 @@ fn test_debian_binary_package() {
 }
 
 #[test]
+fn test_der_certificate() {
+    let format = FileFormat::from_file("fixtures/application/sample.der").unwrap();
+    assert_eq!(format, FileFormat::DerCertificate);
+}
+
+#[test]
 fn test_digital_imaging_and_communications_in_medicine() {
     let format = FileFormat::from_file("fixtures/application/sample.dcm").unwrap();
     assert_eq!(
@@ -142,6 +148,12 @@ fn test_electronic_publication() {
 fn test_embedded_opentype() {
     let format = FileFormat::from_file("fixtures/application/sample.eot").unwrap();
     assert_eq!(format, FileFormat::EmbeddedOpentype);
+}
+
+#[test]
+fn test_encapsulated_postscript() {
+    let format = FileFormat::from_file("fixtures/application/sample.eps").unwrap();
+    assert_eq!(format, FileFormat::EncapsulatedPostscript);
 }
 
 #[cfg(feature = "zip")]
@@ -290,6 +302,18 @@ fn test_material_exchange_format() {
 fn test_meta_information_encapsulation() {
     let format = FileFormat::from_file("fixtures/application/sample.mie").unwrap();
     assert_eq!(format, FileFormat::MetaInformationEncapsulation);
+}
+
+#[test]
+fn test_microsoft_access2007_database() {
+    let format = FileFormat::from_file("fixtures/application/sample.accdb").unwrap();
+    assert_eq!(format, FileFormat::MicrosoftAccess2007Database);
+}
+
+#[test]
+fn test_microsoft_access_database() {
+    let format = FileFormat::from_file("fixtures/application/sample.mdb").unwrap();
+    assert_eq!(format, FileFormat::MicrosoftAccessDatabase);
 }
 
 #[test]
@@ -477,6 +501,54 @@ fn test_pcap_next_generation_dump() {
 }
 
 #[test]
+fn test_pem_certificate() {
+    let format = FileFormat::from_file("fixtures/application/sample.crt").unwrap();
+    assert_eq!(format, FileFormat::PemCertificate);
+}
+
+#[test]
+fn test_pem_certificate_signing_request() {
+    let format = FileFormat::from_file("fixtures/application/sample.csr").unwrap();
+    assert_eq!(format, FileFormat::PemCertificateSigningRequest);
+}
+
+#[test]
+fn test_pem_private_key() {
+    let format = FileFormat::from_file("fixtures/application/sample.key").unwrap();
+    assert_eq!(format, FileFormat::PemPrivateKey);
+}
+
+#[test]
+fn test_pgp_message() {
+    let format = FileFormat::from_file("fixtures/application/sample1.asc").unwrap();
+    assert_eq!(format, FileFormat::PgpMessage);
+}
+
+#[test]
+fn test_pgp_private_key_block() {
+    let format = FileFormat::from_file("fixtures/application/sample2.asc").unwrap();
+    assert_eq!(format, FileFormat::PgpPrivateKeyBlock);
+}
+
+#[test]
+fn test_pgp_public_key_block() {
+    let format = FileFormat::from_file("fixtures/application/sample3.asc").unwrap();
+    assert_eq!(format, FileFormat::PgpPublicKeyBlock);
+}
+
+#[test]
+fn test_pgp_signature() {
+    let format = FileFormat::from_file("fixtures/application/sample4.asc").unwrap();
+    assert_eq!(format, FileFormat::PgpSignature);
+}
+
+#[test]
+fn test_pgp_signed_message() {
+    let format = FileFormat::from_file("fixtures/application/sample5.asc").unwrap();
+    assert_eq!(format, FileFormat::PgpSignedMessage);
+}
+
+#[test]
 fn test_portable_document_format() {
     let format = FileFormat::from_file("fixtures/application/sample.pdf").unwrap();
     assert_eq!(format, FileFormat::PortableDocumentFormat);
@@ -489,9 +561,21 @@ fn test_portable_executable() {
 }
 
 #[test]
+fn test_postscript() {
+    let format = FileFormat::from_file("fixtures/application/sample.ps").unwrap();
+    assert_eq!(format, FileFormat::Postscript);
+}
+
+#[test]
 fn test_red_hat_package_manager() {
     let format = FileFormat::from_file("fixtures/application/sample.rpm").unwrap();
     assert_eq!(format, FileFormat::RedHatPackageManager);
+}
+
+#[test]
+fn test_rich_text_format() {
+    let format = FileFormat::from_file("fixtures/application/sample.rtf").unwrap();
+    assert_eq!(format, FileFormat::RichTextFormat);
 }
 
 #[test]
