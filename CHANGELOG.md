@@ -73,7 +73,7 @@
 - PGP Private Key Block - `asc`
 - PGP Public Key Block - `asc`
 - PGP Signature - `asc`
-- PgpSignedMessage - `asc`
+- PGP Signed Message - `asc`
 - Portable Executable - `exe`
 - PostScript - `ps`
 - Rich Text Format - `rtf`

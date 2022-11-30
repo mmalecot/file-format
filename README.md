@@ -185,8 +185,8 @@ All these features are disabled by default.
 - PGP Private Key Block - `asc`
 - PGP Public Key Block - `asc`
 - PGP Signature - `asc`
+- PGP Signed Message - `asc`
 - Panasonic Raw - `rw2`
-- PgpSignedMessage - `asc`
 - Portable Document Format - `pdf`
 - Portable Executable - `exe`
 - Portable Network Graphics - `png`
