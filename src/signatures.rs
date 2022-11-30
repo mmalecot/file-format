@@ -551,14 +551,14 @@ signatures! {
     format = Wavpack
     value = b"wvpk"
 
-    format = WebassemblyBinary
-    value = b"\x00\x61\x73\x6D"
-
     format = WebOpenFontFormat
     value = b"wOFF"
 
     format = WebOpenFontFormat2
     value = b"wOF2"
+
+    format = WebassemblyBinary
+    value = b"\x00\x61\x73\x6D"
 
     format = WindowsCursor
     value = b"\x00\x00\x02\x00"
