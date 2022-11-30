@@ -1,6 +1,6 @@
 [package]
 name = "file-format"
-version = "0.8.0"
+version = "0.9.0"
 authors = ["Mickaël Malécot <mickael.malecot@gmail.com>"]
 edition = "2021"
 description = "Crate for determining binary-based file formats."
@@ -12,15 +12,14 @@ repository = "https://github.com/mmalecot/file-format"
 documentation = "https://docs.rs/file-format"
 exclude = ["/.github/*", "/fixtures/*", "/tests/*", "/examples/*"]
 
-[package.metadata.docs.rs]
-all-features = true
-
 [dependencies]
-zip = { version = "0.6", optional = true }
+cfb = { version = "0.7", optional = true }
+zip = { version = "0.6", optional = true, features = ["deflate-miniz"], default-features = false }
 
 [dev-dependencies]
 clap = { version = "4.0", features = ["derive"] }
 colored = { version = "2.0" }
 
 [features]
+cfb = ["dep:cfb"]
 zip = ["dep:zip"]

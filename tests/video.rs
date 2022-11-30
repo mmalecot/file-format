@@ -19,9 +19,9 @@ fn test_apple_itunes_video() {
 }
 
 #[test]
-fn test_apple_quick_time() {
+fn test_apple_quicktime() {
     let format = FileFormat::from_file("fixtures/video/sample.mov").unwrap();
-    assert_eq!(format, FileFormat::AppleQuickTime);
+    assert_eq!(format, FileFormat::AppleQuicktime);
 }
 
 #[test]
@@ -49,6 +49,12 @@ fn test_mpeg1_video() {
 }
 
 #[test]
+fn test_mpeg2_transport_stream() {
+    let format = FileFormat::from_file("fixtures/video/sample.mts").unwrap();
+    assert_eq!(format, FileFormat::Mpeg2TransportStream);
+}
+
+#[test]
 fn test_mpeg4_part14_video() {
     let format = FileFormat::from_file("fixtures/video/sample.mp4").unwrap();
     assert_eq!(format, FileFormat::Mpeg4Part14Video);
@@ -67,6 +73,12 @@ fn test_ogg_theora() {
 }
 
 #[test]
+fn test_sony_movie() {
+    let format = FileFormat::from_file("fixtures/video/sample.mqv").unwrap();
+    assert_eq!(format, FileFormat::SonyMovie);
+}
+
+#[test]
 fn test_third_generation_partnership_project() {
     let format = FileFormat::from_file("fixtures/video/sample.3gp").unwrap();
     assert_eq!(format, FileFormat::ThirdGenerationPartnershipProject);
@@ -76,6 +88,12 @@ fn test_third_generation_partnership_project() {
 fn test_third_generation_partnership_project2() {
     let format = FileFormat::from_file("fixtures/video/sample.3g2").unwrap();
     assert_eq!(format, FileFormat::ThirdGenerationPartnershipProject2);
+}
+
+#[test]
+fn test_webm() {
+    let format = FileFormat::from_file("fixtures/video/sample.webm").unwrap();
+    assert_eq!(format, FileFormat::Webm);
 }
 
 #[test]

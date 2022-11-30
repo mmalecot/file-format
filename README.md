@@ -6,32 +6,34 @@
 ![Rust](https://img.shields.io/badge/rust-1.60+-blueviolet.svg?logo=rust)
 ![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg)
 
-Crate for determining binary-based file formats.
+Crate for determining **binary-based** file formats.
 
 ## Examples
 
 Determines from a file:
 
 ```rust
-use file_format::FileFormat;
+use file_format::{FileFormat, Kind};
 
 let format = FileFormat::from_file("fixtures/application/sample.zip").unwrap();
 assert_eq!(format, FileFormat::Zip);
 assert_eq!(format.name(), "ZIP");
 assert_eq!(format.media_type(), "application/zip");
 assert_eq!(format.extension(), "zip");
+assert_eq!(format.kind(), Kind::Application);
 ```
 
 Determines from bytes:
 
 ```rust
-use file_format::FileFormat;
+use file_format::{FileFormat, Kind};
 
 let format = FileFormat::from_bytes(&[0xFF, 0xD8, 0xFF, 0xEE]);
 assert_eq!(format, FileFormat::JointPhotographicExpertsGroup);
 assert_eq!(format.name(), "Joint Photographic Experts Group");
 assert_eq!(format.media_type(), "image/jpeg");
 assert_eq!(format.extension(), "jpg");
+assert_eq!(format.kind(), Kind::Image);
 ```
 
 ## Usage
@@ -40,24 +42,22 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.8"
+file-format = "0.9"
 ```
 
-If you want to enable ZIP-based file formats:
+## Features
 
-```toml
-[dependencies]
-file-format = { version = "0.8", features = ["zip"] }
-```
+- **cfb** - Enables **Compound File Binary** formats support. 
+- **zip** - Enables **ZIP** formats support.
+
+All these features are disabled by default.
 
 ## Supported formats
 
-Default:
 - 3rd Generation Partnership Project - `3gp`
 - 3rd Generation Partnership Project 2 - `3g2`
 - 7-Zip - `7z`
 - ALZ - `alz`
-- ANI - `ani`
 - AV1 Image File Format - `avif`
 - AV1 Image File Format Sequence - `avifs`
 - Adaptive Multi-Rate - `amr`
@@ -65,6 +65,7 @@ Default:
 - Adobe Flash Player Audiobook - `f4b`
 - Adobe Flash Player Protected Video - `f4p`
 - Adobe Flash Player Video - `f4v`
+- Adobe Illustrator Artwork - `ai`
 - Adobe InDesign Document - `indd`
 - Adobe Photoshop Document - `psd`
 - Advanced Audio Coding - `aac`
@@ -87,17 +88,21 @@ Default:
 - Audio Video Interleave - `avi`
 - Better Portable Graphics - `bpg`
 - Blender - `blend`
-- CUR - `cur`
 - Cabinet - `cab`
 - Canon Raw 2 - `cr2`
 - Canon Raw 3 - `cr3`
 - Cineon - `cin`
 - Compound File Binary - `cfb`
+- Creative Voice - `voc`
+- DER Certificate - `der`
 - Dalvik Executable - `dex`
 - Debian Binary Package - `deb`
 - Digital Imaging and Communications in Medicine - `dcm`
 - Digital Picture Exchange - `dpx`
+- DjVu - `djvu`
+- Dynamic Link Library - `dll`
 - Embedded OpenType - `eot`
+- Encapsulated PostScript - `eps`
 - Executable and Linkable Format - `elf`
 - Experimental Computing Facility - `xcf`
 - Extensible Archive - `xar`
@@ -117,7 +122,6 @@ Default:
 - High Efficiency Image Coding Sequence - `heics`
 - High Efficiency Image File Format - `heif`
 - High Efficiency Image File Format Sequence - `heifs`
-- ICO - `ico`
 - ISO 9660 - `iso`
 - Impulse Tracker Module - `it`
 - JPEG 2000 Part 1 - `jp2`
@@ -132,14 +136,23 @@ Default:
 - Khronos Texture - `ktx`
 - Khronos Texture 2 - `ktx2`
 - LHA - `lzh`
+- LLVM Bitcode - `bc`
 - LZ4 - `lz4`
 - Lempel–Ziv Finite State Entropy - `lzfse`
 - Long Range ZIP - `lrz`
+- Lua Bytecode - `luac`
+- MPEG-1 Audio Layer 1 - `mp1`
+- MPEG-1 Audio Layer 2 - `mp2`
 - MPEG-1 Video - `mpg`
-- MPEG-1/2 Audio Layer III - `mp3`
+- MPEG-1/2 Audio Layer 3 - `mp3`
+- MPEG-2 Transport Stream - `mts`
 - MPEG-4 Part 14 Video - `mp4`
+- MS-DOS Executable - `exe`
 - Material Exchange Format - `mxf`
 - Matroska Video - `mkv`
+- Meta Information Encapsulation - `mie`
+- Microsoft Access 2007 Database - `accdb`
+- Microsoft Access Database - `mdb`
 - Microsoft Compiled HTML Help - `chm`
 - Microsoft DirectDraw Surface - `dds`
 - Microsoft Virtual Hard Disk - `vhd`
@@ -165,12 +178,23 @@ Default:
 - Optimized Dalvik Executable - `dey`
 - PCAP Dump - `pcap`
 - PCAP Next Generation Dump - `pcapng`
+- PEM Certificate - `crt`
+- PEM Certificate Signing Request - `csr`
+- PEM Private Key - `key`
+- PGP Message - `asc`
+- PGP Private Key Block - `asc`
+- PGP Public Key Block - `asc`
+- PGP Signature - `asc`
 - Panasonic Raw - `rw2`
+- PgpSignedMessage - `asc`
 - Portable Document Format - `pdf`
+- Portable Executable - `exe`
 - Portable Network Graphics - `png`
+- PostScript - `ps`
 - Qualcomm PureVoice - `qcp`
 - Radiance HDR - `hdr`
 - Red Hat Package Manager - `rpm`
+- Rich Text Format - `rtf`
 - Roshal Archive - `rar`
 - SQLite 3 - `sqlite`
 - ScreamTracker 3 Module - `s3m`
@@ -180,10 +204,12 @@ Default:
 - Small Web Format - `swf`
 - Snappy - `sz`
 - Sony DSD Stream File - `dsf`
+- Sony Movie - `mqv`
+- TASTy - `tasty`
 - Tag Image File Format - `tiff`
 - Tape Archive - `tar`
 - TrueType - `ttf`
-- UNIX archiver - `ar`
+- UNIX archiver - `a`
 - UNIX compress - `Z`
 - VirtualBox Virtual Disk Image - `vdi`
 - WavPack - `wv`
@@ -191,9 +217,12 @@ Default:
 - Web Open Font Format - `woff`
 - Web Open Font Format 2 - `woff2`
 - WebAssembly Binary - `wasm`
+- WebM - `webm`
 - WebP - `webp`
+- Windows Animated Cursor - `ani`
 - Windows Bitmap - `bmp`
-- Windows Executable - `exe`
+- Windows Cursor - `cur`
+- Windows Icon - `ico`
 - Windows Media Video - `wmv`
 - Windows Metafile - `wmf`
 - Windows Shortcut - `lnk`
@@ -208,23 +237,38 @@ Default:
 - macOS Alias - `alias`
 - zoo - `zoo`
 
+Compound File Binary:
+- Microsoft Excel Spreadsheet - `xls`
+- Microsoft PowerPoint Presentation - `ppt`
+- Microsoft Project Plan - `mpp`
+- Microsoft Publisher Document - `pub`
+- Microsoft Software Installer - `msi`
+- Microsoft Visio Drawing - `vsd`
+- Microsoft Word Document - `doc`
+
 ZIP:
 - 3D Manufacturing Format - `3mf`
 - Android Package - `apk`
+- Circuit Diagram Document - `cddx`
 - Design Web Format XPS - `dwfx`
 - Electronic Publication - `epub`
+- Enterprise Application Archive - `ear`
 - Java Archive - `jar`
-- Microsoft Visio Drawing - `vsdx`
+- Keyhole Markup Language Zipped - `kmz`
 - Microsoft Visual Studio Extension - `vsix`
 - Office Open XML Document - `docx`
+- Office Open XML Drawing - `vsdx`
 - Office Open XML Presentation - `pptx`
-- Office Open XML Workbook - `xlsx`
+- Office Open XML Spreadsheet - `xlsx`
 - OpenDocument Graphics - `odg`
 - OpenDocument Presentation - `odp`
 - OpenDocument Spreadsheet - `ods`
 - OpenDocument Text - `odt`
+- Web Application Archive - `war`
+- Windows App Package - `appx`
 - XAP - `xap`
 - XPInstall - `xpi`
+- iOS App Store Package - `ipa`
 
 ## License
 

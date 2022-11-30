@@ -1,15 +1,15 @@
 use file_format::FileFormat;
 
 #[test]
-fn test_open_type() {
+fn test_opentype() {
     let format = FileFormat::from_file("fixtures/font/sample.otf").unwrap();
-    assert_eq!(format, FileFormat::OpenType);
+    assert_eq!(format, FileFormat::Opentype);
 }
 
 #[test]
-fn test_true_type() {
+fn test_truetype() {
     let format = FileFormat::from_file("fixtures/font/sample.ttf").unwrap();
-    assert_eq!(format, FileFormat::TrueType);
+    assert_eq!(format, FileFormat::Truetype);
 }
 
 #[test]

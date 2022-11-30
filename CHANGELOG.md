@@ -1,20 +1,106 @@
+# Version 0.9.0 (2022-11-30)
+
+## API
+
+- Add `FileFormat::kind`
+- Rename `AdobeInDesignDocument` to `AdobeIndesignDocument`
+- Rename `Ani` to `WindowsAnimatedCursor`
+- Rename `AppleQuickTime` to `AppleQuicktime`
+- Rename `Cur` to `WindowsCursor`
+- Rename `EmbeddedOpenType` to `EmbeddedOpentype`
+- Rename `Ico` to `WindowsIcon`
+- Rename `JavaKeyStore` to `JavaKeystore`
+- Rename `MacOsAlias` to `MacosAlias`
+- Rename `MicrosoftVisioDrawing` to `OfficeOpenXmlDrawing`
+- Rename `MpegAudioLayer3` to `Mpeg12AudioLayer3`
+- Rename `OfficeOpenXmlWorkbook` to `OfficeOpenXmlSpreadsheet`
+- Rename `OpenExr` to `Openexr`
+- Rename `OpenType` to `Opentype`
+- Rename `ScreamTracker3Module` to `Screamtracker3Module`
+- Rename `SeqBox` to `Seqbox`
+- Rename `SketchUp` to `Sketchup`
+- Rename `TrueType` to `Truetype`
+- Rename `VirtualBoxVirtualDiskImage` to `VirtualboxVirtualDiskImage`
+- Rename `WavPack` to `Wavpack`
+- Rename `WebAssemblyBinary` to `WebassemblyBinary`
+- Rename `WebP` to `Webp`
+- Rename `WindowsExecutable` to `MsDosExecutable`
+- Rename `XpInstall` to `Xpinstall`
+
+## Fixes
+
+- Add `MPEG-1/2 Audio Layer 3` signature
+- Add `Matroska Video` signature
+- Change UNIX archiver extension from `ar` to `a` (preferred)
+- Fix `Apple QuickTime` signature
+- Fix `Joint Photographic Experts Group` signature
+
+## Internal changes
+
+- Add `formats` macro
+- Split items into modules
+
+## New formats support
+
+- Adobe Illustrator Artwork - `ai`
+- Circuit Diagram Document - `cddx`
+- Creative Voice - `voc`
+- DER Certificate - `der`
+- DjVu - `djvu`
+- Dynamic Link Library - `dll`
+- Encapsulated PostScript - `eps`
+- Enterprise Application Archive - `ear`
+- Keyhole Markup Language Zipped - `kmz`
+- LLVM Bitcode - `bc`
+- Lua Bytecode - `luac`
+- MPEG-1 Audio Layer 1 - `mp1`
+- MPEG-1 Audio Layer 2 - `mp2`
+- MPEG-2 Transport Stream - `mts`
+- Meta Information Encapsulation - `mie`
+- Microsoft Access 2007 Database - `accdb`
+- Microsoft Access Database - `mdb`
+- Microsoft Excel Spreadsheet - `xls`
+- Microsoft PowerPoint Presentation - `ppt`
+- Microsoft Project Plan - `mpp`
+- Microsoft Publisher Document - `pub`
+- Microsoft Software Installer - `msi`
+- Microsoft Visio Drawing - `vsd`
+- Microsoft Word Document - `doc`
+- PEM Certificate - `crt`
+- PEM Certificate Signing Request - `csr`
+- PEM Private Key - `key`
+- PGP Message - `asc`
+- PGP Private Key Block - `asc`
+- PGP Public Key Block - `asc`
+- PGP Signature - `asc`
+- PgpSignedMessage - `asc`
+- Portable Executable - `exe`
+- PostScript - `ps`
+- Rich Text Format - `rtf`
+- Sony Movie - `mqv`
+- TASTy - `tasty`
+- Web Application Archive - `war`
+- WebM - `webm`
+- Windows App Package - `appx`
+- iOS App Store Package - `ipa`
+
 # Version 0.8.0 (2022-11-06)
 
 ## API
 
-- Add FileFormat::from_reader
-- Add impl From<&[u8]> for FileFormat
+- Add `FileFormat::from_reader`
+- Add `impl From<&[u8]> for FileFormat`
 
 ## Docs
 
 - Add `lefi` example
-- Add changelog
+- Add `CHANGELOG.md`
 
 ## Internal changes
 
 - Make signature offset optional
 - Remove FileFormat enum generation with macro
-- Simplify signatures macro
+- Simplify `signatures` macro
 
 ## New formats support
 
@@ -47,14 +133,30 @@
 
 ## API
 
-- Add FileFormat::from_bytes
+- Add `FileFormat::from_bytes`
 
 # Version 0.5.0 (2021-12-12)
 
 ## API
 
-- Drop ZIP-based file formats support
 - Switch back FileFormat type from a structure to an enum
+
+## Discontinued formats
+
+- 3D Manufacturing Format - `3mf`
+- BDAV MPEG-2 Transport Stream - `m2ts`
+- Java Archive - `jar`
+- Microsoft Visio Drawing - `vsdx`
+- Office Open XML Document - `docx`
+- Office Open XML Presentation - `pptx`
+- Office Open XML Workbook - `xlsx`
+- OpenDocument Graphics - `odg`
+- OpenDocument Presentation - `odp`
+- OpenDocument Spreadsheet - `ods`
+- OpenDocument Text - `odt`
+- Web Application Resource - `war`
+- XAP - `xap`
+- XPInstall - `xpi`
 
 ## Improvements
 
@@ -95,6 +197,10 @@
 ## API
 
 - Switch FileFormat type from an enum to a structure
+
+## Discontinued formats
+
+- HyperText Markup Language - `html`
 
 ## Fixes
 

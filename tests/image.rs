@@ -55,15 +55,15 @@ fn test_cineon() {
 }
 
 #[test]
-fn test_cur() {
-    let format = FileFormat::from_file("fixtures/image/sample.cur").unwrap();
-    assert_eq!(format, FileFormat::Cur);
-}
-
-#[test]
 fn test_digital_picture_exchange() {
     let format = FileFormat::from_file("fixtures/image/sample.dpx").unwrap();
     assert_eq!(format, FileFormat::DigitalPictureExchange);
+}
+
+#[test]
+fn test_djvu() {
+    let format = FileFormat::from_file("fixtures/image/sample.djvu").unwrap();
+    assert_eq!(format, FileFormat::Djvu);
 }
 
 #[test]
@@ -117,12 +117,6 @@ fn test_high_efficiency_image_file_format() {
 fn test_high_efficiency_image_file_format_sequence() {
     let format = FileFormat::from_file("fixtures/image/sample.heifs").unwrap();
     assert_eq!(format, FileFormat::HighEfficiencyImageFileFormatSequence);
-}
-
-#[test]
-fn test_ico() {
-    let format = FileFormat::from_file("fixtures/image/sample.ico").unwrap();
-    assert_eq!(format, FileFormat::Ico);
 }
 
 #[test]
@@ -198,9 +192,9 @@ fn test_olympus_raw_format() {
 }
 
 #[test]
-fn test_open_exr() {
+fn test_openexr() {
     let format = FileFormat::from_file("fixtures/image/sample.exr").unwrap();
-    assert_eq!(format, FileFormat::OpenExr);
+    assert_eq!(format, FileFormat::Openexr);
 }
 
 #[test]
@@ -228,15 +222,27 @@ fn test_tag_image_file_format() {
 }
 
 #[test]
-fn test_web_p() {
+fn test_webp() {
     let format = FileFormat::from_file("fixtures/image/sample.webp").unwrap();
-    assert_eq!(format, FileFormat::WebP);
+    assert_eq!(format, FileFormat::Webp);
 }
 
 #[test]
 fn test_windows_bitmap() {
     let format = FileFormat::from_file("fixtures/image/sample.bmp").unwrap();
     assert_eq!(format, FileFormat::WindowsBitmap);
+}
+
+#[test]
+fn test_windows_cursor() {
+    let format = FileFormat::from_file("fixtures/image/sample.cur").unwrap();
+    assert_eq!(format, FileFormat::WindowsCursor);
+}
+
+#[test]
+fn test_windows_icon() {
+    let format = FileFormat::from_file("fixtures/image/sample.ico").unwrap();
+    assert_eq!(format, FileFormat::WindowsIcon);
 }
 
 #[test]
