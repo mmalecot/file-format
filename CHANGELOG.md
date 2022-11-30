@@ -94,7 +94,7 @@
 ## Docs
 
 - Add `lefi` example
-- Add changelog
+- Add `CHANGELOG.md`
 
 ## Internal changes
 
