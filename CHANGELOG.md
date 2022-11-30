@@ -88,8 +88,8 @@
 
 ## API
 
-- Add FileFormat::from_reader
-- Add impl From<&[u8]> for FileFormat
+- Add `FileFormat::from_reader`
+- Add `impl From<&[u8]> for FileFormat`
 
 ## Docs
 
@@ -100,7 +100,7 @@
 
 - Make signature offset optional
 - Remove FileFormat enum generation with macro
-- Simplify signatures macro
+- Simplify `signatures` macro
 
 ## New formats support
 
@@ -133,14 +133,30 @@
 
 ## API
 
-- Add FileFormat::from_bytes
+- Add `FileFormat::from_bytes`
 
 # Version 0.5.0 (2021-12-12)
 
 ## API
 
-- Drop ZIP-based file formats support
 - Switch back FileFormat type from a structure to an enum
+
+## Discontinued formats
+
+- 3D Manufacturing Format - `3mf`
+- BDAV MPEG-2 Transport Stream - `m2ts`
+- Java Archive - `jar`
+- Microsoft Visio Drawing - `vsdx`
+- Office Open XML Document - `docx`
+- Office Open XML Presentation - `pptx`
+- Office Open XML Workbook - `xlsx`
+- OpenDocument Graphics - `odg`
+- OpenDocument Presentation - `odp`
+- OpenDocument Spreadsheet - `ods`
+- OpenDocument Text - `odt`
+- Web Application Resource - `war`
+- XAP - `xap`
+- XPInstall - `xpi`
 
 ## Improvements
 
@@ -181,6 +197,10 @@
 ## API
 
 - Switch FileFormat type from an enum to a structure
+
+## Discontinued formats
+
+- HyperText Markup Language - `html`
 
 ## Fixes
 
