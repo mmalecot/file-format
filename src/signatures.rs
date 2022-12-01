@@ -461,6 +461,9 @@ signatures! {
     format = GoogleChromeExtension
     value = b"Cr24"
 
+    format = IccProfile
+    value = b"acsp" offset = 36
+
     format = ImpulseTrackerModule
     value = b"IMPM"
 

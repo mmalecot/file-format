@@ -2,6 +2,7 @@
 
 ## New formats support
 
+- ICC Profile - `icc`
 - OpenRaster - `ora`
 
 # Version 0.9.1 (2022-11-30)

@@ -199,6 +199,12 @@ fn test_gzip() {
     assert_eq!(format, FileFormat::Gzip);
 }
 
+#[test]
+fn test_icc_profile() {
+    let format = FileFormat::from_file("fixtures/application/sample.icc").unwrap();
+    assert_eq!(format, FileFormat::IccProfile);
+}
+
 #[cfg(feature = "zip")]
 #[test]
 fn test_ios_app_store_package() {

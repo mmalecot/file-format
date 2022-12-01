@@ -502,6 +502,12 @@ formats! {
     extension = "heifs"
     kind = Image
 
+    format = IccProfile
+    name = "ICC Profile"
+    media_type = "application/vnd.iccprofile"
+    extension = "icc"
+    kind = Application
+
     format = ImpulseTrackerModule
     name = "Impulse Tracker Module"
     media_type = "audio/x-it"

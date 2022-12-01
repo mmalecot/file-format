@@ -122,6 +122,7 @@ All these features are disabled by default.
 - High Efficiency Image Coding Sequence - `heics`
 - High Efficiency Image File Format - `heif`
 - High Efficiency Image File Format Sequence - `heifs`
+- ICC Profile - `icc`
 - ISO 9660 - `iso`
 - Impulse Tracker Module - `it`
 - JPEG 2000 Part 1 - `jp2`
