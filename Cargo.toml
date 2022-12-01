@@ -1,6 +1,6 @@
 [package]
 name = "file-format"
-version = "0.9.1"
+version = "0.10.0"
 authors = ["Mickaël Malécot <mickael.malecot@gmail.com>"]
 edition = "2021"
 description = "Crate for determining binary-based file formats."
