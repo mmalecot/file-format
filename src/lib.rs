@@ -466,6 +466,12 @@ formats! {
     extension = "crx"
     kind = Application
 
+    format = GoogleDraco
+    name = "Google Draco"
+    media_type = "model/x-draco"
+    extension = "drc"
+    kind = Model
+
     format = GraphicsInterchangeFormat
     name = "Graphics Interchange Format"
     media_type = "image/gif"

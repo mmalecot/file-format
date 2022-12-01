@@ -2,6 +2,7 @@
 
 ## New formats support
 
+- Google Draco - `drc`
 - ICC Profile - `icc`
 - OpenRaster - `ora`
 

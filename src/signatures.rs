@@ -373,6 +373,9 @@ signatures! {
     value = b"\x01\x00\x02" offset = 8, b"\x4C\x50" offset = 34
     value = b"\x02\x00\x02" offset = 8, b"\x4C\x50" offset = 34
 
+    format = GoogleDraco
+    value = b"DRACO"
+
     format = Iso9660
     value = b"CD001" offset = 0x8001
     value = b"CD001" offset = 0x8801

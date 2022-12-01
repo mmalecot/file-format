@@ -117,6 +117,7 @@ All these features are disabled by default.
 - Game Boy Color ROM - `gbc`
 - Game Boy ROM - `gb`
 - Google Chrome Extension - `crx`
+- Google Draco - `drc`
 - Graphics Interchange Format - `gif`
 - High Efficiency Image Coding - `heic`
 - High Efficiency Image Coding Sequence - `heics`
