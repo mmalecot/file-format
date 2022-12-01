@@ -946,6 +946,12 @@ formats! {
     extension = "exr"
     kind = Image
 
+    format = Openraster
+    name = "OpenRaster"
+    media_type = "image/openraster"
+    extension = "ora"
+    kind = Image
+
     format = Opentype
     name = "OpenType"
     media_type = "font/otf"

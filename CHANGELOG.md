@@ -1,3 +1,9 @@
+# Version 0.10.0
+
+## New formats support
+
+- OpenRaster - `ora`
+
 # Version 0.9.1 (2022-11-30)
 
 ## Docs

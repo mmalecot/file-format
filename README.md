@@ -264,6 +264,7 @@ ZIP:
 - OpenDocument Presentation - `odp`
 - OpenDocument Spreadsheet - `ods`
 - OpenDocument Text - `odt`
+- OpenRaster - `ora`
 - Web Application Archive - `war`
 - Windows App Package - `appx`
 - XAP - `xap`
