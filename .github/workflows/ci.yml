@@ -27,11 +27,11 @@ jobs:
           rustup default ${{ matrix.toolchain }}
           rustup component add clippy
       - name: Check warnings
-        run: cargo clippy -- -D warnings
+        run: cargo clippy --all-features --examples --tests -- -Dwarnings -Dclippy::all
       - name: Run tests
-        run: cargo test --verbose
+        run: cargo test
       - name: Run tests (all features)
-        run: cargo test --verbose --all-features
+        run: cargo test --all-features
 
   format:
     name: Format
@@ -43,4 +43,4 @@ jobs:
           rustup update ${{ matrix.toolchain }}
           rustup default ${{ matrix.toolchain }}
       - name: Check format
-        run: cargo fmt -- --check
+        run: cargo fmt --all -- --check
