@@ -7,10 +7,11 @@ description = "Crate for determining binary-based file formats."
 license = "MIT/Apache-2.0"
 readme = "README.md"
 keywords = ["file-format", "file-type", "magic-number", "media-type", "mime"]
+categories = ["filesystem"]
 homepage = "https://github.com/mmalecot/file-format"
 repository = "https://github.com/mmalecot/file-format"
 documentation = "https://docs.rs/file-format"
-exclude = ["/.github/*", "/fixtures/*", "/tests/*", "/examples/*"]
+exclude = ["/.github/*", "/examples/*", "/fixtures/*", "/tests/*"]
 
 [dependencies]
 cfb = { version = "0.7", optional = true }
