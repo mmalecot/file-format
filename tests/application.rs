@@ -87,6 +87,12 @@ fn test_circuit_diagram_document() {
 }
 
 #[test]
+fn test_common_object_file_format() {
+    let format = FileFormat::from_file("fixtures/application/sample.coff").unwrap();
+    assert_eq!(format, FileFormat::CommonObjectFileFormat);
+}
+
+#[test]
 fn test_compound_file_binary() {
     let format = FileFormat::from_file("fixtures/application/sample.cfb").unwrap();
     assert_eq!(format, FileFormat::CompoundFileBinary);

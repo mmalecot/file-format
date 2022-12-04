@@ -292,6 +292,12 @@ formats! {
     extension = "cddx"
     kind = Application
 
+    format = CommonObjectFileFormat
+    name = "Common Object File Format"
+    media_type = "application/x-coff"
+    extension = "coff"
+    kind = Application
+
     format = CompoundFileBinary
     name = "Compound File Binary"
     media_type = "application/x-cfb"

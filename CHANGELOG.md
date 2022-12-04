@@ -6,6 +6,7 @@
 
 ## New formats support
 
+- Common Object File Format - `coff`
 - Google Draco - `drc`
 - ICC Profile - `icc`
 - Mach-O - `mach`

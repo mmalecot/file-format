@@ -648,6 +648,11 @@ signatures! {
     format = AudioCodec3
     value = b"\x0B\x77"
 
+    format = CommonObjectFileFormat
+    value = b"\x4C\x01"
+    value = b"\x64\x86"
+    value = b"\x00\x02"
+
     format = Cpio
     value = b"\xC7\x71"
     value = b"\x71\xC7"

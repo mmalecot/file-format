@@ -92,6 +92,7 @@ All these features are disabled by default.
 - Canon Raw 2 - `cr2`
 - Canon Raw 3 - `cr3`
 - Cineon - `cin`
+- Common Object File Format - `coff`
 - Compound File Binary - `cfb`
 - Creative Voice - `voc`
 - DER Certificate - `der`
