@@ -36,7 +36,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.9"
+file-format = "0.10"
 ```
 
 ## Features
@@ -292,6 +292,12 @@ formats! {
     extension = "cddx"
     kind = Application
 
+    format = CommonObjectFileFormat
+    name = "Common Object File Format"
+    media_type = "application/x-coff"
+    extension = "coff"
+    kind = Application
+
     format = CompoundFileBinary
     name = "Compound File Binary"
     media_type = "application/x-cfb"
@@ -466,6 +472,12 @@ formats! {
     extension = "crx"
     kind = Application
 
+    format = GoogleDraco
+    name = "Google Draco"
+    media_type = "model/x-draco"
+    extension = "drc"
+    kind = Model
+
     format = GraphicsInterchangeFormat
     name = "Graphics Interchange Format"
     media_type = "image/gif"
@@ -501,6 +513,12 @@ formats! {
     media_type = "image/heif-sequence"
     extension = "heifs"
     kind = Image
+
+    format = IccProfile
+    name = "ICC Profile"
+    media_type = "application/vnd.iccprofile"
+    extension = "icc"
+    kind = Application
 
     format = ImpulseTrackerModule
     name = "Impulse Tracker Module"
@@ -646,6 +664,12 @@ formats! {
     extension = "lzo"
     kind = Application
 
+    format = MachO
+    name = "Mach-O"
+    media_type = "application/x-mach-binary"
+    extension = "mach"
+    kind = Application
+
     format = MacosAlias
     name = "macOS Alias"
     media_type = "application/x-apple-alias"
@@ -659,13 +683,13 @@ formats! {
     kind = Application
 
     format = MatroskaVideo
-    name = "Meta Information Encapsulation"
+    name = "Matroska Video"
     media_type = "video/x-matroska"
     extension = "mkv"
     kind = Video
 
     format = MetaInformationEncapsulation
-    name = "Matroska Video"
+    name = "Meta Information Encapsulation"
     media_type = "application/x-mie"
     extension = "mie"
     kind = Application
@@ -944,6 +968,12 @@ formats! {
     name = "OpenEXR"
     media_type = "image/x-exr"
     extension = "exr"
+    kind = Image
+
+    format = Openraster
+    name = "OpenRaster"
+    media_type = "image/openraster"
+    extension = "ora"
     kind = Image
 
     format = Opentype

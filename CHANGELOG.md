@@ -1,3 +1,17 @@
+# Version 0.10.0
+
+## Fixes
+
+- Fix inverted names between `Matroska Video` and `Meta Information Encapsulation`
+
+## New formats support
+
+- Common Object File Format - `coff`
+- Google Draco - `drc`
+- ICC Profile - `icc`
+- Mach-O - `mach`
+- OpenRaster - `ora`
+
 # Version 0.9.1 (2022-11-30)
 
 ## Docs

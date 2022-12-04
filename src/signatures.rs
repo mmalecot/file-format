@@ -373,6 +373,9 @@ signatures! {
     value = b"\x01\x00\x02" offset = 8, b"\x4C\x50" offset = 34
     value = b"\x02\x00\x02" offset = 8, b"\x4C\x50" offset = 34
 
+    format = GoogleDraco
+    value = b"DRACO"
+
     format = Iso9660
     value = b"CD001" offset = 0x8001
     value = b"CD001" offset = 0x8801
@@ -391,6 +394,31 @@ signatures! {
     value = b"-lz4-" offset = 2
     value = b"-lz5-" offset = 2
     value = b"-lhd-" offset = 2
+
+    format = MachO
+    value = b"\xCA\xFE\xBA\xBE", b"\x01" offset = 7
+    value = b"\xCA\xFE\xBA\xBE", b"\x02" offset = 7
+    value = b"\xCA\xFE\xBA\xBE", b"\x03" offset = 7
+    value = b"\xCA\xFE\xBA\xBE", b"\x04" offset = 7
+    value = b"\xCA\xFE\xBA\xBE", b"\x05" offset = 7
+    value = b"\xCA\xFE\xBA\xBE", b"\x06" offset = 7
+    value = b"\xCA\xFE\xBA\xBE", b"\x07" offset = 7
+    value = b"\xCA\xFE\xBA\xBE", b"\x08" offset = 7
+    value = b"\xCA\xFE\xBA\xBE", b"\x09" offset = 7
+    value = b"\xCA\xFE\xBA\xBE", b"\x0A" offset = 7
+    value = b"\xCA\xFE\xBA\xBE", b"\x0B" offset = 7
+    value = b"\xCA\xFE\xBA\xBE", b"\x0C" offset = 7
+    value = b"\xCA\xFE\xBA\xBE", b"\x0D" offset = 7
+    value = b"\xCA\xFE\xBA\xBE", b"\x0E" offset = 7
+    value = b"\xCA\xFE\xBA\xBE", b"\x0F" offset = 7
+    value = b"\xCA\xFE\xBA\xBE", b"\x10" offset = 7
+    value = b"\xCA\xFE\xBA\xBE", b"\x11" offset = 7
+    value = b"\xCA\xFE\xBA\xBE", b"\x12" offset = 7
+    value = b"\xCA\xFE\xBA\xBE", b"\xFF" offset = 7
+    value = b"\xFE\xED\xFA\xCE"
+    value = b"\xFE\xED\xFA\xCF"
+    value = b"\xCE\xFA\xED\xFE"
+    value = b"\xCF\xFA\xED\xFE"
 
     format = Opentype
     value = b"\x4F\x54\x54\x4F\x00"
@@ -460,6 +488,9 @@ signatures! {
 
     format = GoogleChromeExtension
     value = b"Cr24"
+
+    format = IccProfile
+    value = b"acsp" offset = 36
 
     format = ImpulseTrackerModule
     value = b"IMPM"
@@ -616,6 +647,11 @@ signatures! {
 
     format = AudioCodec3
     value = b"\x0B\x77"
+
+    format = CommonObjectFileFormat
+    value = b"\x4C\x01"
+    value = b"\x64\x86"
+    value = b"\x00\x02"
 
     format = Cpio
     value = b"\xC7\x71"

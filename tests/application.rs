@@ -87,6 +87,12 @@ fn test_circuit_diagram_document() {
 }
 
 #[test]
+fn test_common_object_file_format() {
+    let format = FileFormat::from_file("fixtures/application/sample.coff").unwrap();
+    assert_eq!(format, FileFormat::CommonObjectFileFormat);
+}
+
+#[test]
 fn test_compound_file_binary() {
     let format = FileFormat::from_file("fixtures/application/sample.cfb").unwrap();
     assert_eq!(format, FileFormat::CompoundFileBinary);
@@ -199,6 +205,12 @@ fn test_gzip() {
     assert_eq!(format, FileFormat::Gzip);
 }
 
+#[test]
+fn test_icc_profile() {
+    let format = FileFormat::from_file("fixtures/application/sample.icc").unwrap();
+    assert_eq!(format, FileFormat::IccProfile);
+}
+
 #[cfg(feature = "zip")]
 #[test]
 fn test_ios_app_store_package() {
@@ -278,6 +290,12 @@ fn test_lzip() {
 fn test_lzop() {
     let format = FileFormat::from_file("fixtures/application/sample.lzo").unwrap();
     assert_eq!(format, FileFormat::Lzop);
+}
+
+#[test]
+fn test_mach_o() {
+    let format = FileFormat::from_file("fixtures/application/sample.mach").unwrap();
+    assert_eq!(format, FileFormat::MachO);
 }
 
 #[test]

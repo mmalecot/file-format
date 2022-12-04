@@ -121,6 +121,7 @@ impl crate::FileFormat {
                     "application/vnd.oasis.opendocument.text" => {
                         return Ok(Self::OpenDocumentText);
                     }
+                    "image/openraster" => return Ok(Self::Openraster),
                     _ => {}
                 },
                 _ => {

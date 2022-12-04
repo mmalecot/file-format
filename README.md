@@ -42,7 +42,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.9"
+file-format = "0.10"
 ```
 
 ## Features
@@ -92,6 +92,7 @@ All these features are disabled by default.
 - Canon Raw 2 - `cr2`
 - Canon Raw 3 - `cr3`
 - Cineon - `cin`
+- Common Object File Format - `coff`
 - Compound File Binary - `cfb`
 - Creative Voice - `voc`
 - DER Certificate - `der`
@@ -117,11 +118,13 @@ All these features are disabled by default.
 - Game Boy Color ROM - `gbc`
 - Game Boy ROM - `gb`
 - Google Chrome Extension - `crx`
+- Google Draco - `drc`
 - Graphics Interchange Format - `gif`
 - High Efficiency Image Coding - `heic`
 - High Efficiency Image Coding Sequence - `heics`
 - High Efficiency Image File Format - `heif`
 - High Efficiency Image File Format Sequence - `heifs`
+- ICC Profile - `icc`
 - ISO 9660 - `iso`
 - Impulse Tracker Module - `it`
 - JPEG 2000 Part 1 - `jp2`
@@ -148,6 +151,7 @@ All these features are disabled by default.
 - MPEG-2 Transport Stream - `mts`
 - MPEG-4 Part 14 Video - `mp4`
 - MS-DOS Executable - `exe`
+- Mach-O - `mach`
 - Material Exchange Format - `mxf`
 - Matroska Video - `mkv`
 - Meta Information Encapsulation - `mie`
@@ -264,6 +268,7 @@ ZIP:
 - OpenDocument Presentation - `odp`
 - OpenDocument Spreadsheet - `ods`
 - OpenDocument Text - `odt`
+- OpenRaster - `ora`
 - Web Application Archive - `war`
 - Windows App Package - `appx`
 - XAP - `xap`

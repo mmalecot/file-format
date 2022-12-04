@@ -197,6 +197,13 @@ fn test_openexr() {
     assert_eq!(format, FileFormat::Openexr);
 }
 
+#[cfg(feature = "zip")]
+#[test]
+fn test_openraster() {
+    let format = FileFormat::from_file("fixtures/image/sample.ora").unwrap();
+    assert_eq!(format, FileFormat::Openraster);
+}
+
 #[test]
 fn test_panasonic_raw() {
     let format = FileFormat::from_file("fixtures/image/sample.rw2").unwrap();
