@@ -677,13 +677,13 @@ formats! {
     kind = Application
 
     format = MatroskaVideo
-    name = "Meta Information Encapsulation"
+    name = "Matroska Video"
     media_type = "video/x-matroska"
     extension = "mkv"
     kind = Video
 
     format = MetaInformationEncapsulation
-    name = "Matroska Video"
+    name = "Meta Information Encapsulation"
     media_type = "application/x-mie"
     extension = "mie"
     kind = Application

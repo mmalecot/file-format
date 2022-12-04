@@ -1,5 +1,9 @@
 # Version 0.10.0
 
+## Fixes
+
+- Fix inverted names between `Matroska Video` and `Meta Information Encapsulation`
+
 ## New formats support
 
 - Google Draco - `drc`
