@@ -150,6 +150,7 @@ All these features are disabled by default.
 - MPEG-2 Transport Stream - `mts`
 - MPEG-4 Part 14 Video - `mp4`
 - MS-DOS Executable - `exe`
+- Mach-O - `mach`
 - Material Exchange Format - `mxf`
 - Matroska Video - `mkv`
 - Meta Information Encapsulation - `mie`

@@ -287,6 +287,12 @@ fn test_lzop() {
 }
 
 #[test]
+fn test_mach_o() {
+    let format = FileFormat::from_file("fixtures/application/sample.mach").unwrap();
+    assert_eq!(format, FileFormat::MachO);
+}
+
+#[test]
 fn test_macos_alias() {
     let format = FileFormat::from_file("fixtures/application/sample.alias").unwrap();
     assert_eq!(format, FileFormat::MacosAlias);

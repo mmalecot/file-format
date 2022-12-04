@@ -658,6 +658,12 @@ formats! {
     extension = "lzo"
     kind = Application
 
+    format = MachO
+    name = "Mach-O"
+    media_type = "application/x-mach-binary"
+    extension = "mach"
+    kind = Application
+
     format = MacosAlias
     name = "macOS Alias"
     media_type = "application/x-apple-alias"

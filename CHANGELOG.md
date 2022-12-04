@@ -4,6 +4,7 @@
 
 - Google Draco - `drc`
 - ICC Profile - `icc`
+- Mach-O - `mach`
 - OpenRaster - `ora`
 
 # Version 0.9.1 (2022-11-30)
