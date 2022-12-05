@@ -1,4 +1,4 @@
-# Version 0.10.0
+# Version 0.10.0 (2022-12-04)
 
 ## Fixes
 
