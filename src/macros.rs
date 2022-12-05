@@ -16,10 +16,9 @@ macro_rules! formats {
         pub enum FileFormat {
             $(
                 #[doc=concat!($name, ".")]
-                #[doc=""]
-                #[doc=concat!("**Media type**: `", $media_type, "`")]
-                #[doc=""]
-                #[doc=concat!("**Extension**: `", $extension, "`")]
+                #[doc=concat!("- **Media type**: `", $media_type, "`")]
+                #[doc=concat!("- **Extension**: `", $extension, "`")]
+                #[doc=concat!("- **Kind**: [`Kind::", stringify!($kind), "`]")]
                 $format,
             )*
         }
