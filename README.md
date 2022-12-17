@@ -1,6 +1,6 @@
 # file-format
 
-![Build](https://img.shields.io/github/workflow/status/mmalecot/file-format/CI)
+![Build](https://img.shields.io/github/actions/workflow/status/mmalecot/file-format/ci.yml?branch=main)
 [![Crates.io](https://img.shields.io/crates/v/file-format.svg)](https://crates.io/crates/file-format)
 [![Docs](https://docs.rs/file-format/badge.svg)](https://docs.rs/file-format)
 ![Rust](https://img.shields.io/badge/rust-1.60+-blueviolet.svg?logo=rust)
