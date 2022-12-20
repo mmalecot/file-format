@@ -419,6 +419,12 @@ formats! {
     extension = "xml"
     kind = Text
 
+    format = ExtensibleStylesheetLanguageTransformations
+    name = "Extensible Stylesheet Language Transformations"
+    media_type = "application/xslt+xml"
+    extension = "xsl"
+    kind = Application
+
     format = FastTracker2ExtendedModule
     name = "FastTracker 2 Extended Module"
     media_type = "audio/x-xm"
@@ -471,6 +477,12 @@ formats! {
     name = "Game Boy ROM"
     media_type = "application/x-gameboy-rom"
     extension = "gb"
+    kind = Application
+
+    format = GeographyMarkupLanguage
+    name = "Geography Markup Language"
+    media_type = "application/gml+xml"
+    extension = "gml"
     kind = Application
 
     format = GlTransmissionFormatBinary
@@ -1151,6 +1163,12 @@ formats! {
     media_type = "image/vnd.radiance"
     extension = "hdr"
     kind = Image
+
+    format = ReallySimpleSyndication
+    name = "Really Simple Syndication"
+    media_type = "application/rss+xml"
+    extension = "rss"
+    kind = Application
 
     format = RedHatPackageManager
     name = "Red Hat Package Manager"

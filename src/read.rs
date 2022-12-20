@@ -111,10 +111,16 @@ impl crate::FileFormat {
 
     /// Determines [`FileFormat`] from an **Extensible Markup Language** reader.
     pub(crate) fn from_xml<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        Ok(if reader.search(b"<kml", 256)? {
+        Ok(if reader.search(b"<xsl", 256)? {
+            Self::ExtensibleStylesheetLanguageTransformations
+        } else if reader.search(b"<gml", 256)? {
+            Self::GeographyMarkupLanguage
+        } else if reader.search(b"<kml", 256)? {
             Self::KeyholeMarkupLanguage
         } else if reader.search(b"<score-partwise", 256)? {
             Self::Musicxml
+        } else if reader.search(b"<rss", 256)? {
+            Self::ReallySimpleSyndication
         } else if reader.search(b"<svg", 256)? {
             Self::ScalableVectorGraphics
         } else {

@@ -176,6 +176,15 @@ fn test_extensible_archive() {
 }
 
 #[test]
+fn test_extensible_stylesheet_language_transformations() {
+    let format = FileFormat::from_file("fixtures/application/sample.xsl").unwrap();
+    assert_eq!(
+        format,
+        FileFormat::ExtensibleStylesheetLanguageTransformations
+    );
+}
+
+#[test]
 fn test_game_boy_advance_rom() {
     let format = FileFormat::from_file("fixtures/application/sample.gba").unwrap();
     assert_eq!(format, FileFormat::GameBoyAdvanceRom);
@@ -191,6 +200,12 @@ fn test_game_boy_color_rom() {
 fn test_game_boy_rom() {
     let format = FileFormat::from_file("fixtures/application/sample.gb").unwrap();
     assert_eq!(format, FileFormat::GameBoyRom);
+}
+
+#[test]
+fn test_geography_markup_language() {
+    let format = FileFormat::from_file("fixtures/application/sample.gml").unwrap();
+    assert_eq!(format, FileFormat::GeographyMarkupLanguage);
 }
 
 #[test]
@@ -595,6 +610,12 @@ fn test_portable_executable() {
 fn test_postscript() {
     let format = FileFormat::from_file("fixtures/application/sample.ps").unwrap();
     assert_eq!(format, FileFormat::Postscript);
+}
+
+#[test]
+fn test_really_simple_syndication() {
+    let format = FileFormat::from_file("fixtures/application/sample.rss").unwrap();
+    assert_eq!(format, FileFormat::ReallySimpleSyndication);
 }
 
 #[test]

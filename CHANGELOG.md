@@ -4,6 +4,8 @@
 
 - Clojure Script - `clj`
 - Extensible Markup Language - `xml`
+- Extensible Stylesheet Language Transformations - `xsl`
+- Geography Markup Language - `gml`
 - HyperText Markup Language - `html`
 - Keyhole Markup Language - `kml`
 - Lua Script - `lua`
@@ -12,6 +14,7 @@
 - Perl Script - `pl`
 - Plain Text - `txt`
 - Python Script - `py`
+- Really Simple Syndication - `rss`
 - Ruby Script - `rb`
 - Scalable Vector Graphics - `svg`
 - Shell Script - `sh`

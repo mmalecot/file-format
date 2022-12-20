@@ -109,6 +109,7 @@ All these features are disabled by default.
 - Experimental Computing Facility - `xcf`
 - Extensible Archive - `xar`
 - Extensible Markup Language - `xml`
+- Extensible Stylesheet Language Transformations - `xsl`
 - FastTracker 2 Extended Module - `xm`
 - Flash Video - `flv`
 - Flexible Image Transport System - `fits`
@@ -119,6 +120,7 @@ All these features are disabled by default.
 - Game Boy Advance ROM - `gba`
 - Game Boy Color ROM - `gbc`
 - Game Boy ROM - `gb`
+- Geography Markup Language - `gml`
 - Google Chrome Extension - `crx`
 - Google Draco - `drc`
 - Graphics Interchange Format - `gif`
@@ -206,6 +208,7 @@ All these features are disabled by default.
 - Python Script - `py`
 - Qualcomm PureVoice - `qcp`
 - Radiance HDR - `hdr`
+- Really Simple Syndication - `rss`
 - Red Hat Package Manager - `rpm`
 - Rich Text Format - `rtf`
 - Roshal Archive - `rar`
