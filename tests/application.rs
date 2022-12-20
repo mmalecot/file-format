@@ -243,6 +243,12 @@ fn test_java_keystore() {
     assert_eq!(format, FileFormat::JavaKeystore);
 }
 
+#[test]
+fn test_keyhole_markup_language() {
+    let format = FileFormat::from_file("fixtures/application/sample.kml").unwrap();
+    assert_eq!(format, FileFormat::KeyholeMarkupLanguage);
+}
+
 #[cfg(feature = "zip")]
 #[test]
 fn test_keyhole_markup_language_zipped() {
@@ -412,6 +418,19 @@ fn test_mobipocket() {
 fn test_ms_dos_executable() {
     let format = FileFormat::from_file("fixtures/application/sample1.exe").unwrap();
     assert_eq!(format, FileFormat::MsDosExecutable);
+}
+
+#[test]
+fn test_musicxml() {
+    let format = FileFormat::from_file("fixtures/application/sample.musicxml").unwrap();
+    assert_eq!(format, FileFormat::Musicxml);
+}
+
+#[cfg(feature = "zip")]
+#[test]
+fn test_musicxml_zipped() {
+    let format = FileFormat::from_file("fixtures/application/sample.mxl").unwrap();
+    assert_eq!(format, FileFormat::MusicxmlZipped);
 }
 
 #[test]

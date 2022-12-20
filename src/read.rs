@@ -111,7 +111,11 @@ impl crate::FileFormat {
 
     /// Determines [`FileFormat`] from an **Extensible Markup Language** reader.
     pub(crate) fn from_xml<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        Ok(if reader.search(b"<svg", 512)? {
+        Ok(if reader.search(b"<kml", 256)? {
+            Self::KeyholeMarkupLanguage
+        } else if reader.search(b"<score-partwise", 256)? {
+            Self::Musicxml
+        } else if reader.search(b"<svg", 256)? {
             Self::ScalableVectorGraphics
         } else {
             Self::ExtensibleMarkupLanguage
@@ -149,6 +153,7 @@ impl crate::FileFormat {
                     "application/vnd.oasis.opendocument.text" => {
                         return Ok(Self::OpenDocumentText);
                     }
+                    "application/vnd.recordare.musicxml" => return Ok(Self::MusicxmlZipped),
                     "image/openraster" => return Ok(Self::Openraster),
                     _ => {}
                 },

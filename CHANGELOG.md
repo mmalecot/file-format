@@ -5,7 +5,10 @@
 - Clojure Script - `clj`
 - Extensible Markup Language - `xml`
 - HyperText Markup Language - `html`
+- Keyhole Markup Language - `kml`
 - Lua Script - `lua`
+- MusicXML - `musicxml`
+- MusicXML Zipped - `mxl`
 - Perl Script - `pl`
 - Plain Text - `txt`
 - Python Script - `py`

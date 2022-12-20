@@ -617,6 +617,12 @@ formats! {
     extension = "jxl"
     kind = Image
 
+    format = KeyholeMarkupLanguage
+    name = "Keyhole Markup Language"
+    media_type = "application/vnd.google-earth.kml+xml"
+    extension = "kml"
+    kind = Application
+
     format = KeyholeMarkupLanguageZipped
     name = "Keyhole Markup Language Zipped"
     media_type = "application/vnd.google-earth.kmz"
@@ -868,6 +874,18 @@ formats! {
     media_type = "audio/midi"
     extension = "mid"
     kind = Audio
+
+    format = Musicxml
+    name = "MusicXML"
+    media_type = "application/vnd.recordare.musicxml+xml"
+    extension = "musicxml"
+    kind = Application
+
+    format = MusicxmlZipped
+    name = "MusicXML Zipped"
+    media_type = "application/vnd.recordare.musicxml"
+    extension = "mxl"
+    kind = Application
 
     format = NikonElectronicFile
     name = "Nikon Electronic File"

@@ -139,6 +139,7 @@ All these features are disabled by default.
 - Java Class - `class`
 - Java KeyStore - `jks`
 - Joint Photographic Experts Group - `jpg`
+- Keyhole Markup Language - `kml`
 - Khronos Texture - `ktx`
 - Khronos Texture 2 - `ktx2`
 - LHA - `lzh`
@@ -168,6 +169,7 @@ All these features are disabled by default.
 - Mobipocket - `mobi`
 - Monkey’s Audio - `ape`
 - Musepack - `mpc`
+- MusicXML - `musicxml`
 - Musical Instrument Digital Interface - `mid`
 - Nikon Electronic File - `nef`
 - Nintendo 64 ROM - `z64`
@@ -273,6 +275,7 @@ ZIP:
 - Java Archive - `jar`
 - Keyhole Markup Language Zipped - `kmz`
 - Microsoft Visual Studio Extension - `vsix`
+- MusicXML Zipped - `mxl`
 - Office Open XML Document - `docx`
 - Office Open XML Drawing - `vsdx`
 - Office Open XML Presentation - `pptx`
