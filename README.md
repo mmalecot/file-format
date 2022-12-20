@@ -209,6 +209,7 @@ All these features are disabled by default.
 - Roshal Archive - `rar`
 - Ruby Script - `rb`
 - SQLite 3 - `sqlite`
+- Scalable Vector Graphics - `svg`
 - ScreamTracker 3 Module - `s3m`
 - SeqBox - `sbx`
 - Shapefile - `shp`

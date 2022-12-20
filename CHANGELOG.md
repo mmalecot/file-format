@@ -10,6 +10,7 @@
 - Plain Text - `txt`
 - Python Script - `py`
 - Ruby Script - `rb`
+- Scalable Vector Graphics - `svg`
 - Shell Script - `sh`
 - Tool Command Language Script - `tcl`
 - vCalendar - `ics`

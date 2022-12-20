@@ -223,6 +223,12 @@ fn test_radiance_hdr() {
 }
 
 #[test]
+fn test_scalable_vector_graphics() {
+    let format = FileFormat::from_file("fixtures/image/sample.svg").unwrap();
+    assert_eq!(format, FileFormat::ScalableVectorGraphics);
+}
+
+#[test]
 fn test_tag_image_file_format() {
     let format = FileFormat::from_file("fixtures/image/sample.tiff").unwrap();
     assert_eq!(format, FileFormat::TagImageFileFormat);

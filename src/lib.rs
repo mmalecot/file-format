@@ -1158,6 +1158,12 @@ formats! {
     extension = "rb"
     kind = Text
 
+    format = ScalableVectorGraphics
+    name = "Scalable Vector Graphics"
+    media_type = "image/svg+xml"
+    extension = "svg"
+    kind = Image
+
     format = Screamtracker3Module
     name = "ScreamTracker 3 Module"
     media_type = "audio/x-s3m"
@@ -1499,6 +1505,7 @@ impl FileFormat {
             match format {
                 #[cfg(feature = "cfb")]
                 Self::CompoundFileBinary => Self::from_cfb(&mut reader).unwrap_or_default(),
+                Self::ExtensibleMarkupLanguage => Self::from_xml(&mut reader).unwrap_or_default(),
                 Self::MatroskaVideo => Self::from_mkv(&mut reader).unwrap_or_default(),
                 Self::MsDosExecutable => Self::from_ms_dos_exe(&mut reader).unwrap_or_default(),
                 Self::PortableDocumentFormat => Self::from_pdf(&mut reader).unwrap_or_default(),

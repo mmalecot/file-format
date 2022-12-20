@@ -109,6 +109,15 @@ impl crate::FileFormat {
         Ok(Self::PlainText)
     }
 
+    /// Determines [`FileFormat`] from an **Extensible Markup Language** reader.
+    pub(crate) fn from_xml<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        Ok(if reader.search(b"<svg", 512)? {
+            Self::ScalableVectorGraphics
+        } else {
+            Self::ExtensibleMarkupLanguage
+        })
+    }
+
     /// Determines [`FileFormat`] from a **ZIP** reader.
     #[cfg(feature = "zip")]
     pub(crate) fn from_zip<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
