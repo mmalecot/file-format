@@ -1,3 +1,20 @@
+# Version 0.11.0
+
+## New formats support
+
+- Clojure Script - `clj`
+- Extensible Markup Language - `xml`
+- HyperText Markup Language - `html`
+- Lua Script - `lua`
+- Perl Script - `pl`
+- Plain Text - `txt`
+- Python Script - `py`
+- Ruby Script - `rb`
+- Shell Script - `sh`
+- Tool Command Language Script - `tcl`
+- vCalendar - `ics`
+- vCard - `vcf`
+
 # Version 0.10.0 (2022-12-04)
 
 ## Fixes

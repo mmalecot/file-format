@@ -1,5 +1,5 @@
 /*!
-Crate for determining **binary-based** file formats.
+Crate for determining file formats.
 
 ## Examples
 
@@ -36,13 +36,13 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.10"
+file-format = "0.11"
 ```
 
 ## Features
 
-* **cfb** - Enables **Compound File Binary** formats support.
-* **zip** - Enables **ZIP** formats support.
+- **cfb** - Enables **Compound File Binary** formats support.
+- **zip** - Enables **ZIP** formats support.
 
 All these features are disabled by default.
 */
@@ -201,6 +201,7 @@ formats! {
     media_type = "application/octet-stream"
     extension = "bin"
     kind = Application
+    comment = "Default format"
 
     format = ArchivedByRobertJung
     name = "Archived by Robert Jung"
@@ -291,6 +292,12 @@ formats! {
     media_type = "application/vnd.circuitdiagram.document.main+xml"
     extension = "cddx"
     kind = Application
+
+    format = ClojureScript
+    name = "Clojure Script"
+    media_type = "text/x-clojure"
+    extension = "clj"
+    kind = Text
 
     format = CommonObjectFileFormat
     name = "Common Object File Format"
@@ -406,6 +413,12 @@ formats! {
     extension = "xar"
     kind = Application
 
+    format = ExtensibleMarkupLanguage
+    name = "Extensible Markup Language"
+    media_type = "text/xml"
+    extension = "xml"
+    kind = Text
+
     format = FastTracker2ExtendedModule
     name = "FastTracker 2 Extended Module"
     media_type = "audio/x-xm"
@@ -513,6 +526,12 @@ formats! {
     media_type = "image/heif-sequence"
     extension = "heifs"
     kind = Image
+
+    format = HypertextMarkupLanguage
+    name = "HyperText Markup Language"
+    media_type = "text/html"
+    extension = "html"
+    kind = Text
 
     format = IccProfile
     name = "ICC Profile"
@@ -645,6 +664,12 @@ formats! {
     media_type = "application/x-lua-bytecode"
     extension = "luac"
     kind = Application
+
+    format = LuaScript
+    name = "Lua Script"
+    media_type = "text/x-lua"
+    extension = "lua"
+    kind = Text
 
     format = Lz4
     name = "LZ4"
@@ -1024,6 +1049,12 @@ formats! {
     extension = "key"
     kind = Application
 
+    format = PerlScript
+    name = "Perl Script"
+    media_type = "text/x-perl"
+    extension = "pl"
+    kind = Text
+
     format = PgpMessage
     name = "PGP Message"
     media_type = "application/pgp"
@@ -1054,6 +1085,13 @@ formats! {
     extension = "asc"
     kind = Application
 
+    format = PlainText
+    name = "Plain Text"
+    media_type = "text/plain"
+    extension = "txt"
+    kind = Text
+    comment = "UTF-8–encoded"
+
     format = PortableDocumentFormat
     name = "Portable Document Format"
     media_type = "application/pdf"
@@ -1077,6 +1115,12 @@ formats! {
     media_type = "application/postscript"
     extension = "ps"
     kind = Application
+
+    format = PythonScript
+    name = "Python Script"
+    media_type = "text/x-script.python"
+    extension = "py"
+    kind = Text
 
     format = QualcommPureVoice
     name = "Qualcomm PureVoice"
@@ -1108,6 +1152,12 @@ formats! {
     extension = "rar"
     kind = Application
 
+    format = RubyScript
+    name = "Ruby Script"
+    media_type = "text/x-ruby"
+    extension = "rb"
+    kind = Text
+
     format = Screamtracker3Module
     name = "ScreamTracker 3 Module"
     media_type = "audio/x-s3m"
@@ -1131,6 +1181,12 @@ formats! {
     media_type = "application/x-esri-shape"
     extension = "shp"
     kind = Application
+
+    format = ShellScript
+    name = "Shell Script"
+    media_type = "text/x-shellscript"
+    extension = "sh"
+    kind = Text
 
     format = Sketchup
     name = "SketchUp"
@@ -1204,6 +1260,12 @@ formats! {
     extension = "3mf"
     kind = Application
 
+    format = ToolCommandLanguageScript
+    name = "Tool Command Language Script"
+    media_type = "text/x-tcl"
+    extension = "tcl"
+    kind = Text
+
     format = Truetype
     name = "TrueType"
     media_type = "font/ttf"
@@ -1221,6 +1283,18 @@ formats! {
     media_type = "application/x-compress"
     extension = "Z"
     kind = Application
+
+    format = Vcalendar
+    name = "vCalendar"
+    media_type = "text/calendar"
+    extension = "ics"
+    kind = Text
+
+    format = Vcard
+    name = "vCard"
+    media_type = "text/vcard"
+    extension = "vcf"
+    kind = Text
 
     format = VirtualboxVirtualDiskImage
     name = "VirtualBox Virtual Disk Image"
@@ -1397,8 +1471,8 @@ impl FileFormat {
     /// ```rust
     /// use file_format::FileFormat;
     ///
-    /// let format = FileFormat::from_file("fixtures/video/sample.mkv")?;
-    /// assert_eq!(format, FileFormat::MatroskaVideo);
+    /// let format = FileFormat::from_file("fixtures/text/sample.txt")?;
+    /// assert_eq!(format, FileFormat::PlainText);
     /// # Ok::<(), std::io::Error>(())
     ///```
     #[inline]
@@ -1419,18 +1493,22 @@ impl FileFormat {
     ///```
     pub fn from_reader<R: Read + Seek>(reader: R) -> Result<Self> {
         let mut reader = BufReader::with_capacity(36870, reader);
-        Ok(Self::from_signature(reader.fill_buf()?)
-            .map(|format| match format {
+        Ok(if reader.fill_buf()?.is_empty() {
+            Self::default()
+        } else if let Some(format) = Self::from_signature(reader.buffer()) {
+            match format {
                 #[cfg(feature = "cfb")]
-                Self::CompoundFileBinary => Self::from_cfb(reader).unwrap_or_default(),
-                Self::MatroskaVideo => Self::from_mkv(reader).unwrap_or_default(),
-                Self::MsDosExecutable => Self::from_ms_dos_executable(reader).unwrap_or_default(),
-                Self::PortableDocumentFormat => Self::from_pdf(reader).unwrap_or_default(),
+                Self::CompoundFileBinary => Self::from_cfb(&mut reader).unwrap_or_default(),
+                Self::MatroskaVideo => Self::from_mkv(&mut reader).unwrap_or_default(),
+                Self::MsDosExecutable => Self::from_ms_dos_exe(&mut reader).unwrap_or_default(),
+                Self::PortableDocumentFormat => Self::from_pdf(&mut reader).unwrap_or_default(),
                 #[cfg(feature = "zip")]
-                Self::Zip => Self::from_zip(reader).unwrap_or_default(),
+                Self::Zip => Self::from_zip(&mut reader).unwrap_or_default(),
                 _ => format,
-            })
-            .unwrap_or_default())
+            }
+        } else {
+            Self::from_plain_text(&mut reader).unwrap_or_default()
+        })
     }
 }
 
@@ -1469,6 +1547,8 @@ pub enum Kind {
     Image,
     /// 3D model.
     Model,
+    /// Text.
+    Text,
     /// Video.
     Video,
 }

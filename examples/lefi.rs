@@ -38,12 +38,12 @@ fn main() -> Result<()> {
             println!(
                 "{input:width$} {name} ({extension}) - {media_type}",
                 name = match format.kind() {
-                    Kind::Application => format.name().white(),
+                    Kind::Application => format.name().blue(),
                     Kind::Audio => format.name().cyan(),
-                    Kind::Font => format.name().yellow(),
                     Kind::Image => format.name().magenta(),
-                    Kind::Model => format.name().blue(),
+                    Kind::Text => format.name().yellow(),
                     Kind::Video => format.name().green(),
+                    _ => format.name().white(),
                 },
                 extension = format.extension(),
                 media_type = format.media_type().underline(),

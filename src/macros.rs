@@ -9,6 +9,7 @@ macro_rules! formats {
             media_type = $media_type:literal
             extension = $extension:literal
             kind = $kind:ident
+            $(comment = $comment:literal)?
         )*
     } => {
         /// A file format.
@@ -19,6 +20,10 @@ macro_rules! formats {
                 #[doc=concat!("- **Media type**: `", $media_type, "`")]
                 #[doc=concat!("- **Extension**: `", $extension, "`")]
                 #[doc=concat!("- **Kind**: [`Kind::", stringify!($kind), "`]")]
+                $(
+                    #[doc=""]
+                    #[doc=concat!($comment, ".")]
+                )?
                 $format,
             )*
         }

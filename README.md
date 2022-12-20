@@ -6,7 +6,7 @@
 ![Rust](https://img.shields.io/badge/rust-1.60+-blueviolet.svg?logo=rust)
 ![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg)
 
-Crate for determining **binary-based** file formats.
+Crate for determining file formats.
 
 ## Examples
 
@@ -42,7 +42,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.10"
+file-format = "0.11"
 ```
 
 ## Features
@@ -92,6 +92,7 @@ All these features are disabled by default.
 - Canon Raw 2 - `cr2`
 - Canon Raw 3 - `cr3`
 - Cineon - `cin`
+- Clojure Script - `clj`
 - Common Object File Format - `coff`
 - Compound File Binary - `cfb`
 - Creative Voice - `voc`
@@ -107,6 +108,7 @@ All these features are disabled by default.
 - Executable and Linkable Format - `elf`
 - Experimental Computing Facility - `xcf`
 - Extensible Archive - `xar`
+- Extensible Markup Language - `xml`
 - FastTracker 2 Extended Module - `xm`
 - Flash Video - `flv`
 - Flexible Image Transport System - `fits`
@@ -124,6 +126,7 @@ All these features are disabled by default.
 - High Efficiency Image Coding Sequence - `heics`
 - High Efficiency Image File Format - `heif`
 - High Efficiency Image File Format Sequence - `heifs`
+- HyperText Markup Language - `html`
 - ICC Profile - `icc`
 - ISO 9660 - `iso`
 - Impulse Tracker Module - `it`
@@ -144,6 +147,7 @@ All these features are disabled by default.
 - Lempel–Ziv Finite State Entropy - `lzfse`
 - Long Range ZIP - `lrz`
 - Lua Bytecode - `luac`
+- Lua Script - `lua`
 - MPEG-1 Audio Layer 1 - `mp1`
 - MPEG-1 Audio Layer 2 - `mp2`
 - MPEG-1 Video - `mpg`
@@ -191,19 +195,24 @@ All these features are disabled by default.
 - PGP Signature - `asc`
 - PGP Signed Message - `asc`
 - Panasonic Raw - `rw2`
+- Perl Script - `pl`
+- Plain Text - `txt`
 - Portable Document Format - `pdf`
 - Portable Executable - `exe`
 - Portable Network Graphics - `png`
 - PostScript - `ps`
+- Python Script - `py`
 - Qualcomm PureVoice - `qcp`
 - Radiance HDR - `hdr`
 - Red Hat Package Manager - `rpm`
 - Rich Text Format - `rtf`
 - Roshal Archive - `rar`
+- Ruby Script - `rb`
 - SQLite 3 - `sqlite`
 - ScreamTracker 3 Module - `s3m`
 - SeqBox - `sbx`
 - Shapefile - `shp`
+- Shell Script - `sh`
 - SketchUp - `skp`
 - Small Web Format - `swf`
 - Snappy - `sz`
@@ -212,6 +221,7 @@ All these features are disabled by default.
 - TASTy - `tasty`
 - Tag Image File Format - `tiff`
 - Tape Archive - `tar`
+- Tool Command Language Script - `tcl`
 - TrueType - `ttf`
 - UNIX archiver - `a`
 - UNIX compress - `Z`
@@ -239,6 +249,8 @@ All these features are disabled by default.
 - lzip - `lz`
 - lzop - `lzo`
 - macOS Alias - `alias`
+- vCalendar - `ics`
+- vCard - `vcf`
 - zoo - `zoo`
 
 Compound File Binary:

@@ -51,17 +51,81 @@ signatures! {
     format = PgpMessage
     value = b"-----BEGIN PGP MESSAGE-----"
 
+    // 24 bytes
+    format = ClojureScript
+    value = b"#!/usr/local/bin/clojure"
+    value = b"#!/usr/bin/env clojure"
+    value = b"#!/usr/local/bin/clj"
+    value = b"#!/usr/bin/clojure"
+    value = b"#!/usr/bin/env clj"
+    value = b"#!/usr/bin/clj"
+
+    // 23 bytes
+    format = PythonScript
+    value = b"#!/usr/local/bin/python"
+    value = b"#!/usr/bin/env python"
+    value = b"#!/usr/bin/python"
+
     // 22 bytes
     format = CreativeVoice
     value = b"Creative Voice File\x1A\x1A\x00"
+
+    format = ToolCommandLanguageScript
+    value = b"#!/usr/local/bin/tclsh"
+    value = b"#!/usr/local/bin/wish"
+    value = b"#!/usr/local/bin/tcl"
+    value = b"#!/usr/bin/env tclsh"
+    value = b"#!/usr/bin/env wish"
+    value = b"#!/usr/bin/env tcl"
+    value = b"#!/usr/bin/tclsh"
+    value = b"#!/usr/bin/wish"
+    value = b"#!/usr/bin/tcl"
 
     // 21 bytes
     format = DebianBinaryPackage
     value = b"!<arch>\ndebian-binary"
 
+    format = RubyScript
+    value = b"#!/usr/local/bin/ruby"
+    value = b"#!/usr/bin/env ruby"
+    value = b"#!/usr/bin/ruby"
+
+    format = ShellScript
+    value = b"#!/usr/local/bin/bash"
+    value = b"#!/usr/local/bin/fish"
+    value = b"#!/usr/local/bin/tcsh"
+    value = b"#!/usr/local/bin/ash"
+    value = b"#!/usr/local/bin/zsh"
+    value = b"#!/usr/bin/env bash"
+    value = b"#!/usr/bin/env fish"
+    value = b"#!/usr/bin/env zsh"
+    value = b"#!/usr/local/bash"
+    value = b"#!/usr/local/tcsh"
+    value = b"#!/usr/bin/bash"
+    value = b"#!/usr/bin/fish"
+    value = b"#!/usr/bin/tcsh"
+    value = b"#!/usr/bin/zsh"
+    value = b"#!/bin/bash"
+    value = b"#!/bin/tcsh"
+    value = b"#!/bin/zsh"
+    value = b"#!/bin/ash"
+    value = b"#!/bin/csh"
+    value = b"#!/bin/ksh"
+    value = b"#!/bin/sh"
+
     // 20 bytes
+    format = LuaScript
+    value = b"#!/usr/local/bin/lua"
+    value = b"#!/usr/bin/env lua"
+    value = b"#!/usr/bin/lua"
+
     format = WindowsShortcut
     value = b"\x4C\x00\x00\x00\x01\x14\x02\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x00\x46"
+
+    // 19 bytes
+    format = PerlScript
+    value = b"#!/usr/bin/env perl"
+    value = b"#!/usr/bin/perl"
 
     // 17 bytes
     format = EncapsulatedPostscript
@@ -94,7 +158,16 @@ signatures! {
     format = MicrosoftAccessDatabase
     value = b"Standard Jet DB" offset = 4
 
+    format = Vcalendar
+    value = b"BEGIN:VCALENDAR"
+
     // 14 bytes
+    format = HypertextMarkupLanguage
+    value = b"<!DOCTYPE HTML"
+    value = b"<!DOCTYPE html"
+    value = b"<!doctype HTML"
+    value = b"<!doctype html"
+
     format = MaterialExchangeFormat
     value = b"\x06\x0E\x2B\x34\x02\x05\x01\x01\x0D\x01\x02\x01\x01\x02"
 
@@ -139,6 +212,9 @@ signatures! {
 
     format = RadianceHdr
     value = b"\x23\x3F\x52\x41\x44\x49\x41\x4E\x43\x45\x0A"
+
+    format = Vcard
+    value = b"BEGIN:VCARD"
 
     // 10 bytes
     format = OggMedia
@@ -352,6 +428,9 @@ signatures! {
     format = CanonRaw2
     value = b"\x4D\x4D\x00\x2A", b"CR" offset = 8
     value = b"\x49\x49\x2A\x00", b"CR" offset = 8
+
+    format = ExtensibleMarkupLanguage
+    value = b"<?xml "
 
     format = GraphicsInterchangeFormat
     value = b"GIF87a"
