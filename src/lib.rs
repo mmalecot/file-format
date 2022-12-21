@@ -1,5 +1,5 @@
 /*!
-Crate for determining file formats.
+Crate for determining **file formats**.
 
 ## Examples
 
@@ -1488,7 +1488,7 @@ impl FileFormat {
     ///
     /// # Examples
     ///
-    /// Detects from the first bytes of a PNG file:
+    /// Detects from the first bytes of a **PNG** file:
     ///
     /// ```rust
     /// use file_format::FileFormat;

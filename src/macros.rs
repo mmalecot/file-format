@@ -21,7 +21,7 @@ macro_rules! formats {
                 #[doc=concat!("- **Extension**: `", $extension, "`")]
                 #[doc=concat!("- **Kind**: [`Kind::", stringify!($kind), "`]")]
                 $(
-                    #[doc=""]
+                    ///
                     #[doc=concat!($comment, ".")]
                 )?
                 $format,
@@ -29,7 +29,7 @@ macro_rules! formats {
         }
 
         impl crate::FileFormat {
-            /// Returns the name of the [`FileFormat`].
+            /// Returns the **name** of the [`FileFormat`].
             ///
             /// # Examples
             ///
@@ -47,7 +47,7 @@ macro_rules! formats {
                 }
             }
 
-            /// Returns the media type (formerly known as MIME type) of the [`FileFormat`].
+            /// Returns the **media type** (formerly known as MIME type) of the [`FileFormat`].
             ///
             /// # Examples
             ///
@@ -65,7 +65,7 @@ macro_rules! formats {
                 }
             }
 
-            /// Returns the extension of the [`FileFormat`].
+            /// Returns the **extension** of the [`FileFormat`].
             ///
             /// # Examples
             ///

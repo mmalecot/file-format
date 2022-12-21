@@ -6,7 +6,7 @@
 ![Rust](https://img.shields.io/badge/rust-1.60+-blueviolet.svg?logo=rust)
 ![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg)
 
-Crate for determining file formats.
+Crate for determining **file formats**.
 
 ## Examples
 
