@@ -123,6 +123,8 @@ impl crate::FileFormat {
             Self::ReallySimpleSyndication
         } else if reader.search(b"<svg", 256)? {
             Self::ScalableVectorGraphics
+        } else if reader.search(b"<soap", 256)? {
+            Self::SimpleObjectAccessProtocol
         } else {
             Self::ExtensibleMarkupLanguage
         })

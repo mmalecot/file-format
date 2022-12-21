@@ -18,6 +18,7 @@
 - Ruby Script - `rb`
 - Scalable Vector Graphics - `svg`
 - Shell Script - `sh`
+- Simple Object Access Protocol - `soap`
 - Tool Command Language Script - `tcl`
 - vCalendar - `ics`
 - vCard - `vcf`

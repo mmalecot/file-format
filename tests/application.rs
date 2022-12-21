@@ -655,6 +655,12 @@ fn test_shapefile() {
 }
 
 #[test]
+fn test_simple_object_access_protocol() {
+    let format = FileFormat::from_file("fixtures/application/sample.soap").unwrap();
+    assert_eq!(format, FileFormat::SimpleObjectAccessProtocol);
+}
+
+#[test]
 fn test_sketchup() {
     let format = FileFormat::from_file("fixtures/application/sample.skp").unwrap();
     assert_eq!(format, FileFormat::Sketchup);

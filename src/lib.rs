@@ -1230,6 +1230,12 @@ formats! {
     extension = "sh"
     kind = Text
 
+    format = SimpleObjectAccessProtocol
+    name = "Simple Object Access Protocol"
+    media_type = "application/soap+xml"
+    extension = "soap"
+    kind = Application
+
     format = Sketchup
     name = "SketchUp"
     media_type = "application/vnd.sketchup.skp"

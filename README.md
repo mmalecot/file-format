@@ -219,6 +219,7 @@ All these features are disabled by default.
 - SeqBox - `sbx`
 - Shapefile - `shp`
 - Shell Script - `sh`
+- Simple Object Access Protocol - `soap`
 - SketchUp - `skp`
 - Small Web Format - `swf`
 - Snappy - `sz`
