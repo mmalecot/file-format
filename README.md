@@ -260,7 +260,7 @@ All these features are disabled by default.
 - vCard - `vcf`
 - zoo - `zoo`
 
-Compound File Binary:
+**Compound File Binary**:
 - Microsoft Excel Spreadsheet - `xls`
 - Microsoft PowerPoint Presentation - `ppt`
 - Microsoft Project Plan - `mpp`
@@ -269,7 +269,7 @@ Compound File Binary:
 - Microsoft Visio Drawing - `vsd`
 - Microsoft Word Document - `doc`
 
-ZIP:
+**ZIP**:
 - 3D Manufacturing Format - `3mf`
 - Android Package - `apk`
 - Circuit Diagram Document - `cddx`
