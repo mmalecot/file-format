@@ -3,7 +3,6 @@
 use std::{
     cmp,
     io::{BufRead, BufReader, Error, ErrorKind, Read, Result, Seek, SeekFrom},
-    str,
 };
 
 /// Extends [`Read`] and [`Seek`].
@@ -94,14 +93,14 @@ impl crate::FileFormat {
     /// Determines [`FileFormat`] from a **Plain Text** reader.
     pub(crate) fn from_plain_text<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         let mut reader = reader.take(1048576);
-        let mut buffer = Vec::new();
+        let mut buffer = String::new();
         let mut index = 0;
-        while index < 32 && reader.read_until(b'\n', &mut buffer)? > 0 {
-            if str::from_utf8(&buffer).map_or(true, |str| {
-                str.chars()
-                    .any(|char| char.is_control() && !char.is_whitespace())
-            }) {
-                return Err(Error::new(ErrorKind::InvalidData, "Invalid UTF-8 text"));
+        while index < 32 && reader.read_line(&mut buffer)? > 0 {
+            if buffer
+                .chars()
+                .any(|char| char.is_control() && !char.is_whitespace())
+            {
+                return Err(Error::new(ErrorKind::InvalidData, "Invalid chars"));
             }
             buffer.clear();
             index += 1;
