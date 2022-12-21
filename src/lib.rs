@@ -1583,7 +1583,7 @@ impl From<&[u8]> for FileFormat {
     }
 }
 
-/// A kind of [`FileFormat`] according to the media type.
+/// A kind of [`FileFormat`] according to the **media type**.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum Kind {
     /// Data to be processed by some type of application program.

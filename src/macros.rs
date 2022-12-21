@@ -12,7 +12,7 @@ macro_rules! formats {
             $(comment = $comment:literal)?
         )*
     } => {
-        /// A file format.
+        /// A **file format**.
         #[derive(Clone, Debug, Eq, PartialEq)]
         pub enum FileFormat {
             $(
