@@ -1,5 +1,9 @@
 # Version 0.11.0
 
+## Docs
+
+- Remove dependencies of `lefi` example
+
 ## New formats support
 
 - Clojure Script - `clj`
