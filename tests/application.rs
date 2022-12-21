@@ -176,6 +176,15 @@ fn test_extensible_archive() {
 }
 
 #[test]
+fn test_extensible_stylesheet_language_transformations() {
+    let format = FileFormat::from_file("fixtures/application/sample.xsl").unwrap();
+    assert_eq!(
+        format,
+        FileFormat::ExtensibleStylesheetLanguageTransformations
+    );
+}
+
+#[test]
 fn test_game_boy_advance_rom() {
     let format = FileFormat::from_file("fixtures/application/sample.gba").unwrap();
     assert_eq!(format, FileFormat::GameBoyAdvanceRom);
@@ -191,6 +200,12 @@ fn test_game_boy_color_rom() {
 fn test_game_boy_rom() {
     let format = FileFormat::from_file("fixtures/application/sample.gb").unwrap();
     assert_eq!(format, FileFormat::GameBoyRom);
+}
+
+#[test]
+fn test_geography_markup_language() {
+    let format = FileFormat::from_file("fixtures/application/sample.gml").unwrap();
+    assert_eq!(format, FileFormat::GeographyMarkupLanguage);
 }
 
 #[test]
@@ -241,6 +256,12 @@ fn test_java_class() {
 fn test_java_keystore() {
     let format = FileFormat::from_file("fixtures/application/sample.jks").unwrap();
     assert_eq!(format, FileFormat::JavaKeystore);
+}
+
+#[test]
+fn test_keyhole_markup_language() {
+    let format = FileFormat::from_file("fixtures/application/sample.kml").unwrap();
+    assert_eq!(format, FileFormat::KeyholeMarkupLanguage);
 }
 
 #[cfg(feature = "zip")]
@@ -415,6 +436,19 @@ fn test_ms_dos_executable() {
 }
 
 #[test]
+fn test_musicxml() {
+    let format = FileFormat::from_file("fixtures/application/sample.musicxml").unwrap();
+    assert_eq!(format, FileFormat::Musicxml);
+}
+
+#[cfg(feature = "zip")]
+#[test]
+fn test_musicxml_zipped() {
+    let format = FileFormat::from_file("fixtures/application/sample.mxl").unwrap();
+    assert_eq!(format, FileFormat::MusicxmlZipped);
+}
+
+#[test]
 fn test_nintendo64_rom() {
     let format = FileFormat::from_file("fixtures/application/sample.z64").unwrap();
     assert_eq!(format, FileFormat::Nintendo64Rom);
@@ -579,6 +613,12 @@ fn test_postscript() {
 }
 
 #[test]
+fn test_really_simple_syndication() {
+    let format = FileFormat::from_file("fixtures/application/sample.rss").unwrap();
+    assert_eq!(format, FileFormat::ReallySimpleSyndication);
+}
+
+#[test]
 fn test_red_hat_package_manager() {
     let format = FileFormat::from_file("fixtures/application/sample.rpm").unwrap();
     assert_eq!(format, FileFormat::RedHatPackageManager);
@@ -612,6 +652,12 @@ fn test_seven_zip() {
 fn test_shapefile() {
     let format = FileFormat::from_file("fixtures/application/sample.shp").unwrap();
     assert_eq!(format, FileFormat::Shapefile);
+}
+
+#[test]
+fn test_simple_object_access_protocol() {
+    let format = FileFormat::from_file("fixtures/application/sample.soap").unwrap();
+    assert_eq!(format, FileFormat::SimpleObjectAccessProtocol);
 }
 
 #[test]

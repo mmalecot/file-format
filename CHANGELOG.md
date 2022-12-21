@@ -1,4 +1,33 @@
-# Version 0.10.0
+# Version 0.11.0 (2022-12-21)
+
+## Docs
+
+- Remove dependencies of `lefi` example
+
+## New formats support
+
+- Clojure Script - `clj`
+- Extensible Markup Language - `xml`
+- Extensible Stylesheet Language Transformations - `xsl`
+- Geography Markup Language - `gml`
+- HyperText Markup Language - `html`
+- Keyhole Markup Language - `kml`
+- Lua Script - `lua`
+- MusicXML - `musicxml`
+- MusicXML Zipped - `mxl`
+- Perl Script - `pl`
+- Plain Text - `txt`
+- Python Script - `py`
+- Really Simple Syndication - `rss`
+- Ruby Script - `rb`
+- Scalable Vector Graphics - `svg`
+- Shell Script - `sh`
+- Simple Object Access Protocol - `soap`
+- Tool Command Language Script - `tcl`
+- vCalendar - `ics`
+- vCard - `vcf`
+
+# Version 0.10.0 (2022-12-04)
 
 ## Fixes
 

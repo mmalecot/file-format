@@ -1,9 +1,9 @@
 [package]
 name = "file-format"
-version = "0.10.0"
+version = "0.11.0"
 authors = ["Mickaël Malécot <mickael.malecot@gmail.com>"]
 edition = "2021"
-description = "Crate for determining binary-based file formats."
+description = "Crate for determining file formats."
 license = "MIT/Apache-2.0"
 readme = "README.md"
 keywords = ["file-format", "file-type", "magic-number", "media-type", "mime"]
@@ -16,10 +16,6 @@ exclude = ["/.github/*", "/examples/*", "/fixtures/*", "/tests/*"]
 [dependencies]
 cfb = { version = "0.7", optional = true }
 zip = { version = "0.6", optional = true, features = ["deflate-miniz"], default-features = false }
-
-[dev-dependencies]
-clap = { version = "4.0", features = ["derive"] }
-colored = { version = "2.0" }
 
 [features]
 cfb = ["dep:cfb"]

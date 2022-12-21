@@ -1,12 +1,12 @@
 # file-format
 
-![Build](https://img.shields.io/github/workflow/status/mmalecot/file-format/CI)
+![Build](https://img.shields.io/github/actions/workflow/status/mmalecot/file-format/ci.yml?branch=main)
 [![Crates.io](https://img.shields.io/crates/v/file-format.svg)](https://crates.io/crates/file-format)
 [![Docs](https://docs.rs/file-format/badge.svg)](https://docs.rs/file-format)
 ![Rust](https://img.shields.io/badge/rust-1.60+-blueviolet.svg?logo=rust)
 ![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg)
 
-Crate for determining **binary-based** file formats.
+Crate for determining **file formats**.
 
 ## Examples
 
@@ -42,7 +42,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.10"
+file-format = "0.11"
 ```
 
 ## Features
@@ -92,6 +92,7 @@ All these features are disabled by default.
 - Canon Raw 2 - `cr2`
 - Canon Raw 3 - `cr3`
 - Cineon - `cin`
+- Clojure Script - `clj`
 - Common Object File Format - `coff`
 - Compound File Binary - `cfb`
 - Creative Voice - `voc`
@@ -107,6 +108,8 @@ All these features are disabled by default.
 - Executable and Linkable Format - `elf`
 - Experimental Computing Facility - `xcf`
 - Extensible Archive - `xar`
+- Extensible Markup Language - `xml`
+- Extensible Stylesheet Language Transformations - `xsl`
 - FastTracker 2 Extended Module - `xm`
 - Flash Video - `flv`
 - Flexible Image Transport System - `fits`
@@ -117,6 +120,7 @@ All these features are disabled by default.
 - Game Boy Advance ROM - `gba`
 - Game Boy Color ROM - `gbc`
 - Game Boy ROM - `gb`
+- Geography Markup Language - `gml`
 - Google Chrome Extension - `crx`
 - Google Draco - `drc`
 - Graphics Interchange Format - `gif`
@@ -124,6 +128,7 @@ All these features are disabled by default.
 - High Efficiency Image Coding Sequence - `heics`
 - High Efficiency Image File Format - `heif`
 - High Efficiency Image File Format Sequence - `heifs`
+- HyperText Markup Language - `html`
 - ICC Profile - `icc`
 - ISO 9660 - `iso`
 - Impulse Tracker Module - `it`
@@ -136,6 +141,7 @@ All these features are disabled by default.
 - Java Class - `class`
 - Java KeyStore - `jks`
 - Joint Photographic Experts Group - `jpg`
+- Keyhole Markup Language - `kml`
 - Khronos Texture - `ktx`
 - Khronos Texture 2 - `ktx2`
 - LHA - `lzh`
@@ -144,6 +150,7 @@ All these features are disabled by default.
 - Lempel–Ziv Finite State Entropy - `lzfse`
 - Long Range ZIP - `lrz`
 - Lua Bytecode - `luac`
+- Lua Script - `lua`
 - MPEG-1 Audio Layer 1 - `mp1`
 - MPEG-1 Audio Layer 2 - `mp2`
 - MPEG-1 Video - `mpg`
@@ -164,6 +171,7 @@ All these features are disabled by default.
 - Mobipocket - `mobi`
 - Monkey’s Audio - `ape`
 - Musepack - `mpc`
+- MusicXML - `musicxml`
 - Musical Instrument Digital Interface - `mid`
 - Nikon Electronic File - `nef`
 - Nintendo 64 ROM - `z64`
@@ -191,19 +199,27 @@ All these features are disabled by default.
 - PGP Signature - `asc`
 - PGP Signed Message - `asc`
 - Panasonic Raw - `rw2`
+- Perl Script - `pl`
+- Plain Text - `txt`
 - Portable Document Format - `pdf`
 - Portable Executable - `exe`
 - Portable Network Graphics - `png`
 - PostScript - `ps`
+- Python Script - `py`
 - Qualcomm PureVoice - `qcp`
 - Radiance HDR - `hdr`
+- Really Simple Syndication - `rss`
 - Red Hat Package Manager - `rpm`
 - Rich Text Format - `rtf`
 - Roshal Archive - `rar`
+- Ruby Script - `rb`
 - SQLite 3 - `sqlite`
+- Scalable Vector Graphics - `svg`
 - ScreamTracker 3 Module - `s3m`
 - SeqBox - `sbx`
 - Shapefile - `shp`
+- Shell Script - `sh`
+- Simple Object Access Protocol - `soap`
 - SketchUp - `skp`
 - Small Web Format - `swf`
 - Snappy - `sz`
@@ -212,6 +228,7 @@ All these features are disabled by default.
 - TASTy - `tasty`
 - Tag Image File Format - `tiff`
 - Tape Archive - `tar`
+- Tool Command Language Script - `tcl`
 - TrueType - `ttf`
 - UNIX archiver - `a`
 - UNIX compress - `Z`
@@ -239,9 +256,11 @@ All these features are disabled by default.
 - lzip - `lz`
 - lzop - `lzo`
 - macOS Alias - `alias`
+- vCalendar - `ics`
+- vCard - `vcf`
 - zoo - `zoo`
 
-Compound File Binary:
+**Compound File Binary**:
 - Microsoft Excel Spreadsheet - `xls`
 - Microsoft PowerPoint Presentation - `ppt`
 - Microsoft Project Plan - `mpp`
@@ -250,7 +269,7 @@ Compound File Binary:
 - Microsoft Visio Drawing - `vsd`
 - Microsoft Word Document - `doc`
 
-ZIP:
+**ZIP**:
 - 3D Manufacturing Format - `3mf`
 - Android Package - `apk`
 - Circuit Diagram Document - `cddx`
@@ -260,6 +279,7 @@ ZIP:
 - Java Archive - `jar`
 - Keyhole Markup Language Zipped - `kmz`
 - Microsoft Visual Studio Extension - `vsix`
+- MusicXML Zipped - `mxl`
 - Office Open XML Document - `docx`
 - Office Open XML Drawing - `vsdx`
 - Office Open XML Presentation - `pptx`

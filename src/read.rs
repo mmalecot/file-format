@@ -2,7 +2,7 @@
 
 use std::{
     cmp,
-    io::{Read, Result, Seek, SeekFrom},
+    io::{BufRead, BufReader, Error, ErrorKind, Read, Result, Seek, SeekFrom},
 };
 
 /// Extends [`Read`] and [`Seek`].
@@ -41,7 +41,7 @@ impl<R: Read + Seek + ?Sized> AdvancedRead for R {}
 impl crate::FileFormat {
     /// Determines [`FileFormat`] from a **Compound File Binary** reader.
     #[cfg(feature = "cfb")]
-    pub(crate) fn from_cfb<R: Read + Seek>(reader: R) -> Result<Self> {
+    pub(crate) fn from_cfb<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         let file = cfb::CompoundFile::open(reader)?;
         Ok(match file.root_entry().clsid().to_string().as_str() {
             "00020810-0000-0000-c000-000000000046" => Self::MicrosoftExcelSpreadsheet,
@@ -57,7 +57,7 @@ impl crate::FileFormat {
     }
 
     /// Determines [`FileFormat`] from a **Matroska Video** reader.
-    pub(crate) fn from_mkv<R: Read + Seek>(mut reader: R) -> Result<Self> {
+    pub(crate) fn from_mkv<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         Ok(if reader.search(b"webm", 4096)? {
             Self::Webm
         } else {
@@ -66,7 +66,7 @@ impl crate::FileFormat {
     }
 
     /// Determines [`FileFormat`] from a **MS-DOS Executable** reader.
-    pub(crate) fn from_ms_dos_executable<R: Read + Seek>(mut reader: R) -> Result<Self> {
+    pub(crate) fn from_ms_dos_exe<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         reader.seek(SeekFrom::Start(0x3C))?;
         let address = reader.read_le_u32()?;
         reader.seek(SeekFrom::Start(address as u64))?;
@@ -82,17 +82,56 @@ impl crate::FileFormat {
     }
 
     /// Determines [`FileFormat`] from a **Portable Document Format** reader.
-    pub(crate) fn from_pdf<R: Read + Seek>(mut reader: R) -> Result<Self> {
-        Ok(if reader.search(b"AIPrivateData", 10 * 1024 * 1024)? {
+    pub(crate) fn from_pdf<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        Ok(if reader.search(b"AIPrivateData", 1048576)? {
             Self::AdobeIllustratorArtwork
         } else {
             Self::PortableDocumentFormat
         })
     }
 
+    /// Determines [`FileFormat`] from a **Plain Text** reader.
+    pub(crate) fn from_plain_text<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        let mut reader = reader.take(1048576);
+        let mut buffer = String::new();
+        let mut index = 0;
+        while index < 32 && reader.read_line(&mut buffer)? > 0 {
+            if buffer
+                .chars()
+                .any(|char| char.is_control() && !char.is_whitespace())
+            {
+                return Err(Error::new(ErrorKind::InvalidData, "Invalid chars"));
+            }
+            buffer.clear();
+            index += 1;
+        }
+        Ok(Self::PlainText)
+    }
+
+    /// Determines [`FileFormat`] from an **Extensible Markup Language** reader.
+    pub(crate) fn from_xml<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        Ok(if reader.search(b"<xsl", 256)? {
+            Self::ExtensibleStylesheetLanguageTransformations
+        } else if reader.search(b"<gml", 256)? {
+            Self::GeographyMarkupLanguage
+        } else if reader.search(b"<kml", 256)? {
+            Self::KeyholeMarkupLanguage
+        } else if reader.search(b"<score-partwise", 256)? {
+            Self::Musicxml
+        } else if reader.search(b"<rss", 256)? {
+            Self::ReallySimpleSyndication
+        } else if reader.search(b"<svg", 256)? {
+            Self::ScalableVectorGraphics
+        } else if reader.search(b"<soap", 256)? {
+            Self::SimpleObjectAccessProtocol
+        } else {
+            Self::ExtensibleMarkupLanguage
+        })
+    }
+
     /// Determines [`FileFormat`] from a **ZIP** reader.
     #[cfg(feature = "zip")]
-    pub(crate) fn from_zip<R: Read + Seek>(reader: R) -> Result<Self> {
+    pub(crate) fn from_zip<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         let mut archive = zip::ZipArchive::new(reader)?;
         let mut format = Self::Zip;
         for index in 0..cmp::min(archive.len(), 1024) {
@@ -121,6 +160,7 @@ impl crate::FileFormat {
                     "application/vnd.oasis.opendocument.text" => {
                         return Ok(Self::OpenDocumentText);
                     }
+                    "application/vnd.recordare.musicxml" => return Ok(Self::MusicxmlZipped),
                     "image/openraster" => return Ok(Self::Openraster),
                     _ => {}
                 },

@@ -9,23 +9,27 @@ macro_rules! formats {
             media_type = $media_type:literal
             extension = $extension:literal
             kind = $kind:ident
+            $(comment = $comment:literal)?
         )*
     } => {
-        /// A file format.
+        /// A **file format**.
         #[derive(Clone, Debug, Eq, PartialEq)]
         pub enum FileFormat {
             $(
                 #[doc=concat!($name, ".")]
-                #[doc=""]
-                #[doc=concat!("**Media type**: `", $media_type, "`")]
-                #[doc=""]
-                #[doc=concat!("**Extension**: `", $extension, "`")]
+                #[doc=concat!("- **Media type**: `", $media_type, "`")]
+                #[doc=concat!("- **Extension**: `", $extension, "`")]
+                #[doc=concat!("- **Kind**: [`Kind::", stringify!($kind), "`]")]
+                $(
+                    ///
+                    #[doc=concat!($comment, ".")]
+                )?
                 $format,
             )*
         }
 
         impl crate::FileFormat {
-            /// Returns the name of the [`FileFormat`].
+            /// Returns the **name** of the [`FileFormat`].
             ///
             /// # Examples
             ///
@@ -43,7 +47,7 @@ macro_rules! formats {
                 }
             }
 
-            /// Returns the media type (formerly known as MIME type) of the [`FileFormat`].
+            /// Returns the **media type** (formerly known as MIME type) of the [`FileFormat`].
             ///
             /// # Examples
             ///
@@ -61,7 +65,7 @@ macro_rules! formats {
                 }
             }
 
-            /// Returns the extension of the [`FileFormat`].
+            /// Returns the **extension** of the [`FileFormat`].
             ///
             /// # Examples
             ///
