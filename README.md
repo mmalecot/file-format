@@ -42,7 +42,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.11"
+file-format = "0.12"
 ```
 
 ## Features
@@ -147,6 +147,7 @@ All these features are disabled by default.
 - LHA - `lzh`
 - LLVM Bitcode - `bc`
 - LZ4 - `lz4`
+- LaTeX - `tex`
 - Lempel–Ziv Finite State Entropy - `lzfse`
 - Long Range ZIP - `lrz`
 - Lua Bytecode - `luac`

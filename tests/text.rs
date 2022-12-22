@@ -19,6 +19,12 @@ fn test_hypertext_markup_language() {
 }
 
 #[test]
+fn test_latex() {
+    let format = FileFormat::from_file("fixtures/text/sample.tex").unwrap();
+    assert_eq!(format, FileFormat::Latex);
+}
+
+#[test]
 fn test_lua_script() {
     let format = FileFormat::from_file("fixtures/text/sample.lua").unwrap();
     assert_eq!(format, FileFormat::LuaScript);

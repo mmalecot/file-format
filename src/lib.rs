@@ -36,7 +36,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.11"
+file-format = "0.12"
 ```
 
 ## Features
@@ -652,6 +652,12 @@ formats! {
     media_type = "image/ktx2"
     extension = "ktx2"
     kind = Image
+
+    format = Latex
+    name = "LaTeX"
+    media_type = "text/x-tex"
+    extension = "tex"
+    kind = Text
 
     format = LempelZivFiniteStateEntropy
     name = "Lempel–Ziv Finite State Entropy"

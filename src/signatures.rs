@@ -168,6 +168,10 @@ signatures! {
     value = b"<!doctype HTML"
     value = b"<!doctype html"
 
+    format = Latex
+    value = b"\\documentclass"
+    value = b"\\documentstyle"
+
     format = MaterialExchangeFormat
     value = b"\x06\x0E\x2B\x34\x02\x05\x01\x01\x0D\x01\x02\x01\x01\x02"
 

@@ -1,3 +1,9 @@
+# Version 0.12.0
+
+## New formats support
+
+- LaTeX - `tex`
+
 # Version 0.11.0 (2022-12-21)
 
 ## Docs
