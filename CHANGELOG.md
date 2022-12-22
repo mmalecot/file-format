@@ -1,5 +1,9 @@
 # Version 0.12.0
 
+## Docs
+
+- Simplify `lefi` example
+
 ## New formats support
 
 - LaTeX - `tex`
