@@ -7,9 +7,7 @@ fn main() -> Result<()> {
     let width = env::args()
         .skip(1)
         .map(|input| input.chars().count())
-        .collect::<Vec<usize>>()
-        .into_iter()
-        .max()
+        .max_by_key(|&count| count)
         .unwrap_or_default();
     for input in env::args().skip(1) {
         let path = Path::new(&input);
