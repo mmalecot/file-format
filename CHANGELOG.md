@@ -1,12 +1,13 @@
-# Version 0.12.0
+# Version 0.12.0 (unreleased)
 
 ## Docs
 
+- Improves global documentation
 - Simplify `lefi` example
 
 ## New formats support
 
-- LaTeX - `tex`
+- LaTeX
 
 # Version 0.11.0 (2022-12-21)
 
@@ -16,40 +17,40 @@
 
 ## New formats support
 
-- Clojure Script - `clj`
-- Extensible Markup Language - `xml`
-- Extensible Stylesheet Language Transformations - `xsl`
-- Geography Markup Language - `gml`
-- HyperText Markup Language - `html`
-- Keyhole Markup Language - `kml`
-- Lua Script - `lua`
-- MusicXML - `musicxml`
-- MusicXML Zipped - `mxl`
-- Perl Script - `pl`
-- Plain Text - `txt`
-- Python Script - `py`
-- Really Simple Syndication - `rss`
-- Ruby Script - `rb`
-- Scalable Vector Graphics - `svg`
-- Shell Script - `sh`
-- Simple Object Access Protocol - `soap`
-- Tool Command Language Script - `tcl`
-- vCalendar - `ics`
-- vCard - `vcf`
+- Clojure Script
+- Extensible Markup Language
+- Extensible Stylesheet Language Transformations
+- Geography Markup Language
+- HyperText Markup Language
+- Keyhole Markup Language
+- Lua Script
+- MusicXML
+- MusicXML Zipped
+- Perl Script
+- Plain Text
+- Python Script
+- Really Simple Syndication
+- Ruby Script
+- Scalable Vector Graphics
+- Shell Script
+- Simple Object Access Protocol
+- Tool Command Language Script
+- vCalendar
+- vCard
 
 # Version 0.10.0 (2022-12-04)
 
 ## Fixes
 
-- Fix inverted names between `Matroska Video` and `Meta Information Encapsulation`
+- Fix inverted names between `MatroskaVideo` and `MetaInformationEncapsulation`
 
 ## New formats support
 
-- Common Object File Format - `coff`
-- Google Draco - `drc`
-- ICC Profile - `icc`
-- Mach-O - `mach`
-- OpenRaster - `ora`
+- Common Object File Format
+- Google Draco
+- ICC Profile
+- Mach-O
+- OpenRaster
 
 # Version 0.9.1 (2022-11-30)
 
@@ -88,11 +89,11 @@
 
 ## Fixes
 
-- Add `MPEG-1/2 Audio Layer 3` signature
-- Add `Matroska Video` signature
+- Add MPEG-1/2 Audio Layer 3 signature
+- Add Matroska Video signature
 - Change UNIX archiver extension from `ar` to `a` (preferred)
-- Fix `Apple QuickTime` signature
-- Fix `Joint Photographic Experts Group` signature
+- Fix Apple QuickTime signature
+- Fix Joint Photographic Experts Group signature
 
 ## Internal changes
 
@@ -101,47 +102,47 @@
 
 ## New formats support
 
-- Adobe Illustrator Artwork - `ai`
-- Circuit Diagram Document - `cddx`
-- Creative Voice - `voc`
-- DER Certificate - `der`
-- DjVu - `djvu`
-- Dynamic Link Library - `dll`
-- Encapsulated PostScript - `eps`
-- Enterprise Application Archive - `ear`
-- Keyhole Markup Language Zipped - `kmz`
-- LLVM Bitcode - `bc`
-- Lua Bytecode - `luac`
-- MPEG-1 Audio Layer 1 - `mp1`
-- MPEG-1 Audio Layer 2 - `mp2`
-- MPEG-2 Transport Stream - `mts`
-- Meta Information Encapsulation - `mie`
-- Microsoft Access 2007 Database - `accdb`
-- Microsoft Access Database - `mdb`
-- Microsoft Excel Spreadsheet - `xls`
-- Microsoft PowerPoint Presentation - `ppt`
-- Microsoft Project Plan - `mpp`
-- Microsoft Publisher Document - `pub`
-- Microsoft Software Installer - `msi`
-- Microsoft Visio Drawing - `vsd`
-- Microsoft Word Document - `doc`
-- PEM Certificate - `crt`
-- PEM Certificate Signing Request - `csr`
-- PEM Private Key - `key`
-- PGP Message - `asc`
-- PGP Private Key Block - `asc`
-- PGP Public Key Block - `asc`
-- PGP Signature - `asc`
-- PGP Signed Message - `asc`
-- Portable Executable - `exe`
-- PostScript - `ps`
-- Rich Text Format - `rtf`
-- Sony Movie - `mqv`
-- TASTy - `tasty`
-- Web Application Archive - `war`
-- WebM - `webm`
-- Windows App Package - `appx`
-- iOS App Store Package - `ipa`
+- Adobe Illustrator Artwork
+- Circuit Diagram Document
+- Creative Voice
+- DER Certificate
+- DjVu
+- Dynamic Link Library
+- Encapsulated PostScript
+- Enterprise Application Archive
+- Keyhole Markup Language Zipped
+- LLVM Bitcode
+- Lua Bytecode
+- MPEG-1 Audio Layer 1
+- MPEG-1 Audio Layer 2
+- MPEG-2 Transport Stream
+- Meta Information Encapsulation
+- Microsoft Access 2007 Database
+- Microsoft Access Database
+- Microsoft Excel Spreadsheet
+- Microsoft PowerPoint Presentation
+- Microsoft Project Plan
+- Microsoft Publisher Document
+- Microsoft Software Installer
+- Microsoft Visio Drawing
+- Microsoft Word Document
+- PEM Certificate
+- PEM Certificate Signing Request
+- PEM Private Key
+- PGP Message
+- PGP Private Key Block
+- PGP Public Key Block
+- PGP Signature
+- PGP Signed Message
+- Portable Executable
+- PostScript
+- Rich Text Format
+- Sony Movie
+- TASTy
+- Web Application Archive
+- WebM
+- Windows App Package
+- iOS App Store Package
 
 # Version 0.8.0 (2022-11-06)
 
@@ -163,30 +164,30 @@
 
 ## New formats support
 
-- 3D Manufacturing Format - `3mf`
-- Android Package - `apk`
-- Design Web Format XPS - `dwfx`
-- Electronic Publication - `epub`
-- Java Archive - `jar`
-- Microsoft Visio Drawing - `vsdx`
-- Microsoft Visual Studio Extension - `vsix`
-- Office Open XML Document - `docx`
-- Office Open XML Presentation - `pptx`
-- Office Open XML Workbook - `xlsx`
-- OpenDocument Graphics - `odg`
-- OpenDocument Presentation - `odp`
-- OpenDocument Spreadsheet - `ods`
-- OpenDocument Text - `odt`
-- XAP - `xap`
-- XPInstall - `xpi`
+- 3D Manufacturing Format
+- Android Package
+- Design Web Format XPS
+- Electronic Publication
+- Java Archive
+- Microsoft Visio Drawing
+- Microsoft Visual Studio Extension
+- Office Open XML Document
+- Office Open XML Presentation
+- Office Open XML Workbook
+- OpenDocument Graphics
+- OpenDocument Presentation
+- OpenDocument Spreadsheet
+- OpenDocument Text
+- XAP
+- XPInstall
 
 # Version 0.7.0 (2022-08-22)
 
 ## New formats support
 
-- Android Binary XML - `xml`
-- Android Compiled Resources - `arsc`
-- Optimized Dalvik Executable - `dey`
+- Android Binary XML
+- Android Compiled Resources
+- Optimized Dalvik Executable
 
 # Version 0.6.0 (2021-12-18)
 
@@ -202,29 +203,29 @@
 
 ## Discontinued formats
 
-- 3D Manufacturing Format - `3mf`
-- BDAV MPEG-2 Transport Stream - `m2ts`
-- Java Archive - `jar`
-- Microsoft Visio Drawing - `vsdx`
-- Office Open XML Document - `docx`
-- Office Open XML Presentation - `pptx`
-- Office Open XML Workbook - `xlsx`
-- OpenDocument Graphics - `odg`
-- OpenDocument Presentation - `odp`
-- OpenDocument Spreadsheet - `ods`
-- OpenDocument Text - `odt`
-- Web Application Resource - `war`
-- XAP - `xap`
-- XPInstall - `xpi`
+- 3D Manufacturing Format
+- BDAV MPEG-2 Transport Stream
+- Java Archive
+- Microsoft Visio Drawing
+- Office Open XML Document
+- Office Open XML Presentation
+- Office Open XML Workbook
+- OpenDocument Graphics
+- OpenDocument Presentation
+- OpenDocument Spreadsheet
+- OpenDocument Text
+- Web Application Resource
+- XAP
+- XPInstall
 
 ## Improvements
 
-- Add precision to the `Dalvik Executable` signature
+- Add precision to the Dalvik Executable signature
 - Switch to Rust 2021
 
 ## New formats support
 
-- Java KeyStore - `jks`
+- Java KeyStore
 
 # Version 0.4.0 (2021-10-22)
 
@@ -234,22 +235,22 @@
 
 ## Improvements
 
-- Add tests for all `High Efficiency Image Coding Sequence` format
-- Add tests for all `High Efficiency Image Coding` format
+- Add tests for all High Efficiency Image Coding Sequence format
+- Add tests for all High Efficiency Image Coding format
 
 ## New formats support
 
-- 3D Manufacturing Format - `3mf`
-- Java Archive - `jar`
-- Microsoft DirectDraw Surface - `dds`
-- Microsoft Visio Drawing - `vsdx`
-- Office Open XML Document - `docx`
-- Office Open XML Presentation - `pptx`
-- Office Open XML Workbook - `xlsx`
-- Radiance HDR - `hdr`
-- Web Application Resource - `war`
-- XAP - `xap`
-- XPInstall - `xpi`
+- 3D Manufacturing Format
+- Java Archive
+- Microsoft DirectDraw Surface
+- Microsoft Visio Drawing
+- Office Open XML Document
+- Office Open XML Presentation
+- Office Open XML Workbook
+- Radiance HDR
+- Web Application Resource
+- XAP
+- XPInstall
 
 # Version 0.3.0 (2021-10-18)
 
@@ -259,81 +260,81 @@
 
 ## Discontinued formats
 
-- HyperText Markup Language - `html`
+- HyperText Markup Language
 
 ## Fixes
 
-- Use of the correct `Tag Image File Format` extension
+- Use of the correct Tag Image File Format extension
 
 ## Improvements
 
-- Add new `Apple QuickTime` signatures
-- Add new `Audio Interchange File Format` signature
-- Add precision to the `Debian Binary Package` signature
-- Add precision to the `Flexible Image Transport System` signature
-- Add precision to the `Windows Media Video` signature
-- Add precision to the `Windows Shortcut` signature
+- Add new Apple QuickTime signatures
+- Add new Audio Interchange File Format signature
+- Add precision to the Debian Binary Package signature
+- Add precision to the Flexible Image Transport System signature
+- Add precision to the Windows Media Video signature
+- Add precision to the Windows Shortcut signature
 - Improve support of some formats
-- Replace `Windows Installer` by `Compound File Binary`
+- Replace Windows Installer by Compound File Binary
 
 ## New formats support
 
-- ALZ - `alz`
-- ANI - `ani`
-- Adobe Flash Player Audio - `f4a`
-- Adobe Flash Player Audiobook - `f4b`
-- Apache Arrow Columnar - `arrow`
-- Apple iTunes Audiobook - `m4b`
-- CUR - `cur`
-- Canon Raw 2 - `cr2`
-- Canon Raw 3 - `cr3`
-- FastTracker 2 Extended Module - `xm`
-- Fujifilm Raw - `raf`
-- Impulse Tracker Module - `it`
-- LHA - `lzh`
-- Lempel–Ziv Finite State Entropy - `lzfse`
-- Microsoft Compiled HTML Help - `chm`
-- Microsoft Virtual Hard Disk - `vhd`
-- Microsoft Virtual Hard Disk 2 - `vhdx`
-- Nikon Electronic File - `nef`
-- Panasonic Raw - `rw2`
-- Qualcomm PureVoice - `qcp`
-- ScreamTracker 3 Module - `s3m`
-- SeqBox - `sbx`
-- Snappy - `sz`
-- Sony DSD Stream File - `dsf`
-- cpio - `cpio`
-- macOS Alias - `alias`
-- zoo - `zoo`
+- ALZ
+- ANI
+- Adobe Flash Player Audio
+- Adobe Flash Player Audiobook
+- Apache Arrow Columnar
+- Apple iTunes Audiobook
+- CUR
+- Canon Raw 2
+- Canon Raw 3
+- FastTracker 2 Extended Module
+- Fujifilm Raw
+- Impulse Tracker Module
+- LHA
+- Lempel–Ziv Finite State Entropy
+- Microsoft Compiled HTML Help
+- Microsoft Virtual Hard Disk
+- Microsoft Virtual Hard Disk 2
+- Nikon Electronic File
+- Panasonic Raw
+- Qualcomm PureVoice
+- ScreamTracker 3 Module
+- SeqBox
+- Snappy
+- Sony DSD Stream File
+- cpio
+- macOS Alias
+- zoo
 
 # Version 0.2.1 (2021-10-14)
 
 ## Fixes
 
-- Fix `Tag Image File Format` signature
+- Fix Tag Image File Format signature
 
 # Version 0.2.0 (2021-10-07)
 
 ## New formats support
 
-- Animated Portable Network Graphics - `apng`
-- BDAV MPEG-2 Transport Stream - `m2ts`
-- Electronic Publication - `epub`
-- Game Boy Color ROM - `gbc`
-- HyperText Markup Language - `html`
-- Khronos Texture - `ktx`
-- Khronos Texture 2 - `ktx2`
-- Material Exchange Format - `mxf`
-- Mobipocket - `mobi`
-- Olympus Raw Format - `orf`
-- OpenDocument Graphics - `odg`
-- OpenDocument Presentation - `odp`
-- OpenDocument Spreadsheet - `ods`
-- OpenDocument Text - `odt`
-- Rich Text Format - `rtf`
-- Shapefile - `shp`
-- SketchUp - `skp`
-- UNIX archiver - `ar`
+- Animated Portable Network Graphics
+- BDAV MPEG-2 Transport Stream
+- Electronic Publication
+- Game Boy Color ROM
+- HyperText Markup Language
+- Khronos Texture
+- Khronos Texture 2
+- Material Exchange Format
+- Mobipocket
+- Olympus Raw Format
+- OpenDocument Graphics
+- OpenDocument Presentation
+- OpenDocument Spreadsheet
+- OpenDocument Text
+- Rich Text Format
+- Shapefile
+- SketchUp
+- UNIX archiver
 
 # Version 0.1.0 (2021-10-03)
 

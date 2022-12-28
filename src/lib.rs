@@ -1,5 +1,14 @@
 /*!
-Crate for determining **file formats**.
+Crate for determining the file format of a given file or stream.
+
+It provides a variety of functions for identifying a wide range of file formats, including
+[ZIP](`FileFormat::Zip`), [Compound File Binary](`FileFormat::CompoundFileBinary`),
+[Extensible Markup Language](`FileFormat::ExtensibleMarkupLanguage`) and [more](`FileFormat`).
+
+`file-format` checks the signature of a file to determine its format. If the file format is not
+recognized by its signature, the crate will try to detect if it is
+[Plain Text](`FileFormat::PlainText`). If not, the crate will return the default file format, which
+is [Arbitrary Binary Data](`FileFormat::ArbitraryBinaryData`).
 
 ## Examples
 
@@ -41,8 +50,39 @@ file-format = "0.12"
 
 ## Features
 
-- **cfb** - Enables **Compound File Binary** formats support.
-- **zip** - Enables **ZIP** formats support.
+- `cfb` - Enables [Compound File Binary](`FileFormat::CompoundFileBinary`)-based formats support:
+    - [Microsoft Excel Spreadsheet](`FileFormat::MicrosoftExcelSpreadsheet`)
+    - [Microsoft PowerPoint Presentation](`FileFormat::MicrosoftPowerpointPresentation`)
+    - [Microsoft Project Plan](`FileFormat::MicrosoftProjectPlan`)
+    - [Microsoft Publisher Document](`FileFormat::MicrosoftPublisherDocument`)
+    - [Microsoft Software Installer](`FileFormat::MicrosoftSoftwareInstaller`)
+    - [Microsoft Visio Drawing](`FileFormat::MicrosoftVisioDrawing`)
+    - [Microsoft Word Document](`FileFormat::MicrosoftWordDocument`)
+- `zip` - Enables [ZIP](`FileFormat::Zip`)-based formats support:
+    - [3D Manufacturing Format](`FileFormat::ThreeDimensionalManufacturingFormat`)
+    - [Android Package](`FileFormat::AndroidPackage`)
+    - [Circuit Diagram Document](`FileFormat::CircuitDiagramDocument`)
+    - [Design Web Format XPS](`FileFormat::DesignWebFormatXps`)
+    - [Electronic Publication](`FileFormat::ElectronicPublication`)
+    - [Enterprise Application Archive](`FileFormat::EnterpriseApplicationArchive`)
+    - [Java Archive](`FileFormat::JavaArchive`)
+    - [Keyhole Markup Language Zipped](`FileFormat::KeyholeMarkupLanguageZipped`)
+    - [Microsoft Visual Studio Extension](`FileFormat::MicrosoftVisualStudioExtension`)
+    - [MusicXML Zipped](`FileFormat::MusicxmlZipped`)
+    - [Office Open XML Document](`FileFormat::OfficeOpenXmlDocument`)
+    - [Office Open XML Drawing](`FileFormat::OfficeOpenXmlDrawing`)
+    - [Office Open XML Presentation](`FileFormat::OfficeOpenXmlPresentation`)
+    - [Office Open XML Spreadsheet](`FileFormat::OfficeOpenXmlSpreadsheet`)
+    - [OpenDocument Graphics](`FileFormat::OpenDocumentGraphics`)
+    - [OpenDocument Presentation](`FileFormat::OpenDocumentPresentation`)
+    - [OpenDocument Spreadsheet](`FileFormat::OpenDocumentSpreadsheet`)
+    - [OpenDocument Text](`FileFormat::OpenDocumentText`)
+    - [OpenRaster](`FileFormat::Openraster`)
+    - [Web Application Archive](`FileFormat::WebApplicationArchive`)
+    - [Windows App Package](`FileFormat::WindowsAppPackage`)
+    - [XAP](`FileFormat::Xap`)
+    - [XPInstall](`FileFormat::Xpinstall`)
+    - [iOS App Store Package](`FileFormat::IosAppStorePackage`)
 
 All these features are disabled by default.
 */
@@ -1126,7 +1166,7 @@ formats! {
     media_type = "text/plain"
     extension = "txt"
     kind = Text
-    comment = "UTF-8–encoded"
+    comment = "UTF-8 encoded"
 
     format = PortableDocumentFormat
     name = "Portable Document Format"
@@ -1490,11 +1530,12 @@ formats! {
 }
 
 impl FileFormat {
-    /// Determines [`FileFormat`] from bytes.
+    /// Determines file format from bytes.
     ///
     /// # Examples
     ///
-    /// Detects from the first bytes of a **PNG** file:
+    /// Detects from the first bytes of a
+    /// [Portable Network Graphics](`FileFormat::PortableNetworkGraphics`) file:
     ///
     /// ```rust
     /// use file_format::FileFormat;
@@ -1518,7 +1559,7 @@ impl FileFormat {
         Self::from(bytes)
     }
 
-    /// Determines [`FileFormat`] from a file.
+    /// Determines file format from a file.
     ///
     /// # Examples
     ///
@@ -1534,7 +1575,7 @@ impl FileFormat {
         Self::from_reader(File::open(path)?)
     }
 
-    /// Determines [`FileFormat`] from a reader.
+    /// Determines file format from a reader.
     ///
     /// # Examples
     ///
@@ -1568,7 +1609,8 @@ impl FileFormat {
 }
 
 impl Default for FileFormat {
-    /// Returns the default [`FileFormat`] which corresponds to [`FileFormat::ArbitraryBinaryData`].
+    /// Returns the default file format which is
+    /// [Arbitrary Binary Data](`FileFormat::ArbitraryBinaryData`).
     #[inline]
     fn default() -> Self {
         Self::ArbitraryBinaryData
@@ -1589,7 +1631,7 @@ impl From<&[u8]> for FileFormat {
     }
 }
 
-/// A kind of [`FileFormat`] according to the **media type**.
+/// A kind of `FileFormat` according to the media type.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum Kind {
     /// Data to be processed by some type of application program.

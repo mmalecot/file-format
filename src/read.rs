@@ -5,9 +5,9 @@ use std::{
     io::{BufRead, BufReader, Error, ErrorKind, Read, Result, Seek, SeekFrom},
 };
 
-/// Extends [`Read`] and [`Seek`].
+/// Provides several methods for reading and searching within a reader.
 trait AdvancedRead: Read + Seek {
-    /// Reads an unsigned 16 bit integer in little endian.
+    /// Reads two bytes from the reader and returns them as a little-endian `u16` value.
     #[inline]
     fn read_le_u16(&mut self) -> Result<u16> {
         let mut buffer = [0; 2];
@@ -15,7 +15,7 @@ trait AdvancedRead: Read + Seek {
         Ok(u16::from_le_bytes(buffer))
     }
 
-    /// Reads an unsigned 32 bit integer in little endian.
+    /// Reads four bytes from the reader and returns them as a little-endian `u32` value.
     #[inline]
     fn read_le_u32(&mut self) -> Result<u32> {
         let mut buffer = [0; 4];
@@ -23,7 +23,10 @@ trait AdvancedRead: Read + Seek {
         Ok(u32::from_le_bytes(buffer))
     }
 
-    /// Searches for bytes.
+    /// Searches for a sequence of bytes within the reader.
+    ///
+    /// The `bytes` parameter is the sequence of bytes to search for. The `size` parameter is the
+    /// maximum number of bytes to search within the reader.
     #[inline]
     fn search(&mut self, bytes: &[u8], size: u64) -> Result<bool> {
         let position = self.stream_position()?;
@@ -36,10 +39,19 @@ trait AdvancedRead: Read + Seek {
     }
 }
 
+/// Implements the `AdvancedRead` trait for any type `R` that implements the `Read` and `Seek`
+/// traits.
+///
+/// This allows types such as `BufReader<R>` to use the methods provided by the `AdvancedRead`
+/// trait.
 impl<R: Read + Seek + ?Sized> AdvancedRead for R {}
 
 impl crate::FileFormat {
-    /// Determines [`FileFormat`] from a **Compound File Binary** reader.
+    /// Attempts to parse the reader as a Compound File Binary.
+    ///
+    /// It extracts its root entry's CLSID, then compares it to a set of known values and returns
+    /// the corresponding variant. If the CLSID does not match any of the known values, the function
+    /// returns the `CompoundFileBinary` variant.
     #[cfg(feature = "cfb")]
     pub(crate) fn from_cfb<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         let file = cfb::CompoundFile::open(reader)?;
@@ -56,7 +68,8 @@ impl crate::FileFormat {
         })
     }
 
-    /// Determines [`FileFormat`] from a **Matroska Video** reader.
+    /// Searches the reader for the "webm" byte sequence. If this sequence is found the function
+    /// returns the `Webm` variant. Otherwise, it returns the `MatroskaVideo` variant.
     pub(crate) fn from_mkv<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         Ok(if reader.search(b"webm", 4096)? {
             Self::Webm
@@ -65,7 +78,19 @@ impl crate::FileFormat {
         })
     }
 
-    /// Determines [`FileFormat`] from a **MS-DOS Executable** reader.
+    /// Attempts to parse the reader as a MS-DOS Executable.
+    ///
+    /// It seeks to the `0x3C` offset in the reader and reads a little-endian `u32` from that
+    /// position. This integer, known as the `e_lfanew` field, indicates the offset to the start of
+    /// the Portable Executable header.
+    ///
+    /// It then seeks to this address and reads a little-endian `u32`. If this integer is `0x4550`,
+    /// it indicates that it is a Portable Executable and the function seeks to `0x12` position
+    /// which corresponds to the `characteristics` field. If this integer has the `0x2000` bit set
+    /// (IMAGE_FILE_DLL), it returns the `DynamicLinkLibrary` variant. Otherwise, it returns the
+    /// `PortableExecutable` variant.
+    ///
+    /// If it is not a Portable Executable, this function returns the `MsDosExecutable` variant.
     pub(crate) fn from_ms_dos_exe<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         reader.seek(SeekFrom::Start(0x3C))?;
         let address = reader.read_le_u32()?;
@@ -81,7 +106,9 @@ impl crate::FileFormat {
         Ok(Self::MsDosExecutable)
     }
 
-    /// Determines [`FileFormat`] from a **Portable Document Format** reader.
+    /// Searches the reader for the "AIPrivateData" byte sequence. If this sequence is found the
+    /// function returns the `AdobeIllustratorArtwork` variant. Otherwise, it returns the
+    /// `PortableDocumentFormat` variant.
     pub(crate) fn from_pdf<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         Ok(if reader.search(b"AIPrivateData", 1048576)? {
             Self::AdobeIllustratorArtwork
@@ -90,7 +117,9 @@ impl crate::FileFormat {
         })
     }
 
-    /// Determines [`FileFormat`] from a **Plain Text** reader.
+    /// Attempts to determine if the reader contains Plain Text by checking the first lines for
+    /// control characters. If any control characters (other than whitespace) are found, this
+    /// function returns an error. Otherwise, it returns the `PlainText` variant.
     pub(crate) fn from_plain_text<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         for line in reader.take(1048576).lines().take(32) {
             if line?
@@ -103,7 +132,9 @@ impl crate::FileFormat {
         Ok(Self::PlainText)
     }
 
-    /// Determines [`FileFormat`] from an **Extensible Markup Language** reader.
+    /// Searches the reader for byte sequences that indicate the presence of various Extensible
+    /// Markup Language-based formats. If none are found, it returns the `ExtensibleMarkupLanguage`
+    /// variant.
     pub(crate) fn from_xml<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         Ok(if reader.search(b"<xsl", 256)? {
             Self::ExtensibleStylesheetLanguageTransformations
@@ -124,7 +155,11 @@ impl crate::FileFormat {
         })
     }
 
-    /// Determines [`FileFormat`] from a **ZIP** reader.
+    /// Attempts to parse the reader as a ZIP.
+    ///
+    /// It checks for certain file names or contents within the archive that indicate the presence
+    /// of specific file formats. If a match is found, the corresponding variant is returned.
+    /// Otherwise, it returns the `Zip` variant.
     #[cfg(feature = "zip")]
     pub(crate) fn from_zip<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         let mut archive = zip::ZipArchive::new(reader)?;
