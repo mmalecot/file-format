@@ -92,18 +92,13 @@ impl crate::FileFormat {
 
     /// Determines [`FileFormat`] from a **Plain Text** reader.
     pub(crate) fn from_plain_text<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        let mut reader = reader.take(1048576);
-        let mut buffer = String::new();
-        let mut index = 0;
-        while index < 32 && reader.read_line(&mut buffer)? > 0 {
-            if buffer
+        for line in reader.take(1048576).lines().take(32) {
+            if line?
                 .chars()
                 .any(|char| char.is_control() && !char.is_whitespace())
             {
                 return Err(Error::new(ErrorKind::InvalidData, "Invalid chars"));
             }
-            buffer.clear();
-            index += 1;
         }
         Ok(Self::PlainText)
     }
