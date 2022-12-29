@@ -1,5 +1,9 @@
 # Version 0.12.0 (unreleased)
 
+## API
+
+- Add `accuracy` feature
+
 ## Docs
 
 - Improves global documentation

@@ -71,7 +71,11 @@ impl crate::FileFormat {
     /// Searches the reader for the "webm" byte sequence. If this sequence is found the function
     /// returns the `Webm` variant. Otherwise, it returns the `MatroskaVideo` variant.
     pub(crate) fn from_mkv<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        Ok(if reader.search(b"webm", 4096)? {
+        const SEARCH_LIMIT: u64 = match cfg!(feature = "accuracy") {
+            true => 4096,
+            false => 1024,
+        };
+        Ok(if reader.search(b"webm", SEARCH_LIMIT)? {
             Self::Webm
         } else {
             Self::MatroskaVideo
@@ -110,7 +114,11 @@ impl crate::FileFormat {
     /// function returns the `AdobeIllustratorArtwork` variant. Otherwise, it returns the
     /// `PortableDocumentFormat` variant.
     pub(crate) fn from_pdf<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        Ok(if reader.search(b"AIPrivateData", 1048576)? {
+        const SEARCH_LIMIT: u64 = match cfg!(feature = "accuracy") {
+            true => 4_194_304,
+            false => 1_048_576,
+        };
+        Ok(if reader.search(b"AIPrivateData", SEARCH_LIMIT)? {
             Self::AdobeIllustratorArtwork
         } else {
             Self::PortableDocumentFormat
@@ -121,7 +129,15 @@ impl crate::FileFormat {
     /// control characters. If any control characters (other than whitespace) are found, this
     /// function returns an error. Otherwise, it returns the `PlainText` variant.
     pub(crate) fn from_plain_text<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        for line in reader.take(1048576).lines().take(32) {
+        const READ_LIMIT: u64 = match cfg!(feature = "accuracy") {
+            true => 8_388_608,
+            false => 1_048_576,
+        };
+        const LINE_LIMIT: usize = match cfg!(feature = "accuracy") {
+            true => 256,
+            false => 32,
+        };
+        for line in reader.take(READ_LIMIT).lines().take(LINE_LIMIT) {
             if line?
                 .chars()
                 .any(|char| char.is_control() && !char.is_whitespace())
@@ -136,19 +152,23 @@ impl crate::FileFormat {
     /// Markup Language-based formats. If none are found, it returns the `ExtensibleMarkupLanguage`
     /// variant.
     pub(crate) fn from_xml<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        Ok(if reader.search(b"<xsl", 256)? {
+        const SEARCH_LIMIT: u64 = match cfg!(feature = "accuracy") {
+            true => 1024,
+            false => 256,
+        };
+        Ok(if reader.search(b"<xsl", SEARCH_LIMIT)? {
             Self::ExtensibleStylesheetLanguageTransformations
-        } else if reader.search(b"<gml", 256)? {
+        } else if reader.search(b"<gml", SEARCH_LIMIT)? {
             Self::GeographyMarkupLanguage
-        } else if reader.search(b"<kml", 256)? {
+        } else if reader.search(b"<kml", SEARCH_LIMIT)? {
             Self::KeyholeMarkupLanguage
-        } else if reader.search(b"<score-partwise", 256)? {
+        } else if reader.search(b"<score-partwise", SEARCH_LIMIT)? {
             Self::Musicxml
-        } else if reader.search(b"<rss", 256)? {
+        } else if reader.search(b"<rss", SEARCH_LIMIT)? {
             Self::ReallySimpleSyndication
-        } else if reader.search(b"<svg", 256)? {
+        } else if reader.search(b"<svg", SEARCH_LIMIT)? {
             Self::ScalableVectorGraphics
-        } else if reader.search(b"<soap", 256)? {
+        } else if reader.search(b"<soap", SEARCH_LIMIT)? {
             Self::SimpleObjectAccessProtocol
         } else {
             Self::ExtensibleMarkupLanguage
@@ -162,9 +182,13 @@ impl crate::FileFormat {
     /// Otherwise, it returns the `Zip` variant.
     #[cfg(feature = "zip")]
     pub(crate) fn from_zip<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        const FILE_LIMIT: usize = match cfg!(feature = "accuracy") {
+            true => 4096,
+            false => 1024,
+        };
         let mut archive = zip::ZipArchive::new(reader)?;
         let mut format = Self::Zip;
-        for index in 0..cmp::min(archive.len(), 1024) {
+        for index in 0..cmp::min(archive.len(), FILE_LIMIT) {
             let file = archive.by_index(index)?;
             match file.name() {
                 "AndroidManifest.xml" => return Ok(Self::AndroidPackage),

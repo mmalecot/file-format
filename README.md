@@ -54,6 +54,7 @@ file-format = "0.12"
 
 ## Features
 
+- `accuracy` - Improves the accuracy but may increase the processing time and memory usage.
 - `cfb` - Enables Compound File Binary-based formats support:
     - Microsoft Excel Spreadsheet
     - Microsoft PowerPoint Presentation
