@@ -137,14 +137,17 @@ impl crate::FileFormat {
             true => 256,
             false => 32,
         };
-        for line in reader.take(READ_LIMIT).lines().take(LINE_LIMIT) {
-            if line?
-                .chars()
-                .any(|char| char.is_control() && !char.is_whitespace())
-            {
-                return Err(Error::new(ErrorKind::InvalidData, "Invalid chars"));
-            }
-        }
+        reader
+            .take(READ_LIMIT)
+            .lines()
+            .take(LINE_LIMIT)
+            .try_for_each(|line| {
+                line?
+                    .chars()
+                    .find(|char| char.is_control() && !char.is_whitespace())
+                    .map(|_| Err(Error::new(ErrorKind::InvalidData, "Invalid chars")))
+                    .unwrap_or(Ok(()))
+            })?;
         Ok(Self::PlainText)
     }
 
