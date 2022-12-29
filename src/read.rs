@@ -147,8 +147,8 @@ impl crate::FileFormat {
                     .find(|char| char.is_control() && !char.is_whitespace())
                     .map(|_| Err(Error::new(ErrorKind::InvalidData, "Invalid chars")))
                     .unwrap_or(Ok(()))
-            })?;
-        Ok(Self::PlainText)
+            })
+            .map(|_| Self::PlainText)
     }
 
     /// Searches the reader for byte sequences that indicate the presence of various Extensible
