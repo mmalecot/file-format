@@ -39,7 +39,7 @@ trait AdvancedRead: Read + Seek {
 impl<R: Read + Seek + ?Sized> AdvancedRead for R {}
 
 impl crate::FileFormat {
-    /// Attempts to parse the reader as a Compound File Binary.
+    /// Attempts to parse the reader as a CFB.
     ///
     /// It extracts its root entry's CLSID, then compares it to a set of known values and returns
     /// the corresponding variant. If the CLSID does not match any of the known values, the function
@@ -143,9 +143,8 @@ impl crate::FileFormat {
             .map(|_| Self::PlainText)
     }
 
-    /// Searches the reader for byte sequences that indicate the presence of various Extensible
-    /// Markup Language-based formats. If none are found, it returns the `ExtensibleMarkupLanguage`
-    /// variant.
+    /// Searches the reader for byte sequences that indicate the presence of various XML-based
+    /// formats. If none are found, it returns the `ExtensibleMarkupLanguage` variant.
     pub(crate) fn from_xml<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         const SEARCH_LIMIT: u64 = match cfg!(feature = "accuracy") {
             true => 1024,

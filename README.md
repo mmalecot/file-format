@@ -8,8 +8,8 @@
 
 Crate for determining the file format of a given file or stream.
 
-It provides a variety of functions for identifying a wide range of file formats, including ZIP,
-Compound File Binary, Extensible Markup Language and more.
+It provides a variety of functions for identifying a wide range of file formats, including ZIP, CFB,
+XML and more.
 
 It checks the signature of the file to determine its format. If the file format is not recognized by
 its signature, it checks if it is Plain Text. Otherwise, it returns the default file format which is
@@ -55,7 +55,7 @@ file-format = "0.12"
 ## Features
 
 - `accuracy` - Improves the accuracy but may increase the processing time and memory usage.
-- `cfb` - Enables Compound File Binary-based formats support:
+- `cfb` - Enables CFB-based formats support:
     - Microsoft Excel Spreadsheet
     - Microsoft PowerPoint Presentation
     - Microsoft Project Plan

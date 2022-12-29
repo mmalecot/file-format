@@ -2,8 +2,8 @@
 Crate for determining the file format of a given file or stream.
 
 It provides a variety of functions for identifying a wide range of file formats, including
-[ZIP](`FileFormat::Zip`), [Compound File Binary](`FileFormat::CompoundFileBinary`),
-[Extensible Markup Language](`FileFormat::ExtensibleMarkupLanguage`) and [more](`FileFormat`).
+[ZIP](`FileFormat::Zip`), [CFB](`FileFormat::CompoundFileBinary`),
+[XML](`FileFormat::ExtensibleMarkupLanguage`) and [more](`FileFormat`).
 
 It checks the signature of the file to determine its format. If the file format is not recognized by
 its signature, it checks if it is [Plain Text](`FileFormat::PlainText`). Otherwise, it returns the
@@ -50,7 +50,7 @@ file-format = "0.12"
 ## Features
 
 - `accuracy` - Improves the accuracy but may increase the processing time and memory usage.
-- `cfb` - Enables [Compound File Binary](`FileFormat::CompoundFileBinary`)-based formats support:
+- `cfb` - Enables [CFB](`FileFormat::CompoundFileBinary`)-based formats support:
     - [Microsoft Excel Spreadsheet](`FileFormat::MicrosoftExcelSpreadsheet`)
     - [Microsoft PowerPoint Presentation](`FileFormat::MicrosoftPowerpointPresentation`)
     - [Microsoft Project Plan](`FileFormat::MicrosoftProjectPlan`)
@@ -1532,8 +1532,7 @@ impl FileFormat {
     ///
     /// # Examples
     ///
-    /// Detects from the first bytes of a
-    /// [Portable Network Graphics](`FileFormat::PortableNetworkGraphics`) file:
+    /// Detects from the first bytes of a [PNG](`FileFormat::PortableNetworkGraphics`) file:
     ///
     /// ```rust
     /// use file_format::FileFormat;
