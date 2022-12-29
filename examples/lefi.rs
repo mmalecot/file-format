@@ -24,7 +24,7 @@ fn main() -> Result<()> {
     for input in env::args().skip(1) {
         let path = Path::new(&input);
         if path.is_symlink() {
-            println!("{input:width$} Symbolic link • inode/symlink");
+            println!("{input:width$} Symbolic Link • inode/symlink");
         } else if path.is_dir() {
             println!("{input:width$} Directory • inode/directory");
         } else {
