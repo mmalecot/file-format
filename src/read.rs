@@ -1,9 +1,6 @@
 //! Read.
 
-use std::{
-    cmp,
-    io::{BufRead, BufReader, Error, ErrorKind, Read, Result, Seek, SeekFrom},
-};
+use std::io::{BufRead, BufReader, Error, ErrorKind, Read, Result, Seek, SeekFrom};
 
 /// Provides several methods for reading and searching within a reader.
 trait AdvancedRead: Read + Seek {
@@ -23,19 +20,14 @@ trait AdvancedRead: Read + Seek {
         Ok(u32::from_le_bytes(buffer))
     }
 
-    /// Searches for a sequence of bytes within the reader.
-    ///
-    /// The `bytes` parameter is the sequence of bytes to search for. The `size` parameter is the
-    /// maximum number of bytes to search within the reader.
+    /// Checks if the stream contains the given `bytes` within the first `size` bytes.
     #[inline]
-    fn search(&mut self, bytes: &[u8], size: u64) -> Result<bool> {
-        let position = self.stream_position()?;
-        let length = self.seek(SeekFrom::End(0))?;
-        self.seek(SeekFrom::Start(position))?;
-        let mut buffer = vec![0; cmp::min(size as usize, length.saturating_sub(position) as usize)];
-        self.read_exact(&mut buffer)?;
-        self.seek(SeekFrom::Start(position))?;
-        Ok(buffer.windows(bytes.len()).any(|window| window == bytes))
+    fn contains(&mut self, bytes: &[u8], size: u64) -> Result<bool> {
+        self.rewind()?;
+        Ok(BufReader::new(self.take(size))
+            .fill_buf()?
+            .windows(bytes.len())
+            .any(|window| window == bytes))
     }
 }
 
@@ -75,7 +67,7 @@ impl crate::FileFormat {
             true => 4096,
             false => 1024,
         };
-        Ok(if reader.search(b"webm", SEARCH_LIMIT)? {
+        Ok(if reader.contains(b"webm", SEARCH_LIMIT)? {
             Self::Webm
         } else {
             Self::MatroskaVideo
@@ -118,7 +110,7 @@ impl crate::FileFormat {
             true => 4_194_304,
             false => 1_048_576,
         };
-        Ok(if reader.search(b"AIPrivateData", SEARCH_LIMIT)? {
+        Ok(if reader.contains(b"AIPrivateData", SEARCH_LIMIT)? {
             Self::AdobeIllustratorArtwork
         } else {
             Self::PortableDocumentFormat
@@ -159,19 +151,19 @@ impl crate::FileFormat {
             true => 1024,
             false => 256,
         };
-        Ok(if reader.search(b"<xsl", SEARCH_LIMIT)? {
+        Ok(if reader.contains(b"<xsl", SEARCH_LIMIT)? {
             Self::ExtensibleStylesheetLanguageTransformations
-        } else if reader.search(b"<gml", SEARCH_LIMIT)? {
+        } else if reader.contains(b"<gml", SEARCH_LIMIT)? {
             Self::GeographyMarkupLanguage
-        } else if reader.search(b"<kml", SEARCH_LIMIT)? {
+        } else if reader.contains(b"<kml", SEARCH_LIMIT)? {
             Self::KeyholeMarkupLanguage
-        } else if reader.search(b"<score-partwise", SEARCH_LIMIT)? {
+        } else if reader.contains(b"<score-partwise", SEARCH_LIMIT)? {
             Self::Musicxml
-        } else if reader.search(b"<rss", SEARCH_LIMIT)? {
+        } else if reader.contains(b"<rss", SEARCH_LIMIT)? {
             Self::ReallySimpleSyndication
-        } else if reader.search(b"<svg", SEARCH_LIMIT)? {
+        } else if reader.contains(b"<svg", SEARCH_LIMIT)? {
             Self::ScalableVectorGraphics
-        } else if reader.search(b"<soap", SEARCH_LIMIT)? {
+        } else if reader.contains(b"<soap", SEARCH_LIMIT)? {
             Self::SimpleObjectAccessProtocol
         } else {
             Self::ExtensibleMarkupLanguage
@@ -191,7 +183,7 @@ impl crate::FileFormat {
         };
         let mut archive = zip::ZipArchive::new(reader)?;
         let mut format = Self::Zip;
-        for index in 0..cmp::min(archive.len(), FILE_LIMIT) {
+        for index in 0..std::cmp::min(archive.len(), FILE_LIMIT) {
             let file = archive.by_index(index)?;
             match file.name() {
                 "AndroidManifest.xml" => return Ok(Self::AndroidPackage),
