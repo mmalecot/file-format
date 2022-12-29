@@ -12,8 +12,8 @@ It provides a variety of functions for identifying a wide range of file formats,
 Compound File Binary, Extensible Markup Language and more.
 
 It checks the signature of the file to determine its format. If the file format is not recognized by
-its signature, it will check if it is Plain Text. Otherwise, it will return the default file format
-which is Arbitrary Binary Data.
+its signature, it checks if it is Plain Text. Otherwise, it returns the default file format which is
+Arbitrary Binary Data.
 
 ## Examples
 
