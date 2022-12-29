@@ -241,7 +241,6 @@ formats! {
     media_type = "application/octet-stream"
     extension = "bin"
     kind = Application
-    comment = "Default format"
 
     format = ArchivedByRobertJung
     name = "Archived by Robert Jung"
@@ -1166,7 +1165,6 @@ formats! {
     media_type = "text/plain"
     extension = "txt"
     kind = Text
-    comment = "UTF-8 encoded"
 
     format = PortableDocumentFormat
     name = "Portable Document Format"
