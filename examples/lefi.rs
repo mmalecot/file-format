@@ -1,76 +1,38 @@
-//! Simplified version of the UNIX file command.
+/*!
+This is a program that provides a simplified version of the UNIX `file` command. It determines the
+file format of a given file and prints out various information, such as its extension and media
+type.
 
-use file_format::{FileFormat, Kind};
-use std::{env, fmt::Display, io::Result, path::Path};
+The program first parses the command-line arguments passed to it and finds the maximum width of the
+input file paths. This is used to align the output when printing the results.
 
-trait Decorate: Display {
-    fn underline(&self) -> String {
-        format!("\x1B[4m{self}\x1B[0m")
-    }
+Next, the program iterates over the input file paths passed as command-line arguments. For each file
+path, it checks whether it is a symbolic link or a directory. If so, the program prints out a
+special message. Otherwise, the program determines the file format using the `FileFormat::from_file`
+function and prints out the results.
+*/
 
-    fn red(&self) -> String {
-        format!("\x1B[31m{self}\x1B[0m")
-    }
-
-    fn green(&self) -> String {
-        format!("\x1B[32m{self}\x1B[0m")
-    }
-
-    fn yellow(&self) -> String {
-        format!("\x1B[33m{self}\x1B[0m")
-    }
-
-    fn blue(&self) -> String {
-        format!("\x1B[34m{self}\x1B[0m")
-    }
-
-    fn magenta(&self) -> String {
-        format!("\x1B[35m{self}\x1B[0m")
-    }
-
-    fn cyan(&self) -> String {
-        format!("\x1B[36m{self}\x1B[0m")
-    }
-}
-
-impl<D: Display> Decorate for D {}
+use file_format::FileFormat;
+use std::{env, io::Result, path::Path};
 
 fn main() -> Result<()> {
     let width = env::args()
         .skip(1)
         .map(|input| input.chars().count())
-        .collect::<Vec<usize>>()
-        .into_iter()
-        .max()
+        .max_by_key(|&count| count)
         .unwrap_or_default();
     for input in env::args().skip(1) {
         let path = Path::new(&input);
         if path.is_symlink() {
-            println!(
-                "{input:width$} {name} • {media_type}",
-                name = "Symbolic link".red(),
-                media_type = "inode/symlink".underline(),
-            );
+            println!("{input:width$} Symbolic Link • inode/symlink");
         } else if path.is_dir() {
-            println!(
-                "{input:width$} {name} • {media_type}",
-                name = "Directory".red(),
-                media_type = "inode/directory".underline(),
-            );
+            println!("{input:width$} Directory • inode/directory");
         } else {
             let format = FileFormat::from_file(path)?;
             println!(
-                "{input:width$} {name} • {extension} • {media_type}",
-                name = match format.kind() {
-                    Kind::Application => format.blue(),
-                    Kind::Audio => format.cyan(),
-                    Kind::Image => format.magenta(),
-                    Kind::Text => format.yellow(),
-                    Kind::Video => format.green(),
-                    _ => format.to_string(),
-                },
+                "{input:width$} {format} • {extension} • {media_type}",
                 extension = format.extension(),
-                media_type = format.media_type().underline(),
+                media_type = format.media_type()
             );
         }
     }

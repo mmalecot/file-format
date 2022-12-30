@@ -1,13 +1,10 @@
 //! Read.
 
-use std::{
-    cmp,
-    io::{BufRead, BufReader, Error, ErrorKind, Read, Result, Seek, SeekFrom},
-};
+use std::io::{BufRead, BufReader, Error, ErrorKind, Read, Result, Seek, SeekFrom};
 
-/// Extends [`Read`] and [`Seek`].
+/// Provides several methods for reading and searching within a reader.
 trait AdvancedRead: Read + Seek {
-    /// Reads an unsigned 16 bit integer in little endian.
+    /// Reads two bytes from the reader and returns them as a little-endian `u16` value.
     #[inline]
     fn read_le_u16(&mut self) -> Result<u16> {
         let mut buffer = [0; 2];
@@ -15,7 +12,7 @@ trait AdvancedRead: Read + Seek {
         Ok(u16::from_le_bytes(buffer))
     }
 
-    /// Reads an unsigned 32 bit integer in little endian.
+    /// Reads four bytes from the reader and returns them as a little-endian `u32` value.
     #[inline]
     fn read_le_u32(&mut self) -> Result<u32> {
         let mut buffer = [0; 4];
@@ -23,23 +20,30 @@ trait AdvancedRead: Read + Seek {
         Ok(u32::from_le_bytes(buffer))
     }
 
-    /// Searches for bytes.
+    /// Checks if the stream contains the given `bytes` within the first `size` bytes.
     #[inline]
-    fn search(&mut self, bytes: &[u8], size: u64) -> Result<bool> {
-        let position = self.stream_position()?;
-        let length = self.seek(SeekFrom::End(0))?;
-        self.seek(SeekFrom::Start(position))?;
-        let mut buffer = vec![0; cmp::min(size as usize, length.saturating_sub(position) as usize)];
-        self.read_exact(&mut buffer)?;
-        self.seek(SeekFrom::Start(position))?;
-        Ok(buffer.windows(bytes.len()).any(|window| window == bytes))
+    fn contains(&mut self, bytes: &[u8], size: u64) -> Result<bool> {
+        self.rewind()?;
+        Ok(BufReader::new(self.take(size))
+            .fill_buf()?
+            .windows(bytes.len())
+            .any(|window| window == bytes))
     }
 }
 
+/// Implements the `AdvancedRead` trait for any type `R` that implements the `Read` and `Seek`
+/// traits.
+///
+/// This allows types such as `BufReader<R>` to use the methods provided by the `AdvancedRead`
+/// trait.
 impl<R: Read + Seek + ?Sized> AdvancedRead for R {}
 
 impl crate::FileFormat {
-    /// Determines [`FileFormat`] from a **Compound File Binary** reader.
+    /// Attempts to parse the reader as a CFB.
+    ///
+    /// It extracts its root entry's CLSID, then compares it to a set of known values and returns
+    /// the corresponding variant. If the CLSID does not match any of the known values, the function
+    /// returns the `CompoundFileBinary` variant.
     #[cfg(feature = "cfb")]
     pub(crate) fn from_cfb<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         let file = cfb::CompoundFile::open(reader)?;
@@ -56,21 +60,37 @@ impl crate::FileFormat {
         })
     }
 
-    /// Determines [`FileFormat`] from a **Matroska Video** reader.
+    /// Searches the reader for the "webm" byte sequence. If this sequence is found the function
+    /// returns the `Webm` variant. Otherwise, it returns the `MatroskaVideo` variant.
     pub(crate) fn from_mkv<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        Ok(if reader.search(b"webm", 4096)? {
+        const SEARCH_LIMIT: u64 = match cfg!(feature = "accuracy") {
+            true => 4096,
+            false => 1024,
+        };
+        Ok(if reader.contains(b"webm", SEARCH_LIMIT)? {
             Self::Webm
         } else {
             Self::MatroskaVideo
         })
     }
 
-    /// Determines [`FileFormat`] from a **MS-DOS Executable** reader.
+    /// Attempts to parse the reader as a MS-DOS Executable.
+    ///
+    /// It first seeks to the `0x3C` offset within the reader and reads the `e_lfanew` field which
+    /// indicates the offset to the beginning of the Portable Executable header.
+    ///
+    /// It then seeks to this address and reads the `Signature` field. If this dword is
+    /// `0x00004550`, it indicates that it is a Portable Executable. Otherwise, it returns the
+    /// `MsDosExecutable` variant.
+    ///
+    /// Finally, it seeks to `0x12` offset and reads the `Characteristics` field. If this word has
+    /// the `0x2000` bit set (`IMAGE_FILE_DLL`), it returns the `DynamicLinkLibrary` variant.
+    /// Otherwise, it returns the `PortableExecutable` variant.
     pub(crate) fn from_ms_dos_exe<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         reader.seek(SeekFrom::Start(0x3C))?;
         let address = reader.read_le_u32()?;
         reader.seek(SeekFrom::Start(address as u64))?;
-        if reader.read_le_u32()? == 0x4550 {
+        if reader.read_le_u32()? == 0x00004550 {
             reader.seek(SeekFrom::Current(0x12))?;
             return Ok(if reader.read_le_u16()? & 0x2000 == 0x2000 {
                 Self::DynamicLinkLibrary
@@ -81,60 +101,87 @@ impl crate::FileFormat {
         Ok(Self::MsDosExecutable)
     }
 
-    /// Determines [`FileFormat`] from a **Portable Document Format** reader.
+    /// Searches the reader for the "AIPrivateData" byte sequence. If this sequence is found the
+    /// function returns the `AdobeIllustratorArtwork` variant. Otherwise, it returns the
+    /// `PortableDocumentFormat` variant.
     pub(crate) fn from_pdf<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        Ok(if reader.search(b"AIPrivateData", 1048576)? {
+        const SEARCH_LIMIT: u64 = match cfg!(feature = "accuracy") {
+            true => 4_194_304,
+            false => 1_048_576,
+        };
+        Ok(if reader.contains(b"AIPrivateData", SEARCH_LIMIT)? {
             Self::AdobeIllustratorArtwork
         } else {
             Self::PortableDocumentFormat
         })
     }
 
-    /// Determines [`FileFormat`] from a **Plain Text** reader.
+    /// Attempts to determine if the reader contains Plain Text by checking the first lines for
+    /// control characters. If any control characters (other than whitespace) are found, this
+    /// function returns an error. Otherwise, it returns the `PlainText` variant.
     pub(crate) fn from_plain_text<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        let mut reader = reader.take(1048576);
-        let mut buffer = String::new();
-        let mut index = 0;
-        while index < 32 && reader.read_line(&mut buffer)? > 0 {
-            if buffer
-                .chars()
-                .any(|char| char.is_control() && !char.is_whitespace())
-            {
-                return Err(Error::new(ErrorKind::InvalidData, "Invalid chars"));
-            }
-            buffer.clear();
-            index += 1;
-        }
-        Ok(Self::PlainText)
+        const READ_LIMIT: u64 = match cfg!(feature = "accuracy") {
+            true => 8_388_608,
+            false => 1_048_576,
+        };
+        const LINE_LIMIT: usize = match cfg!(feature = "accuracy") {
+            true => 256,
+            false => 32,
+        };
+        reader
+            .take(READ_LIMIT)
+            .lines()
+            .take(LINE_LIMIT)
+            .try_for_each(|line| {
+                line?
+                    .chars()
+                    .find(|char| char.is_control() && !char.is_whitespace())
+                    .map(|_| Err(Error::new(ErrorKind::InvalidData, "Invalid chars")))
+                    .unwrap_or(Ok(()))
+            })
+            .map(|_| Self::PlainText)
     }
 
-    /// Determines [`FileFormat`] from an **Extensible Markup Language** reader.
+    /// Searches the reader for byte sequences that indicate the presence of various XML-based
+    /// formats. If none are found, it returns the `ExtensibleMarkupLanguage` variant.
     pub(crate) fn from_xml<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        Ok(if reader.search(b"<xsl", 256)? {
+        const SEARCH_LIMIT: u64 = match cfg!(feature = "accuracy") {
+            true => 1024,
+            false => 256,
+        };
+        Ok(if reader.contains(b"<xsl", SEARCH_LIMIT)? {
             Self::ExtensibleStylesheetLanguageTransformations
-        } else if reader.search(b"<gml", 256)? {
+        } else if reader.contains(b"<gml", SEARCH_LIMIT)? {
             Self::GeographyMarkupLanguage
-        } else if reader.search(b"<kml", 256)? {
+        } else if reader.contains(b"<kml", SEARCH_LIMIT)? {
             Self::KeyholeMarkupLanguage
-        } else if reader.search(b"<score-partwise", 256)? {
+        } else if reader.contains(b"<score-partwise", SEARCH_LIMIT)? {
             Self::Musicxml
-        } else if reader.search(b"<rss", 256)? {
+        } else if reader.contains(b"<rss", SEARCH_LIMIT)? {
             Self::ReallySimpleSyndication
-        } else if reader.search(b"<svg", 256)? {
+        } else if reader.contains(b"<svg", SEARCH_LIMIT)? {
             Self::ScalableVectorGraphics
-        } else if reader.search(b"<soap", 256)? {
+        } else if reader.contains(b"<soap", SEARCH_LIMIT)? {
             Self::SimpleObjectAccessProtocol
         } else {
             Self::ExtensibleMarkupLanguage
         })
     }
 
-    /// Determines [`FileFormat`] from a **ZIP** reader.
+    /// Attempts to parse the reader as a ZIP.
+    ///
+    /// It checks for certain file names or contents within the archive that indicate the presence
+    /// of specific file formats. If a match is found, the corresponding variant is returned.
+    /// Otherwise, it returns the `Zip` variant.
     #[cfg(feature = "zip")]
     pub(crate) fn from_zip<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        const FILE_LIMIT: usize = match cfg!(feature = "accuracy") {
+            true => 4096,
+            false => 1024,
+        };
         let mut archive = zip::ZipArchive::new(reader)?;
         let mut format = Self::Zip;
-        for index in 0..cmp::min(archive.len(), 1024) {
+        for index in 0..std::cmp::min(archive.len(), FILE_LIMIT) {
             let file = archive.by_index(index)?;
             match file.name() {
                 "AndroidManifest.xml" => return Ok(Self::AndroidPackage),
