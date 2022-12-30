@@ -76,22 +76,21 @@ impl crate::FileFormat {
 
     /// Attempts to parse the reader as a MS-DOS Executable.
     ///
-    /// It seeks to the `0x3C` offset in the reader and reads a little-endian `u32` from that
-    /// position. This integer, known as the `e_lfanew` field, indicates the offset to the start of
-    /// the Portable Executable header.
+    /// It first seeks to the `0x3C` offset within the reader and reads the `e_lfanew` field which
+    /// indicates the offset to the beginning of the Portable Executable header.
     ///
-    /// It then seeks to this address and reads a little-endian `u32`. If this integer is `0x4550`,
-    /// it indicates that it is a Portable Executable and the function seeks to `0x12` position
-    /// which corresponds to the `characteristics` field. If this integer has the `0x2000` bit set
-    /// (IMAGE_FILE_DLL), it returns the `DynamicLinkLibrary` variant. Otherwise, it returns the
-    /// `PortableExecutable` variant.
+    /// It then seeks to this address and reads the `Signature` field. If this dword is
+    /// `0x00004550`, it indicates that it is a Portable Executable. Otherwise, it returns the
+    /// `MsDosExecutable` variant.
     ///
-    /// If it is not a Portable Executable, this function returns the `MsDosExecutable` variant.
+    /// Finally, it seeks to `0x12` offset and reads the `Characteristics` field. If this word has
+    /// the `0x2000` bit set (`IMAGE_FILE_DLL`), it returns the `DynamicLinkLibrary` variant.
+    /// Otherwise, it returns the `PortableExecutable` variant.
     pub(crate) fn from_ms_dos_exe<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         reader.seek(SeekFrom::Start(0x3C))?;
         let address = reader.read_le_u32()?;
         reader.seek(SeekFrom::Start(address as u64))?;
-        if reader.read_le_u32()? == 0x4550 {
+        if reader.read_le_u32()? == 0x00004550 {
             reader.seek(SeekFrom::Current(0x12))?;
             return Ok(if reader.read_le_u16()? & 0x2000 == 0x2000 {
                 Self::DynamicLinkLibrary
