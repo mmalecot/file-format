@@ -194,6 +194,7 @@ All these features are disabled by default.
 - Keyhole Markup Language Zipped (KMZ)
 - Khronos Texture (KTX)
 - Khronos Texture 2 (KTX2)
+- LArc (LZS)
 - LHA
 - LLVM Bitcode (BC)
 - LZ4
@@ -268,6 +269,7 @@ All these features are disabled by default.
 - PGP Public Key Block (ASC)
 - PGP Signature (ASC)
 - PGP Signed Message (ASC)
+- PMarc (PMA)
 - Panasonic Raw (RW2)
 - Perl Script
 - Plain Text (TXT)

@@ -272,6 +272,12 @@ fn test_keyhole_markup_language_zipped() {
 }
 
 #[test]
+fn test_larc() {
+    let format = FileFormat::from_file("fixtures/application/sample.lzs").unwrap();
+    assert_eq!(format, FileFormat::Larc);
+}
+
+#[test]
 fn test_lempel_ziv_finite_state_entropy() {
     let format = FileFormat::from_file("fixtures/application/sample.lzfse").unwrap();
     assert_eq!(format, FileFormat::LempelZivFiniteStateEntropy);
@@ -592,6 +598,12 @@ fn test_pgp_signature() {
 fn test_pgp_signed_message() {
     let format = FileFormat::from_file("fixtures/application/sample5.asc").unwrap();
     assert_eq!(format, FileFormat::PgpSignedMessage);
+}
+
+#[test]
+fn test_pmarc() {
+    let format = FileFormat::from_file("fixtures/application/sample.pma").unwrap();
+    assert_eq!(format, FileFormat::Pmarc);
 }
 
 #[test]

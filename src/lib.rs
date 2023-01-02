@@ -789,6 +789,13 @@ formats! {
     extension = "ktx2"
     kind = Image
 
+    format = Larc
+    name = "LArc"
+    short_name = "LZS"
+    media_type = "application/x-lzh-compressed"
+    extension = "lzs"
+    kind = Application
+
     format = Latex
     name = "LaTeX"
     short_name = "TeX"
@@ -1334,6 +1341,13 @@ formats! {
     media_type = "text/plain"
     extension = "txt"
     kind = Text
+
+    format = Pmarc
+    name = "PMarc"
+    short_name = "PMA"
+    media_type = "application/x-lzh-compressed"
+    extension = "pma"
+    kind = Application
 
     format = PortableDocumentFormat
     name = "Portable Document Format"
