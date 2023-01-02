@@ -6,6 +6,7 @@ macro_rules! formats {
         $(
             format = $format:ident
             name = $name:literal
+            $(short_name = $short_name:literal)?
             media_type = $media_type:literal
             extension = $extension:literal
             kind = $kind:ident
@@ -15,7 +16,7 @@ macro_rules! formats {
         #[derive(Clone, Debug, Eq, PartialEq)]
         pub enum FileFormat {
             $(
-                #[doc=concat!($name, ".")]
+                #[doc=concat!($name, $(" (", $short_name, ")",)? ".")]
                 #[doc=concat!("- Media type: `", $media_type, "`")]
                 #[doc=concat!("- Extension: `", $extension, "`")]
                 #[doc=concat!("- Kind: [", stringify!($kind), "](`Kind::", stringify!($kind), "`)")]
@@ -39,6 +40,49 @@ macro_rules! formats {
                     $(
                         Self::$format => $name,
                     )*
+                }
+            }
+
+            /// Returns a shortened version of the name of the file format.
+            ///
+            /// This may be the same as the [name](crate::FileFormat::name).
+            ///
+            /// # Examples
+            ///
+            /// ```rust
+            /// use file_format::FileFormat;
+            ///
+            /// let format = FileFormat::MusicalInstrumentDigitalInterface;
+            /// assert_eq!(format.short_name(), "MIDI");
+            ///```
+            pub const fn short_name(&self) -> &str {
+                match self {
+                    $(
+                        $(Self::$format => $short_name,)?
+                    )*
+                    _ => self.name(),
+                }
+            }
+
+            /// Returns the description of the file format.
+            ///
+            /// This include both the [name](crate::FileFormat::name) and
+            /// [short name](crate::FileFormat::short_name) if they are different.
+            ///
+            /// # Examples
+            ///
+            /// ```rust
+            /// use file_format::FileFormat;
+            ///
+            /// let format = FileFormat::OfficeOpenXmlDocument;
+            /// assert_eq!(format.description(), "Office Open XML Document (DOCX)");
+            ///```
+            pub const fn description(&self) -> &str {
+                match self {
+                    $(
+                        $(Self::$format => concat!($name, " (", $short_name, ")"),)?
+                    )*
+                    _ => self.name(),
                 }
             }
 
@@ -78,7 +122,7 @@ macro_rules! formats {
                 }
             }
 
-            /// Returns the `Kind` of the file format.
+            /// Returns the [Kind](crate::Kind) of the file format.
             ///
             /// # Examples
             ///
