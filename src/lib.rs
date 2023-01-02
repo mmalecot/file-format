@@ -1822,14 +1822,14 @@ impl FileFormat {
                 Self::CompoundFileBinary => Self::from_cfb(&mut reader).unwrap_or_default(),
                 Self::ExtensibleMarkupLanguage => Self::from_xml(&mut reader).unwrap_or_default(),
                 Self::MatroskaVideo => Self::from_mkv(&mut reader).unwrap_or_default(),
-                Self::MsDosExecutable => Self::from_ms_dos_exe(&mut reader).unwrap_or_default(),
+                Self::MsDosExecutable => Self::from_exe(&mut reader).unwrap_or_default(),
                 Self::PortableDocumentFormat => Self::from_pdf(&mut reader).unwrap_or_default(),
                 #[cfg(feature = "zip")]
                 Self::Zip => Self::from_zip(&mut reader).unwrap_or_default(),
                 _ => format,
             }
         } else {
-            Self::from_plain_text(&mut reader).unwrap_or_default()
+            Self::from_txt(&mut reader).unwrap_or_default()
         })
     }
 }

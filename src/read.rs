@@ -60,20 +60,6 @@ impl crate::FileFormat {
         })
     }
 
-    /// Searches the reader for the "webm" byte sequence. If this sequence is found the function
-    /// returns the `Webm` variant. Otherwise, it returns the `MatroskaVideo` variant.
-    pub(crate) fn from_mkv<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        const SEARCH_LIMIT: u64 = match cfg!(feature = "accuracy") {
-            true => 4096,
-            false => 1024,
-        };
-        Ok(if reader.contains(b"webm", SEARCH_LIMIT)? {
-            Self::Webm
-        } else {
-            Self::MatroskaVideo
-        })
-    }
-
     /// Attempts to parse the reader as a MS-DOS Executable.
     ///
     /// It first seeks to the `0x3C` offset within the reader and reads the `e_lfanew` field which
@@ -86,7 +72,7 @@ impl crate::FileFormat {
     /// Finally, it seeks to `0x12` offset and reads the `Characteristics` field. If this word has
     /// the `0x2000` bit set (`IMAGE_FILE_DLL`), it returns the `DynamicLinkLibrary` variant.
     /// Otherwise, it returns the `PortableExecutable` variant.
-    pub(crate) fn from_ms_dos_exe<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+    pub(crate) fn from_exe<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         reader.seek(SeekFrom::Start(0x3C))?;
         let address = reader.read_le_u32()?;
         reader.seek(SeekFrom::Start(address as u64))?;
@@ -99,6 +85,20 @@ impl crate::FileFormat {
             });
         }
         Ok(Self::MsDosExecutable)
+    }
+
+    /// Searches the reader for the "webm" byte sequence. If this sequence is found the function
+    /// returns the `Webm` variant. Otherwise, it returns the `MatroskaVideo` variant.
+    pub(crate) fn from_mkv<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        const SEARCH_LIMIT: u64 = match cfg!(feature = "accuracy") {
+            true => 4096,
+            false => 1024,
+        };
+        Ok(if reader.contains(b"webm", SEARCH_LIMIT)? {
+            Self::Webm
+        } else {
+            Self::MatroskaVideo
+        })
     }
 
     /// Searches the reader for the "AIPrivateData" byte sequence. If this sequence is found the
@@ -119,7 +119,7 @@ impl crate::FileFormat {
     /// Attempts to determine if the reader contains Plain Text by checking the first lines for
     /// control characters. If any control characters (other than whitespace) are found, this
     /// function returns an error. Otherwise, it returns the `PlainText` variant.
-    pub(crate) fn from_plain_text<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+    pub(crate) fn from_txt<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         const READ_LIMIT: u64 = match cfg!(feature = "accuracy") {
             true => 8_388_608,
             false => 1_048_576,
