@@ -64,10 +64,10 @@ macro_rules! formats {
                 }
             }
 
-            /// Returns the description of the file format.
+            /// Returns both the [name](crate::FileFormat::name) and
+            /// [short name](crate::FileFormat::short_name) of the file format.
             ///
-            /// This include both the [name](crate::FileFormat::name) and
-            /// [short name](crate::FileFormat::short_name) if they are different.
+            /// This may be the same as the [name](crate::FileFormat::name).
             ///
             /// # Examples
             ///
