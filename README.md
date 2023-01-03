@@ -22,14 +22,14 @@ Determines from a file:
 ```rust
 use file_format::{FileFormat, Kind};
 
-let format = FileFormat::from_file("fixtures/application/sample.zip").unwrap();
-assert_eq!(format, FileFormat::Zip);
-assert_eq!(format.name(), "ZIP");
-assert_eq!(format.short_name(), "ZIP");
-assert_eq!(format.description(), "ZIP");
-assert_eq!(format.media_type(), "application/zip");
-assert_eq!(format.extension(), "zip");
-assert_eq!(format.kind(), Kind::Application);
+let format = FileFormat::from_file("fixtures/text/sample.html")?;
+assert_eq!(format, FileFormat::HypertextMarkupLanguage);
+assert_eq!(format.name(), "HyperText Markup Language");
+assert_eq!(format.short_name(), "HTML");
+assert_eq!(format.description(), "HyperText Markup Language (HTML)");
+assert_eq!(format.media_type(), "text/html");
+assert_eq!(format.extension(), "html");
+assert_eq!(format.kind(), Kind::Text);
 ```
 
 Determines from bytes:
@@ -37,7 +37,7 @@ Determines from bytes:
 ```rust
 use file_format::{FileFormat, Kind};
 
-let format = FileFormat::from_bytes(&[0xFF, 0xD8, 0xFF, 0xEE]);
+let format = FileFormat::from_bytes(&[0xFF, 0xD8, 0xFF]);
 assert_eq!(format, FileFormat::JointPhotographicExpertsGroup);
 assert_eq!(format.name(), "Joint Photographic Experts Group");
 assert_eq!(format.short_name(), "JPEG");
