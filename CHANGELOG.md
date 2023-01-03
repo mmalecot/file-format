@@ -1,3 +1,20 @@
+# Version 0.13.0 (unreleased)
+
+## API
+
+- Add `FileFormat::description`
+- Add `FileFormat::short_name`
+- Replace `FileFormat::name` with `FileFormat::description` in `impl Display for FileFormat`
+
+## Fixes
+
+- Fix LHA signatures
+
+## New formats support
+
+- LArc
+- PMarc
+
 # Version 0.12.0 (2022-12-30)
 
 ## API
