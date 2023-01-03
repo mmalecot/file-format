@@ -18,6 +18,9 @@ cfb = { version = "0.7", optional = true }
 zip = { version = "0.6", optional = true, features = ["deflate-miniz"], default-features = false }
 
 [features]
+# Performance
 accuracy = []
+
+# Subformats
 cfb = ["dep:cfb"]
 zip = ["dep:zip"]
