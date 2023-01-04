@@ -75,9 +75,9 @@ macro_rules! formats {
             /// use file_format::FileFormat;
             ///
             /// let format = FileFormat::OfficeOpenXmlDocument;
-            /// assert_eq!(format.description(), "Office Open XML Document (DOCX)");
+            /// assert_eq!(format.display_name(), "Office Open XML Document (DOCX)");
             ///```
-            pub const fn description(&self) -> &str {
+            pub const fn display_name(&self) -> &str {
                 match self {
                     $(
                         $(Self::$format => concat!($name, " (", $short_name, ")"),)?

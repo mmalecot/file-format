@@ -2,9 +2,9 @@
 
 ## API
 
-- Add `FileFormat::description`
+- Add `FileFormat::display_name`
 - Add `FileFormat::short_name`
-- Replace `FileFormat::name` with `FileFormat::description` in `impl Display for FileFormat`
+- Replace `FileFormat::name` with `FileFormat::display_name` in `impl Display for FileFormat`
 
 ## Fixes
 

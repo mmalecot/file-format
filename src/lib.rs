@@ -20,7 +20,7 @@ let format = FileFormat::from_file("fixtures/text/sample.html")?;
 assert_eq!(format, FileFormat::HypertextMarkupLanguage);
 assert_eq!(format.name(), "HyperText Markup Language");
 assert_eq!(format.short_name(), "HTML");
-assert_eq!(format.description(), "HyperText Markup Language (HTML)");
+assert_eq!(format.display_name(), "HyperText Markup Language (HTML)");
 assert_eq!(format.media_type(), "text/html");
 assert_eq!(format.extension(), "html");
 assert_eq!(format.kind(), Kind::Text);
@@ -36,7 +36,7 @@ let format = FileFormat::from_bytes(&[0xFF, 0xD8, 0xFF]);
 assert_eq!(format, FileFormat::JointPhotographicExpertsGroup);
 assert_eq!(format.name(), "Joint Photographic Experts Group");
 assert_eq!(format.short_name(), "JPEG");
-assert_eq!(format.description(), "Joint Photographic Experts Group (JPEG)");
+assert_eq!(format.display_name(), "Joint Photographic Experts Group (JPEG)");
 assert_eq!(format.media_type(), "image/jpeg");
 assert_eq!(format.extension(), "jpg");
 assert_eq!(format.kind(), Kind::Image);
@@ -191,7 +191,7 @@ impl Default for FileFormat {
 impl Display for FileFormat {
     #[inline]
     fn fmt(&self, formatter: &mut Formatter<'_>) -> fmt::Result {
-        write!(formatter, "{}", self.description())
+        write!(formatter, "{}", self.display_name())
     }
 }
 
