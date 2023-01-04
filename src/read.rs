@@ -39,6 +39,24 @@ trait AdvancedRead: Read + Seek {
 impl<R: Read + Seek + ?Sized> AdvancedRead for R {}
 
 impl crate::FileFormat {
+    /// Determines file format from a reader according to the specified format.
+    pub(crate) fn from_format_reader<R: Read + Seek>(
+        format: Self,
+        reader: &mut BufReader<R>,
+    ) -> Result<Self> {
+        Ok(match format {
+            #[cfg(feature = "cfb")]
+            Self::CompoundFileBinary => Self::from_cfb(reader)?,
+            Self::ExtensibleMarkupLanguage => Self::from_xml(reader)?,
+            Self::MatroskaVideo => Self::from_mkv(reader)?,
+            Self::MsDosExecutable => Self::from_exe(reader)?,
+            Self::PortableDocumentFormat => Self::from_pdf(reader)?,
+            #[cfg(feature = "zip")]
+            Self::Zip => Self::from_zip(reader)?,
+            _ => format,
+        })
+    }
+
     /// Attempts to parse the reader as a CFB.
     ///
     /// It extracts its root entry's CLSID, then compares it to a set of known values and returns

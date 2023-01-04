@@ -1817,17 +1817,8 @@ impl FileFormat {
         Ok(if reader.fill_buf()?.is_empty() {
             Self::default()
         } else if let Some(format) = Self::from_signature(reader.buffer()) {
-            match format {
-                #[cfg(feature = "cfb")]
-                Self::CompoundFileBinary => Self::from_cfb(&mut reader).unwrap_or_default(),
-                Self::ExtensibleMarkupLanguage => Self::from_xml(&mut reader).unwrap_or_default(),
-                Self::MatroskaVideo => Self::from_mkv(&mut reader).unwrap_or_default(),
-                Self::MsDosExecutable => Self::from_exe(&mut reader).unwrap_or_default(),
-                Self::PortableDocumentFormat => Self::from_pdf(&mut reader).unwrap_or_default(),
-                #[cfg(feature = "zip")]
-                Self::Zip => Self::from_zip(&mut reader).unwrap_or_default(),
-                _ => format,
-            }
+            Self::from_format_reader(format, &mut reader)
+                .unwrap_or(Self::from_txt(&mut reader).unwrap_or_default())
         } else {
             Self::from_txt(&mut reader).unwrap_or_default()
         })
