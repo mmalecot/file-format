@@ -19,7 +19,7 @@ macro_rules! formats {
                 #[doc=concat!($name, $(" (", $short_name, ")",)? ".")]
                 #[doc=concat!("- Media type: `", $media_type, "`")]
                 #[doc=concat!("- Extension: `", $extension, "`")]
-                #[doc=concat!("- Kind: [", stringify!($kind), "](`Kind::", stringify!($kind), "`)")]
+                #[doc=concat!("- Kind: `", stringify!($kind), "`")]
                 $format,
             )*
         }
