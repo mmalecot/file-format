@@ -1818,7 +1818,7 @@ impl FileFormat {
             Self::default()
         } else if let Some(format) = Self::from_signature(reader.buffer()) {
             Self::from_format_reader(format, &mut reader)
-                .unwrap_or(Self::from_txt(&mut reader).unwrap_or_default())
+                .unwrap_or_else(|_| Self::from_txt(&mut reader).unwrap_or_default())
         } else {
             Self::from_txt(&mut reader).unwrap_or_default()
         })
