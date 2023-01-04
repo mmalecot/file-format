@@ -165,3 +165,14 @@ macro_rules! signatures {
         }
     };
 }
+
+/// Returns a limit value based on the `accuracy` feature flag.
+macro_rules! limit {
+    ($min:literal, $max:literal) => {
+        if cfg!(feature = "accuracy") {
+            $max
+        } else {
+            $min
+        }
+    };
+}
