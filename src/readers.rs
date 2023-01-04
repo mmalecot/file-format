@@ -1,4 +1,4 @@
-//! Read.
+//! Readers.
 
 use std::io::{BufRead, BufReader, Error, ErrorKind, Read, Result, Seek, SeekFrom};
 
@@ -46,13 +46,13 @@ impl crate::FileFormat {
     ) -> Result<Self> {
         Ok(match format {
             #[cfg(feature = "cfb")]
-            Self::CompoundFileBinary => Self::from_cfb(reader)?,
-            Self::ExtensibleMarkupLanguage => Self::from_xml(reader)?,
-            Self::MatroskaVideo => Self::from_mkv(reader)?,
-            Self::MsDosExecutable => Self::from_exe(reader)?,
-            Self::PortableDocumentFormat => Self::from_pdf(reader)?,
+            Self::CompoundFileBinary => Self::from_cfb_reader(reader)?,
+            Self::ExtensibleMarkupLanguage => Self::from_xml_reader(reader)?,
+            Self::MatroskaVideo => Self::from_mkv_reader(reader)?,
+            Self::MsDosExecutable => Self::from_exe_reader(reader)?,
+            Self::PortableDocumentFormat => Self::from_pdf_reader(reader)?,
             #[cfg(feature = "zip")]
-            Self::Zip => Self::from_zip(reader)?,
+            Self::Zip => Self::from_zip_reader(reader)?,
             _ => format,
         })
     }
@@ -63,7 +63,7 @@ impl crate::FileFormat {
     /// the corresponding variant. If the CLSID does not match any of the known values, the function
     /// returns the `CompoundFileBinary` variant.
     #[cfg(feature = "cfb")]
-    pub(crate) fn from_cfb<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+    pub(crate) fn from_cfb_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         let file = cfb::CompoundFile::open(reader)?;
         Ok(match file.root_entry().clsid().to_string().as_str() {
             "00020810-0000-0000-c000-000000000046" => Self::MicrosoftExcelSpreadsheet,
@@ -90,7 +90,7 @@ impl crate::FileFormat {
     /// Finally, it seeks to `0x12` offset and reads the `Characteristics` field. If this word has
     /// the `0x2000` bit set (`IMAGE_FILE_DLL`), it returns the `DynamicLinkLibrary` variant.
     /// Otherwise, it returns the `PortableExecutable` variant.
-    pub(crate) fn from_exe<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+    pub(crate) fn from_exe_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         reader.seek(SeekFrom::Start(0x3C))?;
         let address = reader.read_le_u32()?;
         reader.seek(SeekFrom::Start(address as u64))?;
@@ -107,7 +107,7 @@ impl crate::FileFormat {
 
     /// Searches the reader for the "webm" byte sequence. If this sequence is found the function
     /// returns the `Webm` variant. Otherwise, it returns the `MatroskaVideo` variant.
-    pub(crate) fn from_mkv<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+    pub(crate) fn from_mkv_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         Ok(if reader.contains(b"webm", limit!(1024, 4096))? {
             Self::Webm
         } else {
@@ -118,7 +118,7 @@ impl crate::FileFormat {
     /// Searches the reader for the "AIPrivateData" byte sequence. If this sequence is found the
     /// function returns the `AdobeIllustratorArtwork` variant. Otherwise, it returns the
     /// `PortableDocumentFormat` variant.
-    pub(crate) fn from_pdf<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+    pub(crate) fn from_pdf_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         if reader.contains(b"AIPrivateData", limit!(1_048_576, 4_194_304))? {
             Ok(Self::AdobeIllustratorArtwork)
         } else {
@@ -129,7 +129,7 @@ impl crate::FileFormat {
     /// Attempts to determine if the reader contains Plain Text by checking the first lines for
     /// control characters. If any control characters (other than whitespace) are found, this
     /// function returns an error. Otherwise, it returns the `PlainText` variant.
-    pub(crate) fn from_txt<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+    pub(crate) fn from_txt_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         reader
             .take(limit!(1_048_576, 8_388_608))
             .lines()
@@ -146,7 +146,7 @@ impl crate::FileFormat {
 
     /// Searches the reader for byte sequences that indicate the presence of various XML-based
     /// formats. If none are found, it returns the `ExtensibleMarkupLanguage` variant.
-    pub(crate) fn from_xml<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+    pub(crate) fn from_xml_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         Ok(if reader.contains(b"<xsl", limit!(256, 1024))? {
             Self::ExtensibleStylesheetLanguageTransformations
         } else if reader.contains(b"<gml", limit!(256, 1024))? {
@@ -172,7 +172,7 @@ impl crate::FileFormat {
     /// of specific file formats. If a match is found, the corresponding variant is returned.
     /// Otherwise, it returns the `Zip` variant.
     #[cfg(feature = "zip")]
-    pub(crate) fn from_zip<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+    pub(crate) fn from_zip_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         let mut archive = zip::ZipArchive::new(reader)?;
         let mut format = Self::Zip;
         for index in 0..std::cmp::min(archive.len(), limit!(1024, 4096)) {
