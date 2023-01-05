@@ -1,3 +1,5 @@
+//! Formats.
+
 formats! {
     format = AdaptiveMultiRate
     name = "Adaptive Multi-Rate"
