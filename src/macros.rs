@@ -104,7 +104,7 @@ macro_rules! formats {
                 }
             }
 
-            /// Returns the extension of the file format.
+            /// Returns the common extension of the file format.
             ///
             /// # Examples
             ///
