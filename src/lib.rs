@@ -99,6 +99,7 @@ mod macros;
 mod formats;
 mod readers;
 mod signatures;
+mod utils;
 
 use std::{
     fmt::{self, Display, Formatter},

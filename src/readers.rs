@@ -2,42 +2,6 @@
 
 use std::io::{BufRead, BufReader, Error, ErrorKind, Read, Result, Seek, SeekFrom};
 
-/// Provides several methods for reading and searching within a reader.
-trait AdvancedRead: Read + Seek {
-    /// Reads two bytes from the reader and returns them as a little-endian `u16` value.
-    #[inline]
-    fn read_le_u16(&mut self) -> Result<u16> {
-        let mut buffer = [0; 2];
-        self.read_exact(&mut buffer)?;
-        Ok(u16::from_le_bytes(buffer))
-    }
-
-    /// Reads four bytes from the reader and returns them as a little-endian `u32` value.
-    #[inline]
-    fn read_le_u32(&mut self) -> Result<u32> {
-        let mut buffer = [0; 4];
-        self.read_exact(&mut buffer)?;
-        Ok(u32::from_le_bytes(buffer))
-    }
-
-    /// Checks if the stream contains the given `bytes` within the first `size` bytes.
-    #[inline]
-    fn contains(&mut self, bytes: &[u8], size: u64) -> Result<bool> {
-        self.rewind()?;
-        Ok(BufReader::new(self.take(size))
-            .fill_buf()?
-            .windows(bytes.len())
-            .any(|window| window == bytes))
-    }
-}
-
-/// Implements the `AdvancedRead` trait for any type `R` that implements the `Read` and `Seek`
-/// traits.
-///
-/// This allows types such as `BufReader<R>` to use the methods provided by the `AdvancedRead`
-/// trait.
-impl<R: Read + Seek + ?Sized> AdvancedRead for R {}
-
 impl crate::FileFormat {
     /// Determines file format from a reader according to the specified format.
     pub(crate) fn from_format_reader<R: Read + Seek>(
@@ -83,20 +47,25 @@ impl crate::FileFormat {
     /// It first seeks to the `0x3C` offset within the reader and reads the `e_lfanew` field which
     /// indicates the offset to the beginning of the Portable Executable header.
     ///
-    /// It then seeks to this address and reads the `Signature` field. If this dword is
-    /// `0x00004550`, it indicates that it is a Portable Executable. Otherwise, it returns the
-    /// `MsDosExecutable` variant.
+    /// It then seeks to this address and reads the `Signature` field. If this is `PE\0\0`, it
+    /// indicates that it is a Portable Executable. Otherwise, it returns the `MsDosExecutable`
+    /// variant.
     ///
     /// Finally, it seeks to `0x12` offset and reads the `Characteristics` field. If this word has
     /// the `0x2000` bit set (`IMAGE_FILE_DLL`), it returns the `DynamicLinkLibrary` variant.
     /// Otherwise, it returns the `PortableExecutable` variant.
     pub(crate) fn from_exe_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         reader.seek(SeekFrom::Start(0x3C))?;
-        let address = reader.read_le_u32()?;
-        reader.seek(SeekFrom::Start(address as u64))?;
-        if reader.read_le_u32()? == 0x00004550 {
+        let mut e_lfanew = [0; 4];
+        reader.read_exact(&mut e_lfanew)?;
+        reader.seek(SeekFrom::Start(u32::from_le_bytes(e_lfanew) as u64))?;
+        let mut signature = [0; 4];
+        reader.read_exact(&mut signature)?;
+        if &signature == b"PE\0\0" {
             reader.seek(SeekFrom::Current(0x12))?;
-            return Ok(if reader.read_le_u16()? & 0x2000 == 0x2000 {
+            let mut characteristics = [0; 2];
+            reader.read_exact(&mut characteristics)?;
+            return Ok(if u16::from_le_bytes(characteristics) & 0x2000 == 0x2000 {
                 Self::DynamicLinkLibrary
             } else {
                 Self::PortableExecutable
@@ -108,7 +77,11 @@ impl crate::FileFormat {
     /// Searches the reader for the "webm" byte sequence. If this sequence is found the function
     /// returns the `Webm` variant. Otherwise, it returns the `MatroskaVideo` variant.
     pub(crate) fn from_mkv_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        Ok(if reader.contains(b"webm", limit!(1024, 4096))? {
+        let length = reader.seek(SeekFrom::End(0))?;
+        reader.rewind()?;
+        let mut buffer = vec![0; std::cmp::min(limit!(1024, 4096), length as usize)];
+        reader.read_exact(&mut buffer)?;
+        Ok(if crate::utils::contains(&buffer, b"webm") {
             Self::Webm
         } else {
             Self::MatroskaVideo
@@ -119,11 +92,15 @@ impl crate::FileFormat {
     /// function returns the `AdobeIllustratorArtwork` variant. Otherwise, it returns the
     /// `PortableDocumentFormat` variant.
     pub(crate) fn from_pdf_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        if reader.contains(b"AIPrivateData", limit!(1_048_576, 4_194_304))? {
-            Ok(Self::AdobeIllustratorArtwork)
+        let length = reader.seek(SeekFrom::End(0))?;
+        reader.rewind()?;
+        let mut buffer = vec![0; std::cmp::min(limit!(1_048_576, 4_194_304), length as usize)];
+        reader.read_exact(&mut buffer)?;
+        Ok(if crate::utils::contains(&buffer, b"AIPrivateData") {
+            Self::AdobeIllustratorArtwork
         } else {
-            Ok(Self::PortableDocumentFormat)
-        }
+            Self::PortableDocumentFormat
+        })
     }
 
     /// Attempts to determine if the reader contains Plain Text by checking the first lines for
@@ -147,23 +124,30 @@ impl crate::FileFormat {
     /// Searches the reader for byte sequences that indicate the presence of various XML-based
     /// formats. If none are found, it returns the `ExtensibleMarkupLanguage` variant.
     pub(crate) fn from_xml_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        Ok(if reader.contains(b"<xsl", limit!(256, 1024))? {
-            Self::ExtensibleStylesheetLanguageTransformations
-        } else if reader.contains(b"<gml", limit!(256, 1024))? {
-            Self::GeographyMarkupLanguage
-        } else if reader.contains(b"<kml", limit!(256, 1024))? {
-            Self::KeyholeMarkupLanguage
-        } else if reader.contains(b"<score-partwise", limit!(256, 1024))? {
-            Self::Musicxml
-        } else if reader.contains(b"<rss", limit!(256, 1024))? {
-            Self::ReallySimpleSyndication
-        } else if reader.contains(b"<svg", limit!(256, 1024))? {
-            Self::ScalableVectorGraphics
-        } else if reader.contains(b"<soap", limit!(256, 1024))? {
-            Self::SimpleObjectAccessProtocol
-        } else {
-            Self::ExtensibleMarkupLanguage
-        })
+        for line in reader
+            .take(limit!(131_072, 262_144))
+            .fill_buf()?
+            .lines()
+            .take(limit!(4, 8))
+        {
+            let buffer = line?.to_lowercase();
+            if buffer.contains("<xsl") {
+                return Ok(Self::ExtensibleStylesheetLanguageTransformations);
+            } else if buffer.contains("<gml") {
+                return Ok(Self::GeographyMarkupLanguage);
+            } else if buffer.contains("<kml") {
+                return Ok(Self::KeyholeMarkupLanguage);
+            } else if buffer.contains("<score-partwise") {
+                return Ok(Self::Musicxml);
+            } else if buffer.contains("<rss") {
+                return Ok(Self::ReallySimpleSyndication);
+            } else if buffer.contains("<svg") {
+                return Ok(Self::ScalableVectorGraphics);
+            } else if buffer.contains("<soap") {
+                return Ok(Self::SimpleObjectAccessProtocol);
+            }
+        }
+        Ok(Self::ExtensibleMarkupLanguage)
     }
 
     /// Attempts to parse the reader as a ZIP.
