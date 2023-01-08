@@ -183,7 +183,7 @@ impl crate::FileFormat {
                 "WEB-INF/web.xml" => return Ok(Self::WebApplicationArchive),
                 "doc.kml" => return Ok(Self::KeyholeMarkupLanguageZipped),
                 "extension.vsixmanifest" => return Ok(Self::MicrosoftVisualStudioExtension),
-                "mimetype" => match std::io::read_to_string(file)?.trim() {
+                "mimetype" => match std::io::read_to_string(file.take(64))?.trim() {
                     "application/epub+zip" => return Ok(Self::ElectronicPublication),
                     "application/vnd.oasis.opendocument.graphics" => {
                         return Ok(Self::OpenDocumentGraphics)
