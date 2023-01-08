@@ -1,4 +1,4 @@
-//! Convenient macros.
+//! Macros.
 
 /// Generates `FileFormat` enum with methods.
 macro_rules! formats {
@@ -43,9 +43,9 @@ macro_rules! formats {
                 }
             }
 
-            /// Returns a shortened version of the name of the file format.
+            /// Returns the short name of the file format.
             ///
-            /// This may be the same as the [name](crate::FileFormat::name).
+            /// If there is none, the [name](crate::FileFormat::name) is returned.
             ///
             /// # Examples
             ///
@@ -64,10 +64,10 @@ macro_rules! formats {
                 }
             }
 
-            /// Returns both the [name](crate::FileFormat::name) and
-            /// [short name](crate::FileFormat::short_name) of the file format.
+            /// Returns the [name](crate::FileFormat::name) of the file format followed by its
+            /// [short name](crate::FileFormat::short_name) in parentheses.
             ///
-            /// This may be the same as the [name](crate::FileFormat::name).
+            /// If there is no short name, the [name](crate::FileFormat::name) alone is returned.
             ///
             /// # Examples
             ///

@@ -115,8 +115,7 @@ impl FileFormat {
     ///
     /// # Examples
     ///
-    /// Detects from the first bytes of a
-    /// [Portable Network Graphics (PNG)](`FileFormat::PortableNetworkGraphics`) file:
+    /// Detects from the first bytes of a [PNG](`FileFormat::PortableNetworkGraphics`) file:
     ///
     /// ```rust
     /// use file_format::FileFormat;
@@ -181,8 +180,7 @@ impl FileFormat {
 }
 
 impl Default for FileFormat {
-    /// Returns the default file format which is
-    /// [Arbitrary Binary Data (BIN)](`FileFormat::ArbitraryBinaryData`).
+    /// Returns the default file format which is [BIN](`FileFormat::ArbitraryBinaryData`).
     #[inline]
     fn default() -> Self {
         Self::ArbitraryBinaryData
