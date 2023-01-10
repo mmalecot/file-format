@@ -12,22 +12,31 @@ function and prints out the results.
 */
 
 use file_format::FileFormat;
-use std::{env, io::Result, path::Path};
+use std::{env, io::Result, ops::Add, path::Path};
 
 fn main() -> Result<()> {
     let width = env::args()
         .skip(1)
         .map(|input| input.chars().count())
         .max_by_key(|&count| count)
-        .unwrap_or_default();
+        .unwrap_or_default()
+        .add(1);
     for input in env::args().skip(1) {
         let path = Path::new(&input);
+        let input = format!("{input}:");
         if path.is_symlink() {
-            println!("{input:width$}: Symbolic Link");
+            println!("{input:width$} Symbolic Link");
         } else if path.is_dir() {
-            println!("{input:width$}: Directory");
+            println!("{input:width$} Directory");
         } else {
-            println!("{input:width$}: {}", FileFormat::from_file(path)?);
+            let format = FileFormat::from_file(path)?;
+            let name = format.name();
+            let short_name = format.short_name();
+            if name == short_name {
+                println!("{input:width$} {name}");
+            } else {
+                println!("{input:width$} {name} ({short_name})");
+            }
         }
     }
     Ok(())
