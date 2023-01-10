@@ -64,28 +64,6 @@ macro_rules! formats {
                 }
             }
 
-            /// Returns the [name](crate::FileFormat::name) of the file format followed by its
-            /// [short name](crate::FileFormat::short_name) in parentheses.
-            ///
-            /// If there is no short name, the [name](crate::FileFormat::name) alone is returned.
-            ///
-            /// # Examples
-            ///
-            /// ```rust
-            /// use file_format::FileFormat;
-            ///
-            /// let format = FileFormat::OfficeOpenXmlDocument;
-            /// assert_eq!(format.display_name(), "Office Open XML Document (DOCX)");
-            ///```
-            pub const fn display_name(&self) -> &str {
-                match self {
-                    $(
-                        $(Self::$format => concat!($name, " (", $short_name, ")"),)?
-                    )*
-                    _ => self.name(),
-                }
-            }
-
             /// Returns the media type (formerly known as MIME type) of the file format.
             ///
             /// # Examples
