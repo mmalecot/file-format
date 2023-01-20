@@ -7,6 +7,13 @@ fn test_design_web_format_xps() {
     assert_eq!(format, FileFormat::DesignWebFormatXps);
 }
 
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_extensible_3d_graphics() {
+    let format = FileFormat::from_file("fixtures/model/sample.x3d").unwrap();
+    assert_eq!(format, FileFormat::Extensible3DGraphics);
+}
+
 #[test]
 fn test_gl_transmission_format_binary() {
     let format = FileFormat::from_file("fixtures/model/sample.glb").unwrap();

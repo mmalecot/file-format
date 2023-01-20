@@ -395,6 +395,13 @@ formats! {
     extension = "xcf"
     kind = Image
 
+    format = Extensible3DGraphics
+    name = "Extensible 3D Graphics"
+    short_name = "X3D"
+    media_type = "model/x3d+xml"
+    extension = "x3d"
+    kind = Model
+
     format = ExtensibleArchive
     name = "Extensible Archive"
     short_name = "XAR"
@@ -506,6 +513,13 @@ formats! {
     media_type = "model/x-draco"
     extension = "drc"
     kind = Model
+
+    format = GpsExchangeFormat
+    name = "GPS Exchange Format"
+    short_name = "GPX"
+    media_type = "application/gpx+xml"
+    extension = "gpx"
+    kind = Application
 
     format = GraphicsInterchangeFormat
     name = "Graphics Interchange Format"
@@ -1613,6 +1627,13 @@ formats! {
     name = "XAP"
     media_type = "application/x-silverlight-app"
     extension = "xap"
+    kind = Application
+
+    format = XmlLocalizationInterchangeFileFormat
+    name = "XML Localization Interchange File Format"
+    short_name = "XLIFF"
+    media_type = "application/xliff+xml"
+    extension = "xlf"
     kind = Application
 
     format = Xpinstall

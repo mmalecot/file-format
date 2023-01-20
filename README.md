@@ -94,13 +94,16 @@ These features enable the detection of file formats based on other ones by readi
 - `reader-txt` - Enables Plain Text (TXT) detection when the file format is not recognized by its
   signature.
 - `reader-xml` - Enables Extensible Markup Language (XML) based file formats detection:
+  * Extensible 3D Graphics (X3D)
   * Extensible Stylesheet Language Transformations (XSLT)
+  * GPS Exchange Format (GPX)
   * Geography Markup Language (GML)
   * Keyhole Markup Language (KML)
   * MusicXML
   * Really Simple Syndication (RSS)
   * Scalable Vector Graphics (SVG)
   * Simple Object Access Protocol (SOAP)
+  * XML Localization Interchange File Format (XLIFF)
 - `reader-zip` - Enables ZIP-based file formats detection:
   * 3D Manufacturing Format (3MF)
   * Android Package (APK)
@@ -188,6 +191,7 @@ These features enable the detection of file formats based on other ones by readi
 - Enterprise Application Archive (EAR)
 - Executable and Linkable Format (ELF)
 - Experimental Computing Facility (XCF)
+- Extensible 3D Graphics (X3D)
 - Extensible Archive (XAR)
 - Extensible Markup Language (XML)
 - Extensible Stylesheet Language Transformations (XSLT)
@@ -198,6 +202,7 @@ These features enable the detection of file formats based on other ones by readi
 - Free Lossless Image Format (FLIF)
 - Fujifilm Raw (RAF)
 - GL Transmission Format Binary (GLB)
+- GPS Exchange Format (GPX)
 - Game Boy Advance ROM (GBA)
 - Game Boy Color ROM (GBC)
 - Game Boy ROM (GB)
@@ -354,6 +359,7 @@ These features enable the detection of file formats based on other ones by readi
 - Windows Metafile (WMF)
 - Windows Shortcut (LNK)
 - XAP
+- XML Localization Interchange File Format (XLIFF)
 - XPInstall (XPI)
 - XZ
 - ZIP

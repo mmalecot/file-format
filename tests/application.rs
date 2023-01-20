@@ -218,6 +218,13 @@ fn test_google_chrome_extension() {
     assert_eq!(format, FileFormat::GoogleChromeExtension);
 }
 
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_gps_exchange_format() {
+    let format = FileFormat::from_file("fixtures/application/sample.gpx").unwrap();
+    assert_eq!(format, FileFormat::GpsExchangeFormat);
+}
+
 #[test]
 fn test_gzip() {
     let format = FileFormat::from_file("fixtures/application/sample.gz").unwrap();
@@ -779,6 +786,13 @@ fn test_windows_shortcut() {
 fn test_xap() {
     let format = FileFormat::from_file("fixtures/application/sample.xap").unwrap();
     assert_eq!(format, FileFormat::Xap);
+}
+
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_xml_localization_interchange_file_format() {
+    let format = FileFormat::from_file("fixtures/application/sample.xlf").unwrap();
+    assert_eq!(format, FileFormat::XmlLocalizationInterchangeFileFormat);
 }
 
 #[cfg(feature = "reader-zip")]

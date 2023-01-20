@@ -5,6 +5,7 @@
 - Add `FileFormat::short_name`
 
 ## Docs
+
 - Improves global documentation
 
 ## Fixes
@@ -13,8 +14,11 @@
 
 ## New formats support
 
+- Extensible 3D Graphics
+- GPS Exchange Format
 - LArc
 - PMarc
+- XML Localization Interchange File Format
 
 # Version 0.12.0 (2022-12-30)
 

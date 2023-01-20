@@ -192,10 +192,14 @@ impl crate::FileFormat {
         };
         for line in reader.take(READ_LIMIT).lines().take(LINE_LIMIT) {
             let buffer = line?.to_lowercase();
-            if buffer.contains("<xsl") {
+            if buffer.contains("<x3d") {
+                return Ok(Self::Extensible3DGraphics);
+            } else if buffer.contains("<xsl") {
                 return Ok(Self::ExtensibleStylesheetLanguageTransformations);
             } else if buffer.contains("<gml") {
                 return Ok(Self::GeographyMarkupLanguage);
+            } else if buffer.contains("<gpx") {
+                return Ok(Self::GpsExchangeFormat);
             } else if buffer.contains("<kml") {
                 return Ok(Self::KeyholeMarkupLanguage);
             } else if buffer.contains("<score-partwise") {
@@ -206,6 +210,8 @@ impl crate::FileFormat {
                 return Ok(Self::ScalableVectorGraphics);
             } else if buffer.contains("<soap") {
                 return Ok(Self::SimpleObjectAccessProtocol);
+            } else if buffer.contains("<xliff") {
+                return Ok(Self::XmlLocalizationInterchangeFileFormat);
             }
         }
         Ok(Self::ExtensibleMarkupLanguage)
