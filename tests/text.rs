@@ -36,6 +36,7 @@ fn test_perl_script() {
     assert_eq!(format, FileFormat::PerlScript);
 }
 
+#[cfg(feature = "reader-txt")]
 #[test]
 fn test_plain_text() {
     let format = FileFormat::from_file("fixtures/text/sample.txt").unwrap();

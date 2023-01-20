@@ -18,9 +18,24 @@ cfb = { version = "0.7", optional = true }
 zip = { version = "0.6", optional = true, features = ["deflate-miniz"], default-features = false }
 
 [features]
-# Performance
-accuracy = []
+## ACCURACY FEATURES
 
-# Subformats
-cfb = ["dep:cfb"]
-zip = ["dep:zip"]
+# Enables all accuracy features
+accuracy = ["accuracy-mkv", "accuracy-pdf", "accuracy-txt", "accuracy-xml", "accuracy-zip"]
+accuracy-mkv = []
+accuracy-pdf = []
+accuracy-txt = []
+accuracy-xml = []
+accuracy-zip = []
+
+## READER FEATURES
+
+# Enables all reader features
+reader = ["reader-cfb", "reader-exe", "reader-mkv", "reader-pdf", "reader-txt", "reader-xml", "reader-zip"]
+reader-cfb = ["dep:cfb"]
+reader-exe = []
+reader-mkv = []
+reader-pdf = []
+reader-txt = []
+reader-xml = []
+reader-zip = ["dep:zip"]

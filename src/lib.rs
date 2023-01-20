@@ -6,23 +6,23 @@ It provides a variety of functions for identifying a wide range of file formats,
 [Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`) and [more](`FileFormat`).
 
 It checks the signature of the file to determine its format. If the file format is not recognized by
-its signature, it checks if it is [Plain Text (TXT)](`FileFormat::PlainText`). Otherwise, it returns
-the default file format which is [Arbitrary Binary Data (BIN)](`FileFormat::ArbitraryBinaryData`).
+its signature, it returns the default file format which is
+[Arbitrary Binary Data (BIN)](`FileFormat::ArbitraryBinaryData`).
 
-## Examples
+# Examples
 
 Determines from a file:
 
 ```rust
 use file_format::{FileFormat, Kind};
 
-let format = FileFormat::from_file("fixtures/text/sample.html")?;
-assert_eq!(format, FileFormat::HypertextMarkupLanguage);
-assert_eq!(format.name(), "HyperText Markup Language");
-assert_eq!(format.short_name(), "HTML");
-assert_eq!(format.media_type(), "text/html");
-assert_eq!(format.extension(), "html");
-assert_eq!(format.kind(), Kind::Text);
+let format = FileFormat::from_file("fixtures/application/sample.pdf")?;
+assert_eq!(format, FileFormat::PortableDocumentFormat);
+assert_eq!(format.name(), "Portable Document Format");
+assert_eq!(format.short_name(), "PDF");
+assert_eq!(format.media_type(), "application/pdf");
+assert_eq!(format.extension(), "pdf");
+assert_eq!(format.kind(), Kind::Application);
 # Ok::<(), std::io::Error>(())
 ```
 
@@ -40,7 +40,7 @@ assert_eq!(format.extension(), "jpg");
 assert_eq!(format.kind(), Kind::Image);
 ```
 
-## Usage
+# Usage
 
 Add this to your `Cargo.toml`:
 
@@ -49,44 +49,85 @@ Add this to your `Cargo.toml`:
 file-format = "0.13"
 ```
 
-## Features
+# Crate features
 
-- `accuracy` - Improves the accuracy but may increase the processing time and memory usage.
-- `cfb` - Enables [CFB](`FileFormat::CompoundFileBinary`)-based formats support:
-    - [Microsoft Excel Spreadsheet (XLS)](`FileFormat::MicrosoftExcelSpreadsheet`)
-    - [Microsoft PowerPoint Presentation (PPT)](`FileFormat::MicrosoftPowerpointPresentation`)
-    - [Microsoft Project Plan (MPP)](`FileFormat::MicrosoftProjectPlan`)
-    - [Microsoft Publisher Document (PUB)](`FileFormat::MicrosoftPublisherDocument`)
-    - [Microsoft Software Installer (MSI)](`FileFormat::MicrosoftSoftwareInstaller`)
-    - [Microsoft Visio Drawing (VSD)](`FileFormat::MicrosoftVisioDrawing`)
-    - [Microsoft Word Document (DOC)](`FileFormat::MicrosoftWordDocument`)
-- `zip` - Enables [ZIP](`FileFormat::Zip`)-based formats support:
-    - [3D Manufacturing Format (3MF)](`FileFormat::ThreeDimensionalManufacturingFormat`)
-    - [Android Package (APK)](`FileFormat::AndroidPackage`)
-    - [Circuit Diagram Document (CDDX)](`FileFormat::CircuitDiagramDocument`)
-    - [Design Web Format XPS (DWFX)](`FileFormat::DesignWebFormatXps`)
-    - [Electronic Publication (EPUB)](`FileFormat::ElectronicPublication`)
-    - [Enterprise Application Archive (EAR)](`FileFormat::EnterpriseApplicationArchive`)
-    - [Java Archive (JAR)](`FileFormat::JavaArchive`)
-    - [Keyhole Markup Language Zipped (KMZ)](`FileFormat::KeyholeMarkupLanguageZipped`)
-    - [Microsoft Visual Studio Extension (VSIX)](`FileFormat::MicrosoftVisualStudioExtension`)
-    - [MusicXML Zipped (MXL)](`FileFormat::MusicxmlZipped`)
-    - [Office Open XML Document (DOCX)](`FileFormat::OfficeOpenXmlDocument`)
-    - [Office Open XML Drawing (VSDX)](`FileFormat::OfficeOpenXmlDrawing`)
-    - [Office Open XML Presentation (PPTX)](`FileFormat::OfficeOpenXmlPresentation`)
-    - [Office Open XML Spreadsheet (XLSX)](`FileFormat::OfficeOpenXmlSpreadsheet`)
-    - [OpenDocument Graphics (ODG)](`FileFormat::OpenDocumentGraphics`)
-    - [OpenDocument Presentation (ODP)](`FileFormat::OpenDocumentPresentation`)
-    - [OpenDocument Spreadsheet (ODS)](`FileFormat::OpenDocumentSpreadsheet`)
-    - [OpenDocument Text (ODT)](`FileFormat::OpenDocumentText`)
-    - [OpenRaster (ORA)](`FileFormat::Openraster`)
-    - [Web Application Archive (WAR)](`FileFormat::WebApplicationArchive`)
-    - [Windows App Package (APPX)](`FileFormat::WindowsAppPackage`)
-    - [XAP](`FileFormat::Xap`)
-    - [XPInstall (XPI)](`FileFormat::Xpinstall`)
-    - [iOS App Store Package (IPA)](`FileFormat::IosAppStorePackage`)
+All features below are disabled by default.
 
-All these features are disabled by default.
+## Accuracy features
+
+These features are only relevant if the associated readers are enabled.
+
+- `accuracy` - Enables all accuracy features. Improves the accuracy but may increase the processing
+  time and memory usage.
+- `accuracy-mkv` - Improves the accuracy for [Matroska Video (MKV)](`FileFormat::MatroskaVideo`)
+  based file formats detection.
+- `accuracy-pdf` - Improves the accuracy for
+  [Portable Document Format (PDF)](`FileFormat::PortableDocumentFormat`) based formats detection.
+- `accuracy-txt` - Improves the accuracy for [Plain Text (TXT)](`FileFormat::PlainText`) detection.
+- `accuracy-xml` - Improves the accuracy for
+  [Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`) based file formats
+  detection.
+- `accuracy-zip` - Improves the accuracy for [ZIP](`FileFormat::Zip`) based file formats detection.
+
+## Reader features
+
+- `reader` - Enables all reader features. Some file formats require reading their contents in order
+  to detect them.
+- `reader-cfb` - Enables [Compound File Binary (CFB)](`FileFormat::CompoundFileBinary`) based file
+  formats detection:
+  * [Microsoft Excel Spreadsheet (XLS)](`FileFormat::MicrosoftExcelSpreadsheet`)
+  * [Microsoft PowerPoint Presentation (PPT)](`FileFormat::MicrosoftPowerpointPresentation`)
+  * [Microsoft Project Plan (MPP)](`FileFormat::MicrosoftProjectPlan`)
+  * [Microsoft Publisher Document (PUB)](`FileFormat::MicrosoftPublisherDocument`)
+  * [Microsoft Software Installer (MSI)](`FileFormat::MicrosoftSoftwareInstaller`)
+  * [Microsoft Visio Drawing (VSD)](`FileFormat::MicrosoftVisioDrawing`)
+  * [Microsoft Word Document (DOC)](`FileFormat::MicrosoftWordDocument`)
+- `reader-exe` - Enables [MS-DOS Executable (EXE)](`FileFormat::MsDosExecutable`) based file formats
+  detection:
+  * [Dynamic Link Library (DLL)](`FileFormat::DynamicLinkLibrary`)
+  * [Portable Executable (PE)](`FileFormat::PortableExecutable`)
+- `reader-mkv` - Enables [Matroska Video (MKV)](`FileFormat::MatroskaVideo`) based file formats
+  detection:
+  * [WebM](`FileFormat::Webm`)
+- `reader-pdf` - Enables [Portable Document Format (PDF)](`FileFormat::PortableDocumentFormat`)
+  based file formats detection:
+  * [Adobe Illustrator Artwork (AI)](`FileFormat::AdobeIllustratorArtwork`)
+- `reader-txt` - Enables [Plain Text (TXT)](`FileFormat::PlainText`) detection when the file format
+  is not recognized by its signature.
+- `reader-xml` - Enables [Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`)
+  based file formats detection:
+  * [Extensible Stylesheet Language Transformations (XSLT)](`FileFormat::ExtensibleStylesheetLanguageTransformations`)
+  * [Geography Markup Language (GML)](`FileFormat::GeographyMarkupLanguage`)
+  * [Keyhole Markup Language (KML)](`FileFormat::KeyholeMarkupLanguage`)
+  * [MusicXML](`FileFormat::Musicxml`)
+  * [Really Simple Syndication (RSS)](`FileFormat::ReallySimpleSyndication`)
+  * [Scalable Vector Graphics (SVG)](`FileFormat::ScalableVectorGraphics`)
+  * [Simple Object Access Protocol (SOAP)](`FileFormat::SimpleObjectAccessProtocol`)
+- `reader-zip` - Enables [ZIP](`FileFormat::Zip`) based file formats detection:
+  * [3D Manufacturing Format (3MF)](`FileFormat::ThreeDimensionalManufacturingFormat`)
+  * [Android Package (APK)](`FileFormat::AndroidPackage`)
+  * [Circuit Diagram Document (CDDX)](`FileFormat::CircuitDiagramDocument`)
+  * [Design Web Format XPS (DWFX)](`FileFormat::DesignWebFormatXps`)
+  * [Electronic Publication (EPUB)](`FileFormat::ElectronicPublication`)
+  * [Enterprise Application Archive (EAR)](`FileFormat::EnterpriseApplicationArchive`)
+  * [Java Archive (JAR)](`FileFormat::JavaArchive`)
+  * [Keyhole Markup Language Zipped (KMZ)](`FileFormat::KeyholeMarkupLanguageZipped`)
+  * [Microsoft Visual Studio Extension (VSIX)](`FileFormat::MicrosoftVisualStudioExtension`)
+  * [MusicXML Zipped (MXL)](`FileFormat::MusicxmlZipped`)
+  * [Office Open XML Document (DOCX)](`FileFormat::OfficeOpenXmlDocument`)
+  * [Office Open XML Drawing (VSDX)](`FileFormat::OfficeOpenXmlDrawing`)
+  * [Office Open XML Presentation (PPTX)](`FileFormat::OfficeOpenXmlPresentation`)
+  * [Office Open XML Spreadsheet (XLSX)](`FileFormat::OfficeOpenXmlSpreadsheet`)
+  * [OpenDocument Graphics (ODG)](`FileFormat::OpenDocumentGraphics`)
+  * [OpenDocument Presentation (ODP)](`FileFormat::OpenDocumentPresentation`)
+  * [OpenDocument Spreadsheet (ODS)](`FileFormat::OpenDocumentSpreadsheet`)
+  * [OpenDocument Text (ODT)](`FileFormat::OpenDocumentText`)
+  * [OpenRaster (ORA)](`FileFormat::Openraster`)
+  * [Web Application Archive (WAR)](`FileFormat::WebApplicationArchive`)
+  * [Windows App Package (APPX)](`FileFormat::WindowsAppPackage`)
+  * [XAP](`FileFormat::Xap`)
+  * [XPInstall (XPI)](`FileFormat::Xpinstall`)
+  * [iOS App Store Package (IPA)](`FileFormat::IosAppStorePackage`)
 */
 
 #![deny(missing_docs)]
@@ -97,7 +138,6 @@ mod macros;
 mod formats;
 mod readers;
 mod signatures;
-mod utils;
 
 use std::{
     fmt::{self, Display, Formatter},
@@ -113,7 +153,8 @@ impl FileFormat {
     ///
     /// # Examples
     ///
-    /// Detects from the first bytes of a [PNG](`FileFormat::PortableNetworkGraphics`) file:
+    /// Detects from the first bytes of a
+    /// [Portable Network Graphics (PNG)](`FileFormat::PortableNetworkGraphics`) file:
     ///
     /// ```rust
     /// use file_format::FileFormat;
@@ -144,8 +185,8 @@ impl FileFormat {
     /// ```rust
     /// use file_format::FileFormat;
     ///
-    /// let format = FileFormat::from_file("fixtures/text/sample.txt")?;
-    /// assert_eq!(format, FileFormat::PlainText);
+    /// let format = FileFormat::from_file("fixtures/video/sample.avi")?;
+    /// assert_eq!(format, FileFormat::AudioVideoInterleave);
     /// # Ok::<(), std::io::Error>(())
     ///```
     #[inline]
@@ -170,15 +211,16 @@ impl FileFormat {
             Self::default()
         } else if let Some(format) = Self::from_signature(reader.buffer()) {
             Self::from_format_reader(format, &mut reader)
-                .unwrap_or_else(|_| Self::from_txt_reader(&mut reader).unwrap_or_default())
+                .unwrap_or_else(|_| Self::from_generic_reader(&mut reader))
         } else {
-            Self::from_txt_reader(&mut reader).unwrap_or_default()
+            Self::from_generic_reader(&mut reader)
         })
     }
 }
 
 impl Default for FileFormat {
-    /// Returns the default file format which is [BIN](`FileFormat::ArbitraryBinaryData`).
+    /// Returns the default file format which is
+    /// [Arbitrary Binary Data (BIN)](`FileFormat::ArbitraryBinaryData`).
     #[inline]
     fn default() -> Self {
         Self::ArbitraryBinaryData

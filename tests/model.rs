@@ -1,6 +1,6 @@
 use file_format::FileFormat;
 
-#[cfg(feature = "zip")]
+#[cfg(feature = "reader-zip")]
 #[test]
 fn test_design_web_format_xps() {
     let format = FileFormat::from_file("fixtures/model/sample.dwfx").unwrap();

@@ -19,7 +19,7 @@ macro_rules! formats {
                 #[doc=concat!($name, $(" (", $short_name, ")",)? ".")]
                 #[doc=concat!("- Media type: `", $media_type, "`")]
                 #[doc=concat!("- Extension: `", $extension, "`")]
-                #[doc=concat!("- Kind: `", stringify!($kind), "`")]
+                #[doc=concat!("- Kind: [", stringify!($kind), "](crate::Kind::", stringify!($kind), ")")]
                 $format,
             )*
         }
@@ -140,17 +140,6 @@ macro_rules! signatures {
                 )*
                 None
             }
-        }
-    };
-}
-
-/// Returns a limit value based on the `accuracy` feature flag.
-macro_rules! limit {
-    ($min:literal, $max:literal) => {
-        if cfg!(feature = "accuracy") {
-            $max
-        } else {
-            $min
         }
     };
 }

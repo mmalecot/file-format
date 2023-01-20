@@ -90,6 +90,7 @@ fn test_third_generation_partnership_project2() {
     assert_eq!(format, FileFormat::ThirdGenerationPartnershipProject2);
 }
 
+#[cfg(feature = "reader-mkv")]
 #[test]
 fn test_webm() {
     let format = FileFormat::from_file("fixtures/video/sample.webm").unwrap();
