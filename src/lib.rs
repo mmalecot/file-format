@@ -72,8 +72,7 @@ detection for specific file formats, but may increase processing time and memory
 
 ## Reader features
 
-These features enable the detection of file formats based on other ones by reading the content of
-the files.
+These features enable the detection of file formats based on other ones by reading their content.
 
 - `reader` - Enables all reader features.
 - `reader-cfb` - Enables [Compound File Binary (CFB)](`FileFormat::CompoundFileBinary`) based file
