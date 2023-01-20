@@ -4,6 +4,9 @@
 
 - Add `FileFormat::short_name`
 
+## Docs
+- Improves global documentation
+
 ## Fixes
 
 - Fix LHA signatures

@@ -5,8 +5,8 @@ It provides a variety of functions for identifying a wide range of file formats,
 [ZIP](`FileFormat::Zip`), [Compound File Binary (CFB)](`FileFormat::CompoundFileBinary`),
 [Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`) and [more](`FileFormat`).
 
-It checks the signature of the file to determine its format. If the file format is not recognized by
-its signature, it returns the default file format which is
+It checks the signature of the file to determine its format. If it is not recognized by its
+signature, it returns the default file format which is
 [Arbitrary Binary Data (BIN)](`FileFormat::ArbitraryBinaryData`).
 
 # Examples
@@ -55,24 +55,27 @@ All features below are disabled by default.
 
 ## Accuracy features
 
-These features are only relevant if the associated readers are enabled.
+These features are only relevant if the associated reader is enabled. They improve the accuracy of
+detection for specific file formats, but may increase processing time and memory usage.
 
-- `accuracy` - Enables all accuracy features. Improves the accuracy but may increase the processing
-  time and memory usage.
-- `accuracy-mkv` - Improves the accuracy for [Matroska Video (MKV)](`FileFormat::MatroskaVideo`)
+- `accuracy` - Enables all accuracy features.
+- `accuracy-mkv` - Improves the accuracy of [Matroska Video (MKV)](`FileFormat::MatroskaVideo`)
   based file formats detection.
-- `accuracy-pdf` - Improves the accuracy for
-  [Portable Document Format (PDF)](`FileFormat::PortableDocumentFormat`) based formats detection.
-- `accuracy-txt` - Improves the accuracy for [Plain Text (TXT)](`FileFormat::PlainText`) detection.
-- `accuracy-xml` - Improves the accuracy for
+- `accuracy-pdf` - Improves the accuracy of
+  [Portable Document Format (PDF)](`FileFormat::PortableDocumentFormat`) based file formats
+  detection.
+- `accuracy-txt` - Improves the accuracy of [Plain Text (TXT)](`FileFormat::PlainText`) detection.
+- `accuracy-xml` - Improves the accuracy of
   [Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`) based file formats
   detection.
-- `accuracy-zip` - Improves the accuracy for [ZIP](`FileFormat::Zip`) based file formats detection.
+- `accuracy-zip` - Improves the accuracy of [ZIP](`FileFormat::Zip`)-based file formats detection.
 
 ## Reader features
 
-- `reader` - Enables all reader features. Some file formats require reading their contents in order
-  to detect them.
+These features enable the detection of file formats based on other ones by reading the content of
+the files.
+
+- `reader` - Enables all reader features.
 - `reader-cfb` - Enables [Compound File Binary (CFB)](`FileFormat::CompoundFileBinary`) based file
   formats detection:
   * [Microsoft Excel Spreadsheet (XLS)](`FileFormat::MicrosoftExcelSpreadsheet`)
@@ -103,7 +106,7 @@ These features are only relevant if the associated readers are enabled.
   * [Really Simple Syndication (RSS)](`FileFormat::ReallySimpleSyndication`)
   * [Scalable Vector Graphics (SVG)](`FileFormat::ScalableVectorGraphics`)
   * [Simple Object Access Protocol (SOAP)](`FileFormat::SimpleObjectAccessProtocol`)
-- `reader-zip` - Enables [ZIP](`FileFormat::Zip`) based file formats detection:
+- `reader-zip` - Enables [ZIP](`FileFormat::Zip`)-based file formats detection:
   * [3D Manufacturing Format (3MF)](`FileFormat::ThreeDimensionalManufacturingFormat`)
   * [Android Package (APK)](`FileFormat::AndroidPackage`)
   * [Circuit Diagram Document (CDDX)](`FileFormat::CircuitDiagramDocument`)

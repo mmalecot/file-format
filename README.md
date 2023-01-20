@@ -11,9 +11,8 @@ Crate for determining the file format of a given file or stream.
 It provides a variety of functions for identifying a wide range of file formats, including ZIP,
 Compound File Binary (CFB), Extensible Markup Language (XML) and more.
 
-It checks the signature of the file to determine its format. If the file format is not recognized by
-its signature, it checks if it is Plain Text. Otherwise, it returns the default file format which is
-Arbitrary Binary Data.
+It checks the signature of the file to determine its format. If it is not recognized by its
+signature, it returns the default file format which is Arbitrary Binary Data (BIN).
 
 ## Examples
 
@@ -22,13 +21,13 @@ Determines from a file:
 ```rust
 use file_format::{FileFormat, Kind};
 
-let format = FileFormat::from_file("fixtures/text/sample.html")?;
-assert_eq!(format, FileFormat::HypertextMarkupLanguage);
-assert_eq!(format.name(), "HyperText Markup Language");
-assert_eq!(format.short_name(), "HTML");
-assert_eq!(format.media_type(), "text/html");
-assert_eq!(format.extension(), "html");
-assert_eq!(format.kind(), Kind::Text);
+let format = FileFormat::from_file("fixtures/application/sample.pdf")?;
+assert_eq!(format, FileFormat::PortableDocumentFormat);
+assert_eq!(format.name(), "Portable Document Format");
+assert_eq!(format.short_name(), "PDF");
+assert_eq!(format.media_type(), "application/pdf");
+assert_eq!(format.extension(), "pdf");
+assert_eq!(format.kind(), Kind::Application);
 ```
 
 Determines from bytes:
@@ -54,46 +53,82 @@ Add this to your `Cargo.toml`:
 file-format = "0.13"
 ```
 
-## Features
+## Crate features
 
-- `accuracy` - Improves the accuracy but may increase the processing time and memory usage.
-- `cfb` - Enables CFB-based formats support:
-    - Microsoft Excel Spreadsheet (XLS)
-    - Microsoft PowerPoint Presentation (PPT)
-    - Microsoft Project Plan (MPP)
-    - Microsoft Publisher Document (PUB)
-    - Microsoft Software Installer (MSI)
-    - Microsoft Visio Drawing (VSD)
-    - Microsoft Word Document (DOC)
-- `zip` - Enables ZIP-based formats support:
-    - 3D Manufacturing Format (3MF)
-    - Android Package (APK)
-    - Circuit Diagram Document (CDDX)
-    - Design Web Format XPS (DWFX)
-    - Electronic Publication (EPUB)
-    - Enterprise Application Archive (EAR)
-    - Java Archive (JAR)
-    - Keyhole Markup Language Zipped (KMZ)
-    - Microsoft Visual Studio Extension (VSIX)
-    - MusicXML Zipped (MXL)
-    - Office Open XML Document (DOCX)
-    - Office Open XML Drawing (VSDX)
-    - Office Open XML Presentation (PPTX)
-    - Office Open XML Spreadsheet (XLSX)
-    - OpenDocument Graphics (ODG)
-    - OpenDocument Presentation (ODP)
-    - OpenDocument Spreadsheet (ODS)
-    - OpenDocument Text (ODT)
-    - OpenRaster (ORA)
-    - Web Application Archive (WAR)
-    - Windows App Package (APPX)
-    - XAP
-    - XPInstall (XPI)
-    - iOS App Store Package (IPA)
+All features below are disabled by default.
 
-All these features are disabled by default.
+### Accuracy features
 
-## Supported formats
+These features are only relevant if the associated reader is enabled. They improve the accuracy of
+detection for specific file formats, but may increase processing time and memory usage.
+
+- `accuracy` - Enables all accuracy features.
+- `accuracy-mkv` - Improves the accuracy of Matroska Video (MKV) based file formats detection.
+- `accuracy-pdf` - Improves the accuracy of Portable Document Format (PDF) based file formats
+  detection.
+- `accuracy-txt` - Improves the accuracy of Plain Text (TXT) detection.
+- `accuracy-xml` - Improves the accuracy of Extensible Markup Language (XML) based file formats
+  detection.
+- `accuracy-zip` - Improves the accuracy of ZIP-based file formats detection.
+
+### Reader features
+
+These features enable the detection of file formats based on other ones by reading the content of
+the files.
+
+- `reader` - Enables all reader features.
+- `reader-cfb` - Enables Compound File Binary (CFB) based file formats detection:
+  * Microsoft Excel Spreadsheet (XLS)
+  * Microsoft PowerPoint Presentation (PPT)
+  * Microsoft Project Plan (MPP)
+  * Microsoft Publisher Document (PUB)
+  * Microsoft Software Installer (MSI)
+  * Microsoft Visio Drawing (VSD)
+  * Microsoft Word Document (DOC)
+- `reader-exe` - Enables MS-DOS Executable (EXE) based file formats detection:
+  * Dynamic Link Library (DLL)
+  * Portable Executable (PE)
+- `reader-mkv` - Enables Matroska Video (MKV) based file formats detection:
+  * WebM
+- `reader-pdf` - Enables Portable Document Format (PDF) based file formats detection:
+  * Adobe Illustrator Artwork (AI)
+- `reader-txt` - Enables Plain Text (TXT) detection when the file format is not recognized by its
+  signature.
+- `reader-xml` - Enables Extensible Markup Language (XML) based file formats detection:
+  * Extensible Stylesheet Language Transformations (XSLT)
+  * Geography Markup Language (GML)
+  * Keyhole Markup Language (KML)
+  * MusicXML
+  * Really Simple Syndication (RSS)
+  * Scalable Vector Graphics (SVG)
+  * Simple Object Access Protocol (SOAP)
+- `reader-zip` - Enables ZIP-based file formats detection:
+  * 3D Manufacturing Format (3MF)
+  * Android Package (APK)
+  * Circuit Diagram Document (CDDX)
+  * Design Web Format XPS (DWFX)
+  * Electronic Publication (EPUB)
+  * Enterprise Application Archive (EAR)
+  * Java Archive (JAR)
+  * Keyhole Markup Language Zipped (KMZ)
+  * Microsoft Visual Studio Extension (VSIX)
+  * MusicXML Zipped (MXL)
+  * Office Open XML Document (DOCX)
+  * Office Open XML Drawing (VSDX)
+  * Office Open XML Presentation (PPTX)
+  * Office Open XML Spreadsheet (XLSX)
+  * OpenDocument Graphics (ODG)
+  * OpenDocument Presentation (ODP)
+  * OpenDocument Spreadsheet (ODS)
+  * OpenDocument Text (ODT)
+  * OpenRaster (ORA)
+  * Web Application Archive (WAR)
+  * Windows App Package (APPX)
+  * XAP
+  * XPInstall (XPI)
+  * iOS App Store Package (IPA)
+
+## Supported file formats
 
 - 3D Manufacturing Format (3MF)
 - 3rd Generation Partnership Project (3GPP)

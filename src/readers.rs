@@ -68,17 +68,13 @@ impl crate::FileFormat {
     /// Determines file format from a
     /// [MS-DOS Executable (EXE)](`crate::FileFormat::MsDosExecutable`) reader.
     ///
-    /// It first seeks to the `0x3C` offset within the reader and reads the `e_lfanew` field which
-    /// indicates the offset to the beginning of the Portable Executable header.
+    /// It first seeks to the `0x3C` offset within the reader and reads the `e_lfanew` field.
     ///
-    /// It then seeks to this address and reads the `Signature` field. If this is `PE\0\0`, it
-    /// indicates that it is a Portable Executable. Otherwise, it returns
+    /// It then seeks to this address and reads the `Signature` field. If this is `PE\0\0`, it seeks
+    /// to the `0x12` offset and reads the `Characteristics` field in order to know if it is a
+    /// [Dynamic Link Library (DLL)](`crate::FileFormat::DynamicLinkLibrary`) or a
+    /// [Portable Executable (PE)](`crate::FileFormat::PortableExecutable`). Otherwise, it returns
     /// [MS-DOS Executable (EXE)](`crate::FileFormat::MsDosExecutable`).
-    ///
-    /// Finally, it seeks to the `0x12` offset and reads the `Characteristics` field. If this word
-    /// has the `0x2000` bit set (`IMAGE_FILE_DLL`), it returns
-    /// [Dynamic Link Library (DLL)](`crate::FileFormat::DynamicLinkLibrary`). Otherwise, it returns
-    /// [Portable Executable (PE)](`crate::FileFormat::PortableExecutable`).
     #[cfg(feature = "reader-exe")]
     pub(crate) fn from_exe_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         reader.seek(SeekFrom::Start(0x3C))?;
@@ -149,9 +145,10 @@ impl crate::FileFormat {
 
     /// Determines file format from a [Plain Text (TXT)](`crate::FileFormat::PlainText`) reader.
     ///
-    /// Attempts to determine if the reader contains Plain Text by checking the first lines for
-    /// control characters. If any control characters (other than whitespace) are found, it returns
-    /// an error. Otherwise, it returns [Plain Text (TXT)](`crate::FileFormat::PlainText`).
+    /// Attempts to determine if the reader contains only UTF-8 encoded text by checking the first
+    /// lines for control characters. If any control characters (other than whitespace) are found,
+    /// it returns an error. Otherwise, it returns
+    /// [Plain Text (TXT)](`crate::FileFormat::PlainText`).
     #[cfg(feature = "reader-txt")]
     pub(crate) fn from_txt_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         const READ_LIMIT: u64 = match cfg!(feature = "accuracy-txt") {
