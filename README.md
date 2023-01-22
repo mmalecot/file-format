@@ -294,7 +294,7 @@ file-format = "0.13"
 - lzip (LZ)
 - lzop (LZO)
 - macOS Alias (Alias)
-- vCalendar (RCS)
+- vCalendar (VCS)
 - vCard (VCF)
 - zoo
 

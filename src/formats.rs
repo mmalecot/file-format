@@ -1494,7 +1494,7 @@ formats! {
 
     format = Vcalendar
     name = "vCalendar"
-    short_name = "RCS"
+    short_name = "VCS"
     media_type = "text/calendar"
     extension = "ics"
     kind = Text
