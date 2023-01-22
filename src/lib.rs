@@ -251,16 +251,16 @@ impl From<&[u8]> for FileFormat {
 pub enum Kind {
     /// Data to be processed by some type of application program.
     Application,
-    /// Audio.
+    /// Music, sound effects, and spoken audio recordings.
     Audio,
-    /// Font.
+    /// Files used for displaying text on screen or in print.
     Font,
-    /// One or more individual images.
+    /// Photographs, illustrations, and other types of image files.
     Image,
-    /// 3D model.
+    /// 3D models, CAD drawings, and other types of files used for creating or displaying 3D images.
     Model,
-    /// Text.
+    /// Plain text, markup languages, and other types of files that contain written text.
     Text,
-    /// Video.
+    /// Movies, animations, and other types of files that contain moving images.
     Video,
 }
