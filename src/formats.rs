@@ -36,10 +36,10 @@ formats! {
     extension = "f4v"
     kind = Video
 
-    format = AdobeIllustrator
-    name = "Adobe Illustrator"
+    format = AdobeIllustratorArtwork
+    name = "Adobe Illustrator Artwork"
     short_name = "AI"
-    media_type = "application/pdf"
+    media_type = "application/vnd.adobe.illustrator"
     extension = "ai"
     kind = Application
 

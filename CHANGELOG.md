@@ -4,7 +4,7 @@
 
 - Add `FileFormat::short_name`
 - Improve crate features
-- Rename `AdobeIllustratorArtwork` to `AdobeIllustrator`
+- Change the media type of Adobe Illustrator Artwork (AI) to `application/vnd.adobe.illustrator`
 
 ## Docs
 
@@ -137,7 +137,7 @@
 
 ## New formats support
 
-- Adobe Illustrator (AI)
+- Adobe Illustrator Artwork (AI)
 - Circuit Diagram Document (CDDX)
 - Creative Voice (VOC)
 - DER Certificate (DER)

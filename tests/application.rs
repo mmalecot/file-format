@@ -2,9 +2,9 @@ use file_format::FileFormat;
 
 #[cfg(feature = "reader-pdf")]
 #[test]
-fn test_adobe_illustrator() {
+fn test_adobe_illustrator_artwork() {
     let format = FileFormat::from_file("fixtures/application/sample.ai").unwrap();
-    assert_eq!(format, FileFormat::AdobeIllustrator);
+    assert_eq!(format, FileFormat::AdobeIllustratorArtwork);
 }
 
 #[test]

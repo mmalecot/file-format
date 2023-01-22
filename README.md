@@ -67,7 +67,7 @@ file-format = "0.13"
 - Adobe Flash Player Audiobook (F4B)
 - Adobe Flash Player Protected Video (F4P)
 - Adobe Flash Player Video (F4V)
-- Adobe Illustrator (AI)
+- Adobe Illustrator Artwork (AI)
 - Adobe InDesign Document (INDD)
 - Adobe Photoshop Document (PSD)
 - Advanced Audio Coding (AAC)
