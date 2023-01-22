@@ -44,6 +44,13 @@ signatures! {
     format = PgpSignature
     value = b"-----BEGIN PGP SIGNATURE-----"
 
+    // 28 bytes
+    format = Icalendar
+    value = b"BEGIN:VCALENDAR\nVERSION:2.0"
+
+    format = Vcalendar
+    value = b"BEGIN:VCALENDAR\nVERSION:1.0"
+
     // 27 bytes
     format = PemCertificate
     value = b"-----BEGIN CERTIFICATE-----"
@@ -157,9 +164,6 @@ signatures! {
 
     format = MicrosoftAccessDatabase
     value = b"Standard Jet DB" offset = 4
-
-    format = Vcalendar
-    value = b"BEGIN:VCALENDAR"
 
     // 14 bytes
     format = HypertextMarkupLanguage

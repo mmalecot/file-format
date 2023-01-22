@@ -290,6 +290,7 @@ file-format = "0.13"
 - bzip2 (BZ2)
 - cpio
 - gzip (GZ)
+- iCalendar (ICS)
 - iOS App Store Package (IPA)
 - lzip (LZ)
 - lzop (LZO)

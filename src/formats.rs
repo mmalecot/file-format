@@ -570,6 +570,13 @@ formats! {
     extension = "html"
     kind = Text
 
+    format = Icalendar
+    name = "iCalendar"
+    short_name = "ICS"
+    media_type = "text/calendar"
+    extension = "ics"
+    kind = Text
+
     format = IccProfile
     name = "ICC Profile"
     short_name = "ICC"
@@ -1496,7 +1503,7 @@ formats! {
     name = "vCalendar"
     short_name = "VCS"
     media_type = "text/calendar"
-    extension = "ics"
+    extension = "vcs"
     kind = Text
 
     format = Vcard
