@@ -93,7 +93,7 @@ These features enable the detection of file formats based on other ones by readi
   * [WebM](`FileFormat::Webm`)
 - `reader-pdf` - Enables [Portable Document Format (PDF)](`FileFormat::PortableDocumentFormat`)
   based file formats detection:
-  * [Adobe Illustrator Artwork (AI)](`FileFormat::AdobeIllustratorArtwork`)
+  * [Adobe Illustrator (AI)](`FileFormat::AdobeIllustrator`)
 - `reader-txt` - Enables [Plain Text (TXT)](`FileFormat::PlainText`) detection when the file format
   is not recognized by its signature.
 - `reader-xml` - Enables [Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`)

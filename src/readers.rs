@@ -123,9 +123,8 @@ impl crate::FileFormat {
     /// [Portable Document Format (PDF)](`crate::FileFormat::PortableDocumentFormat`) reader.
     ///
     /// Searches the reader for the "AIPrivateData" byte sequence. If this sequence is found it
-    /// returns [Adobe Illustrator Artwork (AI)](`crate::FileFormat::AdobeIllustratorArtwork`).
-    /// Otherwise, it returns
-    /// [Portable Document Format (PDF)](`crate::FileFormat::PortableDocumentFormat`).
+    /// returns [Adobe Illustrator (AI)](`crate::FileFormat::AdobeIllustrator`). Otherwise, it
+    /// returns [Portable Document Format (PDF)](`crate::FileFormat::PortableDocumentFormat`).
     #[cfg(feature = "reader-pdf")]
     pub(crate) fn from_pdf_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         const SEARCH_LIMIT: usize = match cfg!(feature = "accuracy-pdf") {
@@ -137,7 +136,7 @@ impl crate::FileFormat {
         let mut buffer = vec![0; std::cmp::min(SEARCH_LIMIT, length as usize)];
         reader.read_exact(&mut buffer)?;
         Ok(if contains(&buffer, b"AIPrivateData") {
-            Self::AdobeIllustratorArtwork
+            Self::AdobeIllustrator
         } else {
             Self::PortableDocumentFormat
         })

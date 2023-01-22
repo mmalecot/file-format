@@ -3,6 +3,7 @@
 ## API
 
 - Add `FileFormat::short_name`
+- Rename `AdobeIllustratorArtwork` to `AdobeIllustrator`
 
 ## Docs
 
