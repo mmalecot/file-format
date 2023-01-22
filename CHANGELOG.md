@@ -14,8 +14,8 @@
 
 ## Internal changes
 
-- Move the declaration of the file formats to a dedicated module
 - Improve the detection of Extensible Markup Language (XML) based file formats
+- Move the declaration of the file formats to a dedicated module
 
 ## New formats support
 
@@ -133,7 +133,7 @@
 
 ## New formats support
 
-- Adobe Illustrator Artwork
+- Adobe Illustrator
 - Circuit Diagram Document
 - Creative Voice
 - DER Certificate
