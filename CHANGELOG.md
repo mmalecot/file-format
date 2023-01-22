@@ -1,8 +1,9 @@
-# Version 0.13.0 (unreleased)
+# Version 0.13.0 (2023-01-22)
 
 ## API
 
 - Add `FileFormat::short_name`
+- Improve crate features
 - Rename `AdobeIllustratorArtwork` to `AdobeIllustrator`
 
 ## Docs
