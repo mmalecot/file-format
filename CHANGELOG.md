@@ -12,6 +12,11 @@
 
 - Fix LHA signatures
 
+## Internal changes
+
+- Move the declaration of the file formats to a dedicated module
+- Improve the detection of Extensible Markup Language (XML) based file formats
+
 ## New formats support
 
 - Extensible 3D Graphics
