@@ -44,6 +44,12 @@ signatures! {
     format = PgpSignature
     value = b"-----BEGIN PGP SIGNATURE-----"
 
+    // 28 bytes
+    format = Vcalendar
+    value = b"BEGIN:VCALENDAR\r\nVERSION:1.0"
+    value = b"BEGIN:VCALENDAR\nVERSION:1.0"
+    value = b"BEGIN:VCALENDAR\rVERSION:1.0"
+
     // 27 bytes
     format = PemCertificate
     value = b"-----BEGIN CERTIFICATE-----"
@@ -152,14 +158,14 @@ signatures! {
     format = FujifilmRaw
     value = b"FUJIFILMCCD-RAW"
 
+    format = Icalendar
+    value = b"BEGIN:VCALENDAR"
+
     format = MicrosoftAccess2007Database
     value = b"Standard ACE DB" offset = 4
 
     format = MicrosoftAccessDatabase
     value = b"Standard Jet DB" offset = 4
-
-    format = Vcalendar
-    value = b"BEGIN:VCALENDAR"
 
     // 14 bytes
     format = HypertextMarkupLanguage
@@ -464,6 +470,15 @@ signatures! {
     value = b"CD001" offset = 0x8801
     value = b"CD001" offset = 0x9001
 
+    format = Larc
+    value = b"-lz2-" offset = 2
+    value = b"-lz3-" offset = 2
+    value = b"-lz4-" offset = 2
+    value = b"-lz5-" offset = 2
+    value = b"-lz7-" offset = 2
+    value = b"-lz8-" offset = 2
+    value = b"-lzs-" offset = 2
+
     format = Lha
     value = b"-lh0-" offset = 2
     value = b"-lh1-" offset = 2
@@ -473,9 +488,7 @@ signatures! {
     value = b"-lh5-" offset = 2
     value = b"-lh6-" offset = 2
     value = b"-lh7-" offset = 2
-    value = b"-lzs-" offset = 2
-    value = b"-lz4-" offset = 2
-    value = b"-lz5-" offset = 2
+    value = b"-lh8-" offset = 2
     value = b"-lhd-" offset = 2
 
     format = MachO
@@ -505,6 +518,13 @@ signatures! {
 
     format = Opentype
     value = b"\x4F\x54\x54\x4F\x00"
+
+    format = Pmarc
+    value = b"-pc1-" offset = 2
+    value = b"-pm0-" offset = 2
+    value = b"-pm1-" offset = 2
+    value = b"-pm2-" offset = 2
+    value = b"-pms-" offset = 2
 
     format = PortableDocumentFormat
     value = b"%PDF-"

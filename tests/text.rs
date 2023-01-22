@@ -19,6 +19,12 @@ fn test_hypertext_markup_language() {
 }
 
 #[test]
+fn test_icalendar() {
+    let format = FileFormat::from_file("fixtures/text/sample.ics").unwrap();
+    assert_eq!(format, FileFormat::Icalendar);
+}
+
+#[test]
 fn test_latex() {
     let format = FileFormat::from_file("fixtures/text/sample.tex").unwrap();
     assert_eq!(format, FileFormat::Latex);
@@ -36,6 +42,7 @@ fn test_perl_script() {
     assert_eq!(format, FileFormat::PerlScript);
 }
 
+#[cfg(feature = "reader-txt")]
 #[test]
 fn test_plain_text() {
     let format = FileFormat::from_file("fixtures/text/sample.txt").unwrap();
@@ -68,7 +75,7 @@ fn test_tool_command_language_script() {
 
 #[test]
 fn test_vcalendar() {
-    let format = FileFormat::from_file("fixtures/text/sample.ics").unwrap();
+    let format = FileFormat::from_file("fixtures/text/sample.vcs").unwrap();
     assert_eq!(format, FileFormat::Vcalendar);
 }
 

@@ -8,12 +8,11 @@
 
 Crate for determining the file format of a given file or stream.
 
-It provides a variety of functions for identifying a wide range of file formats, including ZIP, CFB,
-XML and more.
+It provides a variety of functions for identifying a wide range of file formats, including ZIP,
+Compound File Binary (CFB), Extensible Markup Language (XML) and more.
 
-It checks the signature of the file to determine its format. If the file format is not recognized by
-its signature, it checks if it is Plain Text. Otherwise, it returns the default file format which is
-Arbitrary Binary Data.
+It checks the signature of the file to determine its format. If it is not recognized by its
+signature, it returns the default file format which is Arbitrary Binary Data (BIN).
 
 ## Examples
 
@@ -22,11 +21,12 @@ Determines from a file:
 ```rust
 use file_format::{FileFormat, Kind};
 
-let format = FileFormat::from_file("fixtures/application/sample.zip").unwrap();
-assert_eq!(format, FileFormat::Zip);
-assert_eq!(format.name(), "ZIP");
-assert_eq!(format.media_type(), "application/zip");
-assert_eq!(format.extension(), "zip");
+let format = FileFormat::from_file("fixtures/application/sample.pdf")?;
+assert_eq!(format, FileFormat::PortableDocumentFormat);
+assert_eq!(format.name(), "Portable Document Format");
+assert_eq!(format.short_name(), "PDF");
+assert_eq!(format.media_type(), "application/pdf");
+assert_eq!(format.extension(), "pdf");
 assert_eq!(format.kind(), Kind::Application);
 ```
 
@@ -35,9 +35,10 @@ Determines from bytes:
 ```rust
 use file_format::{FileFormat, Kind};
 
-let format = FileFormat::from_bytes(&[0xFF, 0xD8, 0xFF, 0xEE]);
+let format = FileFormat::from_bytes(&[0xFF, 0xD8, 0xFF]);
 assert_eq!(format, FileFormat::JointPhotographicExpertsGroup);
 assert_eq!(format.name(), "Joint Photographic Experts Group");
+assert_eq!(format.short_name(), "JPEG");
 assert_eq!(format.media_type(), "image/jpeg");
 assert_eq!(format.extension(), "jpg");
 assert_eq!(format.kind(), Kind::Image);
@@ -49,286 +50,253 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.12"
+file-format = "0.13"
 ```
 
-## Features
+## Supported file formats
 
-- `accuracy` - Improves the accuracy but may increase the processing time and memory usage.
-- `cfb` - Enables CFB-based formats support:
-    - Microsoft Excel Spreadsheet
-    - Microsoft PowerPoint Presentation
-    - Microsoft Project Plan
-    - Microsoft Publisher Document
-    - Microsoft Software Installer
-    - Microsoft Visio Drawing
-    - Microsoft Word Document
-- `zip` - Enables ZIP-based formats support:
-    - 3D Manufacturing Format
-    - Android Package
-    - Circuit Diagram Document
-    - Design Web Format XPS
-    - Electronic Publication
-    - Enterprise Application Archive
-    - Java Archive
-    - Keyhole Markup Language Zipped
-    - Microsoft Visual Studio Extension
-    - MusicXML Zipped
-    - Office Open XML Document
-    - Office Open XML Drawing
-    - Office Open XML Presentation
-    - Office Open XML Spreadsheet
-    - OpenDocument Graphics
-    - OpenDocument Presentation
-    - OpenDocument Spreadsheet
-    - OpenDocument Text
-    - OpenRaster
-    - Web Application Archive
-    - Windows App Package
-    - XAP
-    - XPInstall
-    - iOS App Store Package
-
-All these features are disabled by default.
-
-## Supported formats
-
-- 3D Manufacturing Format
-- 3rd Generation Partnership Project
-- 3rd Generation Partnership Project 2
-- 7-Zip
+- 3D Manufacturing Format (3MF)
+- 3rd Generation Partnership Project (3GPP)
+- 3rd Generation Partnership Project 2 (3GPP2)
+- 7-Zip (7Z)
 - ALZ
-- AV1 Image File Format
-- AV1 Image File Format Sequence
-- Adaptive Multi-Rate
-- Adobe Flash Player Audio
-- Adobe Flash Player Audiobook
-- Adobe Flash Player Protected Video
-- Adobe Flash Player Video
-- Adobe Illustrator Artwork
-- Adobe InDesign Document
-- Adobe Photoshop Document
-- Advanced Audio Coding
-- Android Binary XML
-- Android Compiled Resources
-- Android Package
-- Animated Portable Network Graphics
-- Apache Arrow Columnar
-- Apple Disk Image
-- Apple Icon Image
-- Apple QuickTime
-- Apple iTunes Audio
-- Apple iTunes Audiobook
-- Apple iTunes Protected Audio
-- Apple iTunes Video
-- Arbitrary Binary Data
-- Archived by Robert Jung
+- AV1 Image File Format (AVIF)
+- AV1 Image File Format Sequence (AVIFS)
+- Adaptive Multi-Rate (AMR)
+- Adobe Flash Player Audio (F4A)
+- Adobe Flash Player Audiobook (F4B)
+- Adobe Flash Player Protected Video (F4P)
+- Adobe Flash Player Video (F4V)
+- Adobe Illustrator Artwork (AI)
+- Adobe InDesign Document (INDD)
+- Adobe Photoshop Document (PSD)
+- Advanced Audio Coding (AAC)
+- Android Binary XML (AXML)
+- Android Compiled Resources (ARSC)
+- Android Package (APK)
+- Animated Portable Network Graphics (APNG)
+- Apache Arrow Columnar (Arrow)
+- Apple Disk Image (DMG)
+- Apple Icon Image (ICNS)
+- Apple QuickTime (MOV)
+- Apple iTunes Audio (M4A)
+- Apple iTunes Audiobook (M4B)
+- Apple iTunes Protected Audio (M4P)
+- Apple iTunes Video (M4V)
+- Arbitrary Binary Data (BIN)
+- Archived by Robert Jung (ARJ)
 - Au
-- Audio Codec 3
-- Audio Interchange File Format
-- Audio Video Interleave
-- Better Portable Graphics
-- Blender
-- Cabinet
-- Canon Raw 2
-- Canon Raw 3
-- Cineon
-- Circuit Diagram Document
+- Audio Codec 3 (AC3)
+- Audio Interchange File Format (AIFF)
+- Audio Video Interleave (AVI)
+- Better Portable Graphics (BPG)
+- Blender (BLEND)
+- Cabinet (CAB)
+- Canon Raw 2 (CR2)
+- Canon Raw 3 (CR3)
+- Cineon (CIN)
+- Circuit Diagram Document (CDDX)
 - Clojure Script
-- Common Object File Format
-- Compound File Binary
-- Creative Voice
-- DER Certificate
-- Dalvik Executable
-- Debian Binary Package
-- Design Web Format XPS
-- Digital Imaging and Communications in Medicine
-- Digital Picture Exchange
+- Common Object File Format (COFF)
+- Compound File Binary (CFB)
+- Creative Voice (VOC)
+- DER Certificate (DER)
+- Dalvik Executable (DEX)
+- Debian Binary Package (DEB)
+- Design Web Format XPS (DWFX)
+- Digital Imaging and Communications in Medicine (DICOM)
+- Digital Picture Exchange (DPX)
 - DjVu
-- Dynamic Link Library
-- Electronic Publication
-- Embedded OpenType
-- Encapsulated PostScript
-- Enterprise Application Archive
-- Executable and Linkable Format
-- Experimental Computing Facility
-- Extensible Archive
-- Extensible Markup Language
-- Extensible Stylesheet Language Transformations
-- FastTracker 2 Extended Module
-- Flash Video
-- Flexible Image Transport System
-- Free Lossless Audio Codec
-- Free Lossless Image Format
-- Fujifilm Raw
-- GL Transmission Format Binary
-- Game Boy Advance ROM
-- Game Boy Color ROM
-- Game Boy ROM
-- Geography Markup Language
-- Google Chrome Extension
-- Google Draco
-- Graphics Interchange Format
-- High Efficiency Image Coding
-- High Efficiency Image Coding Sequence
-- High Efficiency Image File Format
-- High Efficiency Image File Format Sequence
-- HyperText Markup Language
-- ICC Profile
-- ISO 9660
-- Impulse Tracker Module
-- JPEG 2000 Part 1
-- JPEG 2000 Part 2
-- JPEG 2000 Part 3
-- JPEG 2000 Part 6
-- JPEG Extended Range
-- JPEG XL
-- Java Archive
-- Java Class
-- Java KeyStore
-- Joint Photographic Experts Group
-- Keyhole Markup Language
-- Keyhole Markup Language Zipped
-- Khronos Texture
-- Khronos Texture 2
+- Dynamic Link Library (DLL)
+- Electronic Publication (EPUB)
+- Embedded OpenType (EOT)
+- Encapsulated PostScript (EPS)
+- Enterprise Application Archive (EAR)
+- Executable and Linkable Format (ELF)
+- Experimental Computing Facility (XCF)
+- Extensible 3D Graphics (X3D)
+- Extensible Archive (XAR)
+- Extensible Markup Language (XML)
+- Extensible Stylesheet Language Transformations (XSLT)
+- FastTracker 2 Extended Module (XM)
+- Flash Video (FLV)
+- Flexible Image Transport System (FITS)
+- Free Lossless Audio Codec (FLAC)
+- Free Lossless Image Format (FLIF)
+- Fujifilm Raw (RAF)
+- GL Transmission Format Binary (GLB)
+- GPS Exchange Format (GPX)
+- Game Boy Advance ROM (GBA)
+- Game Boy Color ROM (GBC)
+- Game Boy ROM (GB)
+- Geography Markup Language (GML)
+- Google Chrome Extension (CRX)
+- Google Draco (Draco)
+- Graphics Interchange Format (GIF)
+- High Efficiency Image Coding (HEIC)
+- High Efficiency Image Coding Sequence (HEICS)
+- High Efficiency Image File Format (HEIF)
+- High Efficiency Image File Format Sequence (HEIFS)
+- HyperText Markup Language (HTML)
+- ICC Profile (ICC)
+- ISO 9660 (ISO)
+- Impulse Tracker Module (IT)
+- JPEG 2000 Part 1 (JP2)
+- JPEG 2000 Part 2 (JPX)
+- JPEG 2000 Part 3 (MJ2)
+- JPEG 2000 Part 6 (JPM)
+- JPEG XL (JXL)
+- Java Archive (JAR)
+- Java Class (Class)
+- Java KeyStore (JKS)
+- Joint Photographic Experts Group (JPEG)
+- Keyhole Markup Language (KML)
+- Keyhole Markup Language Zipped (KMZ)
+- Khronos Texture (KTX)
+- Khronos Texture 2 (KTX2)
+- LArc (LZS)
 - LHA
-- LLVM Bitcode
+- LLVM Bitcode (BC)
 - LZ4
-- LaTeX
-- Lempel–Ziv Finite State Entropy
-- Long Range ZIP
+- LaTeX (TeX)
+- Lempel–Ziv Finite State Entropy (LZFSE)
+- Long Range ZIP (LRZIP)
 - Lua Bytecode
 - Lua Script
-- MPEG-1 Audio Layer 1
-- MPEG-1 Audio Layer 2
-- MPEG-1 Video
-- MPEG-1/2 Audio Layer 3
-- MPEG-2 Transport Stream
-- MPEG-4 Part 14 Video
-- MS-DOS Executable
+- MPEG-1 Audio Layer 1 (MP1)
+- MPEG-1 Audio Layer 2 (MP2)
+- MPEG-1 Video (MPG)
+- MPEG-1/2 Audio Layer 3 (MP3)
+- MPEG-2 Transport Stream (MTS)
+- MPEG-4 Part 14 Video (MP4)
+- MS-DOS Executable (EXE)
 - Mach-O
-- Material Exchange Format
-- Matroska Video
-- Meta Information Encapsulation
-- Microsoft Access 2007 Database
-- Microsoft Access Database
-- Microsoft Compiled HTML Help
-- Microsoft DirectDraw Surface
-- Microsoft Excel Spreadsheet
-- Microsoft PowerPoint Presentation
-- Microsoft Project Plan
-- Microsoft Publisher Document
-- Microsoft Software Installer
-- Microsoft Virtual Hard Disk
-- Microsoft Virtual Hard Disk 2
-- Microsoft Visio Drawing
-- Microsoft Visual Studio Extension
-- Microsoft Word Document
-- Mobipocket
-- Monkey’s Audio
-- Musepack
+- Material Exchange Format (MXF)
+- Matroska Video (MKV)
+- Meta Information Encapsulation (MIE)
+- Microsoft Access 2007 Database (ACCDB)
+- Microsoft Access Database (MDB)
+- Microsoft Compiled HTML Help (CHM)
+- Microsoft DirectDraw Surface (DDS)
+- Microsoft Excel Spreadsheet (XLS)
+- Microsoft PowerPoint Presentation (PPT)
+- Microsoft Project Plan (MPP)
+- Microsoft Publisher Document (PUB)
+- Microsoft Software Installer (MSI)
+- Microsoft Virtual Hard Disk (VHD)
+- Microsoft Virtual Hard Disk 2 (VHDX)
+- Microsoft Visio Drawing (VSD)
+- Microsoft Visual Studio Extension (VSIX)
+- Microsoft Word Document (DOC)
+- Mobipocket (MOBI)
+- Monkey's Audio (APE)
+- Musepack (MPC)
 - MusicXML
-- MusicXML Zipped
-- Musical Instrument Digital Interface
-- Nikon Electronic File
-- Nintendo 64 ROM
-- Nintendo DS ROM
-- Nintendo Entertainment System ROM
-- Office Open XML Document
-- Office Open XML Drawing
-- Office Open XML Presentation
-- Office Open XML Spreadsheet
-- Ogg FLAC
-- Ogg Media
-- Ogg Multiplexed Media
-- Ogg Opus
-- Ogg Speex
-- Ogg Theora
-- Ogg Vorbis
-- Olympus Raw Format
-- OpenDocument Graphics
-- OpenDocument Presentation
-- OpenDocument Spreadsheet
-- OpenDocument Text
-- OpenEXR
-- OpenRaster
-- OpenType
-- Optimized Dalvik Executable
-- PCAP Dump
-- PCAP Next Generation Dump
-- PEM Certificate
-- PEM Certificate Signing Request
-- PEM Private Key
-- PGP Message
-- PGP Private Key Block
-- PGP Public Key Block
-- PGP Signature
-- PGP Signed Message
-- Panasonic Raw
+- MusicXML Zipped (MXL)
+- Musical Instrument Digital Interface (MIDI)
+- Nikon Electronic File (NEF)
+- Nintendo 64 ROM (Z64)
+- Nintendo DS ROM (NDS)
+- Nintendo Entertainment System ROM (NES)
+- Office Open XML Document (DOCX)
+- Office Open XML Drawing (VSDX)
+- Office Open XML Presentation (PPTX)
+- Office Open XML Spreadsheet (XLSX)
+- Ogg FLAC (OGA)
+- Ogg Media (OGM)
+- Ogg Multiplexed Media (OGX)
+- Ogg Opus (Opus)
+- Ogg Speex (Speex)
+- Ogg Theora (Theora)
+- Ogg Vorbis (Vorbis)
+- Olympus Raw Format (ORF)
+- OpenDocument Graphics (ODG)
+- OpenDocument Presentation (ODP)
+- OpenDocument Spreadsheet (ODS)
+- OpenDocument Text (ODT)
+- OpenEXR (EXR)
+- OpenRaster (ORA)
+- OpenType (OTF)
+- Optimized Dalvik Executable (DEY)
+- PCAP Dump (PCAP)
+- PCAP Next Generation Dump (PCAPNG)
+- PEG Extended Range (JXR)
+- PEM Certificate (CRT)
+- PEM Certificate Signing Request (CSR)
+- PEM Private Key (KEY)
+- PGP Message (ASC)
+- PGP Private Key Block (ASC)
+- PGP Public Key Block (ASC)
+- PGP Signature (ASC)
+- PGP Signed Message (ASC)
+- PMarc (PMA)
+- Panasonic Raw (RW2)
 - Perl Script
-- Plain Text
-- Portable Document Format
-- Portable Executable
-- Portable Network Graphics
-- PostScript
+- Plain Text (TXT)
+- Portable Document Format (PDF)
+- Portable Executable (PE)
+- Portable Network Graphics (PNG)
+- PostScript (PS)
 - Python Script
-- Qualcomm PureVoice
-- Radiance HDR
-- Really Simple Syndication
-- Red Hat Package Manager
-- Rich Text Format
-- Roshal Archive
+- Qualcomm PureVoice (QCP)
+- Radiance HDR (HDR)
+- Really Simple Syndication (RSS)
+- Red Hat Package Manager (RPM)
+- Rich Text Format (RTF)
+- Roshal Archive (RAR)
 - Ruby Script
 - SQLite 3
-- Scalable Vector Graphics
-- ScreamTracker 3 Module
-- SeqBox
-- Shapefile
+- Scalable Vector Graphics (SVG)
+- ScreamTracker 3 Module (S3M)
+- SeqBox (SBX)
+- Shapefile (SHP)
 - Shell Script
-- Simple Object Access Protocol
-- SketchUp
-- Small Web Format
+- Simple Object Access Protocol (SOAP)
+- SketchUp (SKP)
+- Small Web Format (SWF)
 - Snappy
-- Sony DSD Stream File
-- Sony Movie
+- Sony DSD Stream File (DSF)
+- Sony Movie (MQV)
 - TASTy
-- Tag Image File Format
-- Tape Archive
+- Tag Image File Format (TIFF)
+- Tape Archive (TAR)
 - Tool Command Language Script
-- TrueType
+- TrueType (TTF)
 - UNIX archiver
 - UNIX compress
-- VirtualBox Virtual Disk Image
-- WavPack
-- Waveform Audio
-- Web Application Archive
-- Web Open Font Format
-- Web Open Font Format 2
-- WebAssembly Binary
+- VirtualBox Virtual Disk Image (VDI)
+- WavPack (WV)
+- Waveform Audio (WAV)
+- Web Application Archive (WAR)
+- Web Open Font Format (WOFF)
+- Web Open Font Format 2 (WOFF2)
+- WebAssembly Binary (Wasm)
 - WebM
 - WebP
-- Windows Animated Cursor
-- Windows App Package
-- Windows Bitmap
-- Windows Cursor
-- Windows Icon
-- Windows Media Video
-- Windows Metafile
-- Windows Shortcut
+- Windows Animated Cursor (ANI)
+- Windows App Package (APPX)
+- Windows Bitmap (BMP)
+- Windows Cursor (CUR)
+- Windows Icon (ICO)
+- Windows Media Video (WMV)
+- Windows Metafile (WMF)
+- Windows Shortcut (LNK)
 - XAP
-- XPInstall
+- XML Localization Interchange File Format (XLIFF)
+- XPInstall (XPI)
 - XZ
 - ZIP
-- Zstandard
-- bzip2
+- Zstandard (zstd)
+- bzip2 (BZ2)
 - cpio
-- gzip
-- iOS App Store Package
-- lzip
-- lzop
-- macOS Alias
-- vCalendar
-- vCard
+- gzip (GZ)
+- iCalendar (ICS)
+- iOS App Store Package (IPA)
+- lzip (LZ)
+- lzop (LZO)
+- macOS Alias (Alias)
+- vCalendar (VCS)
+- vCard (VCF)
 - zoo
 
 ## License

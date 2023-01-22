@@ -1,4 +1,4 @@
-//! Convenient macros.
+//! Macros.
 
 /// Generates `FileFormat` enum with methods.
 macro_rules! formats {
@@ -6,6 +6,7 @@ macro_rules! formats {
         $(
             format = $format:ident
             name = $name:literal
+            $(short_name = $short_name:literal)?
             media_type = $media_type:literal
             extension = $extension:literal
             kind = $kind:ident
@@ -15,10 +16,10 @@ macro_rules! formats {
         #[derive(Clone, Debug, Eq, PartialEq)]
         pub enum FileFormat {
             $(
-                #[doc=concat!($name, ".")]
+                #[doc=concat!($name, $(" (", $short_name, ")",)? ".")]
                 #[doc=concat!("- Media type: `", $media_type, "`")]
                 #[doc=concat!("- Extension: `", $extension, "`")]
-                #[doc=concat!("- Kind: [", stringify!($kind), "](`Kind::", stringify!($kind), "`)")]
+                #[doc=concat!("- Kind: [", stringify!($kind), "](crate::Kind::", stringify!($kind), ")")]
                 $format,
             )*
         }
@@ -42,6 +43,27 @@ macro_rules! formats {
                 }
             }
 
+            /// Returns the short name of the file format.
+            ///
+            /// If there is none, the [name](crate::FileFormat::name) is returned.
+            ///
+            /// # Examples
+            ///
+            /// ```rust
+            /// use file_format::FileFormat;
+            ///
+            /// let format = FileFormat::MusicalInstrumentDigitalInterface;
+            /// assert_eq!(format.short_name(), "MIDI");
+            ///```
+            pub const fn short_name(&self) -> &str {
+                match self {
+                    $(
+                        $(Self::$format => $short_name,)?
+                    )*
+                    _ => self.name(),
+                }
+            }
+
             /// Returns the media type (formerly known as MIME type) of the file format.
             ///
             /// # Examples
@@ -60,7 +82,7 @@ macro_rules! formats {
                 }
             }
 
-            /// Returns the extension of the file format.
+            /// Returns the common extension of the file format.
             ///
             /// # Examples
             ///
@@ -78,7 +100,7 @@ macro_rules! formats {
                 }
             }
 
-            /// Returns the `Kind` of the file format.
+            /// Returns the [Kind](crate::Kind) of the file format.
             ///
             /// # Examples
             ///

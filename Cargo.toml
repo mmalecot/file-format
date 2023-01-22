@@ -1,6 +1,6 @@
 [package]
 name = "file-format"
-version = "0.12.0"
+version = "0.13.0"
 authors = ["Mickaël Malécot <mickael.malecot@gmail.com>"]
 edition = "2021"
 description = "Crate for determining the file format of a given file or stream."
@@ -18,6 +18,24 @@ cfb = { version = "0.7", optional = true }
 zip = { version = "0.6", optional = true, features = ["deflate-miniz"], default-features = false }
 
 [features]
-accuracy = []
-cfb = ["dep:cfb"]
-zip = ["dep:zip"]
+## ACCURACY FEATURES
+
+# Enables all accuracy features
+accuracy = ["accuracy-mkv", "accuracy-pdf", "accuracy-txt", "accuracy-xml", "accuracy-zip"]
+accuracy-mkv = []
+accuracy-pdf = []
+accuracy-txt = []
+accuracy-xml = []
+accuracy-zip = []
+
+## READER FEATURES
+
+# Enables all reader features
+reader = ["reader-cfb", "reader-exe", "reader-mkv", "reader-pdf", "reader-txt", "reader-xml", "reader-zip"]
+reader-cfb = ["dep:cfb"]
+reader-exe = []
+reader-mkv = []
+reader-pdf = []
+reader-txt = []
+reader-xml = []
+reader-zip = ["dep:zip"]

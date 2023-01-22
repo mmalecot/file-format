@@ -197,7 +197,7 @@ fn test_openexr() {
     assert_eq!(format, FileFormat::Openexr);
 }
 
-#[cfg(feature = "zip")]
+#[cfg(feature = "reader-zip")]
 #[test]
 fn test_openraster() {
     let format = FileFormat::from_file("fixtures/image/sample.ora").unwrap();
@@ -222,6 +222,7 @@ fn test_radiance_hdr() {
     assert_eq!(format, FileFormat::RadianceHdr);
 }
 
+#[cfg(feature = "reader-xml")]
 #[test]
 fn test_scalable_vector_graphics() {
     let format = FileFormat::from_file("fixtures/image/sample.svg").unwrap();
