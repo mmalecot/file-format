@@ -45,11 +45,10 @@ signatures! {
     value = b"-----BEGIN PGP SIGNATURE-----"
 
     // 28 bytes
-    format = Icalendar
-    value = b"BEGIN:VCALENDAR\nVERSION:2.0"
-
     format = Vcalendar
+    value = b"BEGIN:VCALENDAR\r\nVERSION:1.0"
     value = b"BEGIN:VCALENDAR\nVERSION:1.0"
+    value = b"BEGIN:VCALENDAR\rVERSION:1.0"
 
     // 27 bytes
     format = PemCertificate
@@ -158,6 +157,9 @@ signatures! {
     // 15 bytes
     format = FujifilmRaw
     value = b"FUJIFILMCCD-RAW"
+
+    format = Icalendar
+    value = b"BEGIN:VCALENDAR"
 
     format = MicrosoftAccess2007Database
     value = b"Standard ACE DB" offset = 4
