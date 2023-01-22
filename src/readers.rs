@@ -122,7 +122,7 @@ impl crate::FileFormat {
     /// Determines file format from a
     /// [Portable Document Format (PDF)](`crate::FileFormat::PortableDocumentFormat`) reader.
     ///
-    /// Searches the reader for the "AIPrivateData" byte sequence. If this sequence is found it
+    /// Searches the reader for the "AIPrivateData" byte sequence. If this sequence is found, it
     /// returns [Adobe Illustrator Artwork (AI)](`crate::FileFormat::AdobeIllustratorArtwork`).
     /// Otherwise, it returns
     /// [Portable Document Format (PDF)](`crate::FileFormat::PortableDocumentFormat`).
@@ -174,7 +174,7 @@ impl crate::FileFormat {
             .map(|_| Self::PlainText)
     }
 
-    /// Determines file format from a
+    /// Determines file format from an
     /// [Extensible Markup Language (XML)](`crate::FileFormat::ExtensibleMarkupLanguage`) reader.
     ///
     /// Searches the reader for byte sequences that indicate the presence of various file formats.
