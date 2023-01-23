@@ -166,6 +166,7 @@ file-format = "0.14"
 - Long Range ZIP (LRZIP)
 - Lua Bytecode
 - Lua Script
+- MP3 URL (M3U)
 - MPEG-1 Audio Layer 1 (MP1)
 - MPEG-1 Audio Layer 2 (MP2)
 - MPEG-1 Video (MPG)

@@ -5,6 +5,7 @@
 - Apache Parquet (Parquet)
 - AutoCAD Drawing (DWG)
 - JPEG-LS (JLS)
+- MP3 URL (M3U)
 - Personal Storage Table (PST)
 
 # Version 0.13.0 (2023-01-22)

@@ -943,6 +943,13 @@ formats! {
     extension = "ape"
     kind = Audio
 
+    format = Mp3Url
+    name = "MP3 URL"
+    short_name = "M3U"
+    media_type = "audio/x-mpegurl"
+    extension = "m3u"
+    kind = Audio
+
     format = Mpeg12AudioLayer3
     name = "MPEG-1/2 Audio Layer 3"
     short_name = "MP3"

@@ -411,6 +411,9 @@ signatures! {
     value = b"\x7E\x10\x04", b"\x30\x4D\x49\x45" offset = 4
     value = b"\x7E\x18\x04", b"\x30\x4D\x49\x45" offset = 4
 
+    format = Mp3Url
+    value = b"#EXTM3U"
+
     format = SonyMovie
     value = b"ftypmqt" offset = 4
 
