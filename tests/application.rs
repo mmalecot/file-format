@@ -45,6 +45,12 @@ fn test_apache_arrow_columnar() {
 }
 
 #[test]
+fn test_apache_parquet() {
+    let format = FileFormat::from_file("fixtures/application/sample.parquet").unwrap();
+    assert_eq!(format, FileFormat::ApacheParquet);
+}
+
+#[test]
 fn test_apple_disk_image() {
     let format = FileFormat::from_file("fixtures/application/sample.dmg").unwrap();
     assert_eq!(format, FileFormat::AppleDiskImage);
@@ -581,6 +587,12 @@ fn test_pem_certificate_signing_request() {
 fn test_pem_private_key() {
     let format = FileFormat::from_file("fixtures/application/sample.key").unwrap();
     assert_eq!(format, FileFormat::PemPrivateKey);
+}
+
+#[test]
+fn test_personal_storage_table() {
+    let format = FileFormat::from_file("fixtures/application/sample.pst").unwrap();
+    assert_eq!(format, FileFormat::PersonalStorageTable);
 }
 
 #[test]

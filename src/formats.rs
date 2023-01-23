@@ -105,6 +105,13 @@ formats! {
     extension = "arrow"
     kind = Application
 
+    format = ApacheParquet
+    name = "Apache Parquet"
+    short_name = "Parquet"
+    media_type = "application/x-parquet"
+    extension = "parquet"
+    kind = Application
+
     format = AppleDiskImage
     name = "Apple Disk Image"
     short_name = "DMG"
@@ -194,6 +201,13 @@ formats! {
     media_type = "video/avi"
     extension = "avi"
     kind = Video
+
+    format = AutocadDrawing
+    name = "AutoCAD Drawing"
+    short_name = "DWG"
+    media_type = "image/vnd.dwg"
+    extension = "dwg"
+    kind = Image
 
     format = Av1ImageFileFormat
     name = "AV1 Image File Format"
@@ -666,6 +680,13 @@ formats! {
     short_name = "JXR"
     media_type = "image/jxr"
     extension = "jxr"
+    kind = Image
+
+    format = JpegLs
+    name = "JPEG-LS"
+    short_name = "JLS"
+    media_type = "image/jls"
+    extension = "jls"
     kind = Image
 
     format = JpegXl
@@ -1213,6 +1234,13 @@ formats! {
     media_type = "text/x-perl"
     extension = "pl"
     kind = Text
+
+    format = PersonalStorageTable
+    name = "Personal Storage Table"
+    short_name = "PST"
+    media_type = "application/vnd.ms-outlook"
+    extension = "pst"
+    kind = Application
 
     format = PgpMessage
     name = "PGP Message"

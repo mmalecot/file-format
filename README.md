@@ -50,7 +50,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.13"
+file-format = "0.14"
 ```
 
 ## Supported file formats
@@ -76,6 +76,7 @@ file-format = "0.13"
 - Android Package (APK)
 - Animated Portable Network Graphics (APNG)
 - Apache Arrow Columnar (Arrow)
+- Apache Parquet (Parquet)
 - Apple Disk Image (DMG)
 - Apple Icon Image (ICNS)
 - Apple QuickTime (MOV)
@@ -89,6 +90,7 @@ file-format = "0.13"
 - Audio Codec 3 (AC3)
 - Audio Interchange File Format (AIFF)
 - Audio Video Interleave (AVI)
+- AutoCAD Drawing (DWG)
 - Better Portable Graphics (BPG)
 - Blender (BLEND)
 - Cabinet (CAB)
@@ -146,6 +148,7 @@ file-format = "0.13"
 - JPEG 2000 Part 3 (MJ2)
 - JPEG 2000 Part 6 (JPM)
 - JPEG XL (JXL)
+- JPEG-LS (JLS)
 - Java Archive (JAR)
 - Java Class (Class)
 - Java KeyStore (JKS)
@@ -232,6 +235,7 @@ file-format = "0.13"
 - PMarc (PMA)
 - Panasonic Raw (RW2)
 - Perl Script
+- Personal Storage Table (PST)
 - Plain Text (TXT)
 - Portable Document Format (PDF)
 - Portable Executable (PE)

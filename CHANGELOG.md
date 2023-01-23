@@ -1,3 +1,12 @@
+# Version 0.14.0 (unreleased)
+
+## New formats support
+
+- Apache Parquet (Parquet)
+- AutoCAD Drawing (DWG)
+- JPEG-LS (JLS)
+- Personal Storage Table (PST)
+
 # Version 0.13.0 (2023-01-22)
 
 ## API

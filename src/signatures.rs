@@ -548,11 +548,17 @@ signatures! {
     format = AndroidCompiledResources
     value = b"\x02\x00\x0C\x00"
 
+    format = ApacheParquet
+    value = b"PAR1"
+
     format = AppleIconImage
     value = b"icns"
 
     format = Au
     value = b".snd"
+
+    format = AutocadDrawing
+    value = b"AC10"
 
     format = BetterPortableGraphics
     value = b"\x42\x50\x47\xFB"
@@ -603,6 +609,9 @@ signatures! {
 
     format = JavaKeystore
     value = b"\xFE\xED\xFE\xED"
+
+    format = JpegLs
+    value = b"\xFF\xD8\xFF\xF7"
 
     format = LempelZivFiniteStateEntropy
     value = b"bvx-"
@@ -660,6 +669,9 @@ signatures! {
 
     format = PcapNextGenerationDump
     value = b"\x0A\x0D\x0D\x0A"
+
+    format = PersonalStorageTable
+    value = b"!BDN"
 
     format = RedHatPackageManager
     value = b"\xED\xAB\xEE\xDB"
