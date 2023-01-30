@@ -92,6 +92,7 @@ file-format = "0.14"
 - Audio Video Interleave (AVI)
 - AutoCAD Drawing (DWG)
 - Better Portable Graphics (BPG)
+- BitTorrent File (Torrent)
 - Blender (BLEND)
 - Cabinet (CAB)
 - Canon Raw 2 (CR2)

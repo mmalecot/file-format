@@ -69,6 +69,12 @@ fn test_archived_by_robert_jung() {
 }
 
 #[test]
+fn test_bittorrent_file() {
+    let format = FileFormat::from_file("fixtures/application/sample.torrent").unwrap();
+    assert_eq!(format, FileFormat::BittorrentFile);
+}
+
+#[test]
 fn test_blender() {
     let format = FileFormat::from_file("fixtures/application/sample.blend").unwrap();
     assert_eq!(format, FileFormat::Blender);

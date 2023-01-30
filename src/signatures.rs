@@ -211,6 +211,9 @@ signatures! {
     value = b"\x49\x49\x55\x00\x18\x00\x00\x00\x88\xE7\x74\xD8"
 
     // 11 bytes
+    format = BittorrentFile
+    value = b"d8:announce"
+
     format = OggSpeex
     value = b"OggS", b"Speex  " offset = 28
 

@@ -4,6 +4,7 @@
 
 - Apache Parquet (Parquet)
 - AutoCAD Drawing (DWG)
+- BitTorrent File (Torrent)
 - JPEG-LS (JLS)
 - MP3 URL (M3U)
 - Personal Storage Table (PST)

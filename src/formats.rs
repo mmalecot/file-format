@@ -230,6 +230,13 @@ formats! {
     extension = "bpg"
     kind = Image
 
+    format = BittorrentFile
+    name = "BitTorrent File"
+    short_name = "Torrent"
+    media_type = "application/x-bittorrent"
+    extension = "torrent"
+    kind = Application
+
     format = Blender
     name = "Blender"
     short_name = "BLEND"
