@@ -45,6 +45,18 @@ fn test_apache_arrow_columnar() {
 }
 
 #[test]
+fn test_apache_avro_object_container() {
+    let format = FileFormat::from_file("fixtures/application/sample.avro").unwrap();
+    assert_eq!(format, FileFormat::ApacheAvroObjectContainer);
+}
+
+#[test]
+fn test_apache_parquet() {
+    let format = FileFormat::from_file("fixtures/application/sample.parquet").unwrap();
+    assert_eq!(format, FileFormat::ApacheParquet);
+}
+
+#[test]
 fn test_apple_disk_image() {
     let format = FileFormat::from_file("fixtures/application/sample.dmg").unwrap();
     assert_eq!(format, FileFormat::AppleDiskImage);
@@ -60,6 +72,12 @@ fn test_arbitrary_binary_data() {
 fn test_archived_by_robert_jung() {
     let format = FileFormat::from_file("fixtures/application/sample.arj").unwrap();
     assert_eq!(format, FileFormat::ArchivedByRobertJung);
+}
+
+#[test]
+fn test_bittorrent_file() {
+    let format = FileFormat::from_file("fixtures/application/sample.torrent").unwrap();
+    assert_eq!(format, FileFormat::BittorrentFile);
 }
 
 #[test]
@@ -581,6 +599,12 @@ fn test_pem_certificate_signing_request() {
 fn test_pem_private_key() {
     let format = FileFormat::from_file("fixtures/application/sample.key").unwrap();
     assert_eq!(format, FileFormat::PemPrivateKey);
+}
+
+#[test]
+fn test_personal_storage_table() {
+    let format = FileFormat::from_file("fixtures/application/sample.pst").unwrap();
+    assert_eq!(format, FileFormat::PersonalStorageTable);
 }
 
 #[test]

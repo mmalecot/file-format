@@ -105,6 +105,20 @@ formats! {
     extension = "arrow"
     kind = Application
 
+    format = ApacheAvroObjectContainer
+    name = "Apache Avro Object Container"
+    short_name = "Avro"
+    media_type = "application/vnd.apache.avro"
+    extension = "avro"
+    kind = Application
+
+    format = ApacheParquet
+    name = "Apache Parquet"
+    short_name = "Parquet"
+    media_type = "application/x-parquet"
+    extension = "parquet"
+    kind = Application
+
     format = AppleDiskImage
     name = "Apple Disk Image"
     short_name = "DMG"
@@ -195,6 +209,13 @@ formats! {
     extension = "avi"
     kind = Video
 
+    format = AutocadDrawing
+    name = "AutoCAD Drawing"
+    short_name = "DWG"
+    media_type = "image/vnd.dwg"
+    extension = "dwg"
+    kind = Image
+
     format = Av1ImageFileFormat
     name = "AV1 Image File Format"
     short_name = "AVIF"
@@ -215,6 +236,13 @@ formats! {
     media_type = "image/bpg"
     extension = "bpg"
     kind = Image
+
+    format = BittorrentFile
+    name = "BitTorrent File"
+    short_name = "Torrent"
+    media_type = "application/x-bittorrent"
+    extension = "torrent"
+    kind = Application
 
     format = Blender
     name = "Blender"
@@ -668,6 +696,13 @@ formats! {
     extension = "jxr"
     kind = Image
 
+    format = JpegLs
+    name = "JPEG-LS"
+    short_name = "JLS"
+    media_type = "image/jls"
+    extension = "jls"
+    kind = Image
+
     format = JpegXl
     name = "JPEG XL"
     short_name = "JXL"
@@ -920,6 +955,13 @@ formats! {
     short_name = "APE"
     media_type = "audio/x-ape"
     extension = "ape"
+    kind = Audio
+
+    format = Mp3Url
+    name = "MP3 URL"
+    short_name = "M3U"
+    media_type = "audio/x-mpegurl"
+    extension = "m3u"
     kind = Audio
 
     format = Mpeg12AudioLayer3
@@ -1214,6 +1256,13 @@ formats! {
     extension = "pl"
     kind = Text
 
+    format = PersonalStorageTable
+    name = "Personal Storage Table"
+    short_name = "PST"
+    media_type = "application/vnd.ms-outlook"
+    extension = "pst"
+    kind = Application
+
     format = PgpMessage
     name = "PGP Message"
     short_name = "ASC"
@@ -1476,6 +1525,7 @@ formats! {
 
     format = ToolCommandLanguageScript
     name = "Tool Command Language Script"
+    short_name = "Tcl Script"
     media_type = "text/x-tcl"
     extension = "tcl"
     kind = Text
@@ -1489,12 +1539,14 @@ formats! {
 
     format = UnixArchiver
     name = "UNIX archiver"
+    short_name = "archiver"
     media_type = "application/x-archive"
     extension = "a"
     kind = Application
 
     format = UnixCompress
     name = "UNIX compress"
+    short_name = "compress"
     media_type = "application/x-compress"
     extension = "Z"
     kind = Application

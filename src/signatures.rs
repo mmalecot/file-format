@@ -211,6 +211,9 @@ signatures! {
     value = b"\x49\x49\x55\x00\x18\x00\x00\x00\x88\xE7\x74\xD8"
 
     // 11 bytes
+    format = BittorrentFile
+    value = b"d8:announce"
+
     format = OggSpeex
     value = b"OggS", b"Speex  " offset = 28
 
@@ -411,6 +414,9 @@ signatures! {
     value = b"\x7E\x10\x04", b"\x30\x4D\x49\x45" offset = 4
     value = b"\x7E\x18\x04", b"\x30\x4D\x49\x45" offset = 4
 
+    format = Mp3Url
+    value = b"#EXTM3U"
+
     format = SonyMovie
     value = b"ftypmqt" offset = 4
 
@@ -548,11 +554,20 @@ signatures! {
     format = AndroidCompiledResources
     value = b"\x02\x00\x0C\x00"
 
+    format = ApacheAvroObjectContainer
+    value = b"Obj\x01"
+
+    format = ApacheParquet
+    value = b"PAR1"
+
     format = AppleIconImage
     value = b"icns"
 
     format = Au
     value = b".snd"
+
+    format = AutocadDrawing
+    value = b"AC10"
 
     format = BetterPortableGraphics
     value = b"\x42\x50\x47\xFB"
@@ -603,6 +618,9 @@ signatures! {
 
     format = JavaKeystore
     value = b"\xFE\xED\xFE\xED"
+
+    format = JpegLs
+    value = b"\xFF\xD8\xFF\xF7"
 
     format = LempelZivFiniteStateEntropy
     value = b"bvx-"
@@ -660,6 +678,9 @@ signatures! {
 
     format = PcapNextGenerationDump
     value = b"\x0A\x0D\x0D\x0A"
+
+    format = PersonalStorageTable
+    value = b"!BDN"
 
     format = RedHatPackageManager
     value = b"\xED\xAB\xEE\xDB"

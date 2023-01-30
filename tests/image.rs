@@ -19,6 +19,12 @@ fn test_apple_icon_image() {
 }
 
 #[test]
+fn test_autocad_drawing() {
+    let format = FileFormat::from_file("fixtures/image/sample.dwg").unwrap();
+    assert_eq!(format, FileFormat::AutocadDrawing);
+}
+
+#[test]
 fn test_av1_image_file_format() {
     let format = FileFormat::from_file("fixtures/image/sample.avif").unwrap();
     assert_eq!(format, FileFormat::Av1ImageFileFormat);
@@ -153,6 +159,12 @@ fn test_jpeg2000_part6() {
 fn test_jpeg_extended_range() {
     let format = FileFormat::from_file("fixtures/image/sample.jxr").unwrap();
     assert_eq!(format, FileFormat::JpegExtendedRange);
+}
+
+#[test]
+fn test_jpeg_ls() {
+    let format = FileFormat::from_file("fixtures/image/sample.jls").unwrap();
+    assert_eq!(format, FileFormat::JpegLs);
 }
 
 #[test]
