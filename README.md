@@ -266,10 +266,10 @@ file-format = "0.14"
 - TASTy
 - Tag Image File Format (TIFF)
 - Tape Archive (TAR)
-- Tool Command Language Script
+- Tool Command Language Script (Tcl Script)
 - TrueType (TTF)
-- UNIX archiver
-- UNIX compress
+- UNIX archiver (archiver)
+- UNIX compress (compress)
 - VirtualBox Virtual Disk Image (VDI)
 - WavPack (WV)
 - Waveform Audio (WAV)

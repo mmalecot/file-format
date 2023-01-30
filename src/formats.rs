@@ -1518,6 +1518,7 @@ formats! {
 
     format = ToolCommandLanguageScript
     name = "Tool Command Language Script"
+    short_name = "Tcl Script"
     media_type = "text/x-tcl"
     extension = "tcl"
     kind = Text
@@ -1531,12 +1532,14 @@ formats! {
 
     format = UnixArchiver
     name = "UNIX archiver"
+    short_name = "archiver"
     media_type = "application/x-archive"
     extension = "a"
     kind = Application
 
     format = UnixCompress
     name = "UNIX compress"
+    short_name = "compress"
     media_type = "application/x-compress"
     extension = "Z"
     kind = Application

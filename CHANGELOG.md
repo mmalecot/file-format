@@ -1,5 +1,11 @@
 # Version 0.14.0 (unreleased)
 
+## API
+
+- Add a short name for Tool Command Language Script (Tcl Script)
+- Add a short name for UNIX archiver (archiver)
+- Add a short name for UNIX compress (compress)
+
 ## New formats support
 
 - Apache Parquet (Parquet)
@@ -80,7 +86,7 @@
 - Scalable Vector Graphics (SVG)
 - Shell Script
 - Simple Object Access Protocol (SOAP)
-- Tool Command Language Script
+- Tool Command Language Script (Tcl Script)
 - vCalendar (VCS)
 - vCard (VCF)
 
@@ -137,7 +143,7 @@
 
 - Add MPEG-1/2 Audio Layer 3 (MP3) signature
 - Add Matroska Video (MKV) signature
-- Change UNIX archiver extension from `ar` to `a` (preferred)
+- Change UNIX archiver (archiver) extension from `ar` to `a` (preferred)
 - Fix Apple QuickTime (MOV) signature
 - Fix Joint Photographic Experts Group (JPEG) signature
 
@@ -380,7 +386,7 @@
 - Rich Text Format (RTF)
 - Shapefile (SHP)
 - SketchUp (SKP)
-- UNIX archiver
+- UNIX archiver (archiver)
 
 # Version 0.1.0 (2021-10-03)
 
