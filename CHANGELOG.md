@@ -1,4 +1,4 @@
-# Version 0.14.0 (unreleased)
+# Version 0.14.0 (2023-01-30)
 
 ## API
 
