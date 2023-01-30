@@ -8,6 +8,7 @@
 
 ## New formats support
 
+- Apache Avro Object Container (Avro)
 - Apache Parquet (Parquet)
 - AutoCAD Drawing (DWG)
 - BitTorrent File (Torrent)

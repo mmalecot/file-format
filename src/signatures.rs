@@ -554,6 +554,9 @@ signatures! {
     format = AndroidCompiledResources
     value = b"\x02\x00\x0C\x00"
 
+    format = ApacheAvroObjectContainer
+    value = b"Obj\x01"
+
     format = ApacheParquet
     value = b"PAR1"
 

@@ -45,6 +45,12 @@ fn test_apache_arrow_columnar() {
 }
 
 #[test]
+fn test_apache_avro_object_container() {
+    let format = FileFormat::from_file("fixtures/application/sample.avro").unwrap();
+    assert_eq!(format, FileFormat::ApacheAvroObjectContainer);
+}
+
+#[test]
 fn test_apache_parquet() {
     let format = FileFormat::from_file("fixtures/application/sample.parquet").unwrap();
     assert_eq!(format, FileFormat::ApacheParquet);

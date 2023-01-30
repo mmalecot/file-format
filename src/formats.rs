@@ -105,6 +105,13 @@ formats! {
     extension = "arrow"
     kind = Application
 
+    format = ApacheAvroObjectContainer
+    name = "Apache Avro Object Container"
+    short_name = "Avro"
+    media_type = "application/vnd.apache.avro"
+    extension = "avro"
+    kind = Application
+
     format = ApacheParquet
     name = "Apache Parquet"
     short_name = "Parquet"

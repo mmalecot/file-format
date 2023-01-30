@@ -76,6 +76,7 @@ file-format = "0.14"
 - Android Package (APK)
 - Animated Portable Network Graphics (APNG)
 - Apache Arrow Columnar (Arrow)
+- Apache Avro Object Container (Avro)
 - Apache Parquet (Parquet)
 - Apple Disk Image (DMG)
 - Apple Icon Image (ICNS)
