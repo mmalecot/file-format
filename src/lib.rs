@@ -115,6 +115,7 @@ These features enable the detection of file formats based on other ones by readi
   * [Design Web Format XPS (DWFX)](`FileFormat::DesignWebFormatXps`)
   * [Electronic Publication (EPUB)](`FileFormat::ElectronicPublication`)
   * [Enterprise Application Archive (EAR)](`FileFormat::EnterpriseApplicationArchive`)
+  * [InDesign Markup Language (IDML)](`FileFormat::IndesignMarkupLanguage`)
   * [Java Archive (JAR)](`FileFormat::JavaArchive`)
   * [Keyhole Markup Language Zipped (KMZ)](`FileFormat::KeyholeMarkupLanguageZipped`)
   * [Microsoft Visual Studio Extension (VSIX)](`FileFormat::MicrosoftVisualStudioExtension`)

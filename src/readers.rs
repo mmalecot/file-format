@@ -244,6 +244,9 @@ impl crate::FileFormat {
                 "extension.vsixmanifest" => return Ok(Self::MicrosoftVisualStudioExtension),
                 "mimetype" => match read_to_string(file.take(64))?.trim() {
                     "application/epub+zip" => return Ok(Self::ElectronicPublication),
+                    "application/vnd.adobe.indesign-idml-package" => {
+                        return Ok(Self::IndesignMarkupLanguage)
+                    }
                     "application/vnd.oasis.opendocument.graphics" => {
                         return Ok(Self::OpenDocumentGraphics)
                     }

@@ -619,6 +619,13 @@ formats! {
     extension = "it"
     kind = Audio
 
+    format = IndesignMarkupLanguage
+    name = "InDesign Markup Language"
+    short_name = "IDML"
+    media_type = "application/vnd.adobe.indesign-idml-package"
+    extension = "idml"
+    kind = Application
+
     format = IosAppStorePackage
     name = "iOS App Store Package"
     short_name = "IPA"

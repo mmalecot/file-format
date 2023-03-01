@@ -1,3 +1,9 @@
+# version 0.15.0 (unreleased)
+
+## New formats support
+
+- InDesign Markup Language (IDML)
+
 # Version 0.14.0 (2023-01-30)
 
 ## API

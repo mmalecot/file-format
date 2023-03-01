@@ -257,6 +257,13 @@ fn test_icc_profile() {
 
 #[cfg(feature = "reader-zip")]
 #[test]
+fn test_indesign_markup_language() {
+    let format = FileFormat::from_file("fixtures/application/sample.idml").unwrap();
+    assert_eq!(format, FileFormat::IndesignMarkupLanguage);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
 fn test_ios_app_store_package() {
     let format = FileFormat::from_file("fixtures/application/sample.ipa").unwrap();
     assert_eq!(format, FileFormat::IosAppStorePackage);

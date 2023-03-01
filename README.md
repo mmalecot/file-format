@@ -145,6 +145,7 @@ file-format = "0.14"
 - ICC Profile (ICC)
 - ISO 9660 (ISO)
 - Impulse Tracker Module (IT)
+- InDesign Markup Language (IDML)
 - JPEG 2000 Part 1 (JP2)
 - JPEG 2000 Part 2 (JPX)
 - JPEG 2000 Part 3 (MJ2)
