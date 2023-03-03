@@ -943,6 +943,13 @@ formats! {
     extension = "vsix"
     kind = Application
 
+    format = MicrosoftVisualStudioSolution
+    name = "Microsoft Visual Studio Solution"
+    short_name = "SLN"
+    media_type = "application/vnd.ms-developer"
+    extension = "sln"
+    kind = Application
+
     format = MicrosoftWordDocument
     name = "Microsoft Word Document"
     short_name = "DOC"

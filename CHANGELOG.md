@@ -3,6 +3,7 @@
 ## New formats support
 
 - InDesign Markup Language (IDML)
+- Microsoft Visual Studio Solution (SLN)
 
 # Version 0.14.0 (2023-01-30)
 

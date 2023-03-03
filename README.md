@@ -194,6 +194,7 @@ file-format = "0.14"
 - Microsoft Virtual Hard Disk 2 (VHDX)
 - Microsoft Visio Drawing (VSD)
 - Microsoft Visual Studio Extension (VSIX)
+- Microsoft Visual Studio Solution (SLN)
 - Microsoft Word Document (DOC)
 - Mobipocket (MOBI)
 - Monkey's Audio (APE)

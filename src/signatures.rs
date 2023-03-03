@@ -1,6 +1,11 @@
 //! Signatures.
 
 signatures! {
+    // 58 bytes
+    format = MicrosoftVisualStudioSolution
+    value = b"\xEF\xBB\xBF\x0AMicrosoft Visual Studio Solution File, Format Version "
+    value = b"Microsoft Visual Studio Solution File, Format Version "
+
     // 39 bytes
     format = VirtualboxVirtualDiskImage
     value = b"<<< Oracle VM VirtualBox Disk Image >>>"

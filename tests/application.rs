@@ -459,6 +459,12 @@ fn test_microsoft_visual_studio_extension() {
     assert_eq!(format, FileFormat::MicrosoftVisualStudioExtension);
 }
 
+#[test]
+fn test_microsoft_visual_studio_solution() {
+    let format = FileFormat::from_file("fixtures/application/sample.sln").unwrap();
+    assert_eq!(format, FileFormat::MicrosoftVisualStudioSolution);
+}
+
 #[cfg(feature = "reader-cfb")]
 #[test]
 fn test_microsoft_word_document() {
