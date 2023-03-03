@@ -1,4 +1,4 @@
-# version 0.15.0 (unreleased)
+# Version 0.15.0 (unreleased)
 
 ## Improvements
 
