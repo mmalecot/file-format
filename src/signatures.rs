@@ -243,6 +243,10 @@ signatures! {
     value = b"\xFF\x06\x00\x00\x73\x4E\x61\x50\x70\x59"
 
     // 9 bytes
+    format = ExtensibleMarkupLanguage
+    value = b"\xEF\xBB\xBF<?xml "
+    value = b"<?xml "
+
     format = GameBoyColorRom
     value = b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B" offset = 0x104, b"\x80" offset = 0x143
     value = b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B" offset = 0x104, b"\xC0" offset = 0x143
@@ -450,9 +454,6 @@ signatures! {
     format = CanonRaw2
     value = b"\x4D\x4D\x00\x2A", b"CR" offset = 8
     value = b"\x49\x49\x2A\x00", b"CR" offset = 8
-
-    format = ExtensibleMarkupLanguage
-    value = b"<?xml "
 
     format = GraphicsInterchangeFormat
     value = b"GIF87a"

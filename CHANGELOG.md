@@ -1,5 +1,9 @@
 # version 0.15.0 (unreleased)
 
+## Improvements
+
+- Add detection of Extensible Markup Language (XML) files with a BOM
+
 ## New formats support
 
 - InDesign Markup Language (IDML)
