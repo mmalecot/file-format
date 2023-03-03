@@ -1,9 +1,10 @@
 //! Signatures.
 
 signatures! {
-    // 58 bytes
+    // 59 bytes
     format = MicrosoftVisualStudioSolution
-    value = b"\xEF\xBB\xBF\x0AMicrosoft Visual Studio Solution File, Format Version "
+    value = b"\xEF\xBB\xBF\r\nMicrosoft Visual Studio Solution File, Format Version "
+    value = b"\xEF\xBB\xBF\nMicrosoft Visual Studio Solution File, Format Version "
     value = b"Microsoft Visual Studio Solution File, Format Version "
 
     // 39 bytes
