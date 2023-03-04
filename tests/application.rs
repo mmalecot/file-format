@@ -150,6 +150,12 @@ fn test_digital_imaging_and_communications_in_medicine() {
     );
 }
 
+#[test]
+fn test_drawio() {
+    let format = FileFormat::from_file("fixtures/application/sample.drawio").unwrap();
+    assert_eq!(format, FileFormat::Drawio);
+}
+
 #[cfg(feature = "reader-exe")]
 #[test]
 fn test_dynamic_link_library() {

@@ -105,6 +105,7 @@ file-format = "0.14"
 - Compound File Binary (CFB)
 - Creative Voice (VOC)
 - DER Certificate (DER)
+- DRAWIO
 - Dalvik Executable (DEX)
 - Debian Binary Package (DEB)
 - Design Web Format XPS (DWFX)

@@ -6,6 +6,7 @@
 
 ## New formats support
 
+- DRAWIO
 - InDesign Markup Language (IDML)
 - Microsoft Visual Studio Solution (SLN)
 

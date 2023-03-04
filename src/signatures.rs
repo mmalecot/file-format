@@ -283,6 +283,9 @@ signatures! {
     format = DalvikExecutable
     value = b"\x64\x65\x78\x0A\x30\x33\x35\x00"
 
+    format = Drawio
+    value = b"<mxfile "
+
     format = ExperimentalComputingFacility
     value = b"gimp xcf"
 

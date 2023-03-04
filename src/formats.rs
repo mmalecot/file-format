@@ -374,6 +374,12 @@ formats! {
     extension = "djvu"
     kind = Image
 
+    format = Drawio
+    name = "DRAWIO"
+    media_type = "application/vnd.jgraph.mxfile"
+    extension = "drawio"
+    kind = Application
+
     format = DynamicLinkLibrary
     name = "Dynamic Link Library"
     short_name = "DLL"
