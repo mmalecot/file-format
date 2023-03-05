@@ -1026,6 +1026,13 @@ formats! {
     extension = "mp4"
     kind = Video
 
+    format = MsDosBatch
+    name = "MS-DOS Batch"
+    short_name = "Batch"
+    media_type = "text/x-msdos-batch"
+    extension = "bat"
+    kind = Text
+
     format = MsDosExecutable
     name = "MS-DOS Executable"
     short_name = "EXE"

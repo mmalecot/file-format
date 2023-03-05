@@ -257,6 +257,10 @@ signatures! {
     format = MicrosoftVirtualHardDisk
     value = b"connectix"
 
+    format = MsDosBatch
+    value = b"@ECHO OFF"
+    value = b"@echo off"
+
     format = OggFlac
     value = b"OggS", b"\x7F\x46\x4C\x41\x43" offset = 28
 

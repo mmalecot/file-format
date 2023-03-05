@@ -177,6 +177,7 @@ file-format = "0.14"
 - MPEG-1/2 Audio Layer 3 (MP3)
 - MPEG-2 Transport Stream (MTS)
 - MPEG-4 Part 14 Video (MP4)
+- MS-DOS Batch (Batch)
 - MS-DOS Executable (EXE)
 - Mach-O
 - Material Exchange Format (MXF)
