@@ -8,6 +8,7 @@
 
 - DRAWIO
 - InDesign Markup Language (IDML)
+- SubRip Text (SRT)
 - MS-DOS Batch (Batch)
 - Microsoft Visual Studio Solution (SLN)
 

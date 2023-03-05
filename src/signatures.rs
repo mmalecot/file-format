@@ -470,6 +470,10 @@ signatures! {
     value = b"\x37\x7A\xBC\xAF\x27\x1C"
     value = b"\x37\x7A\xBC\xAF\x27\x1C"
 
+    format = SubripText
+    value = b"1\r\n00:"
+    value = b"1\n00:"
+
     format = Xz
     value = b"\xFD\x37\x7A\x58\x5A\x00"
 

@@ -1509,6 +1509,13 @@ formats! {
     extension = "sqlite"
     kind = Application
 
+    format = SubripText
+    name = "SubRip Text"
+    short_name = "SRT"
+    media_type = "application/x-subrip"
+    extension = "srt"
+    kind = Application
+
     format = TagImageFileFormat
     name = "Tag Image File Format"
     short_name = "TIFF"

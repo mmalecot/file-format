@@ -756,6 +756,12 @@ fn test_sqlite3() {
 }
 
 #[test]
+fn test_subrip_text() {
+    let format = FileFormat::from_file("fixtures/application/sample.srt").unwrap();
+    assert_eq!(format, FileFormat::SubripText);
+}
+
+#[test]
 fn test_tape_archive() {
     let format = FileFormat::from_file("fixtures/application/sample.tar").unwrap();
     assert_eq!(format, FileFormat::TapeArchive);
