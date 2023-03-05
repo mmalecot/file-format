@@ -375,7 +375,8 @@ formats! {
     kind = Image
 
     format = Drawio
-    name = "DRAWIO"
+    name = "draw.io"
+    short_name = "DRAWIO"
     media_type = "application/vnd.jgraph.mxfile"
     extension = "drawio"
     kind = Application

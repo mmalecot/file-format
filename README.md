@@ -105,7 +105,6 @@ file-format = "0.14"
 - Compound File Binary (CFB)
 - Creative Voice (VOC)
 - DER Certificate (DER)
-- DRAWIO
 - Dalvik Executable (DEX)
 - Debian Binary Package (DEB)
 - Design Web Format XPS (DWFX)
@@ -301,6 +300,7 @@ file-format = "0.14"
 - Zstandard (zstd)
 - bzip2 (BZ2)
 - cpio
+- draw.io (DRAWIO)
 - gzip (GZ)
 - iCalendar (ICS)
 - iOS App Store Package (IPA)

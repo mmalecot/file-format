@@ -6,11 +6,11 @@
 
 ## New formats support
 
-- DRAWIO
 - InDesign Markup Language (IDML)
-- SubRip Text (SRT)
 - MS-DOS Batch (Batch)
 - Microsoft Visual Studio Solution (SLN)
+- SubRip Text (SRT)
+- draw.io (DRAWIO)
 
 # Version 0.14.0 (2023-01-30)
 
