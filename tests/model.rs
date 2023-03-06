@@ -25,3 +25,9 @@ fn test_google_draco() {
     let format = FileFormat::from_file("fixtures/model/sample.drc").unwrap();
     assert_eq!(format, FileFormat::GoogleDraco);
 }
+
+#[test]
+fn test_stereolithography() {
+    let format = FileFormat::from_file("fixtures/model/sample.stl").unwrap();
+    assert_eq!(format, FileFormat::Stereolithography);
+}

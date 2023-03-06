@@ -63,6 +63,17 @@ signatures! {
     format = PgpMessage
     value = b"-----BEGIN PGP MESSAGE-----"
 
+    format = Stereolithography
+    value = b"3D Systems, Binary STL file"
+    value = b"Materialise Coloured STL"
+    value = b"Exported from Blender"
+    value = b"STL binary file"
+    value = b"binary stl file"
+    value = b"Stratasys stl"
+    value = b"SketchUp STL"
+    value = b"STL File"
+    value = b"solid "
+
     // 24 bytes
     format = ClojureScript
     value = b"#!/usr/local/bin/clojure"

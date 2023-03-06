@@ -14,6 +14,7 @@
 - Portable BitMap (PBM)
 - Portable GrayMap (PGM)
 - Portable PixMap (PPM)
+- Stereolithography (STL)
 - SubRip Text (SRT)
 - draw.io (DRAWIO)
 - farbfeld (FF)

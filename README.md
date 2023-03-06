@@ -272,6 +272,7 @@ file-format = "0.14"
 - Snappy
 - Sony DSD Stream File (DSF)
 - Sony Movie (MQV)
+- Stereolithography (STL)
 - SubRip Text (SRT)
 - TASTy
 - Tag Image File Format (TIFF)

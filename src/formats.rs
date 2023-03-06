@@ -1552,6 +1552,13 @@ formats! {
     extension = "sqlite"
     kind = Application
 
+    format = Stereolithography
+    name = "Stereolithography"
+    short_name = "STL"
+    media_type = "model/stl"
+    extension = "stl"
+    kind = Model
+
     format = SubripText
     name = "SubRip Text"
     short_name = "SRT"
