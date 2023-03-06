@@ -15,6 +15,7 @@
 - Portable PixMap (PPM)
 - SubRip Text (SRT)
 - draw.io (DRAWIO)
+- farbfeld (FF)
 
 # Version 0.14.0 (2023-01-30)
 

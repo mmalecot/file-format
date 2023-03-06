@@ -305,6 +305,7 @@ file-format = "0.14"
 - bzip2 (BZ2)
 - cpio
 - draw.io (DRAWIO)
+- farbfeld (FF)
 - gzip (GZ)
 - iCalendar (ICS)
 - iOS App Store Package (IPA)

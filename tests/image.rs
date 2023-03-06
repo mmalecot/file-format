@@ -79,6 +79,12 @@ fn test_experimental_computing_facility() {
 }
 
 #[test]
+fn test_farbfeld() {
+    let format = FileFormat::from_file("fixtures/image/sample.ff").unwrap();
+    assert_eq!(format, FileFormat::Farbfeld);
+}
+
+#[test]
 fn test_flexible_image_transport_system() {
     let format = FileFormat::from_file("fixtures/image/sample.fits").unwrap();
     assert_eq!(format, FileFormat::FlexibleImageTransportSystem);

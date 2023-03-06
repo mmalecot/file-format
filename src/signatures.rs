@@ -293,6 +293,9 @@ signatures! {
     format = ExperimentalComputingFacility
     value = b"gimp xcf"
 
+    format = Farbfeld
+    value = b"farbfeld"
+
     format = GameBoyAdvanceRom
     value = b"\x24\xFF\xAE\x51\x69\x9A\xA2\x21" offset = 4
 

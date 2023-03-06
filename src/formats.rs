@@ -458,6 +458,13 @@ formats! {
     extension = "xsl"
     kind = Application
 
+    format = Farbfeld
+    name = "farbfeld"
+    short_name = "FF"
+    media_type = "image/x-ff"
+    extension = "ff"
+    kind = Image
+
     format = FastTracker2ExtendedModule
     name = "FastTracker 2 Extended Module"
     short_name = "XM"
