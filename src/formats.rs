@@ -472,6 +472,13 @@ formats! {
     extension = "xm"
     kind = Audio
 
+    format = Filmbox
+    name = "Filmbox"
+    short_name = "FBX"
+    media_type = "application/vnd.autodesk.fbx"
+    extension = "fbx"
+    kind = Application
+
     format = FlashVideo
     name = "Flash Video"
     short_name = "FLV"

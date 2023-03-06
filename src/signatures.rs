@@ -97,6 +97,9 @@ signatures! {
     format = DebianBinaryPackage
     value = b"!<arch>\ndebian-binary"
 
+    format = Filmbox
+    value = b"Kaydara FBX Binary  \x00"
+
     format = RubyScript
     value = b"#!/usr/local/bin/ruby"
     value = b"#!/usr/bin/env ruby"

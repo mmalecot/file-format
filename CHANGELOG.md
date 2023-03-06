@@ -6,6 +6,7 @@
 
 ## New formats support
 
+- Filmbox (FBX)
 - InDesign Markup Language (IDML)
 - MS-DOS Batch (Batch)
 - Microsoft Visual Studio Solution (SLN)

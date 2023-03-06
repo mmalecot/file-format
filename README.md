@@ -123,6 +123,7 @@ file-format = "0.14"
 - Extensible Markup Language (XML)
 - Extensible Stylesheet Language Transformations (XSLT)
 - FastTracker 2 Extended Module (XM)
+- Filmbox (FBX)
 - Flash Video (FLV)
 - Flexible Image Transport System (FITS)
 - Free Lossless Audio Codec (FLAC)

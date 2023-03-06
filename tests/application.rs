@@ -212,6 +212,12 @@ fn test_extensible_stylesheet_language_transformations() {
 }
 
 #[test]
+fn test_filmbox() {
+    let format = FileFormat::from_file("fixtures/application/sample.fbx").unwrap();
+    assert_eq!(format, FileFormat::Filmbox);
+}
+
+#[test]
 fn test_game_boy_advance_rom() {
     let format = FileFormat::from_file("fixtures/application/sample.gba").unwrap();
     assert_eq!(format, FileFormat::GameBoyAdvanceRom);
