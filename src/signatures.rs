@@ -158,6 +158,10 @@ signatures! {
     value = b"%!PS-Adobe-", b" EPSF-" offset = 14
     value = b"\xC5\xD0\xD3\xC6"
 
+    format = PolygonFileFormat
+    value = b"ply\nformat binary"
+    value = b"ply\nformat ascii"
+
     // 16 bytes
     format = AdobeIndesignDocument
     value = b"\x06\x06\xED\xF5\xD8\x1D\x46\xE5\xBD\x31\xEF\xE7\xFE\x74\xB7\x1D"

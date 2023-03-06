@@ -1361,6 +1361,13 @@ formats! {
     extension = "pma"
     kind = Application
 
+    format = PolygonFileFormat
+    name = "Polygon File Format"
+    short_name = "PLY"
+    media_type = "model/x-ply"
+    extension = "ply"
+    kind = Model
+
     format = PortableArbitraryMap
     name = "Portable Arbitrary Map"
     short_name = "PAM"

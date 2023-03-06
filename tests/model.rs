@@ -34,6 +34,12 @@ fn test_google_draco() {
 }
 
 #[test]
+fn test_polygon_file_format() {
+    let format = FileFormat::from_file("fixtures/model/sample.ply").unwrap();
+    assert_eq!(format, FileFormat::PolygonFileFormat);
+}
+
+#[test]
 fn test_stereolithography() {
     let format = FileFormat::from_file("fixtures/model/sample.stl").unwrap();
     assert_eq!(format, FileFormat::Stereolithography);

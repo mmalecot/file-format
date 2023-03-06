@@ -11,6 +11,7 @@
 - InDesign Markup Language (IDML)
 - MS-DOS Batch (Batch)
 - Microsoft Visual Studio Solution (SLN)
+- Polygon File Format (PLY)
 - Portable Arbitrary Map (PAM)
 - Portable BitMap (PBM)
 - Portable GrayMap (PGM)
