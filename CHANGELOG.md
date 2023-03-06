@@ -4,6 +4,10 @@
 
 - Add detection of Extensible Markup Language (XML) files with a BOM
 
+## Internal changes
+
+- Make the file format kind optional in the declaration
+
 ## New formats support
 
 - Digital Asset Exchange (DAE)
