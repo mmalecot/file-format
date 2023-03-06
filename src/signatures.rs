@@ -153,14 +153,17 @@ signatures! {
     value = b"#!/usr/bin/env perl"
     value = b"#!/usr/bin/perl"
 
+    // 18 bytes
+    format = PolygonFileFormat
+    value = b"ply\r\nformat binary"
+    value = b"ply\r\nformat ascii"
+    value = b"ply\nformat binary"
+    value = b"ply\nformat ascii"
+
     // 17 bytes
     format = EncapsulatedPostscript
     value = b"%!PS-Adobe-", b" EPSF-" offset = 14
     value = b"\xC5\xD0\xD3\xC6"
-
-    format = PolygonFileFormat
-    value = b"ply\nformat binary"
-    value = b"ply\nformat ascii"
 
     // 16 bytes
     format = AdobeIndesignDocument
