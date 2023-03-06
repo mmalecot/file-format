@@ -9,7 +9,7 @@ macro_rules! formats {
             $(short_name = $short_name:literal)?
             media_type = $media_type:literal
             extension = $extension:literal
-            kind = $kind:ident
+            $(kind = $kind:ident)?
         )*
     } => {
         /// A file format.
@@ -19,7 +19,6 @@ macro_rules! formats {
                 #[doc=concat!($name, $(" (", $short_name, ")",)? ".")]
                 #[doc=concat!("- Media type: `", $media_type, "`")]
                 #[doc=concat!("- Extension: `", $extension, "`")]
-                #[doc=concat!("- Kind: [", stringify!($kind), "](crate::Kind::", stringify!($kind), ")")]
                 $format,
             )*
         }
@@ -113,8 +112,9 @@ macro_rules! formats {
             pub const fn kind(&self) -> crate::Kind {
                 match self {
                     $(
-                        Self::$format => crate::Kind::$kind,
+                        $(Self::$format => crate::Kind::$kind,)?
                     )*
+                    _ => crate::Kind::Application,
                 }
             }
         }

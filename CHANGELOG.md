@@ -1,3 +1,30 @@
+# Version 0.15.0 (2023-03-06)
+
+## Improvements
+
+- Add detection of Extensible Markup Language (XML) files with a BOM
+
+## Internal changes
+
+- Make the file format kind optional in the declaration
+
+## New formats support
+
+- Digital Asset Exchange (DAE)
+- Filmbox (FBX)
+- InDesign Markup Language (IDML)
+- MS-DOS Batch (Batch)
+- Microsoft Visual Studio Solution (SLN)
+- Polygon File Format (PLY)
+- Portable Arbitrary Map (PAM)
+- Portable BitMap (PBM)
+- Portable GrayMap (PGM)
+- Portable PixMap (PPM)
+- Stereolithography (STL)
+- SubRip Text (SRT)
+- draw.io (DRAWIO)
+- farbfeld (FF)
+
 # Version 0.14.0 (2023-01-30)
 
 ## API

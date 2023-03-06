@@ -108,6 +108,7 @@ file-format = "0.14"
 - Dalvik Executable (DEX)
 - Debian Binary Package (DEB)
 - Design Web Format XPS (DWFX)
+- Digital Asset Exchange (DAE)
 - Digital Imaging and Communications in Medicine (DICOM)
 - Digital Picture Exchange (DPX)
 - DjVu
@@ -123,6 +124,7 @@ file-format = "0.14"
 - Extensible Markup Language (XML)
 - Extensible Stylesheet Language Transformations (XSLT)
 - FastTracker 2 Extended Module (XM)
+- Filmbox (FBX)
 - Flash Video (FLV)
 - Flexible Image Transport System (FITS)
 - Free Lossless Audio Codec (FLAC)
@@ -145,6 +147,7 @@ file-format = "0.14"
 - ICC Profile (ICC)
 - ISO 9660 (ISO)
 - Impulse Tracker Module (IT)
+- InDesign Markup Language (IDML)
 - JPEG 2000 Part 1 (JP2)
 - JPEG 2000 Part 2 (JPX)
 - JPEG 2000 Part 3 (MJ2)
@@ -175,6 +178,7 @@ file-format = "0.14"
 - MPEG-1/2 Audio Layer 3 (MP3)
 - MPEG-2 Transport Stream (MTS)
 - MPEG-4 Part 14 Video (MP4)
+- MS-DOS Batch (Batch)
 - MS-DOS Executable (EXE)
 - Mach-O
 - Material Exchange Format (MXF)
@@ -193,6 +197,7 @@ file-format = "0.14"
 - Microsoft Virtual Hard Disk 2 (VHDX)
 - Microsoft Visio Drawing (VSD)
 - Microsoft Visual Studio Extension (VSIX)
+- Microsoft Visual Studio Solution (SLN)
 - Microsoft Word Document (DOC)
 - Mobipocket (MOBI)
 - Monkey's Audio (APE)
@@ -240,9 +245,14 @@ file-format = "0.14"
 - Perl Script
 - Personal Storage Table (PST)
 - Plain Text (TXT)
+- Polygon File Format (PLY)
+- Portable Arbitrary Map (PAM)
+- Portable BitMap (PBM)
 - Portable Document Format (PDF)
 - Portable Executable (PE)
+- Portable GrayMap (PGM)
 - Portable Network Graphics (PNG)
+- Portable PixMap (PPM)
 - PostScript (PS)
 - Python Script
 - Qualcomm PureVoice (QCP)
@@ -264,6 +274,8 @@ file-format = "0.14"
 - Snappy
 - Sony DSD Stream File (DSF)
 - Sony Movie (MQV)
+- Stereolithography (STL)
+- SubRip Text (SRT)
 - TASTy
 - Tag Image File Format (TIFF)
 - Tape Archive (TAR)
@@ -296,6 +308,8 @@ file-format = "0.14"
 - Zstandard (zstd)
 - bzip2 (BZ2)
 - cpio
+- draw.io (DRAWIO)
+- farbfeld (FF)
 - gzip (GZ)
 - iCalendar (ICS)
 - iOS App Store Package (IPA)

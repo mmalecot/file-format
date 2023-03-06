@@ -150,6 +150,12 @@ fn test_digital_imaging_and_communications_in_medicine() {
     );
 }
 
+#[test]
+fn test_drawio() {
+    let format = FileFormat::from_file("fixtures/application/sample.drawio").unwrap();
+    assert_eq!(format, FileFormat::Drawio);
+}
+
 #[cfg(feature = "reader-exe")]
 #[test]
 fn test_dynamic_link_library() {
@@ -206,6 +212,12 @@ fn test_extensible_stylesheet_language_transformations() {
 }
 
 #[test]
+fn test_filmbox() {
+    let format = FileFormat::from_file("fixtures/application/sample.fbx").unwrap();
+    assert_eq!(format, FileFormat::Filmbox);
+}
+
+#[test]
 fn test_game_boy_advance_rom() {
     let format = FileFormat::from_file("fixtures/application/sample.gba").unwrap();
     assert_eq!(format, FileFormat::GameBoyAdvanceRom);
@@ -253,6 +265,13 @@ fn test_gzip() {
 fn test_icc_profile() {
     let format = FileFormat::from_file("fixtures/application/sample.icc").unwrap();
     assert_eq!(format, FileFormat::IccProfile);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_indesign_markup_language() {
+    let format = FileFormat::from_file("fixtures/application/sample.idml").unwrap();
+    assert_eq!(format, FileFormat::IndesignMarkupLanguage);
 }
 
 #[cfg(feature = "reader-zip")]
@@ -450,6 +469,12 @@ fn test_microsoft_visio_drawing() {
 fn test_microsoft_visual_studio_extension() {
     let format = FileFormat::from_file("fixtures/application/sample.vsix").unwrap();
     assert_eq!(format, FileFormat::MicrosoftVisualStudioExtension);
+}
+
+#[test]
+fn test_microsoft_visual_studio_solution() {
+    let format = FileFormat::from_file("fixtures/application/sample.sln").unwrap();
+    assert_eq!(format, FileFormat::MicrosoftVisualStudioSolution);
 }
 
 #[cfg(feature = "reader-cfb")]
@@ -734,6 +759,12 @@ fn test_snappy() {
 fn test_sqlite3() {
     let format = FileFormat::from_file("fixtures/application/sample.sqlite").unwrap();
     assert_eq!(format, FileFormat::Sqlite3);
+}
+
+#[test]
+fn test_subrip_text() {
+    let format = FileFormat::from_file("fixtures/application/sample.srt").unwrap();
+    assert_eq!(format, FileFormat::SubripText);
 }
 
 #[test]

@@ -98,6 +98,7 @@ These features enable the detection of file formats based on other ones by readi
   is not recognized by its signature.
 - `reader-xml` - Enables [Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`)
   based file formats detection:
+  * [Digital Asset Exchange (DAE)](`FileFormat::DigitalAssetExchange`)
   * [Extensible 3D Graphics (X3D)](`FileFormat::Extensible3DGraphics`)
   * [Extensible Stylesheet Language Transformations (XSLT)](`FileFormat::ExtensibleStylesheetLanguageTransformations`)
   * [GPS Exchange Format (GPX)](`FileFormat::GpsExchangeFormat`)
@@ -108,6 +109,7 @@ These features enable the detection of file formats based on other ones by readi
   * [Scalable Vector Graphics (SVG)](`FileFormat::ScalableVectorGraphics`)
   * [Simple Object Access Protocol (SOAP)](`FileFormat::SimpleObjectAccessProtocol`)
   * [XML Localization Interchange File Format (XLIFF)](`FileFormat::XmlLocalizationInterchangeFileFormat`)
+  * [draw.io (DRAWIO)](`FileFormat::Drawio`)
 - `reader-zip` - Enables [ZIP](`FileFormat::Zip`)-based file formats detection:
   * [3D Manufacturing Format (3MF)](`FileFormat::ThreeDimensionalManufacturingFormat`)
   * [Android Package (APK)](`FileFormat::AndroidPackage`)
@@ -115,6 +117,7 @@ These features enable the detection of file formats based on other ones by readi
   * [Design Web Format XPS (DWFX)](`FileFormat::DesignWebFormatXps`)
   * [Electronic Publication (EPUB)](`FileFormat::ElectronicPublication`)
   * [Enterprise Application Archive (EAR)](`FileFormat::EnterpriseApplicationArchive`)
+  * [InDesign Markup Language (IDML)](`FileFormat::IndesignMarkupLanguage`)
   * [Java Archive (JAR)](`FileFormat::JavaArchive`)
   * [Keyhole Markup Language Zipped (KMZ)](`FileFormat::KeyholeMarkupLanguageZipped`)
   * [Microsoft Visual Studio Extension (VSIX)](`FileFormat::MicrosoftVisualStudioExtension`)

@@ -37,6 +37,12 @@ fn test_lua_script() {
 }
 
 #[test]
+fn test_ms_dos_batch() {
+    let format = FileFormat::from_file("fixtures/text/sample.bat").unwrap();
+    assert_eq!(format, FileFormat::MsDosBatch);
+}
+
+#[test]
 fn test_perl_script() {
     let format = FileFormat::from_file("fixtures/text/sample.pl").unwrap();
     assert_eq!(format, FileFormat::PerlScript);

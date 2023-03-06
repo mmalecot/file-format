@@ -192,7 +192,11 @@ impl crate::FileFormat {
         };
         for line in reader.take(READ_LIMIT).lines().take(LINE_LIMIT) {
             let buffer = line?.to_lowercase();
-            if buffer.contains("<x3d") {
+            if buffer.contains("<collada") {
+                return Ok(Self::DigitalAssetExchange);
+            } else if buffer.contains("<mxfile") {
+                return Ok(Self::Drawio);
+            } else if buffer.contains("<x3d") {
                 return Ok(Self::Extensible3DGraphics);
             } else if buffer.contains("<xsl") {
                 return Ok(Self::ExtensibleStylesheetLanguageTransformations);
@@ -244,6 +248,9 @@ impl crate::FileFormat {
                 "extension.vsixmanifest" => return Ok(Self::MicrosoftVisualStudioExtension),
                 "mimetype" => match read_to_string(file.take(64))?.trim() {
                     "application/epub+zip" => return Ok(Self::ElectronicPublication),
+                    "application/vnd.adobe.indesign-idml-package" => {
+                        return Ok(Self::IndesignMarkupLanguage)
+                    }
                     "application/vnd.oasis.opendocument.graphics" => {
                         return Ok(Self::OpenDocumentGraphics)
                     }

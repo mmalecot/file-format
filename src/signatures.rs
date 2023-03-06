@@ -1,6 +1,12 @@
 //! Signatures.
 
 signatures! {
+    // 59 bytes
+    format = MicrosoftVisualStudioSolution
+    value = b"\xEF\xBB\xBF\r\nMicrosoft Visual Studio Solution File, Format Version "
+    value = b"\xEF\xBB\xBF\nMicrosoft Visual Studio Solution File, Format Version "
+    value = b"Microsoft Visual Studio Solution File, Format Version "
+
     // 39 bytes
     format = VirtualboxVirtualDiskImage
     value = b"<<< Oracle VM VirtualBox Disk Image >>>"
@@ -57,6 +63,17 @@ signatures! {
     format = PgpMessage
     value = b"-----BEGIN PGP MESSAGE-----"
 
+    format = Stereolithography
+    value = b"3D Systems, Binary STL file"
+    value = b"Materialise Coloured STL"
+    value = b"Exported from Blender"
+    value = b"STL binary file"
+    value = b"binary stl file"
+    value = b"Stratasys stl"
+    value = b"SketchUp STL"
+    value = b"STL File"
+    value = b"solid "
+
     // 24 bytes
     format = ClojureScript
     value = b"#!/usr/local/bin/clojure"
@@ -90,6 +107,9 @@ signatures! {
     // 21 bytes
     format = DebianBinaryPackage
     value = b"!<arch>\ndebian-binary"
+
+    format = Filmbox
+    value = b"Kaydara FBX Binary  \x00"
 
     format = RubyScript
     value = b"#!/usr/local/bin/ruby"
@@ -132,6 +152,13 @@ signatures! {
     format = PerlScript
     value = b"#!/usr/bin/env perl"
     value = b"#!/usr/bin/perl"
+
+    // 18 bytes
+    format = PolygonFileFormat
+    value = b"ply\r\nformat binary"
+    value = b"ply\r\nformat ascii"
+    value = b"ply\nformat binary"
+    value = b"ply\nformat ascii"
 
     // 17 bytes
     format = EncapsulatedPostscript
@@ -237,6 +264,10 @@ signatures! {
     value = b"\xFF\x06\x00\x00\x73\x4E\x61\x50\x70\x59"
 
     // 9 bytes
+    format = ExtensibleMarkupLanguage
+    value = b"\xEF\xBB\xBF<?xml "
+    value = b"<?xml "
+
     format = GameBoyColorRom
     value = b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B" offset = 0x104, b"\x80" offset = 0x143
     value = b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B" offset = 0x104, b"\xC0" offset = 0x143
@@ -246,6 +277,10 @@ signatures! {
 
     format = MicrosoftVirtualHardDisk
     value = b"connectix"
+
+    format = MsDosBatch
+    value = b"@ECHO OFF"
+    value = b"@echo off"
 
     format = OggFlac
     value = b"OggS", b"\x7F\x46\x4C\x41\x43" offset = 28
@@ -273,8 +308,14 @@ signatures! {
     format = DalvikExecutable
     value = b"\x64\x65\x78\x0A\x30\x33\x35\x00"
 
+    format = Drawio
+    value = b"<mxfile "
+
     format = ExperimentalComputingFacility
     value = b"gimp xcf"
+
+    format = Farbfeld
+    value = b"farbfeld"
 
     format = GameBoyAdvanceRom
     value = b"\x24\xFF\xAE\x51\x69\x9A\xA2\x21" offset = 4
@@ -445,9 +486,6 @@ signatures! {
     value = b"\x4D\x4D\x00\x2A", b"CR" offset = 8
     value = b"\x49\x49\x2A\x00", b"CR" offset = 8
 
-    format = ExtensibleMarkupLanguage
-    value = b"<?xml "
-
     format = GraphicsInterchangeFormat
     value = b"GIF87a"
     value = b"GIF89a"
@@ -455,6 +493,10 @@ signatures! {
     format = SevenZip
     value = b"\x37\x7A\xBC\xAF\x27\x1C"
     value = b"\x37\x7A\xBC\xAF\x27\x1C"
+
+    format = SubripText
+    value = b"1\r\n00:"
+    value = b"1\n00:"
 
     format = Xz
     value = b"\xFD\x37\x7A\x58\x5A\x00"
@@ -747,6 +789,42 @@ signatures! {
     value = b"\xFF\xE3"
     value = b"\xFF\xF3"
     value = b"\xFF\xFB"
+
+    format = PortableArbitraryMap
+    value = b"P7 "
+    value = b"P7\t"
+    value = b"P7\r"
+    value = b"P7\n"
+
+    format = PortableBitmap
+    value = b"P1 "
+    value = b"P1\t"
+    value = b"P1\r"
+    value = b"P1\n"
+    value = b"P4 "
+    value = b"P4\t"
+    value = b"P4\r"
+    value = b"P4\n"
+
+    format = PotableGraymap
+    value = b"P2 "
+    value = b"P2\t"
+    value = b"P2\r"
+    value = b"P2\n"
+    value = b"P5 "
+    value = b"P5\t"
+    value = b"P5\r"
+    value = b"P5\n"
+
+    format = PortablePixmap
+    value = b"P3 "
+    value = b"P3\t"
+    value = b"P3\r"
+    value = b"P3\n"
+    value = b"P6 "
+    value = b"P6\t"
+    value = b"P6\r"
+    value = b"P6\n"
 
     format = Seqbox
     value = b"SBx"
