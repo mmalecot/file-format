@@ -243,9 +243,13 @@ file-format = "0.14"
 - Perl Script
 - Personal Storage Table (PST)
 - Plain Text (TXT)
+- Portable Arbitrary Map (PAM)
+- Portable BitMap (PBM)
 - Portable Document Format (PDF)
 - Portable Executable (PE)
+- Portable GrayMap (PGM)
 - Portable Network Graphics (PNG)
+- Portable PixMap (PPM)
 - PostScript (PS)
 - Python Script
 - Qualcomm PureVoice (QCP)

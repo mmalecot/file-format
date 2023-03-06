@@ -9,6 +9,10 @@
 - InDesign Markup Language (IDML)
 - MS-DOS Batch (Batch)
 - Microsoft Visual Studio Solution (SLN)
+- Portable Arbitrary Map (PAM)
+- Portable BitMap (PBM)
+- Portable GrayMap (PGM)
+- Portable PixMap (PPM)
 - SubRip Text (SRT)
 - draw.io (DRAWIO)
 

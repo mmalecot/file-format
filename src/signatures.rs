@@ -766,6 +766,42 @@ signatures! {
     value = b"\xFF\xF3"
     value = b"\xFF\xFB"
 
+    format = PortableArbitraryMap
+    value = b"P7 "
+    value = b"P7\t"
+    value = b"P7\r"
+    value = b"P7\n"
+
+    format = PortableBitmap
+    value = b"P1 "
+    value = b"P1\t"
+    value = b"P1\r"
+    value = b"P1\n"
+    value = b"P4 "
+    value = b"P4\t"
+    value = b"P4\r"
+    value = b"P4\n"
+
+    format = PotableGraymap
+    value = b"P2 "
+    value = b"P2\t"
+    value = b"P2\r"
+    value = b"P2\n"
+    value = b"P5 "
+    value = b"P5\t"
+    value = b"P5\r"
+    value = b"P5\n"
+
+    format = PortablePixmap
+    value = b"P3 "
+    value = b"P3\t"
+    value = b"P3\r"
+    value = b"P3\n"
+    value = b"P6 "
+    value = b"P6\t"
+    value = b"P6\r"
+    value = b"P6\n"
+
     format = Seqbox
     value = b"SBx"
 

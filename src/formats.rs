@@ -1340,6 +1340,20 @@ formats! {
     extension = "pma"
     kind = Application
 
+    format = PortableArbitraryMap
+    name = "Portable Arbitrary Map"
+    short_name = "PAM"
+    media_type = "image/x-portable-arbitrarymap"
+    extension = "pam"
+    kind = Image
+
+    format = PortableBitmap
+    name = "Portable BitMap"
+    short_name = "PBM"
+    media_type = "image/x-portable-bitmap"
+    extension = "pbm"
+    kind = Image
+
     format = PortableDocumentFormat
     name = "Portable Document Format"
     short_name = "PDF"
@@ -1354,11 +1368,25 @@ formats! {
     extension = "exe"
     kind = Application
 
+    format = PotableGraymap
+    name = "Portable GrayMap"
+    short_name = "PGM"
+    media_type = "image/x-portable-graymap"
+    extension = "pgm"
+    kind = Image
+
     format = PortableNetworkGraphics
     name = "Portable Network Graphics"
     short_name = "PNG"
     media_type = "image/png"
     extension = "png"
+    kind = Image
+
+    format = PortablePixmap
+    name = "Portable PixMap"
+    short_name = "PPM"
+    media_type = "image/x-portable-pixmap"
+    extension = "ppm"
     kind = Image
 
     format = Postscript

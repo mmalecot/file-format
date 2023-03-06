@@ -223,9 +223,33 @@ fn test_panasonic_raw() {
 }
 
 #[test]
+fn test_portable_arbitrary_map() {
+    let format = FileFormat::from_file("fixtures/image/sample.pam").unwrap();
+    assert_eq!(format, FileFormat::PortableArbitraryMap);
+}
+
+#[test]
+fn test_portable_bitmap() {
+    let format = FileFormat::from_file("fixtures/image/sample.pbm").unwrap();
+    assert_eq!(format, FileFormat::PortableBitmap);
+}
+
+#[test]
+fn test_portable_graymap() {
+    let format = FileFormat::from_file("fixtures/image/sample.pgm").unwrap();
+    assert_eq!(format, FileFormat::PotableGraymap);
+}
+
+#[test]
 fn test_portable_network_graphics() {
     let format = FileFormat::from_file("fixtures/image/sample.png").unwrap();
     assert_eq!(format, FileFormat::PortableNetworkGraphics);
+}
+
+#[test]
+fn test_portable_pixmap() {
+    let format = FileFormat::from_file("fixtures/image/sample.ppm").unwrap();
+    assert_eq!(format, FileFormat::PortablePixmap);
 }
 
 #[test]
