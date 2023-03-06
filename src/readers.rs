@@ -192,7 +192,9 @@ impl crate::FileFormat {
         };
         for line in reader.take(READ_LIMIT).lines().take(LINE_LIMIT) {
             let buffer = line?.to_lowercase();
-            if buffer.contains("<mxfile") {
+            if buffer.contains("<collada") {
+                return Ok(Self::DigitalAssetExchange);
+            } else if buffer.contains("<mxfile") {
                 return Ok(Self::Drawio);
             } else if buffer.contains("<x3d") {
                 return Ok(Self::Extensible3DGraphics);

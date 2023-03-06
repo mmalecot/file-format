@@ -354,6 +354,13 @@ formats! {
     extension = "dwfx"
     kind = Model
 
+    format = DigitalAssetExchange
+    name = "Digital Asset Exchange"
+    short_name = "DAE"
+    media_type = "model/vnd.collada+xml"
+    extension = "dae"
+    kind = Model
+
     format = DigitalImagingAndCommunicationsInMedicine
     name = "Digital Imaging and Communications in Medicine"
     short_name = "DICOM"

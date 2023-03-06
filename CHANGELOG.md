@@ -6,6 +6,7 @@
 
 ## New formats support
 
+- Digital Asset Exchange (DAE)
 - Filmbox (FBX)
 - InDesign Markup Language (IDML)
 - MS-DOS Batch (Batch)

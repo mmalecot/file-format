@@ -108,6 +108,7 @@ file-format = "0.14"
 - Dalvik Executable (DEX)
 - Debian Binary Package (DEB)
 - Design Web Format XPS (DWFX)
+- Digital Asset Exchange (DAE)
 - Digital Imaging and Communications in Medicine (DICOM)
 - Digital Picture Exchange (DPX)
 - DjVu
