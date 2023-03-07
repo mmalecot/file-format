@@ -150,6 +150,8 @@ file-format = "0.14"
 - InDesign Markup Language (IDML)
 - JPEG 2000 Part 1 (JP2)
 - JPEG 2000 Part 2 (JPX)
+- Inter-Quake Export (IQE)
+- Inter-Quake Model (IQM)
 - JPEG 2000 Part 3 (MJ2)
 - JPEG 2000 Part 6 (JPM)
 - JPEG XL (JXL)

@@ -611,6 +611,20 @@ formats! {
     media_type = "application/vnd.adobe.indesign-idml-package"
     extension = "idml"
 
+    format = InterQuakeExport
+    name = "Inter-Quake Export"
+    short_name = "IQE"
+    media_type = "model/x-iqe"
+    extension = "iqe"
+    kind = Model
+
+    format = InterQuakeModel
+    name = "Inter-Quake Model"
+    short_name = "IQM"
+    media_type = "model/x-iqm"
+    extension = "iqm"
+    kind = Model
+
     format = IosAppStorePackage
     name = "iOS App Store Package"
     short_name = "IPA"

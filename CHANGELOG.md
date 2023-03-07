@@ -2,6 +2,8 @@
 
 ## New formats support
 
+- Inter-Quake Export (IQE)
+- Inter-Quake Model (IQM)
 - MagicaVoxel (VOX)
 - Quite OK Image (QOI)
 - Soundtracker Module (MOD)

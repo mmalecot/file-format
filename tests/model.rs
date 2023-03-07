@@ -34,6 +34,18 @@ fn test_google_draco() {
 }
 
 #[test]
+fn test_inter_quake_export() {
+    let format = FileFormat::from_file("fixtures/model/sample.iqe").unwrap();
+    assert_eq!(format, FileFormat::InterQuakeExport);
+}
+
+#[test]
+fn test_inter_quake_model() {
+    let format = FileFormat::from_file("fixtures/model/sample.iqm").unwrap();
+    assert_eq!(format, FileFormat::InterQuakeModel);
+}
+
+#[test]
 fn test_magicavoxel() {
     let format = FileFormat::from_file("fixtures/model/sample.vox").unwrap();
     assert_eq!(format, FileFormat::Magicavoxel);

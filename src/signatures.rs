@@ -140,6 +140,9 @@ signatures! {
     value = b"#!/bin/sh"
 
     // 20 bytes
+    format = InterQuakeExport
+    value = b"# Inter-Quake Export"
+
     format = LuaScript
     value = b"#!/usr/local/bin/lua"
     value = b"#!/usr/bin/env lua"
@@ -171,6 +174,9 @@ signatures! {
 
     format = FastTracker2ExtendedModule
     value = b"Extended Module:"
+
+    format = InterQuakeModel
+    value = b"INTERQUAKEMODEL\x00"
 
     format = MacosAlias
     value = b"\x62\x6F\x6F\x6B\x00\x00\x00\x00\x6D\x61\x72\x6B\x00\x00\x00\x00"
