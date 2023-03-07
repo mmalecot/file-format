@@ -203,6 +203,8 @@ file-format = "0.14"
 - Microsoft Visual Studio Solution (SLN)
 - Microsoft Word Document (DOC)
 - Mobipocket (MOBI)
+- Model 3D ASCII (A3D)
+- Model 3D Binary (M3D)
 - Monkey's Audio (APE)
 - Musepack (MPC)
 - MusicXML

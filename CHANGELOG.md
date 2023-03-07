@@ -5,6 +5,8 @@
 - Inter-Quake Export (IQE)
 - Inter-Quake Model (IQM)
 - MagicaVoxel (VOX)
+- Model 3D ASCII (A3D)
+- Model 3D Binary (M3D)
 - Quite OK Image (QOI)
 - Soundtracker Module (MOD)
 

@@ -935,6 +935,20 @@ formats! {
     media_type = "application/x-mobipocket-ebook"
     extension = "mobi"
 
+    format = Model3dAscii
+    name = "Model 3D ASCII"
+    short_name = "A3D"
+    media_type = "text/x-3d-model"
+    extension = "a3d"
+    kind = Text
+
+    format = Model3dBinary
+    name = "Model 3D Binary"
+    short_name = "M3D"
+    media_type = "model/x-3d-model"
+    extension = "m3d"
+    kind = Model
+
     format = MonkeysAudio
     name = "Monkey's Audio"
     short_name = "APE"

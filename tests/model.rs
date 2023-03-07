@@ -52,6 +52,12 @@ fn test_magicavoxel() {
 }
 
 #[test]
+fn test_model_3d_binary() {
+    let format = FileFormat::from_file("fixtures/model/sample.m3d").unwrap();
+    assert_eq!(format, FileFormat::Model3dBinary);
+}
+
+#[test]
 fn test_polygon_file_format() {
     let format = FileFormat::from_file("fixtures/model/sample.ply").unwrap();
     assert_eq!(format, FileFormat::PolygonFileFormat);
