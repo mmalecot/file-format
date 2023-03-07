@@ -3,6 +3,7 @@
 ## New formats support
 
 - Quite OK Image (QOI)
+- Soundtracker Module (MOD)
 
 # Version 0.15.0 (2023-03-06)
 

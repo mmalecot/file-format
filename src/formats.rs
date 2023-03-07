@@ -1447,6 +1447,13 @@ formats! {
     extension = "mqv"
     kind = Video
 
+    format = SoundtrackerModule
+    name = "Soundtracker Module"
+    short_name = "MOD"
+    media_type = "audio/x-mod"
+    extension = "mod"
+    kind = Audio
+
     format = Sqlite3
     name = "SQLite 3"
     media_type = "application/vnd.sqlite3"

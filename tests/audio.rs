@@ -169,6 +169,12 @@ fn test_sony_dsd_stream_file() {
 }
 
 #[test]
+fn test_soundtracker_module() {
+    let format = FileFormat::from_file("fixtures/audio/sample.mod").unwrap();
+    assert_eq!(format, FileFormat::SoundtrackerModule);
+}
+
+#[test]
 fn test_waveform_audio() {
     let format = FileFormat::from_file("fixtures/audio/sample.wav").unwrap();
     assert_eq!(format, FileFormat::WaveformAudio);

@@ -275,6 +275,7 @@ file-format = "0.14"
 - Snappy
 - Sony DSD Stream File (DSF)
 - Sony Movie (MQV)
+- Soundtracker Module (MOD)
 - Stereolithography (STL)
 - SubRip Text (SRT)
 - TASTy

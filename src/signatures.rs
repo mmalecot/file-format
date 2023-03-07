@@ -739,6 +739,9 @@ signatures! {
     format = SonyDsdStreamFile
     value = b"DSD "
 
+    format = SoundtrackerModule
+    value = b"M.K." offset = 0x438
+
     format = TagImageFileFormat
     value = b"\x4D\x4D\x00\x2A"
     value = b"\x49\x49\x2A\x00"
