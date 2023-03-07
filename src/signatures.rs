@@ -682,6 +682,9 @@ signatures! {
     format = Lzip
     value = b"LZIP"
 
+    format = Magicavoxel
+    value = b"VOX "
+
     format = MicrosoftCompiledHtmlHelp
     value = b"ITSF"
 

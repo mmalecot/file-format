@@ -181,6 +181,7 @@ file-format = "0.14"
 - MS-DOS Batch (Batch)
 - MS-DOS Executable (EXE)
 - Mach-O
+- MagicaVoxel (VOX)
 - Material Exchange Format (MXF)
 - Matroska Video (MKV)
 - Meta Information Encapsulation (MIE)

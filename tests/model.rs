@@ -34,6 +34,12 @@ fn test_google_draco() {
 }
 
 #[test]
+fn test_magicavoxel() {
+    let format = FileFormat::from_file("fixtures/model/sample.vox").unwrap();
+    assert_eq!(format, FileFormat::Magicavoxel);
+}
+
+#[test]
 fn test_polygon_file_format() {
     let format = FileFormat::from_file("fixtures/model/sample.ply").unwrap();
     assert_eq!(format, FileFormat::PolygonFileFormat);

@@ -2,6 +2,7 @@
 
 ## New formats support
 
+- MagicaVoxel (VOX)
 - Quite OK Image (QOI)
 - Soundtracker Module (MOD)
 

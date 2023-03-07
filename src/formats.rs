@@ -798,6 +798,13 @@ formats! {
     media_type = "application/x-apple-alias"
     extension = "alias"
 
+    format = Magicavoxel
+    name = "MagicaVoxel"
+    short_name = "VOX"
+    media_type = "model/x-vox"
+    extension = "vox"
+    kind = Model
+
     format = MaterialExchangeFormat
     name = "Material Exchange Format"
     short_name = "MXF"
