@@ -1,5 +1,9 @@
 # Version 0.16.0 (unreleased)
 
+## New formats support
+
+- Quite OK Image (QOI)
+
 # Version 0.15.0 (2023-03-06)
 
 ## Improvements

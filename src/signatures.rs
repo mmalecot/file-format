@@ -724,6 +724,9 @@ signatures! {
     format = PersonalStorageTable
     value = b"!BDN"
 
+    format = QuiteOkImage
+    value = b"qoif"
+
     format = RedHatPackageManager
     value = b"\xED\xAB\xEE\xDB"
 

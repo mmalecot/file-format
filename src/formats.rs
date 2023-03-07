@@ -1328,6 +1328,13 @@ formats! {
     extension = "qcp"
     kind = Audio
 
+    format = QuiteOkImage
+    name = "Quite OK Image"
+    short_name = "QOI"
+    media_type = "image/x-qoi"
+    extension = "qoi"
+    kind = Image
+
     format = RadianceHdr
     name = "Radiance HDR"
     short_name = "HDR"

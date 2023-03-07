@@ -259,6 +259,12 @@ fn test_portable_pixmap() {
 }
 
 #[test]
+fn test_quite_ok_image() {
+    let format = FileFormat::from_file("fixtures/image/sample.qoi").unwrap();
+    assert_eq!(format, FileFormat::QuiteOkImage);
+}
+
+#[test]
 fn test_radiance_hdr() {
     let format = FileFormat::from_file("fixtures/image/sample.hdr").unwrap();
     assert_eq!(format, FileFormat::RadianceHdr);

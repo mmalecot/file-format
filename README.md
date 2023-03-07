@@ -256,6 +256,7 @@ file-format = "0.14"
 - PostScript (PS)
 - Python Script
 - Qualcomm PureVoice (QCP)
+- Quite OK Image (QOI)
 - Radiance HDR (HDR)
 - Really Simple Syndication (RSS)
 - Red Hat Package Manager (RPM)
