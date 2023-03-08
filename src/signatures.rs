@@ -36,6 +36,14 @@ signatures! {
     value = b"-----BEGIN PRIVATE KEY-----"
 
     // 32 bytes
+    format = PolygonBinary
+    value = b"ply\r\nformat binary_little_endian"
+    value = b"ply\r\nformat binary_big_endian"
+    value = b"ply\nformat binary_little_endian"
+    value = b"ply\nformat binary_big_endian"
+    value = b"ply\rformat binary_little_endian"
+    value = b"ply\rformat binary_big_endian"
+
     format = Sketchup
     value =
         b"\xFF\xFE\xFF\x0E\x53\x00\x6B\x00\x65\x00\x74\x00\x63\x00\x68\x00",
@@ -155,17 +163,15 @@ signatures! {
     value = b"#!/usr/bin/env perl"
     value = b"#!/usr/bin/perl"
 
-    // 18 bytes
-    format = PolygonFileFormat
-    value = b"ply\r\nformat binary"
-    value = b"ply\r\nformat ascii"
-    value = b"ply\nformat binary"
-    value = b"ply\nformat ascii"
-
     // 17 bytes
     format = EncapsulatedPostscript
     value = b"%!PS-Adobe-", b" EPSF-" offset = 14
     value = b"\xC5\xD0\xD3\xC6"
+
+    format = PolygonAscii
+    value = b"ply\r\nformat ascii"
+    value = b"ply\nformat ascii"
+    value = b"ply\rformat ascii"
 
     // 16 bytes
     format = AdobeIndesignDocument

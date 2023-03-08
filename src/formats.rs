@@ -1290,10 +1290,17 @@ formats! {
     media_type = "application/x-lzh-compressed"
     extension = "pma"
 
-    format = PolygonFileFormat
-    name = "Polygon File Format"
+    format = PolygonAscii
+    name = "Polygon ASCII"
     short_name = "PLY"
-    media_type = "model/x-ply"
+    media_type = "model/x-ply-ascii"
+    extension = "ply"
+    kind = Model
+
+    format = PolygonBinary
+    name = "Polygon Binary"
+    short_name = "PLY"
+    media_type = "model/x-ply-binary"
     extension = "ply"
     kind = Model
 

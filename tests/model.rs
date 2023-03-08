@@ -58,9 +58,15 @@ fn test_model_3d_binary() {
 }
 
 #[test]
-fn test_polygon_file_format() {
-    let format = FileFormat::from_file("fixtures/model/sample.ply").unwrap();
-    assert_eq!(format, FileFormat::PolygonFileFormat);
+fn test_polygon_ascii() {
+    let format = FileFormat::from_file("fixtures/model/sample1.ply").unwrap();
+    assert_eq!(format, FileFormat::PolygonAscii);
+}
+
+#[test]
+fn test_polygon_binary() {
+    let format = FileFormat::from_file("fixtures/model/sample2.ply").unwrap();
+    assert_eq!(format, FileFormat::PolygonBinary);
 }
 
 #[test]

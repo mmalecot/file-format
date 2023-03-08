@@ -2,7 +2,12 @@
 
 ## API
 
+- Differentiate Polygon ASCII (PLY) and Polygon Binary (PLY)
 - Differentiate Stereolithography ASCII (STL) and Stereolithography Binary (STL)
+
+## Improvements
+
+- Add precision to the Polygon ASCII (PLY) and Polygon Binary (PLY) signatures
 
 ## New formats support
 

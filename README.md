@@ -250,7 +250,8 @@ file-format = "0.14"
 - Perl Script
 - Personal Storage Table (PST)
 - Plain Text (TXT)
-- Polygon File Format (PLY)
+- Polygon ASCII (PLY)
+- Polygon Binary (PLY)
 - Portable Arbitrary Map (PAM)
 - Portable BitMap (PBM)
 - Portable Document Format (PDF)
