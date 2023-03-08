@@ -16,6 +16,7 @@
 ## New formats support
 
 - 3D Studio (3DS)
+- 3D Studio Max (MAX)
 - Inter-Quake Export (IQE)
 - Inter-Quake Model (IQM)
 - MagicaVoxel (VOX)

@@ -1558,6 +1558,12 @@ formats! {
     media_type = "application/x-3ds"
     extension = "3ds"
 
+    format = ThreeDimensionalStudioMax
+    name = "3D Studio Max"
+    short_name = "MAX"
+    media_type = "application/x-max"
+    extension = "max"
+
     format = ToolCommandLanguageScript
     name = "Tool Command Language Script"
     short_name = "Tcl Script"

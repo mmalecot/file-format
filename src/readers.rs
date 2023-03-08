@@ -61,6 +61,7 @@ impl crate::FileFormat {
             "000c1084-0000-0000-c000-000000000046" => Self::MicrosoftSoftwareInstaller,
             "00021a14-0000-0000-c000-000000000046" => Self::MicrosoftVisioDrawing,
             "00020906-0000-0000-c000-000000000046" => Self::MicrosoftWordDocument,
+            "1cdd8c7b-81c0-45a0-9fed-04143144cc1e" => Self::ThreeDimensionalStudioMax,
             _ => Self::CompoundFileBinary,
         })
     }

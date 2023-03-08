@@ -792,6 +792,13 @@ fn test_three_dimensional_studio() {
     assert_eq!(format, FileFormat::ThreeDimensionalStudio);
 }
 
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_three_dimensional_studio_max() {
+    let format = FileFormat::from_file("fixtures/application/sample.max").unwrap();
+    assert_eq!(format, FileFormat::ThreeDimensionalStudioMax);
+}
+
 #[test]
 fn test_unix_archiver() {
     let format = FileFormat::from_file("fixtures/application/sample.a").unwrap();
