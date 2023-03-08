@@ -114,6 +114,8 @@ file-format = "0.14"
 - Digital Imaging and Communications in Medicine (DICOM)
 - Digital Picture Exchange (DPX)
 - DjVu
+- Drawing Exchange Format ASCII (DXF)
+- Drawing Exchange Format Binary (DXF)
 - Dynamic Link Library (DLL)
 - Electronic Publication (EPUB)
 - Embedded OpenType (EOT)

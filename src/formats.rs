@@ -357,6 +357,20 @@ formats! {
     extension = "djvu"
     kind = Image
 
+    format = DrawingExchangeFormatAscii
+    name = "Drawing Exchange Format ASCII"
+    short_name = "DXF"
+    media_type = "image/vnd.dxf"
+    extension = "dxf"
+    kind = Image
+
+    format = DrawingExchangeFormatBinary
+    name = "Drawing Exchange Format Binary"
+    short_name = "DXF"
+    media_type = "image/vnd.dxf"
+    extension = "dxf"
+    kind = Image
+
     format = Drawio
     name = "draw.io"
     short_name = "DRAWIO"

@@ -73,6 +73,18 @@ fn test_djvu() {
 }
 
 #[test]
+fn test_drawing_exchange_format_ascii() {
+    let format = FileFormat::from_file("fixtures/image/sample1.dxf").unwrap();
+    assert_eq!(format, FileFormat::DrawingExchangeFormatAscii);
+}
+
+#[test]
+fn test_drawing_exchange_format_binary() {
+    let format = FileFormat::from_file("fixtures/image/sample2.dxf").unwrap();
+    assert_eq!(format, FileFormat::DrawingExchangeFormatBinary);
+}
+
+#[test]
 fn test_experimental_computing_facility() {
     let format = FileFormat::from_file("fixtures/image/sample.xcf").unwrap();
     assert_eq!(format, FileFormat::ExperimentalComputingFacility);

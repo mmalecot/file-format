@@ -163,6 +163,10 @@ signatures! {
     value = b"#!/usr/bin/env perl"
     value = b"#!/usr/bin/perl"
 
+    // 18 bytes
+    format = DrawingExchangeFormatBinary
+    value = b"AutoCAD Binary DXF"
+
     // 17 bytes
     format = EncapsulatedPostscript
     value = b"%!PS-Adobe-", b" EPSF-" offset = 14
@@ -228,6 +232,10 @@ signatures! {
     value = b"AT&TFORM", b"DJVU" offset = 12
     value = b"AT&TFORM", b"DJVI" offset = 12
     value = b"AT&TFORM", b"THUM" offset = 12
+
+    format = DrawingExchangeFormatAscii
+    value = b"  0\r\nSECTION"
+    value = b"  0\nSECTION"
 
     format = JpegXl
     value = b"\x00\x00\x00\x0C\x4A\x58\x4C\x20\x0D\x0A\x87\x0A"

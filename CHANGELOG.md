@@ -18,6 +18,8 @@
 
 - 3D Studio (3DS)
 - 3D Studio Max (MAX)
+- Drawing Exchange Format ASCII (DXF)
+- Drawing Exchange Format Binary (DXF)
 - Inter-Quake Export (IQE)
 - Inter-Quake Model (IQM)
 - MagicaVoxel (VOX)
