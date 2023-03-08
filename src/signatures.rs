@@ -279,6 +279,9 @@ signatures! {
     value = b"BEGIN:VCARD"
 
     // 10 bytes
+    format = BitmapFontAscii
+    value = b"info face="
+
     format = OggMedia
     value = b"OggS", b"\x01\x76\x69\x64\x65\x6F" offset = 28
 
@@ -650,6 +653,9 @@ signatures! {
 
     format = BetterPortableGraphics
     value = b"\x42\x50\x47\xFB"
+
+    format = BitmapFontBinary
+    value = b"BMF\x03"
 
     format = Cabinet
     value = b"MSCF"

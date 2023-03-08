@@ -1,6 +1,18 @@
 use file_format::FileFormat;
 
 #[test]
+fn test_bitmap_font_ascii() {
+    let format = FileFormat::from_file("fixtures/font/sample1.fnt").unwrap();
+    assert_eq!(format, FileFormat::BitmapFontAscii);
+}
+
+#[test]
+fn test_bitmap_font_binary() {
+    let format = FileFormat::from_file("fixtures/font/sample2.fnt").unwrap();
+    assert_eq!(format, FileFormat::BitmapFontBinary);
+}
+
+#[test]
 fn test_opentype() {
     let format = FileFormat::from_file("fixtures/font/sample.otf").unwrap();
     assert_eq!(format, FileFormat::Opentype);

@@ -96,6 +96,8 @@ file-format = "0.14"
 - AutoCAD Drawing (DWG)
 - Better Portable Graphics (BPG)
 - BitTorrent File (Torrent)
+- Bitmap Font ASCII (FNT)
+- Bitmap Font Binary (FNT)
 - Blender (BLEND)
 - Cabinet (CAB)
 - Canon Raw 2 (CR2)
