@@ -63,7 +63,7 @@ signatures! {
     format = PgpMessage
     value = b"-----BEGIN PGP MESSAGE-----"
 
-    format = Stereolithography
+    format = StereolithographyBinary
     value = b"3D Systems, Binary STL file"
     value = b"Materialise Coloured STL"
     value = b"Exported from Blender"
@@ -72,7 +72,6 @@ signatures! {
     value = b"Stratasys stl"
     value = b"SketchUp STL"
     value = b"STL File"
-    value = b"solid "
 
     // 24 bytes
     format = ClojureScript
@@ -502,6 +501,9 @@ signatures! {
     format = SevenZip
     value = b"\x37\x7A\xBC\xAF\x27\x1C"
     value = b"\x37\x7A\xBC\xAF\x27\x1C"
+
+    format = StereolithographyAscii
+    value = b"solid "
 
     format = SubripText
     value = b"1\r\n00:"

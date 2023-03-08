@@ -281,7 +281,8 @@ file-format = "0.14"
 - Sony DSD Stream File (DSF)
 - Sony Movie (MQV)
 - Soundtracker Module (MOD)
-- Stereolithography (STL)
+- Stereolithography ASCII (STL)
+- Stereolithography Binary (STL)
 - SubRip Text (SRT)
 - TASTy
 - Tag Image File Format (TIFF)

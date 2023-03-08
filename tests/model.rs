@@ -64,7 +64,13 @@ fn test_polygon_file_format() {
 }
 
 #[test]
-fn test_stereolithography() {
-    let format = FileFormat::from_file("fixtures/model/sample.stl").unwrap();
-    assert_eq!(format, FileFormat::Stereolithography);
+fn test_stereolithography_ascii() {
+    let format = FileFormat::from_file("fixtures/model/sample1.stl").unwrap();
+    assert_eq!(format, FileFormat::StereolithographyAscii);
+}
+
+#[test]
+fn test_stereolithography_binary() {
+    let format = FileFormat::from_file("fixtures/model/sample2.stl").unwrap();
+    assert_eq!(format, FileFormat::StereolithographyBinary);
 }

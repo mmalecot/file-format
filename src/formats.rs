@@ -1494,10 +1494,17 @@ formats! {
     media_type = "application/vnd.sqlite3"
     extension = "sqlite"
 
-    format = Stereolithography
-    name = "Stereolithography"
+    format = StereolithographyAscii
+    name = "Stereolithography ASCII"
     short_name = "STL"
-    media_type = "model/stl"
+    media_type = "model/x-stl-ascii"
+    extension = "stl"
+    kind = Model
+
+    format = StereolithographyBinary
+    name = "Stereolithography Binary"
+    short_name = "STL"
+    media_type = "model/x-stl-binary"
     extension = "stl"
     kind = Model
 

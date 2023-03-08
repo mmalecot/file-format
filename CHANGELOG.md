@@ -1,5 +1,9 @@
 # Version 0.16.0 (unreleased)
 
+## API
+
+- Differentiate Stereolithography ASCII (STL) and Stereolithography Binary (STL)
+
 ## New formats support
 
 - Inter-Quake Export (IQE)
