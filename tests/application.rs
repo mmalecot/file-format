@@ -387,6 +387,18 @@ fn test_material_exchange_format() {
 }
 
 #[test]
+fn test_maya_ascii() {
+    let format = FileFormat::from_file("fixtures/application/sample.ma").unwrap();
+    assert_eq!(format, FileFormat::MayaAscii);
+}
+
+#[test]
+fn test_maya_binary() {
+    let format = FileFormat::from_file("fixtures/application/sample.mb").unwrap();
+    assert_eq!(format, FileFormat::MayaBinary);
+}
+
+#[test]
 fn test_meta_information_encapsulation() {
     let format = FileFormat::from_file("fixtures/application/sample.mie").unwrap();
     assert_eq!(format, FileFormat::MetaInformationEncapsulation);

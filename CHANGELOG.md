@@ -21,6 +21,8 @@
 - Inter-Quake Export (IQE)
 - Inter-Quake Model (IQM)
 - MagicaVoxel (VOX)
+- Maya ASCII (MA)
+- Maya Binary (MB)
 - Model 3D ASCII (A3D)
 - Model 3D Binary (M3D)
 - Quite OK Image (QOI)

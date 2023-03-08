@@ -242,6 +242,9 @@ signatures! {
     format = MatroskaVideo
     value = b"\x1A\x45\xDF\xA3"
 
+    format = MayaAscii
+    value = b"//Maya ASCII"
+
     format = OggOpus
     value = b"OggS", b"OpusHead" offset = 28
 
@@ -359,6 +362,12 @@ signatures! {
 
     format = Jpeg2000Part6
     value = b"ftypjpm " offset = 16
+
+    format = MayaBinary
+    value = b"FOR4", b"MAYA" offset = 8
+    value = b"FOR4", b"Maya" offset = 8
+    value = b"FOR8", b"MAYA" offset = 16
+    value = b"FOR8", b"Maya" offset = 16
 
     format = MicrosoftVirtualHardDisk2
     value = b"vhdxfile"

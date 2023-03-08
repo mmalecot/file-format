@@ -832,6 +832,18 @@ formats! {
     extension = "mkv"
     kind = Video
 
+    format = MayaAscii
+    name = "Maya ASCII"
+    short_name = "MA"
+    media_type = "application/x-maya-ascii"
+    extension = "ma"
+
+    format = MayaBinary
+    name = "Maya Binary"
+    short_name = "MB"
+    media_type = "application/x-maya-binary"
+    extension = "mb"
+
     format = MetaInformationEncapsulation
     name = "Meta Information Encapsulation"
     short_name = "MIE"
