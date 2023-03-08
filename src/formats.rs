@@ -1552,6 +1552,12 @@ formats! {
     media_type = "application/vnd.ms-package.3dmanufacturing-3dmodel+xml"
     extension = "3mf"
 
+    format = ThreeDimensionalStudio
+    name = "3D Studio"
+    short_name = "3DS"
+    media_type = "application/x-3ds"
+    extension = "3ds"
+
     format = ToolCommandLanguageScript
     name = "Tool Command Language Script"
     short_name = "Tcl Script"

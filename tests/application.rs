@@ -787,6 +787,12 @@ fn test_three_dimensional_manufacturing_format() {
 }
 
 #[test]
+fn test_three_dimensional_studio() {
+    let format = FileFormat::from_file("fixtures/application/sample.3ds").unwrap();
+    assert_eq!(format, FileFormat::ThreeDimensionalStudio);
+}
+
+#[test]
 fn test_unix_archiver() {
     let format = FileFormat::from_file("fixtures/application/sample.a").unwrap();
     assert_eq!(format, FileFormat::UnixArchiver);

@@ -56,6 +56,7 @@ file-format = "0.14"
 ## Supported file formats
 
 - 3D Manufacturing Format (3MF)
+- 3D Studio (3DS)
 - 3rd Generation Partnership Project (3GPP)
 - 3rd Generation Partnership Project 2 (3GPP2)
 - 7-Zip (7Z)

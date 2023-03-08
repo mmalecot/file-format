@@ -515,6 +515,9 @@ signatures! {
     value = b"1\r\n00:"
     value = b"1\n00:"
 
+    format = ThreeDimensionalStudio
+    value = b"MM", b"\x02" offset = 6, b"\x0A" offset = 8, b"\x3D\x3D" offset = 16
+
     format = Xz
     value = b"\xFD\x37\x7A\x58\x5A\x00"
 
