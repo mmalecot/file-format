@@ -12,6 +12,7 @@
 ## Improvements
 
 - Add precision to the Polygon ASCII (PLY) and Polygon Binary (PLY) signatures
+- Add additional CLSIDs for some Compound File Binary (CFB) based file formats
 
 ## New formats support
 
