@@ -5,6 +5,10 @@
 - Differentiate Polygon ASCII (PLY) and Polygon Binary (PLY)
 - Differentiate Stereolithography ASCII (STL) and Stereolithography Binary (STL)
 
+## Fixes
+
+- Fix Microsoft DirectDraw Surface (DDS) media type
+
 ## Improvements
 
 - Add precision to the Polygon ASCII (PLY) and Polygon Binary (PLY) signatures

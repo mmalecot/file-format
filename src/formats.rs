@@ -859,7 +859,7 @@ formats! {
     format = MicrosoftDirectDrawSurface
     name = "Microsoft DirectDraw Surface"
     short_name = "DDS"
-    media_type = "image/vnd-ms.dds"
+    media_type = "image/vnd.ms-dds"
     extension = "dds"
     kind = Image
 
