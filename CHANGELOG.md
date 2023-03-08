@@ -21,7 +21,7 @@
 - Model 3D ASCII (A3D)
 - Model 3D Binary (M3D)
 - Quite OK Image (QOI)
-- Soundtracker Module (MOD)
+- Ultimate Soundtracker Module (MOD)
 
 # Version 0.15.0 (2023-03-06)
 

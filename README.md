@@ -281,7 +281,6 @@ file-format = "0.14"
 - Snappy
 - Sony DSD Stream File (DSF)
 - Sony Movie (MQV)
-- Soundtracker Module (MOD)
 - Stereolithography ASCII (STL)
 - Stereolithography Binary (STL)
 - SubRip Text (SRT)
@@ -292,6 +291,7 @@ file-format = "0.14"
 - TrueType (TTF)
 - UNIX archiver (archiver)
 - UNIX compress (compress)
+- Ultimate Soundtracker Module (MOD)
 - VirtualBox Virtual Disk Image (VDI)
 - WavPack (WV)
 - Waveform Audio (WAV)
