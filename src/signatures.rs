@@ -504,6 +504,9 @@ signatures! {
     format = UnixArchiver
     value = b"!<arch>"
 
+    format = WebassemblyText
+    value = b"(module"
+
     // 6 bytes
     format = ApacheArrowColumnar
     value = b"ARROW1"

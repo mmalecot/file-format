@@ -96,3 +96,9 @@ fn test_vcard() {
     let format = FileFormat::from_file("fixtures/text/sample.vcf").unwrap();
     assert_eq!(format, FileFormat::Vcard);
 }
+
+#[test]
+fn test_webassembly_text() {
+    let format = FileFormat::from_file("fixtures/text/sample.wat").unwrap();
+    assert_eq!(format, FileFormat::WebassemblyText);
+}

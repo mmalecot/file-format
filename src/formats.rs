@@ -1703,6 +1703,13 @@ formats! {
     media_type = "application/wasm"
     extension = "wasm"
 
+    format = WebassemblyText
+    name = "WebAssembly Text"
+    short_name = "WAT"
+    media_type = "text/wasm"
+    extension = "wat"
+    kind = Text
+
     format = Webm
     name = "WebM"
     media_type = "video/webm"
