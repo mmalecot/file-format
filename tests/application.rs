@@ -243,6 +243,12 @@ fn test_geography_markup_language() {
 }
 
 #[test]
+fn test_gettext_machine_object() {
+    let format = FileFormat::from_file("fixtures/application/sample.mo").unwrap();
+    assert_eq!(format, FileFormat::GettextMachineObject);
+}
+
+#[test]
 fn test_google_chrome_extension() {
     let format = FileFormat::from_file("fixtures/application/sample.crx").unwrap();
     assert_eq!(format, FileFormat::GoogleChromeExtension);

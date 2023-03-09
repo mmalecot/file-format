@@ -686,6 +686,10 @@ signatures! {
     format = FreeLosslessImageFormat
     value = b"FLIF"
 
+    format = GettextMachineObject
+    value = b"\x95\x04\x12\xDE"
+    value = b"\xDE\x12\x04\x95"
+
     format = GlTransmissionFormatBinary
     value = b"glTF"
 

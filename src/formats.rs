@@ -539,6 +539,12 @@ formats! {
     media_type = "application/gml+xml"
     extension = "gml"
 
+    format = GettextMachineObject
+    name = "gettext Machine Object"
+    short_name = "MO"
+    media_type = "application/x-gettext-translation"
+    extension = "mo"
+
     format = GlTransmissionFormatBinary
     name = "GL Transmission Format Binary"
     short_name = "GLB"

@@ -327,6 +327,7 @@ file-format = "0.14"
 - cpio
 - draw.io (DRAWIO)
 - farbfeld (FF)
+- gettext Machine Object (MO)
 - gzip (GZ)
 - iCalendar (ICS)
 - iOS App Store Package (IPA)

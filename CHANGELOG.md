@@ -31,6 +31,7 @@
 - Model 3D Binary (M3D)
 - Quite OK Image (QOI)
 - Ultimate Soundtracker Module (MOD)
+- gettext Machine Object (MO)
 
 # Version 0.15.0 (2023-03-06)
 
