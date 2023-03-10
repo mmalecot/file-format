@@ -109,6 +109,12 @@ fn test_sony_movie() {
 }
 
 #[test]
+fn test_soundfont_2() {
+    let format = FileFormat::from_file("fixtures/video/sample.sf2").unwrap();
+    assert_eq!(format, FileFormat::Soundfont2);
+}
+
+#[test]
 fn test_third_generation_partnership_project() {
     let format = FileFormat::from_file("fixtures/video/sample.3gp").unwrap();
     assert_eq!(format, FileFormat::ThirdGenerationPartnershipProject);

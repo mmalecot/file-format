@@ -1598,6 +1598,13 @@ formats! {
     extension = "mqv"
     kind = Video
 
+    format = Soundfont2
+    name = "SoundFont 2"
+    short_name = "SF2"
+    media_type = "audio/x-soundfont"
+    extension = "sf2"
+    kind = Audio
+
     format = Sqlite3
     name = "SQLite 3"
     media_type = "application/vnd.sqlite3"

@@ -453,6 +453,9 @@ signatures! {
     value = b"\x52\x61\x72\x21\x1A\x07\x01\x00"
     value = b"\x52\x61\x72\x21\x1A\x07\x00"
 
+    format = Soundfont2
+    value = b"RIFF", b"sfbk" offset = 8
+
     format = TapeArchive
     value = b"\x75\x73\x74\x61\x72\x00\x30\x30" offset = 257
     value = b"\x75\x73\x74\x61\x72\x20\x20\x00" offset = 257

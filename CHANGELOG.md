@@ -44,6 +44,7 @@
 - Quite OK Image (QOI)
 - SHOUTcast Playlist (PLS)
 - Silicon Graphics Image (SGI)
+- SoundFont 2 (SF2)
 - Ultimate Soundtracker Module (MOD)
 - X PixMap (XPM)
 - XML Shareable Playlist Format (XSPF)

@@ -298,6 +298,7 @@ file-format = "0.14"
 - Snappy
 - Sony DSD Stream File (DSF)
 - Sony Movie (MQV)
+- SoundFont 2 (SF2)
 - Stereolithography ASCII (STL)
 - Stereolithography Binary (STL)
 - SubRip Text (SRT)
