@@ -268,6 +268,7 @@ file-format = "0.14"
 - Portable BitMap (PBM)
 - Portable Document Format (PDF)
 - Portable Executable (PE)
+- Portable FloatMap (PFM)
 - Portable GrayMap (PGM)
 - Portable Network Graphics (PNG)
 - Portable PixMap (PPM)

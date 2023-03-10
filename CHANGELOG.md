@@ -34,6 +34,7 @@
 - Model 3D ASCII (A3D)
 - Model 3D Binary (M3D)
 - Multiple-image Network Graphics (MNG)
+- Portable FloatMap (PFM)
 - Quite OK Image (QOI)
 - Ultimate Soundtracker Module (MOD)
 - X PixMap (XPM)

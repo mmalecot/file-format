@@ -1404,6 +1404,13 @@ formats! {
     media_type = "application/vnd.microsoft.portable-executable"
     extension = "exe"
 
+    format = PortableFloatmap
+    name = "Portable FloatMap"
+    short_name = "PFM"
+    media_type = "image/x-pfm"
+    extension = "pfm"
+    kind = Image
+
     format = PotableGraymap
     name = "Portable GrayMap"
     short_name = "PGM"

@@ -875,6 +875,16 @@ signatures! {
     value = b"P4\r"
     value = b"P4\n"
 
+    format = PortableFloatmap
+    value = b"PF "
+    value = b"PF\t"
+    value = b"PF\r"
+    value = b"PF\n"
+    value = b"Pf "
+    value = b"Pf\t"
+    value = b"Pf\r"
+    value = b"Pf\n"
+
     format = PotableGraymap
     value = b"P2 "
     value = b"P2\t"

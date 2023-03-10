@@ -259,6 +259,12 @@ fn test_portable_bitmap() {
 }
 
 #[test]
+fn test_portable_floatmap() {
+    let format = FileFormat::from_file("fixtures/image/sample.pfm").unwrap();
+    assert_eq!(format, FileFormat::PortableFloatmap);
+}
+
+#[test]
 fn test_portable_graymap() {
     let format = FileFormat::from_file("fixtures/image/sample.pgm").unwrap();
     assert_eq!(format, FileFormat::PotableGraymap);
