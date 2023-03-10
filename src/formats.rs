@@ -204,6 +204,20 @@ formats! {
     extension = "dwg"
     kind = Image
 
+    format = AutodeskAnimator
+    name = "Autodesk Animator"
+    short_name = "FLI"
+    media_type = "video/x-fli"
+    extension = "fli"
+    kind = Video
+
+    format = AutodeskAnimatorPro
+    name = "Autodesk Animator Pro"
+    short_name = "FLC"
+    media_type = "video/x-flc"
+    extension = "flc"
+    kind = Video
+
     format = Av1ImageFileFormat
     name = "AV1 Image File Format"
     short_name = "AVIF"

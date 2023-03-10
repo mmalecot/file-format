@@ -94,6 +94,8 @@ file-format = "0.14"
 - Audio Interchange File Format (AIFF)
 - Audio Video Interleave (AVI)
 - AutoCAD Drawing (DWG)
+- Autodesk Animator (FLI)
+- Autodesk Animator Pro (FLC)
 - Better Portable Graphics (BPG)
 - BitTorrent File (Torrent)
 - Bitmap Font ASCII (FNT)

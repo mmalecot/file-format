@@ -915,6 +915,12 @@ signatures! {
     format = AudioCodec3
     value = b"\x0B\x77"
 
+    format = AutodeskAnimator
+    value = b"\x11\xAF" offset = 4
+
+    format = AutodeskAnimatorPro
+    value = b"\x12\xAF" offset = 4
+
     format = CommonObjectFileFormat
     value = b"\x4C\x01"
     value = b"\x64\x86"

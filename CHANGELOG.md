@@ -16,6 +16,8 @@
 
 ## New formats support
 
+- Autodesk Animator (FLI)
+- Autodesk Animator Pro (FLC)
 - 3D Studio (3DS)
 - 3D Studio Max (MAX)
 - Bitmap Font ASCII (FNT)

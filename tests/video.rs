@@ -31,6 +31,18 @@ fn test_audio_video_interleave() {
 }
 
 #[test]
+fn test_autodesk_animator() {
+    let format = FileFormat::from_file("fixtures/video/sample.fli").unwrap();
+    assert_eq!(format, FileFormat::AutodeskAnimator);
+}
+
+#[test]
+fn test_autodesk_animator_pro() {
+    let format = FileFormat::from_file("fixtures/video/sample.flc").unwrap();
+    assert_eq!(format, FileFormat::AutodeskAnimatorPro);
+}
+
+#[test]
 fn test_flash_video() {
     let format = FileFormat::from_file("fixtures/video/sample.flv").unwrap();
     assert_eq!(format, FileFormat::FlashVideo);
