@@ -974,6 +974,9 @@ signatures! {
     format = Postscript
     value = b"%!"
 
+    format = SiliconGraphicsImage
+    value = b"\x01\xDA"
+
     format = UnixCompress
     value = b"\x1F\xA0"
     value = b"\x1F\x9D"

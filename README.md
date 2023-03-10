@@ -288,6 +288,7 @@ file-format = "0.14"
 - SeqBox (SBX)
 - Shapefile (SHP)
 - Shell Script
+- Silicon Graphics Image (SGI)
 - Simple Object Access Protocol (SOAP)
 - SketchUp (SKP)
 - Small Web Format (SWF)

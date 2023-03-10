@@ -36,6 +36,7 @@
 - Multiple-image Network Graphics (MNG)
 - Portable FloatMap (PFM)
 - Quite OK Image (QOI)
+- Silicon Graphics Image (SGI)
 - Ultimate Soundtracker Module (MOD)
 - X PixMap (XPM)
 - gettext Machine Object (MO)

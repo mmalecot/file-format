@@ -1533,6 +1533,13 @@ formats! {
     extension = "sh"
     kind = Text
 
+    format = SiliconGraphicsImage
+    name = "Silicon Graphics Image"
+    short_name = "SGI"
+    media_type = "image/x-sgi"
+    extension = "sgi"
+    kind = Image
+
     format = SimpleObjectAccessProtocol
     name = "Simple Object Access Protocol"
     short_name = "SOAP"

@@ -302,6 +302,12 @@ fn test_scalable_vector_graphics() {
 }
 
 #[test]
+fn test_silicon_graphics_image() {
+    let format = FileFormat::from_file("fixtures/image/sample.sgi").unwrap();
+    assert_eq!(format, FileFormat::SiliconGraphicsImage);
+}
+
+#[test]
 fn test_tag_image_file_format() {
     let format = FileFormat::from_file("fixtures/image/sample.tiff").unwrap();
     assert_eq!(format, FileFormat::TagImageFileFormat);
