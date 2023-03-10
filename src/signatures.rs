@@ -377,6 +377,9 @@ signatures! {
     format = Jpeg2000Part6
     value = b"ftypjpm " offset = 16
 
+    format = JpegNetworkGraphics
+    value = b"\x8B\x4A\x4E\x47\x0D\x0A\x1A\x0A"
+
     format = MayaBinary
     value = b"FOR4", b"MAYA" offset = 8
     value = b"FOR4", b"Maya" offset = 8
@@ -414,6 +417,9 @@ signatures! {
     value = b"ftypNDXH" offset = 4
     value = b"ftypNDXM" offset = 4
     value = b"ftypNDXP" offset = 4
+
+    format = MultipleImageNetworkGraphics
+    value = b"\x8A\x4D\x4E\x47\x0D\x0A\x1A\x0A"
 
     format = NikonElectronicFile
     value = b"\x4D\x4D\x00\x2A", b"\x1C\x00\xFE\x00" offset = 8

@@ -186,6 +186,12 @@ fn test_jpeg_ls() {
 }
 
 #[test]
+fn test_jpeg_network_graphics() {
+    let format = FileFormat::from_file("fixtures/image/sample.jng").unwrap();
+    assert_eq!(format, FileFormat::JpegNetworkGraphics);
+}
+
+#[test]
 fn test_jpeg_xl() {
     let format = FileFormat::from_file("fixtures/image/sample.jxl").unwrap();
     assert_eq!(format, FileFormat::JpegXl);

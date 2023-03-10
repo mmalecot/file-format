@@ -73,6 +73,12 @@ fn test_mpeg4_part14_video() {
 }
 
 #[test]
+fn test_multiple_image_network_graphics() {
+    let format = FileFormat::from_file("fixtures/video/sample.mng").unwrap();
+    assert_eq!(format, FileFormat::MultipleImageNetworkGraphics);
+}
+
+#[test]
 fn test_ogg_media() {
     let format = FileFormat::from_file("fixtures/video/sample.ogm").unwrap();
     assert_eq!(format, FileFormat::OggMedia);

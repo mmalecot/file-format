@@ -162,6 +162,7 @@ file-format = "0.14"
 - JPEG 2000 Part 2 (JPX)
 - JPEG 2000 Part 3 (MJ2)
 - JPEG 2000 Part 6 (JPM)
+- JPEG Network Graphics (JNG)
 - JPEG XL (JXL)
 - JPEG-LS (JLS)
 - Java Archive (JAR)
@@ -216,6 +217,7 @@ file-format = "0.14"
 - Model 3D ASCII (A3D)
 - Model 3D Binary (M3D)
 - Monkey's Audio (APE)
+- Multiple-image Network Graphics (MNG)
 - Musepack (MPC)
 - MusicXML
 - MusicXML Zipped (MXL)

@@ -752,6 +752,13 @@ formats! {
     extension = "jls"
     kind = Image
 
+    format = JpegNetworkGraphics
+    name = "JPEG Network Graphics"
+    short_name = "JNG"
+    media_type = "image/x-jng"
+    extension = "jng"
+    kind = Image
+
     format = JpegXl
     name = "JPEG XL"
     short_name = "JXL"
@@ -1077,6 +1084,13 @@ formats! {
     short_name = "EXE"
     media_type = "application/x-dosexec"
     extension = "exe"
+
+    format = MultipleImageNetworkGraphics
+    name = "Multiple-image Network Graphics"
+    short_name = "MNG"
+    media_type = "video/x-mng"
+    extension = "mng"
+    kind = Video
 
     format = Musepack
     name = "Musepack"
