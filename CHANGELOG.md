@@ -5,6 +5,7 @@
 - Differentiate Polygon ASCII (PLY) and Polygon Binary (PLY)
 - Differentiate Stereolithography ASCII (STL) and Stereolithography Binary (STL)
 - Rename `Screamtracker3Module` to `ScreamTracker3Module`
+- Rename `FastTracker2ExtendedModule` to `Fasttracker2ExtendedModule`
 
 ## Fixes
 

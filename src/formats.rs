@@ -488,7 +488,7 @@ formats! {
     extension = "ff"
     kind = Image
 
-    format = FastTracker2ExtendedModule
+    format = Fasttracker2ExtendedModule
     name = "FastTracker 2 Extended Module"
     short_name = "XM"
     media_type = "audio/x-xm"

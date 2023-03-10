@@ -67,9 +67,9 @@ fn test_creative_voice() {
 }
 
 #[test]
-fn test_fast_tracker2_extended_module() {
+fn test_fasttracker2_extended_module() {
     let format = FileFormat::from_file("fixtures/audio/sample.xm").unwrap();
-    assert_eq!(format, FileFormat::FastTracker2ExtendedModule);
+    assert_eq!(format, FileFormat::Fasttracker2ExtendedModule);
 }
 
 #[test]

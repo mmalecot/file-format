@@ -179,7 +179,7 @@ signatures! {
     format = AdobeIndesignDocument
     value = b"\x06\x06\xED\xF5\xD8\x1D\x46\xE5\xBD\x31\xEF\xE7\xFE\x74\xB7\x1D"
 
-    format = FastTracker2ExtendedModule
+    format = Fasttracker2ExtendedModule
     value = b"Extended Module:"
 
     format = InterQuakeModel
