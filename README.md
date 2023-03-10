@@ -65,6 +65,7 @@ file-format = "0.14"
 - AV1 Image File Format (AVIF)
 - AV1 Image File Format Sequence (AVIFS)
 - Adaptive Multi-Rate (AMR)
+- Additive Manufacturing Format (AMF)
 - Adobe Flash Player Audio (F4A)
 - Adobe Flash Player Audiobook (F4B)
 - Adobe Flash Player Protected Video (F4P)

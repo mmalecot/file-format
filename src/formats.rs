@@ -8,6 +8,12 @@ formats! {
     extension = "amr"
     kind = Audio
 
+    format = AdditiveManufacturingFormat
+    name = "Additive Manufacturing Format"
+    short_name = "AMF"
+    media_type = "application/x-amf"
+    extension = "amf"
+
     format = AdobeFlashPlayerAudio
     name = "Adobe Flash Player Audio"
     short_name = "F4A"

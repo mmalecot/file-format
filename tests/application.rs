@@ -1,5 +1,12 @@
 use file_format::FileFormat;
 
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_additive_manufacturing_format() {
+    let format = FileFormat::from_file("fixtures/application/sample.amf").unwrap();
+    assert_eq!(format, FileFormat::AdditiveManufacturingFormat);
+}
+
 #[cfg(feature = "reader-pdf")]
 #[test]
 fn test_adobe_illustrator_artwork() {

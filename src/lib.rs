@@ -99,6 +99,7 @@ These features enable the detection of file formats based on other ones by readi
   is not recognized by its signature.
 - `reader-xml` - Enables [Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`)
   based file formats detection:
+  * [Additive Manufacturing Format (AMF)](`FileFormat::AdditiveManufacturingFormat`)
   * [Digital Asset Exchange (DAE)](`FileFormat::DigitalAssetExchange`)
   * [Extensible 3D Graphics (X3D)](`FileFormat::Extensible3DGraphics`)
   * [Extensible Stylesheet Language Transformations (XSLT)](`FileFormat::ExtensibleStylesheetLanguageTransformations`)

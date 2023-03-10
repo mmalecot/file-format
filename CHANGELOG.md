@@ -23,6 +23,7 @@
 
 - 3D Studio (3DS)
 - 3D Studio Max (MAX)
+- Additive Manufacturing Format (AMF)
 - Advanced Media Video (AMV)
 - Advanced Stream Redirector (ASX)
 - Autodesk Animator (FLI)
