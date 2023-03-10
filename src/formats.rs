@@ -1330,31 +1330,31 @@ formats! {
 
     format = PgpMessage
     name = "PGP Message"
-    short_name = "ASC"
+    short_name = "PGP"
     media_type = "application/pgp"
     extension = "asc"
 
     format = PgpPrivateKeyBlock
     name = "PGP Private Key Block"
-    short_name = "ASC"
+    short_name = "PGP"
     media_type = "application/pgp-keys"
     extension = "asc"
 
     format = PgpPublicKeyBlock
     name = "PGP Public Key Block"
-    short_name = "ASC"
+    short_name = "PGP"
     media_type = "application/pgp-keys"
     extension = "asc"
 
     format = PgpSignature
     name = "PGP Signature"
-    short_name = "ASC"
+    short_name = "PGP"
     media_type = "application/pgp-signature"
     extension = "asc"
 
     format = PgpSignedMessage
     name = "PGP Signed Message"
-    short_name = "ASC"
+    short_name = "PGP"
     media_type = "application/pgp"
     extension = "asc"
 

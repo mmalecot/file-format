@@ -11,6 +11,7 @@
 
 - Fix Flexible Image Transport System (FITS) signature
 - Fix Microsoft DirectDraw Surface (DDS) media type
+- Fix PGP-based formats short name
 - Fix Scream Tracker 3 Module (S3M) name
 
 ## Improvements
