@@ -19,6 +19,7 @@
 
 - 3D Studio (3DS)
 - 3D Studio Max (MAX)
+- Advanced Stream Redirector (ASX)
 - Autodesk Animator (FLI)
 - Autodesk Animator Pro (FLC)
 - Bitmap Font ASCII (FNT)

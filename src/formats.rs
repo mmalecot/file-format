@@ -62,6 +62,13 @@ formats! {
     extension = "aac"
     kind = Audio
 
+    format = AdvancedStreamRedirector
+    name = "Advanced Stream Redirector"
+    short_name = "ASX"
+    media_type = "video/x-ms-asx"
+    extension = "asx"
+    kind = Video
+
     format = Alz
     name = "ALZ"
     media_type = "application/x-alz-compressed"

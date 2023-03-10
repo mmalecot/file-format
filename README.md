@@ -73,6 +73,7 @@ file-format = "0.14"
 - Adobe InDesign Document (INDD)
 - Adobe Photoshop Document (PSD)
 - Advanced Audio Coding (AAC)
+- Advanced Stream Redirector (ASX)
 - Android Binary XML (AXML)
 - Android Compiled Resources (ARSC)
 - Android Package (APK)
