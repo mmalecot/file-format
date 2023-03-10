@@ -283,6 +283,7 @@ file-format = "0.14"
 - Rich Text Format (RTF)
 - Roshal Archive (RAR)
 - Ruby Script
+- SHOUTcast Playlist (PLS)
 - SQLite 3
 - Scalable Vector Graphics (SVG)
 - ScreamTracker 3 Module (S3M)

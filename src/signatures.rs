@@ -257,6 +257,11 @@ signatures! {
     format = PanasonicRaw
     value = b"\x49\x49\x55\x00\x18\x00\x00\x00\x88\xE7\x74\xD8"
 
+    format = ShoutcastPlaylist
+    value = b"[playlist]\r\n"
+    value = b"[playlist]\r"
+    value = b"[playlist]\n"
+
     // 11 bytes
     format = BittorrentFile
     value = b"d8:announce"

@@ -1540,6 +1540,13 @@ formats! {
     extension = "sh"
     kind = Text
 
+    format = ShoutcastPlaylist
+    name = "SHOUTcast Playlist"
+    short_name = "PLS"
+    media_type = "audio/x-scpls"
+    extension = "pls"
+    kind = Audio
+
     format = SiliconGraphicsImage
     name = "Silicon Graphics Image"
     short_name = "SGI"

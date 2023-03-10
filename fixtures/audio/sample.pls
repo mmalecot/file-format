@@ -1,0 +1,2 @@
+[playlist]
+File1=

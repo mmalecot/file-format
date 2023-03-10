@@ -163,6 +163,12 @@ fn test_screamtracker3_module() {
 }
 
 #[test]
+fn test_shoutcast_playlist() {
+    let format = FileFormat::from_file("fixtures/audio/sample.pls").unwrap();
+    assert_eq!(format, FileFormat::ShoutcastPlaylist);
+}
+
+#[test]
 fn test_sony_dsd_stream_file() {
     let format = FileFormat::from_file("fixtures/audio/sample.dsf").unwrap();
     assert_eq!(format, FileFormat::SonyDsdStreamFile);
