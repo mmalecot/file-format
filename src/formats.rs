@@ -62,6 +62,13 @@ formats! {
     extension = "aac"
     kind = Audio
 
+    format = AdvancedMediaVideo
+    name = "Advanced Media Video"
+    short_name = "AMV"
+    media_type = "video/x-amv"
+    extension = "amv"
+    kind = Video
+
     format = AdvancedStreamRedirector
     name = "Advanced Stream Redirector"
     short_name = "ASX"

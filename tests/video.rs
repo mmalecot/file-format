@@ -13,6 +13,12 @@ fn test_adobe_flash_player_video() {
 }
 
 #[test]
+fn test_advanced_media_video() {
+    let format = FileFormat::from_file("fixtures/video/sample.amv").unwrap();
+    assert_eq!(format, FileFormat::AdvancedMediaVideo);
+}
+
+#[test]
 fn test_advanced_stream_redirector() {
     let format = FileFormat::from_file("fixtures/video/sample.asx").unwrap();
     assert_eq!(format, FileFormat::AdvancedStreamRedirector);

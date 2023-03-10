@@ -320,6 +320,9 @@ signatures! {
     value = b"/* XPM */"
 
     // 8 bytes
+    format = AdvancedMediaVideo
+    value = b"RIFF", b"AMV " offset = 8
+
     format = AudioInterchangeFileFormat
     value = b"FORM", b"AIFF" offset = 8
     value = b"FORM", b"AIFC" offset = 8
