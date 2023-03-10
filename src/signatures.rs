@@ -802,7 +802,7 @@ signatures! {
     format = RedHatPackageManager
     value = b"\xED\xAB\xEE\xDB"
 
-    format = Screamtracker3Module
+    format = ScreamTracker3Module
     value = b"SCRM" offset = 44
 
     format = Shapefile

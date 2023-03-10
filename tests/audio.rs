@@ -157,9 +157,9 @@ fn test_qualcomm_pure_voice() {
 }
 
 #[test]
-fn test_screamtracker3_module() {
+fn test_scream_tracker3_module() {
     let format = FileFormat::from_file("fixtures/audio/sample.s3m").unwrap();
-    assert_eq!(format, FileFormat::Screamtracker3Module);
+    assert_eq!(format, FileFormat::ScreamTracker3Module);
 }
 
 #[test]

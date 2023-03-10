@@ -4,11 +4,13 @@
 
 - Differentiate Polygon ASCII (PLY) and Polygon Binary (PLY)
 - Differentiate Stereolithography ASCII (STL) and Stereolithography Binary (STL)
+- Rename `Screamtracker3Module` to `ScreamTracker3Module`
 
 ## Fixes
 
 - Fix Flexible Image Transport System (FITS) signature
 - Fix Microsoft DirectDraw Surface (DDS) media type
+- Fix Scream Tracker 3 Module (S3M) name
 
 ## Improvements
 

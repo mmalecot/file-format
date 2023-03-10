@@ -1509,8 +1509,8 @@ formats! {
     extension = "svg"
     kind = Image
 
-    format = Screamtracker3Module
-    name = "ScreamTracker 3 Module"
+    format = ScreamTracker3Module
+    name = "Scream Tracker 3 Module"
     short_name = "S3M"
     media_type = "audio/x-s3m"
     extension = "s3m"

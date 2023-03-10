@@ -286,7 +286,7 @@ file-format = "0.14"
 - SHOUTcast Playlist (PLS)
 - SQLite 3
 - Scalable Vector Graphics (SVG)
-- ScreamTracker 3 Module (S3M)
+- Scream Tracker 3 Module (S3M)
 - SeqBox (SBX)
 - Shapefile (SHP)
 - Shell Script
