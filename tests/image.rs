@@ -324,3 +324,9 @@ fn test_windows_metafile() {
     let format = FileFormat::from_file("fixtures/image/sample.wmf").unwrap();
     assert_eq!(format, FileFormat::WindowsMetafile);
 }
+
+#[test]
+fn test_x_pixmap() {
+    let format = FileFormat::from_file("fixtures/image/sample.xpm").unwrap();
+    assert_eq!(format, FileFormat::XPixmap);
+}

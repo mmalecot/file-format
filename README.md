@@ -317,6 +317,7 @@ file-format = "0.14"
 - Windows Media Video (WMV)
 - Windows Metafile (WMF)
 - Windows Shortcut (LNK)
+- X PixMap (XPM)
 - XAP
 - XML Localization Interchange File Format (XLIFF)
 - XPInstall (XPI)

@@ -1786,6 +1786,13 @@ formats! {
     media_type = "application/xliff+xml"
     extension = "xlf"
 
+    format = XPixmap
+    name = "X PixMap"
+    short_name = "XPM"
+    media_type = "image/x-xpixmap"
+    extension = "xpm"
+    kind = Image
+
     format = Xpinstall
     name = "XPInstall"
     short_name = "XPI"

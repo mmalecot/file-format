@@ -313,6 +313,9 @@ signatures! {
     format = OlympusRawFormat
     value = b"\x49\x49\x52\x4F\x08\x00\x00\x00\x18"
 
+    format = XPixmap
+    value = b"/* XPM */"
+
     // 8 bytes
     format = AudioInterchangeFileFormat
     value = b"FORM", b"AIFF" offset = 8
