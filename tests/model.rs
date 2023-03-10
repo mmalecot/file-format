@@ -18,7 +18,7 @@ fn test_digital_asset_exchange() {
 #[test]
 fn test_extensible_3d_graphics() {
     let format = FileFormat::from_file("fixtures/model/sample.x3d").unwrap();
-    assert_eq!(format, FileFormat::Extensible3DGraphics);
+    assert_eq!(format, FileFormat::Extensible3dGraphics);
 }
 
 #[test]

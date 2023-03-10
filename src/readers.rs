@@ -204,7 +204,7 @@ impl crate::FileFormat {
             } else if buffer.contains("<mxfile") {
                 return Ok(Self::Drawio);
             } else if buffer.contains("<x3d") {
-                return Ok(Self::Extensible3DGraphics);
+                return Ok(Self::Extensible3dGraphics);
             } else if buffer.contains("<xsl") {
                 return Ok(Self::ExtensibleStylesheetLanguageTransformations);
             } else if buffer.contains("<gml") {
