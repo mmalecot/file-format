@@ -311,6 +311,7 @@ file-format = "0.14"
 - UNIX archiver (archiver)
 - UNIX compress (compress)
 - Ultimate Soundtracker Module (MOD)
+- Universal 3D (U3D)
 - VirtualBox Virtual Disk Image (VDI)
 - WavPack (WV)
 - Waveform Audio (WAV)

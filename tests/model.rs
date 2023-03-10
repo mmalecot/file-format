@@ -80,3 +80,9 @@ fn test_stereolithography_binary() {
     let format = FileFormat::from_file("fixtures/model/sample2.stl").unwrap();
     assert_eq!(format, FileFormat::StereolithographyBinary);
 }
+
+#[test]
+fn test_universal_3d() {
+    let format = FileFormat::from_file("fixtures/model/sample.u3d").unwrap();
+    assert_eq!(format, FileFormat::Universal3d);
+}

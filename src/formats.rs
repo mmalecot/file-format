@@ -1707,6 +1707,13 @@ formats! {
     extension = "mod"
     kind = Audio
 
+    format = Universal3d
+    name = "Universal 3D"
+    short_name = "U3D"
+    media_type = "model/u3d"
+    extension = "u3d"
+    kind = Model
+
     format = UnixArchiver
     name = "UNIX archiver"
     short_name = "archiver"

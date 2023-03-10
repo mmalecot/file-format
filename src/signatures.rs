@@ -829,6 +829,9 @@ signatures! {
     format = UltimateSoundtrackerModule
     value = b"M.K." offset = 0x438
 
+    format = Universal3d
+    value = b"U3D\x00"
+
     format = Wavpack
     value = b"wvpk"
 
