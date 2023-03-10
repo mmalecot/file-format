@@ -7,6 +7,7 @@
 
 ## Fixes
 
+- Fix Flexible Image Transport System (FITS) signature
 - Fix Microsoft DirectDraw Surface (DDS) media type
 
 ## Improvements
