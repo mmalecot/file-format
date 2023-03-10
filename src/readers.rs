@@ -221,6 +221,8 @@ impl crate::FileFormat {
                 return Ok(Self::SimpleObjectAccessProtocol);
             } else if buffer.contains("<xliff") {
                 return Ok(Self::XmlLocalizationInterchangeFileFormat);
+            } else if buffer.contains("<playlist") {
+                return Ok(Self::XmlShareablePlaylistFormat);
             }
         }
         Ok(Self::ExtensibleMarkupLanguage)

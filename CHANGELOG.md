@@ -41,6 +41,7 @@
 - Silicon Graphics Image (SGI)
 - Ultimate Soundtracker Module (MOD)
 - X PixMap (XPM)
+- XML Shareable Playlist Format (XSPF)
 - gettext Machine Object (MO)
 
 # Version 0.15.0 (2023-03-06)

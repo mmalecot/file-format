@@ -881,6 +881,13 @@ fn test_xml_localization_interchange_file_format() {
     assert_eq!(format, FileFormat::XmlLocalizationInterchangeFileFormat);
 }
 
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_xml_shareable_playlist() {
+    let format = FileFormat::from_file("fixtures/application/sample.xspf").unwrap();
+    assert_eq!(format, FileFormat::XmlShareablePlaylistFormat);
+}
+
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_xpinstall() {

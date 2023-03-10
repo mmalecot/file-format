@@ -110,6 +110,7 @@ These features enable the detection of file formats based on other ones by readi
   * [Scalable Vector Graphics (SVG)](`FileFormat::ScalableVectorGraphics`)
   * [Simple Object Access Protocol (SOAP)](`FileFormat::SimpleObjectAccessProtocol`)
   * [XML Localization Interchange File Format (XLIFF)](`FileFormat::XmlLocalizationInterchangeFileFormat`)
+  * [XML Shareable Playlist Format (XSPF)](`FileFormat::XmlShareablePlaylistFormat`)
   * [draw.io (DRAWIO)](`FileFormat::Drawio`)
 - `reader-zip` - Enables [ZIP](`FileFormat::Zip`)-based file formats detection:
   * [3D Manufacturing Format (3MF)](`FileFormat::ThreeDimensionalManufacturingFormat`)

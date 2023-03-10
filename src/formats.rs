@@ -1842,6 +1842,12 @@ formats! {
     media_type = "application/xliff+xml"
     extension = "xlf"
 
+    format = XmlShareablePlaylistFormat
+    name = "XML Shareable Playlist Format"
+    short_name = "XSPF"
+    media_type = "application/xspf+xml"
+    extension = "xspf"
+
     format = XPixmap
     name = "X PixMap"
     short_name = "XPM"

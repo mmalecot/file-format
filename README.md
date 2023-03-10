@@ -328,6 +328,7 @@ file-format = "0.14"
 - X PixMap (XPM)
 - XAP
 - XML Localization Interchange File Format (XLIFF)
+- XML Shareable Playlist Format (XSPF)
 - XPInstall (XPI)
 - XZ
 - ZIP
