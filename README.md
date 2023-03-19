@@ -197,6 +197,7 @@ file-format = "0.14"
 - MS-DOS Executable (EXE)
 - Mach-O
 - MagicaVoxel (VOX)
+- Magick Image File Format (MIFF)
 - Material Exchange Format (MXF)
 - Matroska Video (MKV)
 - Maya ASCII (MA)

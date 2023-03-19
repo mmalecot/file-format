@@ -901,6 +901,13 @@ formats! {
     extension = "vox"
     kind = Model
 
+    format = MagickImageFileFormat
+    name = "Magick Image File Format"
+    short_name = "MIFF"
+    media_type = "image/x-miff"
+    extension = "miff"
+    kind = Image
+
     format = MaterialExchangeFormat
     name = "Material Exchange Format"
     short_name = "MXF"

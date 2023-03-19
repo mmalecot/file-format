@@ -218,6 +218,9 @@ signatures! {
     value = b"\\documentclass"
     value = b"\\documentstyle"
 
+    format = MagickImageFileFormat
+    value = b"id=ImageMagick"
+
     format = MaterialExchangeFormat
     value = b"\x06\x0E\x2B\x34\x02\x05\x01\x01\x0D\x01\x02\x01\x01\x02"
 

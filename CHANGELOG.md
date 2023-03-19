@@ -38,6 +38,7 @@
 - Inter-Quake Model (IQM)
 - JPEG Network Graphics (JNG)
 - MagicaVoxel (VOX)
+- Magick Image File Format (MIFF)
 - Maya ASCII (MA)
 - Maya Binary (MB)
 - Model 3D ASCII (A3D)

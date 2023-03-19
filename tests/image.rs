@@ -216,6 +216,12 @@ fn test_khronos_texture2() {
 }
 
 #[test]
+fn test_magick_image_file_format() {
+    let format = FileFormat::from_file("fixtures/image/sample.miff").unwrap();
+    assert_eq!(format, FileFormat::MagickImageFileFormat);
+}
+
+#[test]
 fn test_microsoft_direct_draw_surface() {
     let format = FileFormat::from_file("fixtures/image/sample.dds").unwrap();
     assert_eq!(format, FileFormat::MicrosoftDirectDrawSurface);
