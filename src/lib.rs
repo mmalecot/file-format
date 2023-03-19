@@ -101,7 +101,7 @@ These features enable the detection of file formats based on other ones by readi
   based file formats detection:
   * [Additive Manufacturing Format (AMF)](`FileFormat::AdditiveManufacturingFormat`)
   * [Digital Asset Exchange (DAE)](`FileFormat::DigitalAssetExchange`)
-  * [Extensible 3D Graphics (X3D)](`FileFormat::Extensible3DGraphics`)
+  * [Extensible 3D Graphics (X3D)](`FileFormat::Extensible3dGraphics`)
   * [Extensible Stylesheet Language Transformations (XSLT)](`FileFormat::ExtensibleStylesheetLanguageTransformations`)
   * [GPS Exchange Format (GPX)](`FileFormat::GpsExchangeFormat`)
   * [Geography Markup Language (GML)](`FileFormat::GeographyMarkupLanguage`)
