@@ -24,6 +24,7 @@
 
 - 3D Studio (3DS)
 - 3D Studio Max (MAX)
+- Adaptable Scalable Texture Compression (ASTC)
 - Additive Manufacturing Format (AMF)
 - Advanced Media Video (AMV)
 - Advanced Stream Redirector (ASX)

@@ -649,6 +649,9 @@ signatures! {
     value = b"\x00\x01\x00\x00\x00"
 
     // 4 bytes
+    format = AdaptableScalableTextureCompression
+    value = b"\x13\xAB\xA1\x5C"
+
     format = AdobePhotoshopDocument
     value = b"8BPS"
 

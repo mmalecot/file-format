@@ -64,6 +64,7 @@ file-format = "0.14"
 - ALZ
 - AV1 Image File Format (AVIF)
 - AV1 Image File Format Sequence (AVIFS)
+- Adaptable Scalable Texture Compression (ASTC)
 - Adaptive Multi-Rate (AMR)
 - Additive Manufacturing Format (AMF)
 - Adobe Flash Player Audio (F4A)

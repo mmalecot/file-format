@@ -1,6 +1,12 @@
 use file_format::FileFormat;
 
 #[test]
+fn test_adaptable_scalable_texture_compression() {
+    let format = FileFormat::from_file("fixtures/image/sample.astc").unwrap();
+    assert_eq!(format, FileFormat::AdaptableScalableTextureCompression);
+}
+
+#[test]
 fn test_adobe_photoshop_document() {
     let format = FileFormat::from_file("fixtures/image/sample.psd").unwrap();
     assert_eq!(format, FileFormat::AdobePhotoshopDocument);

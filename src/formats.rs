@@ -8,6 +8,13 @@ formats! {
     extension = "amr"
     kind = Audio
 
+    format = AdaptableScalableTextureCompression
+    name = "Adaptable Scalable Texture Compression"
+    short_name = "ASTC"
+    media_type = "image/x-astc"
+    extension = "astc"
+    kind = Image
+
     format = AdditiveManufacturingFormat
     name = "Additive Manufacturing Format"
     short_name = "AMF"
