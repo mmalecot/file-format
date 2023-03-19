@@ -157,6 +157,12 @@ fn test_qualcomm_pure_voice() {
 }
 
 #[test]
+fn test_quite_ok_audio() {
+    let format = FileFormat::from_file("fixtures/audio/sample.qoa").unwrap();
+    assert_eq!(format, FileFormat::QuiteOkAudio);
+}
+
+#[test]
 fn test_scream_tracker3_module() {
     let format = FileFormat::from_file("fixtures/audio/sample.s3m").unwrap();
     assert_eq!(format, FileFormat::ScreamTracker3Module);

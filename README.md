@@ -278,6 +278,7 @@ file-format = "0.14"
 - PostScript (PS)
 - Python Script
 - Qualcomm PureVoice (QCP)
+- Quite OK Audio (QOA)
 - Quite OK Image (QOI)
 - Radiance HDR (HDR)
 - Really Simple Syndication (RSS)

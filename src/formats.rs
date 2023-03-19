@@ -1478,6 +1478,13 @@ formats! {
     extension = "qoi"
     kind = Image
 
+    format = QuiteOkAudio
+    name = "Quite OK Audio"
+    short_name = "QOA"
+    media_type = "audio/x-qoa"
+    extension = "qoa"
+    kind = Audio
+
     format = RadianceHdr
     name = "Radiance HDR"
     short_name = "HDR"

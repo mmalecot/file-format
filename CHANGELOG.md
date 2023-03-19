@@ -43,6 +43,7 @@
 - Model 3D Binary (M3D)
 - Multiple-image Network Graphics (MNG)
 - Portable FloatMap (PFM)
+- Quite OK Audio (QOA)
 - Quite OK Image (QOI)
 - SHOUTcast Playlist (PLS)
 - Silicon Graphics Image (SGI)

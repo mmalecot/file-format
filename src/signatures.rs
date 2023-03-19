@@ -802,6 +802,9 @@ signatures! {
     format = PersonalStorageTable
     value = b"!BDN"
 
+    format = QuiteOkAudio
+    value = b"qoaf"
+
     format = QuiteOkImage
     value = b"qoif"
 
