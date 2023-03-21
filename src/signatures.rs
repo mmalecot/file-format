@@ -319,6 +319,12 @@ signatures! {
     format = OlympusRawFormat
     value = b"\x49\x49\x52\x4F\x08\x00\x00\x00\x18"
 
+    format = SubripText
+    value = b"\xEF\xBB\xBF1\r\n00:"
+    value = b"\xEF\xBB\xBF1\n00:"
+    value = b"1\r\n00:"
+    value = b"1\n00:"
+
     format = XPixmap
     value = b"/* XPM */"
 
@@ -554,10 +560,6 @@ signatures! {
 
     format = StereolithographyAscii
     value = b"solid "
-
-    format = SubripText
-    value = b"1\r\n00:"
-    value = b"1\n00:"
 
     format = ThreeDimensionalStudio
     value = b"MM", b"\x02" offset = 6, b"\x0A" offset = 8, b"\x3D\x3D" offset = 16
