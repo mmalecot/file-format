@@ -170,6 +170,16 @@ signatures! {
     value = b"%!PS-Adobe-", b" EPSF-" offset = 14
     value = b"\xC5\xD0\xD3\xC6"
 
+    format = HypertextMarkupLanguage
+    value = b"\xEF\xBB\xBF<!DOCTYPE HTML"
+    value = b"\xEF\xBB\xBF<!DOCTYPE html"
+    value = b"\xEF\xBB\xBF<!doctype HTML"
+    value = b"\xEF\xBB\xBF<!doctype html"
+    value = b"<!DOCTYPE HTML"
+    value = b"<!DOCTYPE html"
+    value = b"<!doctype HTML"
+    value = b"<!doctype html"
+
     format = PolygonAscii
     value = b"ply\r\nformat ascii"
     value = b"ply\nformat ascii"
@@ -208,12 +218,6 @@ signatures! {
     value = b"Standard Jet DB" offset = 4
 
     // 14 bytes
-    format = HypertextMarkupLanguage
-    value = b"<!DOCTYPE HTML"
-    value = b"<!DOCTYPE html"
-    value = b"<!doctype HTML"
-    value = b"<!doctype html"
-
     format = Latex
     value = b"\\documentclass"
     value = b"\\documentstyle"
