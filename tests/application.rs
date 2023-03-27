@@ -589,30 +589,30 @@ fn test_ogg_multiplexed_media() {
 
 #[cfg(feature = "reader-zip")]
 #[test]
-fn test_open_document_graphics() {
+fn test_opendocument_graphics() {
     let format = FileFormat::from_file("fixtures/application/sample.odg").unwrap();
-    assert_eq!(format, FileFormat::OpenDocumentGraphics);
+    assert_eq!(format, FileFormat::OpendocumentGraphics);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
-fn test_open_document_presentation() {
+fn test_opendocument_presentation() {
     let format = FileFormat::from_file("fixtures/application/sample.odp").unwrap();
-    assert_eq!(format, FileFormat::OpenDocumentPresentation);
+    assert_eq!(format, FileFormat::OpendocumentPresentation);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
-fn test_open_document_spreadsheet() {
+fn test_opendocument_spreadsheet() {
     let format = FileFormat::from_file("fixtures/application/sample.ods").unwrap();
-    assert_eq!(format, FileFormat::OpenDocumentSpreadsheet);
+    assert_eq!(format, FileFormat::OpendocumentSpreadsheet);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
-fn test_open_document_text() {
+fn test_opendocument_text() {
     let format = FileFormat::from_file("fixtures/application/sample.odt").unwrap();
-    assert_eq!(format, FileFormat::OpenDocumentText);
+    assert_eq!(format, FileFormat::OpendocumentText);
 }
 
 #[test]

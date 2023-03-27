@@ -261,16 +261,16 @@ impl crate::FileFormat {
                         return Ok(Self::IndesignMarkupLanguage)
                     }
                     "application/vnd.oasis.opendocument.graphics" => {
-                        return Ok(Self::OpenDocumentGraphics)
+                        return Ok(Self::OpendocumentGraphics)
                     }
                     "application/vnd.oasis.opendocument.presentation" => {
-                        return Ok(Self::OpenDocumentPresentation);
+                        return Ok(Self::OpendocumentPresentation);
                     }
                     "application/vnd.oasis.opendocument.spreadsheet" => {
-                        return Ok(Self::OpenDocumentSpreadsheet);
+                        return Ok(Self::OpendocumentSpreadsheet);
                     }
                     "application/vnd.oasis.opendocument.text" => {
-                        return Ok(Self::OpenDocumentText);
+                        return Ok(Self::OpendocumentText);
                     }
                     "application/vnd.recordare.musicxml" => return Ok(Self::MusicxmlZipped),
                     "image/openraster" => return Ok(Self::Openraster),

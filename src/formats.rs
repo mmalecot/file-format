@@ -1255,25 +1255,25 @@ formats! {
     extension = "orf"
     kind = Image
 
-    format = OpenDocumentGraphics
+    format = OpendocumentGraphics
     name = "OpenDocument Graphics"
     short_name = "ODG"
     media_type = "application/vnd.oasis.opendocument.graphics"
     extension = "odg"
 
-    format = OpenDocumentPresentation
+    format = OpendocumentPresentation
     name = "OpenDocument Presentation"
     short_name = "ODP"
     media_type = "application/vnd.oasis.opendocument.presentation"
     extension = "odp"
 
-    format = OpenDocumentSpreadsheet
+    format = OpendocumentSpreadsheet
     name = "OpenDocument Spreadsheet"
     short_name = "ODS"
     media_type = "application/vnd.oasis.opendocument.spreadsheet"
     extension = "ods"
 
-    format = OpenDocumentText
+    format = OpendocumentText
     name = "OpenDocument Text"
     short_name = "ODT"
     media_type = "application/vnd.oasis.opendocument.text"

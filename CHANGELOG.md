@@ -8,6 +8,10 @@
 - Rename `Extensible3DGraphics` to `Extensible3dGraphics`
 - Rename `FastTracker2ExtendedModule` to `Fasttracker2ExtendedModule`
 - Rename `MicrosoftDirectDrawSurface` to `MicrosoftDirectdrawSurface`
+- Rename `OpenDocumentGraphics` to `OpendocumentGraphics`
+- Rename `OpenDocumentPresentation` to `OpendocumentPresentation`
+- Rename `OpenDocumentSpreadsheet` to `OpendocumentSpreadsheet`
+- Rename `OpenDocumentText` to `OpendocumentText`
 
 ## Fixes
 
