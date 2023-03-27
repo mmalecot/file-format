@@ -4,7 +4,6 @@
 
 - Differentiate Polygon ASCII (PLY) and Polygon Binary (PLY)
 - Differentiate Stereolithography ASCII (STL) and Stereolithography Binary (STL)
-- Rename `Screamtracker3Module` to `ScreamTracker3Module`
 - Rename `Extensible3DGraphics` to `Extensible3dGraphics`
 - Rename `FastTracker2ExtendedModule` to `Fasttracker2ExtendedModule`
 - Rename `MicrosoftDirectDrawSurface` to `MicrosoftDirectdrawSurface`
@@ -13,6 +12,7 @@
 - Rename `OpenDocumentSpreadsheet` to `OpendocumentSpreadsheet`
 - Rename `OpenDocumentText` to `OpendocumentText`
 - Rename `QualcommPureVoice` to `QualcommPurevoice`
+- Rename `Screamtracker3Module` to `ScreamTracker3Module`
 
 ## Fixes
 
@@ -23,10 +23,10 @@
 
 ## Improvements
 
+- Add additional CLSIDs for some Compound File Binary (CFB) based file formats
 - Add detection of HyperText Markup Language (HTML) files with a BOM
 - Add detection of SubRip Text (SRT) files with a BOM
 - Add precision to the Polygon ASCII (PLY) and Polygon Binary (PLY) signatures
-- Add additional CLSIDs for some Compound File Binary (CFB) based file formats
 
 ## New formats support
 
