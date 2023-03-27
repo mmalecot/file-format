@@ -12,6 +12,7 @@
 - Rename `OpenDocumentPresentation` to `OpendocumentPresentation`
 - Rename `OpenDocumentSpreadsheet` to `OpendocumentSpreadsheet`
 - Rename `OpenDocumentText` to `OpendocumentText`
+- Rename `QualcommPureVoice` to `QualcommPurevoice`
 
 ## Fixes
 

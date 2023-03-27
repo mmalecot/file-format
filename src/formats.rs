@@ -1478,7 +1478,7 @@ formats! {
     extension = "py"
     kind = Text
 
-    format = QualcommPureVoice
+    format = QualcommPurevoice
     name = "Qualcomm PureVoice"
     short_name = "QCP"
     media_type = "audio/qcelp"

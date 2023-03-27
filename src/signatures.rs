@@ -459,7 +459,7 @@ signatures! {
     format = PortableNetworkGraphics
     value = b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"
 
-    format = QualcommPureVoice
+    format = QualcommPurevoice
     value = b"RIFF", b"QLCM" offset = 8
 
     format = RoshalArchive

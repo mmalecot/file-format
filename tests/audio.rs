@@ -151,9 +151,9 @@ fn test_ogg_vorbis() {
 }
 
 #[test]
-fn test_qualcomm_pure_voice() {
+fn test_qualcomm_purevoice() {
     let format = FileFormat::from_file("fixtures/audio/sample.qcp").unwrap();
-    assert_eq!(format, FileFormat::QualcommPureVoice);
+    assert_eq!(format, FileFormat::QualcommPurevoice);
 }
 
 #[test]
