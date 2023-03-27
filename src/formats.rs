@@ -957,7 +957,7 @@ formats! {
     media_type = "application/vnd.ms-htmlhelp"
     extension = "chm"
 
-    format = MicrosoftDirectDrawSurface
+    format = MicrosoftDirectdrawSurface
     name = "Microsoft DirectDraw Surface"
     short_name = "DDS"
     media_type = "image/vnd.ms-dds"

@@ -7,6 +7,7 @@
 - Rename `Screamtracker3Module` to `ScreamTracker3Module`
 - Rename `Extensible3DGraphics` to `Extensible3dGraphics`
 - Rename `FastTracker2ExtendedModule` to `Fasttracker2ExtendedModule`
+- Rename `MicrosoftDirectDrawSurface` to `MicrosoftDirectdrawSurface`
 
 ## Fixes
 

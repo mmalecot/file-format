@@ -772,7 +772,7 @@ signatures! {
     format = MicrosoftCompiledHtmlHelp
     value = b"ITSF"
 
-    format = MicrosoftDirectDrawSurface
+    format = MicrosoftDirectdrawSurface
     value = b"DDS "
 
     format = Model3dBinary

@@ -222,9 +222,9 @@ fn test_magick_image_file_format() {
 }
 
 #[test]
-fn test_microsoft_direct_draw_surface() {
+fn test_microsoft_directdraw_surface() {
     let format = FileFormat::from_file("fixtures/image/sample.dds").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftDirectDrawSurface);
+    assert_eq!(format, FileFormat::MicrosoftDirectdrawSurface);
 }
 
 #[test]
