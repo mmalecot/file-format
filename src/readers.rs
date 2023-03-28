@@ -55,12 +55,17 @@ impl crate::FileFormat {
         Ok(match file.root_entry().clsid().to_string().as_str() {
             "00020810-0000-0000-c000-000000000046" => Self::MicrosoftExcelSpreadsheet,
             "00020820-0000-0000-c000-000000000046" => Self::MicrosoftExcelSpreadsheet,
+            "00044851-0000-0000-c000-000000000046" => Self::MicrosoftPowerpointPresentation,
             "64818d10-4f9b-11cf-86ea-00aa00b929e8" => Self::MicrosoftPowerpointPresentation,
+            "ea7bae70-fb3b-11cd-a903-00aa00510ea3" => Self::MicrosoftPowerpointPresentation,
             "74b78f3a-c8c8-11d1-be11-00c04fb6faf1" => Self::MicrosoftProjectPlan,
             "00021201-0000-0000-00c0-000000000046" => Self::MicrosoftPublisherDocument,
             "000c1084-0000-0000-c000-000000000046" => Self::MicrosoftSoftwareInstaller,
+            "00021a13-0000-0000-c000-000000000046" => Self::MicrosoftVisioDrawing,
             "00021a14-0000-0000-c000-000000000046" => Self::MicrosoftVisioDrawing,
+            "00020900-0000-0000-c000-000000000046" => Self::MicrosoftWordDocument,
             "00020906-0000-0000-c000-000000000046" => Self::MicrosoftWordDocument,
+            "1cdd8c7b-81c0-45a0-9fed-04143144cc1e" => Self::ThreeDimensionalStudioMax,
             _ => Self::CompoundFileBinary,
         })
     }
@@ -192,12 +197,14 @@ impl crate::FileFormat {
         };
         for line in reader.take(READ_LIMIT).lines().take(LINE_LIMIT) {
             let buffer = line?.to_lowercase();
-            if buffer.contains("<collada") {
+            if buffer.contains("<amf") {
+                return Ok(Self::AdditiveManufacturingFormat);
+            } else if buffer.contains("<collada") {
                 return Ok(Self::DigitalAssetExchange);
             } else if buffer.contains("<mxfile") {
                 return Ok(Self::Drawio);
             } else if buffer.contains("<x3d") {
-                return Ok(Self::Extensible3DGraphics);
+                return Ok(Self::Extensible3dGraphics);
             } else if buffer.contains("<xsl") {
                 return Ok(Self::ExtensibleStylesheetLanguageTransformations);
             } else if buffer.contains("<gml") {
@@ -216,6 +223,8 @@ impl crate::FileFormat {
                 return Ok(Self::SimpleObjectAccessProtocol);
             } else if buffer.contains("<xliff") {
                 return Ok(Self::XmlLocalizationInterchangeFileFormat);
+            } else if buffer.contains("<playlist") {
+                return Ok(Self::XmlShareablePlaylistFormat);
             }
         }
         Ok(Self::ExtensibleMarkupLanguage)
@@ -252,16 +261,16 @@ impl crate::FileFormat {
                         return Ok(Self::IndesignMarkupLanguage)
                     }
                     "application/vnd.oasis.opendocument.graphics" => {
-                        return Ok(Self::OpenDocumentGraphics)
+                        return Ok(Self::OpendocumentGraphics)
                     }
                     "application/vnd.oasis.opendocument.presentation" => {
-                        return Ok(Self::OpenDocumentPresentation);
+                        return Ok(Self::OpendocumentPresentation);
                     }
                     "application/vnd.oasis.opendocument.spreadsheet" => {
-                        return Ok(Self::OpenDocumentSpreadsheet);
+                        return Ok(Self::OpendocumentSpreadsheet);
                     }
                     "application/vnd.oasis.opendocument.text" => {
-                        return Ok(Self::OpenDocumentText);
+                        return Ok(Self::OpendocumentText);
                     }
                     "application/vnd.recordare.musicxml" => return Ok(Self::MusicxmlZipped),
                     "image/openraster" => return Ok(Self::Openraster),

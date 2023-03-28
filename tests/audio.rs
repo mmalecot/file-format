@@ -67,9 +67,9 @@ fn test_creative_voice() {
 }
 
 #[test]
-fn test_fast_tracker2_extended_module() {
+fn test_fasttracker2_extended_module() {
     let format = FileFormat::from_file("fixtures/audio/sample.xm").unwrap();
-    assert_eq!(format, FileFormat::FastTracker2ExtendedModule);
+    assert_eq!(format, FileFormat::Fasttracker2ExtendedModule);
 }
 
 #[test]
@@ -151,21 +151,39 @@ fn test_ogg_vorbis() {
 }
 
 #[test]
-fn test_qualcomm_pure_voice() {
+fn test_qualcomm_purevoice() {
     let format = FileFormat::from_file("fixtures/audio/sample.qcp").unwrap();
-    assert_eq!(format, FileFormat::QualcommPureVoice);
+    assert_eq!(format, FileFormat::QualcommPurevoice);
 }
 
 #[test]
-fn test_screamtracker3_module() {
+fn test_quite_ok_audio() {
+    let format = FileFormat::from_file("fixtures/audio/sample.qoa").unwrap();
+    assert_eq!(format, FileFormat::QuiteOkAudio);
+}
+
+#[test]
+fn test_scream_tracker3_module() {
     let format = FileFormat::from_file("fixtures/audio/sample.s3m").unwrap();
-    assert_eq!(format, FileFormat::Screamtracker3Module);
+    assert_eq!(format, FileFormat::ScreamTracker3Module);
+}
+
+#[test]
+fn test_shoutcast_playlist() {
+    let format = FileFormat::from_file("fixtures/audio/sample.pls").unwrap();
+    assert_eq!(format, FileFormat::ShoutcastPlaylist);
 }
 
 #[test]
 fn test_sony_dsd_stream_file() {
     let format = FileFormat::from_file("fixtures/audio/sample.dsf").unwrap();
     assert_eq!(format, FileFormat::SonyDsdStreamFile);
+}
+
+#[test]
+fn test_ultimate_soundtracker_module() {
+    let format = FileFormat::from_file("fixtures/audio/sample.mod").unwrap();
+    assert_eq!(format, FileFormat::UltimateSoundtrackerModule);
 }
 
 #[test]

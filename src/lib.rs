@@ -46,7 +46,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.14"
+file-format = "0.16"
 ```
 
 # Crate features
@@ -77,6 +77,7 @@ These features enable the detection of file formats based on other ones by readi
 - `reader` - Enables all reader features.
 - `reader-cfb` - Enables [Compound File Binary (CFB)](`FileFormat::CompoundFileBinary`) based file
   formats detection:
+  * [3D Studio Max (MAX)](`FileFormat::ThreeDimensionalStudioMax`)
   * [Microsoft Excel Spreadsheet (XLS)](`FileFormat::MicrosoftExcelSpreadsheet`)
   * [Microsoft PowerPoint Presentation (PPT)](`FileFormat::MicrosoftPowerpointPresentation`)
   * [Microsoft Project Plan (MPP)](`FileFormat::MicrosoftProjectPlan`)
@@ -95,11 +96,13 @@ These features enable the detection of file formats based on other ones by readi
   based file formats detection:
   * [Adobe Illustrator Artwork (AI)](`FileFormat::AdobeIllustratorArtwork`)
 - `reader-txt` - Enables [Plain Text (TXT)](`FileFormat::PlainText`) detection when the file format
-  is not recognized by its signature.
+  is not recognized by its signature. Please note that this option only detects files that contain
+  ASCII/UTF-8-encoded text.
 - `reader-xml` - Enables [Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`)
   based file formats detection:
+  * [Additive Manufacturing Format (AMF)](`FileFormat::AdditiveManufacturingFormat`)
   * [Digital Asset Exchange (DAE)](`FileFormat::DigitalAssetExchange`)
-  * [Extensible 3D Graphics (X3D)](`FileFormat::Extensible3DGraphics`)
+  * [Extensible 3D Graphics (X3D)](`FileFormat::Extensible3dGraphics`)
   * [Extensible Stylesheet Language Transformations (XSLT)](`FileFormat::ExtensibleStylesheetLanguageTransformations`)
   * [GPS Exchange Format (GPX)](`FileFormat::GpsExchangeFormat`)
   * [Geography Markup Language (GML)](`FileFormat::GeographyMarkupLanguage`)
@@ -109,6 +112,7 @@ These features enable the detection of file formats based on other ones by readi
   * [Scalable Vector Graphics (SVG)](`FileFormat::ScalableVectorGraphics`)
   * [Simple Object Access Protocol (SOAP)](`FileFormat::SimpleObjectAccessProtocol`)
   * [XML Localization Interchange File Format (XLIFF)](`FileFormat::XmlLocalizationInterchangeFileFormat`)
+  * [XML Shareable Playlist Format (XSPF)](`FileFormat::XmlShareablePlaylistFormat`)
   * [draw.io (DRAWIO)](`FileFormat::Drawio`)
 - `reader-zip` - Enables [ZIP](`FileFormat::Zip`)-based file formats detection:
   * [3D Manufacturing Format (3MF)](`FileFormat::ThreeDimensionalManufacturingFormat`)
@@ -126,10 +130,10 @@ These features enable the detection of file formats based on other ones by readi
   * [Office Open XML Drawing (VSDX)](`FileFormat::OfficeOpenXmlDrawing`)
   * [Office Open XML Presentation (PPTX)](`FileFormat::OfficeOpenXmlPresentation`)
   * [Office Open XML Spreadsheet (XLSX)](`FileFormat::OfficeOpenXmlSpreadsheet`)
-  * [OpenDocument Graphics (ODG)](`FileFormat::OpenDocumentGraphics`)
-  * [OpenDocument Presentation (ODP)](`FileFormat::OpenDocumentPresentation`)
-  * [OpenDocument Spreadsheet (ODS)](`FileFormat::OpenDocumentSpreadsheet`)
-  * [OpenDocument Text (ODT)](`FileFormat::OpenDocumentText`)
+  * [OpenDocument Graphics (ODG)](`FileFormat::OpendocumentGraphics`)
+  * [OpenDocument Presentation (ODP)](`FileFormat::OpendocumentPresentation`)
+  * [OpenDocument Spreadsheet (ODS)](`FileFormat::OpendocumentSpreadsheet`)
+  * [OpenDocument Text (ODT)](`FileFormat::OpendocumentText`)
   * [OpenRaster (ORA)](`FileFormat::Openraster`)
   * [Web Application Archive (WAR)](`FileFormat::WebApplicationArchive`)
   * [Windows App Package (APPX)](`FileFormat::WindowsAppPackage`)

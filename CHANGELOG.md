@@ -1,3 +1,72 @@
+# Version 0.16.0 (2023-03-28)
+
+## API
+
+- Differentiate Polygon ASCII (PLY) and Polygon Binary (PLY)
+- Differentiate Stereolithography ASCII (STL) and Stereolithography Binary (STL)
+- Rename `Extensible3DGraphics` to `Extensible3dGraphics`
+- Rename `FastTracker2ExtendedModule` to `Fasttracker2ExtendedModule`
+- Rename `MicrosoftDirectDrawSurface` to `MicrosoftDirectdrawSurface`
+- Rename `OpenDocumentGraphics` to `OpendocumentGraphics`
+- Rename `OpenDocumentPresentation` to `OpendocumentPresentation`
+- Rename `OpenDocumentSpreadsheet` to `OpendocumentSpreadsheet`
+- Rename `OpenDocumentText` to `OpendocumentText`
+- Rename `QualcommPureVoice` to `QualcommPurevoice`
+- Rename `Screamtracker3Module` to `ScreamTracker3Module`
+
+## Fixes
+
+- Fix Flexible Image Transport System (FITS) signature
+- Fix Microsoft DirectDraw Surface (DDS) media type
+- Fix PGP-based formats short name
+- Fix Portable GrayMap (PGM) variant name
+- Fix Scream Tracker 3 Module (S3M) name
+
+## Improvements
+
+- Add additional CLSIDs for some Compound File Binary (CFB) based file formats
+- Add detection of HyperText Markup Language (HTML) files with a BOM
+- Add detection of SubRip Text (SRT) files with a BOM
+- Add precision to the Polygon ASCII (PLY) and Polygon Binary (PLY) signatures
+- Add unit test for LLVM Bitcode (BC)
+
+## New formats support
+
+- 3D Studio (3DS)
+- 3D Studio Max (MAX)
+- Adaptable Scalable Texture Compression (ASTC)
+- Additive Manufacturing Format (AMF)
+- Advanced Media Video (AMV)
+- Advanced Stream Redirector (ASX)
+- Autodesk Animator (FLI)
+- Autodesk Animator Pro (FLC)
+- Bitmap Font ASCII (FNT)
+- Bitmap Font Binary (FNT)
+- Drawing Exchange Format ASCII (DXF)
+- Drawing Exchange Format Binary (DXF)
+- Inter-Quake Export (IQE)
+- Inter-Quake Model (IQM)
+- JPEG Network Graphics (JNG)
+- MagicaVoxel (VOX)
+- Magick Image File Format (MIFF)
+- Maya ASCII (MA)
+- Maya Binary (MB)
+- Model 3D ASCII (A3D)
+- Model 3D Binary (M3D)
+- Multiple-image Network Graphics (MNG)
+- Portable FloatMap (PFM)
+- Quite OK Audio (QOA)
+- Quite OK Image (QOI)
+- SHOUTcast Playlist (PLS)
+- Silicon Graphics Image (SGI)
+- SoundFont 2 (SF2)
+- Ultimate Soundtracker Module (MOD)
+- Universal 3D (U3D)
+- WebAssembly Text (WAT)
+- X PixMap (XPM)
+- XML Shareable Playlist Format (XSPF)
+- gettext Machine Object (MO)
+
 # Version 0.15.0 (2023-03-06)
 
 ## Improvements

@@ -1,12 +1,25 @@
 //! Formats.
 
 formats! {
+    format = AdaptableScalableTextureCompression
+    name = "Adaptable Scalable Texture Compression"
+    short_name = "ASTC"
+    media_type = "image/x-astc"
+    extension = "astc"
+    kind = Image
+
     format = AdaptiveMultiRate
     name = "Adaptive Multi-Rate"
     short_name = "AMR"
     media_type = "audio/amr"
     extension = "amr"
     kind = Audio
+
+    format = AdditiveManufacturingFormat
+    name = "Additive Manufacturing Format"
+    short_name = "AMF"
+    media_type = "application/x-amf"
+    extension = "amf"
 
     format = AdobeFlashPlayerAudio
     name = "Adobe Flash Player Audio"
@@ -61,6 +74,20 @@ formats! {
     media_type = "audio/aac"
     extension = "aac"
     kind = Audio
+
+    format = AdvancedMediaVideo
+    name = "Advanced Media Video"
+    short_name = "AMV"
+    media_type = "video/x-amv"
+    extension = "amv"
+    kind = Video
+
+    format = AdvancedStreamRedirector
+    name = "Advanced Stream Redirector"
+    short_name = "ASX"
+    media_type = "video/x-ms-asx"
+    extension = "asx"
+    kind = Video
 
     format = Alz
     name = "ALZ"
@@ -204,6 +231,20 @@ formats! {
     extension = "dwg"
     kind = Image
 
+    format = AutodeskAnimator
+    name = "Autodesk Animator"
+    short_name = "FLI"
+    media_type = "video/x-fli"
+    extension = "fli"
+    kind = Video
+
+    format = AutodeskAnimatorPro
+    name = "Autodesk Animator Pro"
+    short_name = "FLC"
+    media_type = "video/x-flc"
+    extension = "flc"
+    kind = Video
+
     format = Av1ImageFileFormat
     name = "AV1 Image File Format"
     short_name = "AVIF"
@@ -224,6 +265,20 @@ formats! {
     media_type = "image/bpg"
     extension = "bpg"
     kind = Image
+
+    format = BitmapFontAscii
+    name = "Bitmap Font ASCII"
+    short_name = "FNT"
+    media_type = "font/x-fnt-ascii"
+    extension = "fnt"
+    kind = Font
+
+    format = BitmapFontBinary
+    name = "Bitmap Font Binary"
+    short_name = "FNT"
+    media_type = "font/x-fnt-binary"
+    extension = "fnt"
+    kind = Font
 
     format = BittorrentFile
     name = "BitTorrent File"
@@ -357,6 +412,20 @@ formats! {
     extension = "djvu"
     kind = Image
 
+    format = DrawingExchangeFormatAscii
+    name = "Drawing Exchange Format ASCII"
+    short_name = "DXF"
+    media_type = "image/vnd.dxf"
+    extension = "dxf"
+    kind = Image
+
+    format = DrawingExchangeFormatBinary
+    name = "Drawing Exchange Format Binary"
+    short_name = "DXF"
+    media_type = "image/vnd.dxf"
+    extension = "dxf"
+    kind = Image
+
     format = Drawio
     name = "draw.io"
     short_name = "DRAWIO"
@@ -406,7 +475,7 @@ formats! {
     extension = "xcf"
     kind = Image
 
-    format = Extensible3DGraphics
+    format = Extensible3dGraphics
     name = "Extensible 3D Graphics"
     short_name = "X3D"
     media_type = "model/x3d+xml"
@@ -439,7 +508,7 @@ formats! {
     extension = "ff"
     kind = Image
 
-    format = FastTracker2ExtendedModule
+    format = Fasttracker2ExtendedModule
     name = "FastTracker 2 Extended Module"
     short_name = "XM"
     media_type = "audio/x-xm"
@@ -510,6 +579,12 @@ formats! {
     short_name = "GML"
     media_type = "application/gml+xml"
     extension = "gml"
+
+    format = GettextMachineObject
+    name = "gettext Machine Object"
+    short_name = "MO"
+    media_type = "application/x-gettext-translation"
+    extension = "mo"
 
     format = GlTransmissionFormatBinary
     name = "GL Transmission Format Binary"
@@ -611,6 +686,20 @@ formats! {
     media_type = "application/vnd.adobe.indesign-idml-package"
     extension = "idml"
 
+    format = InterQuakeExport
+    name = "Inter-Quake Export"
+    short_name = "IQE"
+    media_type = "model/x-iqe"
+    extension = "iqe"
+    kind = Model
+
+    format = InterQuakeModel
+    name = "Inter-Quake Model"
+    short_name = "IQM"
+    media_type = "model/x-iqm"
+    extension = "iqm"
+    kind = Model
+
     format = IosAppStorePackage
     name = "iOS App Store Package"
     short_name = "IPA"
@@ -688,6 +777,13 @@ formats! {
     short_name = "JLS"
     media_type = "image/jls"
     extension = "jls"
+    kind = Image
+
+    format = JpegNetworkGraphics
+    name = "JPEG Network Graphics"
+    short_name = "JNG"
+    media_type = "image/x-jng"
+    extension = "jng"
     kind = Image
 
     format = JpegXl
@@ -798,6 +894,20 @@ formats! {
     media_type = "application/x-apple-alias"
     extension = "alias"
 
+    format = Magicavoxel
+    name = "MagicaVoxel"
+    short_name = "VOX"
+    media_type = "model/x-vox"
+    extension = "vox"
+    kind = Model
+
+    format = MagickImageFileFormat
+    name = "Magick Image File Format"
+    short_name = "MIFF"
+    media_type = "image/x-miff"
+    extension = "miff"
+    kind = Image
+
     format = MaterialExchangeFormat
     name = "Material Exchange Format"
     short_name = "MXF"
@@ -810,6 +920,18 @@ formats! {
     media_type = "video/x-matroska"
     extension = "mkv"
     kind = Video
+
+    format = MayaAscii
+    name = "Maya ASCII"
+    short_name = "MA"
+    media_type = "application/x-maya-ascii"
+    extension = "ma"
+
+    format = MayaBinary
+    name = "Maya Binary"
+    short_name = "MB"
+    media_type = "application/x-maya-binary"
+    extension = "mb"
 
     format = MetaInformationEncapsulation
     name = "Meta Information Encapsulation"
@@ -835,10 +957,10 @@ formats! {
     media_type = "application/vnd.ms-htmlhelp"
     extension = "chm"
 
-    format = MicrosoftDirectDrawSurface
+    format = MicrosoftDirectdrawSurface
     name = "Microsoft DirectDraw Surface"
     short_name = "DDS"
-    media_type = "image/vnd-ms.dds"
+    media_type = "image/vnd.ms-dds"
     extension = "dds"
     kind = Image
 
@@ -914,6 +1036,20 @@ formats! {
     media_type = "application/x-mobipocket-ebook"
     extension = "mobi"
 
+    format = Model3dAscii
+    name = "Model 3D ASCII"
+    short_name = "A3D"
+    media_type = "text/x-3d-model"
+    extension = "a3d"
+    kind = Text
+
+    format = Model3dBinary
+    name = "Model 3D Binary"
+    short_name = "M3D"
+    media_type = "model/x-3d-model"
+    extension = "m3d"
+    kind = Model
+
     format = MonkeysAudio
     name = "Monkey's Audio"
     short_name = "APE"
@@ -982,6 +1118,13 @@ formats! {
     short_name = "EXE"
     media_type = "application/x-dosexec"
     extension = "exe"
+
+    format = MultipleImageNetworkGraphics
+    name = "Multiple-image Network Graphics"
+    short_name = "MNG"
+    media_type = "video/x-mng"
+    extension = "mng"
+    kind = Video
 
     format = Musepack
     name = "Musepack"
@@ -1112,25 +1255,25 @@ formats! {
     extension = "orf"
     kind = Image
 
-    format = OpenDocumentGraphics
+    format = OpendocumentGraphics
     name = "OpenDocument Graphics"
     short_name = "ODG"
     media_type = "application/vnd.oasis.opendocument.graphics"
     extension = "odg"
 
-    format = OpenDocumentPresentation
+    format = OpendocumentPresentation
     name = "OpenDocument Presentation"
     short_name = "ODP"
     media_type = "application/vnd.oasis.opendocument.presentation"
     extension = "odp"
 
-    format = OpenDocumentSpreadsheet
+    format = OpendocumentSpreadsheet
     name = "OpenDocument Spreadsheet"
     short_name = "ODS"
     media_type = "application/vnd.oasis.opendocument.spreadsheet"
     extension = "ods"
 
-    format = OpenDocumentText
+    format = OpendocumentText
     name = "OpenDocument Text"
     short_name = "ODT"
     media_type = "application/vnd.oasis.opendocument.text"
@@ -1214,31 +1357,31 @@ formats! {
 
     format = PgpMessage
     name = "PGP Message"
-    short_name = "ASC"
+    short_name = "PGP"
     media_type = "application/pgp"
     extension = "asc"
 
     format = PgpPrivateKeyBlock
     name = "PGP Private Key Block"
-    short_name = "ASC"
+    short_name = "PGP"
     media_type = "application/pgp-keys"
     extension = "asc"
 
     format = PgpPublicKeyBlock
     name = "PGP Public Key Block"
-    short_name = "ASC"
+    short_name = "PGP"
     media_type = "application/pgp-keys"
     extension = "asc"
 
     format = PgpSignature
     name = "PGP Signature"
-    short_name = "ASC"
+    short_name = "PGP"
     media_type = "application/pgp-signature"
     extension = "asc"
 
     format = PgpSignedMessage
     name = "PGP Signed Message"
-    short_name = "ASC"
+    short_name = "PGP"
     media_type = "application/pgp"
     extension = "asc"
 
@@ -1255,10 +1398,17 @@ formats! {
     media_type = "application/x-lzh-compressed"
     extension = "pma"
 
-    format = PolygonFileFormat
-    name = "Polygon File Format"
+    format = PolygonAscii
+    name = "Polygon ASCII"
     short_name = "PLY"
-    media_type = "model/x-ply"
+    media_type = "model/x-ply-ascii"
+    extension = "ply"
+    kind = Model
+
+    format = PolygonBinary
+    name = "Polygon Binary"
+    short_name = "PLY"
+    media_type = "model/x-ply-binary"
     extension = "ply"
     kind = Model
 
@@ -1288,7 +1438,14 @@ formats! {
     media_type = "application/vnd.microsoft.portable-executable"
     extension = "exe"
 
-    format = PotableGraymap
+    format = PortableFloatmap
+    name = "Portable FloatMap"
+    short_name = "PFM"
+    media_type = "image/x-pfm"
+    extension = "pfm"
+    kind = Image
+
+    format = PortableGraymap
     name = "Portable GrayMap"
     short_name = "PGM"
     media_type = "image/x-portable-graymap"
@@ -1321,12 +1478,26 @@ formats! {
     extension = "py"
     kind = Text
 
-    format = QualcommPureVoice
+    format = QualcommPurevoice
     name = "Qualcomm PureVoice"
     short_name = "QCP"
     media_type = "audio/qcelp"
     extension = "qcp"
     kind = Audio
+
+    format = QuiteOkAudio
+    name = "Quite OK Audio"
+    short_name = "QOA"
+    media_type = "audio/x-qoa"
+    extension = "qoa"
+    kind = Audio
+
+    format = QuiteOkImage
+    name = "Quite OK Image"
+    short_name = "QOI"
+    media_type = "image/x-qoi"
+    extension = "qoi"
+    kind = Image
 
     format = RadianceHdr
     name = "Radiance HDR"
@@ -1372,8 +1543,8 @@ formats! {
     extension = "svg"
     kind = Image
 
-    format = Screamtracker3Module
-    name = "ScreamTracker 3 Module"
+    format = ScreamTracker3Module
+    name = "Scream Tracker 3 Module"
     short_name = "S3M"
     media_type = "audio/x-s3m"
     extension = "s3m"
@@ -1402,6 +1573,20 @@ formats! {
     media_type = "text/x-shellscript"
     extension = "sh"
     kind = Text
+
+    format = ShoutcastPlaylist
+    name = "SHOUTcast Playlist"
+    short_name = "PLS"
+    media_type = "audio/x-scpls"
+    extension = "pls"
+    kind = Audio
+
+    format = SiliconGraphicsImage
+    name = "Silicon Graphics Image"
+    short_name = "SGI"
+    media_type = "image/x-sgi"
+    extension = "sgi"
+    kind = Image
 
     format = SimpleObjectAccessProtocol
     name = "Simple Object Access Protocol"
@@ -1440,15 +1625,29 @@ formats! {
     extension = "mqv"
     kind = Video
 
+    format = Soundfont2
+    name = "SoundFont 2"
+    short_name = "SF2"
+    media_type = "audio/x-soundfont"
+    extension = "sf2"
+    kind = Audio
+
     format = Sqlite3
     name = "SQLite 3"
     media_type = "application/vnd.sqlite3"
     extension = "sqlite"
 
-    format = Stereolithography
-    name = "Stereolithography"
+    format = StereolithographyAscii
+    name = "Stereolithography ASCII"
     short_name = "STL"
-    media_type = "model/stl"
+    media_type = "model/x-stl-ascii"
+    extension = "stl"
+    kind = Model
+
+    format = StereolithographyBinary
+    name = "Stereolithography Binary"
+    short_name = "STL"
+    media_type = "model/x-stl-binary"
     extension = "stl"
     kind = Model
 
@@ -1496,6 +1695,18 @@ formats! {
     media_type = "application/vnd.ms-package.3dmanufacturing-3dmodel+xml"
     extension = "3mf"
 
+    format = ThreeDimensionalStudio
+    name = "3D Studio"
+    short_name = "3DS"
+    media_type = "application/x-3ds"
+    extension = "3ds"
+
+    format = ThreeDimensionalStudioMax
+    name = "3D Studio Max"
+    short_name = "MAX"
+    media_type = "application/x-max"
+    extension = "max"
+
     format = ToolCommandLanguageScript
     name = "Tool Command Language Script"
     short_name = "Tcl Script"
@@ -1509,6 +1720,20 @@ formats! {
     media_type = "font/ttf"
     extension = "ttf"
     kind = Font
+
+    format = UltimateSoundtrackerModule
+    name = "Ultimate Soundtracker Module"
+    short_name = "MOD"
+    media_type = "audio/x-mod"
+    extension = "mod"
+    kind = Audio
+
+    format = Universal3d
+    name = "Universal 3D"
+    short_name = "U3D"
+    media_type = "model/u3d"
+    extension = "u3d"
+    kind = Model
 
     format = UnixArchiver
     name = "UNIX archiver"
@@ -1582,6 +1807,13 @@ formats! {
     media_type = "application/wasm"
     extension = "wasm"
 
+    format = WebassemblyText
+    name = "WebAssembly Text"
+    short_name = "WAT"
+    media_type = "text/wasm"
+    extension = "wat"
+    kind = Text
+
     format = Webm
     name = "WebM"
     media_type = "video/webm"
@@ -1647,6 +1879,13 @@ formats! {
     media_type = "application/x-ms-shortcut"
     extension = "lnk"
 
+    format = XPixmap
+    name = "X PixMap"
+    short_name = "XPM"
+    media_type = "image/x-xpixmap"
+    extension = "xpm"
+    kind = Image
+
     format = Xap
     name = "XAP"
     media_type = "application/x-silverlight-app"
@@ -1657,6 +1896,12 @@ formats! {
     short_name = "XLIFF"
     media_type = "application/xliff+xml"
     extension = "xlf"
+
+    format = XmlShareablePlaylistFormat
+    name = "XML Shareable Playlist Format"
+    short_name = "XSPF"
+    media_type = "application/xspf+xml"
+    extension = "xspf"
 
     format = Xpinstall
     name = "XPInstall"

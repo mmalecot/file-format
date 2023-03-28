@@ -1,6 +1,12 @@
 use file_format::FileFormat;
 
 #[test]
+fn test_adaptable_scalable_texture_compression() {
+    let format = FileFormat::from_file("fixtures/image/sample.astc").unwrap();
+    assert_eq!(format, FileFormat::AdaptableScalableTextureCompression);
+}
+
+#[test]
 fn test_adobe_photoshop_document() {
     let format = FileFormat::from_file("fixtures/image/sample.psd").unwrap();
     assert_eq!(format, FileFormat::AdobePhotoshopDocument);
@@ -70,6 +76,18 @@ fn test_digital_picture_exchange() {
 fn test_djvu() {
     let format = FileFormat::from_file("fixtures/image/sample.djvu").unwrap();
     assert_eq!(format, FileFormat::Djvu);
+}
+
+#[test]
+fn test_drawing_exchange_format_ascii() {
+    let format = FileFormat::from_file("fixtures/image/sample1.dxf").unwrap();
+    assert_eq!(format, FileFormat::DrawingExchangeFormatAscii);
+}
+
+#[test]
+fn test_drawing_exchange_format_binary() {
+    let format = FileFormat::from_file("fixtures/image/sample2.dxf").unwrap();
+    assert_eq!(format, FileFormat::DrawingExchangeFormatBinary);
 }
 
 #[test]
@@ -174,6 +192,12 @@ fn test_jpeg_ls() {
 }
 
 #[test]
+fn test_jpeg_network_graphics() {
+    let format = FileFormat::from_file("fixtures/image/sample.jng").unwrap();
+    assert_eq!(format, FileFormat::JpegNetworkGraphics);
+}
+
+#[test]
 fn test_jpeg_xl() {
     let format = FileFormat::from_file("fixtures/image/sample.jxl").unwrap();
     assert_eq!(format, FileFormat::JpegXl);
@@ -192,9 +216,15 @@ fn test_khronos_texture2() {
 }
 
 #[test]
-fn test_microsoft_direct_draw_surface() {
+fn test_magick_image_file_format() {
+    let format = FileFormat::from_file("fixtures/image/sample.miff").unwrap();
+    assert_eq!(format, FileFormat::MagickImageFileFormat);
+}
+
+#[test]
+fn test_microsoft_directdraw_surface() {
     let format = FileFormat::from_file("fixtures/image/sample.dds").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftDirectDrawSurface);
+    assert_eq!(format, FileFormat::MicrosoftDirectdrawSurface);
 }
 
 #[test]
@@ -241,9 +271,15 @@ fn test_portable_bitmap() {
 }
 
 #[test]
+fn test_portable_floatmap() {
+    let format = FileFormat::from_file("fixtures/image/sample.pfm").unwrap();
+    assert_eq!(format, FileFormat::PortableFloatmap);
+}
+
+#[test]
 fn test_portable_graymap() {
     let format = FileFormat::from_file("fixtures/image/sample.pgm").unwrap();
-    assert_eq!(format, FileFormat::PotableGraymap);
+    assert_eq!(format, FileFormat::PortableGraymap);
 }
 
 #[test]
@@ -259,6 +295,12 @@ fn test_portable_pixmap() {
 }
 
 #[test]
+fn test_quite_ok_image() {
+    let format = FileFormat::from_file("fixtures/image/sample.qoi").unwrap();
+    assert_eq!(format, FileFormat::QuiteOkImage);
+}
+
+#[test]
 fn test_radiance_hdr() {
     let format = FileFormat::from_file("fixtures/image/sample.hdr").unwrap();
     assert_eq!(format, FileFormat::RadianceHdr);
@@ -269,6 +311,12 @@ fn test_radiance_hdr() {
 fn test_scalable_vector_graphics() {
     let format = FileFormat::from_file("fixtures/image/sample.svg").unwrap();
     assert_eq!(format, FileFormat::ScalableVectorGraphics);
+}
+
+#[test]
+fn test_silicon_graphics_image() {
+    let format = FileFormat::from_file("fixtures/image/sample.sgi").unwrap();
+    assert_eq!(format, FileFormat::SiliconGraphicsImage);
 }
 
 #[test]
@@ -305,4 +353,10 @@ fn test_windows_icon() {
 fn test_windows_metafile() {
     let format = FileFormat::from_file("fixtures/image/sample.wmf").unwrap();
     assert_eq!(format, FileFormat::WindowsMetafile);
+}
+
+#[test]
+fn test_x_pixmap() {
+    let format = FileFormat::from_file("fixtures/image/sample.xpm").unwrap();
+    assert_eq!(format, FileFormat::XPixmap);
 }

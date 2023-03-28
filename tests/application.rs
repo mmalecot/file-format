@@ -1,5 +1,12 @@
 use file_format::FileFormat;
 
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_additive_manufacturing_format() {
+    let format = FileFormat::from_file("fixtures/application/sample.amf").unwrap();
+    assert_eq!(format, FileFormat::AdditiveManufacturingFormat);
+}
+
 #[cfg(feature = "reader-pdf")]
 #[test]
 fn test_adobe_illustrator_artwork() {
@@ -243,6 +250,12 @@ fn test_geography_markup_language() {
 }
 
 #[test]
+fn test_gettext_machine_object() {
+    let format = FileFormat::from_file("fixtures/application/sample.mo").unwrap();
+    assert_eq!(format, FileFormat::GettextMachineObject);
+}
+
+#[test]
 fn test_google_chrome_extension() {
     let format = FileFormat::from_file("fixtures/application/sample.crx").unwrap();
     assert_eq!(format, FileFormat::GoogleChromeExtension);
@@ -339,6 +352,12 @@ fn test_lha() {
 }
 
 #[test]
+fn test_llvm_bitcode() {
+    let format = FileFormat::from_file("fixtures/application/sample.bc").unwrap();
+    assert_eq!(format, FileFormat::LlvmBitcode);
+}
+
+#[test]
 fn test_long_range_zip() {
     let format = FileFormat::from_file("fixtures/application/sample.lrz").unwrap();
     assert_eq!(format, FileFormat::LongRangeZip);
@@ -384,6 +403,18 @@ fn test_macos_alias() {
 fn test_material_exchange_format() {
     let format = FileFormat::from_file("fixtures/application/sample.mxf").unwrap();
     assert_eq!(format, FileFormat::MaterialExchangeFormat);
+}
+
+#[test]
+fn test_maya_ascii() {
+    let format = FileFormat::from_file("fixtures/application/sample.ma").unwrap();
+    assert_eq!(format, FileFormat::MayaAscii);
+}
+
+#[test]
+fn test_maya_binary() {
+    let format = FileFormat::from_file("fixtures/application/sample.mb").unwrap();
+    assert_eq!(format, FileFormat::MayaBinary);
 }
 
 #[test]
@@ -564,30 +595,30 @@ fn test_ogg_multiplexed_media() {
 
 #[cfg(feature = "reader-zip")]
 #[test]
-fn test_open_document_graphics() {
+fn test_opendocument_graphics() {
     let format = FileFormat::from_file("fixtures/application/sample.odg").unwrap();
-    assert_eq!(format, FileFormat::OpenDocumentGraphics);
+    assert_eq!(format, FileFormat::OpendocumentGraphics);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
-fn test_open_document_presentation() {
+fn test_opendocument_presentation() {
     let format = FileFormat::from_file("fixtures/application/sample.odp").unwrap();
-    assert_eq!(format, FileFormat::OpenDocumentPresentation);
+    assert_eq!(format, FileFormat::OpendocumentPresentation);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
-fn test_open_document_spreadsheet() {
+fn test_opendocument_spreadsheet() {
     let format = FileFormat::from_file("fixtures/application/sample.ods").unwrap();
-    assert_eq!(format, FileFormat::OpenDocumentSpreadsheet);
+    assert_eq!(format, FileFormat::OpendocumentSpreadsheet);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
-fn test_open_document_text() {
+fn test_opendocument_text() {
     let format = FileFormat::from_file("fixtures/application/sample.odt").unwrap();
-    assert_eq!(format, FileFormat::OpenDocumentText);
+    assert_eq!(format, FileFormat::OpendocumentText);
 }
 
 #[test]
@@ -787,6 +818,19 @@ fn test_three_dimensional_manufacturing_format() {
 }
 
 #[test]
+fn test_three_dimensional_studio() {
+    let format = FileFormat::from_file("fixtures/application/sample.3ds").unwrap();
+    assert_eq!(format, FileFormat::ThreeDimensionalStudio);
+}
+
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_three_dimensional_studio_max() {
+    let format = FileFormat::from_file("fixtures/application/sample.max").unwrap();
+    assert_eq!(format, FileFormat::ThreeDimensionalStudioMax);
+}
+
+#[test]
 fn test_unix_archiver() {
     let format = FileFormat::from_file("fixtures/application/sample.a").unwrap();
     assert_eq!(format, FileFormat::UnixArchiver);
@@ -848,6 +892,13 @@ fn test_xap() {
 fn test_xml_localization_interchange_file_format() {
     let format = FileFormat::from_file("fixtures/application/sample.xlf").unwrap();
     assert_eq!(format, FileFormat::XmlLocalizationInterchangeFileFormat);
+}
+
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_xml_shareable_playlist() {
+    let format = FileFormat::from_file("fixtures/application/sample.xspf").unwrap();
+    assert_eq!(format, FileFormat::XmlShareablePlaylistFormat);
 }
 
 #[cfg(feature = "reader-zip")]

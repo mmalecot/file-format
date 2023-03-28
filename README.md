@@ -50,19 +50,23 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.14"
+file-format = "0.16"
 ```
 
 ## Supported file formats
 
 - 3D Manufacturing Format (3MF)
+- 3D Studio (3DS)
+- 3D Studio Max (MAX)
 - 3rd Generation Partnership Project (3GPP)
 - 3rd Generation Partnership Project 2 (3GPP2)
 - 7-Zip (7Z)
 - ALZ
 - AV1 Image File Format (AVIF)
 - AV1 Image File Format Sequence (AVIFS)
+- Adaptable Scalable Texture Compression (ASTC)
 - Adaptive Multi-Rate (AMR)
+- Additive Manufacturing Format (AMF)
 - Adobe Flash Player Audio (F4A)
 - Adobe Flash Player Audiobook (F4B)
 - Adobe Flash Player Protected Video (F4P)
@@ -71,6 +75,8 @@ file-format = "0.14"
 - Adobe InDesign Document (INDD)
 - Adobe Photoshop Document (PSD)
 - Advanced Audio Coding (AAC)
+- Advanced Media Video (AMV)
+- Advanced Stream Redirector (ASX)
 - Android Binary XML (AXML)
 - Android Compiled Resources (ARSC)
 - Android Package (APK)
@@ -92,8 +98,12 @@ file-format = "0.14"
 - Audio Interchange File Format (AIFF)
 - Audio Video Interleave (AVI)
 - AutoCAD Drawing (DWG)
+- Autodesk Animator (FLI)
+- Autodesk Animator Pro (FLC)
 - Better Portable Graphics (BPG)
 - BitTorrent File (Torrent)
+- Bitmap Font ASCII (FNT)
+- Bitmap Font Binary (FNT)
 - Blender (BLEND)
 - Cabinet (CAB)
 - Canon Raw 2 (CR2)
@@ -112,6 +122,8 @@ file-format = "0.14"
 - Digital Imaging and Communications in Medicine (DICOM)
 - Digital Picture Exchange (DPX)
 - DjVu
+- Drawing Exchange Format ASCII (DXF)
+- Drawing Exchange Format Binary (DXF)
 - Dynamic Link Library (DLL)
 - Electronic Publication (EPUB)
 - Embedded OpenType (EOT)
@@ -148,10 +160,13 @@ file-format = "0.14"
 - ISO 9660 (ISO)
 - Impulse Tracker Module (IT)
 - InDesign Markup Language (IDML)
+- Inter-Quake Export (IQE)
+- Inter-Quake Model (IQM)
 - JPEG 2000 Part 1 (JP2)
 - JPEG 2000 Part 2 (JPX)
 - JPEG 2000 Part 3 (MJ2)
 - JPEG 2000 Part 6 (JPM)
+- JPEG Network Graphics (JNG)
 - JPEG XL (JXL)
 - JPEG-LS (JLS)
 - Java Archive (JAR)
@@ -181,8 +196,12 @@ file-format = "0.14"
 - MS-DOS Batch (Batch)
 - MS-DOS Executable (EXE)
 - Mach-O
+- MagicaVoxel (VOX)
+- Magick Image File Format (MIFF)
 - Material Exchange Format (MXF)
 - Matroska Video (MKV)
+- Maya ASCII (MA)
+- Maya Binary (MB)
 - Meta Information Encapsulation (MIE)
 - Microsoft Access 2007 Database (ACCDB)
 - Microsoft Access Database (MDB)
@@ -200,7 +219,10 @@ file-format = "0.14"
 - Microsoft Visual Studio Solution (SLN)
 - Microsoft Word Document (DOC)
 - Mobipocket (MOBI)
+- Model 3D ASCII (A3D)
+- Model 3D Binary (M3D)
 - Monkey's Audio (APE)
+- Multiple-image Network Graphics (MNG)
 - Musepack (MPC)
 - MusicXML
 - MusicXML Zipped (MXL)
@@ -235,46 +257,54 @@ file-format = "0.14"
 - PEM Certificate (CRT)
 - PEM Certificate Signing Request (CSR)
 - PEM Private Key (KEY)
-- PGP Message (ASC)
-- PGP Private Key Block (ASC)
-- PGP Public Key Block (ASC)
-- PGP Signature (ASC)
-- PGP Signed Message (ASC)
+- PGP Message (PGP)
+- PGP Private Key Block (PGP)
+- PGP Public Key Block (PGP)
+- PGP Signature (PGP)
+- PGP Signed Message (PGP)
 - PMarc (PMA)
 - Panasonic Raw (RW2)
 - Perl Script
 - Personal Storage Table (PST)
 - Plain Text (TXT)
-- Polygon File Format (PLY)
+- Polygon ASCII (PLY)
+- Polygon Binary (PLY)
 - Portable Arbitrary Map (PAM)
 - Portable BitMap (PBM)
 - Portable Document Format (PDF)
 - Portable Executable (PE)
+- Portable FloatMap (PFM)
 - Portable GrayMap (PGM)
 - Portable Network Graphics (PNG)
 - Portable PixMap (PPM)
 - PostScript (PS)
 - Python Script
 - Qualcomm PureVoice (QCP)
+- Quite OK Audio (QOA)
+- Quite OK Image (QOI)
 - Radiance HDR (HDR)
 - Really Simple Syndication (RSS)
 - Red Hat Package Manager (RPM)
 - Rich Text Format (RTF)
 - Roshal Archive (RAR)
 - Ruby Script
+- SHOUTcast Playlist (PLS)
 - SQLite 3
 - Scalable Vector Graphics (SVG)
-- ScreamTracker 3 Module (S3M)
+- Scream Tracker 3 Module (S3M)
 - SeqBox (SBX)
 - Shapefile (SHP)
 - Shell Script
+- Silicon Graphics Image (SGI)
 - Simple Object Access Protocol (SOAP)
 - SketchUp (SKP)
 - Small Web Format (SWF)
 - Snappy
 - Sony DSD Stream File (DSF)
 - Sony Movie (MQV)
-- Stereolithography (STL)
+- SoundFont 2 (SF2)
+- Stereolithography ASCII (STL)
+- Stereolithography Binary (STL)
 - SubRip Text (SRT)
 - TASTy
 - Tag Image File Format (TIFF)
@@ -283,6 +313,8 @@ file-format = "0.14"
 - TrueType (TTF)
 - UNIX archiver (archiver)
 - UNIX compress (compress)
+- Ultimate Soundtracker Module (MOD)
+- Universal 3D (U3D)
 - VirtualBox Virtual Disk Image (VDI)
 - WavPack (WV)
 - Waveform Audio (WAV)
@@ -290,6 +322,7 @@ file-format = "0.14"
 - Web Open Font Format (WOFF)
 - Web Open Font Format 2 (WOFF2)
 - WebAssembly Binary (Wasm)
+- WebAssembly Text (WAT)
 - WebM
 - WebP
 - Windows Animated Cursor (ANI)
@@ -300,8 +333,10 @@ file-format = "0.14"
 - Windows Media Video (WMV)
 - Windows Metafile (WMF)
 - Windows Shortcut (LNK)
+- X PixMap (XPM)
 - XAP
 - XML Localization Interchange File Format (XLIFF)
+- XML Shareable Playlist Format (XSPF)
 - XPInstall (XPI)
 - XZ
 - ZIP
@@ -310,6 +345,7 @@ file-format = "0.14"
 - cpio
 - draw.io (DRAWIO)
 - farbfeld (FF)
+- gettext Machine Object (MO)
 - gzip (GZ)
 - iCalendar (ICS)
 - iOS App Store Package (IPA)

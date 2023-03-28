@@ -13,6 +13,18 @@ fn test_adobe_flash_player_video() {
 }
 
 #[test]
+fn test_advanced_media_video() {
+    let format = FileFormat::from_file("fixtures/video/sample.amv").unwrap();
+    assert_eq!(format, FileFormat::AdvancedMediaVideo);
+}
+
+#[test]
+fn test_advanced_stream_redirector() {
+    let format = FileFormat::from_file("fixtures/video/sample.asx").unwrap();
+    assert_eq!(format, FileFormat::AdvancedStreamRedirector);
+}
+
+#[test]
 fn test_apple_itunes_video() {
     let format = FileFormat::from_file("fixtures/video/sample.m4v").unwrap();
     assert_eq!(format, FileFormat::AppleItunesVideo);
@@ -28,6 +40,18 @@ fn test_apple_quicktime() {
 fn test_audio_video_interleave() {
     let format = FileFormat::from_file("fixtures/video/sample.avi").unwrap();
     assert_eq!(format, FileFormat::AudioVideoInterleave);
+}
+
+#[test]
+fn test_autodesk_animator() {
+    let format = FileFormat::from_file("fixtures/video/sample.fli").unwrap();
+    assert_eq!(format, FileFormat::AutodeskAnimator);
+}
+
+#[test]
+fn test_autodesk_animator_pro() {
+    let format = FileFormat::from_file("fixtures/video/sample.flc").unwrap();
+    assert_eq!(format, FileFormat::AutodeskAnimatorPro);
 }
 
 #[test]
@@ -61,6 +85,12 @@ fn test_mpeg4_part14_video() {
 }
 
 #[test]
+fn test_multiple_image_network_graphics() {
+    let format = FileFormat::from_file("fixtures/video/sample.mng").unwrap();
+    assert_eq!(format, FileFormat::MultipleImageNetworkGraphics);
+}
+
+#[test]
 fn test_ogg_media() {
     let format = FileFormat::from_file("fixtures/video/sample.ogm").unwrap();
     assert_eq!(format, FileFormat::OggMedia);
@@ -76,6 +106,12 @@ fn test_ogg_theora() {
 fn test_sony_movie() {
     let format = FileFormat::from_file("fixtures/video/sample.mqv").unwrap();
     assert_eq!(format, FileFormat::SonyMovie);
+}
+
+#[test]
+fn test_soundfont2() {
+    let format = FileFormat::from_file("fixtures/video/sample.sf2").unwrap();
+    assert_eq!(format, FileFormat::Soundfont2);
 }
 
 #[test]

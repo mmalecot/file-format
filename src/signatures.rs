@@ -36,16 +36,22 @@ signatures! {
     value = b"-----BEGIN PRIVATE KEY-----"
 
     // 32 bytes
+    format = PolygonBinary
+    value = b"ply\r\nformat binary_little_endian"
+    value = b"ply\r\nformat binary_big_endian"
+    value = b"ply\nformat binary_little_endian"
+    value = b"ply\nformat binary_big_endian"
+    value = b"ply\rformat binary_little_endian"
+    value = b"ply\rformat binary_big_endian"
+
     format = Sketchup
     value =
         b"\xFF\xFE\xFF\x0E\x53\x00\x6B\x00\x65\x00\x74\x00\x63\x00\x68\x00",
         b"\x55\x00\x70\x00\x20\x00\x4D\x00\x6F\x00\x64\x00\x65\x00\x6C\x00" offset = 16
 
-    // 29 bytes
+    // 30 bytes
     format = FlexibleImageTransportSystem
-    value =
-        b"\x49\x4D\x50\x4C\x45\x20\x20\x3D\x20\x20\x20\x20\x20\x20\x20",
-        b"\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x54" offset = 15
+    value =b"SIMPLE  =                    T"
 
     format = PgpSignature
     value = b"-----BEGIN PGP SIGNATURE-----"
@@ -63,7 +69,7 @@ signatures! {
     format = PgpMessage
     value = b"-----BEGIN PGP MESSAGE-----"
 
-    format = Stereolithography
+    format = StereolithographyBinary
     value = b"3D Systems, Binary STL file"
     value = b"Materialise Coloured STL"
     value = b"Exported from Blender"
@@ -72,7 +78,6 @@ signatures! {
     value = b"Stratasys stl"
     value = b"SketchUp STL"
     value = b"STL File"
-    value = b"solid "
 
     // 24 bytes
     format = ClojureScript
@@ -140,6 +145,9 @@ signatures! {
     value = b"#!/bin/sh"
 
     // 20 bytes
+    format = InterQuakeExport
+    value = b"# Inter-Quake Export"
+
     format = LuaScript
     value = b"#!/usr/local/bin/lua"
     value = b"#!/usr/bin/env lua"
@@ -154,23 +162,38 @@ signatures! {
     value = b"#!/usr/bin/perl"
 
     // 18 bytes
-    format = PolygonFileFormat
-    value = b"ply\r\nformat binary"
-    value = b"ply\r\nformat ascii"
-    value = b"ply\nformat binary"
-    value = b"ply\nformat ascii"
+    format = DrawingExchangeFormatBinary
+    value = b"AutoCAD Binary DXF"
 
     // 17 bytes
     format = EncapsulatedPostscript
     value = b"%!PS-Adobe-", b" EPSF-" offset = 14
     value = b"\xC5\xD0\xD3\xC6"
 
+    format = HypertextMarkupLanguage
+    value = b"\xEF\xBB\xBF<!DOCTYPE HTML"
+    value = b"\xEF\xBB\xBF<!DOCTYPE html"
+    value = b"\xEF\xBB\xBF<!doctype HTML"
+    value = b"\xEF\xBB\xBF<!doctype html"
+    value = b"<!DOCTYPE HTML"
+    value = b"<!DOCTYPE html"
+    value = b"<!doctype HTML"
+    value = b"<!doctype html"
+
+    format = PolygonAscii
+    value = b"ply\r\nformat ascii"
+    value = b"ply\nformat ascii"
+    value = b"ply\rformat ascii"
+
     // 16 bytes
     format = AdobeIndesignDocument
     value = b"\x06\x06\xED\xF5\xD8\x1D\x46\xE5\xBD\x31\xEF\xE7\xFE\x74\xB7\x1D"
 
-    format = FastTracker2ExtendedModule
+    format = Fasttracker2ExtendedModule
     value = b"Extended Module:"
+
+    format = InterQuakeModel
+    value = b"INTERQUAKEMODEL\x00"
 
     format = MacosAlias
     value = b"\x62\x6F\x6F\x6B\x00\x00\x00\x00\x6D\x61\x72\x6B\x00\x00\x00\x00"
@@ -195,15 +218,12 @@ signatures! {
     value = b"Standard Jet DB" offset = 4
 
     // 14 bytes
-    format = HypertextMarkupLanguage
-    value = b"<!DOCTYPE HTML"
-    value = b"<!DOCTYPE html"
-    value = b"<!doctype HTML"
-    value = b"<!doctype html"
-
     format = Latex
     value = b"\\documentclass"
     value = b"\\documentstyle"
+
+    format = MagickImageFileFormat
+    value = b"id=ImageMagick"
 
     format = MaterialExchangeFormat
     value = b"\x06\x0E\x2B\x34\x02\x05\x01\x01\x0D\x01\x02\x01\x01\x02"
@@ -218,6 +238,10 @@ signatures! {
     value = b"AT&TFORM", b"DJVI" offset = 12
     value = b"AT&TFORM", b"THUM" offset = 12
 
+    format = DrawingExchangeFormatAscii
+    value = b"  0\r\nSECTION"
+    value = b"  0\nSECTION"
+
     format = JpegXl
     value = b"\x00\x00\x00\x0C\x4A\x58\x4C\x20\x0D\x0A\x87\x0A"
     value = b"\xFF\x0A"
@@ -231,11 +255,19 @@ signatures! {
     format = MatroskaVideo
     value = b"\x1A\x45\xDF\xA3"
 
+    format = MayaAscii
+    value = b"//Maya ASCII"
+
     format = OggOpus
     value = b"OggS", b"OpusHead" offset = 28
 
     format = PanasonicRaw
     value = b"\x49\x49\x55\x00\x18\x00\x00\x00\x88\xE7\x74\xD8"
+
+    format = ShoutcastPlaylist
+    value = b"[playlist]\r\n"
+    value = b"[playlist]\r"
+    value = b"[playlist]\n"
 
     // 11 bytes
     format = BittorrentFile
@@ -257,6 +289,9 @@ signatures! {
     value = b"BEGIN:VCARD"
 
     // 10 bytes
+    format = BitmapFontAscii
+    value = b"info face="
+
     format = OggMedia
     value = b"OggS", b"\x01\x76\x69\x64\x65\x6F" offset = 28
 
@@ -288,7 +323,19 @@ signatures! {
     format = OlympusRawFormat
     value = b"\x49\x49\x52\x4F\x08\x00\x00\x00\x18"
 
+    format = SubripText
+    value = b"\xEF\xBB\xBF1\r\n00:"
+    value = b"\xEF\xBB\xBF1\n00:"
+    value = b"1\r\n00:"
+    value = b"1\n00:"
+
+    format = XPixmap
+    value = b"/* XPM */"
+
     // 8 bytes
+    format = AdvancedMediaVideo
+    value = b"RIFF", b"AMV " offset = 8
+
     format = AudioInterchangeFileFormat
     value = b"FORM", b"AIFF" offset = 8
     value = b"FORM", b"AIFC" offset = 8
@@ -349,6 +396,15 @@ signatures! {
     format = Jpeg2000Part6
     value = b"ftypjpm " offset = 16
 
+    format = JpegNetworkGraphics
+    value = b"\x8B\x4A\x4E\x47\x0D\x0A\x1A\x0A"
+
+    format = MayaBinary
+    value = b"FOR4", b"MAYA" offset = 8
+    value = b"FOR4", b"Maya" offset = 8
+    value = b"FOR8", b"MAYA" offset = 16
+    value = b"FOR8", b"Maya" offset = 16
+
     format = MicrosoftVirtualHardDisk2
     value = b"vhdxfile"
 
@@ -381,6 +437,9 @@ signatures! {
     value = b"ftypNDXM" offset = 4
     value = b"ftypNDXP" offset = 4
 
+    format = MultipleImageNetworkGraphics
+    value = b"\x8A\x4D\x4E\x47\x0D\x0A\x1A\x0A"
+
     format = NikonElectronicFile
     value = b"\x4D\x4D\x00\x2A", b"\x1C\x00\xFE\x00" offset = 8
     value = b"\x4D\x4D\x00\x2A", b"\x1F\x00\x0B\x00" offset = 8
@@ -400,12 +459,15 @@ signatures! {
     format = PortableNetworkGraphics
     value = b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"
 
-    format = QualcommPureVoice
+    format = QualcommPurevoice
     value = b"RIFF", b"QLCM" offset = 8
 
     format = RoshalArchive
     value = b"\x52\x61\x72\x21\x1A\x07\x01\x00"
     value = b"\x52\x61\x72\x21\x1A\x07\x00"
+
+    format = Soundfont2
+    value = b"RIFF", b"sfbk" offset = 8
 
     format = TapeArchive
     value = b"\x75\x73\x74\x61\x72\x00\x30\x30" offset = 257
@@ -455,6 +517,9 @@ signatures! {
     value = b"\x7E\x10\x04", b"\x30\x4D\x49\x45" offset = 4
     value = b"\x7E\x18\x04", b"\x30\x4D\x49\x45" offset = 4
 
+    format = Model3dAscii
+    value = b"3dmodel"
+
     format = Mp3Url
     value = b"#EXTM3U"
 
@@ -469,6 +534,9 @@ signatures! {
 
     format = UnixArchiver
     value = b"!<arch>"
+
+    format = WebassemblyText
+    value = b"(module"
 
     // 6 bytes
     format = ApacheArrowColumnar
@@ -494,9 +562,11 @@ signatures! {
     value = b"\x37\x7A\xBC\xAF\x27\x1C"
     value = b"\x37\x7A\xBC\xAF\x27\x1C"
 
-    format = SubripText
-    value = b"1\r\n00:"
-    value = b"1\n00:"
+    format = StereolithographyAscii
+    value = b"solid "
+
+    format = ThreeDimensionalStudio
+    value = b"MM", b"\x02" offset = 6, b"\x0A" offset = 8, b"\x3D\x3D" offset = 16
 
     format = Xz
     value = b"\xFD\x37\x7A\x58\x5A\x00"
@@ -504,6 +574,10 @@ signatures! {
     // 5 bytes
     format = AdaptiveMultiRate
     value = b"#!AMR"
+
+    format = AdvancedStreamRedirector
+    value = b"<ASX "
+    value = b"<asx "
 
     format = EmbeddedOpentype
     value = b"\x00\x00\x01" offset = 8, b"\x4C\x50" offset = 34
@@ -584,6 +658,9 @@ signatures! {
     value = b"\x00\x01\x00\x00\x00"
 
     // 4 bytes
+    format = AdaptableScalableTextureCompression
+    value = b"\x13\xAB\xA1\x5C"
+
     format = AdobePhotoshopDocument
     value = b"8BPS"
 
@@ -614,6 +691,9 @@ signatures! {
     format = BetterPortableGraphics
     value = b"\x42\x50\x47\xFB"
 
+    format = BitmapFontBinary
+    value = b"BMF\x03"
+
     format = Cabinet
     value = b"MSCF"
     value = b"ISc("
@@ -642,6 +722,10 @@ signatures! {
 
     format = FreeLosslessImageFormat
     value = b"FLIF"
+
+    format = GettextMachineObject
+    value = b"\x95\x04\x12\xDE"
+    value = b"\xDE\x12\x04\x95"
 
     format = GlTransmissionFormatBinary
     value = b"glTF"
@@ -682,11 +766,17 @@ signatures! {
     format = Lzip
     value = b"LZIP"
 
+    format = Magicavoxel
+    value = b"VOX "
+
     format = MicrosoftCompiledHtmlHelp
     value = b"ITSF"
 
-    format = MicrosoftDirectDrawSurface
+    format = MicrosoftDirectdrawSurface
     value = b"DDS "
+
+    format = Model3dBinary
+    value = b"3DMO"
 
     format = MonkeysAudio
     value = b"MAC "
@@ -724,10 +814,16 @@ signatures! {
     format = PersonalStorageTable
     value = b"!BDN"
 
+    format = QuiteOkAudio
+    value = b"qoaf"
+
+    format = QuiteOkImage
+    value = b"qoif"
+
     format = RedHatPackageManager
     value = b"\xED\xAB\xEE\xDB"
 
-    format = Screamtracker3Module
+    format = ScreamTracker3Module
     value = b"SCRM" offset = 44
 
     format = Shapefile
@@ -744,6 +840,12 @@ signatures! {
 
     format = Tasty
     value = b"\x5C\xA1\xAB\x1F"
+
+    format = UltimateSoundtrackerModule
+    value = b"M.K." offset = 0x438
+
+    format = Universal3d
+    value = b"U3D\x00"
 
     format = Wavpack
     value = b"wvpk"
@@ -806,7 +908,17 @@ signatures! {
     value = b"P4\r"
     value = b"P4\n"
 
-    format = PotableGraymap
+    format = PortableFloatmap
+    value = b"PF "
+    value = b"PF\t"
+    value = b"PF\r"
+    value = b"PF\n"
+    value = b"Pf "
+    value = b"Pf\t"
+    value = b"Pf\r"
+    value = b"Pf\n"
+
+    format = PortableGraymap
     value = b"P2 "
     value = b"P2\t"
     value = b"P2\r"
@@ -850,6 +962,12 @@ signatures! {
     format = AudioCodec3
     value = b"\x0B\x77"
 
+    format = AutodeskAnimator
+    value = b"\x11\xAF" offset = 4
+
+    format = AutodeskAnimatorPro
+    value = b"\x12\xAF" offset = 4
+
     format = CommonObjectFileFormat
     value = b"\x4C\x01"
     value = b"\x64\x86"
@@ -888,6 +1006,9 @@ signatures! {
 
     format = Postscript
     value = b"%!"
+
+    format = SiliconGraphicsImage
+    value = b"\x01\xDA"
 
     format = UnixCompress
     value = b"\x1F\xA0"
