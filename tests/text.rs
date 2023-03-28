@@ -37,7 +37,7 @@ fn test_lua_script() {
 }
 
 #[test]
-fn test_model_3d_ascii() {
+fn test_model3d_ascii() {
     let format = FileFormat::from_file("fixtures/text/sample.a3d").unwrap();
     assert_eq!(format, FileFormat::Model3dAscii);
 }
