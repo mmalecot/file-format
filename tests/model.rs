@@ -16,7 +16,7 @@ fn test_digital_asset_exchange() {
 
 #[cfg(feature = "reader-xml")]
 #[test]
-fn test_extensible_3d_graphics() {
+fn test_extensible3d_graphics() {
     let format = FileFormat::from_file("fixtures/model/sample.x3d").unwrap();
     assert_eq!(format, FileFormat::Extensible3dGraphics);
 }
@@ -52,7 +52,7 @@ fn test_magicavoxel() {
 }
 
 #[test]
-fn test_model_3d_binary() {
+fn test_model3d_binary() {
     let format = FileFormat::from_file("fixtures/model/sample.m3d").unwrap();
     assert_eq!(format, FileFormat::Model3dBinary);
 }
@@ -82,7 +82,7 @@ fn test_stereolithography_binary() {
 }
 
 #[test]
-fn test_universal_3d() {
+fn test_universal3d() {
     let format = FileFormat::from_file("fixtures/model/sample.u3d").unwrap();
     assert_eq!(format, FileFormat::Universal3d);
 }
