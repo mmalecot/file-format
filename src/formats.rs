@@ -1,19 +1,19 @@
 //! Formats.
 
 formats! {
-    format = AdaptiveMultiRate
-    name = "Adaptive Multi-Rate"
-    short_name = "AMR"
-    media_type = "audio/amr"
-    extension = "amr"
-    kind = Audio
-
     format = AdaptableScalableTextureCompression
     name = "Adaptable Scalable Texture Compression"
     short_name = "ASTC"
     media_type = "image/x-astc"
     extension = "astc"
     kind = Image
+
+    format = AdaptiveMultiRate
+    name = "Adaptive Multi-Rate"
+    short_name = "AMR"
+    media_type = "audio/amr"
+    extension = "amr"
+    kind = Audio
 
     format = AdditiveManufacturingFormat
     name = "Additive Manufacturing Format"
