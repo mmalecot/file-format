@@ -28,6 +28,7 @@
 - Add detection of HyperText Markup Language (HTML) files with a BOM
 - Add detection of SubRip Text (SRT) files with a BOM
 - Add precision to the Polygon ASCII (PLY) and Polygon Binary (PLY) signatures
+- Add unit test for LLVM Bitcode (BC)
 
 ## New formats support
 

@@ -352,6 +352,12 @@ fn test_lha() {
 }
 
 #[test]
+fn test_llvm_bitcode() {
+    let format = FileFormat::from_file("fixtures/application/sample.bc").unwrap();
+    assert_eq!(format, FileFormat::LlvmBitcode);
+}
+
+#[test]
 fn test_long_range_zip() {
     let format = FileFormat::from_file("fixtures/application/sample.lrz").unwrap();
     assert_eq!(format, FileFormat::LongRangeZip);
