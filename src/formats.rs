@@ -1879,6 +1879,13 @@ formats! {
     media_type = "application/x-ms-shortcut"
     extension = "lnk"
 
+    format = XPixmap
+    name = "X PixMap"
+    short_name = "XPM"
+    media_type = "image/x-xpixmap"
+    extension = "xpm"
+    kind = Image
+
     format = Xap
     name = "XAP"
     media_type = "application/x-silverlight-app"
@@ -1895,13 +1902,6 @@ formats! {
     short_name = "XSPF"
     media_type = "application/xspf+xml"
     extension = "xspf"
-
-    format = XPixmap
-    name = "X PixMap"
-    short_name = "XPM"
-    media_type = "image/x-xpixmap"
-    extension = "xpm"
-    kind = Image
 
     format = Xpinstall
     name = "XPInstall"
