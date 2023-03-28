@@ -918,7 +918,7 @@ signatures! {
     value = b"Pf\r"
     value = b"Pf\n"
 
-    format = PotableGraymap
+    format = PortableGraymap
     value = b"P2 "
     value = b"P2\t"
     value = b"P2\r"

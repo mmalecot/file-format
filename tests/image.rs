@@ -279,7 +279,7 @@ fn test_portable_floatmap() {
 #[test]
 fn test_portable_graymap() {
     let format = FileFormat::from_file("fixtures/image/sample.pgm").unwrap();
-    assert_eq!(format, FileFormat::PotableGraymap);
+    assert_eq!(format, FileFormat::PortableGraymap);
 }
 
 #[test]

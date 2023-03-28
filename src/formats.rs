@@ -1445,7 +1445,7 @@ formats! {
     extension = "pfm"
     kind = Image
 
-    format = PotableGraymap
+    format = PortableGraymap
     name = "Portable GrayMap"
     short_name = "PGM"
     media_type = "image/x-portable-graymap"
