@@ -109,7 +109,7 @@ fn test_sony_movie() {
 }
 
 #[test]
-fn test_soundfont_2() {
+fn test_soundfont2() {
     let format = FileFormat::from_file("fixtures/video/sample.sf2").unwrap();
     assert_eq!(format, FileFormat::Soundfont2);
 }
