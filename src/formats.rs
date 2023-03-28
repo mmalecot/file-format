@@ -1485,19 +1485,19 @@ formats! {
     extension = "qcp"
     kind = Audio
 
-    format = QuiteOkImage
-    name = "Quite OK Image"
-    short_name = "QOI"
-    media_type = "image/x-qoi"
-    extension = "qoi"
-    kind = Image
-
     format = QuiteOkAudio
     name = "Quite OK Audio"
     short_name = "QOA"
     media_type = "audio/x-qoa"
     extension = "qoa"
     kind = Audio
+
+    format = QuiteOkImage
+    name = "Quite OK Image"
+    short_name = "QOI"
+    media_type = "image/x-qoi"
+    extension = "qoi"
+    kind = Image
 
     format = RadianceHdr
     name = "Radiance HDR"
