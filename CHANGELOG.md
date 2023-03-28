@@ -61,6 +61,7 @@
 - SoundFont 2 (SF2)
 - Ultimate Soundtracker Module (MOD)
 - Universal 3D (U3D)
+- WebAssembly Text (WAT)
 - X PixMap (XPM)
 - XML Shareable Playlist Format (XSPF)
 - gettext Machine Object (MO)

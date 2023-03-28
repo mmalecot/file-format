@@ -322,6 +322,7 @@ file-format = "0.14"
 - Web Open Font Format (WOFF)
 - Web Open Font Format 2 (WOFF2)
 - WebAssembly Binary (Wasm)
+- WebAssembly Text (WAT)
 - WebM
 - WebP
 - Windows Animated Cursor (ANI)
