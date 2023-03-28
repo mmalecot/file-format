@@ -96,7 +96,8 @@ These features enable the detection of file formats based on other ones by readi
   based file formats detection:
   * [Adobe Illustrator Artwork (AI)](`FileFormat::AdobeIllustratorArtwork`)
 - `reader-txt` - Enables [Plain Text (TXT)](`FileFormat::PlainText`) detection when the file format
-  is not recognized by its signature.
+  is not recognized by its signature. Please note that this option only detects files that contain
+  ASCII/UTF-8-encoded text.
 - `reader-xml` - Enables [Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`)
   based file formats detection:
   * [Additive Manufacturing Format (AMF)](`FileFormat::AdditiveManufacturingFormat`)
