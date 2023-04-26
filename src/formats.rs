@@ -743,6 +743,13 @@ formats! {
     extension = "jpg"
     kind = Image
 
+    format = Jpeg2000Codestream
+    name = "JPEG 2000 Codestream"
+    short_name = "J2C"
+    media_type = "image/x-jp2-codestream"
+    extension = "j2c"
+    kind = Image
+
     format = Jpeg2000Part1
     name = "JPEG 2000 Part 1"
     short_name = "JP2"

@@ -163,6 +163,7 @@ file-format = "0.17"
 - InDesign Markup Language (IDML)
 - Inter-Quake Export (IQE)
 - Inter-Quake Model (IQM)
+- JPEG 2000 Codestream (J2C)
 - JPEG 2000 Part 1 (JP2)
 - JPEG 2000 Part 2 (JPX)
 - JPEG 2000 Part 3 (MJ2)

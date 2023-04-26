@@ -3,6 +3,7 @@
 ## New formats support
 
 - Advanced Compression Engine (ACE)
+- JPEG 2000 Codestream (J2C)
 
 # Version 0.16.0 (2023-03-28)
 

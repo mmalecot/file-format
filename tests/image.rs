@@ -156,6 +156,12 @@ fn test_joint_photographic_experts_group() {
 }
 
 #[test]
+fn test_jpeg2000_codestream() {
+    let format = FileFormat::from_file("fixtures/image/sample.j2c").unwrap();
+    assert_eq!(format, FileFormat::Jpeg2000Codestream);
+}
+
+#[test]
 fn test_jpeg2000_part1() {
     let format = FileFormat::from_file("fixtures/image/sample.jp2").unwrap();
     assert_eq!(format, FileFormat::Jpeg2000Part1);

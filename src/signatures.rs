@@ -748,6 +748,9 @@ signatures! {
     format = JavaKeystore
     value = b"\xFE\xED\xFE\xED"
 
+    format = Jpeg2000Codestream
+    value = b"\xFF\x4F\xFF\x51"
+
     format = JpegLs
     value = b"\xFF\xD8\xFF\xF7"
 
