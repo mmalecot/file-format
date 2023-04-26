@@ -1,3 +1,9 @@
+# Version 0.17.0 (unreleased)
+
+## New formats support
+
+- Advanced Compression Engine (ACE)
+
 # Version 0.16.0 (2023-03-28)
 
 ## API

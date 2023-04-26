@@ -75,6 +75,12 @@ formats! {
     extension = "aac"
     kind = Audio
 
+    format = AdvancedCompressionEngine
+    name = "Advanced Compression Engine"
+    short_name = "ACE"
+    media_type = "application/x-ace-compressed"
+    extension = "ace"
+
     format = AdvancedMediaVideo
     name = "Advanced Media Video"
     short_name = "AMV"

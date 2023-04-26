@@ -75,6 +75,7 @@ file-format = "0.17"
 - Adobe InDesign Document (INDD)
 - Adobe Photoshop Document (PSD)
 - Advanced Audio Coding (AAC)
+- Advanced Compression Engine (ACE)
 - Advanced Media Video (AMV)
 - Advanced Stream Redirector (ASX)
 - Android Binary XML (AXML)

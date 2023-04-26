@@ -21,6 +21,12 @@ fn test_adobe_indesign_document() {
 }
 
 #[test]
+fn test_advanced_compression_engine() {
+    let format = FileFormat::from_file("fixtures/application/sample.ace").unwrap();
+    assert_eq!(format, FileFormat::AdvancedCompressionEngine);
+}
+
+#[test]
 fn test_alz() {
     let format = FileFormat::from_file("fixtures/application/sample.alz").unwrap();
     assert_eq!(format, FileFormat::Alz);

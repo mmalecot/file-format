@@ -495,6 +495,9 @@ signatures! {
     format = AdobeFlashPlayerVideo
     value = b"ftypF4V" offset = 4
 
+    format = AdvancedCompressionEngine
+    value = b"**ACE**" offset = 7
+
     format = AppleItunesAudio
     value = b"ftypM4A" offset = 4
 
