@@ -46,7 +46,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.16"
+file-format = "0.17"
 ```
 
 # Crate features
