@@ -779,7 +779,7 @@ formats! {
     kind = Image
 
     format = JpegExtendedRange
-    name = "PEG Extended Range"
+    name = "JPEG Extended Range"
     short_name = "JXR"
     media_type = "image/jxr"
     extension = "jxr"

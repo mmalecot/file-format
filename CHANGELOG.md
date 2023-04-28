@@ -1,5 +1,9 @@
 # Version 0.17.0 (unreleased)
 
+## Fixes
+
+- Fix JPEG Extended Range (JXR) name
+
 ## New formats support
 
 - Advanced Compression Engine (ACE)
