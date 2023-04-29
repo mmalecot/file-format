@@ -31,7 +31,7 @@ signatures! {
     format = PemPrivateKey
     value = b"-----BEGIN ECDSA PRIVATE KEY-----"
     value = b"-----BEGIN DSA PRIVATE KEY-----"
-    value = b"-----BEGIN DSA PRIVATE KEY-----"
+    value = b"-----BEGIN RSA PRIVATE KEY-----"
     value = b"-----BEGIN EC PRIVATE KEY-----"
     value = b"-----BEGIN PRIVATE KEY-----"
 

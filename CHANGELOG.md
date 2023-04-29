@@ -2,6 +2,7 @@
 
 ## Fixes
 
+- Fix PEM Private Key (KEY) signature
 - Fix JPEG Extended Range (JXR) name
 
 ## New formats support
