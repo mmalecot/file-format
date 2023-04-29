@@ -197,7 +197,11 @@ impl crate::FileFormat {
         };
         for line in reader.take(READ_LIMIT).lines().take(LINE_LIMIT) {
             let buffer = line?.to_lowercase();
-            if buffer.contains("<amf") {
+            if buffer.contains("<abiword template=\"false\"") {
+                return Ok(Self::Abiword);
+            } else if buffer.contains("<abiword template=\"true\"") {
+                return Ok(Self::AbiwordTemplate);
+            } else if buffer.contains("<amf") {
                 return Ok(Self::AdditiveManufacturingFormat);
             } else if buffer.contains("<collada") {
                 return Ok(Self::DigitalAssetExchange);

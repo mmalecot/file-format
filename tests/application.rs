@@ -2,6 +2,20 @@ use file_format::FileFormat;
 
 #[cfg(feature = "reader-xml")]
 #[test]
+fn test_abiword() {
+    let format = FileFormat::from_file("fixtures/application/sample.abw").unwrap();
+    assert_eq!(format, FileFormat::Abiword);
+}
+
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_abiword_template() {
+    let format = FileFormat::from_file("fixtures/application/sample.awt").unwrap();
+    assert_eq!(format, FileFormat::AbiwordTemplate);
+}
+
+#[cfg(feature = "reader-xml")]
+#[test]
 fn test_additive_manufacturing_format() {
     let format = FileFormat::from_file("fixtures/application/sample.amf").unwrap();
     assert_eq!(format, FileFormat::AdditiveManufacturingFormat);

@@ -64,6 +64,8 @@ file-format = "0.17"
 - ALZ
 - AV1 Image File Format (AVIF)
 - AV1 Image File Format Sequence (AVIFS)
+- AbiWord (ABW)
+- AbiWord Template (AWT)
 - Adaptable Scalable Texture Compression (ASTC)
 - Adaptive Multi-Rate (AMR)
 - Additive Manufacturing Format (AMF)

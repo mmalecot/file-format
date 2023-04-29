@@ -6,6 +6,8 @@
 
 ## New formats support
 
+- AbiWord (ABW)
+- AbiWord Template (AWT)
 - Advanced Compression Engine (ACE)
 - JPEG 2000 Codestream (J2C)
 - OpenDocument Database (ODB)

@@ -1,6 +1,18 @@
 //! Formats.
 
 formats! {
+    format = Abiword
+    name = "AbiWord"
+    short_name = "ABW"
+    media_type = "application/x-abiword"
+    extension = "abw"
+
+    format = AbiwordTemplate
+    name = "AbiWord Template"
+    short_name = "AWT"
+    media_type = "application/x-abiword-template"
+    extension = "awt"
+
     format = AdaptableScalableTextureCompression
     name = "Adaptable Scalable Texture Compression"
     short_name = "ASTC"
