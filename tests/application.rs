@@ -741,6 +741,12 @@ fn test_pem_private_key() {
 }
 
 #[test]
+fn test_pem_public_key() {
+    let format = FileFormat::from_file("fixtures/application/sample2.pub").unwrap();
+    assert_eq!(format, FileFormat::PemPublicKey);
+}
+
+#[test]
 fn test_personal_storage_table() {
     let format = FileFormat::from_file("fixtures/application/sample.pst").unwrap();
     assert_eq!(format, FileFormat::PersonalStorageTable);

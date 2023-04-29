@@ -270,6 +270,7 @@ file-format = "0.17"
 - PEM Certificate (CRT)
 - PEM Certificate Signing Request (CSR)
 - PEM Private Key (KEY)
+- PEM Public Key (PUB)
 - PGP Message (PGP)
 - PGP Private Key Block (PGP)
 - PGP Public Key Block (PGP)

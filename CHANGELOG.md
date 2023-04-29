@@ -3,7 +3,7 @@
 ## Fixes
 
 - Fix JPEG Extended Range (JXR) name
-- Fix PEM Private Key (KEY) signature
+- Fix PEM Private Key (KEY) signatures
 
 ## New formats support
 
@@ -20,6 +20,7 @@
 - OpenDocument Text Master (ODM)
 - OpenDocument Text Master Template (OTM)
 - OpenDocument Text Template (OTT)
+- PEM Public Key (PUB)
 
 # Version 0.16.0 (2023-03-28)
 

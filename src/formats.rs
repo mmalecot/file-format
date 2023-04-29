@@ -1422,6 +1422,12 @@ formats! {
     media_type = "application/x-pem-file"
     extension = "key"
 
+    format = PemPublicKey
+    name = "PEM Public Key"
+    short_name = "PUB"
+    media_type = "application/x-pem-file"
+    extension = "pub"
+
     format = PerlScript
     name = "Perl Script"
     media_type = "text/x-perl"

@@ -12,6 +12,14 @@ signatures! {
     value = b"<<< Oracle VM VirtualBox Disk Image >>>"
 
     // 37 bytes
+    format = PemPrivateKey
+    value = b"-----BEGIN ENCRYPTED PRIVATE KEY-----"
+    value = b"-----BEGIN ECDSA PRIVATE KEY-----"
+    value = b"-----BEGIN DSA PRIVATE KEY-----"
+    value = b"-----BEGIN RSA PRIVATE KEY-----"
+    value = b"-----BEGIN EC PRIVATE KEY-----"
+    value = b"-----BEGIN PRIVATE KEY-----"
+
     format = PgpPrivateKeyBlock
     value = b"-----BEGIN PGP PRIVATE KEY BLOCK-----"
 
@@ -27,15 +35,14 @@ signatures! {
     format = PgpSignedMessage
     value = b"-----BEGIN PGP SIGNED MESSAGE-----"
 
-    // 33 bytes
-    format = PemPrivateKey
-    value = b"-----BEGIN ECDSA PRIVATE KEY-----"
-    value = b"-----BEGIN DSA PRIVATE KEY-----"
-    value = b"-----BEGIN RSA PRIVATE KEY-----"
-    value = b"-----BEGIN EC PRIVATE KEY-----"
-    value = b"-----BEGIN PRIVATE KEY-----"
-
     // 32 bytes
+    format = PemPublicKey
+    value = b"-----BEGIN ECDSA PUBLIC KEY-----"
+    value = b"-----BEGIN DSA PUBLIC KEY-----"
+    value = b"-----BEGIN RSA PUBLIC KEY-----"
+    value = b"-----BEGIN EC PUBLIC KEY-----"
+    value = b"-----BEGIN PUBLIC KEY-----"
+
     format = PolygonBinary
     value = b"ply\r\nformat binary_little_endian"
     value = b"ply\r\nformat binary_big_endian"
