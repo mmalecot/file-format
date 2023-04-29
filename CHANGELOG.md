@@ -20,6 +20,8 @@
 - OpenDocument Text Master (ODM)
 - OpenDocument Text Master Template (OTM)
 - OpenDocument Text Template (OTT)
+- OpenSSH Private Key
+- OpenSSH Public Key
 - PEM Public Key (PUB)
 
 # Version 0.16.0 (2023-03-28)

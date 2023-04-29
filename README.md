@@ -263,6 +263,8 @@ file-format = "0.17"
 - OpenDocument Text Template (OTT)
 - OpenEXR (EXR)
 - OpenRaster (ORA)
+- OpenSSH Private Key
+- OpenSSH Public Key
 - OpenType (OTF)
 - Optimized Dalvik Executable (DEY)
 - PCAP Dump (PCAP)

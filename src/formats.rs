@@ -1372,6 +1372,16 @@ formats! {
     extension = "ora"
     kind = Image
 
+    format = OpensshPrivateKey
+    name = "OpenSSH Private Key"
+    media_type = "application/x-openssh"
+    extension = "key"
+
+    format = OpensshPublicKey
+    name = "OpenSSH Public Key"
+    media_type = "application/x-openssh"
+    extension = "pub"
+
     format = Opentype
     name = "OpenType"
     short_name = "OTF"
