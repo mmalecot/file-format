@@ -260,17 +260,45 @@ impl crate::FileFormat {
                     "application/vnd.adobe.indesign-idml-package" => {
                         return Ok(Self::IndesignMarkupLanguage)
                     }
+                    "application/vnd.oasis.opendocument.base"
+                    | "application/vnd.oasis.opendocument.database" => {
+                        return Ok(Self::OpendocumentDatabase)
+                    }
+                    "application/vnd.oasis.opendocument.formula" => {
+                        return Ok(Self::OpendocumentFormula)
+                    }
+                    "application/vnd.oasis.opendocument.formula-template" => {
+                        return Ok(Self::OpendocumentFormulaTemplate)
+                    }
                     "application/vnd.oasis.opendocument.graphics" => {
                         return Ok(Self::OpendocumentGraphics)
+                    }
+                    "application/vnd.oasis.opendocument.graphics-template" => {
+                        return Ok(Self::OpendocumentGraphicsTemplate)
                     }
                     "application/vnd.oasis.opendocument.presentation" => {
                         return Ok(Self::OpendocumentPresentation);
                     }
+                    "application/vnd.oasis.opendocument.presentation-template" => {
+                        return Ok(Self::OpendocumentPresentationTemplate);
+                    }
                     "application/vnd.oasis.opendocument.spreadsheet" => {
                         return Ok(Self::OpendocumentSpreadsheet);
                     }
+                    "application/vnd.oasis.opendocument.spreadsheet-template" => {
+                        return Ok(Self::OpendocumentSpreadsheetTemplate);
+                    }
                     "application/vnd.oasis.opendocument.text" => {
                         return Ok(Self::OpendocumentText);
+                    }
+                    "application/vnd.oasis.opendocument.text-master" => {
+                        return Ok(Self::OpendocumentTextMaster);
+                    }
+                    "application/vnd.oasis.opendocument.text-master-template" => {
+                        return Ok(Self::OpendocumentTextMasterTemplate);
+                    }
+                    "application/vnd.oasis.opendocument.text-template" => {
+                        return Ok(Self::OpendocumentTextTemplate);
                     }
                     "application/vnd.recordare.musicxml" => return Ok(Self::MusicxmlZipped),
                     "image/openraster" => return Ok(Self::Openraster),

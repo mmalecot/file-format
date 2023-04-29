@@ -8,6 +8,15 @@
 
 - Advanced Compression Engine (ACE)
 - JPEG 2000 Codestream (J2C)
+- OpenDocument Database (ODB)
+- OpenDocument Formula (ODF)
+- OpenDocument Formula Template (OTF)
+- OpenDocument Graphics Template (OTG)
+- OpenDocument Presentation Template (OTP)
+- OpenDocument Spreadsheet Template (OTS)
+- OpenDocument Text Master (ODM)
+- OpenDocument Text Master Template (OTM)
+- OpenDocument Text Template (OTT)
 
 # Version 0.16.0 (2023-03-28)
 

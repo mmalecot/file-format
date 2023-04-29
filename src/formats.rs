@@ -1268,11 +1268,35 @@ formats! {
     extension = "orf"
     kind = Image
 
+    format = OpendocumentDatabase
+    name = "OpenDocument Database"
+    short_name = "ODB"
+    media_type = "application/vnd.oasis.opendocument.database"
+    extension = "odb"
+
+    format = OpendocumentFormula
+    name = "OpenDocument Formula"
+    short_name = "ODF"
+    media_type = "application/vnd.oasis.opendocument.formula"
+    extension = "odf"
+
+    format = OpendocumentFormulaTemplate
+    name = "OpenDocument Formula Template"
+    short_name = "OTF"
+    media_type = "application/vnd.oasis.opendocument.formula-template"
+    extension = "otf"
+
     format = OpendocumentGraphics
     name = "OpenDocument Graphics"
     short_name = "ODG"
     media_type = "application/vnd.oasis.opendocument.graphics"
     extension = "odg"
+
+    format = OpendocumentGraphicsTemplate
+    name = "OpenDocument Graphics Template"
+    short_name = "OTG"
+    media_type = "application/vnd.oasis.opendocument.graphics-template"
+    extension = "otg"
 
     format = OpendocumentPresentation
     name = "OpenDocument Presentation"
@@ -1280,17 +1304,47 @@ formats! {
     media_type = "application/vnd.oasis.opendocument.presentation"
     extension = "odp"
 
+    format = OpendocumentPresentationTemplate
+    name = "OpenDocument Presentation Template"
+    short_name = "OTP"
+    media_type = "application/vnd.oasis.opendocument.presentation-template"
+    extension = "otp"
+
     format = OpendocumentSpreadsheet
     name = "OpenDocument Spreadsheet"
     short_name = "ODS"
     media_type = "application/vnd.oasis.opendocument.spreadsheet"
     extension = "ods"
 
+    format = OpendocumentSpreadsheetTemplate
+    name = "OpenDocument Spreadsheet Template"
+    short_name = "OTS"
+    media_type = "application/vnd.oasis.opendocument.spreadsheet-template"
+    extension = "ots"
+
     format = OpendocumentText
     name = "OpenDocument Text"
     short_name = "ODT"
     media_type = "application/vnd.oasis.opendocument.text"
     extension = "odt"
+
+    format = OpendocumentTextMaster
+    name = "OpenDocument Text Master"
+    short_name = "ODM"
+    media_type = "application/vnd.oasis.opendocument.text-master"
+    extension = "odm"
+
+    format = OpendocumentTextMasterTemplate
+    name = "OpenDocument Text Master Template"
+    short_name = "OTM"
+    media_type = "application/vnd.oasis.opendocument.text-master-template"
+    extension = "otm"
+
+    format = OpendocumentTextTemplate
+    name = "OpenDocument Text Template"
+    short_name = "OTT"
+    media_type = "application/vnd.oasis.opendocument.text-template"
+    extension = "ott"
 
     format = Openexr
     name = "OpenEXR"

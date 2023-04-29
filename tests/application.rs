@@ -601,9 +601,37 @@ fn test_ogg_multiplexed_media() {
 
 #[cfg(feature = "reader-zip")]
 #[test]
+fn test_opendocument_database() {
+    let format = FileFormat::from_file("fixtures/application/sample.odb").unwrap();
+    assert_eq!(format, FileFormat::OpendocumentDatabase);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_opendocument_formula() {
+    let format = FileFormat::from_file("fixtures/application/sample.odf").unwrap();
+    assert_eq!(format, FileFormat::OpendocumentFormula);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_opendocument_formula_template() {
+    let format = FileFormat::from_file("fixtures/application/sample.otf").unwrap();
+    assert_eq!(format, FileFormat::OpendocumentFormulaTemplate);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
 fn test_opendocument_graphics() {
     let format = FileFormat::from_file("fixtures/application/sample.odg").unwrap();
     assert_eq!(format, FileFormat::OpendocumentGraphics);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_opendocument_graphics_template() {
+    let format = FileFormat::from_file("fixtures/application/sample.otg").unwrap();
+    assert_eq!(format, FileFormat::OpendocumentGraphicsTemplate);
 }
 
 #[cfg(feature = "reader-zip")]
@@ -615,6 +643,13 @@ fn test_opendocument_presentation() {
 
 #[cfg(feature = "reader-zip")]
 #[test]
+fn test_opendocument_presentation_template() {
+    let format = FileFormat::from_file("fixtures/application/sample.otp").unwrap();
+    assert_eq!(format, FileFormat::OpendocumentPresentationTemplate);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
 fn test_opendocument_spreadsheet() {
     let format = FileFormat::from_file("fixtures/application/sample.ods").unwrap();
     assert_eq!(format, FileFormat::OpendocumentSpreadsheet);
@@ -622,9 +657,37 @@ fn test_opendocument_spreadsheet() {
 
 #[cfg(feature = "reader-zip")]
 #[test]
+fn test_opendocument_spreadsheet_template() {
+    let format = FileFormat::from_file("fixtures/application/sample.ots").unwrap();
+    assert_eq!(format, FileFormat::OpendocumentSpreadsheetTemplate);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
 fn test_opendocument_text() {
     let format = FileFormat::from_file("fixtures/application/sample.odt").unwrap();
     assert_eq!(format, FileFormat::OpendocumentText);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_opendocument_text_master() {
+    let format = FileFormat::from_file("fixtures/application/sample.odm").unwrap();
+    assert_eq!(format, FileFormat::OpendocumentTextMaster);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_opendocument_text_master_template() {
+    let format = FileFormat::from_file("fixtures/application/sample.otm").unwrap();
+    assert_eq!(format, FileFormat::OpendocumentTextMasterTemplate);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_opendocument_text_template() {
+    let format = FileFormat::from_file("fixtures/application/sample.ott").unwrap();
+    assert_eq!(format, FileFormat::OpendocumentTextTemplate);
 }
 
 #[test]
