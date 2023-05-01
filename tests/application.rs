@@ -705,18 +705,6 @@ fn test_opendocument_text_template() {
 }
 
 #[test]
-fn test_openssh_private_key() {
-    let format = FileFormat::from_file("fixtures/application/sample2.key").unwrap();
-    assert_eq!(format, FileFormat::OpensshPrivateKey);
-}
-
-#[test]
-fn test_openssh_public_key() {
-    let format = FileFormat::from_file("fixtures/application/sample3.pub").unwrap();
-    assert_eq!(format, FileFormat::OpensshPublicKey);
-}
-
-#[test]
 fn test_optimized_dalvik_executable() {
     let format = FileFormat::from_file("fixtures/application/sample.dey").unwrap();
     assert_eq!(format, FileFormat::OptimizedDalvikExecutable);

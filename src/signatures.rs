@@ -28,9 +28,6 @@ signatures! {
     value = b"-----BEGIN PGP PUBLIC KEY BLOCK-----"
 
     // 35 bytes
-    format = OpensshPrivateKey
-    value = b"-----BEGIN OPENSSH PRIVATE KEY-----"
-
     format = PemCertificateSigningRequest
     value = b"-----BEGIN CERTIFICATE REQUEST-----"
 
@@ -162,14 +159,6 @@ signatures! {
     value = b"#!/usr/local/bin/lua"
     value = b"#!/usr/bin/env lua"
     value = b"#!/usr/bin/lua"
-
-    format = OpensshPublicKey
-    value = b"ecdsa-sha2-nistp256 "
-    value = b"ecdsa-sha2-nistp384 "
-    value = b"ecdsa-sha2-nistp521 "
-    value = b"ssh-ed25519 "
-    value = b"ssh-dss "
-    value = b"ssh-rsa "
 
     format = WindowsShortcut
     value = b"\x4C\x00\x00\x00\x01\x14\x02\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x00\x46"
