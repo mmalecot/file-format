@@ -245,9 +245,8 @@ formats! {
     format = AutocadDrawing
     name = "AutoCAD Drawing"
     short_name = "DWG"
-    media_type = "image/vnd.dwg"
+    media_type = "application/x-dwg"
     extension = "dwg"
-    kind = Image
 
     format = AutodeskAnimator
     name = "Autodesk Animator"
@@ -433,16 +432,14 @@ formats! {
     format = DrawingExchangeFormatAscii
     name = "Drawing Exchange Format ASCII"
     short_name = "DXF"
-    media_type = "image/vnd.dxf"
+    media_type = "application/x-dxf"
     extension = "dxf"
-    kind = Image
 
     format = DrawingExchangeFormatBinary
     name = "Drawing Exchange Format Binary"
     short_name = "DXF"
-    media_type = "image/vnd.dxf"
+    media_type = "application/x-dxf"
     extension = "dxf"
-    kind = Image
 
     format = Drawio
     name = "draw.io"
@@ -1147,9 +1144,9 @@ formats! {
     format = MultipleImageNetworkGraphics
     name = "Multiple-image Network Graphics"
     short_name = "MNG"
-    media_type = "video/x-mng"
+    media_type = "image/x-mng"
     extension = "mng"
-    kind = Video
+    kind = Image
 
     format = Musepack
     name = "Musepack"

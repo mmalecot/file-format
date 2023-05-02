@@ -2,8 +2,12 @@
 
 ## Fixes
 
+- Fix AutoCAD Drawing (DWG) media type
+- Fix Drawing Exchange Format ASCII (DXF) media type
+- Fix Drawing Exchange Format Binary (DXF) media type
 - Fix JPEG Extended Range (JXR) name
 - Fix PEM Private Key (KEY) signatures
+- Multiple-image Network Graphics (MNG) media type
 
 ## New formats support
 
