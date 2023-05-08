@@ -313,6 +313,13 @@ fn test_scalable_vector_graphics() {
     assert_eq!(format, FileFormat::ScalableVectorGraphics);
 }
 
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_scalable_vector_graphics_optimized() {
+    let format = FileFormat::from_file("fixtures/image/sample-optimized.svg").unwrap();
+    assert_eq!(format, FileFormat::ScalableVectorGraphics);
+}
+
 #[test]
 fn test_silicon_graphics_image() {
     let format = FileFormat::from_file("fixtures/image/sample.sgi").unwrap();

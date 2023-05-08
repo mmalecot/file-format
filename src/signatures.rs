@@ -302,6 +302,7 @@ signatures! {
     format = ExtensibleMarkupLanguage
     value = b"\xEF\xBB\xBF<?xml "
     value = b"<?xml "
+    value = b"<svg xmlns"
 
     format = GameBoyColorRom
     value = b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B" offset = 0x104, b"\x80" offset = 0x143
