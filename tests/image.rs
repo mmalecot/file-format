@@ -320,6 +320,12 @@ fn test_scalable_vector_graphics() {
 }
 
 #[test]
+fn test_scalable_vector_graphics_no_xml() {
+    let format = FileFormat::from_file("fixtures/image/sample-no-xml.svg").unwrap();
+    assert_eq!(format, FileFormat::ScalableVectorGraphics);
+}
+
+#[test]
 fn test_silicon_graphics_image() {
     let format = FileFormat::from_file("fixtures/image/sample.sgi").unwrap();
     assert_eq!(format, FileFormat::SiliconGraphicsImage);

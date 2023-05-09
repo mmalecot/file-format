@@ -667,6 +667,9 @@ signatures! {
     format = Truetype
     value = b"\x00\x01\x00\x00\x00"
 
+    format = ScalableVectorGraphics
+    value = b"<svg "
+
     // 4 bytes
     format = AdaptableScalableTextureCompression
     value = b"\x13\xAB\xA1\x5C"
