@@ -302,7 +302,6 @@ signatures! {
     format = ExtensibleMarkupLanguage
     value = b"\xEF\xBB\xBF<?xml "
     value = b"<?xml "
-    value = b"<svg"
 
     format = GameBoyColorRom
     value = b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B" offset = 0x104, b"\x80" offset = 0x143
@@ -657,6 +656,9 @@ signatures! {
 
     format = Truetype
     value = b"\x00\x01\x00\x00\x00"
+
+    format = ScalableVectorGraphics
+    value = b"<svg "
 
     // 4 bytes
     format = AdaptableScalableTextureCompression
