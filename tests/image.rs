@@ -313,7 +313,6 @@ fn test_scalable_vector_graphics() {
     assert_eq!(format, FileFormat::ScalableVectorGraphics);
 }
 
-#[cfg(feature = "reader-xml")]
 #[test]
 fn test_scalable_vector_graphics_no_xml() {
     let format = FileFormat::from_file("fixtures/image/sample-no-xml.svg").unwrap();
