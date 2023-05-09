@@ -8,6 +8,7 @@
 - Fix JPEG Extended Range (JXR) name
 - Fix Multiple-image Network Graphics (MNG) media type
 - Fix PEM Private Key (KEY) signatures
+- Fix Scalable Vector Graphics (SVG) detection without XML declaration
 
 ## New formats support
 
