@@ -664,11 +664,11 @@ signatures! {
     format = RichTextFormat
     value = b"\x7B\x5C\x72\x74\x66"
 
-    format = Truetype
-    value = b"\x00\x01\x00\x00\x00"
-
     format = ScalableVectorGraphics
     value = b"<svg "
+
+    format = Truetype
+    value = b"\x00\x01\x00\x00\x00"
 
     // 4 bytes
     format = AdaptableScalableTextureCompression
