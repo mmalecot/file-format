@@ -203,6 +203,8 @@ impl crate::FileFormat {
                 return Ok(Self::AbiwordTemplate);
             } else if buffer.contains("<amf") {
                 return Ok(Self::AdditiveManufacturingFormat);
+            } else if buffer.contains("<asx") {
+                return Ok(Self::AdvancedStreamRedirector);
             } else if buffer.contains("<collada") {
                 return Ok(Self::DigitalAssetExchange);
             } else if buffer.contains("<mxfile") {

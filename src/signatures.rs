@@ -64,6 +64,14 @@ signatures! {
     value = b"-----BEGIN PGP SIGNATURE-----"
 
     // 28 bytes
+    format = Abiword
+    value = b"\xEF\xBB\xBF<abiword template=\"false\""
+    value = b"<abiword template=\"false\""
+
+    format = AbiwordTemplate
+    value = b"\xEF\xBB\xBF<abiword template=\"true\""
+    value = b"<abiword template=\"true\""
+
     format = Vcalendar
     value = b"BEGIN:VCALENDAR\r\nVERSION:1.0"
     value = b"BEGIN:VCALENDAR\nVERSION:1.0"
@@ -172,6 +180,10 @@ signatures! {
     format = DrawingExchangeFormatBinary
     value = b"AutoCAD Binary DXF"
 
+    format = Musicxml
+    value = b"\xEF\xBB\xBF<score-partwise"
+    value = b"<score-partwise"
+
     // 17 bytes
     format = EncapsulatedPostscript
     value = b"%!PS-Adobe-", b" EPSF-" offset = 14
@@ -276,9 +288,19 @@ signatures! {
     value = b"[playlist]\r"
     value = b"[playlist]\n"
 
+    format = XmlShareablePlaylistFormat
+    value = b"\xEF\xBB\xBF<playlist"
+    value = b"<playlist"
+
     // 11 bytes
     format = BittorrentFile
     value = b"d8:announce"
+
+    format = DigitalAssetExchange
+    value = b"\xEF\xBB\xBF<COLLADA"
+    value = b"\xEF\xBB\xBF<collada"
+    value = b"<COLLADA"
+    value = b"<collada"
 
     format = OggSpeex
     value = b"OggS", b"Speex  " offset = 28
@@ -299,6 +321,10 @@ signatures! {
     format = BitmapFontAscii
     value = b"info face="
 
+    format = Drawio
+    value = b"\xEF\xBB\xBF<mxfile"
+    value = b"<mxfile"
+
     format = OggMedia
     value = b"OggS", b"\x01\x76\x69\x64\x65\x6F" offset = 28
 
@@ -306,10 +332,6 @@ signatures! {
     value = b"\xFF\x06\x00\x00\x73\x4E\x61\x50\x70\x59"
 
     // 9 bytes
-    format = ExtensibleMarkupLanguage
-    value = b"\xEF\xBB\xBF<?xml "
-    value = b"<?xml "
-
     format = GameBoyColorRom
     value = b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B" offset = 0x104, b"\x80" offset = 0x143
     value = b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B" offset = 0x104, b"\xC0" offset = 0x143
@@ -339,6 +361,10 @@ signatures! {
     format = XPixmap
     value = b"/* XPM */"
 
+    format = XmlLocalizationInterchangeFileFormat
+    value = b"\xEF\xBB\xBF<xliff"
+    value = b"<xliff"
+
     // 8 bytes
     format = AdvancedMediaVideo
     value = b"RIFF", b"AMV " offset = 8
@@ -362,11 +388,12 @@ signatures! {
     format = DalvikExecutable
     value = b"\x64\x65\x78\x0A\x30\x33\x35\x00"
 
-    format = Drawio
-    value = b"<mxfile "
-
     format = ExperimentalComputingFacility
     value = b"gimp xcf"
+
+    format = ExtensibleMarkupLanguage
+    value = b"\xEF\xBB\xBF<?xml"
+    value = b"<?xml"
 
     format = Farbfeld
     value = b"farbfeld"
@@ -473,6 +500,10 @@ signatures! {
     value = b"\x52\x61\x72\x21\x1A\x07\x01\x00"
     value = b"\x52\x61\x72\x21\x1A\x07\x00"
 
+    format = SimpleObjectAccessProtocol
+    value = b"\xEF\xBB\xBF<soap"
+    value = b"<soap"
+
     format = Soundfont2
     value = b"RIFF", b"sfbk" offset = 8
 
@@ -490,6 +521,10 @@ signatures! {
     value = b"RIFF", b"ACON" offset = 8
 
     // 7 bytes
+    format = AdditiveManufacturingFormat
+    value = b"\xEF\xBB\xBF<amf"
+    value = b"<amf"
+
     format = AdobeFlashPlayerAudio
     value = b"ftypF4A" offset = 4
 
@@ -504,6 +539,12 @@ signatures! {
 
     format = AdvancedCompressionEngine
     value = b"**ACE**" offset = 7
+
+    format = AdvancedStreamRedirector
+    value = b"\xEF\xBB\xBF<ASX"
+    value = b"\xEF\xBB\xBF<asx"
+    value = b"<ASX"
+    value = b"<asx"
 
     format = AppleItunesAudio
     value = b"ftypM4A" offset = 4
@@ -523,6 +564,28 @@ signatures! {
     format = CanonRaw3
     value = b"ftypcrx" offset = 4
 
+    format = Extensible3dGraphics
+    value = b"\xEF\xBB\xBF<X3D"
+    value = b"\xEF\xBB\xBF<x3d"
+    value = b"<X3D"
+    value = b"<x3d"
+
+    format = ExtensibleStylesheetLanguageTransformations
+    value = b"\xEF\xBB\xBF<xsl"
+    value = b"<xsl"
+
+    format = GeographyMarkupLanguage
+    value = b"\xEF\xBB\xBF<gml"
+    value = b"<gml"
+
+    format = GpsExchangeFormat
+    value = b"\xEF\xBB\xBF<gpx"
+    value = b"<gpx"
+
+    format = KeyholeMarkupLanguage
+    value = b"\xEF\xBB\xBF<kml"
+    value = b"<kml"
+
     format = MetaInformationEncapsulation
     value = b"\x7E\x10\x04", b"\x30\x4D\x49\x45" offset = 4
     value = b"\x7E\x18\x04", b"\x30\x4D\x49\x45" offset = 4
@@ -532,6 +595,14 @@ signatures! {
 
     format = Mp3Url
     value = b"#EXTM3U"
+
+    format = ReallySimpleSyndication
+    value = b"\xEF\xBB\xBF<rss"
+    value = b"<rss"
+
+    format = ScalableVectorGraphics
+    value = b"\xEF\xBB\xBF<svg"
+    value = b"<svg"
 
     format = SonyMovie
     value = b"ftypmqt" offset = 4
@@ -584,10 +655,6 @@ signatures! {
     // 5 bytes
     format = AdaptiveMultiRate
     value = b"#!AMR"
-
-    format = AdvancedStreamRedirector
-    value = b"<ASX "
-    value = b"<asx "
 
     format = EmbeddedOpentype
     value = b"\x00\x00\x01" offset = 8, b"\x4C\x50" offset = 34
@@ -663,9 +730,6 @@ signatures! {
 
     format = RichTextFormat
     value = b"\x7B\x5C\x72\x74\x66"
-
-    format = ScalableVectorGraphics
-    value = b"<svg "
 
     format = Truetype
     value = b"\x00\x01\x00\x00\x00"

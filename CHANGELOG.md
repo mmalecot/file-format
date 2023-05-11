@@ -2,13 +2,29 @@
 
 ## Fixes
 
+- Fix AbiWord (ABW) detection without XML declaration
+- Fix AbiWord Template (AWT) detection without XML declaration
+- Fix Additive Manufacturing Format (AMF) detection without XML declaration
+- Fix Advanced Stream Redirector (ASX) detection with XML declaration
 - Fix AutoCAD Drawing (DWG) media type
+- Fix Digital Asset Exchange (DAE) detection without XML declaration
 - Fix Drawing Exchange Format ASCII (DXF) media type
 - Fix Drawing Exchange Format Binary (DXF) media type
+- Fix Extensible 3D Graphics (X3D) detection without XML declaration
+- Fix Extensible Stylesheet Language Transformations (XSLT) detection without XML declaration
+- Fix GPS Exchange Format (GPX) detection without XML declaration
+- Fix Geography Markup Language (GML) detection without XML declaration
 - Fix JPEG Extended Range (JXR) name
+- Fix Keyhole Markup Language (KML) detection without XML declaration
 - Fix Multiple-image Network Graphics (MNG) media type
+- Fix MusicXML detection without XML declaration
 - Fix PEM Private Key (KEY) signatures
+- Fix Really Simple Syndication (RSS) detection without XML declaration
 - Fix Scalable Vector Graphics (SVG) detection without XML declaration
+- Fix Simple Object Access Protocol (SOAP) detection without XML declaration
+- Fix XML Localization Interchange File Format (XLIFF) detection without XML declaration
+- Fix XML Shareable Playlist Format (XSPF) detection without XML declaration
+- Fix draw.io (DRAWIO) detection without XML declaration
 
 ## New formats support
 
