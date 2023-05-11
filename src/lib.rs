@@ -55,7 +55,7 @@ All features below are disabled by default.
 
 ## Accuracy features
 
-These features are only relevant if the associated reader is enabled. They improve the accuracy of
+These features are only relevant if the associated readers are enabled. They improve the accuracy of
 detection for specific file formats, but may increase processing time and memory usage.
 
 - `accuracy` - Enables all accuracy features.
@@ -72,11 +72,12 @@ detection for specific file formats, but may increase processing time and memory
 
 ## Reader features
 
-These features enable the detection of file formats based on other ones by reading their content.
+These features enable the detection of file formats that need a specific reader in order to be
+detected.
 
 - `reader` - Enables all reader features.
 - `reader-cfb` - Enables [Compound File Binary (CFB)](`FileFormat::CompoundFileBinary`) based file
-  formats detection:
+  formats detection.
   * [3D Studio Max (MAX)](`FileFormat::ThreeDimensionalStudioMax`)
   * [Microsoft Excel Spreadsheet (XLS)](`FileFormat::MicrosoftExcelSpreadsheet`)
   * [Microsoft PowerPoint Presentation (PPT)](`FileFormat::MicrosoftPowerpointPresentation`)
@@ -86,20 +87,21 @@ These features enable the detection of file formats based on other ones by readi
   * [Microsoft Visio Drawing (VSD)](`FileFormat::MicrosoftVisioDrawing`)
   * [Microsoft Word Document (DOC)](`FileFormat::MicrosoftWordDocument`)
 - `reader-exe` - Enables [MS-DOS Executable (EXE)](`FileFormat::MsDosExecutable`) based file formats
-  detection:
+  detection.
   * [Dynamic Link Library (DLL)](`FileFormat::DynamicLinkLibrary`)
   * [Portable Executable (PE)](`FileFormat::PortableExecutable`)
 - `reader-mkv` - Enables [Matroska Video (MKV)](`FileFormat::MatroskaVideo`) based file formats
-  detection:
+  detection.
   * [WebM](`FileFormat::Webm`)
 - `reader-pdf` - Enables [Portable Document Format (PDF)](`FileFormat::PortableDocumentFormat`)
-  based file formats detection:
+  based file formats detection.
   * [Adobe Illustrator Artwork (AI)](`FileFormat::AdobeIllustratorArtwork`)
 - `reader-txt` - Enables [Plain Text (TXT)](`FileFormat::PlainText`) detection when the file format
   is not recognized by its signature. Please note that this option only detects files that contain
   ASCII/UTF-8-encoded text.
 - `reader-xml` - Enables [Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`)
-  based file formats detection:
+  based file formats detection. Please note that these formats could be detected without this
+  feature when they do not contain an XML declaration.
   * [AbiWord (ABW)](`FileFormat::Abiword`)
   * [AbiWord Template (AWT)](`FileFormat::AbiwordTemplate`)
   * [Additive Manufacturing Format (AMF)](`FileFormat::AdditiveManufacturingFormat`)
@@ -116,7 +118,7 @@ These features enable the detection of file formats based on other ones by readi
   * [XML Localization Interchange File Format (XLIFF)](`FileFormat::XmlLocalizationInterchangeFileFormat`)
   * [XML Shareable Playlist Format (XSPF)](`FileFormat::XmlShareablePlaylistFormat`)
   * [draw.io (DRAWIO)](`FileFormat::Drawio`)
-- `reader-zip` - Enables [ZIP](`FileFormat::Zip`)-based file formats detection:
+- `reader-zip` - Enables [ZIP](`FileFormat::Zip`)-based file formats detection.
   * [3D Manufacturing Format (3MF)](`FileFormat::ThreeDimensionalManufacturingFormat`)
   * [Android Package (APK)](`FileFormat::AndroidPackage`)
   * [Circuit Diagram Document (CDDX)](`FileFormat::CircuitDiagramDocument`)
