@@ -2,8 +2,6 @@
 
 ## Fixes
 
-- Fix AbiWord (ABW) detection without XML declaration
-- Fix AbiWord Template (AWT) detection without XML declaration
 - Fix Additive Manufacturing Format (AMF) detection without XML declaration
 - Fix Advanced Stream Redirector (ASX) detection with XML declaration
 - Fix AutoCAD Drawing (DWG) media type
