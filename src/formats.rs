@@ -912,7 +912,6 @@ formats! {
 
     format = MacosAlias
     name = "macOS Alias"
-    short_name = "Alias"
     media_type = "application/x-apple-alias"
     extension = "alias"
 
@@ -1403,25 +1402,25 @@ formats! {
 
     format = PemCertificate
     name = "PEM Certificate"
-    short_name = "CRT"
+    short_name = "PEM"
     media_type = "application/x-pem-file"
     extension = "crt"
 
     format = PemCertificateSigningRequest
     name = "PEM Certificate Signing Request"
-    short_name = "CSR"
+    short_name = "PEM"
     media_type = "application/x-pem-file"
     extension = "csr"
 
     format = PemPrivateKey
     name = "PEM Private Key"
-    short_name = "KEY"
+    short_name = "PEM"
     media_type = "application/x-pem-file"
     extension = "key"
 
     format = PemPublicKey
     name = "PEM Public Key"
-    short_name = "PUB"
+    short_name = "PEM"
     media_type = "application/x-pem-file"
     extension = "pub"
 

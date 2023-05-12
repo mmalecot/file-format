@@ -267,10 +267,10 @@ file-format = "0.17"
 - Optimized Dalvik Executable (DEY)
 - PCAP Dump (PCAP)
 - PCAP Next Generation Dump (PCAPNG)
-- PEM Certificate (CRT)
-- PEM Certificate Signing Request (CSR)
-- PEM Private Key (KEY)
-- PEM Public Key (PUB)
+- PEM Certificate (PEM)
+- PEM Certificate Signing Request (PEM)
+- PEM Private Key (PEM)
+- PEM Public Key (PEM)
 - PGP Message (PGP)
 - PGP Private Key Block (PGP)
 - PGP Public Key Block (PGP)
@@ -365,7 +365,7 @@ file-format = "0.17"
 - iOS App Store Package (IPA)
 - lzip (LZ)
 - lzop (LZO)
-- macOS Alias (Alias)
+- macOS Alias
 - vCalendar (VCS)
 - vCard (VCF)
 - zoo

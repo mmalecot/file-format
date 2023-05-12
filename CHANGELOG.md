@@ -16,13 +16,15 @@
 - Fix Keyhole Markup Language (KML) detection without XML declaration
 - Fix Multiple-image Network Graphics (MNG) media type
 - Fix MusicXML detection without XML declaration
-- Fix PEM Private Key (KEY) signatures
+- Fix PEM Private Key (PEM) signatures
+- Fix PEM-based formats short name
 - Fix Really Simple Syndication (RSS) detection without XML declaration
 - Fix Scalable Vector Graphics (SVG) detection without XML declaration
 - Fix Simple Object Access Protocol (SOAP) detection without XML declaration
 - Fix XML Localization Interchange File Format (XLIFF) detection without XML declaration
 - Fix XML Shareable Playlist Format (XSPF) detection without XML declaration
 - Fix draw.io (DRAWIO) detection without XML declaration
+- Remove macOS Alias short name
 
 ## New formats support
 
@@ -39,7 +41,7 @@
 - OpenDocument Text Master (ODM)
 - OpenDocument Text Master Template (OTM)
 - OpenDocument Text Template (OTT)
-- PEM Public Key (PUB)
+- PEM Public Key (PEM)
 
 # Version 0.16.0 (2023-03-28)
 
@@ -318,14 +320,14 @@
 - Microsoft Software Installer (MSI)
 - Microsoft Visio Drawing (VSD)
 - Microsoft Word Document (DOC)
-- PEM Certificate (CRT)
-- PEM Certificate Signing Request (CSR)
-- PEM Private Key (KEY)
-- PGP Message (ASC)
-- PGP Private Key Block (ASC)
-- PGP Public Key Block (ASC)
-- PGP Signature (ASC)
-- PGP Signed Message (ASC)
+- PEM Certificate (PEM)
+- PEM Certificate Signing Request (PEM)
+- PEM Private Key (PEM)
+- PGP Message (PGP)
+- PGP Private Key Block (PGP)
+- PGP Public Key Block (PGP)
+- PGP Signature (PGP)
+- PGP Signed Message (PGP)
 - Portable Executable (PE)
 - PostScript (PS)
 - Rich Text Format (RTF)
@@ -496,7 +498,7 @@
 - Windows Animated Cursor (ANI)
 - Windows Cursor (CUR)
 - cpio
-- macOS Alias (Alias)
+- macOS Alias
 - zoo
 
 # Version 0.2.1 (2021-10-14)
