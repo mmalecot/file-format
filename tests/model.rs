@@ -14,10 +14,22 @@ fn test_digital_asset_exchange() {
     assert_eq!(format, FileFormat::DigitalAssetExchange);
 }
 
+#[test]
+fn test_digital_asset_exchange_no_xml() {
+    let format = FileFormat::from_file("fixtures/model/sample-no-xml.dae").unwrap();
+    assert_eq!(format, FileFormat::DigitalAssetExchange);
+}
+
 #[cfg(feature = "reader-xml")]
 #[test]
 fn test_extensible3d_graphics() {
     let format = FileFormat::from_file("fixtures/model/sample.x3d").unwrap();
+    assert_eq!(format, FileFormat::Extensible3dGraphics);
+}
+
+#[test]
+fn test_extensible3d_graphics_no_xml() {
+    let format = FileFormat::from_file("fixtures/model/sample-no-xml.x3d").unwrap();
     assert_eq!(format, FileFormat::Extensible3dGraphics);
 }
 

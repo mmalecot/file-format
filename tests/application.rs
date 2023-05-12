@@ -7,6 +7,12 @@ fn test_abiword() {
     assert_eq!(format, FileFormat::Abiword);
 }
 
+#[test]
+fn test_abiword_no_xml() {
+    let format = FileFormat::from_file("fixtures/application/sample-no-xml.abw").unwrap();
+    assert_eq!(format, FileFormat::Abiword);
+}
+
 #[cfg(feature = "reader-xml")]
 #[test]
 fn test_abiword_template() {
@@ -14,10 +20,22 @@ fn test_abiword_template() {
     assert_eq!(format, FileFormat::AbiwordTemplate);
 }
 
+#[test]
+fn test_abiword_template_no_xml() {
+    let format = FileFormat::from_file("fixtures/application/sample-no-xml.awt").unwrap();
+    assert_eq!(format, FileFormat::AbiwordTemplate);
+}
+
 #[cfg(feature = "reader-xml")]
 #[test]
 fn test_additive_manufacturing_format() {
     let format = FileFormat::from_file("fixtures/application/sample.amf").unwrap();
+    assert_eq!(format, FileFormat::AdditiveManufacturingFormat);
+}
+
+#[test]
+fn test_additive_manufacturing_format_no_xml() {
+    let format = FileFormat::from_file("fixtures/application/sample-no-xml.amf").unwrap();
     assert_eq!(format, FileFormat::AdditiveManufacturingFormat);
 }
 
@@ -177,9 +195,16 @@ fn test_digital_imaging_and_communications_in_medicine() {
     );
 }
 
+#[cfg(feature = "reader-xml")]
 #[test]
 fn test_drawio() {
     let format = FileFormat::from_file("fixtures/application/sample.drawio").unwrap();
+    assert_eq!(format, FileFormat::Drawio);
+}
+
+#[test]
+fn test_drawio_no_xml() {
+    let format = FileFormat::from_file("fixtures/application/sample-no-xml.drawio").unwrap();
     assert_eq!(format, FileFormat::Drawio);
 }
 
@@ -239,6 +264,15 @@ fn test_extensible_stylesheet_language_transformations() {
 }
 
 #[test]
+fn test_extensible_stylesheet_language_transformations_no_xml() {
+    let format = FileFormat::from_file("fixtures/application/sample-no-xml.xsl").unwrap();
+    assert_eq!(
+        format,
+        FileFormat::ExtensibleStylesheetLanguageTransformations
+    );
+}
+
+#[test]
 fn test_filmbox() {
     let format = FileFormat::from_file("fixtures/application/sample.fbx").unwrap();
     assert_eq!(format, FileFormat::Filmbox);
@@ -270,6 +304,12 @@ fn test_geography_markup_language() {
 }
 
 #[test]
+fn test_geography_markup_language_no_xml() {
+    let format = FileFormat::from_file("fixtures/application/sample-no-xml.gml").unwrap();
+    assert_eq!(format, FileFormat::GeographyMarkupLanguage);
+}
+
+#[test]
 fn test_gettext_machine_object() {
     let format = FileFormat::from_file("fixtures/application/sample.mo").unwrap();
     assert_eq!(format, FileFormat::GettextMachineObject);
@@ -285,6 +325,12 @@ fn test_google_chrome_extension() {
 #[test]
 fn test_gps_exchange_format() {
     let format = FileFormat::from_file("fixtures/application/sample.gpx").unwrap();
+    assert_eq!(format, FileFormat::GpsExchangeFormat);
+}
+
+#[test]
+fn test_gps_exchange_format_no_xml() {
+    let format = FileFormat::from_file("fixtures/application/sample-no-xml.gpx").unwrap();
     assert_eq!(format, FileFormat::GpsExchangeFormat);
 }
 
@@ -343,6 +389,12 @@ fn test_java_keystore() {
 #[test]
 fn test_keyhole_markup_language() {
     let format = FileFormat::from_file("fixtures/application/sample.kml").unwrap();
+    assert_eq!(format, FileFormat::KeyholeMarkupLanguage);
+}
+
+#[test]
+fn test_keyhole_markup_language_no_xml() {
+    let format = FileFormat::from_file("fixtures/application/sample-no-xml.kml").unwrap();
     assert_eq!(format, FileFormat::KeyholeMarkupLanguage);
 }
 
@@ -551,6 +603,12 @@ fn test_ms_dos_executable() {
 #[test]
 fn test_musicxml() {
     let format = FileFormat::from_file("fixtures/application/sample.musicxml").unwrap();
+    assert_eq!(format, FileFormat::Musicxml);
+}
+
+#[test]
+fn test_musicxml_no_xml() {
+    let format = FileFormat::from_file("fixtures/application/sample-no-xml.musicxml").unwrap();
     assert_eq!(format, FileFormat::Musicxml);
 }
 
@@ -816,6 +874,12 @@ fn test_really_simple_syndication() {
 }
 
 #[test]
+fn test_really_simple_syndication_no_xml() {
+    let format = FileFormat::from_file("fixtures/application/sample-no-xml.rss").unwrap();
+    assert_eq!(format, FileFormat::ReallySimpleSyndication);
+}
+
+#[test]
 fn test_red_hat_package_manager() {
     let format = FileFormat::from_file("fixtures/application/sample.rpm").unwrap();
     assert_eq!(format, FileFormat::RedHatPackageManager);
@@ -855,6 +919,12 @@ fn test_shapefile() {
 #[test]
 fn test_simple_object_access_protocol() {
     let format = FileFormat::from_file("fixtures/application/sample.soap").unwrap();
+    assert_eq!(format, FileFormat::SimpleObjectAccessProtocol);
+}
+
+#[test]
+fn test_simple_object_access_protocol_no_xml() {
+    let format = FileFormat::from_file("fixtures/application/sample-no-xml.soap").unwrap();
     assert_eq!(format, FileFormat::SimpleObjectAccessProtocol);
 }
 
@@ -984,10 +1054,22 @@ fn test_xml_localization_interchange_file_format() {
     assert_eq!(format, FileFormat::XmlLocalizationInterchangeFileFormat);
 }
 
+#[test]
+fn test_xml_localization_interchange_file_format_no_xml() {
+    let format = FileFormat::from_file("fixtures/application/sample-no-xml.xlf").unwrap();
+    assert_eq!(format, FileFormat::XmlLocalizationInterchangeFileFormat);
+}
+
 #[cfg(feature = "reader-xml")]
 #[test]
 fn test_xml_shareable_playlist() {
     let format = FileFormat::from_file("fixtures/application/sample.xspf").unwrap();
+    assert_eq!(format, FileFormat::XmlShareablePlaylistFormat);
+}
+
+#[test]
+fn test_xml_shareable_playlist_no_xml() {
+    let format = FileFormat::from_file("fixtures/application/sample-no-xml.xspf").unwrap();
     assert_eq!(format, FileFormat::XmlShareablePlaylistFormat);
 }
 

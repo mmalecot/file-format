@@ -18,9 +18,16 @@ fn test_advanced_media_video() {
     assert_eq!(format, FileFormat::AdvancedMediaVideo);
 }
 
+#[cfg(feature = "reader-xml")]
 #[test]
 fn test_advanced_stream_redirector() {
     let format = FileFormat::from_file("fixtures/video/sample.asx").unwrap();
+    assert_eq!(format, FileFormat::AdvancedStreamRedirector);
+}
+
+#[test]
+fn test_advanced_stream_redirector_no_xml() {
+    let format = FileFormat::from_file("fixtures/video/sample-no-xml.asx").unwrap();
     assert_eq!(format, FileFormat::AdvancedStreamRedirector);
 }
 
