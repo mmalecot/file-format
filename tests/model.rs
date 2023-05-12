@@ -59,25 +59,25 @@ fn test_model3d_binary() {
 
 #[test]
 fn test_polygon_ascii() {
-    let format = FileFormat::from_file("fixtures/model/sample1.ply").unwrap();
+    let format = FileFormat::from_file("fixtures/model/sample-ascii.ply").unwrap();
     assert_eq!(format, FileFormat::PolygonAscii);
 }
 
 #[test]
 fn test_polygon_binary() {
-    let format = FileFormat::from_file("fixtures/model/sample2.ply").unwrap();
+    let format = FileFormat::from_file("fixtures/model/sample-binary.ply").unwrap();
     assert_eq!(format, FileFormat::PolygonBinary);
 }
 
 #[test]
 fn test_stereolithography_ascii() {
-    let format = FileFormat::from_file("fixtures/model/sample1.stl").unwrap();
+    let format = FileFormat::from_file("fixtures/model/sample-ascii.stl").unwrap();
     assert_eq!(format, FileFormat::StereolithographyAscii);
 }
 
 #[test]
 fn test_stereolithography_binary() {
-    let format = FileFormat::from_file("fixtures/model/sample2.stl").unwrap();
+    let format = FileFormat::from_file("fixtures/model/sample-binary.stl").unwrap();
     assert_eq!(format, FileFormat::StereolithographyBinary);
 }
 

@@ -2,13 +2,13 @@ use file_format::FileFormat;
 
 #[test]
 fn test_bitmap_font_ascii() {
-    let format = FileFormat::from_file("fixtures/font/sample1.fnt").unwrap();
+    let format = FileFormat::from_file("fixtures/font/sample-ascii.fnt").unwrap();
     assert_eq!(format, FileFormat::BitmapFontAscii);
 }
 
 #[test]
 fn test_bitmap_font_binary() {
-    let format = FileFormat::from_file("fixtures/font/sample2.fnt").unwrap();
+    let format = FileFormat::from_file("fixtures/font/sample-binary.fnt").unwrap();
     assert_eq!(format, FileFormat::BitmapFontBinary);
 }
 

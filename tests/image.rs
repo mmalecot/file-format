@@ -80,13 +80,13 @@ fn test_djvu() {
 
 #[test]
 fn test_drawing_exchange_format_ascii() {
-    let format = FileFormat::from_file("fixtures/image/sample1.dxf").unwrap();
+    let format = FileFormat::from_file("fixtures/image/sample-ascii.dxf").unwrap();
     assert_eq!(format, FileFormat::DrawingExchangeFormatAscii);
 }
 
 #[test]
 fn test_drawing_exchange_format_binary() {
-    let format = FileFormat::from_file("fixtures/image/sample2.dxf").unwrap();
+    let format = FileFormat::from_file("fixtures/image/sample-binary.dxf").unwrap();
     assert_eq!(format, FileFormat::DrawingExchangeFormatBinary);
 }
 

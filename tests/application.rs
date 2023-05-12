@@ -485,7 +485,7 @@ fn test_microsoft_project_plan() {
 #[cfg(feature = "reader-cfb")]
 #[test]
 fn test_microsoft_publisher_document() {
-    let format = FileFormat::from_file("fixtures/application/sample.pub").unwrap();
+    let format = FileFormat::from_file("fixtures/application/sample-publisher.pub").unwrap();
     assert_eq!(format, FileFormat::MicrosoftPublisherDocument);
 }
 
@@ -543,7 +543,7 @@ fn test_mobipocket() {
 
 #[test]
 fn test_ms_dos_executable() {
-    let format = FileFormat::from_file("fixtures/application/sample1.exe").unwrap();
+    let format = FileFormat::from_file("fixtures/application/sample.exe").unwrap();
     assert_eq!(format, FileFormat::MsDosExecutable);
 }
 
@@ -742,7 +742,7 @@ fn test_pem_private_key() {
 
 #[test]
 fn test_pem_public_key() {
-    let format = FileFormat::from_file("fixtures/application/sample2.pub").unwrap();
+    let format = FileFormat::from_file("fixtures/application/sample-pem.pub").unwrap();
     assert_eq!(format, FileFormat::PemPublicKey);
 }
 
@@ -754,31 +754,32 @@ fn test_personal_storage_table() {
 
 #[test]
 fn test_pgp_message() {
-    let format = FileFormat::from_file("fixtures/application/sample1.asc").unwrap();
+    let format = FileFormat::from_file("fixtures/application/sample-pgp-message.asc").unwrap();
     assert_eq!(format, FileFormat::PgpMessage);
 }
 
 #[test]
 fn test_pgp_private_key_block() {
-    let format = FileFormat::from_file("fixtures/application/sample2.asc").unwrap();
+    let format = FileFormat::from_file("fixtures/application/sample-pgp-private-key.asc").unwrap();
     assert_eq!(format, FileFormat::PgpPrivateKeyBlock);
 }
 
 #[test]
 fn test_pgp_public_key_block() {
-    let format = FileFormat::from_file("fixtures/application/sample3.asc").unwrap();
+    let format = FileFormat::from_file("fixtures/application/sample-pgp-public-key.asc").unwrap();
     assert_eq!(format, FileFormat::PgpPublicKeyBlock);
 }
 
 #[test]
 fn test_pgp_signature() {
-    let format = FileFormat::from_file("fixtures/application/sample4.asc").unwrap();
+    let format = FileFormat::from_file("fixtures/application/sample-pgp-signature.asc").unwrap();
     assert_eq!(format, FileFormat::PgpSignature);
 }
 
 #[test]
 fn test_pgp_signed_message() {
-    let format = FileFormat::from_file("fixtures/application/sample5.asc").unwrap();
+    let format =
+        FileFormat::from_file("fixtures/application/sample-pgp-signed-message.asc").unwrap();
     assert_eq!(format, FileFormat::PgpSignedMessage);
 }
 
@@ -797,7 +798,7 @@ fn test_portable_document_format() {
 #[cfg(feature = "reader-exe")]
 #[test]
 fn test_portable_executable() {
-    let format = FileFormat::from_file("fixtures/application/sample2.exe").unwrap();
+    let format = FileFormat::from_file("fixtures/application/sample-pe.exe").unwrap();
     assert_eq!(format, FileFormat::PortableExecutable);
 }
 
