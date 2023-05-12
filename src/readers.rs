@@ -173,7 +173,7 @@ impl crate::FileFormat {
                 line?
                     .chars()
                     .find(|char| char.is_control() && !char.is_whitespace())
-                    .map(|_| Err(Error::new(ErrorKind::InvalidData, "Invalid chars")))
+                    .map(|_| Err(Error::new(ErrorKind::InvalidData, String::default())))
                     .unwrap_or(Ok(()))
             })
             .map(|_| Self::PlainText)
