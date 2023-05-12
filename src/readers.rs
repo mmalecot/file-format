@@ -150,9 +150,9 @@ impl crate::FileFormat {
 
     /// Determines file format from a [Plain Text (TXT)](`crate::FileFormat::PlainText`) reader.
     ///
-    /// Attempts to determine if the reader contains only UTF-8 encoded text by checking the first
-    /// lines for control characters. If any control characters (other than whitespace) are found,
-    /// it returns an error. Otherwise, it returns
+    /// Attempts to determine if the reader contains only ASCII/UTF-8-encoded text by checking the
+    /// first lines for control characters. If any control characters (other than whitespace) are
+    /// found, it returns an error. Otherwise, it returns
     /// [Plain Text (TXT)](`crate::FileFormat::PlainText`).
     #[cfg(feature = "reader-txt")]
     pub(crate) fn from_txt_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
