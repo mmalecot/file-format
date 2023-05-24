@@ -116,6 +116,7 @@ detected.
   * [Really Simple Syndication (RSS)](`FileFormat::ReallySimpleSyndication`)
   * [Scalable Vector Graphics (SVG)](`FileFormat::ScalableVectorGraphics`)
   * [Simple Object Access Protocol (SOAP)](`FileFormat::SimpleObjectAccessProtocol`)
+  * [Training Center XML (TCX)](`FileFormat::TrainingCenterXml`)
   * [XML Localization Interchange File Format (XLIFF)](`FileFormat::XmlLocalizationInterchangeFileFormat`)
   * [XML Shareable Playlist Format (XSPF)](`FileFormat::XmlShareablePlaylistFormat`)
   * [draw.io (DRAWIO)](`FileFormat::Drawio`)

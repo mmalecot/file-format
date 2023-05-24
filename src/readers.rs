@@ -227,6 +227,8 @@ impl crate::FileFormat {
                 return Ok(Self::ScalableVectorGraphics);
             } else if buffer.contains("<soap") {
                 return Ok(Self::SimpleObjectAccessProtocol);
+            } else if buffer.contains("<trainingcenterdatabase") {
+                return Ok(Self::TrainingCenterXml);
             } else if buffer.contains("<xliff") {
                 return Ok(Self::XmlLocalizationInterchangeFileFormat);
             } else if buffer.contains("<playlist") {

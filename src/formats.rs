@@ -1795,6 +1795,12 @@ formats! {
     extension = "tcl"
     kind = Text
 
+    format = TrainingCenterXml
+    name = "Training Center XML"
+    short_name = "TCX"
+    media_type = "application/vnd.garmin.tcx+xml"
+    extension = "tcx"
+
     format = Truetype
     name = "TrueType"
     short_name = "TTF"

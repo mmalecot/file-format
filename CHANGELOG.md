@@ -42,6 +42,7 @@
 - OpenDocument Text Master Template (OTM)
 - OpenDocument Text Template (OTT)
 - PEM Public Key (PEM)
+- Training Center XML (TCX)
 
 # Version 0.16.0 (2023-03-28)
 

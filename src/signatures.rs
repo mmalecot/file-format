@@ -94,6 +94,11 @@ signatures! {
     value = b"SketchUp STL"
     value = b"STL File"
 
+    // 26 bytes
+    format = TrainingCenterXml
+    value = b"\xEF\xBB\xBF<TrainingCenterDatabase"
+    value = b"<TrainingCenterDatabase"
+
     // 24 bytes
     format = ClojureScript
     value = b"#!/usr/local/bin/clojure"

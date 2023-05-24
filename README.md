@@ -324,6 +324,7 @@ file-format = "0.17"
 - Tag Image File Format (TIFF)
 - Tape Archive (TAR)
 - Tool Command Language Script (Tcl Script)
+- Training Center XML (TCX)
 - TrueType (TTF)
 - UNIX archiver (archiver)
 - UNIX compress (compress)

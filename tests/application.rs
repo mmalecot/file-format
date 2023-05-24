@@ -990,6 +990,19 @@ fn test_three_dimensional_studio_max() {
     assert_eq!(format, FileFormat::ThreeDimensionalStudioMax);
 }
 
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_training_center_xml() {
+    let format = FileFormat::from_file("fixtures/application/sample.tcx").unwrap();
+    assert_eq!(format, FileFormat::TrainingCenterXml);
+}
+
+#[test]
+fn test_training_center_xml_no_xml() {
+    let format = FileFormat::from_file("fixtures/application/sample-no-xml.tcx").unwrap();
+    assert_eq!(format, FileFormat::TrainingCenterXml);
+}
+
 #[test]
 fn test_unix_archiver() {
     let format = FileFormat::from_file("fixtures/application/sample.a").unwrap();
