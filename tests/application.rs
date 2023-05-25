@@ -279,6 +279,12 @@ fn test_filmbox() {
 }
 
 #[test]
+fn test_flexible_and_interoperable_data_transfer() {
+    let format = FileFormat::from_file("fixtures/application/sample.fit").unwrap();
+    assert_eq!(format, FileFormat::FlexibleAndInteroperableDataTransfer);
+}
+
+#[test]
 fn test_game_boy_advance_rom() {
     let format = FileFormat::from_file("fixtures/application/sample.gba").unwrap();
     assert_eq!(format, FileFormat::GameBoyAdvanceRom);

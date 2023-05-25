@@ -543,6 +543,12 @@ formats! {
     extension = "flv"
     kind = Video
 
+    format = FlexibleAndInteroperableDataTransfer
+    name = "Flexible and Interoperable Data Transfer"
+    short_name = "FIT"
+    media_type = "application/x-fit"
+    extension = "fit"
+
     format = FlexibleImageTransportSystem
     name = "Flexible Image Transport System"
     short_name = "FITS"

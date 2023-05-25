@@ -99,6 +99,7 @@ file-format = "0.17"
 - Extensible Archive (XAR)
 - Extensible Stylesheet Language Transformations (XSLT)
 - Filmbox (FBX)
+- Flexible and Interoperable Data Transfer (FIT)
 - GPS Exchange Format (GPX)
 - Game Boy Advance ROM (GBA)
 - Game Boy Color ROM (GBC)

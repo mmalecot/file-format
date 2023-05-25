@@ -31,6 +31,7 @@
 - AbiWord (ABW)
 - AbiWord Template (AWT)
 - Advanced Compression Engine (ACE)
+- Flexible and Interoperable Data Transfer (FIT)
 - JPEG 2000 Codestream (J2C)
 - OpenDocument Database (ODB)
 - OpenDocument Formula (ODF)

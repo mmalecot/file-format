@@ -799,6 +799,9 @@ signatures! {
     format = FlashVideo
     value = b"\x46\x4C\x56\x01"
 
+    format = FlexibleAndInteroperableDataTransfer
+    value = b".FIT" offset = 8
+
     format = FreeLosslessAudioCodec
     value = b"fLaC"
 
