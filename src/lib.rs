@@ -271,18 +271,21 @@ impl From<&[u8]> for FileFormat {
 /// A kind of [`FileFormat`] according to the media type.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum Kind {
-    /// Data to be processed by some type of application program.
+    /// Data which do not fit in any of the other kinds, and particularly for data to be processed
+    /// by some type of application program.
     Application,
-    /// Music, sound effects, and spoken audio recordings.
+    /// Musics, sound effects, and spoken audio recordings.
     Audio,
-    /// Files used for displaying text on screen or in print.
+    /// Typefaces used for displaying text on screen or in print.
     Font,
     /// Photographs, illustrations, and other types of image files.
     Image,
     /// 3D models, CAD drawings, and other types of files used for creating or displaying 3D images.
     Model,
-    /// Plain text, markup languages, and other types of files that contain written text.
+    /// Plain text, source codes, markup languages, and other types of files that contain written
+    /// text.
     Text,
-    /// Movies, animations, and other types of files that contain moving images.
+    /// Movies, animations, and other types of files that contain moving images, possibly with color
+    /// and coordinated sound.
     Video,
 }
