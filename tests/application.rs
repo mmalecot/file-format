@@ -120,6 +120,12 @@ fn test_archived_by_robert_jung() {
 }
 
 #[test]
+fn test_atari7800_rom() {
+    let format = FileFormat::from_file("fixtures/application/sample.a78").unwrap();
+    assert_eq!(format, FileFormat::Atari7800Rom);
+}
+
+#[test]
 fn test_bittorrent_file() {
     let format = FileFormat::from_file("fixtures/application/sample.torrent").unwrap();
     assert_eq!(format, FileFormat::BittorrentFile);
@@ -300,6 +306,12 @@ fn test_game_boy_color_rom() {
 fn test_game_boy_rom() {
     let format = FileFormat::from_file("fixtures/application/sample.gb").unwrap();
     assert_eq!(format, FileFormat::GameBoyRom);
+}
+
+#[test]
+fn test_game_gear_rom() {
+    let format = FileFormat::from_file("fixtures/application/sample.gg").unwrap();
+    assert_eq!(format, FileFormat::GameGearRom);
 }
 
 #[cfg(feature = "reader-xml")]
@@ -496,6 +508,12 @@ fn test_maya_binary() {
 }
 
 #[test]
+fn test_mega_drive_rom() {
+    let format = FileFormat::from_file("fixtures/application/sample.md").unwrap();
+    assert_eq!(format, FileFormat::MegaDriveRom);
+}
+
+#[test]
 fn test_meta_information_encapsulation() {
     let format = FileFormat::from_file("fixtures/application/sample.mie").unwrap();
     assert_eq!(format, FileFormat::MetaInformationEncapsulation);
@@ -626,6 +644,12 @@ fn test_musicxml_zipped() {
 }
 
 #[test]
+fn test_neo_geo_pocket_rom() {
+    let format = FileFormat::from_file("fixtures/application/sample.ngp").unwrap();
+    assert_eq!(format, FileFormat::NeoGeoPocketRom);
+}
+
+#[test]
 fn test_nintendo64_rom() {
     let format = FileFormat::from_file("fixtures/application/sample.z64").unwrap();
     assert_eq!(format, FileFormat::Nintendo64Rom);
@@ -641,6 +665,24 @@ fn test_nintendo_ds_rom() {
 fn test_nintendo_entertainment_system_rom() {
     let format = FileFormat::from_file("fixtures/application/sample.nes").unwrap();
     assert_eq!(format, FileFormat::NintendoEntertainmentSystemRom);
+}
+
+#[test]
+fn test_nintendo_switch_executable() {
+    let format = FileFormat::from_file("fixtures/application/sample.nso").unwrap();
+    assert_eq!(format, FileFormat::NintendoSwitchExecutable);
+}
+
+#[test]
+fn test_nintendo_switch_package() {
+    let format = FileFormat::from_file("fixtures/application/sample.nsp").unwrap();
+    assert_eq!(format, FileFormat::NintendoSwitchPackage);
+}
+
+#[test]
+fn test_nintendo_switch_rom() {
+    let format = FileFormat::from_file("fixtures/application/sample.xci").unwrap();
+    assert_eq!(format, FileFormat::NintendoSwitchRom);
 }
 
 #[cfg(feature = "reader-zip")]
@@ -904,6 +946,12 @@ fn test_roshal_archive() {
 }
 
 #[test]
+fn test_sega_master_system_rom() {
+    let format = FileFormat::from_file("fixtures/application/sample.sms").unwrap();
+    assert_eq!(format, FileFormat::SegaMasterSystemRom);
+}
+
+#[test]
 fn test_seqbox() {
     let format = FileFormat::from_file("fixtures/application/sample.sbx").unwrap();
     assert_eq!(format, FileFormat::Seqbox);
@@ -1064,6 +1112,12 @@ fn test_windows_shortcut() {
 fn test_xap() {
     let format = FileFormat::from_file("fixtures/application/sample.xap").unwrap();
     assert_eq!(format, FileFormat::Xap);
+}
+
+#[test]
+fn test_xbox_executable() {
+    let format = FileFormat::from_file("fixtures/application/sample.xbe").unwrap();
+    assert_eq!(format, FileFormat::XboxExecutable);
 }
 
 #[cfg(feature = "reader-xml")]

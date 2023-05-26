@@ -77,6 +77,7 @@ file-format = "0.17"
 - Apple Disk Image (DMG)
 - Arbitrary Binary Data (BIN)
 - Archived by Robert Jung (ARJ)
+- Atari 7800 ROM (A78)
 - AutoCAD Drawing (DWG)
 - BitTorrent File (Torrent)
 - Blender (BLEND)
@@ -104,6 +105,7 @@ file-format = "0.17"
 - Game Boy Advance ROM (GBA)
 - Game Boy Color ROM (GBC)
 - Game Boy ROM (GB)
+- Game Gear ROM (GG)
 - Geography Markup Language (GML)
 - Google Chrome Extension (CRX)
 - ICC Profile (ICC)
@@ -126,6 +128,7 @@ file-format = "0.17"
 - Material Exchange Format (MXF)
 - Maya ASCII (MA)
 - Maya Binary (MB)
+- Mega Drive ROM (MD)
 - Meta Information Encapsulation (MIE)
 - Microsoft Access 2007 Database (ACCDB)
 - Microsoft Access Database (MDB)
@@ -144,9 +147,13 @@ file-format = "0.17"
 - Mobipocket (MOBI)
 - MusicXML
 - MusicXML Zipped (MXL)
+- Neo Geo Pocket ROM (NGP)
 - Nintendo 64 ROM (Z64)
 - Nintendo DS ROM (NDS)
 - Nintendo Entertainment System ROM (NES)
+- Nintendo Switch Executable (NSO)
+- Nintendo Switch Package (NSP)
+- Nintendo Switch ROM (XCI)
 - Office Open XML Document (DOCX)
 - Office Open XML Drawing (VSDX)
 - Office Open XML Presentation (PPTX)
@@ -187,6 +194,7 @@ file-format = "0.17"
 - Rich Text Format (RTF)
 - Roshal Archive (RAR)
 - SQLite 3
+- Sega Master System ROM (SMS)
 - SeqBox (SBX)
 - Shapefile (SHP)
 - Simple Object Access Protocol (SOAP)
@@ -210,6 +218,7 @@ file-format = "0.17"
 - XML Shareable Playlist Format (XSPF)
 - XPInstall (XPI)
 - XZ
+- Xbox Executable (XBE)
 - ZIP
 - Zstandard (zstd)
 - bzip2 (BZ2)

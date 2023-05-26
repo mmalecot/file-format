@@ -215,6 +215,12 @@ formats! {
     media_type = "application/x-arj"
     extension = "arj"
 
+    format = Atari7800Rom
+    name = "Atari 7800 ROM"
+    short_name = "A78"
+    media_type = "application/x-atari-7800-rom"
+    extension = "a78"
+
     format = Au
     name = "Au"
     media_type = "audio/basic"
@@ -595,6 +601,12 @@ formats! {
     media_type = "application/x-gameboy-rom"
     extension = "gb"
 
+    format = GameGearRom
+    name = "Game Gear ROM"
+    short_name = "GG"
+    media_type = "application/x-gamegear-rom"
+    extension = "gg"
+
     format = GeographyMarkupLanguage
     name = "Geography Markup Language"
     short_name = "GML"
@@ -960,6 +972,12 @@ formats! {
     media_type = "application/x-maya-binary"
     extension = "mb"
 
+    format = MegaDriveRom
+    name = "Mega Drive ROM"
+    short_name = "MD"
+    media_type = "application/x-genesis-rom"
+    extension = "md"
+
     format = MetaInformationEncapsulation
     name = "Meta Information Encapsulation"
     short_name = "MIE"
@@ -1178,6 +1196,12 @@ formats! {
     media_type = "application/vnd.recordare.musicxml"
     extension = "mxl"
 
+    format = NeoGeoPocketRom
+    name = "Neo Geo Pocket ROM"
+    short_name = "NGP"
+    media_type = "application/x-neo-geo-pocket-rom"
+    extension = "npg"
+
     format = NikonElectronicFile
     name = "Nikon Electronic File"
     short_name = "NEF"
@@ -1202,6 +1226,24 @@ formats! {
     short_name = "NES"
     media_type = "application/x-nintendo-nes-rom"
     extension = "nes"
+
+    format = NintendoSwitchExecutable
+    name = "Nintendo Switch Executable"
+    short_name = "NSO"
+    media_type = "application/x-nintendo-switch-executable"
+    extension = "nso"
+
+    format = NintendoSwitchPackage
+    name = "Nintendo Switch Package"
+    short_name = "NSP"
+    media_type = "application/x-nintendo-switch-package"
+    extension = "nsp"
+
+    format = NintendoSwitchRom
+    name = "Nintendo Switch ROM"
+    short_name = "XCI"
+    media_type = "application/x-nintendo-switch-rom"
+    extension = "xci"
 
     format = OfficeOpenXmlDocument
     name = "Office Open XML Document"
@@ -1637,6 +1679,12 @@ formats! {
     extension = "s3m"
     kind = Audio
 
+    format = SegaMasterSystemRom
+    name = "Sega Master System ROM"
+    short_name = "SMS"
+    media_type = "application/x-sms-rom"
+    extension = "sms"
+
     format = Seqbox
     name = "SeqBox"
     short_name = "SBX"
@@ -1983,6 +2031,12 @@ formats! {
     name = "XAP"
     media_type = "application/x-silverlight-app"
     extension = "xap"
+
+    format = XboxExecutable
+    name = "Xbox Executable"
+    short_name = "XBE"
+    media_type = "application/x-xbox-executable"
+    extension = "xbe"
 
     format = XmlLocalizationInterchangeFileFormat
     name = "XML Localization Interchange File Format"

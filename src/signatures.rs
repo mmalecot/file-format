@@ -72,6 +72,10 @@ signatures! {
     value = b"\xEF\xBB\xBF<abiword template=\"true\""
     value = b"<abiword template=\"true\""
 
+    format = NeoGeoPocketRom
+    value = b" LICENSED BY SNK CORPORATION"
+    value = b"COPYRIGHT BY SNK CORPORATION"
+
     format = Vcalendar
     value = b"BEGIN:VCALENDAR\r\nVERSION:1.0"
     value = b"BEGIN:VCALENDAR\nVERSION:1.0"
@@ -213,6 +217,9 @@ signatures! {
     format = AdobeIndesignDocument
     value = b"\x06\x06\xED\xF5\xD8\x1D\x46\xE5\xBD\x31\xEF\xE7\xFE\x74\xB7\x1D"
 
+    format = Atari7800Rom
+    value = b"ATARI7800\x00\x00\x00\x00\x00\x00\x00" offset = 1
+
     format = Fasttracker2ExtendedModule
     value = b"Extended Module:"
 
@@ -234,6 +241,10 @@ signatures! {
 
     format = Icalendar
     value = b"BEGIN:VCALENDAR"
+
+    format = MegaDriveRom
+    value = b"SEGA MEGA DRIVE" offset = 0x100
+    value = b"SEGA GENESIS" offset = 0x100
 
     format = MicrosoftAccess2007Database
     value = b"Standard ACE DB" offset = 4
@@ -341,6 +352,23 @@ signatures! {
     value = b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B" offset = 0x104, b"\x80" offset = 0x143
     value = b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B" offset = 0x104, b"\xC0" offset = 0x143
 
+    format = GameGearRom
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x50" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x51" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x5C" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x5E" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x5F" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x60" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x61" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x6C" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x6E" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x6F" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x70" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x71" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x7C" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x7E" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x7F" offset = 0x7FFF
+
     format = Lzop
     value = b"\x89\x4C\x5A\x4F\x00\x0D\x0A\x1A\x0A"
 
@@ -356,6 +384,18 @@ signatures! {
 
     format = OlympusRawFormat
     value = b"\x49\x49\x52\x4F\x08\x00\x00\x00\x18"
+
+    format = SegaMasterSystemRom
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x30" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x31" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x3C" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x3E" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x3F" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x40" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x41" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x4C" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x4E" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x4F" offset = 0x7FFF
 
     format = SubripText
     value = b"\xEF\xBB\xBF1\r\n00:"
@@ -720,6 +760,14 @@ signatures! {
     value = b"\xCE\xFA\xED\xFE"
     value = b"\xCF\xFA\xED\xFE"
 
+    format = NintendoSwitchRom
+    value = b"HEAD" offset = 0x100, b"\xFA" offset = 0x10D
+    value = b"HEAD" offset = 0x100, b"\xF8" offset = 0x10D
+    value = b"HEAD" offset = 0x100, b"\xF0" offset = 0x10D
+    value = b"HEAD" offset = 0x100, b"\xE0" offset = 0x10D
+    value = b"HEAD" offset = 0x100, b"\xE1" offset = 0x10D
+    value = b"HEAD" offset = 0x100, b"\xE2" offset = 0x10D
+
     format = Opentype
     value = b"\x4F\x54\x54\x4F\x00"
 
@@ -883,6 +931,12 @@ signatures! {
     format = NintendoEntertainmentSystemRom
     value = b"\x4E\x45\x53\x1A"
 
+    format = NintendoSwitchExecutable
+    value = b"NSO0"
+
+    format = NintendoSwitchPackage
+    value = b"PFS0"
+
     format = OggMultiplexedMedia
     value = b"OggS"
 
@@ -957,6 +1011,9 @@ signatures! {
     value = b"\xD7\xCD\xC6\x9A"
     value = b"\x02\x00\x09\x00"
     value = b"\x01\x00\x09\x00"
+
+    format = XboxExecutable
+    value = b"XBEH"
 
     format = Zip
     value = b"\x50\x4B\x03\x04"
