@@ -112,7 +112,7 @@ file-format = "0.17"
 - ISO 9660 (ISO)
 - InDesign Markup Language (IDML)
 - Java Archive (JAR)
-- Java Class (Class)
+- Java Class
 - Java KeyStore (JKS)
 - Keyhole Markup Language (KML)
 - Keyhole Markup Language Zipped (KMZ)

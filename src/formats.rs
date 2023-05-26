@@ -753,7 +753,6 @@ formats! {
 
     format = JavaClass
     name = "Java Class"
-    short_name = "Class"
     media_type = "application/java-vm"
     extension = "class"
 

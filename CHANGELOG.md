@@ -24,6 +24,7 @@
 - Fix XML Localization Interchange File Format (XLIFF) detection without XML declaration
 - Fix XML Shareable Playlist Format (XSPF) detection without XML declaration
 - Fix draw.io (DRAWIO) detection without XML declaration
+- Remove Java Class short name
 - Remove macOS Alias short name
 
 ## New formats support
