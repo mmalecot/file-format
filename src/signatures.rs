@@ -217,9 +217,6 @@ signatures! {
     format = AdobeIndesignDocument
     value = b"\x06\x06\xED\xF5\xD8\x1D\x46\xE5\xBD\x31\xEF\xE7\xFE\x74\xB7\x1D"
 
-    format = Atari7800Rom
-    value = b"ATARI7800\x00\x00\x00\x00\x00\x00\x00" offset = 1
-
     format = Fasttracker2ExtendedModule
     value = b"Extended Module:"
 
@@ -334,6 +331,9 @@ signatures! {
     value = b"BEGIN:VCARD"
 
     // 10 bytes
+    format = Atari7800Rom
+    value = b"\x01ATARI7800"
+
     format = BitmapFontAscii
     value = b"info face="
 
