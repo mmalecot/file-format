@@ -44,22 +44,20 @@ macro_rules! formats {
 
             /// Returns the short name of the file format.
             ///
-            /// If there is none, the [name](crate::FileFormat::name) is returned.
-            ///
             /// # Examples
             ///
             /// ```rust
             /// use file_format::FileFormat;
             ///
             /// let format = FileFormat::MusicalInstrumentDigitalInterface;
-            /// assert_eq!(format.short_name(), "MIDI");
+            /// assert_eq!(format.short_name(), Some("MIDI"));
             ///```
-            pub const fn short_name(&self) -> &str {
+            pub const fn short_name(&self) -> Option<&str> {
                 match self {
                     $(
-                        $(Self::$format => $short_name,)?
+                        $(Self::$format => Some($short_name),)?
                     )*
-                    _ => self.name(),
+                    _ => None,
                 }
             }
 

@@ -1,5 +1,9 @@
 # Version 0.17.0 (unreleased)
 
+## API
+
+- Change the return type of `FileFormat::short_name` from `&str` to `Option<&str>`
+
 ## Fixes
 
 - Fix Additive Manufacturing Format (AMF) detection without XML declaration
