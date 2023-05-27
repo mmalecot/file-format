@@ -15,7 +15,7 @@ exclude = ["/.github/*", "/examples/*", "/fixtures/*", "/tests/*"]
 
 [dependencies]
 cfb = { version = "0.7", optional = true }
-zip = { version = "0.6", optional = true, features = ["deflate-miniz"], default-features = false }
+zip = { version = "0.6", optional = true, features = ["deflate"], default-features = false }
 
 [features]
 ## ACCURACY FEATURES
