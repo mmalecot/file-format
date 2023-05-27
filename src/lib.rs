@@ -40,15 +40,6 @@ assert_eq!(format.extension(), "jpg");
 assert_eq!(format.kind(), Kind::Image);
 ```
 
-# Usage
-
-Add this to your `Cargo.toml`:
-
-```toml
-[dependencies]
-file-format = "0.17"
-```
-
 # Crate features
 
 All features below are disabled by default.
