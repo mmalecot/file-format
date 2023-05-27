@@ -24,7 +24,7 @@ macro_rules! formats {
         }
 
         impl crate::FileFormat {
-            /// Returns the name of the file format.
+            /// Returns the full name of the file format.
             ///
             /// # Examples
             ///
@@ -61,7 +61,9 @@ macro_rules! formats {
                 }
             }
 
-            /// Returns the media type (formerly known as MIME type) of the file format.
+            /// Returns the common media type (formerly known as MIME type) of the file format.
+            ///
+            /// Note: Some media types may not be defined in the IANA registry.
             ///
             /// # Examples
             ///
