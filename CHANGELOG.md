@@ -19,35 +19,39 @@
 
 ## Fixes
 
-- Distinguish between BDAV MPEG-2 Transport Stream (MT2S) and MPEG-2 Transport Stream (TS)
-- Fix Additive Manufacturing Format (AMF) detection without XML declaration
-- Fix Advanced Stream Redirector (ASX) detection with XML declaration
 - Fix AutoCAD Drawing (DWG) media type
-- Fix Digital Asset Exchange (DAE) detection without XML declaration
 - Fix Drawing Exchange Format ASCII (DXF) media type
 - Fix Drawing Exchange Format Binary (DXF) media type
-- Fix Extensible 3D (X3D) detection without XML declaration
-- Fix Extensible Stylesheet Language Transformations (XSLT) detection without XML declaration
 - Fix Flexible Image Transport System (FITS) kind and media type
-- Fix GPS Exchange Format (GPX) detection without XML declaration
-- Fix Geography Markup Language (GML) detection without XML declaration
 - Fix JPEG 2000 Part 3 (MJ2) kind and media type
 - Fix JPEG Extended Range (JXR) name
-- Fix Keyhole Markup Language (KML) detection without XML declaration
 - Fix MPEG-2 Transport Stream (TS) short name and extension
 - Fix MS-DOS Executable (MZ) short name
 - Fix Multiple-image Network Graphics (MNG) media type
-- Fix MusicXML detection without XML declaration
 - Fix PEM Private Key (PEM) signatures
 - Fix PEM-based formats short name
-- Fix Really Simple Syndication (RSS) detection without XML declaration
-- Fix Scalable Vector Graphics (SVG) detection without XML declaration
-- Fix Simple Object Access Protocol (SOAP) detection without XML declaration
-- Fix XML Localization Interchange File Format (XLIFF) detection without XML declaration
-- Fix XML Shareable Playlist Format (XSPF) detection without XML declaration
-- Fix draw.io (DRAWIO) detection without XML declaration
 - Remove Java Class short name
 - Remove macOS Alias short name
+
+## Improvements
+
+- Add precision to the Stereolithography Binary (STL) signature
+- Detect Additive Manufacturing Format (AMF) without XML declaration
+- Detect Advanced Stream Redirector (ASX) with XML declaration
+- Detect Digital Asset Exchange (DAE) without XML declaration
+- Detect Extensible 3D (X3D) without XML declaration
+- Detect Extensible Stylesheet Language Transformations (XSLT) without XML declaration
+- Detect GPS Exchange Format (GPX) without XML declaration
+- Detect Geography Markup Language (GML) without XML declaration
+- Detect Keyhole Markup Language (KML) without XML declaration
+- Detect MusicXML without XML declaration
+- Detect Really Simple Syndication (RSS) without XML declaration
+- Detect Scalable Vector Graphics (SVG) without XML declaration
+- Detect Simple Object Access Protocol (SOAP) without XML declaration
+- Detect XML Localization Interchange File Format (XLIFF) without XML declaration
+- Detect XML Shareable Playlist Format (XSPF) without XML declaration
+- Detect draw.io (DRAWIO) without XML declaration
+- Distinguish between BDAV MPEG-2 Transport Stream (MT2S) and MPEG-2 Transport Stream (TS)
 
 ## New formats support
 

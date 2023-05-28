@@ -91,7 +91,7 @@ signatures! {
     format = StereolithographyBinary
     value = b"3D Systems, Binary STL file"
     value = b"Materialise Coloured STL"
-    value = b"Exported from Blender"
+    value = b"Exported from Blender", b"\x00" offset = 79
     value = b"STL binary file"
     value = b"binary stl file"
     value = b"Stratasys stl"
