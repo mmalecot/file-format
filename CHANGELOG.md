@@ -2,6 +2,17 @@
 
 ## API
 
+- Add `Archive` kind
+- Add `Book` kind
+- Add `Certificate` kind
+- Add `Compression` kind
+- Add `Disk` kind
+- Add `Document` kind
+- Add `Executable` kind
+- Add `Geospatial` kind
+- Add `Package` kind
+- Add `Playlist` kind
+- Add `Rom` kind
 - Change the return type of `FileFormat::short_name` from `&str` to `Option<&str>`
 - Rename `AdvancedMediaVideo` to `ActionsMediaVideo`
 - Rename `Extensible3dGraphics` to `Extensible3d`

@@ -22,7 +22,7 @@ assert_eq!(format.name(), "Portable Document Format");
 assert_eq!(format.short_name(), Some("PDF"));
 assert_eq!(format.media_type(), "application/pdf");
 assert_eq!(format.extension(), "pdf");
-assert_eq!(format.kind(), Kind::Application);
+assert_eq!(format.kind(), Kind::Document);
 # Ok::<(), std::io::Error>(())
 ```
 
@@ -259,20 +259,44 @@ impl From<&[u8]> for FileFormat {
     }
 }
 
-/// A kind of [`FileFormat`] according to the media type.
+/// A kind of [`FileFormat`].
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum Kind {
     /// Data which do not fit in any of the other kinds, and particularly for data to be processed
     /// by some type of application program.
     Application,
+    /// Stored files and directories into a single file, possibly compressed.
+    Archive,
     /// Musics, sound effects, and spoken audio recordings.
     Audio,
+    /// Ebooks.
+    Book,
+    /// Digital certificates.
+    Certificate,
+    /// Compressed single files or streams.
+    Compression,
+    /// Floppy disk images, optical disc images and virtual machine disks.
+    Disk,
+    /// Word processing documents, spreadsheets, presentations, documents templates, diagrams,
+    /// charts, and other formatted documents.
+    Document,
+    /// Machine executable codes, virtual machine codes and shared libraries.
+    Executable,
     /// Typefaces used for displaying text on screen or in print.
     Font,
+    /// Collections of geospatial features, GPS tracks and other location-related files.
+    Geospatial,
     /// Photographs, illustrations, and other types of image files.
     Image,
     /// 3D models, CAD drawings, and other types of files used for creating or displaying 3D images.
     Model,
+    /// Archives or other containers that bundles programs and resources that can be run on target
+    /// environments.
+    Package,
+    /// Lists of audio or video files that are played in a specific order.
+    Playlist,
+    /// Copies of a read-only memory chip of computers, cartridges or other electronic devices.
+    Rom,
     /// Plain text, source codes, markup languages, and other types of files that contain written
     /// text.
     Text,

@@ -6,12 +6,14 @@ formats! {
     short_name = "ABW"
     media_type = "application/x-abiword"
     extension = "abw"
+    kind = Document
 
     format = AbiwordTemplate
     name = "AbiWord Template"
     short_name = "AWT"
     media_type = "application/x-abiword-template"
     extension = "awt"
+    kind = Document
 
     format = ActionsMediaVideo
     name = "Actions Media Video"
@@ -39,6 +41,7 @@ formats! {
     short_name = "AMF"
     media_type = "application/x-amf"
     extension = "amf"
+    kind = Model
 
     format = AdobeFlashPlayerAudio
     name = "Adobe Flash Player Audio"
@@ -73,12 +76,14 @@ formats! {
     short_name = "AI"
     media_type = "application/vnd.adobe.illustrator"
     extension = "ai"
+    kind = Image
 
     format = AdobeIndesignDocument
     name = "Adobe InDesign Document"
     short_name = "INDD"
     media_type = "application/x-indesign"
     extension = "indd"
+    kind = Document
 
     format = AdobePhotoshopDocument
     name = "Adobe Photoshop Document"
@@ -99,36 +104,41 @@ formats! {
     short_name = "ACE"
     media_type = "application/x-ace-compressed"
     extension = "ace"
+    kind = Archive
 
     format = AdvancedStreamRedirector
     name = "Advanced Stream Redirector"
     short_name = "ASX"
     media_type = "video/x-ms-asx"
     extension = "asx"
-    kind = Video
+    kind = Playlist
 
     format = Alz
     name = "ALZ"
     media_type = "application/x-alz-compressed"
     extension = "alz"
+    kind = Archive
 
     format = AndroidBinaryXml
     name = "Android Binary XML"
     short_name = "AXML"
     media_type = "application/vnd.android.axml"
     extension = "xml"
+    kind = Application
 
     format = AndroidCompiledResources
     name = "Android Compiled Resources"
     short_name = "ARSC"
     media_type = "application/vnd.android.arsc"
     extension = "arsc"
+    kind = Application
 
     format = AndroidPackage
     name = "Android Package"
     short_name = "APK"
     media_type = "application/vnd.android.package-archive"
     extension = "apk"
+    kind = Package
 
     format = AnimatedPortableNetworkGraphics
     name = "Animated Portable Network Graphics"
@@ -142,24 +152,28 @@ formats! {
     short_name = "Arrow"
     media_type = "application/x-apache-arrow"
     extension = "arrow"
+    kind = Application
 
     format = ApacheAvroObjectContainer
     name = "Apache Avro Object Container"
     short_name = "Avro"
     media_type = "application/vnd.apache.avro"
     extension = "avro"
+    kind = Application
 
     format = ApacheParquet
     name = "Apache Parquet"
     short_name = "Parquet"
     media_type = "application/x-parquet"
     extension = "parquet"
+    kind = Application
 
     format = AppleDiskImage
     name = "Apple Disk Image"
     short_name = "DMG"
     media_type = "application/x-apple-diskimage"
     extension = "dmg"
+    kind = Disk
 
     format = AppleIconImage
     name = "Apple Icon Image"
@@ -208,18 +222,21 @@ formats! {
     short_name = "BIN"
     media_type = "application/octet-stream"
     extension = "bin"
+    kind = Application
 
     format = ArchivedByRobertJung
     name = "Archived by Robert Jung"
     short_name = "ARJ"
     media_type = "application/x-arj"
     extension = "arj"
+    kind = Archive
 
     format = Atari7800Rom
     name = "Atari 7800 ROM"
     short_name = "A78"
     media_type = "application/x-atari-7800-rom"
     extension = "a78"
+    kind = Rom
 
     format = Au
     name = "Au"
@@ -253,6 +270,7 @@ formats! {
     short_name = "DWG"
     media_type = "application/x-dwg"
     extension = "dwg"
+    kind = Model
 
     format = AutodeskAnimator
     name = "Autodesk Animator"
@@ -315,24 +333,28 @@ formats! {
     short_name = "Torrent"
     media_type = "application/x-bittorrent"
     extension = "torrent"
+    kind = Application
 
     format = Blender
     name = "Blender"
     short_name = "BLEND"
     media_type = "application/x-blender"
     extension = "blend"
+    kind = Model
 
     format = Bzip2
     name = "bzip2"
     short_name = "BZ2"
     media_type = "application/x-bzip2"
     extension = "bz2"
+    kind = Compression
 
     format = Cabinet
     name = "Cabinet"
     short_name = "CAB"
     media_type = "application/vnd.ms-cab-compressed"
     extension = "cab"
+    kind = Archive
 
     format = CanonRaw2
     name = "Canon Raw 2"
@@ -360,6 +382,7 @@ formats! {
     short_name = "CDDX"
     media_type = "application/vnd.circuitdiagram.document.main+xml"
     extension = "cddx"
+    kind = Document
 
     format = ClojureScript
     name = "Clojure Script"
@@ -372,17 +395,20 @@ formats! {
     short_name = "COFF"
     media_type = "application/x-coff"
     extension = "coff"
+    kind = Executable
 
     format = CompoundFileBinary
     name = "Compound File Binary"
     short_name = "CFB"
     media_type = "application/x-cfb"
     extension = "cfb"
+    kind = Application
 
     format = Cpio
     name = "cpio"
     media_type = "application/x-cpio"
     extension = "cpio"
+    kind = Archive
 
     format = CreativeVoice
     name = "Creative Voice"
@@ -396,18 +422,21 @@ formats! {
     short_name = "DEX"
     media_type = "application/vnd.android.dex"
     extension = "dex"
+    kind = Executable
 
     format = DebianBinaryPackage
     name = "Debian Binary Package"
     short_name = "DEB"
     media_type = "application/vnd.debian.binary-package"
     extension = "deb"
+    kind = Package
 
     format = DerCertificate
     name = "DER Certificate"
     short_name = "DER"
     media_type = "application/x-x509-ca-cert"
     extension = "der"
+    kind = Certificate
 
     format = DesignWebFormat
     name = "Design Web Format"
@@ -435,6 +464,7 @@ formats! {
     short_name = "DICOM"
     media_type = "application/dicom"
     extension = "dcm"
+    kind = Application
 
     format = DigitalPictureExchange
     name = "Digital Picture Exchange"
@@ -454,54 +484,63 @@ formats! {
     short_name = "DXF"
     media_type = "application/x-dxf"
     extension = "dxf"
+    kind = Model
 
     format = DrawingExchangeFormatBinary
     name = "Drawing Exchange Format Binary"
     short_name = "DXF"
     media_type = "application/x-dxf"
     extension = "dxf"
+    kind = Model
 
     format = Drawio
     name = "draw.io"
     short_name = "DRAWIO"
     media_type = "application/vnd.jgraph.mxfile"
     extension = "drawio"
+    kind = Document
 
     format = DynamicLinkLibrary
     name = "Dynamic Link Library"
     short_name = "DLL"
     media_type = "application/vnd.microsoft.portable-executable"
     extension = "dll"
+    kind = Executable
 
     format = ElectronicPublication
     name = "Electronic Publication"
     short_name = "EPUB"
     media_type = "application/epub+zip"
     extension = "epub"
+    kind = Book
 
     format = EmbeddedOpentype
     name = "Embedded OpenType"
     short_name = "EOT"
     media_type = "application/vnd.ms-fontobject"
     extension = "eot"
+    kind = Font
 
     format = EncapsulatedPostscript
     name = "Encapsulated PostScript"
     short_name = "EPS"
     media_type = "application/eps"
     extension = "eps"
+    kind = Application
 
     format = EnterpriseApplicationArchive
     name = "Enterprise Application Archive"
     short_name = "EAR"
     media_type = "application/java-archive"
     extension = "ear"
+    kind = Package
 
     format = ExecutableAndLinkableFormat
     name = "Executable and Linkable Format"
     short_name = "ELF"
     media_type = "application/x-executable"
     extension = "elf"
+    kind = Executable
 
     format = ExperimentalComputingFacility
     name = "Experimental Computing Facility"
@@ -522,6 +561,7 @@ formats! {
     short_name = "XAR"
     media_type = "application/x-xar"
     extension = "xar"
+    kind = Archive
 
     format = ExtensibleMarkupLanguage
     name = "Extensible Markup Language"
@@ -535,6 +575,7 @@ formats! {
     short_name = "XSLT"
     media_type = "application/xslt+xml"
     extension = "xsl"
+    kind = Application
 
     format = Farbfeld
     name = "farbfeld"
@@ -555,6 +596,7 @@ formats! {
     short_name = "FBX"
     media_type = "application/vnd.autodesk.fbx"
     extension = "fbx"
+    kind = Model
 
     format = FlashVideo
     name = "Flash Video"
@@ -568,12 +610,14 @@ formats! {
     short_name = "FIT"
     media_type = "application/x-fit"
     extension = "fit"
+    kind = Geospatial
 
     format = FlexibleImageTransportSystem
     name = "Flexible Image Transport System"
     short_name = "FITS"
     media_type = "application/fits"
     extension = "fits"
+    kind = Application
 
     format = FreeLosslessAudioCodec
     name = "Free Lossless Audio Codec"
@@ -601,36 +645,42 @@ formats! {
     short_name = "GBA"
     media_type = "application/x-gba-rom"
     extension = "gba"
+    kind = Rom
 
     format = GameBoyColorRom
     name = "Game Boy Color ROM"
     short_name = "GBC"
     media_type = "application/x-gameboy-color-rom"
     extension = "gbc"
+    kind = Rom
 
     format = GameBoyRom
     name = "Game Boy ROM"
     short_name = "GB"
     media_type = "application/x-gameboy-rom"
     extension = "gb"
+    kind = Rom
 
     format = GameGearRom
     name = "Game Gear ROM"
     short_name = "GG"
     media_type = "application/x-gamegear-rom"
     extension = "gg"
+    kind = Rom
 
     format = GeographyMarkupLanguage
     name = "Geography Markup Language"
     short_name = "GML"
     media_type = "application/gml+xml"
     extension = "gml"
+    kind = Geospatial
 
     format = GettextMachineObject
     name = "gettext Machine Object"
     short_name = "MO"
     media_type = "application/x-gettext-translation"
     extension = "mo"
+    kind = Application
 
     format = GlTransmissionFormatBinary
     name = "GL Transmission Format Binary"
@@ -644,6 +694,7 @@ formats! {
     short_name = "CRX"
     media_type = "application/x-google-chrome-extension"
     extension = "crx"
+    kind = Package
 
     format = GoogleDraco
     name = "Google Draco"
@@ -657,6 +708,7 @@ formats! {
     short_name = "GPX"
     media_type = "application/gpx+xml"
     extension = "gpx"
+    kind = Geospatial
 
     format = GraphicsInterchangeFormat
     name = "Graphics Interchange Format"
@@ -670,6 +722,7 @@ formats! {
     short_name = "GZ"
     media_type = "application/gzip"
     extension = "gz"
+    kind = Compression
 
     format = HighEfficiencyImageCoding
     name = "High Efficiency Image Coding"
@@ -718,6 +771,7 @@ formats! {
     short_name = "ICC"
     media_type = "application/vnd.iccprofile"
     extension = "icc"
+    kind = Application
 
     format = ImpulseTrackerModule
     name = "Impulse Tracker Module"
@@ -731,6 +785,7 @@ formats! {
     short_name = "IDML"
     media_type = "application/vnd.adobe.indesign-idml-package"
     extension = "idml"
+    kind = Document
 
     format = InterQuakeExport
     name = "Inter-Quake Export"
@@ -751,29 +806,34 @@ formats! {
     short_name = "IPA"
     media_type = "application/x-ios-app"
     extension = "ipa"
+    kind = Package
 
     format = Iso9660
     name = "ISO 9660"
     short_name = "ISO"
     media_type = "application/x-iso9660-image"
     extension = "iso"
+    kind = Disk
 
     format = JavaArchive
     name = "Java Archive"
     short_name = "JAR"
     media_type = "application/java-archive"
     extension = "jar"
+    kind = Package
 
     format = JavaClass
     name = "Java Class"
     media_type = "application/java-vm"
     extension = "class"
+    kind = Executable
 
     format = JavaKeystore
     name = "Java KeyStore"
     short_name = "JKS"
     media_type = "application/x-java-keystore"
     extension = "jks"
+    kind = Application
 
     format = JointPhotographicExpertsGroup
     name = "Joint Photographic Experts Group"
@@ -850,12 +910,14 @@ formats! {
     short_name = "KML"
     media_type = "application/vnd.google-earth.kml+xml"
     extension = "kml"
+    kind = Geospatial
 
     format = KeyholeMarkupLanguageZipped
     name = "Keyhole Markup Language Zipped"
     short_name = "KMZ"
     media_type = "application/vnd.google-earth.kmz"
     extension = "kmz"
+    kind = Geospatial
 
     format = KhronosTexture
     name = "Khronos Texture"
@@ -876,6 +938,7 @@ formats! {
     short_name = "LZS"
     media_type = "application/x-lzh-compressed"
     extension = "lzs"
+    kind = Archive
 
     format = Latex
     name = "LaTeX"
@@ -889,28 +952,33 @@ formats! {
     short_name = "LZFSE"
     media_type = "application/x-lzfse"
     extension = "lzfse"
+    kind = Compression
 
     format = Lha
     name = "LHA"
     media_type = "application/x-lzh-compressed"
     extension = "lzh"
+    kind = Archive
 
     format = LlvmBitcode
     name = "LLVM Bitcode"
     short_name = "BC"
     media_type = "application/x-llvm"
     extension = "bc"
+    kind = Executable
 
     format = LongRangeZip
     name = "Long Range ZIP"
     short_name = "LRZIP"
     media_type = "application/x-lrzip"
     extension = "lrz"
+    kind = Compression
 
     format = LuaBytecode
     name = "Lua Bytecode"
     media_type = "application/x-lua-bytecode"
     extension = "luac"
+    kind = Executable
 
     format = LuaScript
     name = "Lua Script"
@@ -922,28 +990,33 @@ formats! {
     name = "LZ4"
     media_type = "application/x-lz4"
     extension = "lz4"
+    kind = Compression
 
     format = Lzip
     name = "lzip"
     short_name = "LZ"
     media_type = "application/x-lzip"
     extension = "lz"
+    kind = Compression
 
     format = Lzop
     name = "lzop"
     short_name = "LZO"
     media_type = "application/x-lzop"
     extension = "lzo"
+    kind = Compression
 
     format = MachO
     name = "Mach-O"
     media_type = "application/x-mach-binary"
     extension = "mach"
+    kind = Executable
 
     format = MacosAlias
     name = "macOS Alias"
     media_type = "application/x-apple-alias"
     extension = "alias"
+    kind = Application
 
     format = Magicavoxel
     name = "MagicaVoxel"
@@ -964,6 +1037,7 @@ formats! {
     short_name = "MXF"
     media_type = "application/mxf"
     extension = "mxf"
+    kind = Video
 
     format = MatroskaVideo
     name = "Matroska Video"
@@ -977,42 +1051,49 @@ formats! {
     short_name = "MA"
     media_type = "application/x-maya-ascii"
     extension = "ma"
+    kind = Model
 
     format = MayaBinary
     name = "Maya Binary"
     short_name = "MB"
     media_type = "application/x-maya-binary"
     extension = "mb"
+    kind = Model
 
     format = MegaDriveRom
     name = "Mega Drive ROM"
     short_name = "MD"
     media_type = "application/x-genesis-rom"
     extension = "md"
+    kind = Rom
 
     format = MetaInformationEncapsulation
     name = "Meta Information Encapsulation"
     short_name = "MIE"
     media_type = "application/x-mie"
     extension = "mie"
+    kind = Application
 
     format = MicrosoftAccess2007Database
     name = "Microsoft Access 2007 Database"
     short_name = "ACCDB"
     media_type = "application/x-msaccess"
     extension = "accdb"
+    kind = Application
 
     format = MicrosoftAccessDatabase
     name = "Microsoft Access Database"
     short_name = "MDB"
     media_type = "application/x-msaccess"
     extension = "mdb"
+    kind = Application
 
     format = MicrosoftCompiledHtmlHelp
     name = "Microsoft Compiled HTML Help"
     short_name = "CHM"
     media_type = "application/vnd.ms-htmlhelp"
     extension = "chm"
+    kind = Application
 
     format = MicrosoftDirectdrawSurface
     name = "Microsoft DirectDraw Surface"
@@ -1026,79 +1107,91 @@ formats! {
     short_name = "XLS"
     media_type = "application/vnd.ms-excel"
     extension = "xls"
+    kind = Document
 
     format = MicrosoftPowerpointPresentation
     name = "Microsoft PowerPoint Presentation"
     short_name = "PPT"
     media_type = "application/vnd.ms-powerpoint"
     extension = "ppt"
+    kind = Document
 
     format = MicrosoftProjectPlan
     name = "Microsoft Project Plan"
     short_name = "MPP"
     media_type = "application/vnd.ms-project"
     extension = "mpp"
+    kind = Document
 
     format = MicrosoftPublisherDocument
     name = "Microsoft Publisher Document"
     short_name = "PUB"
     media_type = "application/vnd.ms-publisher"
     extension = "pub"
+    kind = Document
 
     format = MicrosoftSoftwareInstaller
     name = "Microsoft Software Installer"
     short_name = "MSI"
     media_type = "application/x-msi"
     extension = "msi"
+    kind = Package
 
     format = MicrosoftVirtualHardDisk
     name = "Microsoft Virtual Hard Disk"
     short_name = "VHD"
     media_type = "application/x-vhd"
     extension = "vhd"
+    kind = Disk
 
     format = MicrosoftVirtualHardDisk2
     name = "Microsoft Virtual Hard Disk 2"
     short_name = "VHDX"
     media_type = "application/x-vhdx"
     extension = "vhdx"
+    kind = Disk
 
     format = MicrosoftVisioDrawing
     name = "Microsoft Visio Drawing"
     short_name = "VSD"
     media_type = "application/vnd.visio"
     extension = "vsd"
+    kind = Document
 
     format = MicrosoftVisualStudioExtension
     name = "Microsoft Visual Studio Extension"
     short_name = "VSIX"
     media_type = "application/vsix"
     extension = "vsix"
+    kind = Package
 
     format = MicrosoftVisualStudioSolution
     name = "Microsoft Visual Studio Solution"
     short_name = "SLN"
     media_type = "application/vnd.ms-developer"
     extension = "sln"
+    kind = Application
 
     format = MicrosoftWordDocument
     name = "Microsoft Word Document"
     short_name = "DOC"
     media_type = "application/msword"
     extension = "doc"
+    kind = Document
 
     format = Mobipocket
     name = "Mobipocket"
     short_name = "MOBI"
     media_type = "application/x-mobipocket-ebook"
     extension = "mobi"
+    kind = Book
 
     format = Model3dAscii
     name = "Model 3D ASCII"
     short_name = "A3D"
     media_type = "text/x-3d-model"
     extension = "a3d"
-    kind = Text
+    kind = Model
 
     format = Model3dBinary
     name = "Model 3D Binary"
@@ -1119,7 +1212,7 @@ formats! {
     short_name = "M3U"
     media_type = "audio/x-mpegurl"
     extension = "m3u"
-    kind = Audio
+    kind = Playlist
 
     format = Mpeg12AudioLayer3
     name = "MPEG-1/2 Audio Layer 3"
@@ -1175,6 +1268,7 @@ formats! {
     short_name = "EXE"
     media_type = "application/x-dosexec"
     extension = "exe"
+    kind = Executable
 
     format = Mtv
     name = "MTV"
@@ -1207,18 +1301,21 @@ formats! {
     name = "MusicXML"
     media_type = "application/vnd.recordare.musicxml+xml"
     extension = "musicxml"
+    kind = Application
 
     format = MusicxmlZipped
     name = "MusicXML Zipped"
     short_name = "MXL"
     media_type = "application/vnd.recordare.musicxml"
     extension = "mxl"
+    kind = Application
 
     format = NeoGeoPocketRom
     name = "Neo Geo Pocket ROM"
     short_name = "NGP"
     media_type = "application/x-neo-geo-pocket-rom"
     extension = "npg"
+    kind = Rom
 
     format = NikonElectronicFile
     name = "Nikon Electronic File"
@@ -1232,60 +1329,70 @@ formats! {
     short_name = "Z64"
     media_type = "application/x-n64-rom"
     extension = "z64"
+    kind = Rom
 
     format = NintendoDsRom
     name = "Nintendo DS ROM"
     short_name = "NDS"
     media_type = "application/x-nintendo-ds-rom"
     extension = "nds"
+    kind = Rom
 
     format = NintendoEntertainmentSystemRom
     name = "Nintendo Entertainment System ROM"
     short_name = "NES"
     media_type = "application/x-nintendo-nes-rom"
     extension = "nes"
+    kind = Rom
 
     format = NintendoSwitchExecutable
     name = "Nintendo Switch Executable"
     short_name = "NSO"
     media_type = "application/x-nintendo-switch-executable"
     extension = "nso"
+    kind = Executable
 
     format = NintendoSwitchPackage
     name = "Nintendo Switch Package"
     short_name = "NSP"
     media_type = "application/x-nintendo-switch-package"
     extension = "nsp"
+    kind = Package
 
     format = NintendoSwitchRom
     name = "Nintendo Switch ROM"
     short_name = "XCI"
     media_type = "application/x-nintendo-switch-rom"
     extension = "xci"
+    kind = Rom
 
     format = OfficeOpenXmlDocument
     name = "Office Open XML Document"
     short_name = "DOCX"
     media_type = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     extension = "docx"
+    kind = Document
 
     format = OfficeOpenXmlDrawing
     name = "Office Open XML Drawing"
     short_name = "VSDX"
     media_type = "application/vnd.ms-visio.drawing.main+xml"
     extension = "vsdx"
+    kind = Document
 
     format = OfficeOpenXmlPresentation
     name = "Office Open XML Presentation"
     short_name = "PPTX"
     media_type = "application/vnd.openxmlformats-officedocument.presentationml.presentation"
     extension = "pptx"
+    kind = Document
 
     format = OfficeOpenXmlSpreadsheet
     name = "Office Open XML Spreadsheet"
     short_name = "XLSX"
     media_type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     extension = "xlsx"
+    kind = Document
 
     format = OggFlac
     name = "Ogg FLAC"
@@ -1306,6 +1413,7 @@ formats! {
     short_name = "OGX"
     media_type = "application/ogg"
     extension = "ogx"
+    kind = Application
 
     format = OggOpus
     name = "Ogg Opus"
@@ -1347,78 +1455,91 @@ formats! {
     short_name = "ODB"
     media_type = "application/vnd.oasis.opendocument.database"
     extension = "odb"
+    kind = Application
 
     format = OpendocumentFormula
     name = "OpenDocument Formula"
     short_name = "ODF"
     media_type = "application/vnd.oasis.opendocument.formula"
     extension = "odf"
+    kind = Document
 
     format = OpendocumentFormulaTemplate
     name = "OpenDocument Formula Template"
     short_name = "OTF"
     media_type = "application/vnd.oasis.opendocument.formula-template"
     extension = "otf"
+    kind = Document
 
     format = OpendocumentGraphics
     name = "OpenDocument Graphics"
     short_name = "ODG"
     media_type = "application/vnd.oasis.opendocument.graphics"
     extension = "odg"
+    kind = Document
 
     format = OpendocumentGraphicsTemplate
     name = "OpenDocument Graphics Template"
     short_name = "OTG"
     media_type = "application/vnd.oasis.opendocument.graphics-template"
     extension = "otg"
+    kind = Document
 
     format = OpendocumentPresentation
     name = "OpenDocument Presentation"
     short_name = "ODP"
     media_type = "application/vnd.oasis.opendocument.presentation"
     extension = "odp"
+    kind = Document
 
     format = OpendocumentPresentationTemplate
     name = "OpenDocument Presentation Template"
     short_name = "OTP"
     media_type = "application/vnd.oasis.opendocument.presentation-template"
     extension = "otp"
+    kind = Document
 
     format = OpendocumentSpreadsheet
     name = "OpenDocument Spreadsheet"
     short_name = "ODS"
     media_type = "application/vnd.oasis.opendocument.spreadsheet"
     extension = "ods"
+    kind = Document
 
     format = OpendocumentSpreadsheetTemplate
     name = "OpenDocument Spreadsheet Template"
     short_name = "OTS"
     media_type = "application/vnd.oasis.opendocument.spreadsheet-template"
     extension = "ots"
+    kind = Document
 
     format = OpendocumentText
     name = "OpenDocument Text"
     short_name = "ODT"
     media_type = "application/vnd.oasis.opendocument.text"
     extension = "odt"
+    kind = Document
 
     format = OpendocumentTextMaster
     name = "OpenDocument Text Master"
     short_name = "ODM"
     media_type = "application/vnd.oasis.opendocument.text-master"
     extension = "odm"
+    kind = Document
 
     format = OpendocumentTextMasterTemplate
     name = "OpenDocument Text Master Template"
     short_name = "OTM"
     media_type = "application/vnd.oasis.opendocument.text-master-template"
     extension = "otm"
+    kind = Document
 
     format = OpendocumentTextTemplate
     name = "OpenDocument Text Template"
     short_name = "OTT"
     media_type = "application/vnd.oasis.opendocument.text-template"
     extension = "ott"
+    kind = Document
 
     format = Openexr
     name = "OpenEXR"
@@ -1446,6 +1567,7 @@ formats! {
     short_name = "DEY"
     media_type = "application/vnd.android.dey"
     extension = "dey"
+    kind = Executable
 
     format = PanasonicRaw
     name = "Panasonic Raw"
@@ -1459,36 +1581,42 @@ formats! {
     short_name = "PCAP"
     media_type = "application/vnd.tcpdump.pcap"
     extension = "pcap"
+    kind = Application
 
     format = PcapNextGenerationDump
     name = "PCAP Next Generation Dump"
     short_name = "PCAPNG"
     media_type = "application/x-pcapng"
     extension = "pcapng"
+    kind = Application
 
     format = PemCertificate
     name = "PEM Certificate"
     short_name = "PEM"
     media_type = "application/x-pem-file"
     extension = "crt"
+    kind = Certificate
 
     format = PemCertificateSigningRequest
     name = "PEM Certificate Signing Request"
     short_name = "PEM"
     media_type = "application/x-pem-file"
     extension = "csr"
+    kind = Application
 
     format = PemPrivateKey
     name = "PEM Private Key"
     short_name = "PEM"
     media_type = "application/x-pem-file"
     extension = "key"
+    kind = Application
 
     format = PemPublicKey
     name = "PEM Public Key"
     short_name = "PEM"
     media_type = "application/x-pem-file"
     extension = "pub"
+    kind = Application
 
     format = PerlScript
     name = "Perl Script"
@@ -1501,36 +1629,42 @@ formats! {
     short_name = "PST"
     media_type = "application/vnd.ms-outlook"
     extension = "pst"
+    kind = Application
 
     format = PgpMessage
     name = "PGP Message"
     short_name = "PGP"
     media_type = "application/pgp"
     extension = "asc"
+    kind = Application
 
     format = PgpPrivateKeyBlock
     name = "PGP Private Key Block"
     short_name = "PGP"
     media_type = "application/pgp-keys"
     extension = "asc"
+    kind = Application
 
     format = PgpPublicKeyBlock
     name = "PGP Public Key Block"
     short_name = "PGP"
     media_type = "application/pgp-keys"
     extension = "asc"
+    kind = Application
 
     format = PgpSignature
     name = "PGP Signature"
     short_name = "PGP"
     media_type = "application/pgp-signature"
     extension = "asc"
+    kind = Application
 
     format = PgpSignedMessage
     name = "PGP Signed Message"
     short_name = "PGP"
     media_type = "application/pgp"
     extension = "asc"
+    kind = Application
 
     format = PlainText
     name = "Plain Text"
@@ -1544,6 +1678,7 @@ formats! {
     short_name = "PMA"
     media_type = "application/x-lzh-compressed"
     extension = "pma"
+    kind = Archive
 
     format = PolygonAscii
     name = "Polygon ASCII"
@@ -1578,12 +1713,14 @@ formats! {
     short_name = "PDF"
     media_type = "application/pdf"
     extension = "pdf"
+    kind = Document
 
     format = PortableExecutable
     name = "Portable Executable"
     short_name = "PE"
     media_type = "application/vnd.microsoft.portable-executable"
     extension = "exe"
+    kind = Executable
 
     format = PortableFloatmap
     name = "Portable FloatMap"
@@ -1618,6 +1755,7 @@ formats! {
     short_name = "PS"
     media_type = "application/postscript"
     extension = "ps"
+    kind = Application
 
     format = PythonScript
     name = "Python Script"
@@ -1658,24 +1796,28 @@ formats! {
     short_name = "RSS"
     media_type = "application/rss+xml"
     extension = "rss"
+    kind = Application
 
     format = RedHatPackageManager
     name = "Red Hat Package Manager"
     short_name = "RPM"
     media_type = "application/x-rpm"
     extension = "rpm"
+    kind = Package
 
     format = RichTextFormat
     name = "Rich Text Format"
     short_name = "RTF"
     media_type = "application/rtf"
     extension = "rtf"
+    kind = Document
 
     format = RoshalArchive
     name = "Roshal Archive"
     short_name = "RAR"
     media_type = "application/vnd.rar"
     extension = "rar"
+    kind = Archive
 
     format = RubyScript
     name = "Ruby Script"
@@ -1702,24 +1844,28 @@ formats! {
     short_name = "SMS"
     media_type = "application/x-sms-rom"
     extension = "sms"
+    kind = Rom
 
     format = Seqbox
     name = "SeqBox"
     short_name = "SBX"
     media_type = "application/x-sbx"
     extension = "sbx"
+    kind = Archive
 
     format = SevenZip
     name = "7-Zip"
     short_name = "7Z"
     media_type = "application/x-7z-compressed"
     extension = "7z"
+    kind = Archive
 
     format = Shapefile
     name = "Shapefile"
     short_name = "SHP"
     media_type = "application/x-esri-shape"
     extension = "shp"
+    kind = Geospatial
 
     format = ShellScript
     name = "Shell Script"
@@ -1732,7 +1878,7 @@ formats! {
     short_name = "PLS"
     media_type = "audio/x-scpls"
     extension = "pls"
-    kind = Audio
+    kind = Playlist
 
     format = SiliconGraphicsImage
     name = "Silicon Graphics Image"
@@ -1746,23 +1892,27 @@ formats! {
     short_name = "SOAP"
     media_type = "application/soap+xml"
     extension = "soap"
+    kind = Application
 
     format = Sketchup
     name = "SketchUp"
     short_name = "SKP"
     media_type = "application/vnd.sketchup.skp"
     extension = "skp"
+    kind = Model
 
     format = SmallWebFormat
     name = "Small Web Format"
     short_name = "SWF"
     media_type = "application/x-shockwave-flash"
     extension = "swf"
+    kind = Application
 
     format = Snappy
     name = "Snappy"
     media_type = "application/x-snappy-framed"
     extension = "sz"
+    kind = Compression
 
     format = SonyDsdStreamFile
     name = "Sony DSD Stream File"
@@ -1789,6 +1939,7 @@ formats! {
     name = "SQLite 3"
     media_type = "application/vnd.sqlite3"
     extension = "sqlite"
+    kind = Application
 
     format = StereolithographyAscii
     name = "Stereolithography ASCII"
@@ -1809,6 +1960,7 @@ formats! {
     short_name = "SRT"
     media_type = "application/x-subrip"
     extension = "srt"
+    kind = Application
 
     format = TagImageFileFormat
     name = "Tag Image File Format"
@@ -1822,11 +1974,13 @@ formats! {
     short_name = "TAR"
     media_type = "application/x-tar"
     extension = "tar"
+    kind = Archive
 
     format = Tasty
     name = "TASTy"
     media_type = "application/x-tasty"
     extension = "tasty"
+    kind = Application
 
     format = ThirdGenerationPartnershipProject
     name = "3rd Generation Partnership Project"
@@ -1847,18 +2001,21 @@ formats! {
     short_name = "3MF"
     media_type = "application/vnd.ms-package.3dmanufacturing-3dmodel+xml"
     extension = "3mf"
+    kind = Model
 
     format = ThreeDimensionalStudio
     name = "3D Studio"
     short_name = "3DS"
     media_type = "application/x-3ds"
     extension = "3ds"
+    kind = Model
 
     format = ThreeDimensionalStudioMax
     name = "3D Studio Max"
     short_name = "MAX"
     media_type = "application/x-max"
     extension = "max"
+    kind = Model
 
     format = ToolCommandLanguageScript
     name = "Tool Command Language Script"
@@ -1872,6 +2029,7 @@ formats! {
     short_name = "TCX"
     media_type = "application/vnd.garmin.tcx+xml"
     extension = "tcx"
+    kind = Geospatial
 
     format = Truetype
     name = "TrueType"
@@ -1899,12 +2057,14 @@ formats! {
     short_name = "archiver"
     media_type = "application/x-archive"
     extension = "a"
+    kind = Archive
 
     format = UnixCompress
     name = "UNIX compress"
     short_name = "compress"
     media_type = "application/x-compress"
     extension = "Z"
+    kind = Compression
 
     format = Vcalendar
     name = "vCalendar"
@@ -1925,6 +2085,7 @@ formats! {
     short_name = "VDI"
     media_type = "application/x-virtualbox-vdi"
     extension = "vdi"
+    kind = Disk
 
     format = WaveformAudio
     name = "Waveform Audio"
@@ -1945,6 +2106,7 @@ formats! {
     short_name = "WAR"
     media_type = "application/java-archive"
     extension = "war"
+    kind = Package
 
     format = WebOpenFontFormat
     name = "Web Open Font Format"
@@ -1965,6 +2127,7 @@ formats! {
     short_name = "Wasm"
     media_type = "application/wasm"
     extension = "wasm"
+    kind = Executable
 
     format = WebassemblyText
     name = "WebAssembly Text"
@@ -1990,12 +2153,14 @@ formats! {
     short_name = "ANI"
     media_type = "application/x-navi-animation"
     extension = "ani"
+    kind = Image
 
     format = WindowsAppPackage
     name = "Windows App Package"
     short_name = "APPX"
     media_type = "application/vnd.ms-appx"
     extension = "appx"
+    kind = Package
 
     format = WindowsBitmap
     name = "Windows Bitmap"
@@ -2037,6 +2202,7 @@ formats! {
     short_name = "LNK"
     media_type = "application/x-ms-shortcut"
     extension = "lnk"
+    kind = Application
 
     format = XPixmap
     name = "X PixMap"
@@ -2049,49 +2215,58 @@ formats! {
     name = "XAP"
     media_type = "application/x-silverlight-app"
     extension = "xap"
+    kind = Package
 
     format = XboxExecutable
     name = "Xbox Executable"
     short_name = "XBE"
     media_type = "application/x-xbox-executable"
     extension = "xbe"
+    kind = Executable
 
     format = XmlLocalizationInterchangeFileFormat
     name = "XML Localization Interchange File Format"
     short_name = "XLIFF"
     media_type = "application/xliff+xml"
     extension = "xlf"
+    kind = Application
 
     format = XmlShareablePlaylistFormat
     name = "XML Shareable Playlist Format"
     short_name = "XSPF"
     media_type = "application/xspf+xml"
     extension = "xspf"
+    kind = Playlist
 
     format = Xpinstall
     name = "XPInstall"
     short_name = "XPI"
     media_type = "application/x-xpinstall"
     extension = "xpi"
+    kind = Package
 
     format = Xz
     name = "XZ"
     media_type = "application/x-xz"
     extension = "xz"
+    kind = Compression
 
     format = Zip
     name = "ZIP"
     media_type = "application/zip"
     extension = "zip"
+    kind = Archive
 
     format = Zoo
     name = "zoo"
     media_type = "application/x-zoo"
     extension = "zoo"
+    kind = Archive
 
     format = Zstandard
     name = "Zstandard"
     short_name = "zstd"
     media_type = "application/zstd"
     extension = "zst"
+    kind = Compression
 }
