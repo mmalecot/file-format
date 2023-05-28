@@ -282,6 +282,13 @@ formats! {
     extension = "avifs"
     kind = Image
 
+    format = BdavMpeg2TransportStream
+    name = "BDAV MPEG-2 Transport Stream"
+    short_name = "M2TS"
+    media_type = "video/mp2t"
+    extension = "m2ts"
+    kind = Video
+
     format = BetterPortableGraphics
     name = "Better Portable Graphics"
     short_name = "BPG"
@@ -1145,9 +1152,9 @@ formats! {
 
     format = Mpeg2TransportStream
     name = "MPEG-2 Transport Stream"
-    short_name = "MTS"
+    short_name = "TS"
     media_type = "video/mp2t"
-    extension = "mts"
+    extension = "ts"
     kind = Video
 
     format = Mpeg4Part14Video

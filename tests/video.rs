@@ -62,6 +62,12 @@ fn test_autodesk_animator_pro() {
 }
 
 #[test]
+fn test_bdav_mpeg2_transport_stream() {
+    let format = FileFormat::from_file("fixtures/video/sample.mts").unwrap();
+    assert_eq!(format, FileFormat::BdavMpeg2TransportStream);
+}
+
+#[test]
 fn test_flash_video() {
     let format = FileFormat::from_file("fixtures/video/sample.flv").unwrap();
     assert_eq!(format, FileFormat::FlashVideo);
@@ -81,7 +87,7 @@ fn test_mpeg1_video() {
 
 #[test]
 fn test_mpeg2_transport_stream() {
-    let format = FileFormat::from_file("fixtures/video/sample.mts").unwrap();
+    let format = FileFormat::from_file("fixtures/video/sample.ts").unwrap();
     assert_eq!(format, FileFormat::Mpeg2TransportStream);
 }
 

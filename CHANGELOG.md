@@ -7,6 +7,7 @@
 
 ## Fixes
 
+- Distinguish between BDAV MPEG-2 Transport Stream (MT2S) and MPEG-2 Transport Stream (TS)
 - Fix Additive Manufacturing Format (AMF) detection without XML declaration
 - Fix Advanced Stream Redirector (ASX) detection with XML declaration
 - Fix AutoCAD Drawing (DWG) media type
@@ -19,6 +20,7 @@
 - Fix Geography Markup Language (GML) detection without XML declaration
 - Fix JPEG Extended Range (JXR) name
 - Fix Keyhole Markup Language (KML) detection without XML declaration
+- Fix MPEG-2 Transport Stream (TS) short name and extension
 - Fix Multiple-image Network Graphics (MNG) media type
 - Fix MusicXML detection without XML declaration
 - Fix PEM Private Key (PEM) signatures
@@ -327,7 +329,7 @@
 - Lua Bytecode
 - MPEG-1 Audio Layer 1 (MP1)
 - MPEG-1 Audio Layer 2 (MP2)
-- MPEG-2 Transport Stream (MTS)
+- MPEG-2 Transport Stream (TS)
 - Meta Information Encapsulation (MIE)
 - Microsoft Access 2007 Database (ACCDB)
 - Microsoft Access Database (MDB)
@@ -417,7 +419,7 @@
 
 - 3D Manufacturing Format (3MF)
 - Java Archive (JAR)
-- MPEG-2 Transport Stream (MTS)
+- MPEG-2 Transport Stream (TS)
 - Microsoft Visio Drawing (VSD)
 - Office Open XML Document (DOCX)
 - Office Open XML Presentation (PPTX)
@@ -535,7 +537,7 @@
 - HyperText Markup Language (HTML)
 - Khronos Texture (KTX)
 - Khronos Texture 2 (KTX2)
-- MPEG-2 Transport Stream (MTS)
+- MPEG-2 Transport Stream (TS)
 - Material Exchange Format (MXF)
 - Mobipocket (MOBI)
 - Olympus Raw Format (ORF)

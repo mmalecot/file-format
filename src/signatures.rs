@@ -1118,6 +1118,9 @@ signatures! {
     format = AutodeskAnimatorPro
     value = b"\x12\xAF" offset = 4
 
+    format = BdavMpeg2TransportStream
+    value = b"\x47" offset = 4, b"\x47" offset = 196
+
     format = CommonObjectFileFormat
     value = b"\x4C\x01"
     value = b"\x64\x86"
@@ -1149,7 +1152,6 @@ signatures! {
 
     format = Mpeg2TransportStream
     value = b"\x47", b"\x47" offset = 188
-    value = b"\x47" offset = 4, b"\x47" offset = 196
 
     format = MsDosExecutable
     value = b"MZ"
