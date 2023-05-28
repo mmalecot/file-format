@@ -100,6 +100,7 @@ file-format = "0.17"
 - Extensible Archive (XAR)
 - Extensible Stylesheet Language Transformations (XSLT)
 - Filmbox (FBX)
+- Flexible Image Transport System (FITS)
 - Flexible and Interoperable Data Transfer (FIT)
 - GPS Exchange Format (GPX)
 - Game Boy Advance ROM (GBA)
@@ -293,7 +294,6 @@ file-format = "0.17"
 - Digital Picture Exchange (DPX)
 - DjVu
 - Experimental Computing Facility (XCF)
-- Flexible Image Transport System (FITS)
 - Free Lossless Image Format (FLIF)
 - Fujifilm Raw (RAF)
 - Graphics Interchange Format (GIF)

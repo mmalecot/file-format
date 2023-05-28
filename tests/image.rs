@@ -103,12 +103,6 @@ fn test_farbfeld() {
 }
 
 #[test]
-fn test_flexible_image_transport_system() {
-    let format = FileFormat::from_file("fixtures/image/sample.fits").unwrap();
-    assert_eq!(format, FileFormat::FlexibleImageTransportSystem);
-}
-
-#[test]
 fn test_free_lossless_image_format() {
     let format = FileFormat::from_file("fixtures/image/sample.flif").unwrap();
     assert_eq!(format, FileFormat::FreeLosslessImageFormat);

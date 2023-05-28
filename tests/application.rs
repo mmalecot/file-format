@@ -291,6 +291,12 @@ fn test_flexible_and_interoperable_data_transfer() {
 }
 
 #[test]
+fn test_flexible_image_transport_system() {
+    let format = FileFormat::from_file("fixtures/application/sample.fits").unwrap();
+    assert_eq!(format, FileFormat::FlexibleImageTransportSystem);
+}
+
+#[test]
 fn test_game_boy_advance_rom() {
     let format = FileFormat::from_file("fixtures/application/sample.gba").unwrap();
     assert_eq!(format, FileFormat::GameBoyAdvanceRom);

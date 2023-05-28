@@ -17,6 +17,7 @@
 - Fix Drawing Exchange Format Binary (DXF) media type
 - Fix Extensible 3D (X3D) detection without XML declaration
 - Fix Extensible Stylesheet Language Transformations (XSLT) detection without XML declaration
+- Fix Flexible Image Transport System (FITS) kind and media type
 - Fix GPS Exchange Format (GPX) detection without XML declaration
 - Fix Geography Markup Language (GML) detection without XML declaration
 - Fix JPEG 2000 Part 3 (MJ2) kind and media type

@@ -572,9 +572,8 @@ formats! {
     format = FlexibleImageTransportSystem
     name = "Flexible Image Transport System"
     short_name = "FITS"
-    media_type = "image/fits"
+    media_type = "application/fits"
     extension = "fits"
-    kind = Image
 
     format = FreeLosslessAudioCodec
     name = "Free Lossless Audio Codec"
