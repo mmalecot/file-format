@@ -3,6 +3,7 @@
 ## API
 
 - Change the return type of `FileFormat::short_name` from `&str` to `Option<&str>`
+- Rename `Extensible3dGraphics` to `Extensible3d`
 
 ## Fixes
 
@@ -12,7 +13,7 @@
 - Fix Digital Asset Exchange (DAE) detection without XML declaration
 - Fix Drawing Exchange Format ASCII (DXF) media type
 - Fix Drawing Exchange Format Binary (DXF) media type
-- Fix Extensible 3D Graphics (X3D) detection without XML declaration
+- Fix Extensible 3D (X3D) detection without XML declaration
 - Fix Extensible Stylesheet Language Transformations (XSLT) detection without XML declaration
 - Fix GPS Exchange Format (GPX) detection without XML declaration
 - Fix Geography Markup Language (GML) detection without XML declaration
@@ -197,7 +198,7 @@
 
 ## New formats support
 
-- Extensible 3D Graphics (X3D)
+- Extensible 3D (X3D)
 - GPS Exchange Format (GPX)
 - LArc (LZS)
 - PMarc (PMA)

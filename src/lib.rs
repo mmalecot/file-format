@@ -98,7 +98,7 @@ detected.
   * [Additive Manufacturing Format (AMF)](`FileFormat::AdditiveManufacturingFormat`)
   * [Advanced Stream Redirector (ASX)](`FileFormat::AdvancedStreamRedirector`)
   * [Digital Asset Exchange (DAE)](`FileFormat::DigitalAssetExchange`)
-  * [Extensible 3D Graphics (X3D)](`FileFormat::Extensible3dGraphics`)
+  * [Extensible 3D (X3D)](`FileFormat::Extensible3d`)
   * [Extensible Stylesheet Language Transformations (XSLT)](`FileFormat::ExtensibleStylesheetLanguageTransformations`)
   * [GPS Exchange Format (GPX)](`FileFormat::GpsExchangeFormat`)
   * [Geography Markup Language (GML)](`FileFormat::GeographyMarkupLanguage`)

@@ -344,7 +344,7 @@ file-format = "0.17"
 
 - Design Web Format XPS (DWFX)
 - Digital Asset Exchange (DAE)
-- Extensible 3D Graphics (X3D)
+- Extensible 3D (X3D)
 - GL Transmission Format Binary (GLB)
 - Google Draco (Draco)
 - Inter-Quake Export (IQE)

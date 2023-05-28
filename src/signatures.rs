@@ -113,7 +113,7 @@ signatures! {
     value = b"#!/usr/bin/clj"
 
     // 23 bytes
-    format = Extensible3dGraphics
+    format = Extensible3d
     value = b"\xEF\xBB\xBF<!DOCTYPE X3D PUBLIC"
     value = b"!DOCTYPE X3D PUBLIC"
     value = b"\xEF\xBB\xBF<X3D"

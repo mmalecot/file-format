@@ -496,8 +496,8 @@ formats! {
     extension = "xcf"
     kind = Image
 
-    format = Extensible3dGraphics
-    name = "Extensible 3D Graphics"
+    format = Extensible3d
+    name = "Extensible 3D"
     short_name = "X3D"
     media_type = "model/x3d+xml"
     extension = "x3d"
