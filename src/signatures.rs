@@ -115,7 +115,7 @@ signatures! {
     // 23 bytes
     format = Extensible3d
     value = b"\xEF\xBB\xBF<!DOCTYPE X3D PUBLIC"
-    value = b"!DOCTYPE X3D PUBLIC"
+    value = b"<!DOCTYPE X3D PUBLIC"
     value = b"\xEF\xBB\xBF<X3D"
     value = b"\xEF\xBB\xBF<x3d"
     value = b"<X3D"
