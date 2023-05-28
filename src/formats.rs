@@ -13,6 +13,13 @@ formats! {
     media_type = "application/x-abiword-template"
     extension = "awt"
 
+    format = ActionsMediaVideo
+    name = "Actions Media Video"
+    short_name = "AMV"
+    media_type = "video/x-amv"
+    extension = "amv"
+    kind = Video
+
     format = AdaptableScalableTextureCompression
     name = "Adaptable Scalable Texture Compression"
     short_name = "ASTC"
@@ -92,13 +99,6 @@ formats! {
     short_name = "ACE"
     media_type = "application/x-ace-compressed"
     extension = "ace"
-
-    format = AdvancedMediaVideo
-    name = "Advanced Media Video"
-    short_name = "AMV"
-    media_type = "video/x-amv"
-    extension = "amv"
-    kind = Video
 
     format = AdvancedStreamRedirector
     name = "Advanced Stream Redirector"
@@ -1176,6 +1176,12 @@ formats! {
     short_name = "EXE"
     media_type = "application/x-dosexec"
     extension = "exe"
+
+    format = Mtv
+    name = "MTV"
+    media_type = "video/x-amv"
+    extension = "mtv"
+    kind = Video
 
     format = MultipleImageNetworkGraphics
     name = "Multiple-image Network Graphics"

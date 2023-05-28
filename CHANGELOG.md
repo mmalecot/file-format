@@ -3,6 +3,7 @@
 ## API
 
 - Change the return type of `FileFormat::short_name` from `&str` to `Option<&str>`
+- Rename `AdvancedMediaVideo` to `ActionsMediaVideo`
 - Rename `Extensible3dGraphics` to `Extensible3d`
 
 ## Fixes
@@ -44,6 +45,7 @@
 - Flexible and Interoperable Data Transfer (FIT)
 - Game Gear ROM (GG)
 - JPEG 2000 Codestream (J2C)
+- MTV
 - Mega Drive ROM (MD)
 - Neo Geo Pocket ROM (NGP)
 - Nintendo Switch Executable (NSO)
@@ -99,9 +101,9 @@
 
 - 3D Studio (3DS)
 - 3D Studio Max (MAX)
+- Actions Media Video (AMV)
 - Adaptable Scalable Texture Compression (ASTC)
 - Additive Manufacturing Format (AMF)
-- Advanced Media Video (AMV)
 - Advanced Stream Redirector (ASX)
 - Autodesk Animator (FLI)
 - Autodesk Animator Pro (FLC)

@@ -1,6 +1,12 @@
 use file_format::FileFormat;
 
 #[test]
+fn test_actions_media_video() {
+    let format = FileFormat::from_file("fixtures/video/sample.amv").unwrap();
+    assert_eq!(format, FileFormat::ActionsMediaVideo);
+}
+
+#[test]
 fn test_adobe_flash_player_protected_video() {
     let format = FileFormat::from_file("fixtures/video/sample.f4p").unwrap();
     assert_eq!(format, FileFormat::AdobeFlashPlayerProtectedVideo);
@@ -10,12 +16,6 @@ fn test_adobe_flash_player_protected_video() {
 fn test_adobe_flash_player_video() {
     let format = FileFormat::from_file("fixtures/video/sample.f4v").unwrap();
     assert_eq!(format, FileFormat::AdobeFlashPlayerVideo);
-}
-
-#[test]
-fn test_advanced_media_video() {
-    let format = FileFormat::from_file("fixtures/video/sample.amv").unwrap();
-    assert_eq!(format, FileFormat::AdvancedMediaVideo);
 }
 
 #[cfg(feature = "reader-xml")]
@@ -95,6 +95,12 @@ fn test_mpeg2_transport_stream() {
 fn test_mpeg4_part14_video() {
     let format = FileFormat::from_file("fixtures/video/sample.mp4").unwrap();
     assert_eq!(format, FileFormat::Mpeg4Part14Video);
+}
+
+#[test]
+fn test_mtv() {
+    let format = FileFormat::from_file("fixtures/video/sample.mtv").unwrap();
+    assert_eq!(format, FileFormat::Mtv);
 }
 
 #[test]

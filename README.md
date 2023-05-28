@@ -382,9 +382,9 @@ file-format = "0.17"
 
 - 3rd Generation Partnership Project (3GPP)
 - 3rd Generation Partnership Project 2 (3GPP2)
+- Actions Media Video (AMV)
 - Adobe Flash Player Protected Video (F4P)
 - Adobe Flash Player Video (F4V)
-- Advanced Media Video (AMV)
 - Advanced Stream Redirector (ASX)
 - Apple QuickTime (MOV)
 - Apple iTunes Video (M4V)
@@ -396,6 +396,7 @@ file-format = "0.17"
 - MPEG-1 Video (MPG)
 - MPEG-2 Transport Stream (TS)
 - MPEG-4 Part 14 Video (MP4)
+- MTV
 - Matroska Video (MKV)
 - Ogg Media (OGM)
 - Ogg Theora (Theora)

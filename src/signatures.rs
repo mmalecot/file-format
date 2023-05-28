@@ -419,7 +419,7 @@ signatures! {
     value = b"<xliff"
 
     // 8 bytes
-    format = AdvancedMediaVideo
+    format = ActionsMediaVideo
     value = b"RIFF", b"AMV " offset = 8
 
     format = AudioInterchangeFileFormat
@@ -1041,6 +1041,9 @@ signatures! {
     value = b"\xFF\xE3"
     value = b"\xFF\xF3"
     value = b"\xFF\xFB"
+
+    format = Mtv
+    value = b"AMV"
 
     format = PortableArbitraryMap
     value = b"P7 "
