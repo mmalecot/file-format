@@ -113,6 +113,14 @@ signatures! {
     value = b"#!/usr/bin/clj"
 
     // 23 bytes
+    format = Extensible3dGraphics
+    value = b"\xEF\xBB\xBF<!DOCTYPE X3D PUBLIC"
+    value = b"!DOCTYPE X3D PUBLIC"
+    value = b"\xEF\xBB\xBF<X3D"
+    value = b"\xEF\xBB\xBF<x3d"
+    value = b"<X3D"
+    value = b"<x3d"
+
     format = PythonScript
     value = b"#!/usr/local/bin/python"
     value = b"#!/usr/bin/env python"
@@ -608,12 +616,6 @@ signatures! {
 
     format = CanonRaw3
     value = b"ftypcrx" offset = 4
-
-    format = Extensible3dGraphics
-    value = b"\xEF\xBB\xBF<X3D"
-    value = b"\xEF\xBB\xBF<x3d"
-    value = b"<X3D"
-    value = b"<x3d"
 
     format = ExtensibleStylesheetLanguageTransformations
     value = b"\xEF\xBB\xBF<xsl"
