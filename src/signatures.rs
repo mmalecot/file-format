@@ -7,6 +7,19 @@ signatures! {
     value = b"\xEF\xBB\xBF\nMicrosoft Visual Studio Solution File, Format Version "
     value = b"Microsoft Visual Studio Solution File, Format Version "
 
+    // 52 bytes
+    format = Abiword
+    value = b"\xEF\xBB\xBF<!DOCTYPE abiword PUBLIC", b"<abiword template=\"false\"" offset = 102
+    value = b"<!DOCTYPE abiword PUBLIC", b"<abiword template=\"false\"" offset = 102
+    value = b"\xEF\xBB\xBF<abiword template=\"false\""
+    value = b"<abiword template=\"false\""
+
+    format = AbiwordTemplate
+    value = b"\xEF\xBB\xBF<!DOCTYPE abiword PUBLIC", b"<abiword template=\"true\"" offset = 102
+    value = b"<!DOCTYPE abiword PUBLIC", b"<abiword template=\"true\"" offset = 102
+    value = b"\xEF\xBB\xBF<abiword template=\"true\""
+    value = b"<abiword template=\"true\""
+
     // 39 bytes
     format = VirtualboxVirtualDiskImage
     value = b"<<< Oracle VM VirtualBox Disk Image >>>"
@@ -64,14 +77,6 @@ signatures! {
     value = b"-----BEGIN PGP SIGNATURE-----"
 
     // 28 bytes
-    format = Abiword
-    value = b"\xEF\xBB\xBF<abiword template=\"false\""
-    value = b"<abiword template=\"false\""
-
-    format = AbiwordTemplate
-    value = b"\xEF\xBB\xBF<abiword template=\"true\""
-    value = b"<abiword template=\"true\""
-
     format = NeoGeoPocketRom
     value = b" LICENSED BY SNK CORPORATION"
     value = b"COPYRIGHT BY SNK CORPORATION"

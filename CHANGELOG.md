@@ -35,6 +35,8 @@
 
 ## Improvements
 
+- Add precision to the AbiWord (ABW) signature
+- Add precision to the AbiWord Template (AWT) signature
 - Add precision to the Stereolithography Binary (STL) signature
 - Detect Additive Manufacturing Format (AMF) without XML declaration
 - Detect Advanced Stream Redirector (ASX) with XML declaration
