@@ -181,6 +181,12 @@ fn test_sony_dsd_stream_file() {
 }
 
 #[test]
+fn test_soundfont2() {
+    let format = FileFormat::from_file("fixtures/audio/sample.sf2").unwrap();
+    assert_eq!(format, FileFormat::Soundfont2);
+}
+
+#[test]
 fn test_ultimate_soundtracker_module() {
     let format = FileFormat::from_file("fixtures/audio/sample.mod").unwrap();
     assert_eq!(format, FileFormat::UltimateSoundtrackerModule);
