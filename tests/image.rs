@@ -234,6 +234,12 @@ fn test_microsoft_directdraw_surface() {
 }
 
 #[test]
+fn test_multiple_image_network_graphics() {
+    let format = FileFormat::from_file("fixtures/image/sample.mng").unwrap();
+    assert_eq!(format, FileFormat::MultipleImageNetworkGraphics);
+}
+
+#[test]
 fn test_nikon_electronic_file() {
     let format = FileFormat::from_file("fixtures/image/sample.nef").unwrap();
     assert_eq!(format, FileFormat::NikonElectronicFile);
