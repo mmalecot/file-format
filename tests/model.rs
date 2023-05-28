@@ -30,7 +30,7 @@ fn test_extensible3d_graphics() {
 #[test]
 fn test_extensible3d_graphics_no_xml() {
     let format = FileFormat::from_file("fixtures/model/sample-no-xml.x3d").unwrap();
-    assert_eq!(format, FileFormat::Extensible3dGraphics);
+    assert_eq!(format, FileFormat::Extensible3d);
 }
 
 #[test]
