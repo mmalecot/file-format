@@ -70,8 +70,8 @@ impl crate::FileFormat {
         })
     }
 
-    /// Determines file format from a
-    /// [MS-DOS Executable (EXE)](`crate::FileFormat::MsDosExecutable`) reader.
+    /// Determines file format from a [MS-DOS Executable (MZ)](`crate::FileFormat::MsDosExecutable`)
+    /// reader.
     ///
     /// It first seeks to the `0x3C` offset within the reader and reads the `e_lfanew` field.
     ///
@@ -79,7 +79,7 @@ impl crate::FileFormat {
     /// to the `0x12` offset and reads the `Characteristics` field in order to know if it is a
     /// [Dynamic Link Library (DLL)](`crate::FileFormat::DynamicLinkLibrary`) or a
     /// [Portable Executable (PE)](`crate::FileFormat::PortableExecutable`). Otherwise, it returns
-    /// [MS-DOS Executable (EXE)](`crate::FileFormat::MsDosExecutable`).
+    /// [MS-DOS Executable (MZ)](`crate::FileFormat::MsDosExecutable`).
     #[cfg(feature = "reader-exe")]
     pub(crate) fn from_exe_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         reader.seek(SeekFrom::Start(0x3C))?;

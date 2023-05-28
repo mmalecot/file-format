@@ -77,7 +77,7 @@ detected.
   * [Microsoft Software Installer (MSI)](`FileFormat::MicrosoftSoftwareInstaller`)
   * [Microsoft Visio Drawing (VSD)](`FileFormat::MicrosoftVisioDrawing`)
   * [Microsoft Word Document (DOC)](`FileFormat::MicrosoftWordDocument`)
-- `reader-exe` - Enables [MS-DOS Executable (EXE)](`FileFormat::MsDosExecutable`) based file formats
+- `reader-exe` - Enables [MS-DOS Executable (MZ)](`FileFormat::MsDosExecutable`) based file formats
   detection.
   * [Dynamic Link Library (DLL)](`FileFormat::DynamicLinkLibrary`)
   * [Portable Executable (PE)](`FileFormat::PortableExecutable`)

@@ -35,6 +35,7 @@
 - Fix JPEG Extended Range (JXR) name
 - Fix Keyhole Markup Language (KML) detection without XML declaration
 - Fix MPEG-2 Transport Stream (TS) short name and extension
+- Fix MS-DOS Executable (MZ) short name
 - Fix Multiple-image Network Graphics (MNG) media type
 - Fix MusicXML detection without XML declaration
 - Fix PEM Private Key (PEM) signatures

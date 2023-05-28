@@ -231,7 +231,7 @@ file-format = "0.17"
 - Java Class
 - LLVM Bitcode (BC)
 - Lua Bytecode
-- MS-DOS Executable (EXE)
+- MS-DOS Executable (MZ)
 - Mach-O
 - Nintendo Switch Executable (NSO)
 - Optimized Dalvik Executable (DEY)

@@ -1265,7 +1265,7 @@ formats! {
 
     format = MsDosExecutable
     name = "MS-DOS Executable"
-    short_name = "EXE"
+    short_name = "MZ"
     media_type = "application/x-dosexec"
     extension = "exe"
     kind = Executable
