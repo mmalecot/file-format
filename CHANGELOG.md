@@ -19,6 +19,7 @@
 - Fix Extensible Stylesheet Language Transformations (XSLT) detection without XML declaration
 - Fix GPS Exchange Format (GPX) detection without XML declaration
 - Fix Geography Markup Language (GML) detection without XML declaration
+- Fix JPEG 2000 Part 3 (MJ2) kind and media type
 - Fix JPEG Extended Range (JXR) name
 - Fix Keyhole Markup Language (KML) detection without XML declaration
 - Fix MPEG-2 Transport Stream (TS) short name and extension

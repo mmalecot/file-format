@@ -174,12 +174,6 @@ fn test_jpeg2000_part2() {
 }
 
 #[test]
-fn test_jpeg2000_part3() {
-    let format = FileFormat::from_file("fixtures/image/sample.mj2").unwrap();
-    assert_eq!(format, FileFormat::Jpeg2000Part3);
-}
-
-#[test]
 fn test_jpeg2000_part6() {
     let format = FileFormat::from_file("fixtures/image/sample.jpm").unwrap();
     assert_eq!(format, FileFormat::Jpeg2000Part6);

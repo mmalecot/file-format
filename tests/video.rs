@@ -74,6 +74,12 @@ fn test_flash_video() {
 }
 
 #[test]
+fn test_jpeg2000_part3() {
+    let format = FileFormat::from_file("fixtures/video/sample.mj2").unwrap();
+    assert_eq!(format, FileFormat::Jpeg2000Part3);
+}
+
+#[test]
 fn test_matroska_video() {
     let format = FileFormat::from_file("fixtures/video/sample.mkv").unwrap();
     assert_eq!(format, FileFormat::MatroskaVideo);

@@ -807,9 +807,9 @@ formats! {
     format = Jpeg2000Part3
     name = "JPEG 2000 Part 3"
     short_name = "MJ2"
-    media_type = "image/mj2"
+    media_type = "video/mj2"
     extension = "mj2"
-    kind = Image
+    kind = Video
 
     format = Jpeg2000Part6
     name = "JPEG 2000 Part 6"
