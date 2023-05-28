@@ -342,6 +342,7 @@ file-format = "0.17"
 
 ### Model
 
+- Design Web Format (DWF)
 - Design Web Format XPS (DWFX)
 - Digital Asset Exchange (DAE)
 - Extensible 3D (X3D)

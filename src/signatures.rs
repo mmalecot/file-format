@@ -682,6 +682,9 @@ signatures! {
     value = b"\x4D\x4D\x00\x2A", b"CR" offset = 8
     value = b"\x49\x49\x2A\x00", b"CR" offset = 8
 
+    format = DesignWebFormat
+    value = b"(DWF V"
+
     format = GraphicsInterchangeFormat
     value = b"GIF87a"
     value = b"GIF89a"

@@ -38,6 +38,7 @@
 - AbiWord Template (AWT)
 - Advanced Compression Engine (ACE)
 - Atari 7800 ROM (A78)
+- Design Web Format (DWF)
 - Flexible and Interoperable Data Transfer (FIT)
 - Game Gear ROM (GG)
 - JPEG 2000 Codestream (J2C)

@@ -1,5 +1,11 @@
 use file_format::FileFormat;
 
+#[test]
+fn test_design_web_format() {
+    let format = FileFormat::from_file("fixtures/model/sample.dwf").unwrap();
+    assert_eq!(format, FileFormat::DesignWebFormat);
+}
+
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_design_web_format_xps() {

@@ -402,6 +402,13 @@ formats! {
     media_type = "application/x-x509-ca-cert"
     extension = "der"
 
+    format = DesignWebFormat
+    name = "Design Web Format"
+    short_name = "DWF"
+    media_type = "model/vnd.dwf"
+    extension = "dwf"
+    kind = Model
+
     format = DesignWebFormatXps
     name = "Design Web Format XPS"
     short_name = "DWFX"
