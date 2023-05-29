@@ -195,43 +195,47 @@ impl crate::FileFormat {
             true => 8,
             false => 4,
         };
+        const CHAR_LIMIT: usize = match cfg!(feature = "accuracy-xml") {
+            true => 2048,
+            false => 1024,
+        };
         for line in reader.take(READ_LIMIT).lines().take(LINE_LIMIT) {
-            let buffer = line?.to_lowercase();
-            if buffer.contains("<abiword template=\"false\"") {
+            let buffer: Vec<u8> = line?.as_bytes().iter().take(CHAR_LIMIT).copied().collect();
+            if contains(&buffer, b"<abiword template=\"false\"") {
                 return Ok(Self::Abiword);
-            } else if buffer.contains("<abiword template=\"true\"") {
+            } else if contains(&buffer, b"<abiword template=\"true\"") {
                 return Ok(Self::AbiwordTemplate);
-            } else if buffer.contains("<amf") {
+            } else if contains(&buffer, b"<amf") {
                 return Ok(Self::AdditiveManufacturingFormat);
-            } else if buffer.contains("<asx") {
+            } else if contains(&buffer, b"<ASX") || contains(&buffer, b"<asx") {
                 return Ok(Self::AdvancedStreamRedirector);
-            } else if buffer.contains("<collada") {
+            } else if contains(&buffer, b"<COLLADA") || contains(&buffer, b"<collada") {
                 return Ok(Self::DigitalAssetExchange);
-            } else if buffer.contains("<mxfile") {
+            } else if contains(&buffer, b"<mxfile") {
                 return Ok(Self::Drawio);
-            } else if buffer.contains("<x3d") {
+            } else if contains(&buffer, b"<X3D") || contains(&buffer, b"<x3d") {
                 return Ok(Self::Extensible3d);
-            } else if buffer.contains("<xsl") {
+            } else if contains(&buffer, b"<xsl") {
                 return Ok(Self::ExtensibleStylesheetLanguageTransformations);
-            } else if buffer.contains("<gml") {
+            } else if contains(&buffer, b"<gml") {
                 return Ok(Self::GeographyMarkupLanguage);
-            } else if buffer.contains("<gpx") {
+            } else if contains(&buffer, b"<gpx") {
                 return Ok(Self::GpsExchangeFormat);
-            } else if buffer.contains("<kml") {
+            } else if contains(&buffer, b"<kml") {
                 return Ok(Self::KeyholeMarkupLanguage);
-            } else if buffer.contains("<score-partwise") {
+            } else if contains(&buffer, b"<score-partwise") {
                 return Ok(Self::Musicxml);
-            } else if buffer.contains("<rss") {
+            } else if contains(&buffer, b"<rss") {
                 return Ok(Self::ReallySimpleSyndication);
-            } else if buffer.contains("<svg") {
+            } else if contains(&buffer, b"<svg") {
                 return Ok(Self::ScalableVectorGraphics);
-            } else if buffer.contains("<soap") {
+            } else if contains(&buffer, b"<soap") {
                 return Ok(Self::SimpleObjectAccessProtocol);
-            } else if buffer.contains("<trainingcenterdatabase") {
+            } else if contains(&buffer, b"<TrainingCenterDatabase") {
                 return Ok(Self::TrainingCenterXml);
-            } else if buffer.contains("<xliff") {
+            } else if contains(&buffer, b"<xliff") {
                 return Ok(Self::XmlLocalizationInterchangeFileFormat);
-            } else if buffer.contains("<playlist") {
+            } else if contains(&buffer, b"<playlist") {
                 return Ok(Self::XmlShareablePlaylistFormat);
             }
         }
@@ -338,32 +342,42 @@ impl crate::FileFormat {
 }
 
 /// Checks if the `data` array contains the `target` sequence using the Boyer-Moore algorithm.
-#[cfg(any(feature = "reader-mkv", feature = "reader-pdf"))]
+#[cfg(any(feature = "reader-mkv", feature = "reader-pdf", feature = "reader-xml"))]
 fn contains(data: &[u8], target: &[u8]) -> bool {
-    let data_len = data.len();
-    let target_len = target.len();
-    if target_len > data_len {
+    // An empty target sequence is always considered to be contained in the data.
+    if target.is_empty() {
+        return true;
+    }
+
+    // The data array is shorter than the target sequence, so it cannot contain the target.
+    if data.len() < target.len() {
         return false;
     }
-    let mut skip_table = [0; 256];
-    for (index, &val) in target.iter().enumerate().rev() {
-        skip_table[val as usize] = index;
+
+    // Builds the bad character shift table.
+    let mut bad_char_table = [0; 256];
+    for (index, &char) in target.iter().enumerate().take(target.len() - 1) {
+        bad_char_table[char as usize] = target.len() - 1 - index;
     }
-    let mut data_index = target_len - 1;
-    while data_index < data_len {
-        let mut target_index = target_len;
-        while target_index > 0 && target[target_index - 1] == data[data_index] {
+
+    // Starts searching from the last possible position in the data array.
+    let mut pos = target.len() - 1;
+    while pos < data.len() {
+        let mut target_index = target.len() - 1;
+        let mut data_index = pos;
+        while data[data_index] == target[target_index] {
+            if target_index == 0 {
+                return true;
+            }
             target_index -= 1;
             data_index -= 1;
         }
-        if target_index == 0 {
-            return true;
-        }
-        if target_index < skip_table[data[data_index] as usize] + 1 {
-            data_index += target_len - target_index;
-        } else {
-            data_index += target_len - skip_table[data[data_index] as usize] - 1;
-        }
+
+        // Calculates the maximum shift based on the bad character rule and good suffix rule.
+        let bad_char_shift = bad_char_table[data[pos] as usize];
+        let good_suffix_shift = target.len() - target_index;
+        let shift = std::cmp::max(bad_char_shift, good_suffix_shift);
+        pos += shift;
     }
     false
 }

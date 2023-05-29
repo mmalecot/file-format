@@ -54,6 +54,7 @@
 - Detect XML Shareable Playlist Format (XSPF) without XML declaration
 - Detect draw.io (DRAWIO) without XML declaration
 - Distinguish between BDAV MPEG-2 Transport Stream (MT2S) and MPEG-2 Transport Stream (TS)
+- Optimize detection of XML-based file formats when using the `reader-xml` feature
 
 ## New formats support
 
