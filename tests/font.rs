@@ -13,6 +13,12 @@ fn test_bitmap_font_binary() {
 }
 
 #[test]
+fn test_embedded_opentype() {
+    let format = FileFormat::from_file("fixtures/font/sample.eot").unwrap();
+    assert_eq!(format, FileFormat::EmbeddedOpentype);
+}
+
+#[test]
 fn test_opentype() {
     let format = FileFormat::from_file("fixtures/font/sample.otf").unwrap();
     assert_eq!(format, FileFormat::Opentype);

@@ -1,5 +1,30 @@
 use file_format::FileFormat;
 
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_additive_manufacturing_format() {
+    let format = FileFormat::from_file("fixtures/model/sample.amf").unwrap();
+    assert_eq!(format, FileFormat::AdditiveManufacturingFormat);
+}
+
+#[test]
+fn test_additive_manufacturing_format_no_xml() {
+    let format = FileFormat::from_file("fixtures/model/sample-no-xml.amf").unwrap();
+    assert_eq!(format, FileFormat::AdditiveManufacturingFormat);
+}
+
+#[test]
+fn test_autocad_drawing() {
+    let format = FileFormat::from_file("fixtures/model/sample.dwg").unwrap();
+    assert_eq!(format, FileFormat::AutocadDrawing);
+}
+
+#[test]
+fn test_blender() {
+    let format = FileFormat::from_file("fixtures/model/sample.blend").unwrap();
+    assert_eq!(format, FileFormat::Blender);
+}
+
 #[test]
 fn test_design_web_format() {
     let format = FileFormat::from_file("fixtures/model/sample.dwf").unwrap();
@@ -26,6 +51,18 @@ fn test_digital_asset_exchange_no_xml() {
     assert_eq!(format, FileFormat::DigitalAssetExchange);
 }
 
+#[test]
+fn test_drawing_exchange_format_ascii() {
+    let format = FileFormat::from_file("fixtures/model/sample-ascii.dxf").unwrap();
+    assert_eq!(format, FileFormat::DrawingExchangeFormatAscii);
+}
+
+#[test]
+fn test_drawing_exchange_format_binary() {
+    let format = FileFormat::from_file("fixtures/model/sample-binary.dxf").unwrap();
+    assert_eq!(format, FileFormat::DrawingExchangeFormatBinary);
+}
+
 #[cfg(feature = "reader-xml")]
 #[test]
 fn test_extensible3d_graphics() {
@@ -37,6 +74,12 @@ fn test_extensible3d_graphics() {
 fn test_extensible3d_graphics_no_xml() {
     let format = FileFormat::from_file("fixtures/model/sample-no-xml.x3d").unwrap();
     assert_eq!(format, FileFormat::Extensible3d);
+}
+
+#[test]
+fn test_filmbox() {
+    let format = FileFormat::from_file("fixtures/model/sample.fbx").unwrap();
+    assert_eq!(format, FileFormat::Filmbox);
 }
 
 #[test]
@@ -70,6 +113,24 @@ fn test_magicavoxel() {
 }
 
 #[test]
+fn test_maya_ascii() {
+    let format = FileFormat::from_file("fixtures/model/sample.ma").unwrap();
+    assert_eq!(format, FileFormat::MayaAscii);
+}
+
+#[test]
+fn test_maya_binary() {
+    let format = FileFormat::from_file("fixtures/model/sample.mb").unwrap();
+    assert_eq!(format, FileFormat::MayaBinary);
+}
+
+#[test]
+fn test_model3d_ascii() {
+    let format = FileFormat::from_file("fixtures/model/sample.a3d").unwrap();
+    assert_eq!(format, FileFormat::Model3dAscii);
+}
+
+#[test]
 fn test_model3d_binary() {
     let format = FileFormat::from_file("fixtures/model/sample.m3d").unwrap();
     assert_eq!(format, FileFormat::Model3dBinary);
@@ -88,6 +149,12 @@ fn test_polygon_binary() {
 }
 
 #[test]
+fn test_sketchup() {
+    let format = FileFormat::from_file("fixtures/model/sample.skp").unwrap();
+    assert_eq!(format, FileFormat::Sketchup);
+}
+
+#[test]
 fn test_stereolithography_ascii() {
     let format = FileFormat::from_file("fixtures/model/sample-ascii.stl").unwrap();
     assert_eq!(format, FileFormat::StereolithographyAscii);
@@ -97,6 +164,26 @@ fn test_stereolithography_ascii() {
 fn test_stereolithography_binary() {
     let format = FileFormat::from_file("fixtures/model/sample-binary.stl").unwrap();
     assert_eq!(format, FileFormat::StereolithographyBinary);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_three_dimensional_manufacturing_format() {
+    let format = FileFormat::from_file("fixtures/model/sample.3mf").unwrap();
+    assert_eq!(format, FileFormat::ThreeDimensionalManufacturingFormat);
+}
+
+#[test]
+fn test_three_dimensional_studio() {
+    let format = FileFormat::from_file("fixtures/model/sample.3ds").unwrap();
+    assert_eq!(format, FileFormat::ThreeDimensionalStudio);
+}
+
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_three_dimensional_studio_max() {
+    let format = FileFormat::from_file("fixtures/model/sample.max").unwrap();
+    assert_eq!(format, FileFormat::ThreeDimensionalStudioMax);
 }
 
 #[test]

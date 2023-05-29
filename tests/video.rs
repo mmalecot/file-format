@@ -18,19 +18,6 @@ fn test_adobe_flash_player_video() {
     assert_eq!(format, FileFormat::AdobeFlashPlayerVideo);
 }
 
-#[cfg(feature = "reader-xml")]
-#[test]
-fn test_advanced_stream_redirector() {
-    let format = FileFormat::from_file("fixtures/video/sample.asx").unwrap();
-    assert_eq!(format, FileFormat::AdvancedStreamRedirector);
-}
-
-#[test]
-fn test_advanced_stream_redirector_no_xml() {
-    let format = FileFormat::from_file("fixtures/video/sample-no-xml.asx").unwrap();
-    assert_eq!(format, FileFormat::AdvancedStreamRedirector);
-}
-
 #[test]
 fn test_apple_itunes_video() {
     let format = FileFormat::from_file("fixtures/video/sample.m4v").unwrap();
@@ -77,6 +64,12 @@ fn test_flash_video() {
 fn test_jpeg2000_part3() {
     let format = FileFormat::from_file("fixtures/video/sample.mj2").unwrap();
     assert_eq!(format, FileFormat::Jpeg2000Part3);
+}
+
+#[test]
+fn test_material_exchange_format() {
+    let format = FileFormat::from_file("fixtures/video/sample.mxf").unwrap();
+    assert_eq!(format, FileFormat::MaterialExchangeFormat);
 }
 
 #[test]

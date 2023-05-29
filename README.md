@@ -21,7 +21,7 @@ Determines from a file:
 ```rust
 use file_format::{FileFormat, Kind};
 
-let format = FileFormat::from_file("fixtures/application/sample.pdf")?;
+let format = FileFormat::from_file("fixtures/document/sample.pdf")?;
 assert_eq!(format, FileFormat::PortableDocumentFormat);
 assert_eq!(format.name(), "Portable Document Format");
 assert_eq!(format.short_name(), Some("PDF"));

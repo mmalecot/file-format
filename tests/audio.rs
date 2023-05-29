@@ -91,12 +91,6 @@ fn test_monkeys_audio() {
 }
 
 #[test]
-fn test_mp3_url() {
-    let format = FileFormat::from_file("fixtures/audio/sample.m3u").unwrap();
-    assert_eq!(format, FileFormat::Mp3Url);
-}
-
-#[test]
 fn test_mpeg12_audio_layer3() {
     let format = FileFormat::from_file("fixtures/audio/sample.mp3").unwrap();
     assert_eq!(format, FileFormat::Mpeg12AudioLayer3);
@@ -166,12 +160,6 @@ fn test_quite_ok_audio() {
 fn test_scream_tracker3_module() {
     let format = FileFormat::from_file("fixtures/audio/sample.s3m").unwrap();
     assert_eq!(format, FileFormat::ScreamTracker3Module);
-}
-
-#[test]
-fn test_shoutcast_playlist() {
-    let format = FileFormat::from_file("fixtures/audio/sample.pls").unwrap();
-    assert_eq!(format, FileFormat::ShoutcastPlaylist);
 }
 
 #[test]

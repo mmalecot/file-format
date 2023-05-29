@@ -6,6 +6,13 @@ fn test_adaptable_scalable_texture_compression() {
     assert_eq!(format, FileFormat::AdaptableScalableTextureCompression);
 }
 
+#[cfg(feature = "reader-pdf")]
+#[test]
+fn test_adobe_illustrator_artwork() {
+    let format = FileFormat::from_file("fixtures/image/sample.ai").unwrap();
+    assert_eq!(format, FileFormat::AdobeIllustratorArtwork);
+}
+
 #[test]
 fn test_adobe_photoshop_document() {
     let format = FileFormat::from_file("fixtures/image/sample.psd").unwrap();
@@ -22,12 +29,6 @@ fn test_animated_portable_network_graphics() {
 fn test_apple_icon_image() {
     let format = FileFormat::from_file("fixtures/image/sample.icns").unwrap();
     assert_eq!(format, FileFormat::AppleIconImage);
-}
-
-#[test]
-fn test_autocad_drawing() {
-    let format = FileFormat::from_file("fixtures/image/sample.dwg").unwrap();
-    assert_eq!(format, FileFormat::AutocadDrawing);
 }
 
 #[test]
@@ -76,18 +77,6 @@ fn test_digital_picture_exchange() {
 fn test_djvu() {
     let format = FileFormat::from_file("fixtures/image/sample.djvu").unwrap();
     assert_eq!(format, FileFormat::Djvu);
-}
-
-#[test]
-fn test_drawing_exchange_format_ascii() {
-    let format = FileFormat::from_file("fixtures/image/sample-ascii.dxf").unwrap();
-    assert_eq!(format, FileFormat::DrawingExchangeFormatAscii);
-}
-
-#[test]
-fn test_drawing_exchange_format_binary() {
-    let format = FileFormat::from_file("fixtures/image/sample-binary.dxf").unwrap();
-    assert_eq!(format, FileFormat::DrawingExchangeFormatBinary);
 }
 
 #[test]
@@ -335,6 +324,12 @@ fn test_tag_image_file_format() {
 fn test_webp() {
     let format = FileFormat::from_file("fixtures/image/sample.webp").unwrap();
     assert_eq!(format, FileFormat::Webp);
+}
+
+#[test]
+fn test_windows_animated_cursor() {
+    let format = FileFormat::from_file("fixtures/image/sample.ani").unwrap();
+    assert_eq!(format, FileFormat::WindowsAnimatedCursor);
 }
 
 #[test]
