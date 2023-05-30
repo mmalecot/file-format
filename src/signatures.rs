@@ -585,15 +585,19 @@ signatures! {
 
     format = AdobeFlashPlayerAudio
     value = b"ftypF4A" offset = 4
+    value = b"ftypf4a" offset = 4
 
     format = AdobeFlashPlayerAudiobook
     value = b"ftypF4B" offset = 4
+    value = b"ftypf4b" offset = 4
 
     format = AdobeFlashPlayerProtectedVideo
     value = b"ftypF4P" offset = 4
+    value = b"ftypf4p" offset = 4
 
     format = AdobeFlashPlayerVideo
     value = b"ftypF4V" offset = 4
+    value = b"ftypf4v" offset = 4
 
     format = AdvancedCompressionEngine
     value = b"**ACE**" offset = 7

@@ -37,6 +37,10 @@
 
 - Add precision to the AbiWord (ABW) signature
 - Add precision to the AbiWord Template (AWT) signature
+- Add precision to the Adobe Flash Player Audio (F4A) signature
+- Add precision to the Adobe Flash Player Audiobook (F4B) signature
+- Add precision to the Adobe Flash Player Protected Video (F4P) signature
+- Add precision to the Adobe Flash Player Video (F4V) signature
 - Add precision to the Stereolithography Binary (STL) signature
 - Detect Additive Manufacturing Format (AMF) without XML declaration
 - Detect Advanced Stream Redirector (ASX) with XML declaration
