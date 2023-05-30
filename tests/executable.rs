@@ -50,7 +50,7 @@ fn test_mach_o() {
 
 #[test]
 fn test_ms_dos_executable() {
-    let format = FileFormat::from_file("fixtures/executable/sample.exe").unwrap();
+    let format = FileFormat::from_file("fixtures/executable/sample1.exe").unwrap();
     assert_eq!(format, FileFormat::MsDosExecutable);
 }
 
@@ -69,7 +69,7 @@ fn test_optimized_dalvik_executable() {
 #[cfg(feature = "reader-exe")]
 #[test]
 fn test_portable_executable() {
-    let format = FileFormat::from_file("fixtures/executable/sample-pe.exe").unwrap();
+    let format = FileFormat::from_file("fixtures/executable/sample2.exe").unwrap();
     assert_eq!(format, FileFormat::PortableExecutable);
 }
 

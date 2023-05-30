@@ -1,15 +1,15 @@
 use file_format::FileFormat;
 
-#[cfg(feature = "reader-xml")]
 #[test]
-fn test_additive_manufacturing_format() {
-    let format = FileFormat::from_file("fixtures/model/sample.amf").unwrap();
+fn test_additive_manufacturing_format_1() {
+    let format = FileFormat::from_file("fixtures/model/sample1.amf").unwrap();
     assert_eq!(format, FileFormat::AdditiveManufacturingFormat);
 }
 
+#[cfg(feature = "reader-xml")]
 #[test]
-fn test_additive_manufacturing_format_no_xml() {
-    let format = FileFormat::from_file("fixtures/model/sample-no-xml.amf").unwrap();
+fn test_additive_manufacturing_format_2() {
+    let format = FileFormat::from_file("fixtures/model/sample2.amf").unwrap();
     assert_eq!(format, FileFormat::AdditiveManufacturingFormat);
 }
 
@@ -38,41 +38,41 @@ fn test_design_web_format_xps() {
     assert_eq!(format, FileFormat::DesignWebFormatXps);
 }
 
-#[cfg(feature = "reader-xml")]
 #[test]
-fn test_digital_asset_exchange() {
-    let format = FileFormat::from_file("fixtures/model/sample.dae").unwrap();
+fn test_digital_asset_exchange_1() {
+    let format = FileFormat::from_file("fixtures/model/sample1.dae").unwrap();
     assert_eq!(format, FileFormat::DigitalAssetExchange);
 }
 
+#[cfg(feature = "reader-xml")]
 #[test]
-fn test_digital_asset_exchange_no_xml() {
-    let format = FileFormat::from_file("fixtures/model/sample-no-xml.dae").unwrap();
+fn test_digital_asset_exchange_2() {
+    let format = FileFormat::from_file("fixtures/model/sample2.dae").unwrap();
     assert_eq!(format, FileFormat::DigitalAssetExchange);
 }
 
 #[test]
 fn test_drawing_exchange_format_ascii() {
-    let format = FileFormat::from_file("fixtures/model/sample-ascii.dxf").unwrap();
+    let format = FileFormat::from_file("fixtures/model/sample1.dxf").unwrap();
     assert_eq!(format, FileFormat::DrawingExchangeFormatAscii);
 }
 
 #[test]
 fn test_drawing_exchange_format_binary() {
-    let format = FileFormat::from_file("fixtures/model/sample-binary.dxf").unwrap();
+    let format = FileFormat::from_file("fixtures/model/sample2.dxf").unwrap();
     assert_eq!(format, FileFormat::DrawingExchangeFormatBinary);
+}
+
+#[test]
+fn test_extensible3d_graphics_1() {
+    let format = FileFormat::from_file("fixtures/model/sample1.x3d").unwrap();
+    assert_eq!(format, FileFormat::Extensible3d);
 }
 
 #[cfg(feature = "reader-xml")]
 #[test]
-fn test_extensible3d_graphics() {
-    let format = FileFormat::from_file("fixtures/model/sample.x3d").unwrap();
-    assert_eq!(format, FileFormat::Extensible3d);
-}
-
-#[test]
-fn test_extensible3d_graphics_no_xml() {
-    let format = FileFormat::from_file("fixtures/model/sample-no-xml.x3d").unwrap();
+fn test_extensible3d_graphics_2() {
+    let format = FileFormat::from_file("fixtures/model/sample2.x3d").unwrap();
     assert_eq!(format, FileFormat::Extensible3d);
 }
 
@@ -138,13 +138,13 @@ fn test_model3d_binary() {
 
 #[test]
 fn test_polygon_ascii() {
-    let format = FileFormat::from_file("fixtures/model/sample-ascii.ply").unwrap();
+    let format = FileFormat::from_file("fixtures/model/sample1.ply").unwrap();
     assert_eq!(format, FileFormat::PolygonAscii);
 }
 
 #[test]
 fn test_polygon_binary() {
-    let format = FileFormat::from_file("fixtures/model/sample-binary.ply").unwrap();
+    let format = FileFormat::from_file("fixtures/model/sample2.ply").unwrap();
     assert_eq!(format, FileFormat::PolygonBinary);
 }
 
@@ -156,13 +156,13 @@ fn test_sketchup() {
 
 #[test]
 fn test_stereolithography_ascii() {
-    let format = FileFormat::from_file("fixtures/model/sample-ascii.stl").unwrap();
+    let format = FileFormat::from_file("fixtures/model/sample1.stl").unwrap();
     assert_eq!(format, FileFormat::StereolithographyAscii);
 }
 
 #[test]
 fn test_stereolithography_binary() {
-    let format = FileFormat::from_file("fixtures/model/sample-binary.stl").unwrap();
+    let format = FileFormat::from_file("fixtures/model/sample2.stl").unwrap();
     assert_eq!(format, FileFormat::StereolithographyBinary);
 }
 

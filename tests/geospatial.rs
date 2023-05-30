@@ -6,42 +6,42 @@ fn test_flexible_and_interoperable_data_transfer() {
     assert_eq!(format, FileFormat::FlexibleAndInteroperableDataTransfer);
 }
 
-#[cfg(feature = "reader-xml")]
 #[test]
-fn test_geography_markup_language() {
-    let format = FileFormat::from_file("fixtures/geospatial/sample.gml").unwrap();
-    assert_eq!(format, FileFormat::GeographyMarkupLanguage);
-}
-
-#[test]
-fn test_geography_markup_language_no_xml() {
-    let format = FileFormat::from_file("fixtures/geospatial/sample-no-xml.gml").unwrap();
+fn test_geography_markup_language_1() {
+    let format = FileFormat::from_file("fixtures/geospatial/sample1.gml").unwrap();
     assert_eq!(format, FileFormat::GeographyMarkupLanguage);
 }
 
 #[cfg(feature = "reader-xml")]
 #[test]
-fn test_gps_exchange_format() {
-    let format = FileFormat::from_file("fixtures/geospatial/sample.gpx").unwrap();
-    assert_eq!(format, FileFormat::GpsExchangeFormat);
+fn test_geography_markup_language_2() {
+    let format = FileFormat::from_file("fixtures/geospatial/sample2.gml").unwrap();
+    assert_eq!(format, FileFormat::GeographyMarkupLanguage);
 }
 
 #[test]
-fn test_gps_exchange_format_no_xml() {
-    let format = FileFormat::from_file("fixtures/geospatial/sample-no-xml.gpx").unwrap();
+fn test_gps_exchange_format_1() {
+    let format = FileFormat::from_file("fixtures/geospatial/sample1.gpx").unwrap();
     assert_eq!(format, FileFormat::GpsExchangeFormat);
 }
 
 #[cfg(feature = "reader-xml")]
 #[test]
-fn test_keyhole_markup_language() {
-    let format = FileFormat::from_file("fixtures/geospatial/sample.kml").unwrap();
+fn test_gps_exchange_format_2() {
+    let format = FileFormat::from_file("fixtures/geospatial/sample2.gpx").unwrap();
+    assert_eq!(format, FileFormat::GpsExchangeFormat);
+}
+
+#[test]
+fn test_keyhole_markup_language_1() {
+    let format = FileFormat::from_file("fixtures/geospatial/sample1.kml").unwrap();
     assert_eq!(format, FileFormat::KeyholeMarkupLanguage);
 }
 
+#[cfg(feature = "reader-xml")]
 #[test]
-fn test_keyhole_markup_language_no_xml() {
-    let format = FileFormat::from_file("fixtures/geospatial/sample-no-xml.kml").unwrap();
+fn test_keyhole_markup_language_2() {
+    let format = FileFormat::from_file("fixtures/geospatial/sample2.kml").unwrap();
     assert_eq!(format, FileFormat::KeyholeMarkupLanguage);
 }
 
@@ -58,15 +58,15 @@ fn test_shapefile() {
     assert_eq!(format, FileFormat::Shapefile);
 }
 
-#[cfg(feature = "reader-xml")]
 #[test]
-fn test_training_center_xml() {
-    let format = FileFormat::from_file("fixtures/geospatial/sample.tcx").unwrap();
+fn test_training_center_xml_1() {
+    let format = FileFormat::from_file("fixtures/geospatial/sample1.tcx").unwrap();
     assert_eq!(format, FileFormat::TrainingCenterXml);
 }
 
+#[cfg(feature = "reader-xml")]
 #[test]
-fn test_training_center_xml_no_xml() {
-    let format = FileFormat::from_file("fixtures/geospatial/sample-no-xml.tcx").unwrap();
+fn test_training_center_xml_2() {
+    let format = FileFormat::from_file("fixtures/geospatial/sample2.tcx").unwrap();
     assert_eq!(format, FileFormat::TrainingCenterXml);
 }

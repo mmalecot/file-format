@@ -1,15 +1,15 @@
 use file_format::FileFormat;
 
-#[cfg(feature = "reader-xml")]
 #[test]
-fn test_advanced_stream_redirector() {
-    let format = FileFormat::from_file("fixtures/playlist/sample.asx").unwrap();
+fn test_advanced_stream_redirector_1() {
+    let format = FileFormat::from_file("fixtures/playlist/sample1.asx").unwrap();
     assert_eq!(format, FileFormat::AdvancedStreamRedirector);
 }
 
+#[cfg(feature = "reader-xml")]
 #[test]
-fn test_advanced_stream_redirector_no_xml() {
-    let format = FileFormat::from_file("fixtures/playlist/sample-no-xml.asx").unwrap();
+fn test_advanced_stream_redirector_2() {
+    let format = FileFormat::from_file("fixtures/playlist/sample2.asx").unwrap();
     assert_eq!(format, FileFormat::AdvancedStreamRedirector);
 }
 
@@ -25,15 +25,15 @@ fn test_shoutcast_playlist() {
     assert_eq!(format, FileFormat::ShoutcastPlaylist);
 }
 
-#[cfg(feature = "reader-xml")]
 #[test]
-fn test_xml_shareable_playlist() {
-    let format = FileFormat::from_file("fixtures/playlist/sample.xspf").unwrap();
+fn test_xml_shareable_playlist_1() {
+    let format = FileFormat::from_file("fixtures/playlist/sample1.xspf").unwrap();
     assert_eq!(format, FileFormat::XmlShareablePlaylistFormat);
 }
 
+#[cfg(feature = "reader-xml")]
 #[test]
-fn test_xml_shareable_playlist_no_xml() {
-    let format = FileFormat::from_file("fixtures/playlist/sample-no-xml.xspf").unwrap();
+fn test_xml_shareable_playlist_2() {
+    let format = FileFormat::from_file("fixtures/playlist/sample2.xspf").unwrap();
     assert_eq!(format, FileFormat::XmlShareablePlaylistFormat);
 }

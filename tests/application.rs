@@ -63,19 +63,19 @@ fn test_encapsulated_postscript() {
     assert_eq!(format, FileFormat::EncapsulatedPostscript);
 }
 
-#[cfg(feature = "reader-xml")]
 #[test]
-fn test_extensible_stylesheet_language_transformations() {
-    let format = FileFormat::from_file("fixtures/application/sample.xsl").unwrap();
+fn test_extensible_stylesheet_language_transformations_1() {
+    let format = FileFormat::from_file("fixtures/application/sample1.xsl").unwrap();
     assert_eq!(
         format,
         FileFormat::ExtensibleStylesheetLanguageTransformations
     );
 }
 
+#[cfg(feature = "reader-xml")]
 #[test]
-fn test_extensible_stylesheet_language_transformations_no_xml() {
-    let format = FileFormat::from_file("fixtures/application/sample-no-xml.xsl").unwrap();
+fn test_extensible_stylesheet_language_transformations_2() {
+    let format = FileFormat::from_file("fixtures/application/sample2.xsl").unwrap();
     assert_eq!(
         format,
         FileFormat::ExtensibleStylesheetLanguageTransformations
@@ -142,16 +142,16 @@ fn test_microsoft_visual_studio_solution() {
     assert_eq!(format, FileFormat::MicrosoftVisualStudioSolution);
 }
 
-#[cfg(feature = "reader-xml")]
 #[test]
-fn test_musicxml() {
-    let format = FileFormat::from_file("fixtures/application/sample.musicxml").unwrap();
+fn test_musicxml_1() {
+    let format = FileFormat::from_file("fixtures/application/sample1.musicxml").unwrap();
     assert_eq!(format, FileFormat::Musicxml);
 }
 
+#[cfg(feature = "reader-xml")]
 #[test]
-fn test_musicxml_no_xml() {
-    let format = FileFormat::from_file("fixtures/application/sample-no-xml.musicxml").unwrap();
+fn test_musicxml_2() {
+    let format = FileFormat::from_file("fixtures/application/sample2.musicxml").unwrap();
     assert_eq!(format, FileFormat::Musicxml);
 }
 
@@ -201,7 +201,7 @@ fn test_pem_private_key() {
 
 #[test]
 fn test_pem_public_key() {
-    let format = FileFormat::from_file("fixtures/application/sample-pem.pub").unwrap();
+    let format = FileFormat::from_file("fixtures/application/sample.pub").unwrap();
     assert_eq!(format, FileFormat::PemPublicKey);
 }
 
@@ -213,32 +213,31 @@ fn test_personal_storage_table() {
 
 #[test]
 fn test_pgp_message() {
-    let format = FileFormat::from_file("fixtures/application/sample-pgp-message.asc").unwrap();
+    let format = FileFormat::from_file("fixtures/application/sample1.asc").unwrap();
     assert_eq!(format, FileFormat::PgpMessage);
 }
 
 #[test]
 fn test_pgp_private_key_block() {
-    let format = FileFormat::from_file("fixtures/application/sample-pgp-private-key.asc").unwrap();
+    let format = FileFormat::from_file("fixtures/application/sample2.asc").unwrap();
     assert_eq!(format, FileFormat::PgpPrivateKeyBlock);
 }
 
 #[test]
 fn test_pgp_public_key_block() {
-    let format = FileFormat::from_file("fixtures/application/sample-pgp-public-key.asc").unwrap();
+    let format = FileFormat::from_file("fixtures/application/sample3.asc").unwrap();
     assert_eq!(format, FileFormat::PgpPublicKeyBlock);
 }
 
 #[test]
 fn test_pgp_signature() {
-    let format = FileFormat::from_file("fixtures/application/sample-pgp-signature.asc").unwrap();
+    let format = FileFormat::from_file("fixtures/application/sample4.asc").unwrap();
     assert_eq!(format, FileFormat::PgpSignature);
 }
 
 #[test]
 fn test_pgp_signed_message() {
-    let format =
-        FileFormat::from_file("fixtures/application/sample-pgp-signed-message.asc").unwrap();
+    let format = FileFormat::from_file("fixtures/application/sample5.asc").unwrap();
     assert_eq!(format, FileFormat::PgpSignedMessage);
 }
 
@@ -248,29 +247,29 @@ fn test_postscript() {
     assert_eq!(format, FileFormat::Postscript);
 }
 
-#[cfg(feature = "reader-xml")]
 #[test]
-fn test_really_simple_syndication() {
-    let format = FileFormat::from_file("fixtures/application/sample.rss").unwrap();
-    assert_eq!(format, FileFormat::ReallySimpleSyndication);
-}
-
-#[test]
-fn test_really_simple_syndication_no_xml() {
-    let format = FileFormat::from_file("fixtures/application/sample-no-xml.rss").unwrap();
+fn test_really_simple_syndication_1() {
+    let format = FileFormat::from_file("fixtures/application/sample1.rss").unwrap();
     assert_eq!(format, FileFormat::ReallySimpleSyndication);
 }
 
 #[cfg(feature = "reader-xml")]
 #[test]
-fn test_simple_object_access_protocol() {
-    let format = FileFormat::from_file("fixtures/application/sample.soap").unwrap();
+fn test_really_simple_syndication_2() {
+    let format = FileFormat::from_file("fixtures/application/sample2.rss").unwrap();
+    assert_eq!(format, FileFormat::ReallySimpleSyndication);
+}
+
+#[test]
+fn test_simple_object_access_protocol_1() {
+    let format = FileFormat::from_file("fixtures/application/sample1.soap").unwrap();
     assert_eq!(format, FileFormat::SimpleObjectAccessProtocol);
 }
 
+#[cfg(feature = "reader-xml")]
 #[test]
-fn test_simple_object_access_protocol_no_xml() {
-    let format = FileFormat::from_file("fixtures/application/sample-no-xml.soap").unwrap();
+fn test_simple_object_access_protocol_2() {
+    let format = FileFormat::from_file("fixtures/application/sample2.soap").unwrap();
     assert_eq!(format, FileFormat::SimpleObjectAccessProtocol);
 }
 
@@ -304,15 +303,15 @@ fn test_windows_shortcut() {
     assert_eq!(format, FileFormat::WindowsShortcut);
 }
 
-#[cfg(feature = "reader-xml")]
 #[test]
-fn test_xml_localization_interchange_file_format() {
-    let format = FileFormat::from_file("fixtures/application/sample.xlf").unwrap();
+fn test_xml_localization_interchange_file_format_1() {
+    let format = FileFormat::from_file("fixtures/application/sample1.xlf").unwrap();
     assert_eq!(format, FileFormat::XmlLocalizationInterchangeFileFormat);
 }
 
+#[cfg(feature = "reader-xml")]
 #[test]
-fn test_xml_localization_interchange_file_format_no_xml() {
-    let format = FileFormat::from_file("fixtures/application/sample-no-xml.xlf").unwrap();
+fn test_xml_localization_interchange_file_format_2() {
+    let format = FileFormat::from_file("fixtures/application/sample2.xlf").unwrap();
     assert_eq!(format, FileFormat::XmlLocalizationInterchangeFileFormat);
 }

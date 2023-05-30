@@ -1,28 +1,28 @@
 use file_format::FileFormat;
 
-#[cfg(feature = "reader-xml")]
 #[test]
-fn test_abiword() {
-    let format = FileFormat::from_file("fixtures/document/sample.abw").unwrap();
-    assert_eq!(format, FileFormat::Abiword);
-}
-
-#[test]
-fn test_abiword_no_xml() {
-    let format = FileFormat::from_file("fixtures/document/sample-no-xml.abw").unwrap();
+fn test_abiword_1() {
+    let format = FileFormat::from_file("fixtures/document/sample1.abw").unwrap();
     assert_eq!(format, FileFormat::Abiword);
 }
 
 #[cfg(feature = "reader-xml")]
 #[test]
-fn test_abiword_template() {
-    let format = FileFormat::from_file("fixtures/document/sample.awt").unwrap();
+fn test_abiword_2() {
+    let format = FileFormat::from_file("fixtures/document/sample2.abw").unwrap();
+    assert_eq!(format, FileFormat::Abiword);
+}
+
+#[test]
+fn test_abiword_template_1() {
+    let format = FileFormat::from_file("fixtures/document/sample1.awt").unwrap();
     assert_eq!(format, FileFormat::AbiwordTemplate);
 }
 
+#[cfg(feature = "reader-xml")]
 #[test]
-fn test_abiword_template_no_xml() {
-    let format = FileFormat::from_file("fixtures/document/sample-no-xml.awt").unwrap();
+fn test_abiword_template_2() {
+    let format = FileFormat::from_file("fixtures/document/sample2.awt").unwrap();
     assert_eq!(format, FileFormat::AbiwordTemplate);
 }
 
@@ -39,16 +39,16 @@ fn test_circuit_diagram_document() {
     assert_eq!(format, FileFormat::CircuitDiagramDocument);
 }
 
-#[cfg(feature = "reader-xml")]
 #[test]
-fn test_drawio() {
-    let format = FileFormat::from_file("fixtures/document/sample.drawio").unwrap();
+fn test_drawio_1() {
+    let format = FileFormat::from_file("fixtures/document/sample1.drawio").unwrap();
     assert_eq!(format, FileFormat::Drawio);
 }
 
+#[cfg(feature = "reader-xml")]
 #[test]
-fn test_drawio_no_xml() {
-    let format = FileFormat::from_file("fixtures/document/sample-no-xml.drawio").unwrap();
+fn test_drawio_2() {
+    let format = FileFormat::from_file("fixtures/document/sample2.drawio").unwrap();
     assert_eq!(format, FileFormat::Drawio);
 }
 
@@ -83,7 +83,7 @@ fn test_microsoft_project_plan() {
 #[cfg(feature = "reader-cfb")]
 #[test]
 fn test_microsoft_publisher_document() {
-    let format = FileFormat::from_file("fixtures/document/sample-publisher.pub").unwrap();
+    let format = FileFormat::from_file("fixtures/document/sample.pub").unwrap();
     assert_eq!(format, FileFormat::MicrosoftPublisherDocument);
 }
 

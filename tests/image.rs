@@ -295,16 +295,16 @@ fn test_radiance_hdr() {
     assert_eq!(format, FileFormat::RadianceHdr);
 }
 
-#[cfg(feature = "reader-xml")]
 #[test]
-fn test_scalable_vector_graphics() {
-    let format = FileFormat::from_file("fixtures/image/sample.svg").unwrap();
+fn test_scalable_vector_graphics_1() {
+    let format = FileFormat::from_file("fixtures/image/sample1.svg").unwrap();
     assert_eq!(format, FileFormat::ScalableVectorGraphics);
 }
 
+#[cfg(feature = "reader-xml")]
 #[test]
-fn test_scalable_vector_graphics_no_xml() {
-    let format = FileFormat::from_file("fixtures/image/sample-no-xml.svg").unwrap();
+fn test_scalable_vector_graphics_2() {
+    let format = FileFormat::from_file("fixtures/image/sample2.svg").unwrap();
     assert_eq!(format, FileFormat::ScalableVectorGraphics);
 }
 
