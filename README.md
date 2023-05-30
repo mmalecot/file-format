@@ -425,7 +425,7 @@ file-format = "0.17"
 - BDAV MPEG-2 Transport Stream (M2TS)
 - Flash Video (FLV)
 - JPEG 2000 Part 3 (MJ2)
-- MPEG-1 Video (MPG)
+- MPEG-1/2 Video (MPG)
 - MPEG-2 Transport Stream (TS)
 - MPEG-4 Part 14 Video (MP4)
 - MTV

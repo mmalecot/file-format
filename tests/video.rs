@@ -79,9 +79,9 @@ fn test_matroska_video() {
 }
 
 #[test]
-fn test_mpeg1_video() {
+fn test_mpeg12_video() {
     let fmt = FileFormat::from_file("fixtures/video/sample.mpg").unwrap();
-    assert_eq!(fmt, FileFormat::Mpeg1Video);
+    assert_eq!(fmt, FileFormat::Mpeg12Video);
 }
 
 #[test]

@@ -931,7 +931,7 @@ signatures! {
     format = MonkeysAudio
     value = b"MAC "
 
-    format = Mpeg1Video
+    format = Mpeg12Video
     value = b"\x00\x00\x01\xBA"
     value = b"\x00\x00\x01\xB3"
 

@@ -1221,6 +1221,13 @@ formats! {
     extension = "mp3"
     kind = Audio
 
+    format = Mpeg12Video
+    name = "MPEG-1/2 Video"
+    short_name = "MPG"
+    media_type = "video/mpeg"
+    extension = "mpg"
+    kind = Video
+
     format = Mpeg1AudioLayer1
     name = "MPEG-1 Audio Layer 1"
     short_name = "MP1"
@@ -1234,13 +1241,6 @@ formats! {
     media_type = "audio/mpeg"
     extension = "mp2"
     kind = Audio
-
-    format = Mpeg1Video
-    name = "MPEG-1 Video"
-    short_name = "MPG"
-    media_type = "video/mpeg"
-    extension = "mpg"
-    kind = Video
 
     format = Mpeg2TransportStream
     name = "MPEG-2 Transport Stream"
