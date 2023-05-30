@@ -2,225 +2,225 @@ use file_format::FileFormat;
 
 #[test]
 fn test_abiword_1() {
-    let format = FileFormat::from_file("fixtures/document/sample1.abw").unwrap();
-    assert_eq!(format, FileFormat::Abiword);
+    let fmt = FileFormat::from_file("fixtures/document/sample1.abw").unwrap();
+    assert_eq!(fmt, FileFormat::Abiword);
 }
 
 #[cfg(feature = "reader-xml")]
 #[test]
 fn test_abiword_2() {
-    let format = FileFormat::from_file("fixtures/document/sample2.abw").unwrap();
-    assert_eq!(format, FileFormat::Abiword);
+    let fmt = FileFormat::from_file("fixtures/document/sample2.abw").unwrap();
+    assert_eq!(fmt, FileFormat::Abiword);
 }
 
 #[test]
 fn test_abiword_template_1() {
-    let format = FileFormat::from_file("fixtures/document/sample1.awt").unwrap();
-    assert_eq!(format, FileFormat::AbiwordTemplate);
+    let fmt = FileFormat::from_file("fixtures/document/sample1.awt").unwrap();
+    assert_eq!(fmt, FileFormat::AbiwordTemplate);
 }
 
 #[cfg(feature = "reader-xml")]
 #[test]
 fn test_abiword_template_2() {
-    let format = FileFormat::from_file("fixtures/document/sample2.awt").unwrap();
-    assert_eq!(format, FileFormat::AbiwordTemplate);
+    let fmt = FileFormat::from_file("fixtures/document/sample2.awt").unwrap();
+    assert_eq!(fmt, FileFormat::AbiwordTemplate);
 }
 
 #[test]
 fn test_adobe_indesign_document() {
-    let format = FileFormat::from_file("fixtures/document/sample.indd").unwrap();
-    assert_eq!(format, FileFormat::AdobeIndesignDocument);
+    let fmt = FileFormat::from_file("fixtures/document/sample.indd").unwrap();
+    assert_eq!(fmt, FileFormat::AdobeIndesignDocument);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_circuit_diagram_document() {
-    let format = FileFormat::from_file("fixtures/document/sample.cddx").unwrap();
-    assert_eq!(format, FileFormat::CircuitDiagramDocument);
+    let fmt = FileFormat::from_file("fixtures/document/sample.cddx").unwrap();
+    assert_eq!(fmt, FileFormat::CircuitDiagramDocument);
 }
 
 #[test]
 fn test_drawio_1() {
-    let format = FileFormat::from_file("fixtures/document/sample1.drawio").unwrap();
-    assert_eq!(format, FileFormat::Drawio);
+    let fmt = FileFormat::from_file("fixtures/document/sample1.drawio").unwrap();
+    assert_eq!(fmt, FileFormat::Drawio);
 }
 
 #[cfg(feature = "reader-xml")]
 #[test]
 fn test_drawio_2() {
-    let format = FileFormat::from_file("fixtures/document/sample2.drawio").unwrap();
-    assert_eq!(format, FileFormat::Drawio);
+    let fmt = FileFormat::from_file("fixtures/document/sample2.drawio").unwrap();
+    assert_eq!(fmt, FileFormat::Drawio);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_indesign_markup_language() {
-    let format = FileFormat::from_file("fixtures/document/sample.idml").unwrap();
-    assert_eq!(format, FileFormat::IndesignMarkupLanguage);
+    let fmt = FileFormat::from_file("fixtures/document/sample.idml").unwrap();
+    assert_eq!(fmt, FileFormat::IndesignMarkupLanguage);
 }
 
 #[cfg(feature = "reader-cfb")]
 #[test]
 fn test_microsoft_excel_spreadsheet() {
-    let format = FileFormat::from_file("fixtures/document/sample.xls").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftExcelSpreadsheet);
+    let fmt = FileFormat::from_file("fixtures/document/sample.xls").unwrap();
+    assert_eq!(fmt, FileFormat::MicrosoftExcelSpreadsheet);
 }
 
 #[cfg(feature = "reader-cfb")]
 #[test]
 fn test_microsoft_powerpoint_presentation() {
-    let format = FileFormat::from_file("fixtures/document/sample.ppt").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftPowerpointPresentation);
+    let fmt = FileFormat::from_file("fixtures/document/sample.ppt").unwrap();
+    assert_eq!(fmt, FileFormat::MicrosoftPowerpointPresentation);
 }
 
 #[cfg(feature = "reader-cfb")]
 #[test]
 fn test_microsoft_project_plan() {
-    let format = FileFormat::from_file("fixtures/document/sample.mpp").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftProjectPlan);
+    let fmt = FileFormat::from_file("fixtures/document/sample.mpp").unwrap();
+    assert_eq!(fmt, FileFormat::MicrosoftProjectPlan);
 }
 
 #[cfg(feature = "reader-cfb")]
 #[test]
 fn test_microsoft_publisher_document() {
-    let format = FileFormat::from_file("fixtures/document/sample.pub").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftPublisherDocument);
+    let fmt = FileFormat::from_file("fixtures/document/sample.pub").unwrap();
+    assert_eq!(fmt, FileFormat::MicrosoftPublisherDocument);
 }
 
 #[cfg(feature = "reader-cfb")]
 #[test]
 fn test_microsoft_visio_drawing() {
-    let format = FileFormat::from_file("fixtures/document/sample.vsd").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftVisioDrawing);
+    let fmt = FileFormat::from_file("fixtures/document/sample.vsd").unwrap();
+    assert_eq!(fmt, FileFormat::MicrosoftVisioDrawing);
 }
 
 #[cfg(feature = "reader-cfb")]
 #[test]
 fn test_microsoft_word_document() {
-    let format = FileFormat::from_file("fixtures/document/sample.doc").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftWordDocument);
+    let fmt = FileFormat::from_file("fixtures/document/sample.doc").unwrap();
+    assert_eq!(fmt, FileFormat::MicrosoftWordDocument);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_office_open_xml_document() {
-    let format = FileFormat::from_file("fixtures/document/sample.docx").unwrap();
-    assert_eq!(format, FileFormat::OfficeOpenXmlDocument);
+    let fmt = FileFormat::from_file("fixtures/document/sample.docx").unwrap();
+    assert_eq!(fmt, FileFormat::OfficeOpenXmlDocument);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_office_open_xml_drawing() {
-    let format = FileFormat::from_file("fixtures/document/sample.vsdx").unwrap();
-    assert_eq!(format, FileFormat::OfficeOpenXmlDrawing);
+    let fmt = FileFormat::from_file("fixtures/document/sample.vsdx").unwrap();
+    assert_eq!(fmt, FileFormat::OfficeOpenXmlDrawing);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_office_open_xml_presentation() {
-    let format = FileFormat::from_file("fixtures/document/sample.pptx").unwrap();
-    assert_eq!(format, FileFormat::OfficeOpenXmlPresentation);
+    let fmt = FileFormat::from_file("fixtures/document/sample.pptx").unwrap();
+    assert_eq!(fmt, FileFormat::OfficeOpenXmlPresentation);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_office_open_xml_spreadsheet() {
-    let format = FileFormat::from_file("fixtures/document/sample.xlsx").unwrap();
-    assert_eq!(format, FileFormat::OfficeOpenXmlSpreadsheet);
+    let fmt = FileFormat::from_file("fixtures/document/sample.xlsx").unwrap();
+    assert_eq!(fmt, FileFormat::OfficeOpenXmlSpreadsheet);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_opendocument_formula() {
-    let format = FileFormat::from_file("fixtures/document/sample.odf").unwrap();
-    assert_eq!(format, FileFormat::OpendocumentFormula);
+    let fmt = FileFormat::from_file("fixtures/document/sample.odf").unwrap();
+    assert_eq!(fmt, FileFormat::OpendocumentFormula);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_opendocument_formula_template() {
-    let format = FileFormat::from_file("fixtures/document/sample.otf").unwrap();
-    assert_eq!(format, FileFormat::OpendocumentFormulaTemplate);
+    let fmt = FileFormat::from_file("fixtures/document/sample.otf").unwrap();
+    assert_eq!(fmt, FileFormat::OpendocumentFormulaTemplate);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_opendocument_graphics() {
-    let format = FileFormat::from_file("fixtures/document/sample.odg").unwrap();
-    assert_eq!(format, FileFormat::OpendocumentGraphics);
+    let fmt = FileFormat::from_file("fixtures/document/sample.odg").unwrap();
+    assert_eq!(fmt, FileFormat::OpendocumentGraphics);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_opendocument_graphics_template() {
-    let format = FileFormat::from_file("fixtures/document/sample.otg").unwrap();
-    assert_eq!(format, FileFormat::OpendocumentGraphicsTemplate);
+    let fmt = FileFormat::from_file("fixtures/document/sample.otg").unwrap();
+    assert_eq!(fmt, FileFormat::OpendocumentGraphicsTemplate);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_opendocument_presentation() {
-    let format = FileFormat::from_file("fixtures/document/sample.odp").unwrap();
-    assert_eq!(format, FileFormat::OpendocumentPresentation);
+    let fmt = FileFormat::from_file("fixtures/document/sample.odp").unwrap();
+    assert_eq!(fmt, FileFormat::OpendocumentPresentation);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_opendocument_presentation_template() {
-    let format = FileFormat::from_file("fixtures/document/sample.otp").unwrap();
-    assert_eq!(format, FileFormat::OpendocumentPresentationTemplate);
+    let fmt = FileFormat::from_file("fixtures/document/sample.otp").unwrap();
+    assert_eq!(fmt, FileFormat::OpendocumentPresentationTemplate);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_opendocument_spreadsheet() {
-    let format = FileFormat::from_file("fixtures/document/sample.ods").unwrap();
-    assert_eq!(format, FileFormat::OpendocumentSpreadsheet);
+    let fmt = FileFormat::from_file("fixtures/document/sample.ods").unwrap();
+    assert_eq!(fmt, FileFormat::OpendocumentSpreadsheet);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_opendocument_spreadsheet_template() {
-    let format = FileFormat::from_file("fixtures/document/sample.ots").unwrap();
-    assert_eq!(format, FileFormat::OpendocumentSpreadsheetTemplate);
+    let fmt = FileFormat::from_file("fixtures/document/sample.ots").unwrap();
+    assert_eq!(fmt, FileFormat::OpendocumentSpreadsheetTemplate);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_opendocument_text() {
-    let format = FileFormat::from_file("fixtures/document/sample.odt").unwrap();
-    assert_eq!(format, FileFormat::OpendocumentText);
+    let fmt = FileFormat::from_file("fixtures/document/sample.odt").unwrap();
+    assert_eq!(fmt, FileFormat::OpendocumentText);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_opendocument_text_master() {
-    let format = FileFormat::from_file("fixtures/document/sample.odm").unwrap();
-    assert_eq!(format, FileFormat::OpendocumentTextMaster);
+    let fmt = FileFormat::from_file("fixtures/document/sample.odm").unwrap();
+    assert_eq!(fmt, FileFormat::OpendocumentTextMaster);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_opendocument_text_master_template() {
-    let format = FileFormat::from_file("fixtures/document/sample.otm").unwrap();
-    assert_eq!(format, FileFormat::OpendocumentTextMasterTemplate);
+    let fmt = FileFormat::from_file("fixtures/document/sample.otm").unwrap();
+    assert_eq!(fmt, FileFormat::OpendocumentTextMasterTemplate);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_opendocument_text_template() {
-    let format = FileFormat::from_file("fixtures/document/sample.ott").unwrap();
-    assert_eq!(format, FileFormat::OpendocumentTextTemplate);
+    let fmt = FileFormat::from_file("fixtures/document/sample.ott").unwrap();
+    assert_eq!(fmt, FileFormat::OpendocumentTextTemplate);
 }
 
 #[test]
 fn test_portable_document_format() {
-    let format = FileFormat::from_file("fixtures/document/sample.pdf").unwrap();
-    assert_eq!(format, FileFormat::PortableDocumentFormat);
+    let fmt = FileFormat::from_file("fixtures/document/sample.pdf").unwrap();
+    assert_eq!(fmt, FileFormat::PortableDocumentFormat);
 }
 
 #[test]
 fn test_rich_text_format() {
-    let format = FileFormat::from_file("fixtures/document/sample.rtf").unwrap();
-    assert_eq!(format, FileFormat::RichTextFormat);
+    let fmt = FileFormat::from_file("fixtures/document/sample.rtf").unwrap();
+    assert_eq!(fmt, FileFormat::RichTextFormat);
 }
