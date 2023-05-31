@@ -230,9 +230,11 @@ file-format = "0.17"
 - Executable and Linkable Format (ELF)
 - Java Class
 - LLVM Bitcode (BC)
+- Linear Executable (LE)
 - Lua Bytecode
-- MS-DOS Executable (MZ)
+- MS-DOS Executable (EXE)
 - Mach-O
+- New Executable (NE)
 - Nintendo Switch Executable (NSO)
 - Optimized Dalvik Executable (DEY)
 - Portable Executable (PE)

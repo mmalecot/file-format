@@ -1167,6 +1167,7 @@ signatures! {
 
     format = MsDosExecutable
     value = b"MZ"
+    value = b"ZM"
 
     format = Postscript
     value = b"%!"

@@ -960,6 +960,13 @@ formats! {
     extension = "lzh"
     kind = Archive
 
+    format = LinearExecutable
+    name = "Linear Executable"
+    short_name = "LE"
+    media_type = "application/x-dosexec"
+    extension = "exe"
+    kind = Executable
+
     format = LlvmBitcode
     name = "LLVM Bitcode"
     short_name = "BC"
@@ -1265,7 +1272,7 @@ formats! {
 
     format = MsDosExecutable
     name = "MS-DOS Executable"
-    short_name = "MZ"
+    short_name = "EXE"
     media_type = "application/x-dosexec"
     extension = "exe"
     kind = Executable
@@ -1316,6 +1323,13 @@ formats! {
     media_type = "application/x-neo-geo-pocket-rom"
     extension = "npg"
     kind = Rom
+
+    format = NewExecutable
+    name = "New Executable"
+    short_name = "NE"
+    media_type = "application/x-ms-ne-executable"
+    extension = "exe"
+    kind = Executable
 
     format = NikonElectronicFile
     name = "Nikon Electronic File"

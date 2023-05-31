@@ -70,33 +70,47 @@ impl crate::FileFormat {
         })
     }
 
-    /// Determines file format from a [MS-DOS Executable (MZ)](`crate::FileFormat::MsDosExecutable`)
-    /// reader.
-    ///
-    /// It first seeks to the `0x3C` offset within the reader and reads the `e_lfanew` field.
-    ///
-    /// It then seeks to this address and reads the `Signature` field. If this is `PE\0\0`, it seeks
-    /// to the `0x12` offset and reads the `Characteristics` field in order to know if it is a
-    /// [Dynamic Link Library (DLL)](`crate::FileFormat::DynamicLinkLibrary`) or a
-    /// [Portable Executable (PE)](`crate::FileFormat::PortableExecutable`). Otherwise, it returns
-    /// [MS-DOS Executable (MZ)](`crate::FileFormat::MsDosExecutable`).
+    /// Determines file format from a
+    /// [MS-DOS Executable (EXE)](`crate::FileFormat::MsDosExecutable`) reader.
     #[cfg(feature = "reader-exe")]
     pub(crate) fn from_exe_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        // Reads the e_lfanew field.
         reader.seek(SeekFrom::Start(0x3C))?;
         let mut e_lfanew = [0; 4];
         reader.read_exact(&mut e_lfanew)?;
-        reader.seek(SeekFrom::Start(u32::from_le_bytes(e_lfanew) as u64))?;
-        let mut signature = [0; 4];
-        reader.read_exact(&mut signature)?;
-        if &signature == b"PE\0\0" {
-            reader.seek(SeekFrom::Current(0x12))?;
-            let mut characteristics = [0; 2];
-            reader.read_exact(&mut characteristics)?;
-            return Ok(if u16::from_le_bytes(characteristics) & 0x2000 == 0x2000 {
-                Self::DynamicLinkLibrary
-            } else {
-                Self::PortableExecutable
-            });
+        let e_lfanew = u32::from_le_bytes(e_lfanew) as u64;
+
+        // Gets the stream length.
+        let old_pos = reader.stream_position()?;
+        let length = reader.seek(SeekFrom::End(0))?;
+        if old_pos != length {
+            reader.seek(SeekFrom::Start(old_pos))?;
+        }
+
+        // Checks that the e_lfanew value is not outside the stream's boundaries.
+        if e_lfanew + 4 < length {
+            // Seeks to e_lfanew.
+            reader.seek(SeekFrom::Start(e_lfanew))?;
+
+            // Reads the signature.
+            let mut signature = [0; 4];
+            reader.read_exact(&mut signature)?;
+
+            // Checks the signature.
+            if &signature == b"PE\0\0" {
+                reader.seek(SeekFrom::Current(0x12))?;
+                let mut characteristics = [0; 2];
+                reader.read_exact(&mut characteristics)?;
+                return Ok(if u16::from_le_bytes(characteristics) & 0x2000 == 0x2000 {
+                    Self::DynamicLinkLibrary
+                } else {
+                    Self::PortableExecutable
+                });
+            } else if &signature[..2] == b"LE" || &signature[..2] == b"LX" {
+                return Ok(Self::LinearExecutable);
+            } else if &signature[..2] == b"NE" {
+                return Ok(Self::NewExecutable);
+            }
         }
         Ok(Self::MsDosExecutable)
     }

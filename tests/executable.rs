@@ -30,6 +30,14 @@ fn test_java_class() {
     let fmt = FileFormat::from_file("fixtures/executable/sample.class").unwrap();
     assert_eq!(fmt, FileFormat::JavaClass);
 }
+
+#[cfg(feature = "reader-exe")]
+#[test]
+fn test_linear_executable() {
+    let fmt = FileFormat::from_file("fixtures/executable/sample1.exe").unwrap();
+    assert_eq!(fmt, FileFormat::LinearExecutable);
+}
+
 #[test]
 fn test_llvm_bitcode() {
     let fmt = FileFormat::from_file("fixtures/executable/sample.bc").unwrap();
@@ -50,7 +58,7 @@ fn test_mach_o() {
 
 #[test]
 fn test_ms_dos_executable() {
-    let fmt = FileFormat::from_file("fixtures/executable/sample1.exe").unwrap();
+    let fmt = FileFormat::from_file("fixtures/executable/sample2.exe").unwrap();
     assert_eq!(fmt, FileFormat::MsDosExecutable);
 }
 
@@ -58,6 +66,13 @@ fn test_ms_dos_executable() {
 fn test_nintendo_switch_executable() {
     let fmt = FileFormat::from_file("fixtures/executable/sample.nso").unwrap();
     assert_eq!(fmt, FileFormat::NintendoSwitchExecutable);
+}
+
+#[cfg(feature = "reader-exe")]
+#[test]
+fn test_new_executable() {
+    let fmt = FileFormat::from_file("fixtures/executable/sample3.exe").unwrap();
+    assert_eq!(fmt, FileFormat::NewExecutable);
 }
 
 #[test]
@@ -69,7 +84,7 @@ fn test_optimized_dalvik_executable() {
 #[cfg(feature = "reader-exe")]
 #[test]
 fn test_portable_executable() {
-    let fmt = FileFormat::from_file("fixtures/executable/sample2.exe").unwrap();
+    let fmt = FileFormat::from_file("fixtures/executable/sample4.exe").unwrap();
     assert_eq!(fmt, FileFormat::PortableExecutable);
 }
 

@@ -77,9 +77,11 @@ detected.
   * [Microsoft Software Installer (MSI)](`FileFormat::MicrosoftSoftwareInstaller`)
   * [Microsoft Visio Drawing (VSD)](`FileFormat::MicrosoftVisioDrawing`)
   * [Microsoft Word Document (DOC)](`FileFormat::MicrosoftWordDocument`)
-- `reader-exe` - Enables [MS-DOS Executable (MZ)](`FileFormat::MsDosExecutable`) based file formats
+- `reader-exe` - Enables [MS-DOS Executable (EXE)](`FileFormat::MsDosExecutable`) based file formats
   detection.
   * [Dynamic Link Library (DLL)](`FileFormat::DynamicLinkLibrary`)
+  * [Linear Executable (LE)](`FileFormat::LinearExecutable`)
+  * [New Executable (NE)](`FileFormat::NewExecutable`)
   * [Portable Executable (PE)](`FileFormat::PortableExecutable`)
 - `reader-mkv` - Enables [Matroska Video (MKV)](`FileFormat::MatroskaVideo`) based file formats
   detection.

@@ -27,7 +27,6 @@
 - Fix JPEG 2000 Part 3 (MJ2) kind and media type
 - Fix JPEG Extended Range (JXR) name
 - Fix MPEG-2 Transport Stream (TS) short name and extension
-- Fix MS-DOS Executable (MZ) short name
 - Fix Multiple-image Network Graphics (MNG) media type
 - Fix PEM Private Key (PEM) signatures
 - Fix PEM-based formats short name
@@ -42,6 +41,7 @@
 - Add precision to the Adobe Flash Player Audiobook (F4B) signature
 - Add precision to the Adobe Flash Player Protected Video (F4P) signature
 - Add precision to the Adobe Flash Player Video (F4V) signature
+- Add precision to the MS-DOS Executable (EXE) signature
 - Add precision to the Stereolithography Binary (STL) signature
 - Detect Additive Manufacturing Format (AMF) without XML declaration
 - Detect Advanced Stream Redirector (ASX) with XML declaration
@@ -59,6 +59,7 @@
 - Detect XML Shareable Playlist Format (XSPF) without XML declaration
 - Detect draw.io (DRAWIO) without XML declaration
 - Distinguish between BDAV MPEG-2 Transport Stream (MT2S) and MPEG-2 Transport Stream (TS)
+- Optimize detection of EXE-based file formats when using the `reader-exe` feature
 - Optimize detection of XML-based file formats when using the `reader-xml` feature
 
 ## New formats support
@@ -71,9 +72,11 @@
 - Flexible and Interoperable Data Transfer (FIT)
 - Game Gear ROM (GG)
 - JPEG 2000 Codestream (J2C)
+- Linear Executable (LE)
 - MTV
 - Mega Drive ROM (MD)
 - Neo Geo Pocket ROM (NGP)
+- New Executable (NE)
 - Nintendo Switch Executable (NSO)
 - Nintendo Switch Package (NSP)
 - Nintendo Switch ROM (XCI)
