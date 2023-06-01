@@ -45,13 +45,12 @@ impl crate::FileFormat {
 
     /// Determines file format from a
     /// [Compound File Binary (CFB)](`crate::FileFormat::CompoundFileBinary`) reader.
-    ///
-    /// It reads the CLSID from the root entry of the file and returns the corresponding variant.
-    /// If it is not recognized, it returns
-    /// [Compound File Binary (CFB)](`crate::FileFormat::CompoundFileBinary`).
     #[cfg(feature = "reader-cfb")]
     pub(crate) fn from_cfb_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        // Opens the compound file.
         let file = cfb::CompoundFile::open(reader)?;
+
+        // Reads the CLSID from the root entry and returns the corresponding variant.
         Ok(match file.root_entry().clsid().to_string().as_str() {
             "00020810-0000-0000-c000-000000000046" => Self::MicrosoftExcelSpreadsheet,
             "00020820-0000-0000-c000-000000000046" => Self::MicrosoftExcelSpreadsheet,
@@ -117,20 +116,26 @@ impl crate::FileFormat {
 
     /// Determines file format from a [Matroska Video (MKV)](`crate::FileFormat::MatroskaVideo`)
     /// reader.
-    ///
-    /// Searches the reader for the "webm" byte sequence. If this sequence is found it returns
-    /// [WebM](`crate::FileFormat::Webm`). Otherwise, it returns
-    /// [Matroska Video (MKV)](`crate::FileFormat::MatroskaVideo`).
     #[cfg(feature = "reader-mkv")]
     pub(crate) fn from_mkv_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        // Sets limits.
         const SEARCH_LIMIT: usize = match cfg!(feature = "accuracy-mkv") {
             true => 4096,
             false => 1024,
         };
+
+        // Gets the stream length.
+        let old_pos = reader.stream_position()?;
         let length = reader.seek(SeekFrom::End(0))?;
-        reader.rewind()?;
+        if old_pos != length {
+            reader.seek(SeekFrom::Start(old_pos))?;
+        }
+
+        // Fills the buffer.
         let mut buffer = vec![0; std::cmp::min(SEARCH_LIMIT, length as usize)];
         reader.read_exact(&mut buffer)?;
+
+        // Searches for the "webm" sequence in the buffer.
         Ok(if contains(&buffer, b"webm") {
             Self::Webm
         } else {
@@ -140,21 +145,26 @@ impl crate::FileFormat {
 
     /// Determines file format from a
     /// [Portable Document Format (PDF)](`crate::FileFormat::PortableDocumentFormat`) reader.
-    ///
-    /// Searches the reader for the "AIPrivateData" byte sequence. If this sequence is found, it
-    /// returns [Adobe Illustrator Artwork (AI)](`crate::FileFormat::AdobeIllustratorArtwork`).
-    /// Otherwise, it returns
-    /// [Portable Document Format (PDF)](`crate::FileFormat::PortableDocumentFormat`).
     #[cfg(feature = "reader-pdf")]
     pub(crate) fn from_pdf_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        // Sets limits.
         const SEARCH_LIMIT: usize = match cfg!(feature = "accuracy-pdf") {
             true => 4_194_304,
             false => 1_048_576,
         };
+
+        // Gets the stream length.
+        let old_pos = reader.stream_position()?;
         let length = reader.seek(SeekFrom::End(0))?;
-        reader.rewind()?;
+        if old_pos != length {
+            reader.seek(SeekFrom::Start(old_pos))?;
+        }
+
+        // Fills the buffer.
         let mut buffer = vec![0; std::cmp::min(SEARCH_LIMIT, length as usize)];
         reader.read_exact(&mut buffer)?;
+
+        // Searches for the "AIPrivateData" sequence in the buffer.
         Ok(if contains(&buffer, b"AIPrivateData") {
             Self::AdobeIllustratorArtwork
         } else {
@@ -163,13 +173,9 @@ impl crate::FileFormat {
     }
 
     /// Determines file format from a [Plain Text (TXT)](`crate::FileFormat::PlainText`) reader.
-    ///
-    /// Attempts to determine if the reader contains only ASCII/UTF-8-encoded text by checking the
-    /// first lines for control characters. If any control characters (other than whitespace) are
-    /// found, it returns an error. Otherwise, it returns
-    /// [Plain Text (TXT)](`crate::FileFormat::PlainText`).
     #[cfg(feature = "reader-txt")]
     pub(crate) fn from_txt_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        // Sets limits.
         const READ_LIMIT: u64 = match cfg!(feature = "accuracy-txt") {
             true => 8_388_608,
             false => 1_048_576,
@@ -178,7 +184,12 @@ impl crate::FileFormat {
             true => 256,
             false => 32,
         };
+
+        // Rewinds to the beginning of a stream.
         reader.rewind()?;
+
+        // Determines if the reader contains only ASCII/UTF-8-encoded text by checking the first
+        // lines for control characters other than whitespace.
         reader
             .take(READ_LIMIT)
             .lines()
@@ -195,12 +206,9 @@ impl crate::FileFormat {
 
     /// Determines file format from an
     /// [Extensible Markup Language (XML)](`crate::FileFormat::ExtensibleMarkupLanguage`) reader.
-    ///
-    /// Searches the reader for byte sequences that indicate the presence of various file formats.
-    /// If none are found, it returns
-    /// [Extensible Markup Language (XML)](`crate::FileFormat::ExtensibleMarkupLanguage`).
     #[cfg(feature = "reader-xml")]
     pub(crate) fn from_xml_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        // Sets limits.
         const READ_LIMIT: u64 = match cfg!(feature = "accuracy-xml") {
             true => 262_144,
             false => 131_072,
@@ -213,6 +221,9 @@ impl crate::FileFormat {
             true => 2048,
             false => 1024,
         };
+
+        // Searches the reader for byte sequences that indicate the presence of various file
+        // formats.
         for line in reader.take(READ_LIMIT).lines().take(LINE_LIMIT) {
             let buffer: Vec<u8> = line?.as_bytes().iter().take(CHAR_LIMIT).copied().collect();
             if contains(&buffer, b"<abiword template=\"false\"") {
@@ -257,18 +268,21 @@ impl crate::FileFormat {
     }
 
     /// Determines file format from a [ZIP](`crate::FileFormat::Zip`) reader.
-    ///
-    /// It checks for certain file names or contents within the archive that indicate the presence
-    /// of specific file formats. If a match is found, the corresponding variant is returned.
-    /// Otherwise, it returns [ZIP](`crate::FileFormat::Zip`).
     #[cfg(feature = "reader-zip")]
     pub(crate) fn from_zip_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        // Sets limits.
         const FILE_LIMIT: usize = match cfg!(feature = "accuracy-zip") {
             true => 4096,
             false => 1024,
         };
+
+        // Opens the archive.
         let mut archive = zip::ZipArchive::new(reader)?;
+
+        // Sets the default variant.
         let mut format = Self::Zip;
+
+        // Browses archive files.
         for index in 0..std::cmp::min(archive.len(), FILE_LIMIT) {
             let file = archive.by_index(index)?;
             match file.name() {
