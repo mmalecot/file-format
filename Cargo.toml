@@ -14,7 +14,7 @@ documentation = "https://docs.rs/file-format"
 exclude = ["/.github/*", "/examples/*", "/fixtures/*", "/tests/*"]
 
 [dependencies]
-cfb = { version = "0.7", optional = true }
+cfb = { version = "0.8", optional = true }
 zip = { version = "0.6", optional = true, features = ["deflate"], default-features = false }
 
 [features]

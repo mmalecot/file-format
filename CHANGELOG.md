@@ -62,6 +62,10 @@
 - Optimize detection of EXE-based file formats when using the `reader-exe` feature
 - Optimize detection of XML-based file formats when using the `reader-xml` feature
 
+## Internal changes
+
+- Update `cfb` dependency from 0.7 to 0.8
+
 ## New formats support
 
 - AbiWord (ABW)
