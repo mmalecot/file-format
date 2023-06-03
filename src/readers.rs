@@ -43,8 +43,7 @@ impl crate::FileFormat {
         }
     }
 
-    /// Determines file format from a
-    /// [Compound File Binary (CFB)](`crate::FileFormat::CompoundFileBinary`) reader.
+    /// Determines file format from a CFB reader.
     #[cfg(feature = "reader-cfb")]
     pub(crate) fn from_cfb_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Opens the compound file.
@@ -69,52 +68,7 @@ impl crate::FileFormat {
         })
     }
 
-    /// Determines file format from a
-    /// [MS-DOS Executable (EXE)](`crate::FileFormat::MsDosExecutable`) reader.
-    #[cfg(feature = "reader-exe")]
-    pub(crate) fn from_exe_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        // Reads the e_lfanew field.
-        reader.seek(SeekFrom::Start(0x3C))?;
-        let mut e_lfanew = [0; 4];
-        reader.read_exact(&mut e_lfanew)?;
-        let e_lfanew = u32::from_le_bytes(e_lfanew) as u64;
-
-        // Gets the stream length.
-        let old_pos = reader.stream_position()?;
-        let length = reader.seek(SeekFrom::End(0))?;
-        if old_pos != length {
-            reader.seek(SeekFrom::Start(old_pos))?;
-        }
-
-        // Checks that the e_lfanew value is not outside the stream's boundaries.
-        if e_lfanew + 4 < length {
-            // Seeks to e_lfanew.
-            reader.seek(SeekFrom::Start(e_lfanew))?;
-
-            // Reads the signature.
-            let mut signature = [0; 4];
-            reader.read_exact(&mut signature)?;
-
-            // Checks the signature.
-            if &signature == b"PE\0\0" {
-                reader.seek(SeekFrom::Current(0x12))?;
-                let mut characteristics = [0; 2];
-                reader.read_exact(&mut characteristics)?;
-                return Ok(if u16::from_le_bytes(characteristics) & 0x2000 == 0x2000 {
-                    Self::DynamicLinkLibrary
-                } else {
-                    Self::PortableExecutable
-                });
-            } else if &signature[..2] == b"LE" || &signature[..2] == b"LX" {
-                return Ok(Self::LinearExecutable);
-            } else if &signature[..2] == b"NE" {
-                return Ok(Self::NewExecutable);
-            }
-        }
-        Ok(Self::MsDosExecutable)
-    }
-
-    /// Determines file format from an [EBML](`FileFormat::ExtensibleBinaryMetaLanguage`) reader.
+    /// Determines file format from an EBML  reader.
     #[cfg(feature = "reader-ebml")]
     pub(crate) fn from_ebml_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Constants representing EBML element IDs.
@@ -254,8 +208,51 @@ impl crate::FileFormat {
         })
     }
 
-    /// Determines file format from a
-    /// [Portable Document Format (PDF)](`crate::FileFormat::PortableDocumentFormat`) reader.
+    /// Determines file format from an EXE reader.
+    #[cfg(feature = "reader-exe")]
+    pub(crate) fn from_exe_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        // Reads the e_lfanew field.
+        reader.seek(SeekFrom::Start(0x3C))?;
+        let mut e_lfanew = [0; 4];
+        reader.read_exact(&mut e_lfanew)?;
+        let e_lfanew = u32::from_le_bytes(e_lfanew) as u64;
+
+        // Gets the stream length.
+        let old_pos = reader.stream_position()?;
+        let length = reader.seek(SeekFrom::End(0))?;
+        if old_pos != length {
+            reader.seek(SeekFrom::Start(old_pos))?;
+        }
+
+        // Checks that the e_lfanew value is not outside the stream's boundaries.
+        if e_lfanew + 4 < length {
+            // Seeks to e_lfanew.
+            reader.seek(SeekFrom::Start(e_lfanew))?;
+
+            // Reads the signature.
+            let mut signature = [0; 4];
+            reader.read_exact(&mut signature)?;
+
+            // Checks the signature.
+            if &signature == b"PE\0\0" {
+                reader.seek(SeekFrom::Current(0x12))?;
+                let mut characteristics = [0; 2];
+                reader.read_exact(&mut characteristics)?;
+                return Ok(if u16::from_le_bytes(characteristics) & 0x2000 == 0x2000 {
+                    Self::DynamicLinkLibrary
+                } else {
+                    Self::PortableExecutable
+                });
+            } else if &signature[..2] == b"LE" || &signature[..2] == b"LX" {
+                return Ok(Self::LinearExecutable);
+            } else if &signature[..2] == b"NE" {
+                return Ok(Self::NewExecutable);
+            }
+        }
+        Ok(Self::MsDosExecutable)
+    }
+
+    /// Determines file format from a PDF reader.
     #[cfg(feature = "reader-pdf")]
     pub(crate) fn from_pdf_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Sets limits.
@@ -283,7 +280,7 @@ impl crate::FileFormat {
         })
     }
 
-    /// Determines file format from a [Plain Text (TXT)](`crate::FileFormat::PlainText`) reader.
+    /// Determines file format from a TXT reader.
     #[cfg(feature = "reader-txt")]
     pub(crate) fn from_txt_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Sets limits.
@@ -315,8 +312,7 @@ impl crate::FileFormat {
             .map(|_| Self::PlainText)
     }
 
-    /// Determines file format from an
-    /// [Extensible Markup Language (XML)](`crate::FileFormat::ExtensibleMarkupLanguage`) reader.
+    /// Determines file format from an XML reader.
     #[cfg(feature = "reader-xml")]
     pub(crate) fn from_xml_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Sets limits.
@@ -378,7 +374,7 @@ impl crate::FileFormat {
         Ok(Self::ExtensibleMarkupLanguage)
     }
 
-    /// Determines file format from a [ZIP](`crate::FileFormat::Zip`) reader.
+    /// Determines file format from a ZIP reader.
     #[cfg(feature = "reader-zip")]
     pub(crate) fn from_zip_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Sets limits.
