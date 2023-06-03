@@ -413,6 +413,9 @@ signatures! {
     value = b"1\r\n00:"
     value = b"1\n00:"
 
+    format = WindowsBitmap
+    value = b"BM", b"\x00\x00" offset = 12, b"\x00\x00\x00" offset = 15, b"\x01\x00" offset = 26
+
     format = XPixmap
     value = b"/* XPM */"
 
@@ -1178,7 +1181,4 @@ signatures! {
     format = UnixCompress
     value = b"\x1F\xA0"
     value = b"\x1F\x9D"
-
-    format = WindowsBitmap
-    value = b"BM"
 }
