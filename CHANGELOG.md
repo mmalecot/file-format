@@ -107,6 +107,7 @@
 - Sega Master System ROM (SMS)
 - StuffIt (SIT)
 - StuffIt X (SITX)
+- Timed Text Markup Language (TTML)
 - Training Center XML (TCX)
 - Universal Subtitle Format (USF)
 - Web Video Text Tracks (WebVTT)

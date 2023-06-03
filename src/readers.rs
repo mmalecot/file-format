@@ -365,6 +365,8 @@ impl crate::FileFormat {
                 return Ok(Self::SimpleObjectAccessProtocol);
             } else if contains(&buffer, b"<TrainingCenterDatabase") {
                 return Ok(Self::TrainingCenterXml);
+            } else if contains(&buffer, b"<tt xmlns=\"http://www.w3.org/ns/ttml\"") {
+                return Ok(Self::TimedTextMarkupLanguage);
             } else if contains(&buffer, b"<USFSubtitles") {
                 return Ok(Self::UniversalSubtitleFormat);
             } else if contains(&buffer, b"<xliff") {

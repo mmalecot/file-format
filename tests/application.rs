@@ -295,6 +295,19 @@ fn test_tasty() {
 }
 
 #[test]
+fn test_timed_text_markup_language_1() {
+    let fmt = FileFormat::from_file("fixtures/application/sample1.ttml").unwrap();
+    assert_eq!(fmt, FileFormat::TimedTextMarkupLanguage);
+}
+
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_timed_text_markup_language_2() {
+    let fmt = FileFormat::from_file("fixtures/application/sample2.ttml").unwrap();
+    assert_eq!(fmt, FileFormat::TimedTextMarkupLanguage);
+}
+
+#[test]
 fn test_universal_subtitle_format_1() {
     let fmt = FileFormat::from_file("fixtures/application/sample1.usf").unwrap();
     assert_eq!(fmt, FileFormat::UniversalSubtitleFormat);

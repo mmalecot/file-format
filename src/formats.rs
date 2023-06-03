@@ -2094,6 +2094,13 @@ formats! {
     extension = "max"
     kind = Model
 
+    format = TimedTextMarkupLanguage
+    name = "Timed Text Markup Language"
+    short_name = "TTML"
+    media_type = "application/ttml+xml"
+    extension = "ttml"
+    kind = Application
+
     format = ToolCommandLanguageScript
     name = "Tool Command Language Script"
     short_name = "Tcl Script"

@@ -99,6 +99,7 @@ file-format = "0.17"
 - Small Web Format (SWF)
 - SubRip Text (SRT)
 - TASTy
+- Timed Text Markup Language (TTML)
 - Universal Subtitle Format (USF)
 - Windows Shortcut (LNK)
 - XML Localization Interchange File Format (XLIFF)

@@ -20,6 +20,11 @@ signatures! {
     value = b"\xEF\xBB\xBF<abiword template=\"true\""
     value = b"<abiword template=\"true\""
 
+    // 40 bytes
+    format = TimedTextMarkupLanguage
+    value = b"\xEF\xBB\xBF<tt xmlns=\"http://www.w3.org/ns/ttml\""
+    value = b"<tt xmlns=\"http://www.w3.org/ns/ttml\""
+
     // 39 bytes
     format = VirtualboxVirtualDiskImage
     value = b"<<< Oracle VM VirtualBox Disk Image >>>"
