@@ -2206,6 +2206,13 @@ formats! {
     extension = "woff2"
     kind = Font
 
+    format = WebVideoTextTracks
+    name = "Web Video Text Tracks"
+    short_name = "WebVTT"
+    media_type = "text/vtt"
+    extension = "vtt"
+    kind = Text
+
     format = WebassemblyBinary
     name = "WebAssembly Binary"
     short_name = "Wasm"

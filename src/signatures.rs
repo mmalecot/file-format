@@ -422,6 +422,10 @@ signatures! {
     value = b"1\r\n00:"
     value = b"1\n00:"
 
+    format = WebVideoTextTracks
+    value = b"\xEF\xBB\xBFWEBVTT"
+    value = b"WEBVTT"
+
     format = WindowsBitmap
     value = b"BM", b"\x00\x00" offset = 12, b"\x00\x00\x00" offset = 15, b"\x01\x00" offset = 26
 

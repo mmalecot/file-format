@@ -417,6 +417,7 @@ file-format = "0.17"
 - Ruby Script
 - Shell Script
 - Tool Command Language Script (Tcl Script)
+- Web Video Text Tracks (WebVTT)
 - WebAssembly Text (WAT)
 - iCalendar (ICS)
 - vCalendar (VCS)

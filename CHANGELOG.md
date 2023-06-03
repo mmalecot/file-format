@@ -109,6 +109,7 @@
 - StuffIt X (SITX)
 - Training Center XML (TCX)
 - Universal Subtitle Format (USF)
+- Web Video Text Tracks (WebVTT)
 - Xbox Executable (XBE)
 - ZPAQ
 - bzip (BZ)

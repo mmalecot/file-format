@@ -92,6 +92,12 @@ fn test_vcard() {
 }
 
 #[test]
+fn test_web_video_text_tracks() {
+    let fmt = FileFormat::from_file("fixtures/text/sample.vtt").unwrap();
+    assert_eq!(fmt, FileFormat::WebVideoTextTracks);
+}
+
+#[test]
 fn test_webassembly_text() {
     let fmt = FileFormat::from_file("fixtures/text/sample.wat").unwrap();
     assert_eq!(fmt, FileFormat::WebassemblyText);
