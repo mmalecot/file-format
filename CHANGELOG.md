@@ -101,6 +101,8 @@
 - OpenDocument Text Template (OTT)
 - PEM Public Key (PEM)
 - Sega Master System ROM (SMS)
+- StuffIt (SIT)
+- StuffIt X (SITX)
 - Training Center XML (TCX)
 - Xbox Executable (XBE)
 

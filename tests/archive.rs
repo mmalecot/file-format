@@ -73,6 +73,18 @@ fn test_seven_zip() {
 }
 
 #[test]
+fn test_stuffit() {
+    let fmt = FileFormat::from_file("fixtures/archive/sample.sit").unwrap();
+    assert_eq!(fmt, FileFormat::Stuffit);
+}
+
+#[test]
+fn test_stuffit_x() {
+    let fmt = FileFormat::from_file("fixtures/archive/sample.sitx").unwrap();
+    assert_eq!(fmt, FileFormat::StuffitX);
+}
+
+#[test]
 fn test_tape_archive() {
     let fmt = FileFormat::from_file("fixtures/archive/sample.tar").unwrap();
     assert_eq!(fmt, FileFormat::TapeArchive);

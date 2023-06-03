@@ -242,6 +242,11 @@ signatures! {
     format = Sqlite3
     value = b"\x53\x51\x4C\x69\x74\x65\x20\x66\x6F\x72\x6D\x61\x74\x20\x33\x00"
 
+    format = Stuffit
+    value = b"StuffIt (c)1997", b"\x05" offset = 82
+    value = b"SIT!" offset = 0x80, b"rLau" offset = 0x8A
+    value = b"SIT!", b"rLau" offset = 10
+
     format = WindowsMediaVideo
     value = b"\x30\x26\xB2\x75\x8E\x66\xCF\x11\xA6\xD9\x00\xAA\x00\x62\xCE\x6C"
 
@@ -564,6 +569,10 @@ signatures! {
 
     format = Soundfont2
     value = b"RIFF", b"sfbk" offset = 8
+
+    format = StuffitX
+    value = b"StuffIt!"
+    value = b"StuffIt?"
 
     format = TapeArchive
     value = b"\x75\x73\x74\x61\x72\x00\x30\x30" offset = 257

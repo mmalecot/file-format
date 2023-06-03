@@ -1990,6 +1990,20 @@ formats! {
     extension = "stl"
     kind = Model
 
+    format = Stuffit
+    name = "StuffIt"
+    short_name = "SIT"
+    media_type = "application/x-stuffit"
+    extension = "sit"
+    kind = Archive
+
+    format = StuffitX
+    name = "StuffIt X"
+    short_name = "SITX"
+    media_type = "application/x-stuffitx"
+    extension = "sitx"
+    kind = Archive
+
     format = SubripText
     name = "SubRip Text"
     short_name = "SRT"

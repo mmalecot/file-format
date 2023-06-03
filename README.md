@@ -117,6 +117,8 @@ file-format = "0.17"
 - PMarc (PMA)
 - Roshal Archive (RAR)
 - SeqBox (SBX)
+- StuffIt (SIT)
+- StuffIt X (SITX)
 - Tape Archive (TAR)
 - UNIX archiver (archiver)
 - ZIP
