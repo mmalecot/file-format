@@ -97,10 +97,7 @@ file-format = "0.17"
 - SQLite 3
 - Simple Object Access Protocol (SOAP)
 - Small Web Format (SWF)
-- SubRip Text (SRT)
 - TASTy
-- Timed Text Markup Language (TTML)
-- Universal Subtitle Format (USF)
 - Windows Shortcut (LNK)
 - XML Localization Interchange File Format (XLIFF)
 - gettext Machine Object (MO)
@@ -404,6 +401,13 @@ file-format = "0.17"
 - Nintendo Switch ROM (XCI)
 - Sega Master System ROM (SMS)
 
+### Subtitle
+
+- SubRip Text (SRT)
+- Timed Text Markup Language (TTML)
+- Universal Subtitle Format (USF)
+- Web Video Text Tracks (WebVTT)
+
 ### Text
 
 - Clojure Script
@@ -418,7 +422,6 @@ file-format = "0.17"
 - Ruby Script
 - Shell Script
 - Tool Command Language Script (Tcl Script)
-- Web Video Text Tracks (WebVTT)
 - WebAssembly Text (WAT)
 - iCalendar (ICS)
 - vCalendar (VCS)

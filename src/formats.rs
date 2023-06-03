@@ -2037,7 +2037,7 @@ formats! {
     short_name = "SRT"
     media_type = "application/x-subrip"
     extension = "srt"
-    kind = Application
+    kind = Subtitle
 
     format = TagImageFileFormat
     name = "Tag Image File Format"
@@ -2099,7 +2099,7 @@ formats! {
     short_name = "TTML"
     media_type = "application/ttml+xml"
     extension = "ttml"
-    kind = Application
+    kind = Subtitle
 
     format = ToolCommandLanguageScript
     name = "Tool Command Language Script"
@@ -2141,7 +2141,7 @@ formats! {
     short_name = "USF"
     media_type = "application/x-usf"
     extension = "usf"
-    kind = Application
+    kind = Subtitle
 
     format = UnixArchiver
     name = "UNIX archiver"
@@ -2218,7 +2218,7 @@ formats! {
     short_name = "WebVTT"
     media_type = "text/vtt"
     extension = "vtt"
-    kind = Text
+    kind = Subtitle
 
     format = WebassemblyBinary
     name = "WebAssembly Binary"
