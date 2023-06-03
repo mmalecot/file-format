@@ -2326,6 +2326,12 @@ formats! {
     extension = "zoo"
     kind = Archive
 
+    format = Zpaq
+    name = "ZPAQ"
+    media_type = "application/x-zpaq"
+    extension = "zpaq"
+    kind = Archive
+
     format = Zstandard
     name = "Zstandard"
     short_name = "zstd"

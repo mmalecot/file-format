@@ -107,3 +107,9 @@ fn test_zoo() {
     let fmt = FileFormat::from_file("fixtures/archive/sample.zoo").unwrap();
     assert_eq!(fmt, FileFormat::Zoo);
 }
+
+#[test]
+fn test_zpaq() {
+    let fmt = FileFormat::from_file("fixtures/archive/sample.zpaq").unwrap();
+    assert_eq!(fmt, FileFormat::Zpaq);
+}

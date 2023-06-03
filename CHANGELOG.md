@@ -106,6 +106,7 @@
 - StuffIt X (SITX)
 - Training Center XML (TCX)
 - Xbox Executable (XBE)
+- ZPAQ
 - bzip (BZ)
 
 # Version 0.16.0 (2023-03-28)

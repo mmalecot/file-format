@@ -122,6 +122,7 @@ file-format = "0.17"
 - Tape Archive (TAR)
 - UNIX archiver (archiver)
 - ZIP
+- ZPAQ
 - cpio
 - zoo
 

@@ -1055,6 +1055,10 @@ signatures! {
     format = Zip
     value = b"\x50\x4B\x03\x04"
 
+    format = Zpaq
+    value = b"7kSt"
+    value = b"zPQ"
+
     format = Zstandard
     value = b"\x28\xB5\x2F\xFD"
 
