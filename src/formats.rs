@@ -2129,6 +2129,13 @@ formats! {
     extension = "u3d"
     kind = Model
 
+    format = UniversalSubtitleFormat
+    name = "Universal Subtitle Format"
+    short_name = "USF"
+    media_type = "application/x-usf"
+    extension = "usf"
+    kind = Application
+
     format = UnixArchiver
     name = "UNIX archiver"
     short_name = "archiver"

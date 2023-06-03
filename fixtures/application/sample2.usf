@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<USFSubtitles version="1.0">
+  <metadata>
+    <title>The Universal Subtitle Format sample</title>
+    <language code="eng">English</language>
+    <date>2002-11-08</date>
+    <comment>This is a short example of USF.</comment>
+  </metadata>
+</USFSubtitles>

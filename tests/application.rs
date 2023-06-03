@@ -295,6 +295,19 @@ fn test_tasty() {
 }
 
 #[test]
+fn test_universal_subtitle_format_1() {
+    let fmt = FileFormat::from_file("fixtures/application/sample1.usf").unwrap();
+    assert_eq!(fmt, FileFormat::UniversalSubtitleFormat);
+}
+
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_universal_subtitle_format_2() {
+    let fmt = FileFormat::from_file("fixtures/application/sample2.usf").unwrap();
+    assert_eq!(fmt, FileFormat::UniversalSubtitleFormat);
+}
+
+#[test]
 fn test_windows_shortcut() {
     let fmt = FileFormat::from_file("fixtures/application/sample.lnk").unwrap();
     assert_eq!(fmt, FileFormat::WindowsShortcut);

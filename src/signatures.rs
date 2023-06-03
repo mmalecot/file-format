@@ -247,6 +247,10 @@ signatures! {
     value = b"SIT!" offset = 0x80, b"rLau" offset = 0x8A
     value = b"SIT!", b"rLau" offset = 10
 
+    format = UniversalSubtitleFormat
+    value = b"\xEF\xBB\xBF<USFSubtitles"
+    value = b"<USFSubtitles"
+
     format = WindowsMediaVideo
     value = b"\x30\x26\xB2\x75\x8E\x66\xCF\x11\xA6\xD9\x00\xAA\x00\x62\xCE\x6C"
 

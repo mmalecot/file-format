@@ -108,6 +108,7 @@
 - StuffIt (SIT)
 - StuffIt X (SITX)
 - Training Center XML (TCX)
+- Universal Subtitle Format (USF)
 - Xbox Executable (XBE)
 - ZPAQ
 - bzip (BZ)
