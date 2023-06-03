@@ -845,6 +845,11 @@ signatures! {
     format = Cineon
     value = b"\x80\x2A\x5F\xD7"
 
+    format = Cpio
+    value = b"0707"
+    value = b"\xC7\x71"
+    value = b"\x71\xC7"
+
     format = DigitalImagingAndCommunicationsInMedicine
     value = b"\x44\x49\x43\x4D" offset = 128
 
@@ -1143,10 +1148,6 @@ signatures! {
     value = b"\x4C\x01"
     value = b"\x64\x86"
     value = b"\x00\x02"
-
-    format = Cpio
-    value = b"\xC7\x71"
-    value = b"\x71\xC7"
 
     format = DerCertificate
     value = b"\x30\x82"

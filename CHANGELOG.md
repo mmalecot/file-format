@@ -48,6 +48,7 @@
 - Add precision to the MS-DOS Executable (EXE) signature
 - Add precision to the Stereolithography Binary (STL) signature
 - Add precision to the Windows Bitmap (BMP) signature
+- Add precision to the cpio signature
 - Detect Additive Manufacturing Format (AMF) without XML declaration
 - Detect Advanced Stream Redirector (ASX) with XML declaration
 - Detect Digital Asset Exchange (DAE) without XML declaration
