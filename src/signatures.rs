@@ -1042,6 +1042,9 @@ signatures! {
     value = b"\x28\xB5\x2F\xFD"
 
     // 3 bytes
+    format = ArchivedByRobertJung
+    value = b"\x60\xEA", b"\x02" offset = 10
+
     format = Bzip2
     value = b"BZh"
 
@@ -1123,9 +1126,6 @@ signatures! {
 
     format = AppleDiskImage
     value = b"\x78\x01"
-
-    format = ArchivedByRobertJung
-    value = b"\x60\xEA"
 
     format = AudioCodec3
     value = b"\x0B\x77"

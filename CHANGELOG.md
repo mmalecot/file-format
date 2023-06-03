@@ -43,6 +43,7 @@
 - Add precision to the Adobe Flash Player Audiobook (F4B) signature
 - Add precision to the Adobe Flash Player Protected Video (F4P) signature
 - Add precision to the Adobe Flash Player Video (F4V) signature
+- Add precision to the Archived by Robert Jung (ARJ) signature
 - Add precision to the LLVM Bitcode (BC) signature
 - Add precision to the MS-DOS Executable (EXE) signature
 - Add precision to the Stereolithography Binary (STL) signature
