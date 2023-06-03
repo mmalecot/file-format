@@ -79,6 +79,7 @@
 - AbiWord Template (AWT)
 - Advanced Compression Engine (ACE)
 - Atari 7800 ROM (A78)
+- Audio Visual Research (AVR)
 - BZip3 (BZ3)
 - Design Web Format (DWF)
 - Flexible and Interoperable Data Transfer (FIT)

@@ -138,6 +138,7 @@ file-format = "0.17"
 - Au
 - Audio Codec 3 (AC3)
 - Audio Interchange File Format (AIFF)
+- Audio Visual Research (AVR)
 - Creative Voice (VOC)
 - FastTracker 2 Extended Module (XM)
 - Free Lossless Audio Codec (FLAC)

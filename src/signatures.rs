@@ -844,6 +844,9 @@ signatures! {
     format = Au
     value = b".snd"
 
+    format = AudioVisualResearch
+    value = b"2BIT"
+
     format = AutocadDrawing
     value = b"AC10"
 

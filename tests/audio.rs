@@ -61,6 +61,12 @@ fn test_audio_interchange_file_format() {
 }
 
 #[test]
+fn test_audio_visual_research() {
+    let fmt = FileFormat::from_file("fixtures/audio/sample.avr").unwrap();
+    assert_eq!(fmt, FileFormat::AudioVisualResearch);
+}
+
+#[test]
 fn test_creative_voice() {
     let fmt = FileFormat::from_file("fixtures/audio/sample.voc").unwrap();
     assert_eq!(fmt, FileFormat::CreativeVoice);

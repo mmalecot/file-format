@@ -265,6 +265,13 @@ formats! {
     extension = "avi"
     kind = Video
 
+    format = AudioVisualResearch
+    name = "Audio Visual Research"
+    short_name = "AVR"
+    media_type = "audio/x-avr"
+    extension = "avr"
+    kind = Audio
+
     format = AutocadDrawing
     name = "AutoCAD Drawing"
     short_name = "DWG"
