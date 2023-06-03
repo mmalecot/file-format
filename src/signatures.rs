@@ -904,6 +904,9 @@ signatures! {
     value = b"bvx2"
     value = b"bvxn"
 
+    format = LlvmBitcode
+    value = b"BC\xC0\xDE"
+
     format = LongRangeZip
     value = b"LRZI"
 
@@ -1147,9 +1150,6 @@ signatures! {
 
     format = Gzip
     value = b"\x1F\x8B"
-
-    format = LlvmBitcode
-    value = b"BC"
 
     format = Mpeg1AudioLayer1
     value = b"\xFF\xFE"
