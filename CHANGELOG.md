@@ -22,6 +22,7 @@
 
 ## Fixes
 
+- Fix Audio Interchange File Format (AIFF) media type
 - Fix AutoCAD Drawing (DWG) media type
 - Fix Drawing Exchange Format ASCII (DXF) media type
 - Fix Drawing Exchange Format Binary (DXF) media type

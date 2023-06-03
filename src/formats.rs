@@ -254,7 +254,7 @@ formats! {
     format = AudioInterchangeFileFormat
     name = "Audio Interchange File Format"
     short_name = "AIFF"
-    media_type = "audio/aiff"
+    media_type = "audio/x-aiff"
     extension = "aiff"
     kind = Audio
 
