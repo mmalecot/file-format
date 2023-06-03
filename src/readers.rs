@@ -245,13 +245,13 @@ impl crate::FileFormat {
         }
 
         // Determines the file format based on the identified codecs.
-        return Ok(if video_codec {
+        Ok(if video_codec {
             Self::MatroskaVideo
         } else if audio_codec {
             Self::MatroskaAudio
         } else {
             Self::ExtensibleBinaryMetaLanguage
-        });
+        })
     }
 
     /// Determines file format from a
