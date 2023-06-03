@@ -84,6 +84,13 @@ fn test_impulse_tracker_module() {
     assert_eq!(fmt, FileFormat::ImpulseTrackerModule);
 }
 
+#[cfg(feature = "reader-ebml")]
+#[test]
+fn test_matroska_audio() {
+    let fmt = FileFormat::from_file("fixtures/audio/sample.mka").unwrap();
+    assert_eq!(fmt, FileFormat::MatroskaAudio);
+}
+
 #[test]
 fn test_monkeys_audio() {
     let fmt = FileFormat::from_file("fixtures/audio/sample.ape").unwrap();

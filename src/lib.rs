@@ -50,8 +50,6 @@ These features are only relevant if the associated readers are enabled. They imp
 detection for specific file formats, but may increase processing time and memory usage.
 
 - `accuracy` - Enables all accuracy features.
-- `accuracy-mkv` - Improves the accuracy of [Matroska Video (MKV)](`FileFormat::MatroskaVideo`)
-  based file formats detection.
 - `accuracy-pdf` - Improves the accuracy of
   [Portable Document Format (PDF)](`FileFormat::PortableDocumentFormat`) based file formats
   detection.
@@ -77,15 +75,18 @@ detected.
   * [Microsoft Software Installer (MSI)](`FileFormat::MicrosoftSoftwareInstaller`)
   * [Microsoft Visio Drawing (VSD)](`FileFormat::MicrosoftVisioDrawing`)
   * [Microsoft Word Document (DOC)](`FileFormat::MicrosoftWordDocument`)
+- `reader-ebml` - Enables [Extensible Binary Meta Language (EBML)](`FileFormat::ExtensibleBinaryMetaLanguage`)
+  based file formats detection.
+  * [Matroska 3D Video (MK3D)](`FileFormat::Matroska3dVideo`)
+  * [Matroska Audio (MKA)](`FileFormat::MatroskaAudio`)
+  * [Matroska Video (MKV)](`FileFormat::MatroskaVideo`)
+  * [WebM](`FileFormat::Webm`)
 - `reader-exe` - Enables [MS-DOS Executable (EXE)](`FileFormat::MsDosExecutable`) based file formats
   detection.
   * [Dynamic Link Library (DLL)](`FileFormat::DynamicLinkLibrary`)
   * [Linear Executable (LE)](`FileFormat::LinearExecutable`)
   * [New Executable (NE)](`FileFormat::NewExecutable`)
   * [Portable Executable (PE)](`FileFormat::PortableExecutable`)
-- `reader-mkv` - Enables [Matroska Video (MKV)](`FileFormat::MatroskaVideo`) based file formats
-  detection.
-  * [WebM](`FileFormat::Webm`)
 - `reader-pdf` - Enables [Portable Document Format (PDF)](`FileFormat::PortableDocumentFormat`)
   based file formats detection.
   * [Adobe Illustrator Artwork (AI)](`FileFormat::AdobeIllustratorArtwork`)

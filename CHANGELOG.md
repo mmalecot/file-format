@@ -13,7 +13,9 @@
 - Add `Package` kind
 - Add `Playlist` kind
 - Add `Rom` kind
+- Add `reader-ebml` feature
 - Change the return type of `FileFormat::short_name` from `&str` to `Option<&str>`
+- Drop `reader-mkv` and `accuracy-mkv` features
 - Rename `AdvancedMediaVideo` to `ActionsMediaVideo`
 - Rename `Extensible3dGraphics` to `Extensible3d`
 - Rename `Mpeg1Video` to `Mpeg12Video`

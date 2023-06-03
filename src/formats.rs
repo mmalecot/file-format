@@ -563,6 +563,13 @@ formats! {
     extension = "xar"
     kind = Archive
 
+    format = ExtensibleBinaryMetaLanguage
+    name = "Extensible Binary Meta Language"
+    short_name = "EBML"
+    media_type = "application/x-ebml"
+    extension = "ebml"
+    kind = Application
+
     format = ExtensibleMarkupLanguage
     name = "Extensible Markup Language"
     short_name = "XML"
@@ -1045,6 +1052,20 @@ formats! {
     media_type = "application/mxf"
     extension = "mxf"
     kind = Video
+
+    format = Matroska3dVideo
+    name = "Matroska 3D Video"
+    short_name = "MK3D"
+    media_type = "video/x-matroska"
+    extension = "mk3d"
+    kind = Video
+
+    format = MatroskaAudio
+    name = "Matroska Audio"
+    short_name = "MKA"
+    media_type = "audio/x-matroska"
+    extension = "mka"
+    kind = Audio
 
     format = MatroskaVideo
     name = "Matroska Video"

@@ -297,9 +297,6 @@ signatures! {
     format = KhronosTexture2
     value = b"\xAB\x4B\x54\x58\x20\x32\x30\xBB\x0D\x0A\x1A\x0A"
 
-    format = MatroskaVideo
-    value = b"\x1A\x45\xDF\xA3"
-
     format = MayaAscii
     value = b"//Maya ASCII"
 
@@ -857,6 +854,9 @@ signatures! {
 
     format = ExtensibleArchive
     value = b"xar!"
+
+    format = ExtensibleBinaryMetaLanguage
+    value = b"\x1A\x45\xDF\xA3"
 
     format = FlashVideo
     value = b"\x46\x4C\x56\x01"

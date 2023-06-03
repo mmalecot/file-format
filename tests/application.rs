@@ -61,6 +61,12 @@ fn test_encapsulated_postscript() {
 }
 
 #[test]
+fn test_extensible_binary_meta_language() {
+    let fmt = FileFormat::from_file("fixtures/application/sample.ebml").unwrap();
+    assert_eq!(fmt, FileFormat::ExtensibleBinaryMetaLanguage);
+}
+
+#[test]
 fn test_extensible_stylesheet_language_transformations_1() {
     let fmt = FileFormat::from_file("fixtures/application/sample1.xsl").unwrap();
     assert_eq!(fmt, FileFormat::ExtensibleStylesheetLanguageTransformations);

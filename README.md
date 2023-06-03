@@ -67,6 +67,7 @@ file-format = "0.17"
 - Compound File Binary (CFB)
 - Digital Imaging and Communications in Medicine (DICOM)
 - Encapsulated PostScript (EPS)
+- Extensible Binary Meta Language (EBML)
 - Extensible Stylesheet Language Transformations (XSLT)
 - Flexible Image Transport System (FITS)
 - ICC Profile (ICC)
@@ -141,6 +142,7 @@ file-format = "0.17"
 - MPEG-1 Audio Layer 1 (MP1)
 - MPEG-1 Audio Layer 2 (MP2)
 - MPEG-1/2 Audio Layer 3 (MP3)
+- Matroska Audio (MKA)
 - Monkey's Audio (APE)
 - Musepack (MPC)
 - Musical Instrument Digital Interface (MIDI)
@@ -432,6 +434,7 @@ file-format = "0.17"
 - MPEG-4 Part 14 Video (MP4)
 - MTV
 - Material Exchange Format (MXF)
+- Matroska 3D Video (MK3D)
 - Matroska Video (MKV)
 - Ogg Media (OGM)
 - Ogg Theora (Theora)

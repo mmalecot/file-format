@@ -72,6 +72,14 @@ fn test_material_exchange_format() {
     assert_eq!(fmt, FileFormat::MaterialExchangeFormat);
 }
 
+#[cfg(feature = "reader-ebml")]
+#[test]
+fn test_matroska_3d_video() {
+    let fmt = FileFormat::from_file("fixtures/video/sample.mk3d").unwrap();
+    assert_eq!(fmt, FileFormat::Matroska3dVideo);
+}
+
+#[cfg(feature = "reader-ebml")]
 #[test]
 fn test_matroska_video() {
     let fmt = FileFormat::from_file("fixtures/video/sample.mkv").unwrap();
@@ -132,7 +140,7 @@ fn test_third_generation_partnership_project2() {
     assert_eq!(fmt, FileFormat::ThirdGenerationPartnershipProject2);
 }
 
-#[cfg(feature = "reader-mkv")]
+#[cfg(feature = "reader-ebml")]
 #[test]
 fn test_webm() {
     let fmt = FileFormat::from_file("fixtures/video/sample.webm").unwrap();

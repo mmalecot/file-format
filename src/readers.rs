@@ -13,14 +13,14 @@ impl crate::FileFormat {
         Ok(match format {
             #[cfg(feature = "reader-cfb")]
             Self::CompoundFileBinary => Self::from_cfb_reader(reader)?,
-            #[cfg(feature = "reader-xml")]
-            Self::ExtensibleMarkupLanguage => Self::from_xml_reader(reader)?,
-            #[cfg(feature = "reader-mkv")]
-            Self::MatroskaVideo => Self::from_mkv_reader(reader)?,
+            #[cfg(feature = "reader-ebml")]
+            Self::ExtensibleBinaryMetaLanguage => Self::from_ebml_reader(reader)?,
             #[cfg(feature = "reader-exe")]
             Self::MsDosExecutable => Self::from_exe_reader(reader)?,
             #[cfg(feature = "reader-pdf")]
             Self::PortableDocumentFormat => Self::from_pdf_reader(reader)?,
+            #[cfg(feature = "reader-xml")]
+            Self::ExtensibleMarkupLanguage => Self::from_xml_reader(reader)?,
             #[cfg(feature = "reader-zip")]
             Self::Zip => Self::from_zip_reader(reader)?,
             _ => format,
@@ -114,33 +114,144 @@ impl crate::FileFormat {
         Ok(Self::MsDosExecutable)
     }
 
-    /// Determines file format from a [Matroska Video (MKV)](`crate::FileFormat::MatroskaVideo`)
-    /// reader.
-    #[cfg(feature = "reader-mkv")]
-    pub(crate) fn from_mkv_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        // Sets limits.
-        const SEARCH_LIMIT: usize = match cfg!(feature = "accuracy-mkv") {
-            true => 4096,
-            false => 1024,
-        };
+    /// Determines file format from an [EBML](`FileFormat::ExtensibleBinaryMetaLanguage`) reader.
+    #[cfg(feature = "reader-ebml")]
+    pub(crate) fn from_ebml_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        // Constants representing EBML element IDs.
+        const EBML: u32 = 0x1A45DFA3;
+        const DOC_TYPE: u32 = 0x4282;
+        const SEGMENT: u32 = 0x18538067;
+        const TRACKS: u32 = 0x1654AE6B;
+        const TRACK_ENTRY: u32 = 0xAE;
+        const CODEC_ID: u32 = 0x86;
+        const VIDEO: u32 = 0xE0;
+        const STEREO_MODE: u32 = 0x53B8;
 
-        // Gets the stream length.
-        let old_pos = reader.stream_position()?;
-        let length = reader.seek(SeekFrom::End(0))?;
-        if old_pos != length {
-            reader.seek(SeekFrom::Start(old_pos))?;
+        // Helper function to read the ID of an EBML element.
+        fn read_id<R: Read>(reader: &mut R) -> Result<u32> {
+            // Reads the first byte.
+            let mut first_byte = [0];
+            reader.read_exact(&mut first_byte)?;
+
+            // Determines the number of bytes used to represent the ID.
+            let num_bytes = first_byte[0].leading_zeros() + 1;
+            if num_bytes > 4 {
+                return Err(Error::new(ErrorKind::InvalidData, "Invalid EBML ID"));
+            }
+
+            // Calculates the ID value based on the number of bytes.
+            let mut value = first_byte[0] as u32;
+            for _ in 1..num_bytes {
+                let mut byte = [0];
+                reader.read_exact(&mut byte)?;
+                value = (value << 8) | (byte[0] as u32);
+            }
+            Ok(value)
         }
 
-        // Fills the buffer.
-        let mut buffer = vec![0; std::cmp::min(SEARCH_LIMIT, length as usize)];
-        reader.read_exact(&mut buffer)?;
+        // Helper function to read the size of an EBML element.
+        fn read_size<R: Read>(reader: &mut R) -> Result<u64> {
+            // Reads the first byte.
+            let mut first_byte = [0];
+            reader.read_exact(&mut first_byte)?;
 
-        // Searches for the "webm" sequence in the buffer.
-        Ok(if contains(&buffer, b"webm") {
-            Self::Webm
-        } else {
+            // Determines the number of bytes used to represent the size.
+            let num_bytes = first_byte[0].leading_zeros() + 1;
+            if num_bytes > 8 {
+                return Err(Error::new(ErrorKind::InvalidData, "Invalid EBML size"));
+            }
+
+            // Calculates the mask.
+            let mut mask: u8 = 0x80;
+            while (first_byte[0] & mask) == 0 {
+                mask >>= 1;
+            }
+
+            // Calculates the size value based on the number of bytes.
+            let mut value = u64::from(first_byte[0] & (mask - 1));
+            for _ in 1..num_bytes {
+                let mut byte = [0];
+                reader.read_exact(&mut byte)?;
+                value = (value << 8) | (byte[0] as u64);
+            }
+            Ok(value)
+        }
+
+        // Flag indicating the presence of an audio codec.
+        let mut audio_codec = false;
+
+        // Flag indicating the presence of a video codec.
+        let mut video_codec = false;
+
+        // Loops through the EBML elements in the reader.
+        while let Ok(id) = read_id(reader) {
+            // Reads the size of the element.
+            let size = read_size(reader)?;
+
+            // Checks the ID of the element to perform specific actions.
+            match id {
+                EBML | SEGMENT | TRACKS | TRACK_ENTRY | VIDEO => {
+                    // Does nothing for these elements.
+                }
+                DOC_TYPE => {
+                    // Reads the buffer containing the DocType.
+                    let mut buffer = vec![0; std::cmp::min(16, size as usize)];
+                    reader.read_exact(&mut buffer)?;
+
+                    // Converts the buffer to a string and trims null characters.
+                    let doc_type = String::from_utf8(buffer)
+                        .unwrap_or_default()
+                        .trim_end_matches('\0')
+                        .to_string();
+
+                    // Checks the DocType.
+                    if doc_type == "webm" {
+                        return Ok(Self::Webm);
+                    } else if doc_type != "matroska" {
+                        return Ok(Self::ExtensibleBinaryMetaLanguage);
+                    }
+                }
+                CODEC_ID => {
+                    // Reads the buffer containing the Codec ID.
+                    let mut buffer = vec![0; std::cmp::min(64, size as usize)];
+                    reader.read_exact(&mut buffer)?;
+
+                    // Converts the buffer to a string.
+                    let codec_id = String::from_utf8(buffer).unwrap_or_default();
+
+                    // Checks the Codec ID.
+                    if codec_id.starts_with("A_") {
+                        audio_codec = true;
+                    }
+                    if codec_id.starts_with("V_") {
+                        video_codec = true;
+                    }
+                }
+                STEREO_MODE => {
+                    // Reads a single byte to determine the StereoMode.
+                    let mut buffer = [0];
+                    reader.read_exact(&mut buffer)?;
+
+                    // Positive value indicates stereoscopic video.
+                    if buffer[0] > 0 {
+                        return Ok(Self::Matroska3dVideo);
+                    }
+                }
+                _ => {
+                    // Seeks to the next element.
+                    reader.seek(SeekFrom::Current(size as i64))?;
+                }
+            }
+        }
+
+        // Determines the file format based on the identified codecs.
+        return Ok(if video_codec {
             Self::MatroskaVideo
-        })
+        } else if audio_codec {
+            Self::MatroskaAudio
+        } else {
+            Self::ExtensibleBinaryMetaLanguage
+        });
     }
 
     /// Determines file format from a
@@ -370,7 +481,7 @@ impl crate::FileFormat {
 }
 
 /// Checks if the `data` array contains the `target` sequence using the Boyer-Moore algorithm.
-#[cfg(any(feature = "reader-mkv", feature = "reader-pdf", feature = "reader-xml"))]
+#[cfg(any(feature = "reader-pdf", feature = "reader-xml"))]
 fn contains(data: &[u8], target: &[u8]) -> bool {
     // An empty target sequence is always considered to be contained in the data.
     if target.is_empty() {

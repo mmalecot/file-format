@@ -21,8 +21,7 @@ zip = { version = "0.6", optional = true, features = ["deflate"], default-featur
 ## ACCURACY FEATURES
 
 # Enables all accuracy features
-accuracy = ["accuracy-mkv", "accuracy-pdf", "accuracy-txt", "accuracy-xml", "accuracy-zip"]
-accuracy-mkv = []
+accuracy = ["accuracy-pdf", "accuracy-txt", "accuracy-xml", "accuracy-zip"]
 accuracy-pdf = []
 accuracy-txt = []
 accuracy-xml = []
@@ -31,10 +30,10 @@ accuracy-zip = []
 ## READER FEATURES
 
 # Enables all reader features
-reader = ["reader-cfb", "reader-exe", "reader-mkv", "reader-pdf", "reader-txt", "reader-xml", "reader-zip"]
+reader = ["reader-cfb", "reader-ebml", "reader-exe", "reader-pdf", "reader-txt", "reader-xml", "reader-zip"]
 reader-cfb = ["dep:cfb"]
+reader-ebml = []
 reader-exe = []
-reader-mkv = []
 reader-pdf = []
 reader-txt = []
 reader-xml = []
