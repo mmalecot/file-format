@@ -481,6 +481,9 @@ signatures! {
     format = HighEfficiencyImageFileFormatSequence
     value = b"ftypmsf1" offset = 4
 
+    format = Iff8BitSampledVoice
+    value = b"FORM", b"8SVX" offset = 8
+
     format = Jpeg2000Part1
     value = b"ftypjp2 " offset = 16
 

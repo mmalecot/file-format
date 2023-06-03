@@ -794,6 +794,13 @@ formats! {
     extension = "icc"
     kind = Application
 
+    format = Iff8BitSampledVoice
+    name = "IFF 8-Bit Sampled Voice"
+    short_name = "8SVX"
+    media_type = "audio/x-8svx"
+    extension = "8svx"
+    kind = Audio
+
     format = ImpulseTrackerModule
     name = "Impulse Tracker Module"
     short_name = "IT"

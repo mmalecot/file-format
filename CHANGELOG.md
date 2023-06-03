@@ -83,6 +83,7 @@
 - Design Web Format (DWF)
 - Flexible and Interoperable Data Transfer (FIT)
 - Game Gear ROM (GG)
+- IFF 8-Bit Sampled Voice (8SVX)
 - JPEG 2000 Codestream (J2C)
 - Linear Executable (LE)
 - MTV

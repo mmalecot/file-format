@@ -141,6 +141,7 @@ file-format = "0.17"
 - Creative Voice (VOC)
 - FastTracker 2 Extended Module (XM)
 - Free Lossless Audio Codec (FLAC)
+- IFF 8-Bit Sampled Voice (8SVX)
 - Impulse Tracker Module (IT)
 - MPEG-1 Audio Layer 1 (MP1)
 - MPEG-1 Audio Layer 2 (MP2)
