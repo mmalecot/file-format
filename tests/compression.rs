@@ -1,9 +1,21 @@
 use file_format::FileFormat;
 
 #[test]
+fn test_bzip() {
+    let fmt = FileFormat::from_file("fixtures/compression/sample.bz").unwrap();
+    assert_eq!(fmt, FileFormat::Bzip);
+}
+
+#[test]
 fn test_bzip2() {
     let fmt = FileFormat::from_file("fixtures/compression/sample.bz2").unwrap();
     assert_eq!(fmt, FileFormat::Bzip2);
+}
+
+#[test]
+fn test_bzip3() {
+    let fmt = FileFormat::from_file("fixtures/compression/sample.bz3").unwrap();
+    assert_eq!(fmt, FileFormat::Bzip3);
 }
 
 #[test]

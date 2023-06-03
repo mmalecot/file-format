@@ -724,6 +724,9 @@ signatures! {
     format = AdaptiveMultiRate
     value = b"#!AMR"
 
+    format = Bzip3
+    value = b"BZ3v1"
+
     format = EmbeddedOpentype
     value = b"\x00\x00\x01" offset = 8, b"\x4C\x50" offset = 34
     value = b"\x01\x00\x02" offset = 8, b"\x4C\x50" offset = 34
@@ -1058,6 +1061,9 @@ signatures! {
     // 3 bytes
     format = ArchivedByRobertJung
     value = b"\x60\xEA", b"\x02" offset = 10
+
+    format = Bzip
+    value = b"BZ0"
 
     format = Bzip2
     value = b"BZh"

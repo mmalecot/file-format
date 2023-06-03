@@ -78,6 +78,7 @@
 - AbiWord Template (AWT)
 - Advanced Compression Engine (ACE)
 - Atari 7800 ROM (A78)
+- BZip3 (BZ3)
 - Design Web Format (DWF)
 - Flexible and Interoperable Data Transfer (FIT)
 - Game Gear ROM (GG)
@@ -105,6 +106,7 @@
 - StuffIt X (SITX)
 - Training Center XML (TCX)
 - Xbox Executable (XBE)
+- bzip (BZ)
 
 # Version 0.16.0 (2023-03-28)
 

@@ -342,11 +342,25 @@ formats! {
     extension = "blend"
     kind = Model
 
+    format = Bzip
+    name = "bzip"
+    short_name = "BZ"
+    media_type = "application/x-bzip"
+    extension = "bz"
+    kind = Compression
+
     format = Bzip2
     name = "bzip2"
     short_name = "BZ2"
     media_type = "application/x-bzip2"
     extension = "bz2"
+    kind = Compression
+
+    format = Bzip3
+    name = "BZip3"
+    short_name = "BZ3"
+    media_type = "application/x-bzip3"
+    extension = "bz3"
     kind = Compression
 
     format = Cabinet

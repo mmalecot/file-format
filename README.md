@@ -173,6 +173,7 @@ file-format = "0.17"
 
 ### Compression
 
+- BZip3 (BZ3)
 - LZ4
 - Lempel–Ziv Finite State Entropy (LZFSE)
 - Long Range ZIP (LRZIP)
@@ -180,6 +181,7 @@ file-format = "0.17"
 - UNIX compress (compress)
 - XZ
 - Zstandard (zstd)
+- bzip (BZ)
 - bzip2 (BZ2)
 - gzip (GZ)
 - lzip (LZ)
