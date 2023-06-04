@@ -13,7 +13,7 @@ macro_rules! formats {
         )*
     } => {
         /// A file format.
-        #[derive(Clone, Debug, Eq, PartialEq)]
+        #[derive(Clone, Copy, Debug, Eq, PartialEq)]
         pub enum FileFormat {
             $(
                 #[doc=concat!($name, $(" (", $short_name, ")",)? ".")]
