@@ -525,7 +525,12 @@ impl crate::FileFormat {
 }
 
 /// Checks if the `data` array contains the `target` sequence using the Boyer-Moore algorithm.
-#[cfg(any(feature = "reader-pdf", feature = "reader-rm", feature = "reader-xml"))]
+#[cfg(any(
+    feature = "reader-asf",
+    feature = "reader-pdf",
+    feature = "reader-rm",
+    feature = "reader-xml"
+))]
 fn contains(data: &[u8], target: &[u8]) -> bool {
     // An empty target sequence is always considered to be contained in the data.
     if target.is_empty() {
