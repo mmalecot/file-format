@@ -85,6 +85,13 @@ formats! {
     extension = "indd"
     kind = Document
 
+    format = AdobeIntegratedRuntime
+    name = "Adobe Integrated Runtime"
+    short_name = "AIR"
+    media_type = "application/vnd.adobe.air-application-installer-package+zip"
+    extension = "air"
+    kind = Package
+
     format = AdobePhotoshopDocument
     name = "Adobe Photoshop Document"
     short_name = "PSD"

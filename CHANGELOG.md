@@ -78,6 +78,7 @@
 
 - AbiWord (ABW)
 - AbiWord Template (AWT)
+- Adobe Integrated Runtime (AIR)
 - Advanced Compression Engine (ACE)
 - Atari 7800 ROM (A78)
 - Audio Visual Research (AVR)

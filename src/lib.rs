@@ -119,6 +119,7 @@ detected.
   * [draw.io (DRAWIO)](`FileFormat::Drawio`)
 - `reader-zip` - Enables [ZIP](`FileFormat::Zip`)-based file formats detection.
   * [3D Manufacturing Format (3MF)](`FileFormat::ThreeDimensionalManufacturingFormat`)
+  * [Adobe Integrated Runtime (AIR)](`FileFormat::AdobeIntegratedRuntime`)
   * [Android Package (APK)](`FileFormat::AndroidPackage`)
   * [Circuit Diagram Document (CDDX)](`FileFormat::CircuitDiagramDocument`)
   * [Design Web Format XPS (DWFX)](`FileFormat::DesignWebFormatXps`)

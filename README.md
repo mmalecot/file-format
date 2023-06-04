@@ -370,6 +370,7 @@ file-format = "0.17"
 
 ### Package
 
+- Adobe Integrated Runtime (AIR)
 - Android Package (APK)
 - Debian Binary Package (DEB)
 - Enterprise Application Archive (EAR)

@@ -2,6 +2,13 @@ use file_format::FileFormat;
 
 #[cfg(feature = "reader-zip")]
 #[test]
+fn test_adobe_integrated_runtime() {
+    let fmt = FileFormat::from_file("fixtures/package/sample.air").unwrap();
+    assert_eq!(fmt, FileFormat::AdobeIntegratedRuntime);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
 fn test_android_package() {
     let fmt = FileFormat::from_file("fixtures/package/sample.apk").unwrap();
     assert_eq!(fmt, FileFormat::AndroidPackage);

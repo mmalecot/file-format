@@ -402,6 +402,7 @@ impl crate::FileFormat {
                 "AndroidManifest.xml" => return Ok(Self::AndroidPackage),
                 "AppManifest.xaml" => return Ok(Self::Xap),
                 "AppxManifest.xml" => return Ok(Self::WindowsAppPackage),
+                "META-INF/AIR/application.xml" => return Ok(Self::AdobeIntegratedRuntime),
                 "META-INF/MANIFEST.MF" => format = Self::JavaArchive,
                 "META-INF/application.xml" => return Ok(Self::EnterpriseApplicationArchive),
                 "META-INF/mozilla.rsa" => return Ok(Self::Xpinstall),
