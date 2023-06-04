@@ -302,11 +302,11 @@ pub enum Kind {
     Playlist,
     /// Copies of a read-only memory chip of computers, cartridges or other electronic devices.
     Rom,
+    /// Subtitles and captions.
+    Subtitle,
     /// Plain text, source codes, markup languages, and other types of files that contain written
     /// text.
     Text,
-    /// Subtitles and captions.
-    Subtitle,
     /// Movies, animations, and other types of files that contain moving images, possibly with color
     /// and coordinated sound.
     Video,
