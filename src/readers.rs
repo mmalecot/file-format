@@ -117,14 +117,8 @@ impl crate::FileFormat {
                 return Err(Error::new(ErrorKind::InvalidData, "Invalid EBML size"));
             }
 
-            // Calculates the mask.
-            let mut mask: u8 = 0x80;
-            while (first_byte[0] & mask) == 0 {
-                mask >>= 1;
-            }
-
             // Calculates the size value based on the number of bytes.
-            let mut value = u64::from(first_byte[0] & (mask - 1));
+            let mut value = u64::from(first_byte[0] & (0x80 >> first_byte[0].leading_zeros()) - 1);
             for _ in 1..num_bytes {
                 let mut byte = [0];
                 reader.read_exact(&mut byte)?;
