@@ -19,7 +19,7 @@
 - Add `serde` feature
 - Change the return type of `FileFormat::short_name` from `&str` to `Option<&str>`
 - Drop `accuracy` features
-- Drop `reader-mkv` and `accuracy-mkv` features
+- Drop `reader-mkv` feature
 - Rename `AdvancedMediaVideo` to `ActionsMediaVideo`
 - Rename `Extensible3dGraphics` to `Extensible3d`
 - Rename `Mpeg1Video` to `Mpeg12Video`
