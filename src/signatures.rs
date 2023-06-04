@@ -1019,6 +1019,9 @@ signatures! {
     format = PersonalStorageTable
     value = b"!BDN"
 
+    format = QemuCopyOnWrite
+    value = b"QFI\xFB"
+
     format = QuiteOkAudio
     value = b"qoaf"
 

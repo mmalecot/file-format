@@ -25,6 +25,12 @@ fn test_microsoft_virtual_hard_disk2() {
 }
 
 #[test]
+fn test_qemu_copy_on_write() {
+    let fmt = FileFormat::from_file("fixtures/disk/sample.qcow").unwrap();
+    assert_eq!(fmt, FileFormat::QemuCopyOnWrite);
+}
+
+#[test]
 fn test_virtualbox_virtual_disk_image() {
     let fmt = FileFormat::from_file("fixtures/disk/sample.vdi").unwrap();
     assert_eq!(fmt, FileFormat::VirtualboxVirtualDiskImage);

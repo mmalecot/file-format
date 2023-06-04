@@ -1847,6 +1847,13 @@ formats! {
     extension = "py"
     kind = Text
 
+    format = QemuCopyOnWrite
+    name = "QEMU Copy On Write"
+    short_name = "QCOW"
+    media_type = "application/x-qemu-disk"
+    extension = "qcow"
+    kind = Disk
+
     format = QualcommPurevoice
     name = "Qualcomm PureVoice"
     short_name = "QCP"

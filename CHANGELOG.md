@@ -108,6 +108,7 @@
 - OpenDocument Text Master Template (OTM)
 - OpenDocument Text Template (OTT)
 - PEM Public Key (PEM)
+- QEMU Copy On Write (QCOW)
 - Sega Master System ROM (SMS)
 - StuffIt (SIT)
 - StuffIt X (SITX)

@@ -198,6 +198,7 @@ file-format = "0.17"
 - ISO 9660 (ISO)
 - Microsoft Virtual Hard Disk (VHD)
 - Microsoft Virtual Hard Disk 2 (VHDX)
+- QEMU Copy On Write (QCOW)
 - VirtualBox Virtual Disk Image (VDI)
 
 ### Document
