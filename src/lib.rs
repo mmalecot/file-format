@@ -44,21 +44,6 @@ assert_eq!(format.kind(), Kind::Image);
 
 All features below are disabled by default.
 
-## Accuracy features
-
-These features are only relevant if the associated readers are enabled. They improve the accuracy of
-detection for specific file formats, but may increase processing time and memory usage.
-
-- `accuracy` - Enables all accuracy features.
-- `accuracy-pdf` - Improves the accuracy of
-  [Portable Document Format (PDF)](`FileFormat::PortableDocumentFormat`) based file formats
-  detection.
-- `accuracy-txt` - Improves the accuracy of [Plain Text (TXT)](`FileFormat::PlainText`) detection.
-- `accuracy-xml` - Improves the accuracy of
-  [Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`) based file formats
-  detection.
-- `accuracy-zip` - Improves the accuracy of [ZIP](`FileFormat::Zip`)-based file formats detection.
-
 ## Reader features
 
 These features enable the detection of file formats that need a specific reader in order to be

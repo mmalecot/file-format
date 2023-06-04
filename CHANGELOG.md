@@ -16,6 +16,7 @@
 - Add `Subtitle` kind
 - Add `reader-ebml` feature
 - Change the return type of `FileFormat::short_name` from `&str` to `Option<&str>`
+- Drop `accuracy` features
 - Drop `reader-mkv` and `accuracy-mkv` features
 - Rename `AdvancedMediaVideo` to `ActionsMediaVideo`
 - Rename `Extensible3dGraphics` to `Extensible3d`

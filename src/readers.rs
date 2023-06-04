@@ -256,10 +256,7 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-pdf")]
     pub(crate) fn from_pdf_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Sets limits.
-        const SEARCH_LIMIT: usize = match cfg!(feature = "accuracy-pdf") {
-            true => 4_194_304,
-            false => 1_048_576,
-        };
+        const SEARCH_LIMIT: usize = 4_194_304;
 
         // Gets the stream length.
         let old_pos = reader.stream_position()?;
@@ -284,14 +281,8 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-txt")]
     pub(crate) fn from_txt_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Sets limits.
-        const READ_LIMIT: u64 = match cfg!(feature = "accuracy-txt") {
-            true => 8_388_608,
-            false => 1_048_576,
-        };
-        const LINE_LIMIT: usize = match cfg!(feature = "accuracy-txt") {
-            true => 256,
-            false => 32,
-        };
+        const READ_LIMIT: u64 = 8_388_608;
+        const LINE_LIMIT: usize = 256;
 
         // Rewinds to the beginning of a stream.
         reader.rewind()?;
@@ -316,18 +307,9 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-xml")]
     pub(crate) fn from_xml_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Sets limits.
-        const READ_LIMIT: u64 = match cfg!(feature = "accuracy-xml") {
-            true => 262_144,
-            false => 131_072,
-        };
-        const LINE_LIMIT: usize = match cfg!(feature = "accuracy-xml") {
-            true => 8,
-            false => 4,
-        };
-        const CHAR_LIMIT: usize = match cfg!(feature = "accuracy-xml") {
-            true => 2048,
-            false => 1024,
-        };
+        const READ_LIMIT: u64 = 262_144;
+        const LINE_LIMIT: usize = 8;
+        const CHAR_LIMIT: usize = 2048;
 
         // Searches the reader for byte sequences that indicate the presence of various file
         // formats.
@@ -384,10 +366,7 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-zip")]
     pub(crate) fn from_zip_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Sets limits.
-        const FILE_LIMIT: usize = match cfg!(feature = "accuracy-zip") {
-            true => 4096,
-            false => 1024,
-        };
+        const FILE_LIMIT: usize = 4096;
 
         // Opens the archive.
         let mut archive = zip::ZipArchive::new(reader)?;
