@@ -176,6 +176,19 @@ fn test_quite_ok_audio() {
 }
 
 #[test]
+fn test_realaudio_1() {
+    let fmt = FileFormat::from_file("fixtures/audio/sample1.ra").unwrap();
+    assert_eq!(fmt, FileFormat::Realaudio);
+}
+
+#[cfg(feature = "reader-rm")]
+#[test]
+fn test_realaudio_2() {
+    let fmt = FileFormat::from_file("fixtures/audio/sample2.ra").unwrap();
+    assert_eq!(fmt, FileFormat::Realaudio);
+}
+
+#[test]
 fn test_scream_tracker3_module() {
     let fmt = FileFormat::from_file("fixtures/audio/sample.s3m").unwrap();
     assert_eq!(fmt, FileFormat::ScreamTracker3Module);

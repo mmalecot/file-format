@@ -1889,12 +1889,33 @@ formats! {
     extension = "hdr"
     kind = Image
 
+    format = Realaudio
+    name = "RealAudio"
+    short_name = "RA"
+    media_type = "audio/x-pn-realaudio"
+    extension = "ra"
+    kind = Audio
+
     format = ReallySimpleSyndication
     name = "Really Simple Syndication"
     short_name = "RSS"
     media_type = "application/rss+xml"
     extension = "rss"
     kind = Application
+
+    format = Realmedia
+    name = "RealMedia"
+    short_name = "RM"
+    media_type = "application/vnd.rn-realmedia"
+    extension = "rm"
+    kind = Application
+
+    format = Realvideo
+    name = "RealVideo"
+    short_name = "RV"
+    media_type = "video/x-pn-realvideo"
+    extension = "rv"
+    kind = Video
 
     format = RedHatPackageManager
     name = "Red Hat Package Manager"

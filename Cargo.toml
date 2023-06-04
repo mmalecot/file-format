@@ -18,14 +18,22 @@ cfb = { version = "0.8", optional = true }
 zip = { version = "0.6", optional = true, features = ["deflate"], default-features = false }
 
 [features]
-## READER FEATURES
-
-# Enables all reader features
-reader = ["reader-cfb", "reader-ebml", "reader-exe", "reader-pdf", "reader-txt", "reader-xml", "reader-zip"]
+## Reader features
+reader = [
+    "reader-cfb",
+    "reader-ebml",
+    "reader-exe",
+    "reader-pdf",
+    "reader-rm",
+    "reader-txt",
+    "reader-xml",
+    "reader-zip"
+]
 reader-cfb = ["dep:cfb"]
 reader-ebml = []
 reader-exe = []
 reader-pdf = []
+reader-rm = []
 reader-txt = []
 reader-xml = []
 reader-zip = ["dep:zip"]

@@ -75,6 +75,9 @@ detected.
 - `reader-pdf` - Enables [Portable Document Format (PDF)](`FileFormat::PortableDocumentFormat`)
   based file formats detection.
   * [Adobe Illustrator Artwork (AI)](`FileFormat::AdobeIllustratorArtwork`)
+- `reader-rm` - Enables [RealMedia (RM)](`FileFormat::Realmedia`) based file formats detection.
+  * [RealAudio (RA)](`FileFormat::Realaudio`)
+  * [RealVideo (RV)](`FileFormat::Realvideo`)
 - `reader-txt` - Enables [Plain Text (TXT)](`FileFormat::PlainText`) detection when the file format
   is not recognized by its signature. Please note that this option only detects files that contain
   ASCII/UTF-8-encoded text.

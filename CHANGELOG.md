@@ -15,6 +15,7 @@
 - Add `Rom` kind
 - Add `Subtitle` kind
 - Add `reader-ebml` feature
+- Add `reader-rm` feature
 - Change the return type of `FileFormat::short_name` from `&str` to `Option<&str>`
 - Drop `accuracy` features
 - Drop `reader-mkv` and `accuracy-mkv` features
@@ -111,6 +112,9 @@
 - OpenDocument Text Template (OTT)
 - PEM Public Key (PEM)
 - QEMU Copy On Write (QCOW)
+- RealAudio (RA)
+- RealMedia (RM)
+- RealVideo (RV)
 - Sega Master System ROM (SMS)
 - StuffIt (SIT)
 - StuffIt X (SITX)

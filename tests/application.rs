@@ -250,6 +250,12 @@ fn test_really_simple_syndication_1() {
     assert_eq!(fmt, FileFormat::ReallySimpleSyndication);
 }
 
+#[test]
+fn test_realmedia() {
+    let fmt = FileFormat::from_file("fixtures/application/sample.rm").unwrap();
+    assert_eq!(fmt, FileFormat::Realmedia);
+}
+
 #[cfg(feature = "reader-xml")]
 #[test]
 fn test_really_simple_syndication_2() {

@@ -582,6 +582,9 @@ signatures! {
     format = QualcommPurevoice
     value = b"RIFF", b"QLCM" offset = 8
 
+    format = Realmedia
+    value = b".RMF\x00\x00\x00\x12"
+
     format = RoshalArchive
     value = b"\x52\x61\x72\x21\x1A\x07\x01\x00"
     value = b"\x52\x61\x72\x21\x1A\x07\x00"
@@ -1033,6 +1036,9 @@ signatures! {
 
     format = QuiteOkImage
     value = b"qoif"
+
+    format = Realaudio
+    value = b".ra\xFD"
 
     format = RedHatPackageManager
     value = b"\xED\xAB\xEE\xDB"

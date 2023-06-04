@@ -19,6 +19,8 @@ impl crate::FileFormat {
             Self::MsDosExecutable => Self::from_exe_reader(reader)?,
             #[cfg(feature = "reader-pdf")]
             Self::PortableDocumentFormat => Self::from_pdf_reader(reader)?,
+            #[cfg(feature = "reader-rm")]
+            Self::Realmedia => Self::from_rm_reader(reader)?,
             #[cfg(feature = "reader-xml")]
             Self::ExtensibleMarkupLanguage => Self::from_xml_reader(reader)?,
             #[cfg(feature = "reader-zip")]
@@ -277,6 +279,35 @@ impl crate::FileFormat {
         })
     }
 
+    /// Determines file format from a RM reader.
+    #[cfg(feature = "reader-rm")]
+    pub(crate) fn from_rm_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        // Sets limits.
+        const SEARCH_LIMIT: usize = 4096;
+
+        // Gets the stream length.
+        let old_pos = reader.stream_position()?;
+        let length = reader.seek(SeekFrom::End(0))?;
+        if old_pos != length {
+            reader.seek(SeekFrom::Start(old_pos))?;
+        }
+
+        // Fills the buffer.
+        let mut buffer = vec![0; std::cmp::min(SEARCH_LIMIT, length as usize)];
+        reader.read_exact(&mut buffer)?;
+
+        // Searches for the media type in the buffer.
+        Ok(if contains(&buffer, b"video/x-pn-realvideo") {
+            Self::Realvideo
+        } else if contains(&buffer, b"audio/x-pn-realaudio")
+            || contains(&buffer, b"audio/x-pn-multirate-realaudio")
+        {
+            Self::Realaudio
+        } else {
+            Self::Realmedia
+        })
+    }
+
     /// Determines file format from a TXT reader.
     #[cfg(feature = "reader-txt")]
     pub(crate) fn from_txt_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
@@ -465,7 +496,7 @@ impl crate::FileFormat {
 }
 
 /// Checks if the `data` array contains the `target` sequence using the Boyer-Moore algorithm.
-#[cfg(any(feature = "reader-pdf", feature = "reader-xml"))]
+#[cfg(any(feature = "reader-pdf", feature = "reader-rm", feature = "reader-xml"))]
 fn contains(data: &[u8], target: &[u8]) -> bool {
     // An empty target sequence is always considered to be contained in the data.
     if target.is_empty() {

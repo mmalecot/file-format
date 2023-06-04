@@ -93,6 +93,7 @@ file-format = "0.17"
 - PGP Signed Message (PGP)
 - Personal Storage Table (PST)
 - PostScript (PS)
+- RealMedia (RM)
 - Really Simple Syndication (RSS)
 - SQLite 3
 - Simple Object Access Protocol (SOAP)
@@ -156,6 +157,7 @@ file-format = "0.17"
 - Ogg Vorbis (Vorbis)
 - Qualcomm PureVoice (QCP)
 - Quite OK Audio (QOA)
+- RealAudio (RA)
 - Scream Tracker 3 Module (S3M)
 - Sony DSD Stream File (DSF)
 - SoundFont 2 (SF2)
@@ -458,6 +460,7 @@ file-format = "0.17"
 - Matroska Video (MKV)
 - Ogg Media (OGM)
 - Ogg Theora (Theora)
+- RealVideo (RV)
 - Sony Movie (MQV)
 - WebM
 - Windows Media Video (WMV)

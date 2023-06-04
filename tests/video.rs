@@ -122,6 +122,13 @@ fn test_ogg_theora() {
     assert_eq!(fmt, FileFormat::OggTheora);
 }
 
+#[cfg(feature = "reader-rm")]
+#[test]
+fn test_realvideo() {
+    let fmt = FileFormat::from_file("fixtures/video/sample.rv").unwrap();
+    assert_eq!(fmt, FileFormat::Realvideo);
+}
+
 #[test]
 fn test_sony_movie() {
     let fmt = FileFormat::from_file("fixtures/video/sample.mqv").unwrap();
