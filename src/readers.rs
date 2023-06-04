@@ -105,7 +105,7 @@ impl crate::FileFormat {
         })
     }
 
-    /// Determines file format from an EBML  reader.
+    /// Determines file format from an EBML reader.
     #[cfg(feature = "reader-ebml")]
     pub(crate) fn from_ebml_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Constants representing EBML element IDs.
