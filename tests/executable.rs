@@ -62,17 +62,17 @@ fn test_ms_dos_executable() {
     assert_eq!(fmt, FileFormat::MsDosExecutable);
 }
 
-#[test]
-fn test_nintendo_switch_executable() {
-    let fmt = FileFormat::from_file("fixtures/executable/sample.nso").unwrap();
-    assert_eq!(fmt, FileFormat::NintendoSwitchExecutable);
-}
-
 #[cfg(feature = "reader-exe")]
 #[test]
 fn test_new_executable() {
     let fmt = FileFormat::from_file("fixtures/executable/sample3.exe").unwrap();
     assert_eq!(fmt, FileFormat::NewExecutable);
+}
+
+#[test]
+fn test_nintendo_switch_executable() {
+    let fmt = FileFormat::from_file("fixtures/executable/sample.nso").unwrap();
+    assert_eq!(fmt, FileFormat::NintendoSwitchExecutable);
 }
 
 #[test]
