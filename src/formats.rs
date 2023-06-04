@@ -120,6 +120,13 @@ formats! {
     extension = "asx"
     kind = Playlist
 
+    format = AdvancedSystemsFormat
+    name = "Advanced Systems Format"
+    short_name = "ASF"
+    media_type = "application/vnd.ms-asf"
+    extension = "asf"
+    kind = Application
+
     format = Alz
     name = "ALZ"
     media_type = "application/x-alz-compressed"
@@ -2344,10 +2351,17 @@ formats! {
     extension = "ico"
     kind = Image
 
+    format = WindowsMediaAudio
+    name = "Windows Media Audio"
+    short_name = "WMA"
+    media_type = "audio/x-ms-wma"
+    extension = "wma"
+    kind = Audio
+
     format = WindowsMediaVideo
     name = "Windows Media Video"
     short_name = "WMV"
-    media_type = "video/x-ms-asf"
+    media_type = "video/x-ms-wmv"
     extension = "wmv"
     kind = Video
 

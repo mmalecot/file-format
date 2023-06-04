@@ -235,6 +235,9 @@ signatures! {
     format = AdobeIndesignDocument
     value = b"\x06\x06\xED\xF5\xD8\x1D\x46\xE5\xBD\x31\xEF\xE7\xFE\x74\xB7\x1D"
 
+    format = AdvancedSystemsFormat
+    value = b"\x30\x26\xB2\x75\x8E\x66\xCF\x11\xA6\xD9\x00\xAA\x00\x62\xCE\x6C"
+
     format = Fasttracker2ExtendedModule
     value = b"Extended Module:"
 
@@ -255,9 +258,6 @@ signatures! {
     format = UniversalSubtitleFormat
     value = b"\xEF\xBB\xBF<USFSubtitles"
     value = b"<USFSubtitles"
-
-    format = WindowsMediaVideo
-    value = b"\x30\x26\xB2\x75\x8E\x66\xCF\x11\xA6\xD9\x00\xAA\x00\x62\xCE\x6C"
 
     // 15 bytes
     format = Fictionbook

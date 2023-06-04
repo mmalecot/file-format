@@ -11,6 +11,8 @@ impl crate::FileFormat {
         reader: &mut BufReader<R>,
     ) -> Result<Self> {
         Ok(match format {
+            #[cfg(feature = "reader-asf")]
+            Self::AdvancedSystemsFormat => Self::from_asf_reader(reader)?,
             #[cfg(feature = "reader-cfb")]
             Self::CompoundFileBinary => Self::from_cfb_reader(reader)?,
             #[cfg(feature = "reader-ebml")]
@@ -43,6 +45,39 @@ impl crate::FileFormat {
         {
             Self::default()
         }
+    }
+
+    /// Determines file format from an ASF reader.
+    #[cfg(feature = "reader-asf")]
+    pub(crate) fn from_asf_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        // Constants representing GUIDs.
+        const VIDEO_GUID: &[u8] =
+            b"\xC0\xEF\x19\xBC\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
+        const AUDIO_GUID: &[u8] =
+            b"\x40\x9E\x69\xF8\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
+
+        // Sets limits.
+        const SEARCH_LIMIT: usize = 8192;
+
+        // Gets the stream length.
+        let old_pos = reader.stream_position()?;
+        let length = reader.seek(SeekFrom::End(0))?;
+        if old_pos != length {
+            reader.seek(SeekFrom::Start(old_pos))?;
+        }
+
+        // Fills the buffer.
+        let mut buffer = vec![0; std::cmp::min(SEARCH_LIMIT, length as usize)];
+        reader.read_exact(&mut buffer)?;
+
+        // Searches for specific GUIDs in the buffer.
+        Ok(if contains(&buffer, VIDEO_GUID) {
+            Self::WindowsMediaVideo
+        } else if contains(&buffer, AUDIO_GUID) {
+            Self::WindowsMediaAudio
+        } else {
+            Self::AdvancedSystemsFormat
+        })
     }
 
     /// Determines file format from a CFB reader.

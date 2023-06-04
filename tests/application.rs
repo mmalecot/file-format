@@ -1,6 +1,12 @@
 use file_format::FileFormat;
 
 #[test]
+fn test_advanced_systems_format() {
+    let fmt = FileFormat::from_file("fixtures/application/sample.asf").unwrap();
+    assert_eq!(fmt, FileFormat::AdvancedSystemsFormat);
+}
+
+#[test]
 fn test_android_binary_xml() {
     let fmt = FileFormat::from_file("fixtures/application/sample.xml").unwrap();
     assert_eq!(fmt, FileFormat::AndroidBinaryXml);

@@ -54,6 +54,10 @@ These features enable the detection of file formats that need a specific reader 
 detected.
 
 - `reader` - Enables all reader features.
+- `reader-asf` - Enables [Advanced Systems Format (ASF)](`FileFormat::AdvancedSystemsFormat`) based
+  file formats detection.
+  * [Windows Media Audio (WMA)](`FileFormat::WindowsMediaAudio`)
+  * [Windows Media Video (WMV)](`FileFormat::WindowsMediaVideo`)
 - `reader-cfb` - Enables [Compound File Binary (CFB)](`FileFormat::CompoundFileBinary`) based file
   formats detection.
   * [3D Studio Max (MAX)](`FileFormat::ThreeDimensionalStudioMax`)

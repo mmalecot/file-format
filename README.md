@@ -57,6 +57,7 @@ file-format = "0.17"
 
 ### Application
 
+- Advanced Systems Format (ASF)
 - Android Binary XML (AXML)
 - Android Compiled Resources (ARSC)
 - Apache Arrow Columnar (Arrow)
@@ -164,6 +165,7 @@ file-format = "0.17"
 - Ultimate Soundtracker Module (MOD)
 - WavPack (WV)
 - Waveform Audio (WAV)
+- Windows Media Audio (WMA)
 
 ### Book
 

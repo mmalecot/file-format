@@ -14,6 +14,7 @@
 - Add `Playlist` kind
 - Add `Rom` kind
 - Add `Subtitle` kind
+- Add `reader-asf` feature
 - Add `reader-ebml` feature
 - Add `reader-rm` feature
 - Add `serde` feature
@@ -83,6 +84,7 @@
 - AbiWord Template (AWT)
 - Adobe Integrated Runtime (AIR)
 - Advanced Compression Engine (ACE)
+- Advanced Systems Format (ASF)
 - Atari 7800 ROM (A78)
 - Audio Visual Research (AVR)
 - BZip3 (BZ3)
@@ -124,6 +126,7 @@
 - Universal Subtitle Format (USF)
 - Virtual Machine Disk (VMDK)
 - Web Video Text Tracks (WebVTT)
+- Windows Media Audio (WMA)
 - Xbox 360 Executable (XEX)
 - Xbox Executable (XBE)
 - ZPAQ

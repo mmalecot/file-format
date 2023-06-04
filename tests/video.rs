@@ -154,6 +154,7 @@ fn test_webm() {
     assert_eq!(fmt, FileFormat::Webm);
 }
 
+#[cfg(feature = "reader-asf")]
 #[test]
 fn test_windows_media_video() {
     let fmt = FileFormat::from_file("fixtures/video/sample.wmv").unwrap();

@@ -223,3 +223,10 @@ fn test_wavpack() {
     let fmt = FileFormat::from_file("fixtures/audio/sample.wv").unwrap();
     assert_eq!(fmt, FileFormat::Wavpack);
 }
+
+#[cfg(feature = "reader-asf")]
+#[test]
+fn test_windows_media_audio() {
+    let fmt = FileFormat::from_file("fixtures/audio/sample.wma").unwrap();
+    assert_eq!(fmt, FileFormat::WindowsMediaAudio);
+}

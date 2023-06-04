@@ -24,6 +24,7 @@ serde = ["dep:serde"]
 
 ## Reader features
 reader = [
+    "reader-asf",
     "reader-cfb",
     "reader-ebml",
     "reader-exe",
@@ -33,6 +34,7 @@ reader = [
     "reader-xml",
     "reader-zip"
 ]
+reader-asf = []
 reader-cfb = ["dep:cfb"]
 reader-ebml = []
 reader-exe = []
