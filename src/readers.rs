@@ -118,7 +118,7 @@ impl crate::FileFormat {
             }
 
             // Calculates the size value based on the number of bytes.
-            let mut value = u64::from(first_byte[0] & (0x80 >> first_byte[0].leading_zeros()) - 1);
+            let mut value = u64::from(first_byte[0] & ((128 >> first_byte[0].leading_zeros()) - 1));
             for _ in 1..num_bytes {
                 let mut byte = [0];
                 reader.read_exact(&mut byte)?;
