@@ -165,6 +165,7 @@ file-format = "0.17"
 
 ### Book
 
+- Broad Band eBook (BBeB)
 - Electronic Publication (EPUB)
 - Mobipocket (MOBI)
 

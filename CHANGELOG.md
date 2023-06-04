@@ -82,6 +82,7 @@
 - Atari 7800 ROM (A78)
 - Audio Visual Research (AVR)
 - BZip3 (BZ3)
+- Broad Band eBook (BBeB)
 - Design Web Format (DWF)
 - Flexible and Interoperable Data Transfer (FIT)
 - Game Gear ROM (GG)

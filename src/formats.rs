@@ -349,6 +349,13 @@ formats! {
     extension = "blend"
     kind = Model
 
+    format = BroadBandEbook
+    name = "Broad Band eBook"
+    short_name = "BBeB"
+    media_type = "application/x-lrf"
+    extension = "lrf"
+    kind = Book
+
     format = Bzip
     name = "bzip"
     short_name = "BZ"

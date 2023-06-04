@@ -458,6 +458,9 @@ signatures! {
     format = Av1ImageFileFormatSequence
     value = b"ftypavis" offset = 4
 
+    format = BroadBandEbook
+    value = b"L\x00R\x00F\x00\x00\x00"
+
     format = CompoundFileBinary
     value = b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"
 
