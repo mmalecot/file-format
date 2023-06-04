@@ -349,6 +349,8 @@ impl crate::FileFormat {
                 return Ok(Self::Extensible3d);
             } else if contains(&buffer, b"<xsl") {
                 return Ok(Self::ExtensibleStylesheetLanguageTransformations);
+            } else if contains(&buffer, b"<FictionBook") {
+                return Ok(Self::Fictionbook);
             } else if contains(&buffer, b"<gml") {
                 return Ok(Self::GeographyMarkupLanguage);
             } else if contains(&buffer, b"<gpx") {
@@ -460,6 +462,8 @@ impl crate::FileFormat {
                         return Ok(Self::CircuitDiagramDocument);
                     } else if file.name().starts_with("dwf/") {
                         return Ok(Self::DesignWebFormatXps);
+                    } else if file.name().ends_with(".fb2") {
+                        return Ok(Self::FictionbookZipped);
                     } else if file.name().starts_with("word/") {
                         return Ok(Self::OfficeOpenXmlDocument);
                     } else if file.name().starts_with("visio/") {

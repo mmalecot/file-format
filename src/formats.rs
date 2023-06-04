@@ -626,6 +626,20 @@ formats! {
     extension = "xm"
     kind = Audio
 
+    format = Fictionbook
+    name = "FictionBook"
+    short_name = "FB2"
+    media_type = "application/x-fb2+xml"
+    extension = "fb2"
+    kind = Book
+
+    format = FictionbookZipped
+    name = "FictionBook Zipped"
+    short_name = "FBZ"
+    media_type = "application/x-fbz"
+    extension = "fbz"
+    kind = Book
+
     format = Filmbox
     name = "Filmbox"
     short_name = "FBX"

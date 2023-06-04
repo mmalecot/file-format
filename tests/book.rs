@@ -14,6 +14,26 @@ fn test_electronic_publication() {
 }
 
 #[test]
+fn test_fictionbook_1() {
+    let fmt = FileFormat::from_file("fixtures/book/sample1.fb2").unwrap();
+    assert_eq!(fmt, FileFormat::Fictionbook);
+}
+
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_fictionbook_2() {
+    let fmt = FileFormat::from_file("fixtures/book/sample2.fb2").unwrap();
+    assert_eq!(fmt, FileFormat::Fictionbook);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_fictionbook_zipped() {
+    let fmt = FileFormat::from_file("fixtures/book/sample.fbz").unwrap();
+    assert_eq!(fmt, FileFormat::FictionbookZipped);
+}
+
+#[test]
 fn test_mobipocket() {
     let fmt = FileFormat::from_file("fixtures/book/sample.mobi").unwrap();
     assert_eq!(fmt, FileFormat::Mobipocket);

@@ -260,6 +260,10 @@ signatures! {
     value = b"\x30\x26\xB2\x75\x8E\x66\xCF\x11\xA6\xD9\x00\xAA\x00\x62\xCE\x6C"
 
     // 15 bytes
+    format = Fictionbook
+    value = b"\xEF\xBB\xBF<FictionBook"
+    value = b"<FictionBook"
+
     format = FujifilmRaw
     value = b"FUJIFILMCCD-RAW"
 

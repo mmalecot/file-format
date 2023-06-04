@@ -167,6 +167,8 @@ file-format = "0.17"
 
 - Broad Band eBook (BBeB)
 - Electronic Publication (EPUB)
+- FictionBook (FB2)
+- FictionBook Zipped (FBZ)
 - Mobipocket (MOBI)
 
 ### Certificate
