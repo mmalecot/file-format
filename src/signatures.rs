@@ -1068,6 +1068,10 @@ signatures! {
     value = b"\x02\x00\x09\x00"
     value = b"\x01\x00\x09\x00"
 
+    format = Xbox360Executable
+    value = b"XEX1"
+    value = b"XEX2"
+
     format = XboxExecutable
     value = b"XBEH"
 

@@ -247,6 +247,7 @@ file-format = "0.17"
 - Optimized Dalvik Executable (DEY)
 - Portable Executable (PE)
 - WebAssembly Binary (Wasm)
+- Xbox 360 Executable (XEX)
 - Xbox Executable (XBE)
 
 ### Font

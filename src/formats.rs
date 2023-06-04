@@ -2315,6 +2315,13 @@ formats! {
     extension = "xap"
     kind = Package
 
+    format = Xbox360Executable
+    name = "Xbox 360 Executable"
+    short_name = "XEX"
+    media_type = "application/x-xbox360-executable"
+    extension = "xex"
+    kind = Executable
+
     format = XboxExecutable
     name = "Xbox Executable"
     short_name = "XBE"

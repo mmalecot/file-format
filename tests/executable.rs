@@ -95,6 +95,12 @@ fn test_webassembly_binary() {
 }
 
 #[test]
+fn test_xbox360_executable() {
+    let fmt = FileFormat::from_file("fixtures/executable/sample.xex").unwrap();
+    assert_eq!(fmt, FileFormat::Xbox360Executable);
+}
+
+#[test]
 fn test_xbox_executable() {
     let fmt = FileFormat::from_file("fixtures/executable/sample.xbe").unwrap();
     assert_eq!(fmt, FileFormat::XboxExecutable);

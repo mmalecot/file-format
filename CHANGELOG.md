@@ -112,6 +112,7 @@
 - Training Center XML (TCX)
 - Universal Subtitle Format (USF)
 - Web Video Text Tracks (WebVTT)
+- Xbox 360 Executable (XEX)
 - Xbox Executable (XBE)
 - ZPAQ
 - bzip (BZ)
