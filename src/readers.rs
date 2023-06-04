@@ -328,7 +328,7 @@ impl crate::FileFormat {
             .map(|_| Self::PlainText)
     }
 
-    /// Determines file format from an XML reader.
+    /// Determines file format from a XML reader.
     #[cfg(feature = "reader-xml")]
     pub(crate) fn from_xml_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Sets limits.
