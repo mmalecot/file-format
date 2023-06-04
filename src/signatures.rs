@@ -836,6 +836,12 @@ signatures! {
     format = Truetype
     value = b"\x00\x01\x00\x00\x00"
 
+    format = VirtualMachineDisk
+    value = b"COWD\x01"
+    value = b"KDMV\x01"
+    value = b"KDMV\x02"
+    value = b"KDMV\x03"
+
     // 4 bytes
     format = AdaptableScalableTextureCompression
     value = b"\x13\xAB\xA1\x5C"

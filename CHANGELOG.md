@@ -115,6 +115,7 @@
 - Timed Text Markup Language (TTML)
 - Training Center XML (TCX)
 - Universal Subtitle Format (USF)
+- Virtual Machine Disk (VMDK)
 - Web Video Text Tracks (WebVTT)
 - Xbox 360 Executable (XEX)
 - Xbox Executable (XBE)

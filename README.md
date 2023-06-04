@@ -199,6 +199,7 @@ file-format = "0.17"
 - Microsoft Virtual Hard Disk (VHD)
 - Microsoft Virtual Hard Disk 2 (VHDX)
 - QEMU Copy On Write (QCOW)
+- Virtual Machine Disk (VMDK)
 - VirtualBox Virtual Disk Image (VDI)
 
 ### Document

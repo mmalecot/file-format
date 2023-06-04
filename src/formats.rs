@@ -2199,6 +2199,13 @@ formats! {
     extension = "vcf"
     kind = Text
 
+    format = VirtualMachineDisk
+    name = "Virtual Machine Disk"
+    short_name = "VMDK"
+    media_type = "application/x-vmdk"
+    extension = "vmdk"
+    kind = Disk
+
     format = VirtualboxVirtualDiskImage
     name = "VirtualBox Virtual Disk Image"
     short_name = "VDI"

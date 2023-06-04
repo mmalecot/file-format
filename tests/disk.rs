@@ -31,6 +31,12 @@ fn test_qemu_copy_on_write() {
 }
 
 #[test]
+fn test_virtual_machine_disk() {
+    let fmt = FileFormat::from_file("fixtures/disk/sample.vmdk").unwrap();
+    assert_eq!(fmt, FileFormat::VirtualMachineDisk);
+}
+
+#[test]
 fn test_virtualbox_virtual_disk_image() {
     let fmt = FileFormat::from_file("fixtures/disk/sample.vdi").unwrap();
     assert_eq!(fmt, FileFormat::VirtualboxVirtualDiskImage);
