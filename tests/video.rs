@@ -167,3 +167,9 @@ fn test_windows_media_video() {
     let fmt = FileFormat::from_file("fixtures/video/sample.wmv").unwrap();
     assert_eq!(fmt, FileFormat::WindowsMediaVideo);
 }
+
+#[test]
+fn test_windows_recorded_tv_show() {
+    let fmt = FileFormat::from_file("fixtures/video/sample.wtv").unwrap();
+    assert_eq!(fmt, FileFormat::WindowsRecordedTvShow);
+}

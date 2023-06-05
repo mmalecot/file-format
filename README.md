@@ -467,6 +467,7 @@ file-format = "0.17"
 - Sony Movie (MQV)
 - WebM
 - Windows Media Video (WMV)
+- Windows Recorded TV Show (WTV)
 
 ## License
 

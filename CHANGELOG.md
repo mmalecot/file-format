@@ -128,6 +128,7 @@
 - Virtual Machine Disk (VMDK)
 - Web Video Text Tracks (WebVTT)
 - Windows Media Audio (WMA)
+- Windows Recorded TV Show (WTV)
 - Xbox 360 Executable (XEX)
 - Xbox Executable (XBE)
 - ZPAQ

@@ -2379,6 +2379,13 @@ formats! {
     extension = "wmf"
     kind = Image
 
+    format = WindowsRecordedTvShow
+    name = "Windows Recorded TV Show"
+    short_name = "WTV"
+    media_type = "video/x-wtv"
+    extension = "wtv"
+    kind = Video
+
     format = WindowsShortcut
     name = "Windows Shortcut"
     short_name = "LNK"
