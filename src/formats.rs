@@ -398,6 +398,13 @@ formats! {
     extension = "cab"
     kind = Archive
 
+    format = CanonRaw
+    name = "Canon Raw"
+    short_name = "CRW"
+    media_type = "image/x-canon-crw"
+    extension = "crw"
+    kind = Image
+
     format = CanonRaw2
     name = "Canon Raw 2"
     short_name = "CR2"

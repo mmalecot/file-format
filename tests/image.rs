@@ -50,6 +50,12 @@ fn test_better_portable_graphics() {
 }
 
 #[test]
+fn test_canon_raw() {
+    let fmt = FileFormat::from_file("fixtures/image/sample.crw").unwrap();
+    assert_eq!(fmt, FileFormat::CanonRaw);
+}
+
+#[test]
 fn test_canon_raw2() {
     let fmt = FileFormat::from_file("fixtures/image/sample.cr2").unwrap();
     assert_eq!(fmt, FileFormat::CanonRaw2);

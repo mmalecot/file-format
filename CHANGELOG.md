@@ -89,6 +89,7 @@
 - Audio Visual Research (AVR)
 - BZip3 (BZ3)
 - Broad Band eBook (BBeB)
+- Canon Raw (CRW)
 - Design Web Format (DWF)
 - FictionBook (FB2)
 - FictionBook Zipped (FBZ)

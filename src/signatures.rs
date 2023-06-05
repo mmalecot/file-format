@@ -284,6 +284,9 @@ signatures! {
     value = b"Standard Jet DB" offset = 4
 
     // 14 bytes
+    format = CanonRaw
+    value = b"\x49\x49\x1A\x00\x00\x00\x48\x45\x41\x50\x43\x43\x44\x52"
+
     format = Latex
     value = b"\\documentclass"
     value = b"\\documentstyle"

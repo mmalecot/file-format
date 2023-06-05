@@ -289,6 +289,7 @@ file-format = "0.17"
 - Animated Portable Network Graphics (APNG)
 - Apple Icon Image (ICNS)
 - Better Portable Graphics (BPG)
+- Canon Raw (CRW)
 - Canon Raw 2 (CR2)
 - Canon Raw 3 (CR3)
 - Cineon (CIN)
