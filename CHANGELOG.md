@@ -121,6 +121,7 @@
 - RealMedia (RM)
 - RealVideo (RV)
 - Sega Master System ROM (SMS)
+- SpaceClaim Document (SCDOC)
 - StuffIt (SIT)
 - StuffIt X (SITX)
 - Timed Text Markup Language (TTML)

@@ -518,6 +518,8 @@ impl crate::FileFormat {
                         return Ok(Self::OfficeOpenXmlPresentation);
                     } else if file.name().starts_with("xl/") {
                         return Ok(Self::OfficeOpenXmlSpreadsheet);
+                    } else if file.name().starts_with("SpaceClaim/") {
+                        return Ok(Self::SpaceclaimDocument);
                     } else if file.name().starts_with("3D/") && file.name().ends_with(".model") {
                         return Ok(Self::ThreeDimensionalManufacturingFormat);
                     } else if file.name().starts_with("Payload/") && file.name().contains(".app/") {

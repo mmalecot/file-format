@@ -369,6 +369,7 @@ file-format = "0.17"
 - Polygon ASCII (PLY)
 - Polygon Binary (PLY)
 - SketchUp (SKP)
+- SpaceClaim Document (SCDOC)
 - Stereolithography ASCII (STL)
 - Stereolithography Binary (STL)
 - Universal 3D (U3D)

@@ -146,6 +146,7 @@ detected.
   * [OpenDocument Text Master Template (OTM)](`FileFormat::OpendocumentTextMasterTemplate`)
   * [OpenDocument Text Template (OTT)](`FileFormat::OpendocumentTextTemplate`)
   * [OpenRaster (ORA)](`FileFormat::Openraster`)
+  * [SpaceClaim Document (SCDOC)](`FileFormat::SpaceclaimDocument`)
   * [Web Application Archive (WAR)](`FileFormat::WebApplicationArchive`)
   * [Windows App Package (APPX)](`FileFormat::WindowsAppPackage`)
   * [XAP](`FileFormat::Xap`)

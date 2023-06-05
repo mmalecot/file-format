@@ -2075,6 +2075,13 @@ formats! {
     extension = "sf2"
     kind = Audio
 
+    format = SpaceclaimDocument
+    name = "SpaceClaim Document"
+    short_name = "SCDOC"
+    media_type = "model/x-scdoc"
+    extension = "scdoc"
+    kind = Model
+
     format = Sqlite3
     name = "SQLite 3"
     media_type = "application/vnd.sqlite3"

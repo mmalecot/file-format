@@ -154,6 +154,13 @@ fn test_sketchup() {
     assert_eq!(fmt, FileFormat::Sketchup);
 }
 
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_spaceclaim_document() {
+    let fmt = FileFormat::from_file("fixtures/model/sample.scdoc").unwrap();
+    assert_eq!(fmt, FileFormat::SpaceclaimDocument);
+}
+
 #[test]
 fn test_stereolithography_ascii() {
     let fmt = FileFormat::from_file("fixtures/model/sample1.stl").unwrap();
