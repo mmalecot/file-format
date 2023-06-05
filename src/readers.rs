@@ -50,11 +50,13 @@ impl crate::FileFormat {
     /// Determines file format from an ASF reader.
     #[cfg(feature = "reader-asf")]
     pub(crate) fn from_asf_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        // Constants representing GUIDs.
+        // Constants representing GUIDs and descriptors.
         const VIDEO_GUID: &[u8] =
             b"\xC0\xEF\x19\xBC\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
         const AUDIO_GUID: &[u8] =
             b"\x40\x9E\x69\xF8\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
+        const DVR_DESCRIPTOR: &[u8] =
+            b"D\x00V\x00R\x00 \x00F\x00i\x00l\x00e\x00 \x00V\x00e\x00r\x00s\x00i\x00o\x00n";
 
         // Sets limits.
         const SEARCH_LIMIT: usize = 8192;
@@ -69,6 +71,12 @@ impl crate::FileFormat {
         // Fills the buffer.
         let mut buffer = vec![0; std::cmp::min(SEARCH_LIMIT, length as usize)];
         reader.read_exact(&mut buffer)?;
+
+        // Searches for an Extended Content Description descriptor named "DVR File Version" in the
+        // buffer.
+        if contains(&buffer, DVR_DESCRIPTOR) {
+            return Ok(Self::MicrosoftDigitalVideoRecording);
+        }
 
         // Searches for specific GUIDs in the buffer.
         Ok(if contains(&buffer, VIDEO_GUID) {

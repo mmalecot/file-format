@@ -99,6 +99,7 @@
 - Linear Executable (LE)
 - MTV
 - Mega Drive ROM (MD)
+- Microsoft Digital Video Recording (DVR-MS)
 - Neo Geo Pocket ROM (NGP)
 - New Executable (NE)
 - Nintendo Switch Executable (NSO)

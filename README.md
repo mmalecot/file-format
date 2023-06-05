@@ -460,6 +460,7 @@ file-format = "0.17"
 - Material Exchange Format (MXF)
 - Matroska 3D Video (MK3D)
 - Matroska Video (MKV)
+- Microsoft Digital Video Recording (DVR-MS)
 - Ogg Media (OGM)
 - Ogg Theora (Theora)
 - RealVideo (RV)

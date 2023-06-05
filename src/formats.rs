@@ -1186,6 +1186,13 @@ formats! {
     extension = "chm"
     kind = Application
 
+    format = MicrosoftDigitalVideoRecording
+    name = "Microsoft Digital Video Recording"
+    short_name = "DVR-MS"
+    media_type = "video/x-ms-asf"
+    extension = "dvr-ms"
+    kind = Video
+
     format = MicrosoftDirectdrawSurface
     name = "Microsoft DirectDraw Surface"
     short_name = "DDS"

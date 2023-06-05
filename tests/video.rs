@@ -86,6 +86,13 @@ fn test_matroska_video() {
     assert_eq!(fmt, FileFormat::MatroskaVideo);
 }
 
+#[cfg(feature = "reader-asf")]
+#[test]
+fn test_microsoft_digital_video_recording() {
+    let fmt = FileFormat::from_file("fixtures/video/sample.dvr-ms").unwrap();
+    assert_eq!(fmt, FileFormat::MicrosoftDigitalVideoRecording);
+}
+
 #[test]
 fn test_mpeg12_video() {
     let fmt = FileFormat::from_file("fixtures/video/sample.mpg").unwrap();

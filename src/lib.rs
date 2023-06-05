@@ -56,6 +56,7 @@ detected.
 - `reader` - Enables all reader features.
 - `reader-asf` - Enables [Advanced Systems Format (ASF)](`FileFormat::AdvancedSystemsFormat`) based
   file formats detection.
+  * [Microsoft Digital Video Recording (DVR-MS)](`FileFormat::MicrosoftDigitalVideoRecording`)
   * [Windows Media Audio (WMA)](`FileFormat::WindowsMediaAudio`)
   * [Windows Media Video (WMV)](`FileFormat::WindowsMediaVideo`)
 - `reader-cfb` - Enables [Compound File Binary (CFB)](`FileFormat::CompoundFileBinary`) based file
