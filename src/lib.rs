@@ -1,5 +1,5 @@
 /*!
-Crate for determining the file format of a given file or stream.
+Crate for determining the file format of a [given file](`FileFormat::from_file`) or stream.
 
 It provides a variety of functions for identifying a wide range of file formats, including
 [ZIP](`FileFormat::Zip`), [Compound File Binary (CFB)](`FileFormat::CompoundFileBinary`),
@@ -16,13 +16,13 @@ Determines from a file:
 ```rust
 use file_format::{FileFormat, Kind};
 
-let format = FileFormat::from_file("fixtures/application/sample.pdf")?;
+let format = FileFormat::from_file("fixtures/document/sample.pdf")?;
 assert_eq!(format, FileFormat::PortableDocumentFormat);
 assert_eq!(format.name(), "Portable Document Format");
-assert_eq!(format.short_name(), "PDF");
+assert_eq!(format.short_name(), Some("PDF"));
 assert_eq!(format.media_type(), "application/pdf");
 assert_eq!(format.extension(), "pdf");
-assert_eq!(format.kind(), Kind::Application);
+assert_eq!(format.kind(), Kind::Document);
 # Ok::<(), std::io::Error>(())
 ```
 
@@ -34,49 +34,33 @@ use file_format::{FileFormat, Kind};
 let format = FileFormat::from_bytes(&[0xFF, 0xD8, 0xFF]);
 assert_eq!(format, FileFormat::JointPhotographicExpertsGroup);
 assert_eq!(format.name(), "Joint Photographic Experts Group");
-assert_eq!(format.short_name(), "JPEG");
+assert_eq!(format.short_name(), Some("JPEG"));
 assert_eq!(format.media_type(), "image/jpeg");
 assert_eq!(format.extension(), "jpg");
 assert_eq!(format.kind(), Kind::Image);
-```
-
-# Usage
-
-Add this to your `Cargo.toml`:
-
-```toml
-[dependencies]
-file-format = "0.16"
 ```
 
 # Crate features
 
 All features below are disabled by default.
 
-## Accuracy features
+## Ecosystem features
 
-These features are only relevant if the associated reader is enabled. They improve the accuracy of
-detection for specific file formats, but may increase processing time and memory usage.
-
-- `accuracy` - Enables all accuracy features.
-- `accuracy-mkv` - Improves the accuracy of [Matroska Video (MKV)](`FileFormat::MatroskaVideo`)
-  based file formats detection.
-- `accuracy-pdf` - Improves the accuracy of
-  [Portable Document Format (PDF)](`FileFormat::PortableDocumentFormat`) based file formats
-  detection.
-- `accuracy-txt` - Improves the accuracy of [Plain Text (TXT)](`FileFormat::PlainText`) detection.
-- `accuracy-xml` - Improves the accuracy of
-  [Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`) based file formats
-  detection.
-- `accuracy-zip` - Improves the accuracy of [ZIP](`FileFormat::Zip`)-based file formats detection.
+- `serde` - Adds the ability to serialize and deserialize a [`FileFormat`] and [`Kind`] using serde.
 
 ## Reader features
 
-These features enable the detection of file formats based on other ones by reading their content.
+These features enable the detection of file formats that need a specific reader in order to be
+detected.
 
 - `reader` - Enables all reader features.
+- `reader-asf` - Enables [Advanced Systems Format (ASF)](`FileFormat::AdvancedSystemsFormat`) based
+  file formats detection.
+  * [Microsoft Digital Video Recording (DVR-MS)](`FileFormat::MicrosoftDigitalVideoRecording`)
+  * [Windows Media Audio (WMA)](`FileFormat::WindowsMediaAudio`)
+  * [Windows Media Video (WMV)](`FileFormat::WindowsMediaVideo`)
 - `reader-cfb` - Enables [Compound File Binary (CFB)](`FileFormat::CompoundFileBinary`) based file
-  formats detection:
+  formats detection.
   * [3D Studio Max (MAX)](`FileFormat::ThreeDimensionalStudioMax`)
   * [Microsoft Excel Spreadsheet (XLS)](`FileFormat::MicrosoftExcelSpreadsheet`)
   * [Microsoft PowerPoint Presentation (PPT)](`FileFormat::MicrosoftPowerpointPresentation`)
@@ -85,25 +69,38 @@ These features enable the detection of file formats based on other ones by readi
   * [Microsoft Software Installer (MSI)](`FileFormat::MicrosoftSoftwareInstaller`)
   * [Microsoft Visio Drawing (VSD)](`FileFormat::MicrosoftVisioDrawing`)
   * [Microsoft Word Document (DOC)](`FileFormat::MicrosoftWordDocument`)
-- `reader-exe` - Enables [MS-DOS Executable (EXE)](`FileFormat::MsDosExecutable`) based file formats
-  detection:
-  * [Dynamic Link Library (DLL)](`FileFormat::DynamicLinkLibrary`)
-  * [Portable Executable (PE)](`FileFormat::PortableExecutable`)
-- `reader-mkv` - Enables [Matroska Video (MKV)](`FileFormat::MatroskaVideo`) based file formats
-  detection:
+- `reader-ebml` - Enables [Extensible Binary Meta Language (EBML)](`FileFormat::ExtensibleBinaryMetaLanguage`)
+  based file formats detection.
+  * [Matroska 3D Video (MK3D)](`FileFormat::Matroska3dVideo`)
+  * [Matroska Audio (MKA)](`FileFormat::MatroskaAudio`)
+  * [Matroska Video (MKV)](`FileFormat::MatroskaVideo`)
   * [WebM](`FileFormat::Webm`)
+- `reader-exe` - Enables [MS-DOS Executable (EXE)](`FileFormat::MsDosExecutable`) based file formats
+  detection.
+  * [Dynamic Link Library (DLL)](`FileFormat::DynamicLinkLibrary`)
+  * [Linear Executable (LE)](`FileFormat::LinearExecutable`)
+  * [New Executable (NE)](`FileFormat::NewExecutable`)
+  * [Portable Executable (PE)](`FileFormat::PortableExecutable`)
 - `reader-pdf` - Enables [Portable Document Format (PDF)](`FileFormat::PortableDocumentFormat`)
-  based file formats detection:
+  based file formats detection.
   * [Adobe Illustrator Artwork (AI)](`FileFormat::AdobeIllustratorArtwork`)
+- `reader-rm` - Enables [RealMedia (RM)](`FileFormat::Realmedia`) based file formats detection.
+  * [RealAudio (RA)](`FileFormat::Realaudio`)
+  * [RealVideo (RV)](`FileFormat::Realvideo`)
 - `reader-txt` - Enables [Plain Text (TXT)](`FileFormat::PlainText`) detection when the file format
   is not recognized by its signature. Please note that this option only detects files that contain
   ASCII/UTF-8-encoded text.
 - `reader-xml` - Enables [Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`)
-  based file formats detection:
+  based file formats detection. Please note that these formats could be detected without the feature
+  when they do not contain an XML declaration.
+  * [AbiWord (ABW)](`FileFormat::Abiword`)
+  * [AbiWord Template (AWT)](`FileFormat::AbiwordTemplate`)
   * [Additive Manufacturing Format (AMF)](`FileFormat::AdditiveManufacturingFormat`)
+  * [Advanced Stream Redirector (ASX)](`FileFormat::AdvancedStreamRedirector`)
   * [Digital Asset Exchange (DAE)](`FileFormat::DigitalAssetExchange`)
-  * [Extensible 3D Graphics (X3D)](`FileFormat::Extensible3dGraphics`)
+  * [Extensible 3D (X3D)](`FileFormat::Extensible3d`)
   * [Extensible Stylesheet Language Transformations (XSLT)](`FileFormat::ExtensibleStylesheetLanguageTransformations`)
+  * [FictionBook (FB2)](`FileFormat::Fictionbook`)
   * [GPS Exchange Format (GPX)](`FileFormat::GpsExchangeFormat`)
   * [Geography Markup Language (GML)](`FileFormat::GeographyMarkupLanguage`)
   * [Keyhole Markup Language (KML)](`FileFormat::KeyholeMarkupLanguage`)
@@ -111,16 +108,21 @@ These features enable the detection of file formats based on other ones by readi
   * [Really Simple Syndication (RSS)](`FileFormat::ReallySimpleSyndication`)
   * [Scalable Vector Graphics (SVG)](`FileFormat::ScalableVectorGraphics`)
   * [Simple Object Access Protocol (SOAP)](`FileFormat::SimpleObjectAccessProtocol`)
+  * [Timed Text Markup Language (TTML)](`FileFormat::TimedTextMarkupLanguage`)
+  * [Training Center XML (TCX)](`FileFormat::TrainingCenterXml`)
+  * [Universal Subtitle Format (USF)](`FileFormat::UniversalSubtitleFormat`)
   * [XML Localization Interchange File Format (XLIFF)](`FileFormat::XmlLocalizationInterchangeFileFormat`)
   * [XML Shareable Playlist Format (XSPF)](`FileFormat::XmlShareablePlaylistFormat`)
   * [draw.io (DRAWIO)](`FileFormat::Drawio`)
-- `reader-zip` - Enables [ZIP](`FileFormat::Zip`)-based file formats detection:
+- `reader-zip` - Enables [ZIP](`FileFormat::Zip`)-based file formats detection.
   * [3D Manufacturing Format (3MF)](`FileFormat::ThreeDimensionalManufacturingFormat`)
+  * [Adobe Integrated Runtime (AIR)](`FileFormat::AdobeIntegratedRuntime`)
   * [Android Package (APK)](`FileFormat::AndroidPackage`)
   * [Circuit Diagram Document (CDDX)](`FileFormat::CircuitDiagramDocument`)
   * [Design Web Format XPS (DWFX)](`FileFormat::DesignWebFormatXps`)
   * [Electronic Publication (EPUB)](`FileFormat::ElectronicPublication`)
   * [Enterprise Application Archive (EAR)](`FileFormat::EnterpriseApplicationArchive`)
+  * [FictionBook Zipped (FBZ)](`FileFormat::FictionbookZipped`)
   * [InDesign Markup Language (IDML)](`FileFormat::IndesignMarkupLanguage`)
   * [Java Archive (JAR)](`FileFormat::JavaArchive`)
   * [Keyhole Markup Language Zipped (KMZ)](`FileFormat::KeyholeMarkupLanguageZipped`)
@@ -130,11 +132,21 @@ These features enable the detection of file formats based on other ones by readi
   * [Office Open XML Drawing (VSDX)](`FileFormat::OfficeOpenXmlDrawing`)
   * [Office Open XML Presentation (PPTX)](`FileFormat::OfficeOpenXmlPresentation`)
   * [Office Open XML Spreadsheet (XLSX)](`FileFormat::OfficeOpenXmlSpreadsheet`)
+  * [OpenDocument Database (ODB)](`FileFormat::OpendocumentDatabase`)
+  * [OpenDocument Formula (ODF)](`FileFormat::OpendocumentFormula`)
+  * [OpenDocument Formula Template (OTF)](`FileFormat::OpendocumentFormulaTemplate`)
   * [OpenDocument Graphics (ODG)](`FileFormat::OpendocumentGraphics`)
+  * [OpenDocument Graphics Template (OTG)](`FileFormat::OpendocumentGraphicsTemplate`)
   * [OpenDocument Presentation (ODP)](`FileFormat::OpendocumentPresentation`)
+  * [OpenDocument Presentation Template (OTP)](`FileFormat::OpendocumentPresentationTemplate`)
   * [OpenDocument Spreadsheet (ODS)](`FileFormat::OpendocumentSpreadsheet`)
+  * [OpenDocument Spreadsheet Template (OTS)](`FileFormat::OpendocumentSpreadsheetTemplate`)
   * [OpenDocument Text (ODT)](`FileFormat::OpendocumentText`)
+  * [OpenDocument Text Master (ODM)](`FileFormat::OpendocumentTextMaster`)
+  * [OpenDocument Text Master Template (OTM)](`FileFormat::OpendocumentTextMasterTemplate`)
+  * [OpenDocument Text Template (OTT)](`FileFormat::OpendocumentTextTemplate`)
   * [OpenRaster (ORA)](`FileFormat::Openraster`)
+  * [SpaceClaim Document (SCDOC)](`FileFormat::SpaceclaimDocument`)
   * [Web Application Archive (WAR)](`FileFormat::WebApplicationArchive`)
   * [Windows App Package (APPX)](`FileFormat::WindowsAppPackage`)
   * [XAP](`FileFormat::Xap`)
@@ -253,21 +265,51 @@ impl From<&[u8]> for FileFormat {
     }
 }
 
-/// A kind of [`FileFormat`] according to the media type.
-#[derive(Clone, Debug, Eq, PartialEq)]
+/// A kind of [`FileFormat`].
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+#[cfg_attr(feature = "serde", derive(serde::Deserialize, serde::Serialize))]
 pub enum Kind {
-    /// Data to be processed by some type of application program.
+    /// Data which do not fit in any of the other kinds, and particularly for data to be processed
+    /// by some type of application program.
     Application,
-    /// Music, sound effects, and spoken audio recordings.
+    /// Stored files and directories into a single file, possibly compressed.
+    Archive,
+    /// Musics, sound effects, and spoken audio recordings.
     Audio,
-    /// Files used for displaying text on screen or in print.
+    /// Ebooks.
+    Book,
+    /// Digital certificates.
+    Certificate,
+    /// Compressed single files or streams.
+    Compression,
+    /// Floppy disk images, optical disc images and virtual machine disks.
+    Disk,
+    /// Word processing documents, spreadsheets, presentations, documents templates, diagrams,
+    /// charts, and other formatted documents.
+    Document,
+    /// Machine executable codes, virtual machine codes and shared libraries.
+    Executable,
+    /// Typefaces used for displaying text on screen or in print.
     Font,
+    /// Collections of geospatial features, GPS tracks and other location-related files.
+    Geospatial,
     /// Photographs, illustrations, and other types of image files.
     Image,
     /// 3D models, CAD drawings, and other types of files used for creating or displaying 3D images.
     Model,
-    /// Plain text, markup languages, and other types of files that contain written text.
+    /// Archives or other containers that bundles programs and resources that can be run on target
+    /// environments.
+    Package,
+    /// Lists of audio or video files that are played in a specific order.
+    Playlist,
+    /// Copies of a read-only memory chip of computers, cartridges or other electronic devices.
+    Rom,
+    /// Subtitles and captions.
+    Subtitle,
+    /// Plain text, source codes, markup languages, and other types of files that contain written
+    /// text.
     Text,
-    /// Movies, animations, and other types of files that contain moving images.
+    /// Movies, animations, and other types of files that contain moving images, possibly with color
+    /// and coordinated sound.
     Video,
 }

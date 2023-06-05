@@ -1,140 +1,175 @@
 use file_format::FileFormat;
 
 #[test]
+fn test_actions_media_video() {
+    let fmt = FileFormat::from_file("fixtures/video/sample.amv").unwrap();
+    assert_eq!(fmt, FileFormat::ActionsMediaVideo);
+}
+
+#[test]
 fn test_adobe_flash_player_protected_video() {
-    let format = FileFormat::from_file("fixtures/video/sample.f4p").unwrap();
-    assert_eq!(format, FileFormat::AdobeFlashPlayerProtectedVideo);
+    let fmt = FileFormat::from_file("fixtures/video/sample.f4p").unwrap();
+    assert_eq!(fmt, FileFormat::AdobeFlashPlayerProtectedVideo);
 }
 
 #[test]
 fn test_adobe_flash_player_video() {
-    let format = FileFormat::from_file("fixtures/video/sample.f4v").unwrap();
-    assert_eq!(format, FileFormat::AdobeFlashPlayerVideo);
-}
-
-#[test]
-fn test_advanced_media_video() {
-    let format = FileFormat::from_file("fixtures/video/sample.amv").unwrap();
-    assert_eq!(format, FileFormat::AdvancedMediaVideo);
-}
-
-#[test]
-fn test_advanced_stream_redirector() {
-    let format = FileFormat::from_file("fixtures/video/sample.asx").unwrap();
-    assert_eq!(format, FileFormat::AdvancedStreamRedirector);
+    let fmt = FileFormat::from_file("fixtures/video/sample.f4v").unwrap();
+    assert_eq!(fmt, FileFormat::AdobeFlashPlayerVideo);
 }
 
 #[test]
 fn test_apple_itunes_video() {
-    let format = FileFormat::from_file("fixtures/video/sample.m4v").unwrap();
-    assert_eq!(format, FileFormat::AppleItunesVideo);
+    let fmt = FileFormat::from_file("fixtures/video/sample.m4v").unwrap();
+    assert_eq!(fmt, FileFormat::AppleItunesVideo);
 }
 
 #[test]
 fn test_apple_quicktime() {
-    let format = FileFormat::from_file("fixtures/video/sample.mov").unwrap();
-    assert_eq!(format, FileFormat::AppleQuicktime);
+    let fmt = FileFormat::from_file("fixtures/video/sample.mov").unwrap();
+    assert_eq!(fmt, FileFormat::AppleQuicktime);
 }
 
 #[test]
 fn test_audio_video_interleave() {
-    let format = FileFormat::from_file("fixtures/video/sample.avi").unwrap();
-    assert_eq!(format, FileFormat::AudioVideoInterleave);
+    let fmt = FileFormat::from_file("fixtures/video/sample.avi").unwrap();
+    assert_eq!(fmt, FileFormat::AudioVideoInterleave);
 }
 
 #[test]
 fn test_autodesk_animator() {
-    let format = FileFormat::from_file("fixtures/video/sample.fli").unwrap();
-    assert_eq!(format, FileFormat::AutodeskAnimator);
+    let fmt = FileFormat::from_file("fixtures/video/sample.fli").unwrap();
+    assert_eq!(fmt, FileFormat::AutodeskAnimator);
 }
 
 #[test]
 fn test_autodesk_animator_pro() {
-    let format = FileFormat::from_file("fixtures/video/sample.flc").unwrap();
-    assert_eq!(format, FileFormat::AutodeskAnimatorPro);
+    let fmt = FileFormat::from_file("fixtures/video/sample.flc").unwrap();
+    assert_eq!(fmt, FileFormat::AutodeskAnimatorPro);
+}
+
+#[test]
+fn test_bdav_mpeg2_transport_stream() {
+    let fmt = FileFormat::from_file("fixtures/video/sample.mts").unwrap();
+    assert_eq!(fmt, FileFormat::BdavMpeg2TransportStream);
 }
 
 #[test]
 fn test_flash_video() {
-    let format = FileFormat::from_file("fixtures/video/sample.flv").unwrap();
-    assert_eq!(format, FileFormat::FlashVideo);
+    let fmt = FileFormat::from_file("fixtures/video/sample.flv").unwrap();
+    assert_eq!(fmt, FileFormat::FlashVideo);
 }
 
+#[test]
+fn test_jpeg2000_part3() {
+    let fmt = FileFormat::from_file("fixtures/video/sample.mj2").unwrap();
+    assert_eq!(fmt, FileFormat::Jpeg2000Part3);
+}
+
+#[test]
+fn test_material_exchange_format() {
+    let fmt = FileFormat::from_file("fixtures/video/sample.mxf").unwrap();
+    assert_eq!(fmt, FileFormat::MaterialExchangeFormat);
+}
+
+#[cfg(feature = "reader-ebml")]
+#[test]
+fn test_matroska3d_video() {
+    let fmt = FileFormat::from_file("fixtures/video/sample.mk3d").unwrap();
+    assert_eq!(fmt, FileFormat::Matroska3dVideo);
+}
+
+#[cfg(feature = "reader-ebml")]
 #[test]
 fn test_matroska_video() {
-    let format = FileFormat::from_file("fixtures/video/sample.mkv").unwrap();
-    assert_eq!(format, FileFormat::MatroskaVideo);
+    let fmt = FileFormat::from_file("fixtures/video/sample.mkv").unwrap();
+    assert_eq!(fmt, FileFormat::MatroskaVideo);
+}
+
+#[cfg(feature = "reader-asf")]
+#[test]
+fn test_microsoft_digital_video_recording() {
+    let fmt = FileFormat::from_file("fixtures/video/sample.dvr-ms").unwrap();
+    assert_eq!(fmt, FileFormat::MicrosoftDigitalVideoRecording);
 }
 
 #[test]
-fn test_mpeg1_video() {
-    let format = FileFormat::from_file("fixtures/video/sample.mpg").unwrap();
-    assert_eq!(format, FileFormat::Mpeg1Video);
+fn test_mpeg12_video() {
+    let fmt = FileFormat::from_file("fixtures/video/sample.mpg").unwrap();
+    assert_eq!(fmt, FileFormat::Mpeg12Video);
 }
 
 #[test]
 fn test_mpeg2_transport_stream() {
-    let format = FileFormat::from_file("fixtures/video/sample.mts").unwrap();
-    assert_eq!(format, FileFormat::Mpeg2TransportStream);
+    let fmt = FileFormat::from_file("fixtures/video/sample.ts").unwrap();
+    assert_eq!(fmt, FileFormat::Mpeg2TransportStream);
 }
 
 #[test]
 fn test_mpeg4_part14_video() {
-    let format = FileFormat::from_file("fixtures/video/sample.mp4").unwrap();
-    assert_eq!(format, FileFormat::Mpeg4Part14Video);
+    let fmt = FileFormat::from_file("fixtures/video/sample.mp4").unwrap();
+    assert_eq!(fmt, FileFormat::Mpeg4Part14Video);
 }
 
 #[test]
-fn test_multiple_image_network_graphics() {
-    let format = FileFormat::from_file("fixtures/video/sample.mng").unwrap();
-    assert_eq!(format, FileFormat::MultipleImageNetworkGraphics);
+fn test_mtv() {
+    let fmt = FileFormat::from_file("fixtures/video/sample.mtv").unwrap();
+    assert_eq!(fmt, FileFormat::Mtv);
 }
 
 #[test]
 fn test_ogg_media() {
-    let format = FileFormat::from_file("fixtures/video/sample.ogm").unwrap();
-    assert_eq!(format, FileFormat::OggMedia);
+    let fmt = FileFormat::from_file("fixtures/video/sample.ogm").unwrap();
+    assert_eq!(fmt, FileFormat::OggMedia);
 }
 
 #[test]
 fn test_ogg_theora() {
-    let format = FileFormat::from_file("fixtures/video/sample.ogv").unwrap();
-    assert_eq!(format, FileFormat::OggTheora);
+    let fmt = FileFormat::from_file("fixtures/video/sample.ogv").unwrap();
+    assert_eq!(fmt, FileFormat::OggTheora);
+}
+
+#[cfg(feature = "reader-rm")]
+#[test]
+fn test_realvideo() {
+    let fmt = FileFormat::from_file("fixtures/video/sample.rv").unwrap();
+    assert_eq!(fmt, FileFormat::Realvideo);
 }
 
 #[test]
 fn test_sony_movie() {
-    let format = FileFormat::from_file("fixtures/video/sample.mqv").unwrap();
-    assert_eq!(format, FileFormat::SonyMovie);
-}
-
-#[test]
-fn test_soundfont2() {
-    let format = FileFormat::from_file("fixtures/video/sample.sf2").unwrap();
-    assert_eq!(format, FileFormat::Soundfont2);
+    let fmt = FileFormat::from_file("fixtures/video/sample.mqv").unwrap();
+    assert_eq!(fmt, FileFormat::SonyMovie);
 }
 
 #[test]
 fn test_third_generation_partnership_project() {
-    let format = FileFormat::from_file("fixtures/video/sample.3gp").unwrap();
-    assert_eq!(format, FileFormat::ThirdGenerationPartnershipProject);
+    let fmt = FileFormat::from_file("fixtures/video/sample.3gp").unwrap();
+    assert_eq!(fmt, FileFormat::ThirdGenerationPartnershipProject);
 }
 
 #[test]
 fn test_third_generation_partnership_project2() {
-    let format = FileFormat::from_file("fixtures/video/sample.3g2").unwrap();
-    assert_eq!(format, FileFormat::ThirdGenerationPartnershipProject2);
+    let fmt = FileFormat::from_file("fixtures/video/sample.3g2").unwrap();
+    assert_eq!(fmt, FileFormat::ThirdGenerationPartnershipProject2);
 }
 
-#[cfg(feature = "reader-mkv")]
+#[cfg(feature = "reader-ebml")]
 #[test]
 fn test_webm() {
-    let format = FileFormat::from_file("fixtures/video/sample.webm").unwrap();
-    assert_eq!(format, FileFormat::Webm);
+    let fmt = FileFormat::from_file("fixtures/video/sample.webm").unwrap();
+    assert_eq!(fmt, FileFormat::Webm);
+}
+
+#[cfg(feature = "reader-asf")]
+#[test]
+fn test_windows_media_video() {
+    let fmt = FileFormat::from_file("fixtures/video/sample.wmv").unwrap();
+    assert_eq!(fmt, FileFormat::WindowsMediaVideo);
 }
 
 #[test]
-fn test_windows_media_video() {
-    let format = FileFormat::from_file("fixtures/video/sample.wmv").unwrap();
-    assert_eq!(format, FileFormat::WindowsMediaVideo);
+fn test_windows_recorded_tv_show() {
+    let fmt = FileFormat::from_file("fixtures/video/sample.wtv").unwrap();
+    assert_eq!(fmt, FileFormat::WindowsRecordedTvShow);
 }

@@ -1,0 +1,13 @@
+<FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <description>
+        <title-info>
+            <genre>Unknown</genre>
+            <author><first-name>John</first-name><last-name>Doe</last-name></author>
+            <book-title>Hello world</book-title>
+            <lang>en</lang>
+        </title-info>
+    </description>
+    <body>
+        <p>Hello world!</p>
+    </body>
+</FictionBook>

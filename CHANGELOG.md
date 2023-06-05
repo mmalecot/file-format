@@ -1,3 +1,141 @@
+# Version 0.17.0 (2023-06-05)
+
+## API
+
+- Add `Archive` kind
+- Add `Book` kind
+- Add `Certificate` kind
+- Add `Compression` kind
+- Add `Disk` kind
+- Add `Document` kind
+- Add `Executable` kind
+- Add `Geospatial` kind
+- Add `Package` kind
+- Add `Playlist` kind
+- Add `Rom` kind
+- Add `Subtitle` kind
+- Add `reader-asf` feature
+- Add `reader-ebml` feature
+- Add `reader-rm` feature
+- Add `serde` feature
+- Change the return type of `FileFormat::short_name` from `&str` to `Option<&str>`
+- Drop `accuracy` features
+- Drop `reader-mkv` feature
+- Rename `AdvancedMediaVideo` to `ActionsMediaVideo`
+- Rename `Extensible3dGraphics` to `Extensible3d`
+- Rename `Mpeg1Video` to `Mpeg12Video`
+
+## Fixes
+
+- Fix Audio Interchange File Format (AIFF) media type
+- Fix AutoCAD Drawing (DWG) media type
+- Fix Drawing Exchange Format ASCII (DXF) media type
+- Fix Drawing Exchange Format Binary (DXF) media type
+- Fix Flexible Image Transport System (FITS) kind and media type
+- Fix JPEG 2000 Part 3 (MJ2) kind and media type
+- Fix JPEG Extended Range (JXR) name
+- Fix MPEG-2 Transport Stream (TS) short name and extension
+- Fix Multiple-image Network Graphics (MNG) media type
+- Fix PEM Private Key (PEM) signatures
+- Fix PEM-based formats short name
+- Remove Java Class short name
+- Remove macOS Alias short name
+
+## Improvements
+
+- Add precision to the AbiWord (ABW) signature
+- Add precision to the AbiWord Template (AWT) signature
+- Add precision to the Adobe Flash Player Audio (F4A) signature
+- Add precision to the Adobe Flash Player Audiobook (F4B) signature
+- Add precision to the Adobe Flash Player Protected Video (F4P) signature
+- Add precision to the Adobe Flash Player Video (F4V) signature
+- Add precision to the Archived by Robert Jung (ARJ) signature
+- Add precision to the LLVM Bitcode (BC) signature
+- Add precision to the MS-DOS Executable (EXE) signature
+- Add precision to the Stereolithography Binary (STL) signature
+- Add precision to the Windows Bitmap (BMP) signature
+- Add precision to the cpio signature
+- Detect Additive Manufacturing Format (AMF) without XML declaration
+- Detect Advanced Stream Redirector (ASX) with XML declaration
+- Detect Digital Asset Exchange (DAE) without XML declaration
+- Detect Extensible 3D (X3D) without XML declaration
+- Detect Extensible Stylesheet Language Transformations (XSLT) without XML declaration
+- Detect GPS Exchange Format (GPX) without XML declaration
+- Detect Geography Markup Language (GML) without XML declaration
+- Detect Keyhole Markup Language (KML) without XML declaration
+- Detect MusicXML without XML declaration
+- Detect Really Simple Syndication (RSS) without XML declaration
+- Detect Scalable Vector Graphics (SVG) without XML declaration
+- Detect Simple Object Access Protocol (SOAP) without XML declaration
+- Detect XML Localization Interchange File Format (XLIFF) without XML declaration
+- Detect XML Shareable Playlist Format (XSPF) without XML declaration
+- Detect draw.io (DRAWIO) without XML declaration
+- Distinguish between BDAV MPEG-2 Transport Stream (MT2S) and MPEG-2 Transport Stream (TS)
+- Optimize detection of EXE-based file formats when using the `reader-exe` feature
+- Optimize detection of XML-based file formats when using the `reader-xml` feature
+
+## Internal changes
+
+- Update `cfb` dependency from 0.7 to 0.8
+
+## New formats support
+
+- AbiWord (ABW)
+- AbiWord Template (AWT)
+- Adobe Integrated Runtime (AIR)
+- Advanced Compression Engine (ACE)
+- Advanced Systems Format (ASF)
+- Atari 7800 ROM (A78)
+- Audio Visual Research (AVR)
+- BZip3 (BZ3)
+- Broad Band eBook (BBeB)
+- Canon Raw (CRW)
+- Design Web Format (DWF)
+- FictionBook (FB2)
+- FictionBook Zipped (FBZ)
+- Flexible and Interoperable Data Transfer (FIT)
+- Game Gear ROM (GG)
+- IFF 8-Bit Sampled Voice (8SVX)
+- JPEG 2000 Codestream (J2C)
+- Linear Executable (LE)
+- MTV
+- Mega Drive ROM (MD)
+- Microsoft Digital Video Recording (DVR-MS)
+- Neo Geo Pocket ROM (NGP)
+- New Executable (NE)
+- Nintendo Switch Executable (NSO)
+- Nintendo Switch Package (NSP)
+- Nintendo Switch ROM (XCI)
+- OpenDocument Database (ODB)
+- OpenDocument Formula (ODF)
+- OpenDocument Formula Template (OTF)
+- OpenDocument Graphics Template (OTG)
+- OpenDocument Presentation Template (OTP)
+- OpenDocument Spreadsheet Template (OTS)
+- OpenDocument Text Master (ODM)
+- OpenDocument Text Master Template (OTM)
+- OpenDocument Text Template (OTT)
+- PEM Public Key (PEM)
+- QEMU Copy On Write (QCOW)
+- RealAudio (RA)
+- RealMedia (RM)
+- RealVideo (RV)
+- Sega Master System ROM (SMS)
+- SpaceClaim Document (SCDOC)
+- StuffIt (SIT)
+- StuffIt X (SITX)
+- Timed Text Markup Language (TTML)
+- Training Center XML (TCX)
+- Universal Subtitle Format (USF)
+- Virtual Machine Disk (VMDK)
+- Web Video Text Tracks (WebVTT)
+- Windows Media Audio (WMA)
+- Windows Recorded TV Show (WTV)
+- Xbox 360 Executable (XEX)
+- Xbox Executable (XBE)
+- ZPAQ
+- bzip (BZ)
+
 # Version 0.16.0 (2023-03-28)
 
 ## API
@@ -34,9 +172,9 @@
 
 - 3D Studio (3DS)
 - 3D Studio Max (MAX)
+- Actions Media Video (AMV)
 - Adaptable Scalable Texture Compression (ASTC)
 - Additive Manufacturing Format (AMF)
-- Advanced Media Video (AMV)
 - Advanced Stream Redirector (ASX)
 - Autodesk Animator (FLI)
 - Autodesk Animator Pro (FLC)
@@ -136,7 +274,7 @@
 
 ## New formats support
 
-- Extensible 3D Graphics (X3D)
+- Extensible 3D (X3D)
 - GPS Exchange Format (GPX)
 - LArc (LZS)
 - PMarc (PMA)
@@ -264,7 +402,7 @@
 - Lua Bytecode
 - MPEG-1 Audio Layer 1 (MP1)
 - MPEG-1 Audio Layer 2 (MP2)
-- MPEG-2 Transport Stream (MTS)
+- MPEG-2 Transport Stream (TS)
 - Meta Information Encapsulation (MIE)
 - Microsoft Access 2007 Database (ACCDB)
 - Microsoft Access Database (MDB)
@@ -275,14 +413,14 @@
 - Microsoft Software Installer (MSI)
 - Microsoft Visio Drawing (VSD)
 - Microsoft Word Document (DOC)
-- PEM Certificate (CRT)
-- PEM Certificate Signing Request (CSR)
-- PEM Private Key (KEY)
-- PGP Message (ASC)
-- PGP Private Key Block (ASC)
-- PGP Public Key Block (ASC)
-- PGP Signature (ASC)
-- PGP Signed Message (ASC)
+- PEM Certificate (PEM)
+- PEM Certificate Signing Request (PEM)
+- PEM Private Key (PEM)
+- PGP Message (PGP)
+- PGP Private Key Block (PGP)
+- PGP Public Key Block (PGP)
+- PGP Signature (PGP)
+- PGP Signed Message (PGP)
 - Portable Executable (PE)
 - PostScript (PS)
 - Rich Text Format (RTF)
@@ -354,7 +492,7 @@
 
 - 3D Manufacturing Format (3MF)
 - Java Archive (JAR)
-- MPEG-2 Transport Stream (MTS)
+- MPEG-2 Transport Stream (TS)
 - Microsoft Visio Drawing (VSD)
 - Office Open XML Document (DOCX)
 - Office Open XML Presentation (PPTX)
@@ -453,7 +591,7 @@
 - Windows Animated Cursor (ANI)
 - Windows Cursor (CUR)
 - cpio
-- macOS Alias (Alias)
+- macOS Alias
 - zoo
 
 # Version 0.2.1 (2021-10-14)
@@ -472,7 +610,7 @@
 - HyperText Markup Language (HTML)
 - Khronos Texture (KTX)
 - Khronos Texture 2 (KTX2)
-- MPEG-2 Transport Stream (MTS)
+- MPEG-2 Transport Stream (TS)
 - Material Exchange Format (MXF)
 - Mobipocket (MOBI)
 - Olympus Raw Format (ORF)

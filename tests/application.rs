@@ -1,933 +1,320 @@
 use file_format::FileFormat;
 
-#[cfg(feature = "reader-xml")]
 #[test]
-fn test_additive_manufacturing_format() {
-    let format = FileFormat::from_file("fixtures/application/sample.amf").unwrap();
-    assert_eq!(format, FileFormat::AdditiveManufacturingFormat);
-}
-
-#[cfg(feature = "reader-pdf")]
-#[test]
-fn test_adobe_illustrator_artwork() {
-    let format = FileFormat::from_file("fixtures/application/sample.ai").unwrap();
-    assert_eq!(format, FileFormat::AdobeIllustratorArtwork);
-}
-
-#[test]
-fn test_adobe_indesign_document() {
-    let format = FileFormat::from_file("fixtures/application/sample.indd").unwrap();
-    assert_eq!(format, FileFormat::AdobeIndesignDocument);
-}
-
-#[test]
-fn test_alz() {
-    let format = FileFormat::from_file("fixtures/application/sample.alz").unwrap();
-    assert_eq!(format, FileFormat::Alz);
+fn test_advanced_systems_format() {
+    let fmt = FileFormat::from_file("fixtures/application/sample.asf").unwrap();
+    assert_eq!(fmt, FileFormat::AdvancedSystemsFormat);
 }
 
 #[test]
 fn test_android_binary_xml() {
-    let format = FileFormat::from_file("fixtures/application/sample.xml").unwrap();
-    assert_eq!(format, FileFormat::AndroidBinaryXml);
+    let fmt = FileFormat::from_file("fixtures/application/sample.xml").unwrap();
+    assert_eq!(fmt, FileFormat::AndroidBinaryXml);
 }
 
 #[test]
 fn test_android_compiled_resources() {
-    let format = FileFormat::from_file("fixtures/application/sample.arsc").unwrap();
-    assert_eq!(format, FileFormat::AndroidCompiledResources);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_android_package() {
-    let format = FileFormat::from_file("fixtures/application/sample.apk").unwrap();
-    assert_eq!(format, FileFormat::AndroidPackage);
+    let fmt = FileFormat::from_file("fixtures/application/sample.arsc").unwrap();
+    assert_eq!(fmt, FileFormat::AndroidCompiledResources);
 }
 
 #[test]
 fn test_apache_arrow_columnar() {
-    let format = FileFormat::from_file("fixtures/application/sample.arrow").unwrap();
-    assert_eq!(format, FileFormat::ApacheArrowColumnar);
+    let fmt = FileFormat::from_file("fixtures/application/sample.arrow").unwrap();
+    assert_eq!(fmt, FileFormat::ApacheArrowColumnar);
 }
 
 #[test]
 fn test_apache_avro_object_container() {
-    let format = FileFormat::from_file("fixtures/application/sample.avro").unwrap();
-    assert_eq!(format, FileFormat::ApacheAvroObjectContainer);
+    let fmt = FileFormat::from_file("fixtures/application/sample.avro").unwrap();
+    assert_eq!(fmt, FileFormat::ApacheAvroObjectContainer);
 }
 
 #[test]
 fn test_apache_parquet() {
-    let format = FileFormat::from_file("fixtures/application/sample.parquet").unwrap();
-    assert_eq!(format, FileFormat::ApacheParquet);
-}
-
-#[test]
-fn test_apple_disk_image() {
-    let format = FileFormat::from_file("fixtures/application/sample.dmg").unwrap();
-    assert_eq!(format, FileFormat::AppleDiskImage);
+    let fmt = FileFormat::from_file("fixtures/application/sample.parquet").unwrap();
+    assert_eq!(fmt, FileFormat::ApacheParquet);
 }
 
 #[test]
 fn test_arbitrary_binary_data() {
-    let format = FileFormat::from_file("fixtures/application/sample.bin").unwrap();
-    assert_eq!(format, FileFormat::ArbitraryBinaryData);
-}
-
-#[test]
-fn test_archived_by_robert_jung() {
-    let format = FileFormat::from_file("fixtures/application/sample.arj").unwrap();
-    assert_eq!(format, FileFormat::ArchivedByRobertJung);
+    let fmt = FileFormat::from_file("fixtures/application/sample.bin").unwrap();
+    assert_eq!(fmt, FileFormat::ArbitraryBinaryData);
 }
 
 #[test]
 fn test_bittorrent_file() {
-    let format = FileFormat::from_file("fixtures/application/sample.torrent").unwrap();
-    assert_eq!(format, FileFormat::BittorrentFile);
-}
-
-#[test]
-fn test_blender() {
-    let format = FileFormat::from_file("fixtures/application/sample.blend").unwrap();
-    assert_eq!(format, FileFormat::Blender);
-}
-
-#[test]
-fn test_bzip2() {
-    let format = FileFormat::from_file("fixtures/application/sample.bz2").unwrap();
-    assert_eq!(format, FileFormat::Bzip2);
-}
-
-#[test]
-fn test_cabinet() {
-    let format = FileFormat::from_file("fixtures/application/sample.cab").unwrap();
-    assert_eq!(format, FileFormat::Cabinet);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_circuit_diagram_document() {
-    let format = FileFormat::from_file("fixtures/application/sample.cddx").unwrap();
-    assert_eq!(format, FileFormat::CircuitDiagramDocument);
-}
-
-#[test]
-fn test_common_object_file_format() {
-    let format = FileFormat::from_file("fixtures/application/sample.coff").unwrap();
-    assert_eq!(format, FileFormat::CommonObjectFileFormat);
+    let fmt = FileFormat::from_file("fixtures/application/sample.torrent").unwrap();
+    assert_eq!(fmt, FileFormat::BittorrentFile);
 }
 
 #[test]
 fn test_compound_file_binary() {
-    let format = FileFormat::from_file("fixtures/application/sample.cfb").unwrap();
-    assert_eq!(format, FileFormat::CompoundFileBinary);
-}
-
-#[test]
-fn test_cpio() {
-    let format = FileFormat::from_file("fixtures/application/sample.cpio").unwrap();
-    assert_eq!(format, FileFormat::Cpio);
-}
-
-#[test]
-fn test_dalvik_executable() {
-    let format = FileFormat::from_file("fixtures/application/sample.dex").unwrap();
-    assert_eq!(format, FileFormat::DalvikExecutable);
-}
-
-#[test]
-fn test_debian_binary_package() {
-    let format = FileFormat::from_file("fixtures/application/sample.deb").unwrap();
-    assert_eq!(format, FileFormat::DebianBinaryPackage);
-}
-
-#[test]
-fn test_der_certificate() {
-    let format = FileFormat::from_file("fixtures/application/sample.der").unwrap();
-    assert_eq!(format, FileFormat::DerCertificate);
+    let fmt = FileFormat::from_file("fixtures/application/sample.cfb").unwrap();
+    assert_eq!(fmt, FileFormat::CompoundFileBinary);
 }
 
 #[test]
 fn test_digital_imaging_and_communications_in_medicine() {
-    let format = FileFormat::from_file("fixtures/application/sample.dcm").unwrap();
-    assert_eq!(
-        format,
-        FileFormat::DigitalImagingAndCommunicationsInMedicine
-    );
-}
-
-#[test]
-fn test_drawio() {
-    let format = FileFormat::from_file("fixtures/application/sample.drawio").unwrap();
-    assert_eq!(format, FileFormat::Drawio);
-}
-
-#[cfg(feature = "reader-exe")]
-#[test]
-fn test_dynamic_link_library() {
-    let format = FileFormat::from_file("fixtures/application/sample.dll").unwrap();
-    assert_eq!(format, FileFormat::DynamicLinkLibrary);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_electronic_publication() {
-    let format = FileFormat::from_file("fixtures/application/sample.epub").unwrap();
-    assert_eq!(format, FileFormat::ElectronicPublication);
-}
-
-#[test]
-fn test_embedded_opentype() {
-    let format = FileFormat::from_file("fixtures/application/sample.eot").unwrap();
-    assert_eq!(format, FileFormat::EmbeddedOpentype);
+    let fmt = FileFormat::from_file("fixtures/application/sample.dcm").unwrap();
+    assert_eq!(fmt, FileFormat::DigitalImagingAndCommunicationsInMedicine);
 }
 
 #[test]
 fn test_encapsulated_postscript() {
-    let format = FileFormat::from_file("fixtures/application/sample.eps").unwrap();
-    assert_eq!(format, FileFormat::EncapsulatedPostscript);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_enterprise_application_archive() {
-    let format = FileFormat::from_file("fixtures/application/sample.ear").unwrap();
-    assert_eq!(format, FileFormat::EnterpriseApplicationArchive);
+    let fmt = FileFormat::from_file("fixtures/application/sample.eps").unwrap();
+    assert_eq!(fmt, FileFormat::EncapsulatedPostscript);
 }
 
 #[test]
-fn test_executable_and_linkable_format() {
-    let format = FileFormat::from_file("fixtures/application/sample.elf").unwrap();
-    assert_eq!(format, FileFormat::ExecutableAndLinkableFormat);
+fn test_extensible_binary_meta_language() {
+    let fmt = FileFormat::from_file("fixtures/application/sample.ebml").unwrap();
+    assert_eq!(fmt, FileFormat::ExtensibleBinaryMetaLanguage);
 }
 
 #[test]
-fn test_extensible_archive() {
-    let format = FileFormat::from_file("fixtures/application/sample.xar").unwrap();
-    assert_eq!(format, FileFormat::ExtensibleArchive);
+fn test_extensible_stylesheet_language_transformations_1() {
+    let fmt = FileFormat::from_file("fixtures/application/sample1.xsl").unwrap();
+    assert_eq!(fmt, FileFormat::ExtensibleStylesheetLanguageTransformations);
 }
 
 #[cfg(feature = "reader-xml")]
 #[test]
-fn test_extensible_stylesheet_language_transformations() {
-    let format = FileFormat::from_file("fixtures/application/sample.xsl").unwrap();
-    assert_eq!(
-        format,
-        FileFormat::ExtensibleStylesheetLanguageTransformations
-    );
+fn test_extensible_stylesheet_language_transformations_2() {
+    let fmt = FileFormat::from_file("fixtures/application/sample2.xsl").unwrap();
+    assert_eq!(fmt, FileFormat::ExtensibleStylesheetLanguageTransformations);
 }
 
 #[test]
-fn test_filmbox() {
-    let format = FileFormat::from_file("fixtures/application/sample.fbx").unwrap();
-    assert_eq!(format, FileFormat::Filmbox);
-}
-
-#[test]
-fn test_game_boy_advance_rom() {
-    let format = FileFormat::from_file("fixtures/application/sample.gba").unwrap();
-    assert_eq!(format, FileFormat::GameBoyAdvanceRom);
-}
-
-#[test]
-fn test_game_boy_color_rom() {
-    let format = FileFormat::from_file("fixtures/application/sample.gbc").unwrap();
-    assert_eq!(format, FileFormat::GameBoyColorRom);
-}
-
-#[test]
-fn test_game_boy_rom() {
-    let format = FileFormat::from_file("fixtures/application/sample.gb").unwrap();
-    assert_eq!(format, FileFormat::GameBoyRom);
-}
-
-#[cfg(feature = "reader-xml")]
-#[test]
-fn test_geography_markup_language() {
-    let format = FileFormat::from_file("fixtures/application/sample.gml").unwrap();
-    assert_eq!(format, FileFormat::GeographyMarkupLanguage);
+fn test_flexible_image_transport_system() {
+    let fmt = FileFormat::from_file("fixtures/application/sample.fits").unwrap();
+    assert_eq!(fmt, FileFormat::FlexibleImageTransportSystem);
 }
 
 #[test]
 fn test_gettext_machine_object() {
-    let format = FileFormat::from_file("fixtures/application/sample.mo").unwrap();
-    assert_eq!(format, FileFormat::GettextMachineObject);
-}
-
-#[test]
-fn test_google_chrome_extension() {
-    let format = FileFormat::from_file("fixtures/application/sample.crx").unwrap();
-    assert_eq!(format, FileFormat::GoogleChromeExtension);
-}
-
-#[cfg(feature = "reader-xml")]
-#[test]
-fn test_gps_exchange_format() {
-    let format = FileFormat::from_file("fixtures/application/sample.gpx").unwrap();
-    assert_eq!(format, FileFormat::GpsExchangeFormat);
-}
-
-#[test]
-fn test_gzip() {
-    let format = FileFormat::from_file("fixtures/application/sample.gz").unwrap();
-    assert_eq!(format, FileFormat::Gzip);
+    let fmt = FileFormat::from_file("fixtures/application/sample.mo").unwrap();
+    assert_eq!(fmt, FileFormat::GettextMachineObject);
 }
 
 #[test]
 fn test_icc_profile() {
-    let format = FileFormat::from_file("fixtures/application/sample.icc").unwrap();
-    assert_eq!(format, FileFormat::IccProfile);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_indesign_markup_language() {
-    let format = FileFormat::from_file("fixtures/application/sample.idml").unwrap();
-    assert_eq!(format, FileFormat::IndesignMarkupLanguage);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_ios_app_store_package() {
-    let format = FileFormat::from_file("fixtures/application/sample.ipa").unwrap();
-    assert_eq!(format, FileFormat::IosAppStorePackage);
-}
-
-#[test]
-fn test_iso9660() {
-    let format = FileFormat::from_file("fixtures/application/sample.iso").unwrap();
-    assert_eq!(format, FileFormat::Iso9660);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_java_archive() {
-    let format = FileFormat::from_file("fixtures/application/sample.jar").unwrap();
-    assert_eq!(format, FileFormat::JavaArchive);
-}
-
-#[test]
-fn test_java_class() {
-    let format = FileFormat::from_file("fixtures/application/sample.class").unwrap();
-    assert_eq!(format, FileFormat::JavaClass);
+    let fmt = FileFormat::from_file("fixtures/application/sample.icc").unwrap();
+    assert_eq!(fmt, FileFormat::IccProfile);
 }
 
 #[test]
 fn test_java_keystore() {
-    let format = FileFormat::from_file("fixtures/application/sample.jks").unwrap();
-    assert_eq!(format, FileFormat::JavaKeystore);
-}
-
-#[cfg(feature = "reader-xml")]
-#[test]
-fn test_keyhole_markup_language() {
-    let format = FileFormat::from_file("fixtures/application/sample.kml").unwrap();
-    assert_eq!(format, FileFormat::KeyholeMarkupLanguage);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_keyhole_markup_language_zipped() {
-    let format = FileFormat::from_file("fixtures/application/sample.kmz").unwrap();
-    assert_eq!(format, FileFormat::KeyholeMarkupLanguageZipped);
-}
-
-#[test]
-fn test_larc() {
-    let format = FileFormat::from_file("fixtures/application/sample.lzs").unwrap();
-    assert_eq!(format, FileFormat::Larc);
-}
-
-#[test]
-fn test_lempel_ziv_finite_state_entropy() {
-    let format = FileFormat::from_file("fixtures/application/sample.lzfse").unwrap();
-    assert_eq!(format, FileFormat::LempelZivFiniteStateEntropy);
-}
-
-#[test]
-fn test_lha() {
-    let format = FileFormat::from_file("fixtures/application/sample.lzh").unwrap();
-    assert_eq!(format, FileFormat::Lha);
-}
-
-#[test]
-fn test_llvm_bitcode() {
-    let format = FileFormat::from_file("fixtures/application/sample.bc").unwrap();
-    assert_eq!(format, FileFormat::LlvmBitcode);
-}
-
-#[test]
-fn test_long_range_zip() {
-    let format = FileFormat::from_file("fixtures/application/sample.lrz").unwrap();
-    assert_eq!(format, FileFormat::LongRangeZip);
-}
-
-#[test]
-fn test_lua_bytecode() {
-    let format = FileFormat::from_file("fixtures/application/sample.luac").unwrap();
-    assert_eq!(format, FileFormat::LuaBytecode);
-}
-
-#[test]
-fn test_lz4() {
-    let format = FileFormat::from_file("fixtures/application/sample.lz4").unwrap();
-    assert_eq!(format, FileFormat::Lz4);
-}
-
-#[test]
-fn test_lzip() {
-    let format = FileFormat::from_file("fixtures/application/sample.lz").unwrap();
-    assert_eq!(format, FileFormat::Lzip);
-}
-
-#[test]
-fn test_lzop() {
-    let format = FileFormat::from_file("fixtures/application/sample.lzo").unwrap();
-    assert_eq!(format, FileFormat::Lzop);
-}
-
-#[test]
-fn test_mach_o() {
-    let format = FileFormat::from_file("fixtures/application/sample.mach").unwrap();
-    assert_eq!(format, FileFormat::MachO);
+    let fmt = FileFormat::from_file("fixtures/application/sample.jks").unwrap();
+    assert_eq!(fmt, FileFormat::JavaKeystore);
 }
 
 #[test]
 fn test_macos_alias() {
-    let format = FileFormat::from_file("fixtures/application/sample.alias").unwrap();
-    assert_eq!(format, FileFormat::MacosAlias);
-}
-
-#[test]
-fn test_material_exchange_format() {
-    let format = FileFormat::from_file("fixtures/application/sample.mxf").unwrap();
-    assert_eq!(format, FileFormat::MaterialExchangeFormat);
-}
-
-#[test]
-fn test_maya_ascii() {
-    let format = FileFormat::from_file("fixtures/application/sample.ma").unwrap();
-    assert_eq!(format, FileFormat::MayaAscii);
-}
-
-#[test]
-fn test_maya_binary() {
-    let format = FileFormat::from_file("fixtures/application/sample.mb").unwrap();
-    assert_eq!(format, FileFormat::MayaBinary);
+    let fmt = FileFormat::from_file("fixtures/application/sample.alias").unwrap();
+    assert_eq!(fmt, FileFormat::MacosAlias);
 }
 
 #[test]
 fn test_meta_information_encapsulation() {
-    let format = FileFormat::from_file("fixtures/application/sample.mie").unwrap();
-    assert_eq!(format, FileFormat::MetaInformationEncapsulation);
+    let fmt = FileFormat::from_file("fixtures/application/sample.mie").unwrap();
+    assert_eq!(fmt, FileFormat::MetaInformationEncapsulation);
 }
 
 #[test]
 fn test_microsoft_access2007_database() {
-    let format = FileFormat::from_file("fixtures/application/sample.accdb").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftAccess2007Database);
+    let fmt = FileFormat::from_file("fixtures/application/sample.accdb").unwrap();
+    assert_eq!(fmt, FileFormat::MicrosoftAccess2007Database);
 }
 
 #[test]
 fn test_microsoft_access_database() {
-    let format = FileFormat::from_file("fixtures/application/sample.mdb").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftAccessDatabase);
+    let fmt = FileFormat::from_file("fixtures/application/sample.mdb").unwrap();
+    assert_eq!(fmt, FileFormat::MicrosoftAccessDatabase);
 }
 
 #[test]
 fn test_microsoft_compiled_html_help() {
-    let format = FileFormat::from_file("fixtures/application/sample.chm").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftCompiledHtmlHelp);
-}
-
-#[cfg(feature = "reader-cfb")]
-#[test]
-fn test_microsoft_excel_spreadsheet() {
-    let format = FileFormat::from_file("fixtures/application/sample.xls").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftExcelSpreadsheet);
-}
-
-#[cfg(feature = "reader-cfb")]
-#[test]
-fn test_microsoft_powerpoint_presentation() {
-    let format = FileFormat::from_file("fixtures/application/sample.ppt").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftPowerpointPresentation);
-}
-
-#[cfg(feature = "reader-cfb")]
-#[test]
-fn test_microsoft_project_plan() {
-    let format = FileFormat::from_file("fixtures/application/sample.mpp").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftProjectPlan);
-}
-
-#[cfg(feature = "reader-cfb")]
-#[test]
-fn test_microsoft_publisher_document() {
-    let format = FileFormat::from_file("fixtures/application/sample.pub").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftPublisherDocument);
-}
-
-#[cfg(feature = "reader-cfb")]
-#[test]
-fn test_microsoft_software_installer() {
-    let format = FileFormat::from_file("fixtures/application/sample.msi").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftSoftwareInstaller);
-}
-
-#[test]
-fn test_microsoft_virtual_hard_disk() {
-    let format = FileFormat::from_file("fixtures/application/sample.vhd").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftVirtualHardDisk);
-}
-
-#[test]
-fn test_microsoft_virtual_hard_disk2() {
-    let format = FileFormat::from_file("fixtures/application/sample.vhdx").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftVirtualHardDisk2);
-}
-
-#[cfg(feature = "reader-cfb")]
-#[test]
-fn test_microsoft_visio_drawing() {
-    let format = FileFormat::from_file("fixtures/application/sample.vsd").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftVisioDrawing);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_microsoft_visual_studio_extension() {
-    let format = FileFormat::from_file("fixtures/application/sample.vsix").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftVisualStudioExtension);
+    let fmt = FileFormat::from_file("fixtures/application/sample.chm").unwrap();
+    assert_eq!(fmt, FileFormat::MicrosoftCompiledHtmlHelp);
 }
 
 #[test]
 fn test_microsoft_visual_studio_solution() {
-    let format = FileFormat::from_file("fixtures/application/sample.sln").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftVisualStudioSolution);
-}
-
-#[cfg(feature = "reader-cfb")]
-#[test]
-fn test_microsoft_word_document() {
-    let format = FileFormat::from_file("fixtures/application/sample.doc").unwrap();
-    assert_eq!(format, FileFormat::MicrosoftWordDocument);
+    let fmt = FileFormat::from_file("fixtures/application/sample.sln").unwrap();
+    assert_eq!(fmt, FileFormat::MicrosoftVisualStudioSolution);
 }
 
 #[test]
-fn test_mobipocket() {
-    let format = FileFormat::from_file("fixtures/application/sample.mobi").unwrap();
-    assert_eq!(format, FileFormat::Mobipocket);
-}
-
-#[test]
-fn test_ms_dos_executable() {
-    let format = FileFormat::from_file("fixtures/application/sample1.exe").unwrap();
-    assert_eq!(format, FileFormat::MsDosExecutable);
+fn test_musicxml_1() {
+    let fmt = FileFormat::from_file("fixtures/application/sample1.musicxml").unwrap();
+    assert_eq!(fmt, FileFormat::Musicxml);
 }
 
 #[cfg(feature = "reader-xml")]
 #[test]
-fn test_musicxml() {
-    let format = FileFormat::from_file("fixtures/application/sample.musicxml").unwrap();
-    assert_eq!(format, FileFormat::Musicxml);
+fn test_musicxml_2() {
+    let fmt = FileFormat::from_file("fixtures/application/sample2.musicxml").unwrap();
+    assert_eq!(fmt, FileFormat::Musicxml);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_musicxml_zipped() {
-    let format = FileFormat::from_file("fixtures/application/sample.mxl").unwrap();
-    assert_eq!(format, FileFormat::MusicxmlZipped);
-}
-
-#[test]
-fn test_nintendo64_rom() {
-    let format = FileFormat::from_file("fixtures/application/sample.z64").unwrap();
-    assert_eq!(format, FileFormat::Nintendo64Rom);
-}
-
-#[test]
-fn test_nintendo_ds_rom() {
-    let format = FileFormat::from_file("fixtures/application/sample.nds").unwrap();
-    assert_eq!(format, FileFormat::NintendoDsRom);
-}
-
-#[test]
-fn test_nintendo_entertainment_system_rom() {
-    let format = FileFormat::from_file("fixtures/application/sample.nes").unwrap();
-    assert_eq!(format, FileFormat::NintendoEntertainmentSystemRom);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_office_open_xml_document() {
-    let format = FileFormat::from_file("fixtures/application/sample.docx").unwrap();
-    assert_eq!(format, FileFormat::OfficeOpenXmlDocument);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_office_open_xml_drawing() {
-    let format = FileFormat::from_file("fixtures/application/sample.vsdx").unwrap();
-    assert_eq!(format, FileFormat::OfficeOpenXmlDrawing);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_office_open_xml_presentation() {
-    let format = FileFormat::from_file("fixtures/application/sample.pptx").unwrap();
-    assert_eq!(format, FileFormat::OfficeOpenXmlPresentation);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_office_open_xml_spreadsheet() {
-    let format = FileFormat::from_file("fixtures/application/sample.xlsx").unwrap();
-    assert_eq!(format, FileFormat::OfficeOpenXmlSpreadsheet);
+    let fmt = FileFormat::from_file("fixtures/application/sample.mxl").unwrap();
+    assert_eq!(fmt, FileFormat::MusicxmlZipped);
 }
 
 #[test]
 fn test_ogg_multiplexed_media() {
-    let format = FileFormat::from_file("fixtures/application/sample.ogx").unwrap();
-    assert_eq!(format, FileFormat::OggMultiplexedMedia);
+    let fmt = FileFormat::from_file("fixtures/application/sample.ogx").unwrap();
+    assert_eq!(fmt, FileFormat::OggMultiplexedMedia);
 }
 
 #[cfg(feature = "reader-zip")]
 #[test]
-fn test_opendocument_graphics() {
-    let format = FileFormat::from_file("fixtures/application/sample.odg").unwrap();
-    assert_eq!(format, FileFormat::OpendocumentGraphics);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_opendocument_presentation() {
-    let format = FileFormat::from_file("fixtures/application/sample.odp").unwrap();
-    assert_eq!(format, FileFormat::OpendocumentPresentation);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_opendocument_spreadsheet() {
-    let format = FileFormat::from_file("fixtures/application/sample.ods").unwrap();
-    assert_eq!(format, FileFormat::OpendocumentSpreadsheet);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_opendocument_text() {
-    let format = FileFormat::from_file("fixtures/application/sample.odt").unwrap();
-    assert_eq!(format, FileFormat::OpendocumentText);
-}
-
-#[test]
-fn test_optimized_dalvik_executable() {
-    let format = FileFormat::from_file("fixtures/application/sample.dey").unwrap();
-    assert_eq!(format, FileFormat::OptimizedDalvikExecutable);
+fn test_opendocument_database() {
+    let fmt = FileFormat::from_file("fixtures/application/sample.odb").unwrap();
+    assert_eq!(fmt, FileFormat::OpendocumentDatabase);
 }
 
 #[test]
 fn test_pcap_dump() {
-    let format = FileFormat::from_file("fixtures/application/sample.pcap").unwrap();
-    assert_eq!(format, FileFormat::PcapDump);
+    let fmt = FileFormat::from_file("fixtures/application/sample.pcap").unwrap();
+    assert_eq!(fmt, FileFormat::PcapDump);
 }
 
 #[test]
 fn test_pcap_next_generation_dump() {
-    let format = FileFormat::from_file("fixtures/application/sample.pcapng").unwrap();
-    assert_eq!(format, FileFormat::PcapNextGenerationDump);
-}
-
-#[test]
-fn test_pem_certificate() {
-    let format = FileFormat::from_file("fixtures/application/sample.crt").unwrap();
-    assert_eq!(format, FileFormat::PemCertificate);
+    let fmt = FileFormat::from_file("fixtures/application/sample.pcapng").unwrap();
+    assert_eq!(fmt, FileFormat::PcapNextGenerationDump);
 }
 
 #[test]
 fn test_pem_certificate_signing_request() {
-    let format = FileFormat::from_file("fixtures/application/sample.csr").unwrap();
-    assert_eq!(format, FileFormat::PemCertificateSigningRequest);
+    let fmt = FileFormat::from_file("fixtures/application/sample.csr").unwrap();
+    assert_eq!(fmt, FileFormat::PemCertificateSigningRequest);
 }
 
 #[test]
 fn test_pem_private_key() {
-    let format = FileFormat::from_file("fixtures/application/sample.key").unwrap();
-    assert_eq!(format, FileFormat::PemPrivateKey);
+    let fmt = FileFormat::from_file("fixtures/application/sample.key").unwrap();
+    assert_eq!(fmt, FileFormat::PemPrivateKey);
+}
+
+#[test]
+fn test_pem_public_key() {
+    let fmt = FileFormat::from_file("fixtures/application/sample.pub").unwrap();
+    assert_eq!(fmt, FileFormat::PemPublicKey);
 }
 
 #[test]
 fn test_personal_storage_table() {
-    let format = FileFormat::from_file("fixtures/application/sample.pst").unwrap();
-    assert_eq!(format, FileFormat::PersonalStorageTable);
+    let fmt = FileFormat::from_file("fixtures/application/sample.pst").unwrap();
+    assert_eq!(fmt, FileFormat::PersonalStorageTable);
 }
 
 #[test]
 fn test_pgp_message() {
-    let format = FileFormat::from_file("fixtures/application/sample1.asc").unwrap();
-    assert_eq!(format, FileFormat::PgpMessage);
+    let fmt = FileFormat::from_file("fixtures/application/sample1.asc").unwrap();
+    assert_eq!(fmt, FileFormat::PgpMessage);
 }
 
 #[test]
 fn test_pgp_private_key_block() {
-    let format = FileFormat::from_file("fixtures/application/sample2.asc").unwrap();
-    assert_eq!(format, FileFormat::PgpPrivateKeyBlock);
+    let fmt = FileFormat::from_file("fixtures/application/sample2.asc").unwrap();
+    assert_eq!(fmt, FileFormat::PgpPrivateKeyBlock);
 }
 
 #[test]
 fn test_pgp_public_key_block() {
-    let format = FileFormat::from_file("fixtures/application/sample3.asc").unwrap();
-    assert_eq!(format, FileFormat::PgpPublicKeyBlock);
+    let fmt = FileFormat::from_file("fixtures/application/sample3.asc").unwrap();
+    assert_eq!(fmt, FileFormat::PgpPublicKeyBlock);
 }
 
 #[test]
 fn test_pgp_signature() {
-    let format = FileFormat::from_file("fixtures/application/sample4.asc").unwrap();
-    assert_eq!(format, FileFormat::PgpSignature);
+    let fmt = FileFormat::from_file("fixtures/application/sample4.asc").unwrap();
+    assert_eq!(fmt, FileFormat::PgpSignature);
 }
 
 #[test]
 fn test_pgp_signed_message() {
-    let format = FileFormat::from_file("fixtures/application/sample5.asc").unwrap();
-    assert_eq!(format, FileFormat::PgpSignedMessage);
-}
-
-#[test]
-fn test_pmarc() {
-    let format = FileFormat::from_file("fixtures/application/sample.pma").unwrap();
-    assert_eq!(format, FileFormat::Pmarc);
-}
-
-#[test]
-fn test_portable_document_format() {
-    let format = FileFormat::from_file("fixtures/application/sample.pdf").unwrap();
-    assert_eq!(format, FileFormat::PortableDocumentFormat);
-}
-
-#[cfg(feature = "reader-exe")]
-#[test]
-fn test_portable_executable() {
-    let format = FileFormat::from_file("fixtures/application/sample2.exe").unwrap();
-    assert_eq!(format, FileFormat::PortableExecutable);
+    let fmt = FileFormat::from_file("fixtures/application/sample5.asc").unwrap();
+    assert_eq!(fmt, FileFormat::PgpSignedMessage);
 }
 
 #[test]
 fn test_postscript() {
-    let format = FileFormat::from_file("fixtures/application/sample.ps").unwrap();
-    assert_eq!(format, FileFormat::Postscript);
+    let fmt = FileFormat::from_file("fixtures/application/sample.ps").unwrap();
+    assert_eq!(fmt, FileFormat::Postscript);
+}
+
+#[test]
+fn test_really_simple_syndication_1() {
+    let fmt = FileFormat::from_file("fixtures/application/sample1.rss").unwrap();
+    assert_eq!(fmt, FileFormat::ReallySimpleSyndication);
 }
 
 #[cfg(feature = "reader-xml")]
 #[test]
-fn test_really_simple_syndication() {
-    let format = FileFormat::from_file("fixtures/application/sample.rss").unwrap();
-    assert_eq!(format, FileFormat::ReallySimpleSyndication);
+fn test_really_simple_syndication_2() {
+    let fmt = FileFormat::from_file("fixtures/application/sample2.rss").unwrap();
+    assert_eq!(fmt, FileFormat::ReallySimpleSyndication);
 }
 
 #[test]
-fn test_red_hat_package_manager() {
-    let format = FileFormat::from_file("fixtures/application/sample.rpm").unwrap();
-    assert_eq!(format, FileFormat::RedHatPackageManager);
+fn test_realmedia() {
+    let fmt = FileFormat::from_file("fixtures/application/sample.rm").unwrap();
+    assert_eq!(fmt, FileFormat::Realmedia);
 }
 
 #[test]
-fn test_rich_text_format() {
-    let format = FileFormat::from_file("fixtures/application/sample.rtf").unwrap();
-    assert_eq!(format, FileFormat::RichTextFormat);
-}
-
-#[test]
-fn test_roshal_archive() {
-    let format = FileFormat::from_file("fixtures/application/sample.rar").unwrap();
-    assert_eq!(format, FileFormat::RoshalArchive);
-}
-
-#[test]
-fn test_seqbox() {
-    let format = FileFormat::from_file("fixtures/application/sample.sbx").unwrap();
-    assert_eq!(format, FileFormat::Seqbox);
-}
-
-#[test]
-fn test_seven_zip() {
-    let format = FileFormat::from_file("fixtures/application/sample.7z").unwrap();
-    assert_eq!(format, FileFormat::SevenZip);
-}
-
-#[test]
-fn test_shapefile() {
-    let format = FileFormat::from_file("fixtures/application/sample.shp").unwrap();
-    assert_eq!(format, FileFormat::Shapefile);
+fn test_simple_object_access_protocol_1() {
+    let fmt = FileFormat::from_file("fixtures/application/sample1.soap").unwrap();
+    assert_eq!(fmt, FileFormat::SimpleObjectAccessProtocol);
 }
 
 #[cfg(feature = "reader-xml")]
 #[test]
-fn test_simple_object_access_protocol() {
-    let format = FileFormat::from_file("fixtures/application/sample.soap").unwrap();
-    assert_eq!(format, FileFormat::SimpleObjectAccessProtocol);
-}
-
-#[test]
-fn test_sketchup() {
-    let format = FileFormat::from_file("fixtures/application/sample.skp").unwrap();
-    assert_eq!(format, FileFormat::Sketchup);
+fn test_simple_object_access_protocol_2() {
+    let fmt = FileFormat::from_file("fixtures/application/sample2.soap").unwrap();
+    assert_eq!(fmt, FileFormat::SimpleObjectAccessProtocol);
 }
 
 #[test]
 fn test_small_web_format() {
-    let format = FileFormat::from_file("fixtures/application/sample.swf").unwrap();
-    assert_eq!(format, FileFormat::SmallWebFormat);
-}
-
-#[test]
-fn test_snappy() {
-    let format = FileFormat::from_file("fixtures/application/sample.sz").unwrap();
-    assert_eq!(format, FileFormat::Snappy);
+    let fmt = FileFormat::from_file("fixtures/application/sample.swf").unwrap();
+    assert_eq!(fmt, FileFormat::SmallWebFormat);
 }
 
 #[test]
 fn test_sqlite3() {
-    let format = FileFormat::from_file("fixtures/application/sample.sqlite").unwrap();
-    assert_eq!(format, FileFormat::Sqlite3);
-}
-
-#[test]
-fn test_subrip_text() {
-    let format = FileFormat::from_file("fixtures/application/sample.srt").unwrap();
-    assert_eq!(format, FileFormat::SubripText);
-}
-
-#[test]
-fn test_tape_archive() {
-    let format = FileFormat::from_file("fixtures/application/sample.tar").unwrap();
-    assert_eq!(format, FileFormat::TapeArchive);
+    let fmt = FileFormat::from_file("fixtures/application/sample.sqlite").unwrap();
+    assert_eq!(fmt, FileFormat::Sqlite3);
 }
 
 #[test]
 fn test_tasty() {
-    let format = FileFormat::from_file("fixtures/application/sample.tasty").unwrap();
-    assert_eq!(format, FileFormat::Tasty);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_three_dimensional_manufacturing_format() {
-    let format = FileFormat::from_file("fixtures/application/sample.3mf").unwrap();
-    assert_eq!(format, FileFormat::ThreeDimensionalManufacturingFormat);
-}
-
-#[test]
-fn test_three_dimensional_studio() {
-    let format = FileFormat::from_file("fixtures/application/sample.3ds").unwrap();
-    assert_eq!(format, FileFormat::ThreeDimensionalStudio);
-}
-
-#[cfg(feature = "reader-cfb")]
-#[test]
-fn test_three_dimensional_studio_max() {
-    let format = FileFormat::from_file("fixtures/application/sample.max").unwrap();
-    assert_eq!(format, FileFormat::ThreeDimensionalStudioMax);
-}
-
-#[test]
-fn test_unix_archiver() {
-    let format = FileFormat::from_file("fixtures/application/sample.a").unwrap();
-    assert_eq!(format, FileFormat::UnixArchiver);
-}
-
-#[test]
-fn test_unix_compress() {
-    let format = FileFormat::from_file("fixtures/application/sample.Z").unwrap();
-    assert_eq!(format, FileFormat::UnixCompress);
-}
-
-#[test]
-fn test_virtualbox_virtual_disk_image() {
-    let format = FileFormat::from_file("fixtures/application/sample.vdi").unwrap();
-    assert_eq!(format, FileFormat::VirtualboxVirtualDiskImage);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_web_application_archive() {
-    let format = FileFormat::from_file("fixtures/application/sample.war").unwrap();
-    assert_eq!(format, FileFormat::WebApplicationArchive);
-}
-
-#[test]
-fn test_webassembly_binary() {
-    let format = FileFormat::from_file("fixtures/application/sample.wasm").unwrap();
-    assert_eq!(format, FileFormat::WebassemblyBinary);
-}
-
-#[test]
-fn test_windows_animated_cursor() {
-    let format = FileFormat::from_file("fixtures/application/sample.ani").unwrap();
-    assert_eq!(format, FileFormat::WindowsAnimatedCursor);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_windows_app_package() {
-    let format = FileFormat::from_file("fixtures/application/sample.appx").unwrap();
-    assert_eq!(format, FileFormat::WindowsAppPackage);
+    let fmt = FileFormat::from_file("fixtures/application/sample.tasty").unwrap();
+    assert_eq!(fmt, FileFormat::Tasty);
 }
 
 #[test]
 fn test_windows_shortcut() {
-    let format = FileFormat::from_file("fixtures/application/sample.lnk").unwrap();
-    assert_eq!(format, FileFormat::WindowsShortcut);
+    let fmt = FileFormat::from_file("fixtures/application/sample.lnk").unwrap();
+    assert_eq!(fmt, FileFormat::WindowsShortcut);
 }
 
-#[cfg(feature = "reader-zip")]
 #[test]
-fn test_xap() {
-    let format = FileFormat::from_file("fixtures/application/sample.xap").unwrap();
-    assert_eq!(format, FileFormat::Xap);
-}
-
-#[cfg(feature = "reader-xml")]
-#[test]
-fn test_xml_localization_interchange_file_format() {
-    let format = FileFormat::from_file("fixtures/application/sample.xlf").unwrap();
-    assert_eq!(format, FileFormat::XmlLocalizationInterchangeFileFormat);
+fn test_xml_localization_interchange_file_format_1() {
+    let fmt = FileFormat::from_file("fixtures/application/sample1.xlf").unwrap();
+    assert_eq!(fmt, FileFormat::XmlLocalizationInterchangeFileFormat);
 }
 
 #[cfg(feature = "reader-xml")]
 #[test]
-fn test_xml_shareable_playlist() {
-    let format = FileFormat::from_file("fixtures/application/sample.xspf").unwrap();
-    assert_eq!(format, FileFormat::XmlShareablePlaylistFormat);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_xpinstall() {
-    let format = FileFormat::from_file("fixtures/application/sample.xpi").unwrap();
-    assert_eq!(format, FileFormat::Xpinstall);
-}
-
-#[test]
-fn test_xz() {
-    let format = FileFormat::from_file("fixtures/application/sample.xz").unwrap();
-    assert_eq!(format, FileFormat::Xz);
-}
-
-#[test]
-fn test_zip() {
-    let format = FileFormat::from_file("fixtures/application/sample.zip").unwrap();
-    assert_eq!(format, FileFormat::Zip);
-}
-
-#[test]
-fn test_zoo() {
-    let format = FileFormat::from_file("fixtures/application/sample.zoo").unwrap();
-    assert_eq!(format, FileFormat::Zoo);
-}
-
-#[test]
-fn test_zstandard() {
-    let format = FileFormat::from_file("fixtures/application/sample.zst").unwrap();
-    assert_eq!(format, FileFormat::Zstandard);
+fn test_xml_localization_interchange_file_format_2() {
+    let fmt = FileFormat::from_file("fixtures/application/sample2.xlf").unwrap();
+    assert_eq!(fmt, FileFormat::XmlLocalizationInterchangeFileFormat);
 }

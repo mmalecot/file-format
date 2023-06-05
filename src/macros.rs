@@ -9,22 +9,24 @@ macro_rules! formats {
             $(short_name = $short_name:literal)?
             media_type = $media_type:literal
             extension = $extension:literal
-            $(kind = $kind:ident)?
+            kind = $kind:ident
         )*
     } => {
         /// A file format.
-        #[derive(Clone, Debug, Eq, PartialEq)]
+        #[derive(Clone, Copy, Debug, Eq, PartialEq)]
+        #[cfg_attr(feature = "serde", derive(serde::Deserialize, serde::Serialize))]
         pub enum FileFormat {
             $(
                 #[doc=concat!($name, $(" (", $short_name, ")",)? ".")]
                 #[doc=concat!("- Media type: `", $media_type, "`")]
                 #[doc=concat!("- Extension: `", $extension, "`")]
+                #[doc=concat!("- Kind: [", stringify!($kind), "](crate::Kind::", stringify!($kind), ")")]
                 $format,
             )*
         }
 
         impl crate::FileFormat {
-            /// Returns the name of the file format.
+            /// Returns the full name of the file format.
             ///
             /// # Examples
             ///
@@ -44,26 +46,26 @@ macro_rules! formats {
 
             /// Returns the short name of the file format.
             ///
-            /// If there is none, the [name](crate::FileFormat::name) is returned.
-            ///
             /// # Examples
             ///
             /// ```rust
             /// use file_format::FileFormat;
             ///
             /// let format = FileFormat::MusicalInstrumentDigitalInterface;
-            /// assert_eq!(format.short_name(), "MIDI");
+            /// assert_eq!(format.short_name(), Some("MIDI"));
             ///```
-            pub const fn short_name(&self) -> &str {
+            pub const fn short_name(&self) -> Option<&str> {
                 match self {
                     $(
-                        $(Self::$format => $short_name,)?
+                        $(Self::$format => Some($short_name),)?
                     )*
-                    _ => self.name(),
+                    _ => None,
                 }
             }
 
-            /// Returns the media type (formerly known as MIME type) of the file format.
+            /// Returns the common media type (formerly known as MIME type) of the file format.
+            ///
+            /// Note: Some media types may not be defined in the IANA registry.
             ///
             /// # Examples
             ///
@@ -106,15 +108,14 @@ macro_rules! formats {
             /// ```rust
             /// use file_format::{FileFormat, Kind};
             ///
-            /// let format = FileFormat::FreeLosslessAudioCodec;
-            /// assert_eq!(format.kind(), Kind::Audio);
+            /// let format = FileFormat::Zip;
+            /// assert_eq!(format.kind(), Kind::Archive);
             ///```
             pub const fn kind(&self) -> crate::Kind {
                 match self {
                     $(
-                        $(Self::$format => crate::Kind::$kind,)?
+                        Self::$format => crate::Kind::$kind,
                     )*
-                    _ => crate::Kind::Application,
                 }
             }
         }

@@ -1,6 +1,6 @@
 [package]
 name = "file-format"
-version = "0.16.0"
+version = "0.17.0"
 authors = ["Mickaël Malécot <mickael.malecot@gmail.com>"]
 edition = "2021"
 description = "Crate for determining the file format of a given file or stream."
@@ -14,28 +14,32 @@ documentation = "https://docs.rs/file-format"
 exclude = ["/.github/*", "/examples/*", "/fixtures/*", "/tests/*"]
 
 [dependencies]
-cfb = { version = "0.7", optional = true }
-zip = { version = "0.6", optional = true, features = ["deflate-miniz"], default-features = false }
+cfb = { version = "0.8", optional = true }
+serde = { version = "1.0", optional = true, features = ["derive"], default-features = false }
+zip = { version = "0.6", optional = true, features = ["deflate"], default-features = false }
 
 [features]
-## ACCURACY FEATURES
+## Ecosystem features
+serde = ["dep:serde"]
 
-# Enables all accuracy features
-accuracy = ["accuracy-mkv", "accuracy-pdf", "accuracy-txt", "accuracy-xml", "accuracy-zip"]
-accuracy-mkv = []
-accuracy-pdf = []
-accuracy-txt = []
-accuracy-xml = []
-accuracy-zip = []
-
-## READER FEATURES
-
-# Enables all reader features
-reader = ["reader-cfb", "reader-exe", "reader-mkv", "reader-pdf", "reader-txt", "reader-xml", "reader-zip"]
+## Reader features
+reader = [
+    "reader-asf",
+    "reader-cfb",
+    "reader-ebml",
+    "reader-exe",
+    "reader-pdf",
+    "reader-rm",
+    "reader-txt",
+    "reader-xml",
+    "reader-zip"
+]
+reader-asf = []
 reader-cfb = ["dep:cfb"]
+reader-ebml = []
 reader-exe = []
-reader-mkv = []
 reader-pdf = []
+reader-rm = []
 reader-txt = []
 reader-xml = []
 reader-zip = ["dep:zip"]

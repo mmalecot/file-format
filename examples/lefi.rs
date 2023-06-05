@@ -31,11 +31,10 @@ fn main() -> Result<()> {
         } else {
             let format = FileFormat::from_file(path)?;
             let name = format.name();
-            let short_name = format.short_name();
-            if name == short_name {
-                println!("{input:width$} {name}");
-            } else {
+            if let Some(short_name) = format.short_name() {
                 println!("{input:width$} {name} ({short_name})");
+            } else {
+                println!("{input:width$} {name}");
             }
         }
     }

@@ -7,11 +7,37 @@ signatures! {
     value = b"\xEF\xBB\xBF\nMicrosoft Visual Studio Solution File, Format Version "
     value = b"Microsoft Visual Studio Solution File, Format Version "
 
+    // 52 bytes
+    format = Abiword
+    value = b"\xEF\xBB\xBF<!DOCTYPE abiword PUBLIC", b"<abiword template=\"false\"" offset = 102
+    value = b"<!DOCTYPE abiword PUBLIC", b"<abiword template=\"false\"" offset = 102
+    value = b"\xEF\xBB\xBF<abiword template=\"false\""
+    value = b"<abiword template=\"false\""
+
+    format = AbiwordTemplate
+    value = b"\xEF\xBB\xBF<!DOCTYPE abiword PUBLIC", b"<abiword template=\"true\"" offset = 102
+    value = b"<!DOCTYPE abiword PUBLIC", b"<abiword template=\"true\"" offset = 102
+    value = b"\xEF\xBB\xBF<abiword template=\"true\""
+    value = b"<abiword template=\"true\""
+
+    // 40 bytes
+    format = TimedTextMarkupLanguage
+    value = b"\xEF\xBB\xBF<tt xmlns=\"http://www.w3.org/ns/ttml\""
+    value = b"<tt xmlns=\"http://www.w3.org/ns/ttml\""
+
     // 39 bytes
     format = VirtualboxVirtualDiskImage
     value = b"<<< Oracle VM VirtualBox Disk Image >>>"
 
     // 37 bytes
+    format = PemPrivateKey
+    value = b"-----BEGIN ENCRYPTED PRIVATE KEY-----"
+    value = b"-----BEGIN ECDSA PRIVATE KEY-----"
+    value = b"-----BEGIN DSA PRIVATE KEY-----"
+    value = b"-----BEGIN RSA PRIVATE KEY-----"
+    value = b"-----BEGIN EC PRIVATE KEY-----"
+    value = b"-----BEGIN PRIVATE KEY-----"
+
     format = PgpPrivateKeyBlock
     value = b"-----BEGIN PGP PRIVATE KEY BLOCK-----"
 
@@ -27,15 +53,14 @@ signatures! {
     format = PgpSignedMessage
     value = b"-----BEGIN PGP SIGNED MESSAGE-----"
 
-    // 33 bytes
-    format = PemPrivateKey
-    value = b"-----BEGIN ECDSA PRIVATE KEY-----"
-    value = b"-----BEGIN DSA PRIVATE KEY-----"
-    value = b"-----BEGIN DSA PRIVATE KEY-----"
-    value = b"-----BEGIN EC PRIVATE KEY-----"
-    value = b"-----BEGIN PRIVATE KEY-----"
-
     // 32 bytes
+    format = PemPublicKey
+    value = b"-----BEGIN ECDSA PUBLIC KEY-----"
+    value = b"-----BEGIN DSA PUBLIC KEY-----"
+    value = b"-----BEGIN RSA PUBLIC KEY-----"
+    value = b"-----BEGIN EC PUBLIC KEY-----"
+    value = b"-----BEGIN PUBLIC KEY-----"
+
     format = PolygonBinary
     value = b"ply\r\nformat binary_little_endian"
     value = b"ply\r\nformat binary_big_endian"
@@ -57,6 +82,10 @@ signatures! {
     value = b"-----BEGIN PGP SIGNATURE-----"
 
     // 28 bytes
+    format = NeoGeoPocketRom
+    value = b" LICENSED BY SNK CORPORATION"
+    value = b"COPYRIGHT BY SNK CORPORATION"
+
     format = Vcalendar
     value = b"BEGIN:VCALENDAR\r\nVERSION:1.0"
     value = b"BEGIN:VCALENDAR\nVERSION:1.0"
@@ -72,12 +101,17 @@ signatures! {
     format = StereolithographyBinary
     value = b"3D Systems, Binary STL file"
     value = b"Materialise Coloured STL"
-    value = b"Exported from Blender"
+    value = b"Exported from Blender", b"\x00" offset = 79
     value = b"STL binary file"
     value = b"binary stl file"
     value = b"Stratasys stl"
     value = b"SketchUp STL"
     value = b"STL File"
+
+    // 26 bytes
+    format = TrainingCenterXml
+    value = b"\xEF\xBB\xBF<TrainingCenterDatabase"
+    value = b"<TrainingCenterDatabase"
 
     // 24 bytes
     format = ClojureScript
@@ -89,6 +123,14 @@ signatures! {
     value = b"#!/usr/bin/clj"
 
     // 23 bytes
+    format = Extensible3d
+    value = b"\xEF\xBB\xBF<!DOCTYPE X3D PUBLIC"
+    value = b"<!DOCTYPE X3D PUBLIC"
+    value = b"\xEF\xBB\xBF<X3D"
+    value = b"\xEF\xBB\xBF<x3d"
+    value = b"<X3D"
+    value = b"<x3d"
+
     format = PythonScript
     value = b"#!/usr/local/bin/python"
     value = b"#!/usr/bin/env python"
@@ -165,6 +207,10 @@ signatures! {
     format = DrawingExchangeFormatBinary
     value = b"AutoCAD Binary DXF"
 
+    format = Musicxml
+    value = b"\xEF\xBB\xBF<score-partwise"
+    value = b"<score-partwise"
+
     // 17 bytes
     format = EncapsulatedPostscript
     value = b"%!PS-Adobe-", b" EPSF-" offset = 14
@@ -189,6 +235,9 @@ signatures! {
     format = AdobeIndesignDocument
     value = b"\x06\x06\xED\xF5\xD8\x1D\x46\xE5\xBD\x31\xEF\xE7\xFE\x74\xB7\x1D"
 
+    format = AdvancedSystemsFormat
+    value = b"\x30\x26\xB2\x75\x8E\x66\xCF\x11\xA6\xD9\x00\xAA\x00\x62\xCE\x6C"
+
     format = Fasttracker2ExtendedModule
     value = b"Extended Module:"
 
@@ -201,15 +250,32 @@ signatures! {
     format = Sqlite3
     value = b"\x53\x51\x4C\x69\x74\x65\x20\x66\x6F\x72\x6D\x61\x74\x20\x33\x00"
 
-    format = WindowsMediaVideo
-    value = b"\x30\x26\xB2\x75\x8E\x66\xCF\x11\xA6\xD9\x00\xAA\x00\x62\xCE\x6C"
+    format = Stuffit
+    value = b"StuffIt (c)1997", b"\x05" offset = 82
+    value = b"SIT!" offset = 0x80, b"rLau" offset = 0x8A
+    value = b"SIT!", b"rLau" offset = 10
+
+    format = UniversalSubtitleFormat
+    value = b"\xEF\xBB\xBF<USFSubtitles"
+    value = b"<USFSubtitles"
+
+    format = WindowsRecordedTvShow
+    value = b"\xB7\xD8\x00\x20\x37\x49\xDA\x11\xA6\x4E\x00\x07\xE9\x5E\xAD\x8D"
 
     // 15 bytes
+    format = Fictionbook
+    value = b"\xEF\xBB\xBF<FictionBook"
+    value = b"<FictionBook"
+
     format = FujifilmRaw
     value = b"FUJIFILMCCD-RAW"
 
     format = Icalendar
     value = b"BEGIN:VCALENDAR"
+
+    format = MegaDriveRom
+    value = b"SEGA MEGA DRIVE" offset = 0x100
+    value = b"SEGA GENESIS" offset = 0x100
 
     format = MicrosoftAccess2007Database
     value = b"Standard ACE DB" offset = 4
@@ -218,6 +284,9 @@ signatures! {
     value = b"Standard Jet DB" offset = 4
 
     // 14 bytes
+    format = CanonRaw
+    value = b"\x49\x49\x1A\x00\x00\x00\x48\x45\x41\x50\x43\x43\x44\x52"
+
     format = Latex
     value = b"\\documentclass"
     value = b"\\documentstyle"
@@ -252,9 +321,6 @@ signatures! {
     format = KhronosTexture2
     value = b"\xAB\x4B\x54\x58\x20\x32\x30\xBB\x0D\x0A\x1A\x0A"
 
-    format = MatroskaVideo
-    value = b"\x1A\x45\xDF\xA3"
-
     format = MayaAscii
     value = b"//Maya ASCII"
 
@@ -269,9 +335,19 @@ signatures! {
     value = b"[playlist]\r"
     value = b"[playlist]\n"
 
+    format = XmlShareablePlaylistFormat
+    value = b"\xEF\xBB\xBF<playlist"
+    value = b"<playlist"
+
     // 11 bytes
     format = BittorrentFile
     value = b"d8:announce"
+
+    format = DigitalAssetExchange
+    value = b"\xEF\xBB\xBF<COLLADA"
+    value = b"\xEF\xBB\xBF<collada"
+    value = b"<COLLADA"
+    value = b"<collada"
 
     format = OggSpeex
     value = b"OggS", b"Speex  " offset = 28
@@ -289,8 +365,15 @@ signatures! {
     value = b"BEGIN:VCARD"
 
     // 10 bytes
+    format = Atari7800Rom
+    value = b"\x01ATARI7800"
+
     format = BitmapFontAscii
     value = b"info face="
+
+    format = Drawio
+    value = b"\xEF\xBB\xBF<mxfile"
+    value = b"<mxfile"
 
     format = OggMedia
     value = b"OggS", b"\x01\x76\x69\x64\x65\x6F" offset = 28
@@ -299,13 +382,26 @@ signatures! {
     value = b"\xFF\x06\x00\x00\x73\x4E\x61\x50\x70\x59"
 
     // 9 bytes
-    format = ExtensibleMarkupLanguage
-    value = b"\xEF\xBB\xBF<?xml "
-    value = b"<?xml "
-
     format = GameBoyColorRom
     value = b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B" offset = 0x104, b"\x80" offset = 0x143
     value = b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B" offset = 0x104, b"\xC0" offset = 0x143
+
+    format = GameGearRom
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x50" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x51" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x5C" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x5E" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x5F" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x60" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x61" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x6C" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x6E" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x6F" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x70" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x71" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x7C" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x7E" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x7F" offset = 0x7FFF
 
     format = Lzop
     value = b"\x89\x4C\x5A\x4F\x00\x0D\x0A\x1A\x0A"
@@ -323,17 +419,40 @@ signatures! {
     format = OlympusRawFormat
     value = b"\x49\x49\x52\x4F\x08\x00\x00\x00\x18"
 
+    format = SegaMasterSystemRom
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x30" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x31" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x3C" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x3E" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x3F" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x40" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x41" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x4C" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x4E" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 0x7FF0, b"\x4F" offset = 0x7FFF
+
     format = SubripText
     value = b"\xEF\xBB\xBF1\r\n00:"
     value = b"\xEF\xBB\xBF1\n00:"
     value = b"1\r\n00:"
     value = b"1\n00:"
 
+    format = WebVideoTextTracks
+    value = b"\xEF\xBB\xBFWEBVTT"
+    value = b"WEBVTT"
+
+    format = WindowsBitmap
+    value = b"BM", b"\x00\x00" offset = 12, b"\x00\x00\x00" offset = 15, b"\x01\x00" offset = 26
+
     format = XPixmap
     value = b"/* XPM */"
 
+    format = XmlLocalizationInterchangeFileFormat
+    value = b"\xEF\xBB\xBF<xliff"
+    value = b"<xliff"
+
     // 8 bytes
-    format = AdvancedMediaVideo
+    format = ActionsMediaVideo
     value = b"RIFF", b"AMV " offset = 8
 
     format = AudioInterchangeFileFormat
@@ -349,17 +468,21 @@ signatures! {
     format = Av1ImageFileFormatSequence
     value = b"ftypavis" offset = 4
 
+    format = BroadBandEbook
+    value = b"L\x00R\x00F\x00\x00\x00"
+
     format = CompoundFileBinary
     value = b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"
 
     format = DalvikExecutable
     value = b"\x64\x65\x78\x0A\x30\x33\x35\x00"
 
-    format = Drawio
-    value = b"<mxfile "
-
     format = ExperimentalComputingFacility
     value = b"gimp xcf"
+
+    format = ExtensibleMarkupLanguage
+    value = b"\xEF\xBB\xBF<?xml"
+    value = b"<?xml"
 
     format = Farbfeld
     value = b"farbfeld"
@@ -383,6 +506,9 @@ signatures! {
 
     format = HighEfficiencyImageFileFormatSequence
     value = b"ftypmsf1" offset = 4
+
+    format = Iff8BitSampledVoice
+    value = b"FORM", b"8SVX" offset = 8
 
     format = Jpeg2000Part1
     value = b"ftypjp2 " offset = 16
@@ -462,12 +588,23 @@ signatures! {
     format = QualcommPurevoice
     value = b"RIFF", b"QLCM" offset = 8
 
+    format = Realmedia
+    value = b".RMF\x00\x00\x00\x12"
+
     format = RoshalArchive
     value = b"\x52\x61\x72\x21\x1A\x07\x01\x00"
     value = b"\x52\x61\x72\x21\x1A\x07\x00"
 
+    format = SimpleObjectAccessProtocol
+    value = b"\xEF\xBB\xBF<soap"
+    value = b"<soap"
+
     format = Soundfont2
     value = b"RIFF", b"sfbk" offset = 8
+
+    format = StuffitX
+    value = b"StuffIt!"
+    value = b"StuffIt?"
 
     format = TapeArchive
     value = b"\x75\x73\x74\x61\x72\x00\x30\x30" offset = 257
@@ -483,17 +620,34 @@ signatures! {
     value = b"RIFF", b"ACON" offset = 8
 
     // 7 bytes
+    format = AdditiveManufacturingFormat
+    value = b"\xEF\xBB\xBF<amf"
+    value = b"<amf"
+
     format = AdobeFlashPlayerAudio
     value = b"ftypF4A" offset = 4
+    value = b"ftypf4a" offset = 4
 
     format = AdobeFlashPlayerAudiobook
     value = b"ftypF4B" offset = 4
+    value = b"ftypf4b" offset = 4
 
     format = AdobeFlashPlayerProtectedVideo
     value = b"ftypF4P" offset = 4
+    value = b"ftypf4p" offset = 4
 
     format = AdobeFlashPlayerVideo
     value = b"ftypF4V" offset = 4
+    value = b"ftypf4v" offset = 4
+
+    format = AdvancedCompressionEngine
+    value = b"**ACE**" offset = 7
+
+    format = AdvancedStreamRedirector
+    value = b"\xEF\xBB\xBF<ASX"
+    value = b"\xEF\xBB\xBF<asx"
+    value = b"<ASX"
+    value = b"<asx"
 
     format = AppleItunesAudio
     value = b"ftypM4A" offset = 4
@@ -513,6 +667,22 @@ signatures! {
     format = CanonRaw3
     value = b"ftypcrx" offset = 4
 
+    format = ExtensibleStylesheetLanguageTransformations
+    value = b"\xEF\xBB\xBF<xsl"
+    value = b"<xsl"
+
+    format = GeographyMarkupLanguage
+    value = b"\xEF\xBB\xBF<gml"
+    value = b"<gml"
+
+    format = GpsExchangeFormat
+    value = b"\xEF\xBB\xBF<gpx"
+    value = b"<gpx"
+
+    format = KeyholeMarkupLanguage
+    value = b"\xEF\xBB\xBF<kml"
+    value = b"<kml"
+
     format = MetaInformationEncapsulation
     value = b"\x7E\x10\x04", b"\x30\x4D\x49\x45" offset = 4
     value = b"\x7E\x18\x04", b"\x30\x4D\x49\x45" offset = 4
@@ -522,6 +692,14 @@ signatures! {
 
     format = Mp3Url
     value = b"#EXTM3U"
+
+    format = ReallySimpleSyndication
+    value = b"\xEF\xBB\xBF<rss"
+    value = b"<rss"
+
+    format = ScalableVectorGraphics
+    value = b"\xEF\xBB\xBF<svg"
+    value = b"<svg"
 
     format = SonyMovie
     value = b"ftypmqt" offset = 4
@@ -554,6 +732,9 @@ signatures! {
     value = b"\x4D\x4D\x00\x2A", b"CR" offset = 8
     value = b"\x49\x49\x2A\x00", b"CR" offset = 8
 
+    format = DesignWebFormat
+    value = b"(DWF V"
+
     format = GraphicsInterchangeFormat
     value = b"GIF87a"
     value = b"GIF89a"
@@ -575,9 +756,8 @@ signatures! {
     format = AdaptiveMultiRate
     value = b"#!AMR"
 
-    format = AdvancedStreamRedirector
-    value = b"<ASX "
-    value = b"<asx "
+    format = Bzip3
+    value = b"BZ3v1"
 
     format = EmbeddedOpentype
     value = b"\x00\x00\x01" offset = 8, b"\x4C\x50" offset = 34
@@ -638,6 +818,14 @@ signatures! {
     value = b"\xCE\xFA\xED\xFE"
     value = b"\xCF\xFA\xED\xFE"
 
+    format = NintendoSwitchRom
+    value = b"HEAD" offset = 0x100, b"\xFA" offset = 0x10D
+    value = b"HEAD" offset = 0x100, b"\xF8" offset = 0x10D
+    value = b"HEAD" offset = 0x100, b"\xF0" offset = 0x10D
+    value = b"HEAD" offset = 0x100, b"\xE0" offset = 0x10D
+    value = b"HEAD" offset = 0x100, b"\xE1" offset = 0x10D
+    value = b"HEAD" offset = 0x100, b"\xE2" offset = 0x10D
+
     format = Opentype
     value = b"\x4F\x54\x54\x4F\x00"
 
@@ -656,6 +844,12 @@ signatures! {
 
     format = Truetype
     value = b"\x00\x01\x00\x00\x00"
+
+    format = VirtualMachineDisk
+    value = b"COWD\x01"
+    value = b"KDMV\x01"
+    value = b"KDMV\x02"
+    value = b"KDMV\x03"
 
     // 4 bytes
     format = AdaptableScalableTextureCompression
@@ -685,6 +879,9 @@ signatures! {
     format = Au
     value = b".snd"
 
+    format = AudioVisualResearch
+    value = b"2BIT"
+
     format = AutocadDrawing
     value = b"AC10"
 
@@ -701,6 +898,11 @@ signatures! {
     format = Cineon
     value = b"\x80\x2A\x5F\xD7"
 
+    format = Cpio
+    value = b"0707"
+    value = b"\xC7\x71"
+    value = b"\x71\xC7"
+
     format = DigitalImagingAndCommunicationsInMedicine
     value = b"\x44\x49\x43\x4D" offset = 128
 
@@ -714,8 +916,14 @@ signatures! {
     format = ExtensibleArchive
     value = b"xar!"
 
+    format = ExtensibleBinaryMetaLanguage
+    value = b"\x1A\x45\xDF\xA3"
+
     format = FlashVideo
     value = b"\x46\x4C\x56\x01"
+
+    format = FlexibleAndInteroperableDataTransfer
+    value = b".FIT" offset = 8
 
     format = FreeLosslessAudioCodec
     value = b"fLaC"
@@ -745,6 +953,9 @@ signatures! {
     format = JavaKeystore
     value = b"\xFE\xED\xFE\xED"
 
+    format = Jpeg2000Codestream
+    value = b"\xFF\x4F\xFF\x51"
+
     format = JpegLs
     value = b"\xFF\xD8\xFF\xF7"
 
@@ -753,6 +964,9 @@ signatures! {
     value = b"bvx1"
     value = b"bvx2"
     value = b"bvxn"
+
+    format = LlvmBitcode
+    value = b"BC\xC0\xDE"
 
     format = LongRangeZip
     value = b"LRZI"
@@ -781,7 +995,7 @@ signatures! {
     format = MonkeysAudio
     value = b"MAC "
 
-    format = Mpeg1Video
+    format = Mpeg12Video
     value = b"\x00\x00\x01\xBA"
     value = b"\x00\x00\x01\xB3"
 
@@ -794,6 +1008,12 @@ signatures! {
 
     format = NintendoEntertainmentSystemRom
     value = b"\x4E\x45\x53\x1A"
+
+    format = NintendoSwitchExecutable
+    value = b"NSO0"
+
+    format = NintendoSwitchPackage
+    value = b"PFS0"
 
     format = OggMultiplexedMedia
     value = b"OggS"
@@ -814,11 +1034,17 @@ signatures! {
     format = PersonalStorageTable
     value = b"!BDN"
 
+    format = QemuCopyOnWrite
+    value = b"QFI\xFB"
+
     format = QuiteOkAudio
     value = b"qoaf"
 
     format = QuiteOkImage
     value = b"qoif"
+
+    format = Realaudio
+    value = b".ra\xFD"
 
     format = RedHatPackageManager
     value = b"\xED\xAB\xEE\xDB"
@@ -870,13 +1096,30 @@ signatures! {
     value = b"\x02\x00\x09\x00"
     value = b"\x01\x00\x09\x00"
 
+    format = Xbox360Executable
+    value = b"XEX1"
+    value = b"XEX2"
+
+    format = XboxExecutable
+    value = b"XBEH"
+
     format = Zip
     value = b"\x50\x4B\x03\x04"
+
+    format = Zpaq
+    value = b"7kSt"
+    value = b"zPQ"
 
     format = Zstandard
     value = b"\x28\xB5\x2F\xFD"
 
     // 3 bytes
+    format = ArchivedByRobertJung
+    value = b"\x60\xEA", b"\x02" offset = 10
+
+    format = Bzip
+    value = b"BZ0"
+
     format = Bzip2
     value = b"BZh"
 
@@ -891,6 +1134,9 @@ signatures! {
     value = b"\xFF\xE3"
     value = b"\xFF\xF3"
     value = b"\xFF\xFB"
+
+    format = Mtv
+    value = b"AMV"
 
     format = PortableArbitraryMap
     value = b"P7 "
@@ -956,9 +1202,6 @@ signatures! {
     format = AppleDiskImage
     value = b"\x78\x01"
 
-    format = ArchivedByRobertJung
-    value = b"\x60\xEA"
-
     format = AudioCodec3
     value = b"\x0B\x77"
 
@@ -968,23 +1211,19 @@ signatures! {
     format = AutodeskAnimatorPro
     value = b"\x12\xAF" offset = 4
 
+    format = BdavMpeg2TransportStream
+    value = b"\x47" offset = 4, b"\x47" offset = 196
+
     format = CommonObjectFileFormat
     value = b"\x4C\x01"
     value = b"\x64\x86"
     value = b"\x00\x02"
-
-    format = Cpio
-    value = b"\xC7\x71"
-    value = b"\x71\xC7"
 
     format = DerCertificate
     value = b"\x30\x82"
 
     format = Gzip
     value = b"\x1F\x8B"
-
-    format = LlvmBitcode
-    value = b"BC"
 
     format = Mpeg1AudioLayer1
     value = b"\xFF\xFE"
@@ -999,10 +1238,10 @@ signatures! {
 
     format = Mpeg2TransportStream
     value = b"\x47", b"\x47" offset = 188
-    value = b"\x47" offset = 4, b"\x47" offset = 196
 
     format = MsDosExecutable
     value = b"MZ"
+    value = b"ZM"
 
     format = Postscript
     value = b"%!"
@@ -1013,7 +1252,4 @@ signatures! {
     format = UnixCompress
     value = b"\x1F\xA0"
     value = b"\x1F\x9D"
-
-    format = WindowsBitmap
-    value = b"BM"
 }

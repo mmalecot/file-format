@@ -1,0 +1,12 @@
+<tt xmlns="http://www.w3.org/ns/ttml" xmlns:tts="http://www.w3.org/ns/ttml#styling">
+  <head>
+    <styling>
+      <style xml:id="s1" tts:fontSize="24px" tts:fontFamily="Arial" tts:textAlign="center"/>
+    </styling>
+  </head>
+  <body>
+    <div>
+      <p begin="00:00:02.000" end="00:00:06.000" style="s1">Hello world!</p>
+    </div>
+  </body>
+</tt>
