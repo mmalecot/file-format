@@ -1,5 +1,5 @@
 /*!
-Crate for determining the file format of a given file or stream.
+Crate for determining the file format of a [given file](`FileFormat::from_file`) or stream.
 
 It provides a variety of functions for identifying a wide range of file formats, including
 [ZIP](`FileFormat::Zip`), [Compound File Binary (CFB)](`FileFormat::CompoundFileBinary`),
