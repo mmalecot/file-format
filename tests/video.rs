@@ -74,7 +74,7 @@ fn test_material_exchange_format() {
 
 #[cfg(feature = "reader-ebml")]
 #[test]
-fn test_matroska_3d_video() {
+fn test_matroska3d_video() {
     let fmt = FileFormat::from_file("fixtures/video/sample.mk3d").unwrap();
     assert_eq!(fmt, FileFormat::Matroska3dVideo);
 }
