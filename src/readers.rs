@@ -49,9 +49,9 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-asf")]
     pub(crate) fn from_asf_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Constants representing GUIDs and descriptors.
-        const VIDEO_GUID: &[u8] =
+        const VIDEO_MEDIA_GUID: &[u8] =
             b"\xC0\xEF\x19\xBC\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
-        const AUDIO_GUID: &[u8] =
+        const AUDIO_MEDIA_GUID: &[u8] =
             b"\x40\x9E\x69\xF8\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
         const DVR_DESCRIPTOR: &[u8] =
             b"D\x00V\x00R\x00 \x00F\x00i\x00l\x00e\x00 \x00V\x00e\x00r\x00s\x00i\x00o\x00n";
@@ -77,9 +77,9 @@ impl crate::FileFormat {
         }
 
         // Searches for specific GUIDs in the buffer.
-        Ok(if contains(&buffer, VIDEO_GUID) {
+        Ok(if contains(&buffer, VIDEO_MEDIA_GUID) {
             Self::WindowsMediaVideo
-        } else if contains(&buffer, AUDIO_GUID) {
+        } else if contains(&buffer, AUDIO_MEDIA_GUID) {
             Self::WindowsMediaAudio
         } else {
             Self::AdvancedSystemsFormat
