@@ -31,9 +31,7 @@ impl crate::FileFormat {
         })
     }
 
-    /// Determines file format from a generic reader:
-    /// [Plain Text (TXT)](`crate::FileFormat::PlainText`) or
-    /// [Arbitrary Binary Data (BIN)](`crate::FileFormat::ArbitraryBinaryData`).
+    /// Determines file format from a generic reader.
     #[allow(unused_variables)]
     #[inline]
     pub(crate) fn from_generic_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Self {
