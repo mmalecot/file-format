@@ -12,6 +12,7 @@ homepage = "https://github.com/mmalecot/file-format"
 repository = "https://github.com/mmalecot/file-format"
 documentation = "https://docs.rs/file-format"
 exclude = ["/.github/*", "/examples/*", "/fixtures/*", "/tests/*"]
+rust-version = "1.60.0"
 
 [dependencies]
 cfb = { version = "0.8", optional = true }
