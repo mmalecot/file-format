@@ -3,6 +3,7 @@
 ## Fixes
 
 - Fix Lempel-Ziv Finite State Entropy (LZFSE) name
+- Fix panic when reading an infinite stream via a reader (e.g. /dev/urandom on Linux)
 
 # Version 0.17.0 (2023-06-05)
 

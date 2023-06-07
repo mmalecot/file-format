@@ -59,12 +59,12 @@ impl crate::FileFormat {
         // Sets limits.
         const SEARCH_LIMIT: usize = 8192;
 
+        // Rewinds to the beginning of the stream.
+        reader.rewind()?;
+
         // Gets the stream length.
-        let old_pos = reader.stream_position()?;
         let length = reader.seek(SeekFrom::End(0))?;
-        if old_pos != length {
-            reader.seek(SeekFrom::Start(old_pos))?;
-        }
+        reader.rewind()?;
 
         // Fills the buffer.
         let mut buffer = vec![0; std::cmp::min(SEARCH_LIMIT, length as usize)];
@@ -89,6 +89,9 @@ impl crate::FileFormat {
     /// Determines file format from a CFB reader.
     #[cfg(feature = "reader-cfb")]
     pub(crate) fn from_cfb_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        // Rewinds to the beginning of the stream.
+        reader.rewind()?;
+
         // Opens the compound file.
         let file = cfb::CompoundFile::open(reader)?;
 
@@ -167,6 +170,9 @@ impl crate::FileFormat {
             }
             Ok(value)
         }
+
+        // Rewinds to the beginning of the stream.
+        reader.rewind()?;
 
         // Flag indicating the presence of an audio codec.
         let mut audio_codec = false;
@@ -248,18 +254,18 @@ impl crate::FileFormat {
     /// Determines file format from an EXE reader.
     #[cfg(feature = "reader-exe")]
     pub(crate) fn from_exe_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        // Rewinds to the beginning of the stream.
+        reader.rewind()?;
+
+        // Gets the stream length.
+        let length = reader.seek(SeekFrom::End(0))?;
+        reader.rewind()?;
+
         // Reads the e_lfanew field.
-        reader.seek(SeekFrom::Start(0x3C))?;
+        reader.seek(SeekFrom::Current(0x3C))?;
         let mut e_lfanew = [0; 4];
         reader.read_exact(&mut e_lfanew)?;
         let e_lfanew = u32::from_le_bytes(e_lfanew) as u64;
-
-        // Gets the stream length.
-        let old_pos = reader.stream_position()?;
-        let length = reader.seek(SeekFrom::End(0))?;
-        if old_pos != length {
-            reader.seek(SeekFrom::Start(old_pos))?;
-        }
 
         // Checks that the e_lfanew value is not outside the stream's boundaries.
         if e_lfanew + 4 < length {
@@ -295,12 +301,12 @@ impl crate::FileFormat {
         // Sets limits.
         const SEARCH_LIMIT: usize = 4_194_304;
 
+        // Rewinds to the beginning of the stream.
+        reader.rewind()?;
+
         // Gets the stream length.
-        let old_pos = reader.stream_position()?;
         let length = reader.seek(SeekFrom::End(0))?;
-        if old_pos != length {
-            reader.seek(SeekFrom::Start(old_pos))?;
-        }
+        reader.rewind()?;
 
         // Fills the buffer.
         let mut buffer = vec![0; std::cmp::min(SEARCH_LIMIT, length as usize)];
@@ -320,12 +326,12 @@ impl crate::FileFormat {
         // Sets limits.
         const SEARCH_LIMIT: usize = 4096;
 
+        // Rewinds to the beginning of the stream.
+        reader.rewind()?;
+
         // Gets the stream length.
-        let old_pos = reader.stream_position()?;
         let length = reader.seek(SeekFrom::End(0))?;
-        if old_pos != length {
-            reader.seek(SeekFrom::Start(old_pos))?;
-        }
+        reader.rewind()?;
 
         // Fills the buffer.
         let mut buffer = vec![0; std::cmp::min(SEARCH_LIMIT, length as usize)];
@@ -350,7 +356,7 @@ impl crate::FileFormat {
         const READ_LIMIT: u64 = 8_388_608;
         const LINE_LIMIT: usize = 256;
 
-        // Rewinds to the beginning of a stream.
+        // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
         // Determines if the reader contains only ASCII/UTF-8-encoded text by checking the first
@@ -376,6 +382,9 @@ impl crate::FileFormat {
         const READ_LIMIT: u64 = 262_144;
         const LINE_LIMIT: usize = 8;
         const CHAR_LIMIT: usize = 2048;
+
+        // Rewinds to the beginning of the stream.
+        reader.rewind()?;
 
         // Searches the reader for byte sequences that indicate the presence of various file
         // formats.
@@ -433,6 +442,9 @@ impl crate::FileFormat {
     pub(crate) fn from_zip_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Sets limits.
         const FILE_LIMIT: usize = 4096;
+
+        // Rewinds to the beginning of the stream.
+        reader.rewind()?;
 
         // Opens the archive.
         let mut archive = zip::ZipArchive::new(reader)?;
