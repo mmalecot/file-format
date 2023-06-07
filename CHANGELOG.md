@@ -1,3 +1,10 @@
+# Version 0.17.1 (2023-06-07)
+
+## Fixes
+
+- Fix Lempel-Ziv Finite State Entropy (LZFSE) name
+- Fix panic when reading an infinite stream via a reader (e.g. /dev/urandom on Linux)
+
 # Version 0.17.0 (2023-06-05)
 
 ## API
@@ -577,7 +584,7 @@
 - Fujifilm Raw (RAF)
 - Impulse Tracker Module (IT)
 - LHA
-- Lempel–Ziv Finite State Entropy (LZFSE)
+- Lempel-Ziv Finite State Entropy (LZFSE)
 - Microsoft Compiled HTML Help (CHM)
 - Microsoft Virtual Hard Disk (VHD)
 - Microsoft Virtual Hard Disk 2 (VHDX)

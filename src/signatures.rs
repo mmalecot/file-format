@@ -14,6 +14,7 @@ signatures! {
     value = b"\xEF\xBB\xBF<abiword template=\"false\""
     value = b"<abiword template=\"false\""
 
+    // 51 bytes
     format = AbiwordTemplate
     value = b"\xEF\xBB\xBF<!DOCTYPE abiword PUBLIC", b"<abiword template=\"true\"" offset = 102
     value = b"<!DOCTYPE abiword PUBLIC", b"<abiword template=\"true\"" offset = 102
@@ -78,6 +79,7 @@ signatures! {
     format = FlexibleImageTransportSystem
     value =b"SIMPLE  =                    T"
 
+    // 29 bytes
     format = PgpSignature
     value = b"-----BEGIN PGP SIGNATURE-----"
 

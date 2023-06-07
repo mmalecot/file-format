@@ -1025,7 +1025,7 @@ formats! {
     kind = Text
 
     format = LempelZivFiniteStateEntropy
-    name = "Lempel–Ziv Finite State Entropy"
+    name = "Lempel-Ziv Finite State Entropy"
     short_name = "LZFSE"
     media_type = "application/x-lzfse"
     extension = "lzfse"
