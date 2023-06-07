@@ -184,7 +184,7 @@ file-format = "0.17"
 
 - BZip3 (BZ3)
 - LZ4
-- Lempel–Ziv Finite State Entropy (LZFSE)
+- Lempel-Ziv Finite State Entropy (LZFSE)
 - Long Range ZIP (LRZIP)
 - Snappy
 - UNIX compress (compress)

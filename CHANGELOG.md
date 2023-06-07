@@ -1,3 +1,9 @@
+# Version 0.17.1 (unreleased)
+
+## Fixes
+
+- Fix Lempel-Ziv Finite State Entropy (LZFSE) name
+
 # Version 0.17.0 (2023-06-05)
 
 ## API
@@ -577,7 +583,7 @@
 - Fujifilm Raw (RAF)
 - Impulse Tracker Module (IT)
 - LHA
-- Lempel–Ziv Finite State Entropy (LZFSE)
+- Lempel-Ziv Finite State Entropy (LZFSE)
 - Microsoft Compiled HTML Help (CHM)
 - Microsoft Virtual Hard Disk (VHD)
 - Microsoft Virtual Hard Disk 2 (VHDX)
