@@ -1,3 +1,9 @@
+# Version 0.17.2 (2023-06-08)
+
+## Fixes
+
+- Fix performance issue on large Matroska files when using the `reader-ebml` feature
+
 # Version 0.17.1 (2023-06-07)
 
 ## Fixes

@@ -126,6 +126,7 @@ impl crate::FileFormat {
         const CODEC_ID: u32 = 0x86;
         const VIDEO: u32 = 0xE0;
         const STEREO_MODE: u32 = 0x53B8;
+        const CLUSTER: u32 = 0x1F43B675;
 
         // Helper function to read the ID of an EBML element.
         fn read_id<R: Read>(reader: &mut R) -> Result<u32> {
@@ -233,6 +234,10 @@ impl crate::FileFormat {
                     if buffer[0] > 0 {
                         return Ok(Self::Matroska3dVideo);
                     }
+                }
+                CLUSTER => {
+                    // No need to continue reading.
+                    break;
                 }
                 _ => {
                     // Seeks to the next element.
