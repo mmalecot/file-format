@@ -12,7 +12,8 @@ homepage = "https://github.com/mmalecot/file-format"
 repository = "https://github.com/mmalecot/file-format"
 documentation = "https://docs.rs/file-format"
 exclude = ["/.github/*", "/examples/*", "/fixtures/*", "/tests/*"]
-rust-version = "1.60.0"
+rust-version = "1.70.0"
+resolver = "2"
 
 [dependencies]
 cfb = { version = "0.8", optional = true }
@@ -20,8 +21,14 @@ serde = { version = "1.0", optional = true, features = ["derive"], default-featu
 zip = { version = "0.6", optional = true, features = ["deflate"], default-features = false }
 
 [features]
+
+default = [ "reader", "serde", "map-media-to-kind" ]
+
 ## Ecosystem features
 serde = ["dep:serde"]
+
+## Requires rust 1.70.0
+map-media-to-kind = []
 
 ## Reader features
 reader = [
@@ -44,3 +51,4 @@ reader-rm = []
 reader-txt = []
 reader-xml = []
 reader-zip = ["dep:zip"]
+
