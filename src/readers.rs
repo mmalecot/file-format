@@ -56,7 +56,7 @@ impl crate::FileFormat {
         const DVR_DESCRIPTOR: &[u8] =
             b"D\x00V\x00R\x00 \x00F\x00i\x00l\x00e\x00 \x00V\x00e\x00r\x00s\x00i\x00o\x00n";
 
-        // Sets limits.
+        // Constants for limits.
         const SEARCH_LIMIT: usize = 8192;
 
         // Rewinds to the beginning of the stream.
@@ -313,7 +313,7 @@ impl crate::FileFormat {
     /// Determines file format from a PDF reader.
     #[cfg(feature = "reader-pdf")]
     pub(crate) fn from_pdf_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        // Sets limits.
+        // Constants for limits.
         const SEARCH_LIMIT: usize = 4_194_304;
 
         // Rewinds to the beginning of the stream.
@@ -338,7 +338,7 @@ impl crate::FileFormat {
     /// Determines file format from a RM reader.
     #[cfg(feature = "reader-rm")]
     pub(crate) fn from_rm_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        // Sets limits.
+        // Constants for limits.
         const SEARCH_LIMIT: usize = 4096;
 
         // Rewinds to the beginning of the stream.
@@ -367,7 +367,7 @@ impl crate::FileFormat {
     /// Determines file format from a TXT reader.
     #[cfg(feature = "reader-txt")]
     pub(crate) fn from_txt_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        // Sets limits.
+        // Constants for limits.
         const READ_LIMIT: u64 = 8_388_608;
         const LINE_LIMIT: usize = 256;
 
@@ -393,7 +393,7 @@ impl crate::FileFormat {
     /// Determines file format from a XML reader.
     #[cfg(feature = "reader-xml")]
     pub(crate) fn from_xml_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        // Sets limits.
+        // Constants for limits.
         const READ_LIMIT: u64 = 262_144;
         const LINE_LIMIT: usize = 8;
         const CHAR_LIMIT: usize = 2048;
@@ -455,7 +455,7 @@ impl crate::FileFormat {
     /// Determines file format from a ZIP reader.
     #[cfg(feature = "reader-zip")]
     pub(crate) fn from_zip_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        // Sets limits.
+        // Constants for limits.
         const FILE_LIMIT: usize = 4096;
 
         // Rewinds to the beginning of the stream.
