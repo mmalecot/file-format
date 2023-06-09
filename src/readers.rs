@@ -128,6 +128,10 @@ impl crate::FileFormat {
         const STEREO_MODE: u32 = 0x53B8;
         const CLUSTER: u32 = 0x1F43B675;
 
+        // Constants for limits.
+        const ITERATION_LIMIT: usize = 512;
+        const STRING_LIMIT: usize = 64;
+
         // Helper function to read the ID of an EBML element.
         fn read_id<R: Read>(reader: &mut R) -> Result<u32> {
             // Reads the first byte.
@@ -175,13 +179,12 @@ impl crate::FileFormat {
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Flag indicating the presence of an audio codec.
+        // Flags indicating the presence of audio and video codecs.
         let mut audio_codec = false;
-
-        // Flag indicating the presence of a video codec.
         let mut video_codec = false;
 
-        // Loops through the EBML elements in the reader.
+        // Iterates through the EBML elements in the reader.
+        let mut iteration_count = 0;
         while let Ok(id) = read_id(reader) {
             // Reads the size of the element.
             let size = read_size(reader)?;
@@ -193,12 +196,11 @@ impl crate::FileFormat {
                 }
                 DOC_TYPE => {
                     // Reads the buffer containing the DocType.
-                    let mut buffer = vec![0; std::cmp::min(16, size as usize)];
+                    let mut buffer = vec![0; std::cmp::min(STRING_LIMIT, size as usize)];
                     reader.read_exact(&mut buffer)?;
 
                     // Converts the buffer to a string and trims null characters.
-                    let doc_type = String::from_utf8(buffer)
-                        .unwrap_or_default()
+                    let doc_type = String::from_utf8_lossy(&buffer)
                         .trim_end_matches('\0')
                         .to_string();
 
@@ -211,11 +213,11 @@ impl crate::FileFormat {
                 }
                 CODEC_ID => {
                     // Reads the buffer containing the Codec ID.
-                    let mut buffer = vec![0; std::cmp::min(64, size as usize)];
+                    let mut buffer = vec![0; std::cmp::min(STRING_LIMIT, size as usize)];
                     reader.read_exact(&mut buffer)?;
 
                     // Converts the buffer to a string.
-                    let codec_id = String::from_utf8(buffer).unwrap_or_default();
+                    let codec_id = String::from_utf8_lossy(&buffer).to_string();
 
                     // Checks the Codec ID.
                     if codec_id.starts_with("A_") {
@@ -243,6 +245,14 @@ impl crate::FileFormat {
                     // Seeks to the next element.
                     reader.seek(SeekFrom::Current(size as i64))?;
                 }
+            }
+
+            // Increments the iteration count.
+            iteration_count += 1;
+
+            // Checks if the iteration limit has been reached.
+            if iteration_count == ITERATION_LIMIT {
+                break;
             }
         }
 
