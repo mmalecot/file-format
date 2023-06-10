@@ -1,4 +1,4 @@
-# Version 0.17.3 (unreleased)
+# Version 0.17.3 (2023-06-09)
 
 ## Fixes
 
