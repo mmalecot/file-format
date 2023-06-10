@@ -1,6 +1,6 @@
 [package]
 name = "file-format"
-version = "0.17.2"
+version = "0.17.3"
 authors = ["Mickaël Malécot <mickael.malecot@gmail.com>"]
 edition = "2021"
 description = "Crate for determining the file format of a given file or stream."
@@ -11,7 +11,7 @@ categories = ["filesystem"]
 homepage = "https://github.com/mmalecot/file-format"
 repository = "https://github.com/mmalecot/file-format"
 documentation = "https://docs.rs/file-format"
-exclude = ["/.github/*", "/examples/*", "/fixtures/*", "/tests/*"]
+exclude = [".gitattributes", "/.github/*", "/examples/*", "/fixtures/*", "/tests/*"]
 rust-version = "1.60.0"
 
 [dependencies]

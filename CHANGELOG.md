@@ -1,3 +1,9 @@
+# Version 0.17.3 (2023-06-09)
+
+## Fixes
+
+- Fix performance issue on malformed EBML files when using the `reader-ebml` feature
+
 # Version 0.17.2 (2023-06-08)
 
 ## Fixes
