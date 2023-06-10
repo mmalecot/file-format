@@ -122,18 +122,21 @@ macro_rules! formats {
         /// Generate a std::cell:OnceCell that maintains a hashmap of media types to kinds.
         /// This is used to speed up the `Kind::from_media_type` function.
         #[cfg(feature = "map-media-to-kind")]
-        static MEDIA_TYPE_TO_KIND: 
+        static MEDIA_TYPE_TO_KIND:
             ::std::sync::OnceLock<std::collections::HashMap<&'static str, Vec<crate::Kind>>> = ::std::sync::OnceLock::new();
         #[cfg(feature = "map-media-to-kind")]
         impl crate::Kind {
-
+        
             /// Returns the kind for a given media type.
             /// Returns `None` if the media type is unknown.
             pub fn from_media_type(media_type: &str) -> Option<Vec<Self>> {
                 MEDIA_TYPE_TO_KIND.get_or_init(|| {
                     let mut map = std::collections::HashMap::new();
                     $(
-                        map.entry($media_type).or_insert_with(Vec::new).push(Self::$kind);
+                        let entry = map.entry($media_type).or_insert_with(Vec::new);
+                        if !entry.contains(&Self::$kind) {
+                            entry.push(Self::$kind);
+                        }
                     )*
                     map
                 }).get(media_type).cloned()

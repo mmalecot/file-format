@@ -266,8 +266,10 @@ impl From<&[u8]> for FileFormat {
 }
 
 /// A kind of [`FileFormat`].
-#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Hash)]
 #[cfg_attr(feature = "serde", derive(serde::Deserialize, serde::Serialize))]
+#[repr(u8)]
+#[non_exhaustive]
 pub enum Kind {
     /// Data which do not fit in any of the other kinds, and particularly for data to be processed
     /// by some type of application program.
@@ -313,3 +315,4 @@ pub enum Kind {
     /// and coordinated sound.
     Video,
 }
+
