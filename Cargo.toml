@@ -18,11 +18,12 @@ resolver = "2"
 [dependencies]
 cfb = { version = "0.8", optional = true }
 serde = { version = "1.0", optional = true, features = ["derive"], default-features = false }
+strum = { workspace = true, features = ["derive"], optional = true }
 zip = { version = "0.6", optional = true, features = ["deflate"], default-features = false }
 
 [features]
 
-default = [ "reader", "serde", "map-media-to-kind" ]
+default = ["reader", "serde", "map-media-to-kind", "strum"]
 
 ## Ecosystem features
 serde = ["dep:serde"]
@@ -31,17 +32,7 @@ serde = ["dep:serde"]
 map-media-to-kind = []
 
 ## Reader features
-reader = [
-    "reader-asf",
-    "reader-cfb",
-    "reader-ebml",
-    "reader-exe",
-    "reader-pdf",
-    "reader-rm",
-    "reader-txt",
-    "reader-xml",
-    "reader-zip"
-]
+reader = ["reader-asf", "reader-cfb", "reader-ebml", "reader-exe", "reader-pdf", "reader-rm", "reader-txt", "reader-xml", "reader-zip"]
 reader-asf = []
 reader-cfb = ["dep:cfb"]
 reader-ebml = []

@@ -266,13 +266,16 @@ impl From<&[u8]> for FileFormat {
 }
 
 /// A kind of [`FileFormat`].
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Hash)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, PartialOrd, Ord, Hash, Default)]
 #[cfg_attr(feature = "serde", derive(serde::Deserialize, serde::Serialize))]
+#[cfg_attr(feature = "strum", derive(strum::EnumIter, strum::Display, strum::EnumString))]
 #[repr(u8)]
 #[non_exhaustive]
 pub enum Kind {
-    /// Data which do not fit in any of the other kinds, and particularly for data to be processed
-    /// by some type of application program.
+    #[default]
+    /// Arbitrary binary data that does not fit in any of the other kinds.
+    ArbitraryBinaryData,
+    /// Application specific format possibly useable by application program.
     Application,
     /// Stored files and directories into a single file, possibly compressed.
     Archive,
