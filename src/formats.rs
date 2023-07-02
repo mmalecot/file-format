@@ -1,4 +1,4 @@
-//! Formats.
+//! Definition of file formats, listed in alphabetical order.
 
 formats! {
     format = Abiword

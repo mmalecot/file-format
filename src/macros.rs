@@ -1,6 +1,15 @@
-//! Macros.
+//! Macros for generating [FileFormat](crate::FileFormat) enum and associated methods.
 
-/// Generates `FileFormat` enum with methods.
+/// Generates the [FileFormat](crate::FileFormat) enum with methods for retrieving information.
+///
+/// Each file format includes the following parameters:
+///
+/// - format: Variant name.
+/// - name: Full name.
+/// - short_name: Abbreviated name (optional).
+/// - media_type: Common media type (formerly known as MIME type).
+/// - extension: Common file extension.
+/// - kind: Type or category.
 macro_rules! formats {
     {
         $(
@@ -122,7 +131,13 @@ macro_rules! formats {
     };
 }
 
-/// Generates `FileFormat::from_signature` function.
+/// Generates the [FileFormat::from_signature](crate::FileFormat::from_signature) function.
+///
+/// Each signature group includes the following parameters:
+///
+/// - format: Variant name.
+/// - value: Signature value (can be repeated).
+/// - offset: Offset to start matching the signature value (defaults to 0 if not specified).
 macro_rules! signatures {
     {
         $(

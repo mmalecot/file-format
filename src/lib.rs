@@ -230,7 +230,13 @@ impl FileFormat {
     /// # Ok::<(), std::io::Error>(())
     ///```
     pub fn from_reader<R: Read + Seek>(reader: R) -> Result<Self> {
-        let mut reader = BufReader::with_capacity(36870, reader);
+        // Maximum required size to read and detect the file format from its signature.
+        const BUFFER_SIZE: usize = 36870;
+
+        // Creates a buffered reader with the specified size.
+        let mut reader = BufReader::with_capacity(BUFFER_SIZE, reader);
+
+        // Attempts to detect the file format.
         Ok(if reader.fill_buf()?.is_empty() {
             Self::default()
         } else if let Some(format) = Self::from_signature(reader.buffer()) {

@@ -1,4 +1,4 @@
-//! Readers.
+//! Readers for specific file formats.
 
 use std::io::*;
 
@@ -132,7 +132,7 @@ impl crate::FileFormat {
         const ITERATION_LIMIT: usize = 512;
         const STRING_LIMIT: usize = 64;
 
-        // Helper function to read the ID of an EBML element.
+        /// Helper function to read the ID of an EBML element.
         fn read_id<R: Read>(reader: &mut R) -> Result<u32> {
             // Reads the first byte.
             let mut first_byte = [0];
@@ -154,7 +154,7 @@ impl crate::FileFormat {
             Ok(value)
         }
 
-        // Helper function to read the size of an EBML element.
+        /// Helper function to read the size of an EBML element.
         fn read_size<R: Read>(reader: &mut R) -> Result<u64> {
             // Reads the first byte.
             let mut first_byte = [0];

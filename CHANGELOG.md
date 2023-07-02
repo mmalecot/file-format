@@ -5,6 +5,10 @@
 - Rename `Mpeg1AudioLayer1` to `Mpeg12AudioLayer1`
 - Rename `Mpeg1AudioLayer2` to `Mpeg12AudioLayer2`
 
+## Docs
+
+- Improve internal documentation
+
 ## Fixes
 
 - Fix MPEG-1/2 Audio Layer 1 (MP1) name

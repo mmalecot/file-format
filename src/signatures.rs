@@ -1,4 +1,4 @@
-//! Signatures.
+//! Definition of known file formats signatures, listed in descending order of size.
 
 signatures! {
     // 59 bytes
