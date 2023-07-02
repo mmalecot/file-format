@@ -21,6 +21,7 @@
 
 ## New formats support
 
+- Windows Imaging Format (WIM)
 - openNURBS (3DM)
 
 # Version 0.17.3 (2023-06-09)

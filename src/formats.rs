@@ -2379,6 +2379,13 @@ formats! {
     extension = "ico"
     kind = Image
 
+    format = WindowsImagingFormat
+    name = "Windows Imaging Format"
+    short_name = "WIM"
+    media_type = "application/x-ms-wim"
+    extension = "wim"
+    kind = Disk
+
     format = WindowsMediaAudio
     name = "Windows Media Audio"
     short_name = "WMA"

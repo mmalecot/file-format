@@ -41,3 +41,9 @@ fn test_virtualbox_virtual_disk_image() {
     let fmt = FileFormat::from_file("fixtures/disk/sample.vdi").unwrap();
     assert_eq!(fmt, FileFormat::VirtualboxVirtualDiskImage);
 }
+
+#[test]
+fn test_windows_imaging_format() {
+    let fmt = FileFormat::from_file("fixtures/disk/sample.wim").unwrap();
+    assert_eq!(fmt, FileFormat::WindowsImagingFormat);
+}

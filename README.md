@@ -205,6 +205,7 @@ file-format = "0.18"
 - QEMU Copy On Write (QCOW)
 - Virtual Machine Disk (VMDK)
 - VirtualBox Virtual Disk Image (VDI)
+- Windows Imaging Format (WIM)
 
 ### Document
 

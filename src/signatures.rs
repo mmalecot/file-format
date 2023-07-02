@@ -624,6 +624,10 @@ signatures! {
     format = WindowsAnimatedCursor
     value = b"RIFF", b"ACON" offset = 8
 
+    format = WindowsImagingFormat
+    value = b"MSWIM\x00\x00\x00"
+    value = b"WLPWM\x00\x00\x00"
+
     // 7 bytes
     format = AdditiveManufacturingFormat
     value = b"\xEF\xBB\xBF<amf"
