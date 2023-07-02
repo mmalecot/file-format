@@ -133,6 +133,9 @@ signatures! {
     value = b"<X3D"
     value = b"<x3d"
 
+    format = Opennurbs
+    value = b"3D Geometry File Format"
+
     format = PythonScript
     value = b"#!/usr/local/bin/python"
     value = b"#!/usr/bin/env python"

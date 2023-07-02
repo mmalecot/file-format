@@ -19,6 +19,10 @@
 - Add MPEG-1/2 Audio Layer 1 (MP1) signature
 - Add MPEG-1/2 Audio Layer 3 (MP3) signature
 
+## New formats support
+
+- openNURBS (3DM)
+
 # Version 0.17.3 (2023-06-09)
 
 ## Fixes

@@ -1660,6 +1660,13 @@ formats! {
     extension = "exr"
     kind = Image
 
+    format = Opennurbs
+    name = "openNURBS"
+    short_name = "3DM"
+    media_type = "model/x-3dm"
+    extension = "3dm"
+    kind = Model
+
     format = Openraster
     name = "OpenRaster"
     short_name = "ORA"

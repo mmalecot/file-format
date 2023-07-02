@@ -373,6 +373,7 @@ file-format = "0.18"
 - Stereolithography ASCII (STL)
 - Stereolithography Binary (STL)
 - Universal 3D (U3D)
+- openNURBS (3DM)
 
 ### Package
 
