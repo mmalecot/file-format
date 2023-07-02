@@ -1319,6 +1319,20 @@ formats! {
     extension = "m3u"
     kind = Playlist
 
+    format = Mpeg12AudioLayer1
+    name = "MPEG-1/2 Audio Layer 1"
+    short_name = "MP1"
+    media_type = "audio/mpeg"
+    extension = "mp1"
+    kind = Audio
+
+    format = Mpeg12AudioLayer2
+    name = "MPEG-1/2 Audio Layer 2"
+    short_name = "MP2"
+    media_type = "audio/mpeg"
+    extension = "mp2"
+    kind = Audio
+
     format = Mpeg12AudioLayer3
     name = "MPEG-1/2 Audio Layer 3"
     short_name = "MP3"
@@ -1332,20 +1346,6 @@ formats! {
     media_type = "video/mpeg"
     extension = "mpg"
     kind = Video
-
-    format = Mpeg1AudioLayer1
-    name = "MPEG-1 Audio Layer 1"
-    short_name = "MP1"
-    media_type = "audio/mpeg"
-    extension = "mp1"
-    kind = Audio
-
-    format = Mpeg1AudioLayer2
-    name = "MPEG-1 Audio Layer 2"
-    short_name = "MP2"
-    media_type = "audio/mpeg"
-    extension = "mp2"
-    kind = Audio
 
     format = Mpeg2TransportStream
     name = "MPEG-2 Transport Stream"

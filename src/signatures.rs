@@ -1133,8 +1133,11 @@ signatures! {
 
     format = Mpeg12AudioLayer3
     value = b"ID3"
+    value = b"\xFF\xE2"
     value = b"\xFF\xE3"
+    value = b"\xFF\xF2"
     value = b"\xFF\xF3"
+    value = b"\xFF\xFA"
     value = b"\xFF\xFB"
 
     format = Mtv
@@ -1227,12 +1230,13 @@ signatures! {
     format = Gzip
     value = b"\x1F\x8B"
 
-    format = Mpeg1AudioLayer1
-    value = b"\xFF\xFE"
+    format = Mpeg12AudioLayer1
     value = b"\xFF\xF6"
+    value = b"\xFF\xF7"
+    value = b"\xFF\xFE"
     value = b"\xFF\xFF"
 
-    format = Mpeg1AudioLayer2
+    format = Mpeg12AudioLayer2
     value = b"\xFF\xF4"
     value = b"\xFF\xF5"
     value = b"\xFF\xFC"

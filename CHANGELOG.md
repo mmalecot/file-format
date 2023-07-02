@@ -1,3 +1,20 @@
+# Version 0.18.0 (unreleased)
+
+## API
+
+- Rename `Mpeg1AudioLayer1` to `Mpeg12AudioLayer1`
+- Rename `Mpeg1AudioLayer2` to `Mpeg12AudioLayer2`
+
+## Fixes
+
+- Fix MPEG-1/2 Audio Layer 1 (MP1) name
+- Fix MPEG-1/2 Audio Layer 2 (MP2) name
+
+## Improvements
+
+- Add MPEG-1/2 Audio Layer 1 (MP1) signature
+- Add MPEG-1/2 Audio Layer 3 (MP3) signature
+
 # Version 0.17.3 (2023-06-09)
 
 ## Fixes
@@ -419,8 +436,8 @@
 - Keyhole Markup Language Zipped (KMZ)
 - LLVM Bitcode (BC)
 - Lua Bytecode
-- MPEG-1 Audio Layer 1 (MP1)
-- MPEG-1 Audio Layer 2 (MP2)
+- MPEG-1/2 Audio Layer 1 (MP1)
+- MPEG-1/2 Audio Layer 2 (MP2)
 - MPEG-2 Transport Stream (TS)
 - Meta Information Encapsulation (MIE)
 - Microsoft Access 2007 Database (ACCDB)

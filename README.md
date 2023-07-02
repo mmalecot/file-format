@@ -50,7 +50,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.17"
+file-format = "0.18"
 ```
 
 ## Supported file formats
@@ -145,8 +145,8 @@ file-format = "0.17"
 - Free Lossless Audio Codec (FLAC)
 - IFF 8-Bit Sampled Voice (8SVX)
 - Impulse Tracker Module (IT)
-- MPEG-1 Audio Layer 1 (MP1)
-- MPEG-1 Audio Layer 2 (MP2)
+- MPEG-1/2 Audio Layer 1 (MP1)
+- MPEG-1/2 Audio Layer 2 (MP2)
 - MPEG-1/2 Audio Layer 3 (MP3)
 - Matroska Audio (MKA)
 - Monkey's Audio (APE)

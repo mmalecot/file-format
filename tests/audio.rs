@@ -110,21 +110,21 @@ fn test_monkeys_audio() {
 }
 
 #[test]
+fn test_mpeg12_audio_layer1() {
+    let fmt = FileFormat::from_file("fixtures/audio/sample.mp1").unwrap();
+    assert_eq!(fmt, FileFormat::Mpeg12AudioLayer1);
+}
+
+#[test]
+fn test_mpeg12_audio_layer2() {
+    let fmt = FileFormat::from_file("fixtures/audio/sample.mp2").unwrap();
+    assert_eq!(fmt, FileFormat::Mpeg12AudioLayer2);
+}
+
+#[test]
 fn test_mpeg12_audio_layer3() {
     let fmt = FileFormat::from_file("fixtures/audio/sample.mp3").unwrap();
     assert_eq!(fmt, FileFormat::Mpeg12AudioLayer3);
-}
-
-#[test]
-fn test_mpeg1_audio_layer1() {
-    let fmt = FileFormat::from_file("fixtures/audio/sample.mp1").unwrap();
-    assert_eq!(fmt, FileFormat::Mpeg1AudioLayer1);
-}
-
-#[test]
-fn test_mpeg1_audio_layer2() {
-    let fmt = FileFormat::from_file("fixtures/audio/sample.mp2").unwrap();
-    assert_eq!(fmt, FileFormat::Mpeg1AudioLayer2);
 }
 
 #[test]
