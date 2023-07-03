@@ -55,6 +55,12 @@ fn test_lzop() {
 }
 
 #[test]
+fn test_rzip() {
+    let fmt = FileFormat::from_file("fixtures/compression/sample.rz").unwrap();
+    assert_eq!(fmt, FileFormat::Rzip);
+}
+
+#[test]
 fn test_snappy() {
     let fmt = FileFormat::from_file("fixtures/compression/sample.sz").unwrap();
     assert_eq!(fmt, FileFormat::Snappy);

@@ -1058,6 +1058,9 @@ signatures! {
     format = RedHatPackageManager
     value = b"\xED\xAB\xEE\xDB"
 
+    format = Rzip
+    value = b"RZIP"
+
     format = ScreamTracker3Module
     value = b"SCRM" offset = 44
 

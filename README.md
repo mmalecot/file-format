@@ -197,6 +197,7 @@ file-format = "0.18"
 - gzip (GZ)
 - lzip (LZ)
 - lzop (LZO)
+- rzip (RZ)
 
 ### Disk
 

@@ -1972,6 +1972,13 @@ formats! {
     extension = "rb"
     kind = Text
 
+    format = Rzip
+    name = "rzip"
+    short_name = "RZ"
+    media_type = "application/x-rzip"
+    extension = "rz"
+    kind = Compression
+
     format = ScalableVectorGraphics
     name = "Scalable Vector Graphics"
     short_name = "SVG"
