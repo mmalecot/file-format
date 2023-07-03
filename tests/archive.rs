@@ -97,6 +97,12 @@ fn test_unix_archiver() {
 }
 
 #[test]
+fn test_windows_imaging_format() {
+    let fmt = FileFormat::from_file("fixtures/archive/sample.wim").unwrap();
+    assert_eq!(fmt, FileFormat::WindowsImagingFormat);
+}
+
+#[test]
 fn test_zip() {
     let fmt = FileFormat::from_file("fixtures/archive/sample.zip").unwrap();
     assert_eq!(fmt, FileFormat::Zip);

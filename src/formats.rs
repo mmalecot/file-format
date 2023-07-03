@@ -2384,7 +2384,7 @@ formats! {
     short_name = "WIM"
     media_type = "application/x-ms-wim"
     extension = "wim"
-    kind = Disk
+    kind = Archive
 
     format = WindowsMediaAudio
     name = "Windows Media Audio"

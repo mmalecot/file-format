@@ -122,6 +122,7 @@ file-format = "0.18"
 - StuffIt X (SITX)
 - Tape Archive (TAR)
 - UNIX archiver (archiver)
+- Windows Imaging Format (WIM)
 - ZIP
 - ZPAQ
 - cpio
@@ -205,7 +206,6 @@ file-format = "0.18"
 - QEMU Copy On Write (QCOW)
 - Virtual Machine Disk (VMDK)
 - VirtualBox Virtual Disk Image (VDI)
-- Windows Imaging Format (WIM)
 
 ### Document
 
