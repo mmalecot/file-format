@@ -2095,6 +2095,12 @@ formats! {
     extension = "sqlite"
     kind = Application
 
+    format = Squashfs
+    name = "Squashfs"
+    media_type = "application/x-squashfs"
+    extension = "squashfs"
+    kind = Archive
+
     format = StereolithographyAscii
     name = "Stereolithography ASCII"
     short_name = "STL"

@@ -118,6 +118,7 @@ file-format = "0.18"
 - PMarc (PMA)
 - Roshal Archive (RAR)
 - SeqBox (SBX)
+- Squashfs
 - StuffIt (SIT)
 - StuffIt X (SITX)
 - Tape Archive (TAR)

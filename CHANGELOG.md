@@ -21,6 +21,7 @@
 
 ## New formats support
 
+- Squashfs
 - Windows Imaging Format (WIM)
 - openNURBS (3DM)
 
