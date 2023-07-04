@@ -104,6 +104,7 @@ detected.
   * [GPS Exchange Format (GPX)](`FileFormat::GpsExchangeFormat`)
   * [Geography Markup Language (GML)](`FileFormat::GeographyMarkupLanguage`)
   * [Keyhole Markup Language (KML)](`FileFormat::KeyholeMarkupLanguage`)
+  * [Mathematical Markup Language (MathML)](`FileFormat::MathematicalMarkupLanguage`)
   * [MusicXML](`FileFormat::Musicxml`)
   * [Really Simple Syndication (RSS)](`FileFormat::ReallySimpleSyndication`)
   * [Scalable Vector Graphics (SVG)](`FileFormat::ScalableVectorGraphics`)

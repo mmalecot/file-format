@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE math PUBLIC "-//W3C//DTD MathML 2.0//EN" "http://www.w3.org/Math/DTD/mathml2/mathml2.dtd">
+<math>
+  <mi>&pi;</mi>
+  <mo>&InvisibleTimes;</mo>
+  <msup>
+    <mi>r</mi>
+    <mn>2</mn>
+  </msup>
+</math>

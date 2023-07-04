@@ -22,6 +22,7 @@
 ## New formats support
 
 - Lempel-Ziv-Markov chain algorithm (LZMA)
+- Mathematical Markup Language (MathML)
 - Squashfs
 - Windows Imaging Format (WIM)
 - openNURBS (3DM)

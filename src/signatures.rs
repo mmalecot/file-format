@@ -530,6 +530,10 @@ signatures! {
     format = JpegNetworkGraphics
     value = b"\x8B\x4A\x4E\x47\x0D\x0A\x1A\x0A"
 
+    format = MathematicalMarkupLanguage
+    value = b"\xEF\xBB\xBF<math"
+    value = b"<math"
+
     format = MayaBinary
     value = b"FOR4", b"MAYA" offset = 8
     value = b"FOR4", b"Maya" offset = 8

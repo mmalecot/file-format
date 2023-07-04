@@ -429,6 +429,8 @@ impl crate::FileFormat {
                 return Ok(Self::GpsExchangeFormat);
             } else if contains(&buffer, b"<kml") {
                 return Ok(Self::KeyholeMarkupLanguage);
+            } else if contains(&buffer, b"<math") {
+                return Ok(Self::MathematicalMarkupLanguage);
             } else if contains(&buffer, b"<score-partwise") {
                 return Ok(Self::Musicxml);
             } else if contains(&buffer, b"<rss") {

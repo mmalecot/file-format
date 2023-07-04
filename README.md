@@ -73,6 +73,7 @@ file-format = "0.18"
 - Flexible Image Transport System (FITS)
 - ICC Profile (ICC)
 - Java KeyStore (JKS)
+- Mathematical Markup Language (MathML)
 - Meta Information Encapsulation (MIE)
 - Microsoft Access 2007 Database (ACCDB)
 - Microsoft Access Database (MDB)

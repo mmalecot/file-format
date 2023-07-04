@@ -1130,6 +1130,13 @@ formats! {
     extension = "mxf"
     kind = Video
 
+    format = MathematicalMarkupLanguage
+    name = "Mathematical Markup Language"
+    short_name = "MathML"
+    media_type = "application/mathml+xml"
+    extension = "mathml"
+    kind = Application
+
     format = Matroska3dVideo
     name = "Matroska 3D Video"
     short_name = "MK3D"

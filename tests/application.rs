@@ -116,6 +116,19 @@ fn test_macos_alias() {
 }
 
 #[test]
+fn test_mathematical_markup_language_1() {
+    let fmt = FileFormat::from_file("fixtures/application/sample1.mathml").unwrap();
+    assert_eq!(fmt, FileFormat::MathematicalMarkupLanguage);
+}
+
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_mathematical_markup_language_2() {
+    let fmt = FileFormat::from_file("fixtures/application/sample2.mathml").unwrap();
+    assert_eq!(fmt, FileFormat::MathematicalMarkupLanguage);
+}
+
+#[test]
 fn test_meta_information_encapsulation() {
     let fmt = FileFormat::from_file("fixtures/application/sample.mie").unwrap();
     assert_eq!(fmt, FileFormat::MetaInformationEncapsulation);
