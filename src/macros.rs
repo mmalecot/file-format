@@ -2,14 +2,14 @@
 
 /// Generates the [FileFormat](crate::FileFormat) enum with methods for retrieving information.
 ///
-/// Each file format includes the following parameters:
+/// Each file format includes the following properties:
 ///
-/// - format: Variant name.
-/// - name: Full name.
-/// - short_name: Abbreviated name (optional).
-/// - media_type: Common media type (formerly known as MIME type).
-/// - extension: Common file extension.
-/// - kind: Type or category.
+/// - `format`: The variant name representing the file format.
+/// - `name`: The full name of the file format.
+/// - `short_name`: An abbreviated name for the file format (optional).
+/// - `media_type`: The common media type associated with the file format.
+/// - `extension`: The common file extension used for the file format.
+/// - `kind`: The type or category of the file format.
 macro_rules! formats {
     {
         $(
@@ -133,11 +133,11 @@ macro_rules! formats {
 
 /// Generates the [FileFormat::from_signature](crate::FileFormat::from_signature) function.
 ///
-/// Each signature group includes the following parameters:
+/// Each signature group includes the following properties:
 ///
-/// - format: Variant name.
-/// - value: Signature value (can be repeated).
-/// - offset: Offset to start matching the signature value (defaults to 0 if not specified).
+/// - `format`: The variant name representing the file format.
+/// - `value`: The signature value associated with the format (can be repeated).
+/// - `offset`: The offset to start matching the signature value (defaults to 0 if not specified).
 macro_rules! signatures {
     {
         $(
