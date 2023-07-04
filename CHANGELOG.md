@@ -21,6 +21,7 @@
 
 ## New formats support
 
+- Lempel-Ziv-Markov chain algorithm (LZMA)
 - Squashfs
 - Windows Imaging Format (WIM)
 - openNURBS (3DM)

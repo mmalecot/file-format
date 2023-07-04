@@ -1031,6 +1031,13 @@ formats! {
     extension = "lzfse"
     kind = Compression
 
+    format = LempelZivMarkovChainAlgorithm
+    name = "Lempel-Ziv-Markov chain algorithm"
+    short_name = "LZMA"
+    media_type = "application/x-lzma"
+    extension = "lzma"
+    kind = Compression
+
     format = Lha
     name = "LHA"
     media_type = "application/x-lzh-compressed"

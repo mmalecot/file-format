@@ -31,6 +31,12 @@ fn test_lempel_ziv_finite_state_entropy() {
 }
 
 #[test]
+fn test_lempel_ziv_markov_chain_algorithm() {
+    let fmt = FileFormat::from_file("fixtures/compression/sample.lzma").unwrap();
+    assert_eq!(fmt, FileFormat::LempelZivMarkovChainAlgorithm);
+}
+
+#[test]
 fn test_long_range_zip() {
     let fmt = FileFormat::from_file("fixtures/compression/sample.lrz").unwrap();
     assert_eq!(fmt, FileFormat::LongRangeZip);

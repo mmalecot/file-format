@@ -790,6 +790,9 @@ signatures! {
     value = b"-lz8-" offset = 2
     value = b"-lzs-" offset = 2
 
+    format = LempelZivMarkovChainAlgorithm
+    value = b"\x5D\x00\x00\x80\x00"
+
     format = Lha
     value = b"-lh0-" offset = 2
     value = b"-lh1-" offset = 2

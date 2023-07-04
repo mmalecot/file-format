@@ -187,6 +187,7 @@ file-format = "0.18"
 - BZip3 (BZ3)
 - LZ4
 - Lempel-Ziv Finite State Entropy (LZFSE)
+- Lempel-Ziv-Markov chain algorithm (LZMA)
 - Long Range ZIP (LRZIP)
 - Snappy
 - UNIX compress (compress)
