@@ -429,6 +429,7 @@ file-format = "0.18"
 ### Syndication
 
 - Atom
+- JSON Feed
 - Really Simple Syndication (RSS)
 
 ### Text

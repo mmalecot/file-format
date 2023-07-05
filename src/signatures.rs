@@ -21,6 +21,16 @@ signatures! {
     value = b"\xEF\xBB\xBF<abiword template=\"true\""
     value = b"<abiword template=\"true\""
 
+    // 48 bytes
+    format = JsonFeed
+    value = b"{\r\n    \"version\": \"https://jsonfeed.org/version/"
+    value = b"{\n    \"version\": \"https://jsonfeed.org/version/"
+    value = b"{\r    \"version\": \"https://jsonfeed.org/version/"
+    value = b"{\r\n  \"version\": \"https://jsonfeed.org/version/"
+    value = b"{\n  \"version\": \"https://jsonfeed.org/version/"
+    value = b"{\r  \"version\": \"https://jsonfeed.org/version/"
+    value = b"{\"version\":\"https://jsonfeed.org/version/"
+
     // 40 bytes
     format = TimedTextMarkupLanguage
     value = b"\xEF\xBB\xBF<tt xmlns=\"http://www.w3.org/ns/ttml\""

@@ -14,6 +14,12 @@ fn test_atom_2() {
 }
 
 #[test]
+fn test_json_feed() {
+    let fmt = FileFormat::from_file("fixtures/syndication/sample.json").unwrap();
+    assert_eq!(fmt, FileFormat::JsonFeed);
+}
+
+#[test]
 fn test_really_simple_syndication_1() {
     let fmt = FileFormat::from_file("fixtures/syndication/sample1.rss").unwrap();
     assert_eq!(fmt, FileFormat::ReallySimpleSyndication);

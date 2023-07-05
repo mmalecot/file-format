@@ -23,6 +23,7 @@
 ## New formats support
 
 - Atom
+- JSON Feed
 - Lempel-Ziv-Markov chain algorithm (LZMA)
 - Mathematical Markup Language (MathML)
 - Squashfs

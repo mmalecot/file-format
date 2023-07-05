@@ -988,6 +988,12 @@ formats! {
     extension = "jxl"
     kind = Image
 
+    format = JsonFeed
+    name = "JSON Feed"
+    media_type = "application/feed+json"
+    extension = "json"
+    kind = Syndication
+
     format = KeyholeMarkupLanguage
     name = "Keyhole Markup Language"
     short_name = "KML"
