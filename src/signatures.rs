@@ -460,6 +460,10 @@ signatures! {
     format = ActionsMediaVideo
     value = b"RIFF", b"AMV " offset = 8
 
+    format = Atom
+    value = b"\xEF\xBB\xBF<feed"
+    value = b"<feed"
+
     format = AudioInterchangeFileFormat
     value = b"FORM", b"AIFF" offset = 8
     value = b"FORM", b"AIFC" offset = 8

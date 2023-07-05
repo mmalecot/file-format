@@ -96,7 +96,6 @@ file-format = "0.18"
 - Personal Storage Table (PST)
 - PostScript (PS)
 - RealMedia (RM)
-- Really Simple Syndication (RSS)
 - SQLite 3
 - Simple Object Access Protocol (SOAP)
 - Small Web Format (SWF)
@@ -426,6 +425,11 @@ file-format = "0.18"
 - Timed Text Markup Language (TTML)
 - Universal Subtitle Format (USF)
 - Web Video Text Tracks (WebVTT)
+
+### Syndication
+
+- Atom
+- Really Simple Syndication (RSS)
 
 ### Text
 

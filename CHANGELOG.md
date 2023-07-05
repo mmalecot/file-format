@@ -2,6 +2,7 @@
 
 ## API
 
+- Add `Syndication` kind
 - Rename `Mpeg1AudioLayer1` to `Mpeg12AudioLayer1`
 - Rename `Mpeg1AudioLayer2` to `Mpeg12AudioLayer2`
 
@@ -21,6 +22,7 @@
 
 ## New formats support
 
+- Atom
 - Lempel-Ziv-Markov chain algorithm (LZMA)
 - Mathematical Markup Language (MathML)
 - Squashfs

@@ -97,6 +97,7 @@ detected.
   * [AbiWord Template (AWT)](`FileFormat::AbiwordTemplate`)
   * [Additive Manufacturing Format (AMF)](`FileFormat::AdditiveManufacturingFormat`)
   * [Advanced Stream Redirector (ASX)](`FileFormat::AdvancedStreamRedirector`)
+  * [Atom](`FileFormat::Atom`)
   * [Digital Asset Exchange (DAE)](`FileFormat::DigitalAssetExchange`)
   * [Extensible 3D (X3D)](`FileFormat::Extensible3d`)
   * [Extensible Stylesheet Language Transformations (XSLT)](`FileFormat::ExtensibleStylesheetLanguageTransformations`)
@@ -313,6 +314,8 @@ pub enum Kind {
     Rom,
     /// Subtitles and captions.
     Subtitle,
+    /// Web feeds and syndication.
+    Syndication,
     /// Plain text, source codes, markup languages, and other types of files that contain written
     /// text.
     Text,

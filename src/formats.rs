@@ -252,6 +252,12 @@ formats! {
     extension = "a78"
     kind = Rom
 
+    format = Atom
+    name = "Atom"
+    media_type = "application/atom+xml"
+    extension = "atom"
+    kind = Syndication
+
     format = Au
     name = "Au"
     media_type = "audio/basic"
@@ -1943,7 +1949,7 @@ formats! {
     short_name = "RSS"
     media_type = "application/rss+xml"
     extension = "rss"
-    kind = Application
+    kind = Syndication
 
     format = Realmedia
     name = "RealMedia"

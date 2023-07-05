@@ -413,6 +413,8 @@ impl crate::FileFormat {
                 return Ok(Self::AdditiveManufacturingFormat);
             } else if contains(&buffer, b"<ASX") || contains(&buffer, b"<asx") {
                 return Ok(Self::AdvancedStreamRedirector);
+            } else if contains(&buffer, b"<feed") {
+                return Ok(Self::Atom);
             } else if contains(&buffer, b"<COLLADA") || contains(&buffer, b"<collada") {
                 return Ok(Self::DigitalAssetExchange);
             } else if contains(&buffer, b"<mxfile") {
