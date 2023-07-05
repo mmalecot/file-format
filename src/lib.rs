@@ -110,6 +110,8 @@ detected.
   * [Really Simple Syndication (RSS)](`FileFormat::ReallySimpleSyndication`)
   * [Scalable Vector Graphics (SVG)](`FileFormat::ScalableVectorGraphics`)
   * [Simple Object Access Protocol (SOAP)](`FileFormat::SimpleObjectAccessProtocol`)
+  * [Tiled Map XML (TMX)](`FileFormat::TiledMapXml`)
+  * [Tiled Tileset XML (TSX)](`FileFormat::TiledTilesetXml`)
   * [Timed Text Markup Language (TTML)](`FileFormat::TimedTextMarkupLanguage`)
   * [Training Center XML (TCX)](`FileFormat::TrainingCenterXml`)
   * [Universal Subtitle Format (USF)](`FileFormat::UniversalSubtitleFormat`)

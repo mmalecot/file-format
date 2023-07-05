@@ -27,6 +27,8 @@
 - Lempel-Ziv-Markov chain algorithm (LZMA)
 - Mathematical Markup Language (MathML)
 - Squashfs
+- Tiled Map XML (TMX)
+- Tiled Tileset XML (TSX)
 - Windows Imaging Format (WIM)
 - openNURBS (3DM)
 - rzip (RZ)

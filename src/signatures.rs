@@ -376,6 +376,10 @@ signatures! {
     format = RadianceHdr
     value = b"\x23\x3F\x52\x41\x44\x49\x41\x4E\x43\x45\x0A"
 
+    format = TiledTilesetXml
+    value = b"\xEF\xBB\xBF<tileset"
+    value = b"<tileset"
+
     format = Vcard
     value = b"BEGIN:VCARD"
 
@@ -736,6 +740,10 @@ signatures! {
 
     format = ThirdGenerationPartnershipProject2
     value = b"ftyp3g2" offset = 4
+
+    format = TiledMapXml
+    value = b"\xEF\xBB\xBF<map"
+    value = b"<map"
 
     format = UnixArchiver
     value = b"!<arch>"

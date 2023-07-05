@@ -2224,6 +2224,20 @@ formats! {
     extension = "max"
     kind = Model
 
+    format = TiledMapXml
+    name = "Tiled Map XML"
+    short_name = "TMX"
+    media_type = "application/x-tmx+xml"
+    extension = "tmx"
+    kind = Application
+
+    format = TiledTilesetXml
+    name = "Tiled Tileset XML"
+    short_name = "TSX"
+    media_type = "application/x-tsx+xml"
+    extension = "tsx"
+    kind = Application
+
     format = TimedTextMarkupLanguage
     name = "Timed Text Markup Language"
     short_name = "TTML"

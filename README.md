@@ -100,6 +100,8 @@ file-format = "0.18"
 - Simple Object Access Protocol (SOAP)
 - Small Web Format (SWF)
 - TASTy
+- Tiled Map XML (TMX)
+- Tiled Tileset XML (TSX)
 - Windows Shortcut (LNK)
 - XML Localization Interchange File Format (XLIFF)
 - gettext Machine Object (MO)

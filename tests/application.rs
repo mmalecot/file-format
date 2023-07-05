@@ -301,6 +301,32 @@ fn test_tasty() {
 }
 
 #[test]
+fn test_tiled_map_xml_1() {
+    let fmt = FileFormat::from_file("fixtures/application/sample1.tmx").unwrap();
+    assert_eq!(fmt, FileFormat::TiledMapXml);
+}
+
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_tiled_map_xml_2() {
+    let fmt = FileFormat::from_file("fixtures/application/sample2.tmx").unwrap();
+    assert_eq!(fmt, FileFormat::TiledMapXml);
+}
+
+#[test]
+fn test_tiled_tileset_xml_1() {
+    let fmt = FileFormat::from_file("fixtures/application/sample1.tsx").unwrap();
+    assert_eq!(fmt, FileFormat::TiledTilesetXml);
+}
+
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_tiled_tileset_xml_2() {
+    let fmt = FileFormat::from_file("fixtures/application/sample2.tsx").unwrap();
+    assert_eq!(fmt, FileFormat::TiledTilesetXml);
+}
+
+#[test]
 fn test_windows_shortcut() {
     let fmt = FileFormat::from_file("fixtures/application/sample.lnk").unwrap();
     assert_eq!(fmt, FileFormat::WindowsShortcut);
