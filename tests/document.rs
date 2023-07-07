@@ -224,3 +224,45 @@ fn test_rich_text_format() {
     let fmt = FileFormat::from_file("fixtures/document/sample.rtf").unwrap();
     assert_eq!(fmt, FileFormat::RichTextFormat);
 }
+
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_starcalc() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.sdc").unwrap();
+    assert_eq!(fmt, FileFormat::Starcalc);
+}
+
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_starchart() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.sds").unwrap();
+    assert_eq!(fmt, FileFormat::Starchart);
+}
+
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_stardraw() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.sda").unwrap();
+    assert_eq!(fmt, FileFormat::Stardraw);
+}
+
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_starimpress() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.sdd").unwrap();
+    assert_eq!(fmt, FileFormat::Starimpress);
+}
+
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_starmath() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.smf").unwrap();
+    assert_eq!(fmt, FileFormat::Starmath);
+}
+
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_starwriter() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.sdw").unwrap();
+    assert_eq!(fmt, FileFormat::Starwriter);
+}

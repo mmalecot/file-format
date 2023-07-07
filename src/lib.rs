@@ -69,6 +69,12 @@ detected.
   * [Microsoft Software Installer (MSI)](`FileFormat::MicrosoftSoftwareInstaller`)
   * [Microsoft Visio Drawing (VSD)](`FileFormat::MicrosoftVisioDrawing`)
   * [Microsoft Word Document (DOC)](`FileFormat::MicrosoftWordDocument`)
+  * [StarCalc (SDC)](`FileFormat::Starcalc`)
+  * [StarChart (SDS)](`FileFormat::Starchart`)
+  * [StarDraw (SDA)](`FileFormat::Stardraw`)
+  * [StarImpress (SDD)](`FileFormat::Starimpress`)
+  * [StarMath (SMF)](`FileFormat::Starmath`)
+  * [StarWriter (SDW)](`FileFormat::Starwriter`)
 - `reader-ebml` - Enables [Extensible Binary Meta Language (EBML)](`FileFormat::ExtensibleBinaryMetaLanguage`)
   based file formats detection.
   * [Matroska 3D Video (MK3D)](`FileFormat::Matroska3dVideo`)

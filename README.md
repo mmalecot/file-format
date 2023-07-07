@@ -243,6 +243,12 @@ file-format = "0.18"
 - OpenDocument Text Template (OTT)
 - Portable Document Format (PDF)
 - Rich Text Format (RTF)
+- StarCalc (SDC)
+- StarChart (SDS)
+- StarDraw (SDA)
+- StarImpress (SDD)
+- StarMath (SMF)
+- StarWriter (SDW)
 - draw.io (DRAWIO)
 
 ### Executable

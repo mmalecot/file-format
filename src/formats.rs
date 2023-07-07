@@ -2134,6 +2134,48 @@ formats! {
     extension = "squashfs"
     kind = Archive
 
+    format = Starcalc
+    name = "StarCalc"
+    short_name = "SDC"
+    media_type = "application/vnd.stardivision.calc"
+    extension = "sdc"
+    kind = Document
+
+    format = Starchart
+    name = "StarChart"
+    short_name = "SDS"
+    media_type = "application/vnd.stardivision.chart"
+    extension = "sds"
+    kind = Document
+
+    format = Stardraw
+    name = "StarDraw"
+    short_name = "SDA"
+    media_type = "application/vnd.stardivision.draw"
+    extension = "sda"
+    kind = Document
+
+    format = Starimpress
+    name = "StarImpress"
+    short_name = "SDD"
+    media_type = "application/vnd.stardivision.impress"
+    extension = "sdd"
+    kind = Document
+
+    format = Starmath
+    name = "StarMath"
+    short_name = "SMF"
+    media_type = "application/vnd.stardivision.math"
+    extension = "smf"
+    kind = Document
+
+    format = Starwriter
+    name = "StarWriter"
+    short_name = "SDW"
+    media_type = "application/vnd.stardivision.writer"
+    extension = "sdw"
+    kind = Document
+
     format = StereolithographyAscii
     name = "Stereolithography ASCII"
     short_name = "STL"

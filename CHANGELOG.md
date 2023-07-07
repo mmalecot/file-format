@@ -27,6 +27,12 @@
 - Lempel-Ziv-Markov chain algorithm (LZMA)
 - Mathematical Markup Language (MathML)
 - Squashfs
+- StarCalc (SDC)
+- StarChart (SDS)
+- StarDraw (SDA)
+- StarImpress (SDD)
+- StarMath (SMF)
+- StarWriter (SDW)
 - Tiled Map XML (TMX)
 - Tiled Tileset XML (TSX)
 - Windows Imaging Format (WIM)
