@@ -266,3 +266,73 @@ fn test_starwriter() {
     let fmt = FileFormat::from_file("fixtures/document/sample.sdw").unwrap();
     assert_eq!(fmt, FileFormat::Starwriter);
 }
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_sun_xml_calc() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.sxc").unwrap();
+    assert_eq!(fmt, FileFormat::SunXmlCalc);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_sun_xml_calc_template() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.stc").unwrap();
+    assert_eq!(fmt, FileFormat::SunXmlCalcTemplate);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_sun_xml_draw() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.sxd").unwrap();
+    assert_eq!(fmt, FileFormat::SunXmlDraw);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_sun_xml_draw_template() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.std").unwrap();
+    assert_eq!(fmt, FileFormat::SunXmlDrawTemplate);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_sun_xml_impress() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.sxi").unwrap();
+    assert_eq!(fmt, FileFormat::SunXmlImpress);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_sun_xml_impress_template() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.sti").unwrap();
+    assert_eq!(fmt, FileFormat::SunXmlImpressTemplate);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_sun_xml_math() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.sxm").unwrap();
+    assert_eq!(fmt, FileFormat::SunXmlMath);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_sun_xml_writer() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.sxw").unwrap();
+    assert_eq!(fmt, FileFormat::SunXmlWriter);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_sun_xml_writer_global() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.sgw").unwrap();
+    assert_eq!(fmt, FileFormat::SunXmlWriterGlobal);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_sun_xml_writer_template() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.stw").unwrap();
+    assert_eq!(fmt, FileFormat::SunXmlWriterTemplate);
+}

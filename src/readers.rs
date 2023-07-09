@@ -551,6 +551,20 @@ impl crate::FileFormat {
                         return Ok(Self::OpendocumentTextTemplate);
                     }
                     "application/vnd.recordare.musicxml" => return Ok(Self::MusicxmlZipped),
+                    "application/vnd.sun.xml.calc" => return Ok(Self::SunXmlCalc),
+                    "application/vnd.sun.xml.calc.template" => return Ok(Self::SunXmlCalcTemplate),
+                    "application/vnd.sun.xml.draw" => return Ok(Self::SunXmlDraw),
+                    "application/vnd.sun.xml.draw.template" => return Ok(Self::SunXmlDrawTemplate),
+                    "application/vnd.sun.xml.impress" => return Ok(Self::SunXmlImpress),
+                    "application/vnd.sun.xml.impress.template" => {
+                        return Ok(Self::SunXmlImpressTemplate)
+                    }
+                    "application/vnd.sun.xml.math" => return Ok(Self::SunXmlMath),
+                    "application/vnd.sun.xml.writer" => return Ok(Self::SunXmlWriter),
+                    "application/vnd.sun.xml.writer.global" => return Ok(Self::SunXmlWriterGlobal),
+                    "application/vnd.sun.xml.writer.template" => {
+                        return Ok(Self::SunXmlWriterTemplate)
+                    }
                     "image/openraster" => return Ok(Self::Openraster),
                     _ => {}
                 },

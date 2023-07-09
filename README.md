@@ -249,6 +249,16 @@ file-format = "0.18"
 - StarImpress (SDD)
 - StarMath (SMF)
 - StarWriter (SDW)
+- Sun XML Calc (SXC)
+- Sun XML Calc Template (STC)
+- Sun XML Draw (SXD)
+- Sun XML Draw Template (STD)
+- Sun XML Impress (SXI)
+- Sun XML Impress Template (STI)
+- Sun XML Math (SXM)
+- Sun XML Writer (SXW)
+- Sun XML Writer Global (SGW)
+- Sun XML Writer Template (STW)
 - draw.io (DRAWIO)
 
 ### Executable

@@ -2211,6 +2211,76 @@ formats! {
     extension = "srt"
     kind = Subtitle
 
+    format = SunXmlCalc
+    name = "Sun XML Calc"
+    short_name = "SXC"
+    media_type = "application/vnd.sun.xml.calc"
+    extension = "sxc"
+    kind = Document
+
+    format = SunXmlCalcTemplate
+    name = "Sun XML Calc Template"
+    short_name = "STC"
+    media_type = "application/vnd.sun.xml.calc.template"
+    extension = "stc"
+    kind = Document
+
+    format = SunXmlDraw
+    name = "Sun XML Draw"
+    short_name = "SXD"
+    media_type = "application/vnd.sun.xml.draw"
+    extension = "sxd"
+    kind = Document
+
+    format = SunXmlDrawTemplate
+    name = "Sun XML Draw Template"
+    short_name = "STD"
+    media_type = "application/vnd.sun.xml.draw.template"
+    extension = "std"
+    kind = Document
+
+    format = SunXmlImpress
+    name = "Sun XML Impress"
+    short_name = "SXI"
+    media_type = "application/vnd.sun.xml.impress"
+    extension = "sxi"
+    kind = Document
+
+    format = SunXmlImpressTemplate
+    name = "Sun XML Impress Template"
+    short_name = "STI"
+    media_type = "application/vnd.sun.xml.impress.template"
+    extension = "sti"
+    kind = Document
+
+    format = SunXmlMath
+    name = "Sun XML Math"
+    short_name = "SXM"
+    media_type = "application/vnd.sun.xml.math"
+    extension = "sxm"
+    kind = Document
+
+    format = SunXmlWriter
+    name = "Sun XML Writer"
+    short_name = "SXW"
+    media_type = "application/vnd.sun.xml.writer"
+    extension = "sxw"
+    kind = Document
+
+    format = SunXmlWriterGlobal
+    name = "Sun XML Writer Global"
+    short_name = "SGW"
+    media_type = "application/vnd.sun.xml.writer.global"
+    extension = "sgw"
+    kind = Document
+
+    format = SunXmlWriterTemplate
+    name = "Sun XML Writer Template"
+    short_name = "STW"
+    media_type = "application/vnd.sun.xml.writer.template"
+    extension = "stw"
+    kind = Document
+
     format = TagImageFileFormat
     name = "Tag Image File Format"
     short_name = "TIFF"
