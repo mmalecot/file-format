@@ -126,6 +126,8 @@ impl crate::FileFormat {
             "c20cf9d1-85ae-11d1-aab4-006097da561a" => Self::Starwriter,
             "dc5c7e40-b35c-101b-9961-04021c007002" => Self::Starwriter,
             "1cdd8c7b-81c0-45a0-9fed-04143144cc1e" => Self::ThreeDimensionalStudioMax,
+            "519873ff-2dad-0220-1937-0000929679cd" => Self::WordperfectDocument,
+            "402efe60-1999-101b-99ae-04021c007002" => Self::WordperfectGraphics,
             _ => Self::CompoundFileBinary,
         })
     }

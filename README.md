@@ -259,6 +259,9 @@ file-format = "0.18"
 - Sun XML Writer (SXW)
 - Sun XML Writer Global (SGW)
 - Sun XML Writer Template (STW)
+- WordPerfect Document (WPD)
+- WordPerfect Graphics (WPG)
+- WordPerfect Macro (WPM)
 - draw.io (DRAWIO)
 
 ### Executable

@@ -46,6 +46,9 @@
 - Tiled Map XML (TMX)
 - Tiled Tileset XML (TSX)
 - Windows Imaging Format (WIM)
+- WordPerfect Document (WPD)
+- WordPerfect Graphics (WPG)
+- WordPerfect Macro (WPM)
 - openNURBS (3DM)
 - rzip (RZ)
 

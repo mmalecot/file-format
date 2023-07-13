@@ -2586,6 +2586,27 @@ formats! {
     extension = "lnk"
     kind = Application
 
+    format = WordperfectDocument
+    name = "WordPerfect Document"
+    short_name = "WPD"
+    media_type = "application/vnd.wordperfect"
+    extension = "wpd"
+    kind = Document
+
+    format = WordperfectGraphics
+    name = "WordPerfect Graphics"
+    short_name = "WPG"
+    media_type = "application/vnd.wordperfect"
+    extension = "wpg"
+    kind = Document
+
+    format = WordperfectMacro
+    name = "WordPerfect Macro"
+    short_name = "WPM"
+    media_type = "application/vnd.wordperfect"
+    extension = "wpm"
+    kind = Document
+
     format = XPixmap
     name = "X PixMap"
     short_name = "XPM"

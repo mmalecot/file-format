@@ -75,6 +75,8 @@ detected.
   * [StarImpress (SDD)](`FileFormat::Starimpress`)
   * [StarMath (SMF)](`FileFormat::Starmath`)
   * [StarWriter (SDW)](`FileFormat::Starwriter`)
+  * [WordPerfect Document (WPD)](`FileFormat::WordperfectDocument`)
+  * [WordPerfect Graphics (WPG)](`FileFormat::WordperfectGraphics`)
 - `reader-ebml` - Enables [Extensible Binary Meta Language (EBML)](`FileFormat::ExtensibleBinaryMetaLanguage`)
   based file formats detection.
   * [Matroska 3D Video (MK3D)](`FileFormat::Matroska3dVideo`)

@@ -318,6 +318,9 @@ signatures! {
     format = MaterialExchangeFormat
     value = b"\x06\x0E\x2B\x34\x02\x05\x01\x01\x0D\x01\x02\x01\x01\x02"
 
+    format = WordperfectGraphics
+    value = b"\xFFWPC\x10\x00\x00\x00\x01\x16\x01\x00", b"\x00\x00" offset = 14
+
     // 12 bytes
     format = AnimatedPortableNetworkGraphics
     value = b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A", b"acTL" offset = 0x25
@@ -786,6 +789,9 @@ signatures! {
     format = ThreeDimensionalStudio
     value = b"MM", b"\x02" offset = 6, b"\x0A" offset = 8, b"\x3D\x3D" offset = 16
 
+    format = WordperfectMacro
+    value = b"\xFFWPC", b"\x01\x01" offset = 8
+
     format = Xz
     value = b"\xFD\x37\x7A\x58\x5A\x00"
 
@@ -1141,6 +1147,9 @@ signatures! {
     value = b"\xD7\xCD\xC6\x9A"
     value = b"\x02\x00\x09\x00"
     value = b"\x01\x00\x09\x00"
+
+    format = WordperfectDocument
+    value = b"\xFFWPC"
 
     format = Xbox360Executable
     value = b"XEX1"
