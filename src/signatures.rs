@@ -734,7 +734,9 @@ signatures! {
     value = b"<rss"
 
     format = ScalableVectorGraphics
+    value = b"\xEF\xBB\xBF<SVG"
     value = b"\xEF\xBB\xBF<svg"
+    value = b"<SVG"
     value = b"<svg"
 
     format = SonyMovie

@@ -455,7 +455,7 @@ impl crate::FileFormat {
                 return Ok(Self::Musicxml);
             } else if contains(&buffer, b"<rss") {
                 return Ok(Self::ReallySimpleSyndication);
-            } else if contains(&buffer, b"<svg") {
+            } else if contains(&buffer, b"<SVG") || contains(&buffer, b"<svg") {
                 return Ok(Self::ScalableVectorGraphics);
             } else if contains(&buffer, b"<soap") {
                 return Ok(Self::SimpleObjectAccessProtocol);

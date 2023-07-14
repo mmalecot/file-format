@@ -19,6 +19,7 @@
 
 - Add MPEG-1/2 Audio Layer 1 (MP1) signature
 - Add MPEG-1/2 Audio Layer 3 (MP3) signature
+- Detect Scalable Vector Graphics (SVG) with an uppercase tag
 
 ## New formats support
 
