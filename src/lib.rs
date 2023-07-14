@@ -69,6 +69,14 @@ detected.
   * [Microsoft Software Installer (MSI)](`FileFormat::MicrosoftSoftwareInstaller`)
   * [Microsoft Visio Drawing (VSD)](`FileFormat::MicrosoftVisioDrawing`)
   * [Microsoft Word Document (DOC)](`FileFormat::MicrosoftWordDocument`)
+  * [StarCalc (SDC)](`FileFormat::Starcalc`)
+  * [StarChart (SDS)](`FileFormat::Starchart`)
+  * [StarDraw (SDA)](`FileFormat::Stardraw`)
+  * [StarImpress (SDD)](`FileFormat::Starimpress`)
+  * [StarMath (SMF)](`FileFormat::Starmath`)
+  * [StarWriter (SDW)](`FileFormat::Starwriter`)
+  * [WordPerfect Document (WPD)](`FileFormat::WordperfectDocument`)
+  * [WordPerfect Graphics (WPG)](`FileFormat::WordperfectGraphics`)
 - `reader-ebml` - Enables [Extensible Binary Meta Language (EBML)](`FileFormat::ExtensibleBinaryMetaLanguage`)
   based file formats detection.
   * [Matroska 3D Video (MK3D)](`FileFormat::Matroska3dVideo`)
@@ -97,6 +105,7 @@ detected.
   * [AbiWord Template (AWT)](`FileFormat::AbiwordTemplate`)
   * [Additive Manufacturing Format (AMF)](`FileFormat::AdditiveManufacturingFormat`)
   * [Advanced Stream Redirector (ASX)](`FileFormat::AdvancedStreamRedirector`)
+  * [Atom](`FileFormat::Atom`)
   * [Digital Asset Exchange (DAE)](`FileFormat::DigitalAssetExchange`)
   * [Extensible 3D (X3D)](`FileFormat::Extensible3d`)
   * [Extensible Stylesheet Language Transformations (XSLT)](`FileFormat::ExtensibleStylesheetLanguageTransformations`)
@@ -104,10 +113,13 @@ detected.
   * [GPS Exchange Format (GPX)](`FileFormat::GpsExchangeFormat`)
   * [Geography Markup Language (GML)](`FileFormat::GeographyMarkupLanguage`)
   * [Keyhole Markup Language (KML)](`FileFormat::KeyholeMarkupLanguage`)
+  * [Mathematical Markup Language (MathML)](`FileFormat::MathematicalMarkupLanguage`)
   * [MusicXML](`FileFormat::Musicxml`)
   * [Really Simple Syndication (RSS)](`FileFormat::ReallySimpleSyndication`)
   * [Scalable Vector Graphics (SVG)](`FileFormat::ScalableVectorGraphics`)
   * [Simple Object Access Protocol (SOAP)](`FileFormat::SimpleObjectAccessProtocol`)
+  * [Tiled Map XML (TMX)](`FileFormat::TiledMapXml`)
+  * [Tiled Tileset XML (TSX)](`FileFormat::TiledTilesetXml`)
   * [Timed Text Markup Language (TTML)](`FileFormat::TimedTextMarkupLanguage`)
   * [Training Center XML (TCX)](`FileFormat::TrainingCenterXml`)
   * [Universal Subtitle Format (USF)](`FileFormat::UniversalSubtitleFormat`)
@@ -147,6 +159,16 @@ detected.
   * [OpenDocument Text Template (OTT)](`FileFormat::OpendocumentTextTemplate`)
   * [OpenRaster (ORA)](`FileFormat::Openraster`)
   * [SpaceClaim Document (SCDOC)](`FileFormat::SpaceclaimDocument`)
+  * [Sun XML Calc (SXC)](`FileFormat::SunXmlCalc`)
+  * [Sun XML Calc Template (STC)](`FileFormat::SunXmlCalcTemplate`)
+  * [Sun XML Draw (SXD)](`FileFormat::SunXmlDraw`)
+  * [Sun XML Draw Template (STD)](`FileFormat::SunXmlDrawTemplate`)
+  * [Sun XML Impress (SXI)](`FileFormat::SunXmlImpress`)
+  * [Sun XML Impress Template (STI)](`FileFormat::SunXmlImpressTemplate`)
+  * [Sun XML Math (SXM)](`FileFormat::SunXmlMath`)
+  * [Sun XML Writer (SXW)](`FileFormat::SunXmlWriter`)
+  * [Sun XML Writer Global (SGW)](`FileFormat::SunXmlWriterGlobal`)
+  * [Sun XML Writer Template (STW)](`FileFormat::SunXmlWriterTemplate`)
   * [Web Application Archive (WAR)](`FileFormat::WebApplicationArchive`)
   * [Windows App Package (APPX)](`FileFormat::WindowsAppPackage`)
   * [XAP](`FileFormat::Xap`)
@@ -230,7 +252,13 @@ impl FileFormat {
     /// # Ok::<(), std::io::Error>(())
     ///```
     pub fn from_reader<R: Read + Seek>(reader: R) -> Result<Self> {
-        let mut reader = BufReader::with_capacity(36870, reader);
+        // Maximum required size to read and detect the file format from its signature.
+        const BUFFER_SIZE: usize = 36870;
+
+        // Creates a buffered reader with the specified size.
+        let mut reader = BufReader::with_capacity(BUFFER_SIZE, reader);
+
+        // Attempts to detect the file format.
         Ok(if reader.fill_buf()?.is_empty() {
             Self::default()
         } else if let Some(format) = Self::from_signature(reader.buffer()) {
@@ -306,6 +334,8 @@ pub enum Kind {
     Rom,
     /// Subtitles and captions.
     Subtitle,
+    /// Web feeds and syndication.
+    Syndication,
     /// Plain text, source codes, markup languages, and other types of files that contain written
     /// text.
     Text,

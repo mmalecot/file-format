@@ -116,6 +116,19 @@ fn test_macos_alias() {
 }
 
 #[test]
+fn test_mathematical_markup_language_1() {
+    let fmt = FileFormat::from_file("fixtures/application/sample1.mathml").unwrap();
+    assert_eq!(fmt, FileFormat::MathematicalMarkupLanguage);
+}
+
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_mathematical_markup_language_2() {
+    let fmt = FileFormat::from_file("fixtures/application/sample2.mathml").unwrap();
+    assert_eq!(fmt, FileFormat::MathematicalMarkupLanguage);
+}
+
+#[test]
 fn test_meta_information_encapsulation() {
     let fmt = FileFormat::from_file("fixtures/application/sample.mie").unwrap();
     assert_eq!(fmt, FileFormat::MetaInformationEncapsulation);
@@ -251,19 +264,6 @@ fn test_postscript() {
 }
 
 #[test]
-fn test_really_simple_syndication_1() {
-    let fmt = FileFormat::from_file("fixtures/application/sample1.rss").unwrap();
-    assert_eq!(fmt, FileFormat::ReallySimpleSyndication);
-}
-
-#[cfg(feature = "reader-xml")]
-#[test]
-fn test_really_simple_syndication_2() {
-    let fmt = FileFormat::from_file("fixtures/application/sample2.rss").unwrap();
-    assert_eq!(fmt, FileFormat::ReallySimpleSyndication);
-}
-
-#[test]
 fn test_realmedia() {
     let fmt = FileFormat::from_file("fixtures/application/sample.rm").unwrap();
     assert_eq!(fmt, FileFormat::Realmedia);
@@ -298,6 +298,32 @@ fn test_sqlite3() {
 fn test_tasty() {
     let fmt = FileFormat::from_file("fixtures/application/sample.tasty").unwrap();
     assert_eq!(fmt, FileFormat::Tasty);
+}
+
+#[test]
+fn test_tiled_map_xml_1() {
+    let fmt = FileFormat::from_file("fixtures/application/sample1.tmx").unwrap();
+    assert_eq!(fmt, FileFormat::TiledMapXml);
+}
+
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_tiled_map_xml_2() {
+    let fmt = FileFormat::from_file("fixtures/application/sample2.tmx").unwrap();
+    assert_eq!(fmt, FileFormat::TiledMapXml);
+}
+
+#[test]
+fn test_tiled_tileset_xml_1() {
+    let fmt = FileFormat::from_file("fixtures/application/sample1.tsx").unwrap();
+    assert_eq!(fmt, FileFormat::TiledTilesetXml);
+}
+
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_tiled_tileset_xml_2() {
+    let fmt = FileFormat::from_file("fixtures/application/sample2.tsx").unwrap();
+    assert_eq!(fmt, FileFormat::TiledTilesetXml);
 }
 
 #[test]

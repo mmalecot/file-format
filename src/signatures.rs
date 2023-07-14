@@ -1,4 +1,4 @@
-//! Signatures.
+//! Definition of known file formats signatures, listed in descending order of size.
 
 signatures! {
     // 59 bytes
@@ -20,6 +20,16 @@ signatures! {
     value = b"<!DOCTYPE abiword PUBLIC", b"<abiword template=\"true\"" offset = 102
     value = b"\xEF\xBB\xBF<abiword template=\"true\""
     value = b"<abiword template=\"true\""
+
+    // 48 bytes
+    format = JsonFeed
+    value = b"{\r\n    \"version\": \"https://jsonfeed.org/version/"
+    value = b"{\n    \"version\": \"https://jsonfeed.org/version/"
+    value = b"{\r    \"version\": \"https://jsonfeed.org/version/"
+    value = b"{\r\n  \"version\": \"https://jsonfeed.org/version/"
+    value = b"{\n  \"version\": \"https://jsonfeed.org/version/"
+    value = b"{\r  \"version\": \"https://jsonfeed.org/version/"
+    value = b"{\"version\":\"https://jsonfeed.org/version/"
 
     // 40 bytes
     format = TimedTextMarkupLanguage
@@ -124,6 +134,12 @@ signatures! {
     value = b"#!/usr/bin/env clj"
     value = b"#!/usr/bin/clj"
 
+    format = MathematicalMarkupLanguage
+    value = b"\xEF\xBB\xBF<!DOCTYPE math PUBLIC"
+    value = b"<!DOCTYPE math PUBLIC"
+    value = b"\xEF\xBB\xBF<math"
+    value = b"<math"
+
     // 23 bytes
     format = Extensible3d
     value = b"\xEF\xBB\xBF<!DOCTYPE X3D PUBLIC"
@@ -132,6 +148,9 @@ signatures! {
     value = b"\xEF\xBB\xBF<x3d"
     value = b"<X3D"
     value = b"<x3d"
+
+    format = Opennurbs
+    value = b"3D Geometry File Format"
 
     format = PythonScript
     value = b"#!/usr/local/bin/python"
@@ -299,6 +318,9 @@ signatures! {
     format = MaterialExchangeFormat
     value = b"\x06\x0E\x2B\x34\x02\x05\x01\x01\x0D\x01\x02\x01\x01\x02"
 
+    format = WordperfectGraphics
+    value = b"\xFFWPC\x10\x00\x00\x00\x01\x16\x01\x00", b"\x00\x00" offset = 14
+
     // 12 bytes
     format = AnimatedPortableNetworkGraphics
     value = b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A", b"acTL" offset = 0x25
@@ -362,6 +384,10 @@ signatures! {
 
     format = RadianceHdr
     value = b"\x23\x3F\x52\x41\x44\x49\x41\x4E\x43\x45\x0A"
+
+    format = TiledTilesetXml
+    value = b"\xEF\xBB\xBF<tileset"
+    value = b"<tileset"
 
     format = Vcard
     value = b"BEGIN:VCARD"
@@ -456,6 +482,10 @@ signatures! {
     // 8 bytes
     format = ActionsMediaVideo
     value = b"RIFF", b"AMV " offset = 8
+
+    format = Atom
+    value = b"\xEF\xBB\xBF<feed"
+    value = b"<feed"
 
     format = AudioInterchangeFileFormat
     value = b"FORM", b"AIFF" offset = 8
@@ -621,6 +651,10 @@ signatures! {
     format = WindowsAnimatedCursor
     value = b"RIFF", b"ACON" offset = 8
 
+    format = WindowsImagingFormat
+    value = b"MSWIM\x00\x00\x00"
+    value = b"WLPWM\x00\x00\x00"
+
     // 7 bytes
     format = AdditiveManufacturingFormat
     value = b"\xEF\xBB\xBF<amf"
@@ -700,7 +734,9 @@ signatures! {
     value = b"<rss"
 
     format = ScalableVectorGraphics
+    value = b"\xEF\xBB\xBF<SVG"
     value = b"\xEF\xBB\xBF<svg"
+    value = b"<SVG"
     value = b"<svg"
 
     format = SonyMovie
@@ -711,6 +747,10 @@ signatures! {
 
     format = ThirdGenerationPartnershipProject2
     value = b"ftyp3g2" offset = 4
+
+    format = TiledMapXml
+    value = b"\xEF\xBB\xBF<map"
+    value = b"<map"
 
     format = UnixArchiver
     value = b"!<arch>"
@@ -751,6 +791,9 @@ signatures! {
     format = ThreeDimensionalStudio
     value = b"MM", b"\x02" offset = 6, b"\x0A" offset = 8, b"\x3D\x3D" offset = 16
 
+    format = WordperfectMacro
+    value = b"\xFFWPC", b"\x01\x01" offset = 8
+
     format = Xz
     value = b"\xFD\x37\x7A\x58\x5A\x00"
 
@@ -782,6 +825,9 @@ signatures! {
     value = b"-lz7-" offset = 2
     value = b"-lz8-" offset = 2
     value = b"-lzs-" offset = 2
+
+    format = LempelZivMarkovChainAlgorithm
+    value = b"\x5D\x00\x00\x80\x00"
 
     format = Lha
     value = b"-lh0-" offset = 2
@@ -1051,6 +1097,9 @@ signatures! {
     format = RedHatPackageManager
     value = b"\xED\xAB\xEE\xDB"
 
+    format = Rzip
+    value = b"RZIP"
+
     format = ScreamTracker3Module
     value = b"SCRM" offset = 44
 
@@ -1059,6 +1108,9 @@ signatures! {
 
     format = SonyDsdStreamFile
     value = b"DSD "
+
+    format = Squashfs
+    value = b"hsqs"
 
     format = TagImageFileFormat
     value = b"\x4D\x4D\x00\x2A"
@@ -1098,6 +1150,9 @@ signatures! {
     value = b"\x02\x00\x09\x00"
     value = b"\x01\x00\x09\x00"
 
+    format = WordperfectDocument
+    value = b"\xFFWPC"
+
     format = Xbox360Executable
     value = b"XEX1"
     value = b"XEX2"
@@ -1133,8 +1188,11 @@ signatures! {
 
     format = Mpeg12AudioLayer3
     value = b"ID3"
+    value = b"\xFF\xE2"
     value = b"\xFF\xE3"
+    value = b"\xFF\xF2"
     value = b"\xFF\xF3"
+    value = b"\xFF\xFA"
     value = b"\xFF\xFB"
 
     format = Mtv
@@ -1227,12 +1285,13 @@ signatures! {
     format = Gzip
     value = b"\x1F\x8B"
 
-    format = Mpeg1AudioLayer1
-    value = b"\xFF\xFE"
+    format = Mpeg12AudioLayer1
     value = b"\xFF\xF6"
+    value = b"\xFF\xF7"
+    value = b"\xFF\xFE"
     value = b"\xFF\xFF"
 
-    format = Mpeg1AudioLayer2
+    format = Mpeg12AudioLayer2
     value = b"\xFF\xF4"
     value = b"\xFF\xF5"
     value = b"\xFF\xFC"

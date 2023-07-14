@@ -1,4 +1,4 @@
-//! Readers.
+//! Readers for specific file formats.
 
 use std::io::*;
 
@@ -109,7 +109,25 @@ impl crate::FileFormat {
             "00021a14-0000-0000-c000-000000000046" => Self::MicrosoftVisioDrawing,
             "00020900-0000-0000-c000-000000000046" => Self::MicrosoftWordDocument,
             "00020906-0000-0000-c000-000000000046" => Self::MicrosoftWordDocument,
+            "3f543fa0-b6a6-101b-9961-04021c007002" => Self::Starcalc,
+            "6361d441-4235-11d0-89cb-008029e4b0b1" => Self::Starcalc,
+            "c6a5b861-85d6-11d1-89cb-008029e4b0b1" => Self::Starcalc,
+            "02b3b7e0-4225-11d0-89ca-008029e4b0b1" => Self::Starchart,
+            "bf884321-85dd-11d1-89d0-008029e4b0b1" => Self::Starchart,
+            "fb9c99e0-2c6d-101c-8e2c-00001b4cc711" => Self::Starchart,
+            "2e8905a0-85bd-11d1-89d0-008029e4b0b1" => Self::Stardraw,
+            "af10aae0-b36d-101b-9961-04021c007002" => Self::Stardraw,
+            "012d3cc0-4216-11d0-89cb-008029e4b0b1" => Self::Starimpress,
+            "565c7221-85bc-11d1-89d0-008029e4b0b1" => Self::Starimpress,
+            "02b3b7e1-4225-11d0-89ca-008029e4b0b1" => Self::Starmath,
+            "d4590460-35fd-101c-b12a-04021c007002" => Self::Starmath,
+            "ffb5e640-85de-11d1-89d0-008029e4b0b1" => Self::Starmath,
+            "8b04e9b0-420e-11d0-a45e-00a0249d57b1" => Self::Starwriter,
+            "c20cf9d1-85ae-11d1-aab4-006097da561a" => Self::Starwriter,
+            "dc5c7e40-b35c-101b-9961-04021c007002" => Self::Starwriter,
             "1cdd8c7b-81c0-45a0-9fed-04143144cc1e" => Self::ThreeDimensionalStudioMax,
+            "519873ff-2dad-0220-1937-0000929679cd" => Self::WordperfectDocument,
+            "402efe60-1999-101b-99ae-04021c007002" => Self::WordperfectGraphics,
             _ => Self::CompoundFileBinary,
         })
     }
@@ -132,7 +150,7 @@ impl crate::FileFormat {
         const ITERATION_LIMIT: usize = 512;
         const STRING_LIMIT: usize = 64;
 
-        // Helper function to read the ID of an EBML element.
+        /// Helper function to read the ID of an EBML element.
         fn read_id<R: Read>(reader: &mut R) -> Result<u32> {
             // Reads the first byte.
             let mut first_byte = [0];
@@ -154,7 +172,7 @@ impl crate::FileFormat {
             Ok(value)
         }
 
-        // Helper function to read the size of an EBML element.
+        /// Helper function to read the size of an EBML element.
         fn read_size<R: Read>(reader: &mut R) -> Result<u64> {
             // Reads the first byte.
             let mut first_byte = [0];
@@ -413,6 +431,8 @@ impl crate::FileFormat {
                 return Ok(Self::AdditiveManufacturingFormat);
             } else if contains(&buffer, b"<ASX") || contains(&buffer, b"<asx") {
                 return Ok(Self::AdvancedStreamRedirector);
+            } else if contains(&buffer, b"<feed") {
+                return Ok(Self::Atom);
             } else if contains(&buffer, b"<COLLADA") || contains(&buffer, b"<collada") {
                 return Ok(Self::DigitalAssetExchange);
             } else if contains(&buffer, b"<mxfile") {
@@ -429,18 +449,24 @@ impl crate::FileFormat {
                 return Ok(Self::GpsExchangeFormat);
             } else if contains(&buffer, b"<kml") {
                 return Ok(Self::KeyholeMarkupLanguage);
+            } else if contains(&buffer, b"<math") {
+                return Ok(Self::MathematicalMarkupLanguage);
             } else if contains(&buffer, b"<score-partwise") {
                 return Ok(Self::Musicxml);
             } else if contains(&buffer, b"<rss") {
                 return Ok(Self::ReallySimpleSyndication);
-            } else if contains(&buffer, b"<svg") {
+            } else if contains(&buffer, b"<SVG") || contains(&buffer, b"<svg") {
                 return Ok(Self::ScalableVectorGraphics);
             } else if contains(&buffer, b"<soap") {
                 return Ok(Self::SimpleObjectAccessProtocol);
-            } else if contains(&buffer, b"<TrainingCenterDatabase") {
-                return Ok(Self::TrainingCenterXml);
             } else if contains(&buffer, b"<tt xmlns=\"http://www.w3.org/ns/ttml\"") {
                 return Ok(Self::TimedTextMarkupLanguage);
+            } else if contains(&buffer, b"<map") {
+                return Ok(Self::TiledMapXml);
+            } else if contains(&buffer, b"<tileset") {
+                return Ok(Self::TiledTilesetXml);
+            } else if contains(&buffer, b"<TrainingCenterDatabase") {
+                return Ok(Self::TrainingCenterXml);
             } else if contains(&buffer, b"<USFSubtitles") {
                 return Ok(Self::UniversalSubtitleFormat);
             } else if contains(&buffer, b"<xliff") {
@@ -527,6 +553,20 @@ impl crate::FileFormat {
                         return Ok(Self::OpendocumentTextTemplate);
                     }
                     "application/vnd.recordare.musicxml" => return Ok(Self::MusicxmlZipped),
+                    "application/vnd.sun.xml.calc" => return Ok(Self::SunXmlCalc),
+                    "application/vnd.sun.xml.calc.template" => return Ok(Self::SunXmlCalcTemplate),
+                    "application/vnd.sun.xml.draw" => return Ok(Self::SunXmlDraw),
+                    "application/vnd.sun.xml.draw.template" => return Ok(Self::SunXmlDrawTemplate),
+                    "application/vnd.sun.xml.impress" => return Ok(Self::SunXmlImpress),
+                    "application/vnd.sun.xml.impress.template" => {
+                        return Ok(Self::SunXmlImpressTemplate)
+                    }
+                    "application/vnd.sun.xml.math" => return Ok(Self::SunXmlMath),
+                    "application/vnd.sun.xml.writer" => return Ok(Self::SunXmlWriter),
+                    "application/vnd.sun.xml.writer.global" => return Ok(Self::SunXmlWriterGlobal),
+                    "application/vnd.sun.xml.writer.template" => {
+                        return Ok(Self::SunXmlWriterTemplate)
+                    }
                     "image/openraster" => return Ok(Self::Openraster),
                     _ => {}
                 },

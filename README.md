@@ -50,7 +50,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.17"
+file-format = "0.18"
 ```
 
 ## Supported file formats
@@ -73,6 +73,7 @@ file-format = "0.17"
 - Flexible Image Transport System (FITS)
 - ICC Profile (ICC)
 - Java KeyStore (JKS)
+- Mathematical Markup Language (MathML)
 - Meta Information Encapsulation (MIE)
 - Microsoft Access 2007 Database (ACCDB)
 - Microsoft Access Database (MDB)
@@ -95,11 +96,12 @@ file-format = "0.17"
 - Personal Storage Table (PST)
 - PostScript (PS)
 - RealMedia (RM)
-- Really Simple Syndication (RSS)
 - SQLite 3
 - Simple Object Access Protocol (SOAP)
 - Small Web Format (SWF)
 - TASTy
+- Tiled Map XML (TMX)
+- Tiled Tileset XML (TSX)
 - Windows Shortcut (LNK)
 - XML Localization Interchange File Format (XLIFF)
 - gettext Machine Object (MO)
@@ -118,10 +120,12 @@ file-format = "0.17"
 - PMarc (PMA)
 - Roshal Archive (RAR)
 - SeqBox (SBX)
+- Squashfs
 - StuffIt (SIT)
 - StuffIt X (SITX)
 - Tape Archive (TAR)
 - UNIX archiver (archiver)
+- Windows Imaging Format (WIM)
 - ZIP
 - ZPAQ
 - cpio
@@ -145,8 +149,8 @@ file-format = "0.17"
 - Free Lossless Audio Codec (FLAC)
 - IFF 8-Bit Sampled Voice (8SVX)
 - Impulse Tracker Module (IT)
-- MPEG-1 Audio Layer 1 (MP1)
-- MPEG-1 Audio Layer 2 (MP2)
+- MPEG-1/2 Audio Layer 1 (MP1)
+- MPEG-1/2 Audio Layer 2 (MP2)
 - MPEG-1/2 Audio Layer 3 (MP3)
 - Matroska Audio (MKA)
 - Monkey's Audio (APE)
@@ -185,6 +189,7 @@ file-format = "0.17"
 - BZip3 (BZ3)
 - LZ4
 - Lempel-Ziv Finite State Entropy (LZFSE)
+- Lempel-Ziv-Markov chain algorithm (LZMA)
 - Long Range ZIP (LRZIP)
 - Snappy
 - UNIX compress (compress)
@@ -195,6 +200,7 @@ file-format = "0.17"
 - gzip (GZ)
 - lzip (LZ)
 - lzop (LZO)
+- rzip (RZ)
 
 ### Disk
 
@@ -237,6 +243,25 @@ file-format = "0.17"
 - OpenDocument Text Template (OTT)
 - Portable Document Format (PDF)
 - Rich Text Format (RTF)
+- StarCalc (SDC)
+- StarChart (SDS)
+- StarDraw (SDA)
+- StarImpress (SDD)
+- StarMath (SMF)
+- StarWriter (SDW)
+- Sun XML Calc (SXC)
+- Sun XML Calc Template (STC)
+- Sun XML Draw (SXD)
+- Sun XML Draw Template (STD)
+- Sun XML Impress (SXI)
+- Sun XML Impress Template (STI)
+- Sun XML Math (SXM)
+- Sun XML Writer (SXW)
+- Sun XML Writer Global (SGW)
+- Sun XML Writer Template (STW)
+- WordPerfect Document (WPD)
+- WordPerfect Graphics (WPG)
+- WordPerfect Macro (WPM)
 - draw.io (DRAWIO)
 
 ### Executable
@@ -373,6 +398,7 @@ file-format = "0.17"
 - Stereolithography ASCII (STL)
 - Stereolithography Binary (STL)
 - Universal 3D (U3D)
+- openNURBS (3DM)
 
 ### Package
 
@@ -420,6 +446,12 @@ file-format = "0.17"
 - Timed Text Markup Language (TTML)
 - Universal Subtitle Format (USF)
 - Web Video Text Tracks (WebVTT)
+
+### Syndication
+
+- Atom
+- JSON Feed
+- Really Simple Syndication (RSS)
 
 ### Text
 

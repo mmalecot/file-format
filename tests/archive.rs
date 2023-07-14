@@ -73,6 +73,12 @@ fn test_seven_zip() {
 }
 
 #[test]
+fn test_squashfs() {
+    let fmt = FileFormat::from_file("fixtures/archive/sample.squashfs").unwrap();
+    assert_eq!(fmt, FileFormat::Squashfs);
+}
+
+#[test]
 fn test_stuffit() {
     let fmt = FileFormat::from_file("fixtures/archive/sample.sit").unwrap();
     assert_eq!(fmt, FileFormat::Stuffit);
@@ -94,6 +100,12 @@ fn test_tape_archive() {
 fn test_unix_archiver() {
     let fmt = FileFormat::from_file("fixtures/archive/sample.a").unwrap();
     assert_eq!(fmt, FileFormat::UnixArchiver);
+}
+
+#[test]
+fn test_windows_imaging_format() {
+    let fmt = FileFormat::from_file("fixtures/archive/sample.wim").unwrap();
+    assert_eq!(fmt, FileFormat::WindowsImagingFormat);
 }
 
 #[test]

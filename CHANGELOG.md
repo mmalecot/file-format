@@ -1,3 +1,58 @@
+# Version 0.18.0 (2023-07-14)
+
+## API
+
+- Add `Syndication` kind
+- Rename `Mpeg1AudioLayer1` to `Mpeg12AudioLayer1`
+- Rename `Mpeg1AudioLayer2` to `Mpeg12AudioLayer2`
+
+## Docs
+
+- Improve internal documentation
+
+## Fixes
+
+- Fix MPEG-1/2 Audio Layer 1 (MP1) name
+- Fix MPEG-1/2 Audio Layer 2 (MP2) name
+
+## Improvements
+
+- Add MPEG-1/2 Audio Layer 1 (MP1) signature
+- Add MPEG-1/2 Audio Layer 3 (MP3) signature
+- Detect Scalable Vector Graphics (SVG) with an uppercase tag
+
+## New formats support
+
+- Atom
+- JSON Feed
+- Lempel-Ziv-Markov chain algorithm (LZMA)
+- Mathematical Markup Language (MathML)
+- Squashfs
+- StarCalc (SDC)
+- StarChart (SDS)
+- StarDraw (SDA)
+- StarImpress (SDD)
+- StarMath (SMF)
+- StarWriter (SDW)
+- Sun XML Calc (SXC)
+- Sun XML Calc Template (STC)
+- Sun XML Draw (SXD)
+- Sun XML Draw Template (STD)
+- Sun XML Impress (SXI)
+- Sun XML Impress Template (STI)
+- Sun XML Math (SXM)
+- Sun XML Writer (SXW)
+- Sun XML Writer Global (SGW)
+- Sun XML Writer Template (STW)
+- Tiled Map XML (TMX)
+- Tiled Tileset XML (TSX)
+- Windows Imaging Format (WIM)
+- WordPerfect Document (WPD)
+- WordPerfect Graphics (WPG)
+- WordPerfect Macro (WPM)
+- openNURBS (3DM)
+- rzip (RZ)
+
 # Version 0.17.3 (2023-06-09)
 
 ## Fixes
@@ -419,8 +474,8 @@
 - Keyhole Markup Language Zipped (KMZ)
 - LLVM Bitcode (BC)
 - Lua Bytecode
-- MPEG-1 Audio Layer 1 (MP1)
-- MPEG-1 Audio Layer 2 (MP2)
+- MPEG-1/2 Audio Layer 1 (MP1)
+- MPEG-1/2 Audio Layer 2 (MP2)
 - MPEG-2 Transport Stream (TS)
 - Meta Information Encapsulation (MIE)
 - Microsoft Access 2007 Database (ACCDB)

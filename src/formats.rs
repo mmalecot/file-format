@@ -1,4 +1,4 @@
-//! Formats.
+//! Definition of file formats, listed in alphabetical order.
 
 formats! {
     format = Abiword
@@ -251,6 +251,12 @@ formats! {
     media_type = "application/x-atari-7800-rom"
     extension = "a78"
     kind = Rom
+
+    format = Atom
+    name = "Atom"
+    media_type = "application/atom+xml"
+    extension = "atom"
+    kind = Syndication
 
     format = Au
     name = "Au"
@@ -982,6 +988,12 @@ formats! {
     extension = "jxl"
     kind = Image
 
+    format = JsonFeed
+    name = "JSON Feed"
+    media_type = "application/feed+json"
+    extension = "json"
+    kind = Syndication
+
     format = KeyholeMarkupLanguage
     name = "Keyhole Markup Language"
     short_name = "KML"
@@ -1029,6 +1041,13 @@ formats! {
     short_name = "LZFSE"
     media_type = "application/x-lzfse"
     extension = "lzfse"
+    kind = Compression
+
+    format = LempelZivMarkovChainAlgorithm
+    name = "Lempel-Ziv-Markov chain algorithm"
+    short_name = "LZMA"
+    media_type = "application/x-lzma"
+    extension = "lzma"
     kind = Compression
 
     format = Lha
@@ -1122,6 +1141,13 @@ formats! {
     media_type = "application/mxf"
     extension = "mxf"
     kind = Video
+
+    format = MathematicalMarkupLanguage
+    name = "Mathematical Markup Language"
+    short_name = "MathML"
+    media_type = "application/mathml+xml"
+    extension = "mathml"
+    kind = Application
 
     format = Matroska3dVideo
     name = "Matroska 3D Video"
@@ -1319,6 +1345,20 @@ formats! {
     extension = "m3u"
     kind = Playlist
 
+    format = Mpeg12AudioLayer1
+    name = "MPEG-1/2 Audio Layer 1"
+    short_name = "MP1"
+    media_type = "audio/mpeg"
+    extension = "mp1"
+    kind = Audio
+
+    format = Mpeg12AudioLayer2
+    name = "MPEG-1/2 Audio Layer 2"
+    short_name = "MP2"
+    media_type = "audio/mpeg"
+    extension = "mp2"
+    kind = Audio
+
     format = Mpeg12AudioLayer3
     name = "MPEG-1/2 Audio Layer 3"
     short_name = "MP3"
@@ -1332,20 +1372,6 @@ formats! {
     media_type = "video/mpeg"
     extension = "mpg"
     kind = Video
-
-    format = Mpeg1AudioLayer1
-    name = "MPEG-1 Audio Layer 1"
-    short_name = "MP1"
-    media_type = "audio/mpeg"
-    extension = "mp1"
-    kind = Audio
-
-    format = Mpeg1AudioLayer2
-    name = "MPEG-1 Audio Layer 2"
-    short_name = "MP2"
-    media_type = "audio/mpeg"
-    extension = "mp2"
-    kind = Audio
 
     format = Mpeg2TransportStream
     name = "MPEG-2 Transport Stream"
@@ -1660,6 +1686,13 @@ formats! {
     extension = "exr"
     kind = Image
 
+    format = Opennurbs
+    name = "openNURBS"
+    short_name = "3DM"
+    media_type = "model/x-3dm"
+    extension = "3dm"
+    kind = Model
+
     format = Openraster
     name = "OpenRaster"
     short_name = "ORA"
@@ -1922,7 +1955,7 @@ formats! {
     short_name = "RSS"
     media_type = "application/rss+xml"
     extension = "rss"
-    kind = Application
+    kind = Syndication
 
     format = Realmedia
     name = "RealMedia"
@@ -1964,6 +1997,13 @@ formats! {
     media_type = "text/x-ruby"
     extension = "rb"
     kind = Text
+
+    format = Rzip
+    name = "rzip"
+    short_name = "RZ"
+    media_type = "application/x-rzip"
+    extension = "rz"
+    kind = Compression
 
     format = ScalableVectorGraphics
     name = "Scalable Vector Graphics"
@@ -2088,6 +2128,54 @@ formats! {
     extension = "sqlite"
     kind = Application
 
+    format = Squashfs
+    name = "Squashfs"
+    media_type = "application/x-squashfs"
+    extension = "squashfs"
+    kind = Archive
+
+    format = Starcalc
+    name = "StarCalc"
+    short_name = "SDC"
+    media_type = "application/vnd.stardivision.calc"
+    extension = "sdc"
+    kind = Document
+
+    format = Starchart
+    name = "StarChart"
+    short_name = "SDS"
+    media_type = "application/vnd.stardivision.chart"
+    extension = "sds"
+    kind = Document
+
+    format = Stardraw
+    name = "StarDraw"
+    short_name = "SDA"
+    media_type = "application/vnd.stardivision.draw"
+    extension = "sda"
+    kind = Document
+
+    format = Starimpress
+    name = "StarImpress"
+    short_name = "SDD"
+    media_type = "application/vnd.stardivision.impress"
+    extension = "sdd"
+    kind = Document
+
+    format = Starmath
+    name = "StarMath"
+    short_name = "SMF"
+    media_type = "application/vnd.stardivision.math"
+    extension = "smf"
+    kind = Document
+
+    format = Starwriter
+    name = "StarWriter"
+    short_name = "SDW"
+    media_type = "application/vnd.stardivision.writer"
+    extension = "sdw"
+    kind = Document
+
     format = StereolithographyAscii
     name = "Stereolithography ASCII"
     short_name = "STL"
@@ -2122,6 +2210,76 @@ formats! {
     media_type = "application/x-subrip"
     extension = "srt"
     kind = Subtitle
+
+    format = SunXmlCalc
+    name = "Sun XML Calc"
+    short_name = "SXC"
+    media_type = "application/vnd.sun.xml.calc"
+    extension = "sxc"
+    kind = Document
+
+    format = SunXmlCalcTemplate
+    name = "Sun XML Calc Template"
+    short_name = "STC"
+    media_type = "application/vnd.sun.xml.calc.template"
+    extension = "stc"
+    kind = Document
+
+    format = SunXmlDraw
+    name = "Sun XML Draw"
+    short_name = "SXD"
+    media_type = "application/vnd.sun.xml.draw"
+    extension = "sxd"
+    kind = Document
+
+    format = SunXmlDrawTemplate
+    name = "Sun XML Draw Template"
+    short_name = "STD"
+    media_type = "application/vnd.sun.xml.draw.template"
+    extension = "std"
+    kind = Document
+
+    format = SunXmlImpress
+    name = "Sun XML Impress"
+    short_name = "SXI"
+    media_type = "application/vnd.sun.xml.impress"
+    extension = "sxi"
+    kind = Document
+
+    format = SunXmlImpressTemplate
+    name = "Sun XML Impress Template"
+    short_name = "STI"
+    media_type = "application/vnd.sun.xml.impress.template"
+    extension = "sti"
+    kind = Document
+
+    format = SunXmlMath
+    name = "Sun XML Math"
+    short_name = "SXM"
+    media_type = "application/vnd.sun.xml.math"
+    extension = "sxm"
+    kind = Document
+
+    format = SunXmlWriter
+    name = "Sun XML Writer"
+    short_name = "SXW"
+    media_type = "application/vnd.sun.xml.writer"
+    extension = "sxw"
+    kind = Document
+
+    format = SunXmlWriterGlobal
+    name = "Sun XML Writer Global"
+    short_name = "SGW"
+    media_type = "application/vnd.sun.xml.writer.global"
+    extension = "sgw"
+    kind = Document
+
+    format = SunXmlWriterTemplate
+    name = "Sun XML Writer Template"
+    short_name = "STW"
+    media_type = "application/vnd.sun.xml.writer.template"
+    extension = "stw"
+    kind = Document
 
     format = TagImageFileFormat
     name = "Tag Image File Format"
@@ -2177,6 +2335,20 @@ formats! {
     media_type = "application/x-max"
     extension = "max"
     kind = Model
+
+    format = TiledMapXml
+    name = "Tiled Map XML"
+    short_name = "TMX"
+    media_type = "application/x-tmx+xml"
+    extension = "tmx"
+    kind = Application
+
+    format = TiledTilesetXml
+    name = "Tiled Tileset XML"
+    short_name = "TSX"
+    media_type = "application/x-tsx+xml"
+    extension = "tsx"
+    kind = Application
 
     format = TimedTextMarkupLanguage
     name = "Timed Text Markup Language"
@@ -2372,6 +2544,13 @@ formats! {
     extension = "ico"
     kind = Image
 
+    format = WindowsImagingFormat
+    name = "Windows Imaging Format"
+    short_name = "WIM"
+    media_type = "application/x-ms-wim"
+    extension = "wim"
+    kind = Archive
+
     format = WindowsMediaAudio
     name = "Windows Media Audio"
     short_name = "WMA"
@@ -2406,6 +2585,27 @@ formats! {
     media_type = "application/x-ms-shortcut"
     extension = "lnk"
     kind = Application
+
+    format = WordperfectDocument
+    name = "WordPerfect Document"
+    short_name = "WPD"
+    media_type = "application/vnd.wordperfect"
+    extension = "wpd"
+    kind = Document
+
+    format = WordperfectGraphics
+    name = "WordPerfect Graphics"
+    short_name = "WPG"
+    media_type = "application/vnd.wordperfect"
+    extension = "wpg"
+    kind = Document
+
+    format = WordperfectMacro
+    name = "WordPerfect Macro"
+    short_name = "WPM"
+    media_type = "application/vnd.wordperfect"
+    extension = "wpm"
+    kind = Document
 
     format = XPixmap
     name = "X PixMap"

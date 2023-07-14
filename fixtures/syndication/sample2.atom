@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>Hello world!</title>
+	<subtitle>Hello world!</subtitle>
+	<entry>
+		<title>Hello world!</title>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<p>Hello world!</p>
+			</div>
+		</content>
+		<author>
+			<name>John Doe</name>
+		</author>
+	</entry>
+</feed>

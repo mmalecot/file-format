@@ -137,6 +137,12 @@ fn test_model3d_binary() {
 }
 
 #[test]
+fn test_opennurbs() {
+    let fmt = FileFormat::from_file("fixtures/model/sample.3dm").unwrap();
+    assert_eq!(fmt, FileFormat::Opennurbs);
+}
+
+#[test]
 fn test_polygon_ascii() {
     let fmt = FileFormat::from_file("fixtures/model/sample1.ply").unwrap();
     assert_eq!(fmt, FileFormat::PolygonAscii);
