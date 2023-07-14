@@ -336,3 +336,35 @@ fn test_sun_xml_writer_template() {
     let fmt = FileFormat::from_file("fixtures/document/sample.stw").unwrap();
     assert_eq!(fmt, FileFormat::SunXmlWriterTemplate);
 }
+
+#[test]
+fn test_wordperfect_document_1() {
+    let fmt = FileFormat::from_file("fixtures/document/sample1.wpd").unwrap();
+    assert_eq!(fmt, FileFormat::WordperfectDocument);
+}
+
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_wordperfect_document_2() {
+    let fmt = FileFormat::from_file("fixtures/document/sample2.wpd").unwrap();
+    assert_eq!(fmt, FileFormat::WordperfectDocument);
+}
+
+#[test]
+fn test_wordperfect_graphics_1() {
+    let fmt = FileFormat::from_file("fixtures/document/sample1.wpg").unwrap();
+    assert_eq!(fmt, FileFormat::WordperfectGraphics);
+}
+
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_wordperfect_graphics_2() {
+    let fmt = FileFormat::from_file("fixtures/document/sample2.wpg").unwrap();
+    assert_eq!(fmt, FileFormat::WordperfectGraphics);
+}
+
+#[test]
+fn test_wordperfect_macro() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.wpm").unwrap();
+    assert_eq!(fmt, FileFormat::WordperfectMacro);
+}
