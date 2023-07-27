@@ -125,7 +125,6 @@ signatures! {
     value = b"SketchUp STL"
     value = b"STL File"
     value = b"STLEXP"
-    value = b".stl" offset = 1, b"\x00" offset = 79
     value = b".stl" offset = 2, b"\x00" offset = 79
     value = b".stl" offset = 3, b"\x00" offset = 79
     value = b".stl" offset = 4, b"\x00" offset = 79
