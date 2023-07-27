@@ -397,6 +397,7 @@ file-format = "0.19"
 - Polygon Binary (PLY)
 - SketchUp (SKP)
 - SolidWorks Assembly (SLDASM)
+- SolidWorks Drawing (SLDDRW)
 - SolidWorks Part (SLDPRT)
 - SpaceClaim Document (SCDOC)
 - Standard for the Exchange of Product model data (STEP)

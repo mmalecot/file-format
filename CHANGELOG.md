@@ -9,6 +9,7 @@
 - Cinema 4D (C4D)
 - Microsoft Reader (LIT)
 - SolidWorks Assembly (SLDASM)
+- SolidWorks Drawing (SLDDRW)
 - SolidWorks Part (SLDPRT)
 - Standard for the Exchange of Product model data (STEP)
 - Universal Scene Description ASCII (USDA)

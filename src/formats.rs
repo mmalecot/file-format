@@ -2115,6 +2115,13 @@ formats! {
     extension = "sldasm"
     kind = Model
 
+    format = SolidworksDrawing
+    name = "SolidWorks Drawing"
+    short_name = "SLDDRW"
+    media_type = "model/x-slddrw"
+    extension = "slddrw"
+    kind = Model
+
     format = SolidworksPart
     name = "SolidWorks Part"
     short_name = "SLDPRT"
