@@ -424,6 +424,14 @@ signatures! {
     value = b"\xEF\xBB\xBF<mxfile"
     value = b"<mxfile"
 
+    format = InitialGraphicsExchangeSpecification
+    value = b"S      1\r\n" offset = 72
+    value = b"S0000001\r\n" offset = 72
+    value = b"S      1\r" offset = 72
+    value = b"S0000001\r" offset = 72
+    value = b"S      1\n" offset = 72
+    value = b"S0000001\n" offset = 72
+
     format = OggMedia
     value = b"OggS", b"\x01\x76\x69\x64\x65\x6F" offset = 28
 

@@ -101,6 +101,12 @@ fn test_google_draco() {
 }
 
 #[test]
+fn test_initial_graphics_exchange_specification() {
+    let fmt = FileFormat::from_file("fixtures/model/sample.iges").unwrap();
+    assert_eq!(fmt, FileFormat::InitialGraphicsExchangeSpecification);
+}
+
+#[test]
 fn test_inter_quake_export() {
     let fmt = FileFormat::from_file("fixtures/model/sample.iqe").unwrap();
     assert_eq!(fmt, FileFormat::InterQuakeExport);

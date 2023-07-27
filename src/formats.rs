@@ -877,6 +877,13 @@ formats! {
     extension = "idml"
     kind = Document
 
+    format = InitialGraphicsExchangeSpecification
+    name = "Initial Graphics Exchange Specification"
+    short_name = "IGES"
+    media_type = "model/iges"
+    extension = "iges"
+    kind = Model
+
     format = InterQuakeExport
     name = "Inter-Quake Export"
     short_name = "IQE"

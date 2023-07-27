@@ -7,6 +7,7 @@
 ## New formats support
 
 - Cinema 4D (C4D)
+- Initial Graphics Exchange Specification (IGES)
 - Microsoft Reader (LIT)
 - SolidWorks Assembly (SLDASM)
 - SolidWorks Drawing (SLDDRW)

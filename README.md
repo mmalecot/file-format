@@ -386,6 +386,7 @@ file-format = "0.19"
 - Filmbox (FBX)
 - GL Transmission Format Binary (GLB)
 - Google Draco (Draco)
+- Initial Graphics Exchange Specification (IGES)
 - Inter-Quake Export (IQE)
 - Inter-Quake Model (IQM)
 - MagicaVoxel (VOX)
