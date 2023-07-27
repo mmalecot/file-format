@@ -479,6 +479,9 @@ signatures! {
     value = b"1\r\n00:"
     value = b"1\n00:"
 
+    format = UniversalSceneDescriptionAscii
+    value = b"#usda 1.0"
+
     format = WebVideoTextTracks
     value = b"\xEF\xBB\xBFWEBVTT"
     value = b"WEBVTT"
@@ -655,6 +658,9 @@ signatures! {
     format = TapeArchive
     value = b"\x75\x73\x74\x61\x72\x00\x30\x30" offset = 257
     value = b"\x75\x73\x74\x61\x72\x20\x20\x00" offset = 257
+
+    format = UniversalSceneDescriptionBinary
+    value = b"PXR-USDC"
 
     format = WaveformAudio
     value = b"RIFF", b"WAVE" offset = 8

@@ -2399,6 +2399,27 @@ formats! {
     extension = "u3d"
     kind = Model
 
+    format = UniversalSceneDescriptionAscii
+    name = "Universal Scene Description ASCII"
+    short_name = "USDA"
+    media_type = "model/x-usd"
+    extension = "usda"
+    kind = Model
+
+    format = UniversalSceneDescriptionBinary
+    name = "Universal Scene Description Binary"
+    short_name = "USDC"
+    media_type = "model/x-usd"
+    extension = "usdc"
+    kind = Model
+
+    format = UniversalSceneDescriptionZipped
+    name = "Universal Scene Description Zipped"
+    short_name = "USDZ"
+    media_type = "model/vnd.usdz+zip"
+    extension = "usdz"
+    kind = Model
+
     format = UniversalSubtitleFormat
     name = "Universal Subtitle Format"
     short_name = "USF"

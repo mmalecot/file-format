@@ -169,6 +169,7 @@ detected.
   * [Sun XML Writer (SXW)](`FileFormat::SunXmlWriter`)
   * [Sun XML Writer Global (SGW)](`FileFormat::SunXmlWriterGlobal`)
   * [Sun XML Writer Template (STW)](`FileFormat::SunXmlWriterTemplate`)
+  * [Universal Scene Description Zipped (USDZ)](`FileFormat::UniversalSceneDescriptionZipped`)
   * [Web Application Archive (WAR)](`FileFormat::WebApplicationArchive`)
   * [Windows App Package (APPX)](`FileFormat::WindowsAppPackage`)
   * [XAP](`FileFormat::Xap`)

@@ -399,6 +399,9 @@ file-format = "0.19"
 - Stereolithography ASCII (STL)
 - Stereolithography Binary (STL)
 - Universal 3D (U3D)
+- Universal Scene Description ASCII (USDA)
+- Universal Scene Description Binary (USDC)
+- Universal Scene Description Zipped (USDZ)
 - openNURBS (3DM)
 
 ### Package

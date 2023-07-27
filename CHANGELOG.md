@@ -7,6 +7,9 @@
 ## New formats support
 
 - Microsoft Reader (LIT)
+- Universal Scene Description ASCII (USDA)
+- Universal Scene Description Binary (USDC)
+- Universal Scene Description Zipped (USDZ)
 
 # Version 0.18.0 (2023-07-14)
 

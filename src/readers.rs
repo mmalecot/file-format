@@ -577,6 +577,8 @@ impl crate::FileFormat {
                         return Ok(Self::DesignWebFormatXps);
                     } else if file.name().ends_with(".fb2") {
                         return Ok(Self::FictionbookZipped);
+                    } else if file.name().ends_with(".usda") || file.name().ends_with(".usdc") {
+                        return Ok(Self::UniversalSceneDescriptionZipped);
                     } else if file.name().starts_with("word/") {
                         return Ok(Self::OfficeOpenXmlDocument);
                     } else if file.name().starts_with("visio/") {
