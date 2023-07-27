@@ -376,6 +376,7 @@ file-format = "0.19"
 - Additive Manufacturing Format (AMF)
 - AutoCAD Drawing (DWG)
 - Blender (BLEND)
+- Cinema 4D (C4D)
 - Design Web Format (DWF)
 - Design Web Format XPS (DWFX)
 - Digital Asset Exchange (DAE)

@@ -730,6 +730,9 @@ signatures! {
     format = CanonRaw3
     value = b"ftypcrx" offset = 4
 
+    format = Cinema4d
+    value = b"C4DC4D6" offset = 1
+
     format = ExtensibleStylesheetLanguageTransformations
     value = b"\xEF\xBB\xBF<xsl"
     value = b"<xsl"

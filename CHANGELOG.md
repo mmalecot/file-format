@@ -6,6 +6,7 @@
 
 ## New formats support
 
+- Cinema 4D (C4D)
 - Microsoft Reader (LIT)
 - Standard for the Exchange of Product model data (STEP)
 - Universal Scene Description ASCII (USDA)

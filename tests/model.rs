@@ -26,6 +26,12 @@ fn test_blender() {
 }
 
 #[test]
+fn test_cinema4d() {
+    let fmt = FileFormat::from_file("fixtures/model/sample.c4d").unwrap();
+    assert_eq!(fmt, FileFormat::Cinema4d);
+}
+
+#[test]
 fn test_design_web_format() {
     let fmt = FileFormat::from_file("fixtures/model/sample.dwf").unwrap();
     assert_eq!(fmt, FileFormat::DesignWebFormat);

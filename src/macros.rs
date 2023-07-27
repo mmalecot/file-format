@@ -147,6 +147,7 @@ macro_rules! signatures {
     } => {
         impl crate::FileFormat {
             /// Determines file format by checking its signature.
+            #[allow(clippy::int_plus_one)]
             pub(crate) fn from_signature(bytes: &[u8]) -> Option<Self> {
                 $(
                     if $($(bytes.len() >= $($offset +)? $value.len()

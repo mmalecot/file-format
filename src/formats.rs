@@ -425,6 +425,13 @@ formats! {
     extension = "cr3"
     kind = Image
 
+    format = Cinema4d
+    name = "Cinema 4D"
+    short_name = "C4D"
+    media_type = "model/x-c4d"
+    extension = "c4d"
+    kind = Model
+
     format = Cineon
     name = "Cineon"
     short_name = "CIN"
