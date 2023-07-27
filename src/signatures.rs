@@ -124,6 +124,15 @@ signatures! {
     value = b"Stratasys stl"
     value = b"SketchUp STL"
     value = b"STL File"
+    value = b"STLEXP"
+    value = b".stl" offset = 1, b"\x00" offset = 79
+    value = b".stl" offset = 2, b"\x00" offset = 79
+    value = b".stl" offset = 3, b"\x00" offset = 79
+    value = b".stl" offset = 4, b"\x00" offset = 79
+    value = b".stl" offset = 5, b"\x00" offset = 79
+    value = b".stl" offset = 6, b"\x00" offset = 79
+    value = b".stl" offset = 7, b"\x00" offset = 79
+    value = b".stl" offset = 8, b"\x00" offset = 79
 
     // 26 bytes
     format = TrainingCenterXml

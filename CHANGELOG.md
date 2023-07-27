@@ -1,5 +1,9 @@
 # Version 0.19.0 (unreleased)
 
+## Improvements
+
+- Add Stereolithography Binary (STL) signatures
+
 ## New formats support
 
 - Microsoft Reader (LIT)
