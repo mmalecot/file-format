@@ -119,11 +119,13 @@ signatures! {
     value = b"3D Systems, Binary STL file"
     value = b"Materialise Coloured STL"
     value = b"Exported from Blender", b"\x00" offset = 79
+    value = b"Rhinoceros Binary STL"
     value = b"STL binary file"
     value = b"binary stl file"
     value = b"Stratasys stl"
     value = b"SketchUp STL"
     value = b"STL File"
+    value = b"STLB ATF"
     value = b"STLEXP"
     value = b".stl" offset = 2, b"\x00" offset = 79
     value = b".stl" offset = 3, b"\x00" offset = 79
