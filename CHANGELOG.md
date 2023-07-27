@@ -1,5 +1,9 @@
 # Version 0.19.0 (unreleased)
 
+## New formats support
+
+- Microsoft Reader (LIT)
+
 # Version 0.18.0 (2023-07-14)
 
 ## API

@@ -177,6 +177,7 @@ file-format = "0.19"
 - Electronic Publication (EPUB)
 - FictionBook (FB2)
 - FictionBook Zipped (FBZ)
+- Microsoft Reader (LIT)
 - Mobipocket (MOBI)
 
 ### Certificate

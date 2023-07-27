@@ -1261,6 +1261,13 @@ formats! {
     extension = "pub"
     kind = Document
 
+    format = MicrosoftReader
+    name = "Microsoft Reader"
+    short_name = "LIT"
+    media_type = "application/x-ms-reader"
+    extension = "lit"
+    kind = Book
+
     format = MicrosoftSoftwareInstaller
     name = "Microsoft Software Installer"
     short_name = "MSI"

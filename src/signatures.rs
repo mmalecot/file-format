@@ -65,6 +65,11 @@ signatures! {
     value = b"-----BEGIN PGP SIGNED MESSAGE-----"
 
     // 32 bytes
+    format = MicrosoftReader
+    value =
+        b"ITOLITLS\x01\x00\x00\x00\x28\x00\x00\x00",
+        b"\xC1\x07\x90\x0A\x76\x40\xD3\x11\x87\x89\x00\x00\xF8\x10\x57\x54" offset = 0x18
+
     format = PemPublicKey
     value = b"-----BEGIN ECDSA PUBLIC KEY-----"
     value = b"-----BEGIN DSA PUBLIC KEY-----"
