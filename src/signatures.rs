@@ -120,6 +120,7 @@ signatures! {
     value = b"Materialise Coloured STL"
     value = b"Exported from Blender", b"\x00" offset = 79
     value = b"Rhinoceros Binary STL"
+    value = b"Uranium STLWriter"
     value = b"STL binary file"
     value = b"binary stl file"
     value = b"Stratasys stl"
