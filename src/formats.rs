@@ -2141,6 +2141,13 @@ formats! {
     extension = "squashfs"
     kind = Archive
 
+    format = StandardForTheExchangeOfProductModelData
+    name = "Standard for the Exchange of Product model data"
+    short_name = "STEP"
+    media_type = "model/step"
+    extension = "step"
+    kind = Model
+
     format = Starcalc
     name = "StarCalc"
     short_name = "SDC"

@@ -7,6 +7,7 @@
 ## New formats support
 
 - Microsoft Reader (LIT)
+- Standard for the Exchange of Product model data (STEP)
 - Universal Scene Description ASCII (USDA)
 - Universal Scene Description Binary (USDC)
 - Universal Scene Description Zipped (USDZ)

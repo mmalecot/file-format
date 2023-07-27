@@ -338,6 +338,10 @@ signatures! {
     format = WordperfectGraphics
     value = b"\xFFWPC\x10\x00\x00\x00\x01\x16\x01\x00", b"\x00\x00" offset = 14
 
+    // 13 bytes
+    format = StandardForTheExchangeOfProductModelData
+    value = b"ISO-10303-21;"
+
     // 12 bytes
     format = AnimatedPortableNetworkGraphics
     value = b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A", b"acTL" offset = 0x25

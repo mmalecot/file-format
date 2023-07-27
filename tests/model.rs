@@ -168,6 +168,12 @@ fn test_spaceclaim_document() {
 }
 
 #[test]
+fn test_standard_for_the_exchange_of_product_model_data() {
+    let fmt = FileFormat::from_file("fixtures/model/sample.step").unwrap();
+    assert_eq!(fmt, FileFormat::StandardForTheExchangeOfProductModelData);
+}
+
+#[test]
 fn test_stereolithography_ascii() {
     let fmt = FileFormat::from_file("fixtures/model/sample1.stl").unwrap();
     assert_eq!(fmt, FileFormat::StereolithographyAscii);
