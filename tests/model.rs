@@ -223,3 +223,9 @@ fn test_universal_scene_description_zipped() {
     let fmt = FileFormat::from_file("fixtures/model/sample.usdz").unwrap();
     assert_eq!(fmt, FileFormat::UniversalSceneDescriptionZipped);
 }
+
+#[test]
+fn test_virtual_reality_modeling_language() {
+    let fmt = FileFormat::from_file("fixtures/model/sample.wrl").unwrap();
+    assert_eq!(fmt, FileFormat::VirtualRealityModelingLanguage);
+}

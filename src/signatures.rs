@@ -293,6 +293,10 @@ signatures! {
     value = b"\xEF\xBB\xBF<USFSubtitles"
     value = b"<USFSubtitles"
 
+    format = VirtualRealityModelingLanguage
+    value = b"#VRML V1.0 ascii"
+    value = b"#VRML V2.0 utf8"
+
     format = WindowsRecordedTvShow
     value = b"\xB7\xD8\x00\x20\x37\x49\xDA\x11\xA6\x4E\x00\x07\xE9\x5E\xAD\x8D"
 

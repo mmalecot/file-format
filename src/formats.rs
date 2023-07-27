@@ -2462,6 +2462,13 @@ formats! {
     extension = "vmdk"
     kind = Disk
 
+    format = VirtualRealityModelingLanguage
+    name = "Virtual Reality Modeling Language"
+    short_name = "VRML"
+    media_type = "model/vrml"
+    extension = "wrl"
+    kind = Model
+
     format = VirtualboxVirtualDiskImage
     name = "VirtualBox Virtual Disk Image"
     short_name = "VDI"

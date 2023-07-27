@@ -402,6 +402,7 @@ file-format = "0.19"
 - Universal Scene Description ASCII (USDA)
 - Universal Scene Description Binary (USDC)
 - Universal Scene Description Zipped (USDZ)
+- Virtual Reality Modeling Language (VRML)
 - openNURBS (3DM)
 
 ### Package
