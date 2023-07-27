@@ -109,6 +109,8 @@ impl crate::FileFormat {
             "00021a14-0000-0000-c000-000000000046" => Self::MicrosoftVisioDrawing,
             "00020900-0000-0000-c000-000000000046" => Self::MicrosoftWordDocument,
             "00020906-0000-0000-c000-000000000046" => Self::MicrosoftWordDocument,
+            "83a33d36-27c5-11ce-bfd4-00400513bb57" => Self::SolidworksAssembly,
+            "83a33d30-27c5-11ce-bfd4-00400513bb57" => Self::SolidworksPart,
             "3f543fa0-b6a6-101b-9961-04021c007002" => Self::Starcalc,
             "6361d441-4235-11d0-89cb-008029e4b0b1" => Self::Starcalc,
             "c6a5b861-85d6-11d1-89cb-008029e4b0b1" => Self::Starcalc,

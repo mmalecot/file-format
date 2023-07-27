@@ -166,6 +166,20 @@ fn test_sketchup() {
     assert_eq!(fmt, FileFormat::Sketchup);
 }
 
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_solidworks_assembly() {
+    let fmt = FileFormat::from_file("fixtures/model/sample.sldasm").unwrap();
+    assert_eq!(fmt, FileFormat::SolidworksAssembly);
+}
+
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_solidworks_part() {
+    let fmt = FileFormat::from_file("fixtures/model/sample.sldprt").unwrap();
+    assert_eq!(fmt, FileFormat::SolidworksPart);
+}
+
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_spaceclaim_document() {

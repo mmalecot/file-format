@@ -69,6 +69,8 @@ detected.
   * [Microsoft Software Installer (MSI)](`FileFormat::MicrosoftSoftwareInstaller`)
   * [Microsoft Visio Drawing (VSD)](`FileFormat::MicrosoftVisioDrawing`)
   * [Microsoft Word Document (DOC)](`FileFormat::MicrosoftWordDocument`)
+  * [SolidWorks Assembly (SLDASM)](`FileFormat::SolidworksAssembly`)
+  * [SolidWorks Part (SLDPRT)](`FileFormat::SolidworksPart`)
   * [StarCalc (SDC)](`FileFormat::Starcalc`)
   * [StarChart (SDS)](`FileFormat::Starchart`)
   * [StarDraw (SDA)](`FileFormat::Stardraw`)

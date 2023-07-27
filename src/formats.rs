@@ -2108,6 +2108,20 @@ formats! {
     extension = "sz"
     kind = Compression
 
+    format = SolidworksAssembly
+    name = "SolidWorks Assembly"
+    short_name = "SLDASM"
+    media_type = "model/x-sldasm"
+    extension = "sldasm"
+    kind = Model
+
+    format = SolidworksPart
+    name = "SolidWorks Part"
+    short_name = "SLDPRT"
+    media_type = "model/x-sldprt"
+    extension = "sldprt"
+    kind = Model
+
     format = SonyDsdStreamFile
     name = "Sony DSD Stream File"
     short_name = "DSF"

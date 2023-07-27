@@ -396,6 +396,8 @@ file-format = "0.19"
 - Polygon ASCII (PLY)
 - Polygon Binary (PLY)
 - SketchUp (SKP)
+- SolidWorks Assembly (SLDASM)
+- SolidWorks Part (SLDPRT)
 - SpaceClaim Document (SCDOC)
 - Standard for the Exchange of Product model data (STEP)
 - Stereolithography ASCII (STL)
