@@ -6,6 +6,10 @@
 
 ## New formats support
 
+- Autodesk Inventor Assembly (IAM)
+- Autodesk Inventor Drawing (IDW)
+- Autodesk Inventor Part (IPT)
+- Autodesk Inventor Presentation (IPN)
 - Cinema 4D (C4D)
 - Initial Graphics Exchange Specification (IGES)
 - Microsoft Reader (LIT)

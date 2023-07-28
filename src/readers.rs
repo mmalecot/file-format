@@ -97,6 +97,10 @@ impl crate::FileFormat {
 
         // Reads the CLSID from the root entry and returns the corresponding variant.
         Ok(match file.root_entry().clsid().to_string().as_str() {
+            "e60f81e1-49b3-11d0-93c3-7e0706000000" => Self::AutodeskInventorAssembly,
+            "bbf9fdf1-52dc-11d0-8c04-0800090be8ec" => Self::AutodeskInventorDrawing,
+            "4d29b490-49b2-11d0-93c3-7e0706000000" => Self::AutodeskInventorPart,
+            "76283a80-50dd-11d3-a7e3-00c04f79d7bc" => Self::AutodeskInventorPresentation,
             "00020810-0000-0000-c000-000000000046" => Self::MicrosoftExcelSpreadsheet,
             "00020820-0000-0000-c000-000000000046" => Self::MicrosoftExcelSpreadsheet,
             "00044851-0000-0000-c000-000000000046" => Self::MicrosoftPowerpointPresentation,

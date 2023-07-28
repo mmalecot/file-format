@@ -19,6 +19,34 @@ fn test_autocad_drawing() {
     assert_eq!(fmt, FileFormat::AutocadDrawing);
 }
 
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_autodesk_inventor_assembly() {
+    let fmt = FileFormat::from_file("fixtures/model/sample.iam").unwrap();
+    assert_eq!(fmt, FileFormat::AutodeskInventorAssembly);
+}
+
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_autodesk_inventor_drawing() {
+    let fmt = FileFormat::from_file("fixtures/model/sample.idw").unwrap();
+    assert_eq!(fmt, FileFormat::AutodeskInventorDrawing);
+}
+
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_autodesk_inventor_part() {
+    let fmt = FileFormat::from_file("fixtures/model/sample.ipt").unwrap();
+    assert_eq!(fmt, FileFormat::AutodeskInventorPart);
+}
+
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_autodesk_inventor_presentation() {
+    let fmt = FileFormat::from_file("fixtures/model/sample.ipn").unwrap();
+    assert_eq!(fmt, FileFormat::AutodeskInventorPresentation);
+}
+
 #[test]
 fn test_blender() {
     let fmt = FileFormat::from_file("fixtures/model/sample.blend").unwrap();

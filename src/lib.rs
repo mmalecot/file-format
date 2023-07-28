@@ -62,6 +62,10 @@ detected.
 - `reader-cfb` - Enables [Compound File Binary (CFB)](`FileFormat::CompoundFileBinary`) based file
   formats detection.
   * [3D Studio Max (MAX)](`FileFormat::ThreeDimensionalStudioMax`)
+  * [Autodesk Inventor Assembly (IAM)](`FileFormat::AutodeskInventorAssembly`)
+  * [Autodesk Inventor Drawing (IDW)](`FileFormat::AutodeskInventorDrawing`)
+  * [Autodesk Inventor Part (IPT)](`FileFormat::AutodeskInventorPart`)
+  * [Autodesk Inventor Presentation (IPN)](`FileFormat::AutodeskInventorPresentation`)
   * [Microsoft Excel Spreadsheet (XLS)](`FileFormat::MicrosoftExcelSpreadsheet`)
   * [Microsoft PowerPoint Presentation (PPT)](`FileFormat::MicrosoftPowerpointPresentation`)
   * [Microsoft Project Plan (MPP)](`FileFormat::MicrosoftProjectPlan`)

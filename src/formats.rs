@@ -313,6 +313,34 @@ formats! {
     extension = "flc"
     kind = Video
 
+    format = AutodeskInventorAssembly
+    name = "Autodesk Inventor Assembly"
+    short_name = "IAM"
+    media_type = "model/x-iam"
+    extension = "iam"
+    kind = Model
+
+    format = AutodeskInventorDrawing
+    name = "Autodesk Inventor Drawing"
+    short_name = "IDW"
+    media_type = "model/x-idw"
+    extension = "idw"
+    kind = Model
+
+    format = AutodeskInventorPart
+    name = "Autodesk Inventor Part"
+    short_name = "IPT"
+    media_type = "model/x-ipt"
+    extension = "ipt"
+    kind = Model
+
+    format = AutodeskInventorPresentation
+    name = "Autodesk Inventor Presentation"
+    short_name = "IPN"
+    media_type = "model/x-ipn"
+    extension = "ipn"
+    kind = Model
+
     format = Av1ImageFileFormat
     name = "AV1 Image File Format"
     short_name = "AVIF"
