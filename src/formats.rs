@@ -751,6 +751,13 @@ formats! {
     extension = "raf"
     kind = Image
 
+    format = Fusion360
+    name = "Fusion 360"
+    short_name = "F3D"
+    media_type = "model/x-f3d"
+    extension = "f3d"
+    kind = Model
+
     format = GameBoyAdvanceRom
     name = "Game Boy Advance ROM"
     short_name = "GBA"

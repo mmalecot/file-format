@@ -578,7 +578,9 @@ impl crate::FileFormat {
                     _ => {}
                 },
                 _ => {
-                    if file.name().starts_with("circuitdiagram/") {
+                    if file.name().starts_with("FusionAssetName[Active]/") {
+                        return Ok(Self::Fusion360);
+                    } else if file.name().starts_with("circuitdiagram/") {
                         return Ok(Self::CircuitDiagramDocument);
                     } else if file.name().starts_with("dwf/") {
                         return Ok(Self::DesignWebFormatXps);

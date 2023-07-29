@@ -11,6 +11,7 @@
 - Autodesk Inventor Part (IPT)
 - Autodesk Inventor Presentation (IPN)
 - Cinema 4D (C4D)
+- Fusion 360 (F3D)
 - Initial Graphics Exchange Specification (IGES)
 - Microsoft Reader (LIT)
 - SolidWorks Assembly (SLDASM)

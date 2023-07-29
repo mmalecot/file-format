@@ -388,6 +388,7 @@ file-format = "0.19"
 - Drawing Exchange Format Binary (DXF)
 - Extensible 3D (X3D)
 - Filmbox (FBX)
+- Fusion 360 (F3D)
 - GL Transmission Format Binary (GLB)
 - Google Draco (Draco)
 - Initial Graphics Exchange Specification (IGES)

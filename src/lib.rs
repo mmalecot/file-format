@@ -142,6 +142,7 @@ detected.
   * [Electronic Publication (EPUB)](`FileFormat::ElectronicPublication`)
   * [Enterprise Application Archive (EAR)](`FileFormat::EnterpriseApplicationArchive`)
   * [FictionBook Zipped (FBZ)](`FileFormat::FictionbookZipped`)
+  * [Fusion 360 (F3D)](`FileFormat::Fusion360`)
   * [InDesign Markup Language (IDML)](`FileFormat::IndesignMarkupLanguage`)
   * [Java Archive (JAR)](`FileFormat::JavaArchive`)
   * [Keyhole Markup Language Zipped (KMZ)](`FileFormat::KeyholeMarkupLanguageZipped`)

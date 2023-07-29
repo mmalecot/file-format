@@ -116,6 +116,13 @@ fn test_filmbox() {
     assert_eq!(fmt, FileFormat::Filmbox);
 }
 
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_fusion360() {
+    let fmt = FileFormat::from_file("fixtures/model/sample.f3d").unwrap();
+    assert_eq!(fmt, FileFormat::Fusion360);
+}
+
 #[test]
 fn test_gl_transmission_format_binary() {
     let fmt = FileFormat::from_file("fixtures/model/sample.glb").unwrap();
