@@ -12,6 +12,7 @@
 - Autodesk Inventor Drawing (IDW)
 - Autodesk Inventor Part (IPT)
 - Autodesk Inventor Presentation (IPN)
+- CD Audio (CDA)
 - Cinema 4D (C4D)
 - Fusion 360 (F3D)
 - Initial Graphics Exchange Specification (IGES)

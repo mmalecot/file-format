@@ -352,6 +352,9 @@ signatures! {
     format = AnimatedPortableNetworkGraphics
     value = b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A", b"acTL" offset = 0x25
 
+    format = CdAudio
+    value = b"RIFF", b"CDDAfmt " offset = 0x08
+
     format = Djvu
     value = b"AT&TFORM", b"DJVM" offset = 12
     value = b"AT&TFORM", b"DJVU" offset = 12

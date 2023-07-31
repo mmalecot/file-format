@@ -49,6 +49,12 @@ fn test_bittorrent_file() {
 }
 
 #[test]
+fn test_cd_audio() {
+    let fmt = FileFormat::from_file("fixtures/application/sample.cda").unwrap();
+    assert_eq!(fmt, FileFormat::CdAudio);
+}
+
+#[test]
 fn test_compound_file_binary() {
     let fmt = FileFormat::from_file("fixtures/application/sample.cfb").unwrap();
     assert_eq!(fmt, FileFormat::CompoundFileBinary);

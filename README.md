@@ -65,6 +65,7 @@ file-format = "0.19"
 - Apache Parquet (Parquet)
 - Arbitrary Binary Data (BIN)
 - BitTorrent File (Torrent)
+- CD Audio (CDA)
 - Compound File Binary (CFB)
 - Digital Imaging and Communications in Medicine (DICOM)
 - Encapsulated PostScript (EPS)

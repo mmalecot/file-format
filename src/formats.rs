@@ -467,6 +467,13 @@ formats! {
     extension = "cr3"
     kind = Image
 
+    format = CdAudio
+    name = "CD Audio"
+    short_name = "CDA"
+    media_type = "application/x-cdf"
+    extension = "cda"
+    kind = Application
+
     format = Cinema4d
     name = "Cinema 4D"
     short_name = "C4D"
