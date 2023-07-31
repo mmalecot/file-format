@@ -376,6 +376,7 @@ file-format = "0.19"
 - Additive Manufacturing Format (AMF)
 - AutoCAD Drawing (DWG)
 - Autodesk 123D (123DX)
+- Autodesk Alias (WIRE)
 - Autodesk Inventor Assembly (IAM)
 - Autodesk Inventor Drawing (IDW)
 - Autodesk Inventor Part (IPT)

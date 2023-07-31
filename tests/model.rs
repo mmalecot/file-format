@@ -26,6 +26,12 @@ fn test_autodesk123d() {
     assert_eq!(fmt, FileFormat::Autodesk123d);
 }
 
+#[test]
+fn test_autodesk_alias() {
+    let fmt = FileFormat::from_file("fixtures/model/sample.wire").unwrap();
+    assert_eq!(fmt, FileFormat::AutodeskAlias);
+}
+
 #[cfg(feature = "reader-cfb")]
 #[test]
 fn test_autodesk_inventor_assembly() {

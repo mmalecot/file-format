@@ -249,6 +249,9 @@ signatures! {
     value = b"<score-partwise"
 
     // 17 bytes
+    format = AutodeskAlias
+    value = b"\x8FStudioPacketFile"
+
     format = EncapsulatedPostscript
     value = b"%!PS-Adobe-", b" EPSF-" offset = 14
     value = b"\xC5\xD0\xD3\xC6"

@@ -7,6 +7,7 @@
 ## New formats support
 
 - Autodesk 123D (123DX)
+- Autodesk Alias (WIRE)
 - Autodesk Inventor Assembly (IAM)
 - Autodesk Inventor Drawing (IDW)
 - Autodesk Inventor Part (IPT)

@@ -306,6 +306,13 @@ formats! {
     extension = "123dx"
     kind = Model
 
+    format = AutodeskAlias
+    name = "Autodesk Alias"
+    short_name = "WIRE"
+    media_type = "model/x-wire"
+    extension = "wire"
+    kind = Model
+
     format = AutodeskAnimator
     name = "Autodesk Animator"
     short_name = "FLI"
