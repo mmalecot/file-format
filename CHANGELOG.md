@@ -25,6 +25,7 @@
 - Universal Scene Description Binary (USDC)
 - Universal Scene Description Zipped (USDZ)
 - Virtual Reality Modeling Language (VRML)
+- Windows Media Playlist (WPL)
 
 # Version 0.18.0 (2023-07-14)
 

@@ -2691,6 +2691,13 @@ formats! {
     extension = "wma"
     kind = Audio
 
+    format = WindowsMediaPlaylist
+    name = "Windows Media Playlist"
+    short_name = "WPL"
+    media_type = "application/vnd.ms-wpl"
+    extension = "wpl"
+    kind = Playlist
+
     format = WindowsMediaVideo
     name = "Windows Media Video"
     short_name = "WMV"

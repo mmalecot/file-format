@@ -442,6 +442,7 @@ file-format = "0.19"
 - Advanced Stream Redirector (ASX)
 - MP3 URL (M3U)
 - SHOUTcast Playlist (PLS)
+- Windows Media Playlist (WPL)
 - XML Shareable Playlist Format (XSPF)
 
 ### ROM

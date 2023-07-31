@@ -26,6 +26,12 @@ fn test_shoutcast_playlist() {
 }
 
 #[test]
+fn test_windows_media_playlist() {
+    let fmt = FileFormat::from_file("fixtures/playlist/sample.wpl").unwrap();
+    assert_eq!(fmt, FileFormat::WindowsMediaPlaylist);
+}
+
+#[test]
 fn test_xml_shareable_playlist_1() {
     let fmt = FileFormat::from_file("fixtures/playlist/sample1.xspf").unwrap();
     assert_eq!(fmt, FileFormat::XmlShareablePlaylistFormat);

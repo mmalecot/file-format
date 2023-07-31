@@ -223,6 +223,9 @@ signatures! {
     value = b"#!/bin/ksh"
     value = b"#!/bin/sh"
 
+    format = WindowsMediaPlaylist
+    value = b"<?wpl version=\"1.0\"?>"
+
     // 20 bytes
     format = InterQuakeExport
     value = b"# Inter-Quake Export"
