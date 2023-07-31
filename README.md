@@ -375,6 +375,7 @@ file-format = "0.19"
 - 3D Studio Max (MAX)
 - Additive Manufacturing Format (AMF)
 - AutoCAD Drawing (DWG)
+- Autodesk 123D (123DX)
 - Autodesk Inventor Assembly (IAM)
 - Autodesk Inventor Drawing (IDW)
 - Autodesk Inventor Part (IPT)

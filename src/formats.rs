@@ -299,6 +299,13 @@ formats! {
     extension = "dwg"
     kind = Model
 
+    format = Autodesk123d
+    name = "Autodesk 123D"
+    short_name = "123DX"
+    media_type = "model/x-123dx"
+    extension = "123dx"
+    kind = Model
+
     format = AutodeskAnimator
     name = "Autodesk Animator"
     short_name = "FLI"

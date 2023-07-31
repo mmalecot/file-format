@@ -580,6 +580,8 @@ impl crate::FileFormat {
                 _ => {
                     if file.name().starts_with("FusionAssetName[Active]/") {
                         return Ok(Self::Fusion360);
+                    } else if file.name().starts_with("Fusion[Active]/") {
+                        return Ok(Self::Autodesk123d);
                     } else if file.name().starts_with("circuitdiagram/") {
                         return Ok(Self::CircuitDiagramDocument);
                     } else if file.name().starts_with("dwf/") {

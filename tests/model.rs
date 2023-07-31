@@ -19,6 +19,13 @@ fn test_autocad_drawing() {
     assert_eq!(fmt, FileFormat::AutocadDrawing);
 }
 
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_autodesk123d() {
+    let fmt = FileFormat::from_file("fixtures/model/sample.123dx").unwrap();
+    assert_eq!(fmt, FileFormat::Autodesk123d);
+}
+
 #[cfg(feature = "reader-cfb")]
 #[test]
 fn test_autodesk_inventor_assembly() {
