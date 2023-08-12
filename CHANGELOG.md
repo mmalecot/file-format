@@ -4,6 +4,10 @@
 
 - Drop Stereolithography Binary (STL) support
 
+## Improvements
+
+- Detect FictionBook Zipped (FBZ) only with files in the root of the archive
+
 ## New formats support
 
 - Autodesk 123D (123DX)

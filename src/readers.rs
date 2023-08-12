@@ -586,7 +586,7 @@ impl crate::FileFormat {
                         return Ok(Self::CircuitDiagramDocument);
                     } else if file.name().starts_with("dwf/") {
                         return Ok(Self::DesignWebFormatXps);
-                    } else if file.name().ends_with(".fb2") {
+                    } else if file.name().ends_with(".fb2") && !file.name().contains('/') {
                         return Ok(Self::FictionbookZipped);
                     } else if file.name().ends_with(".usda") || file.name().ends_with(".usdc") {
                         return Ok(Self::UniversalSceneDescriptionZipped);
