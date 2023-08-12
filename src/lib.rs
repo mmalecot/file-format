@@ -320,6 +320,8 @@ pub enum Kind {
     Certificate,
     /// Compressed single files or streams.
     Compression,
+    /// Organized collections of data.
+    Database,
     /// Floppy disk images, optical disc images and virtual machine disks.
     Disk,
     /// Word processing documents, spreadsheets, presentations, documents templates, diagrams,

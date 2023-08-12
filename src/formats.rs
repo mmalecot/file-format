@@ -1273,14 +1273,14 @@ formats! {
     short_name = "ACCDB"
     media_type = "application/x-msaccess"
     extension = "accdb"
-    kind = Application
+    kind = Database
 
     format = MicrosoftAccessDatabase
     name = "Microsoft Access Database"
     short_name = "MDB"
     media_type = "application/x-msaccess"
     extension = "mdb"
-    kind = Application
+    kind = Database
 
     format = MicrosoftCompiledHtmlHelp
     name = "Microsoft Compiled HTML Help"
@@ -1670,7 +1670,7 @@ formats! {
     short_name = "ODB"
     media_type = "application/vnd.oasis.opendocument.database"
     extension = "odb"
-    kind = Application
+    kind = Database
 
     format = OpendocumentFormula
     name = "OpenDocument Formula"
@@ -2224,7 +2224,7 @@ formats! {
     name = "SQLite 3"
     media_type = "application/vnd.sqlite3"
     extension = "sqlite"
-    kind = Application
+    kind = Database
 
     format = Squashfs
     name = "Squashfs"

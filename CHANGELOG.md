@@ -2,6 +2,7 @@
 
 ## API
 
+- Add `Database` kind
 - Drop Stereolithography Binary (STL) support
 
 ## Improvements

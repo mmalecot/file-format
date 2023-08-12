@@ -76,14 +76,11 @@ file-format = "0.19"
 - Java KeyStore (JKS)
 - Mathematical Markup Language (MathML)
 - Meta Information Encapsulation (MIE)
-- Microsoft Access 2007 Database (ACCDB)
-- Microsoft Access Database (MDB)
 - Microsoft Compiled HTML Help (CHM)
 - Microsoft Visual Studio Solution (SLN)
 - MusicXML
 - MusicXML Zipped (MXL)
 - Ogg Multiplexed Media (OGX)
-- OpenDocument Database (ODB)
 - PCAP Dump (PCAP)
 - PCAP Next Generation Dump (PCAPNG)
 - PEM Certificate Signing Request (PEM)
@@ -97,7 +94,6 @@ file-format = "0.19"
 - Personal Storage Table (PST)
 - PostScript (PS)
 - RealMedia (RM)
-- SQLite 3
 - Simple Object Access Protocol (SOAP)
 - Small Web Format (SWF)
 - TASTy
@@ -203,6 +199,13 @@ file-format = "0.19"
 - lzip (LZ)
 - lzop (LZO)
 - rzip (RZ)
+
+### Database
+
+- Microsoft Access 2007 Database (ACCDB)
+- Microsoft Access Database (MDB)
+- OpenDocument Database (ODB)
+- SQLite 3
 
 ### Disk
 

@@ -141,18 +141,6 @@ fn test_meta_information_encapsulation() {
 }
 
 #[test]
-fn test_microsoft_access2007_database() {
-    let fmt = FileFormat::from_file("fixtures/application/sample.accdb").unwrap();
-    assert_eq!(fmt, FileFormat::MicrosoftAccess2007Database);
-}
-
-#[test]
-fn test_microsoft_access_database() {
-    let fmt = FileFormat::from_file("fixtures/application/sample.mdb").unwrap();
-    assert_eq!(fmt, FileFormat::MicrosoftAccessDatabase);
-}
-
-#[test]
 fn test_microsoft_compiled_html_help() {
     let fmt = FileFormat::from_file("fixtures/application/sample.chm").unwrap();
     assert_eq!(fmt, FileFormat::MicrosoftCompiledHtmlHelp);
@@ -188,13 +176,6 @@ fn test_musicxml_zipped() {
 fn test_ogg_multiplexed_media() {
     let fmt = FileFormat::from_file("fixtures/application/sample.ogx").unwrap();
     assert_eq!(fmt, FileFormat::OggMultiplexedMedia);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_opendocument_database() {
-    let fmt = FileFormat::from_file("fixtures/application/sample.odb").unwrap();
-    assert_eq!(fmt, FileFormat::OpendocumentDatabase);
 }
 
 #[test]
@@ -292,12 +273,6 @@ fn test_simple_object_access_protocol_2() {
 fn test_small_web_format() {
     let fmt = FileFormat::from_file("fixtures/application/sample.swf").unwrap();
     assert_eq!(fmt, FileFormat::SmallWebFormat);
-}
-
-#[test]
-fn test_sqlite3() {
-    let fmt = FileFormat::from_file("fixtures/application/sample.sqlite").unwrap();
-    assert_eq!(fmt, FileFormat::Sqlite3);
 }
 
 #[test]
