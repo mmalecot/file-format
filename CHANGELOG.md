@@ -1,8 +1,8 @@
 # Version 0.19.0 (unreleased)
 
-## Improvements
+## API
 
-- Add Stereolithography Binary (STL) signatures
+- Drop Stereolithography Binary (STL) support
 
 ## New formats support
 

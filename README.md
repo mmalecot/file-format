@@ -411,7 +411,6 @@ file-format = "0.19"
 - SpaceClaim Document (SCDOC)
 - Standard for the Exchange of Product model data (STEP)
 - Stereolithography ASCII (STL)
-- Stereolithography Binary (STL)
 - Universal 3D (U3D)
 - Universal Scene Description ASCII (USDA)
 - Universal Scene Description Binary (USDC)

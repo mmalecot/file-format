@@ -256,14 +256,8 @@ fn test_standard_for_the_exchange_of_product_model_data() {
 
 #[test]
 fn test_stereolithography_ascii() {
-    let fmt = FileFormat::from_file("fixtures/model/sample1.stl").unwrap();
+    let fmt = FileFormat::from_file("fixtures/model/sample.stl").unwrap();
     assert_eq!(fmt, FileFormat::StereolithographyAscii);
-}
-
-#[test]
-fn test_stereolithography_binary() {
-    let fmt = FileFormat::from_file("fixtures/model/sample2.stl").unwrap();
-    assert_eq!(fmt, FileFormat::StereolithographyBinary);
 }
 
 #[cfg(feature = "reader-zip")]

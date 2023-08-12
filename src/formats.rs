@@ -2288,13 +2288,6 @@ formats! {
     extension = "stl"
     kind = Model
 
-    format = StereolithographyBinary
-    name = "Stereolithography Binary"
-    short_name = "STL"
-    media_type = "model/x-stl-binary"
-    extension = "stl"
-    kind = Model
-
     format = Stuffit
     name = "StuffIt"
     short_name = "SIT"
