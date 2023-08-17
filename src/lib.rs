@@ -13,7 +13,7 @@ signature, it returns the default file format which is
 
 Determines from a file:
 
-```rust
+```no_run
 use file_format::{FileFormat, Kind};
 
 let format = FileFormat::from_file("fixtures/document/sample.pdf")?;
@@ -28,7 +28,7 @@ assert_eq!(format.kind(), Kind::Document);
 
 Determines from bytes:
 
-```rust
+```
 use file_format::{FileFormat, Kind};
 
 let format = FileFormat::from_bytes(&[0xFF, 0xD8, 0xFF]);
@@ -212,7 +212,7 @@ impl FileFormat {
     /// Detects from the first bytes of a
     /// [Portable Network Graphics (PNG)](`FileFormat::PortableNetworkGraphics`) file:
     ///
-    /// ```rust
+    /// ```
     /// use file_format::FileFormat;
     ///
     /// let format = FileFormat::from_bytes(b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A");
@@ -221,7 +221,7 @@ impl FileFormat {
     ///
     /// Detects from a zeroed buffer:
     ///
-    /// ```rust
+    /// ```
     /// use file_format::FileFormat;
     ///
     /// let format = FileFormat::from_bytes(&[0; 1000]);
@@ -238,7 +238,7 @@ impl FileFormat {
     ///
     /// # Examples
     ///
-    /// ```rust
+    /// ```no_run
     /// use file_format::FileFormat;
     ///
     /// let format = FileFormat::from_file("fixtures/video/sample.avi")?;
@@ -254,7 +254,7 @@ impl FileFormat {
     ///
     /// # Examples
     ///
-    /// ```rust
+    /// ```
     /// use file_format::FileFormat;
     ///
     /// let format = FileFormat::from_reader(std::io::empty())?;

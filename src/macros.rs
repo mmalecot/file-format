@@ -39,7 +39,7 @@ macro_rules! formats {
             ///
             /// # Examples
             ///
-            /// ```rust
+            /// ```
             /// use file_format::FileFormat;
             ///
             /// let format = FileFormat::Mpeg12AudioLayer3;
@@ -57,7 +57,7 @@ macro_rules! formats {
             ///
             /// # Examples
             ///
-            /// ```rust
+            /// ```
             /// use file_format::FileFormat;
             ///
             /// let format = FileFormat::MusicalInstrumentDigitalInterface;
@@ -78,7 +78,7 @@ macro_rules! formats {
             ///
             /// # Examples
             ///
-            /// ```rust
+            /// ```
             /// use file_format::FileFormat;
             ///
             /// let format = FileFormat::Zstandard;
@@ -96,7 +96,7 @@ macro_rules! formats {
             ///
             /// # Examples
             ///
-            /// ```rust
+            /// ```
             /// use file_format::FileFormat;
             ///
             /// let format = FileFormat::WindowsMediaVideo;
@@ -114,7 +114,7 @@ macro_rules! formats {
             ///
             /// # Examples
             ///
-            /// ```rust
+            /// ```
             /// use file_format::{FileFormat, Kind};
             ///
             /// let format = FileFormat::Zip;
