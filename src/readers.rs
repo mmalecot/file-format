@@ -578,9 +578,7 @@ impl crate::FileFormat {
                     _ => {}
                 },
                 _ => {
-                    if file.name().starts_with("FusionAssetName[Active]/") {
-                        return Ok(Self::Fusion360);
-                    } else if file.name().starts_with("Fusion[Active]/") {
+                    if file.name().starts_with("Fusion[Active]/") {
                         return Ok(Self::Autodesk123d);
                     } else if file.name().starts_with("circuitdiagram/") {
                         return Ok(Self::CircuitDiagramDocument);
@@ -588,12 +586,10 @@ impl crate::FileFormat {
                         return Ok(Self::DesignWebFormatXps);
                     } else if file.name().ends_with(".fb2") && !file.name().contains('/') {
                         return Ok(Self::FictionbookZipped);
-                    } else if (file.name().ends_with(".usd")
-                        || file.name().ends_with(".usda")
-                        || file.name().ends_with(".usdc"))
-                        && !file.name().contains('/')
-                    {
-                        return Ok(Self::UniversalSceneDescriptionZipped);
+                    } else if file.name().starts_with("FusionAssetName[Active]/") {
+                        return Ok(Self::Fusion360);
+                    } else if file.name().starts_with("Payload/") && file.name().contains(".app/") {
+                        return Ok(Self::IosAppStorePackage);
                     } else if file.name().starts_with("word/") {
                         return Ok(Self::OfficeOpenXmlDocument);
                     } else if file.name().starts_with("visio/") {
@@ -606,8 +602,12 @@ impl crate::FileFormat {
                         return Ok(Self::SpaceclaimDocument);
                     } else if file.name().starts_with("3D/") && file.name().ends_with(".model") {
                         return Ok(Self::ThreeDimensionalManufacturingFormat);
-                    } else if file.name().starts_with("Payload/") && file.name().contains(".app/") {
-                        return Ok(Self::IosAppStorePackage);
+                    } else if (file.name().ends_with(".usd")
+                        || file.name().ends_with(".usda")
+                        || file.name().ends_with(".usdc"))
+                        && !file.name().contains('/')
+                    {
+                        return Ok(Self::UniversalSceneDescriptionZipped);
                     }
                 }
             }
