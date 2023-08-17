@@ -466,12 +466,12 @@ impl crate::FileFormat {
                 return Ok(Self::ScalableVectorGraphics);
             } else if contains(&buffer, b"<soap") {
                 return Ok(Self::SimpleObjectAccessProtocol);
-            } else if contains(&buffer, b"<tt xmlns=\"http://www.w3.org/ns/ttml\"") {
-                return Ok(Self::TimedTextMarkupLanguage);
             } else if contains(&buffer, b"<map") {
                 return Ok(Self::TiledMapXml);
             } else if contains(&buffer, b"<tileset") {
                 return Ok(Self::TiledTilesetXml);
+            } else if contains(&buffer, b"<tt xmlns=\"http://www.w3.org/ns/ttml\"") {
+                return Ok(Self::TimedTextMarkupLanguage);
             } else if contains(&buffer, b"<TrainingCenterDatabase") {
                 return Ok(Self::TrainingCenterXml);
             } else if contains(&buffer, b"<USFSubtitles") {
