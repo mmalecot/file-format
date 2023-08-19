@@ -13,7 +13,7 @@ signature, it returns the default file format which is
 
 Determines from a file:
 
-```rust
+```no_run
 use file_format::{FileFormat, Kind};
 
 let format = FileFormat::from_file("fixtures/document/sample.pdf")?;
@@ -28,7 +28,7 @@ assert_eq!(format.kind(), Kind::Document);
 
 Determines from bytes:
 
-```rust
+```
 use file_format::{FileFormat, Kind};
 
 let format = FileFormat::from_bytes(&[0xFF, 0xD8, 0xFF]);
@@ -62,6 +62,11 @@ detected.
 - `reader-cfb` - Enables [Compound File Binary (CFB)](`FileFormat::CompoundFileBinary`) based file
   formats detection.
   * [3D Studio Max (MAX)](`FileFormat::ThreeDimensionalStudioMax`)
+  * [Autodesk 123D (123DX)](`FileFormat::Autodesk123d`)
+  * [Autodesk Inventor Assembly (IAM)](`FileFormat::AutodeskInventorAssembly`)
+  * [Autodesk Inventor Drawing (IDW)](`FileFormat::AutodeskInventorDrawing`)
+  * [Autodesk Inventor Part (IPT)](`FileFormat::AutodeskInventorPart`)
+  * [Autodesk Inventor Presentation (IPN)](`FileFormat::AutodeskInventorPresentation`)
   * [Microsoft Excel Spreadsheet (XLS)](`FileFormat::MicrosoftExcelSpreadsheet`)
   * [Microsoft PowerPoint Presentation (PPT)](`FileFormat::MicrosoftPowerpointPresentation`)
   * [Microsoft Project Plan (MPP)](`FileFormat::MicrosoftProjectPlan`)
@@ -69,6 +74,9 @@ detected.
   * [Microsoft Software Installer (MSI)](`FileFormat::MicrosoftSoftwareInstaller`)
   * [Microsoft Visio Drawing (VSD)](`FileFormat::MicrosoftVisioDrawing`)
   * [Microsoft Word Document (DOC)](`FileFormat::MicrosoftWordDocument`)
+  * [SolidWorks Assembly (SLDASM)](`FileFormat::SolidworksAssembly`)
+  * [SolidWorks Drawing (SLDDRW)](`FileFormat::SolidworksDrawing`)
+  * [SolidWorks Part (SLDPRT)](`FileFormat::SolidworksPart`)
   * [StarCalc (SDC)](`FileFormat::Starcalc`)
   * [StarChart (SDS)](`FileFormat::Starchart`)
   * [StarDraw (SDA)](`FileFormat::Stardraw`)
@@ -135,6 +143,7 @@ detected.
   * [Electronic Publication (EPUB)](`FileFormat::ElectronicPublication`)
   * [Enterprise Application Archive (EAR)](`FileFormat::EnterpriseApplicationArchive`)
   * [FictionBook Zipped (FBZ)](`FileFormat::FictionbookZipped`)
+  * [Fusion 360 (F3D)](`FileFormat::Fusion360`)
   * [InDesign Markup Language (IDML)](`FileFormat::IndesignMarkupLanguage`)
   * [Java Archive (JAR)](`FileFormat::JavaArchive`)
   * [Keyhole Markup Language Zipped (KMZ)](`FileFormat::KeyholeMarkupLanguageZipped`)
@@ -169,6 +178,7 @@ detected.
   * [Sun XML Writer (SXW)](`FileFormat::SunXmlWriter`)
   * [Sun XML Writer Global (SGW)](`FileFormat::SunXmlWriterGlobal`)
   * [Sun XML Writer Template (STW)](`FileFormat::SunXmlWriterTemplate`)
+  * [Universal Scene Description Zipped (USDZ)](`FileFormat::UniversalSceneDescriptionZipped`)
   * [Web Application Archive (WAR)](`FileFormat::WebApplicationArchive`)
   * [Windows App Package (APPX)](`FileFormat::WindowsAppPackage`)
   * [XAP](`FileFormat::Xap`)
@@ -202,7 +212,7 @@ impl FileFormat {
     /// Detects from the first bytes of a
     /// [Portable Network Graphics (PNG)](`FileFormat::PortableNetworkGraphics`) file:
     ///
-    /// ```rust
+    /// ```
     /// use file_format::FileFormat;
     ///
     /// let format = FileFormat::from_bytes(b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A");
@@ -211,7 +221,7 @@ impl FileFormat {
     ///
     /// Detects from a zeroed buffer:
     ///
-    /// ```rust
+    /// ```
     /// use file_format::FileFormat;
     ///
     /// let format = FileFormat::from_bytes(&[0; 1000]);
@@ -228,7 +238,7 @@ impl FileFormat {
     ///
     /// # Examples
     ///
-    /// ```rust
+    /// ```no_run
     /// use file_format::FileFormat;
     ///
     /// let format = FileFormat::from_file("fixtures/video/sample.avi")?;
@@ -244,7 +254,7 @@ impl FileFormat {
     ///
     /// # Examples
     ///
-    /// ```rust
+    /// ```
     /// use file_format::FileFormat;
     ///
     /// let format = FileFormat::from_reader(std::io::empty())?;
@@ -310,6 +320,8 @@ pub enum Kind {
     Certificate,
     /// Compressed single files or streams.
     Compression,
+    /// Organized collections of data.
+    Database,
     /// Floppy disk images, optical disc images and virtual machine disks.
     Disk,
     /// Word processing documents, spreadsheets, presentations, documents templates, diagrams,

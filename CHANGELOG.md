@@ -1,3 +1,37 @@
+# Version 0.19.0 (2023-08-19)
+
+## API
+
+- Add `Database` kind
+- Drop Stereolithography Binary (STL) support
+
+## Improvements
+
+- Detect FictionBook Zipped (FBZ) only with files in the root of the archive
+
+## New formats support
+
+- Autodesk 123D (123DX)
+- Autodesk Alias (WIRE)
+- Autodesk Inventor Assembly (IAM)
+- Autodesk Inventor Drawing (IDW)
+- Autodesk Inventor Part (IPT)
+- Autodesk Inventor Presentation (IPN)
+- CD Audio (CDA)
+- Cinema 4D (C4D)
+- Fusion 360 (F3D)
+- Initial Graphics Exchange Specification (IGES)
+- Microsoft Reader (LIT)
+- SolidWorks Assembly (SLDASM)
+- SolidWorks Drawing (SLDDRW)
+- SolidWorks Part (SLDPRT)
+- Standard for the Exchange of Product model data (STEP)
+- Universal Scene Description ASCII (USDA)
+- Universal Scene Description Binary (USDC)
+- Universal Scene Description Zipped (USDZ)
+- Virtual Reality Modeling Language (VRML)
+- Windows Media Playlist (WPL)
+
 # Version 0.18.0 (2023-07-14)
 
 ## API

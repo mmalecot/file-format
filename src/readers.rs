@@ -97,6 +97,10 @@ impl crate::FileFormat {
 
         // Reads the CLSID from the root entry and returns the corresponding variant.
         Ok(match file.root_entry().clsid().to_string().as_str() {
+            "e60f81e1-49b3-11d0-93c3-7e0706000000" => Self::AutodeskInventorAssembly,
+            "bbf9fdf1-52dc-11d0-8c04-0800090be8ec" => Self::AutodeskInventorDrawing,
+            "4d29b490-49b2-11d0-93c3-7e0706000000" => Self::AutodeskInventorPart,
+            "76283a80-50dd-11d3-a7e3-00c04f79d7bc" => Self::AutodeskInventorPresentation,
             "00020810-0000-0000-c000-000000000046" => Self::MicrosoftExcelSpreadsheet,
             "00020820-0000-0000-c000-000000000046" => Self::MicrosoftExcelSpreadsheet,
             "00044851-0000-0000-c000-000000000046" => Self::MicrosoftPowerpointPresentation,
@@ -109,6 +113,9 @@ impl crate::FileFormat {
             "00021a14-0000-0000-c000-000000000046" => Self::MicrosoftVisioDrawing,
             "00020900-0000-0000-c000-000000000046" => Self::MicrosoftWordDocument,
             "00020906-0000-0000-c000-000000000046" => Self::MicrosoftWordDocument,
+            "83a33d36-27c5-11ce-bfd4-00400513bb57" => Self::SolidworksAssembly,
+            "83a33d34-27c5-11ce-bfd4-00400513bb57" => Self::SolidworksDrawing,
+            "83a33d30-27c5-11ce-bfd4-00400513bb57" => Self::SolidworksPart,
             "3f543fa0-b6a6-101b-9961-04021c007002" => Self::Starcalc,
             "6361d441-4235-11d0-89cb-008029e4b0b1" => Self::Starcalc,
             "c6a5b861-85d6-11d1-89cb-008029e4b0b1" => Self::Starcalc,
@@ -459,12 +466,12 @@ impl crate::FileFormat {
                 return Ok(Self::ScalableVectorGraphics);
             } else if contains(&buffer, b"<soap") {
                 return Ok(Self::SimpleObjectAccessProtocol);
-            } else if contains(&buffer, b"<tt xmlns=\"http://www.w3.org/ns/ttml\"") {
-                return Ok(Self::TimedTextMarkupLanguage);
             } else if contains(&buffer, b"<map") {
                 return Ok(Self::TiledMapXml);
             } else if contains(&buffer, b"<tileset") {
                 return Ok(Self::TiledTilesetXml);
+            } else if contains(&buffer, b"<tt xmlns=\"http://www.w3.org/ns/ttml\"") {
+                return Ok(Self::TimedTextMarkupLanguage);
             } else if contains(&buffer, b"<TrainingCenterDatabase") {
                 return Ok(Self::TrainingCenterXml);
             } else if contains(&buffer, b"<USFSubtitles") {
@@ -571,12 +578,18 @@ impl crate::FileFormat {
                     _ => {}
                 },
                 _ => {
-                    if file.name().starts_with("circuitdiagram/") {
+                    if file.name().starts_with("Fusion[Active]/") {
+                        return Ok(Self::Autodesk123d);
+                    } else if file.name().starts_with("circuitdiagram/") {
                         return Ok(Self::CircuitDiagramDocument);
                     } else if file.name().starts_with("dwf/") {
                         return Ok(Self::DesignWebFormatXps);
-                    } else if file.name().ends_with(".fb2") {
+                    } else if file.name().ends_with(".fb2") && !file.name().contains('/') {
                         return Ok(Self::FictionbookZipped);
+                    } else if file.name().starts_with("FusionAssetName[Active]/") {
+                        return Ok(Self::Fusion360);
+                    } else if file.name().starts_with("Payload/") && file.name().contains(".app/") {
+                        return Ok(Self::IosAppStorePackage);
                     } else if file.name().starts_with("word/") {
                         return Ok(Self::OfficeOpenXmlDocument);
                     } else if file.name().starts_with("visio/") {
@@ -589,8 +602,12 @@ impl crate::FileFormat {
                         return Ok(Self::SpaceclaimDocument);
                     } else if file.name().starts_with("3D/") && file.name().ends_with(".model") {
                         return Ok(Self::ThreeDimensionalManufacturingFormat);
-                    } else if file.name().starts_with("Payload/") && file.name().contains(".app/") {
-                        return Ok(Self::IosAppStorePackage);
+                    } else if (file.name().ends_with(".usd")
+                        || file.name().ends_with(".usda")
+                        || file.name().ends_with(".usdc"))
+                        && !file.name().contains('/')
+                    {
+                        return Ok(Self::UniversalSceneDescriptionZipped);
                     }
                 }
             }

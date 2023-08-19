@@ -50,7 +50,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.18"
+file-format = "0.19"
 ```
 
 ## Supported file formats
@@ -65,6 +65,7 @@ file-format = "0.18"
 - Apache Parquet (Parquet)
 - Arbitrary Binary Data (BIN)
 - BitTorrent File (Torrent)
+- CD Audio (CDA)
 - Compound File Binary (CFB)
 - Digital Imaging and Communications in Medicine (DICOM)
 - Encapsulated PostScript (EPS)
@@ -75,14 +76,11 @@ file-format = "0.18"
 - Java KeyStore (JKS)
 - Mathematical Markup Language (MathML)
 - Meta Information Encapsulation (MIE)
-- Microsoft Access 2007 Database (ACCDB)
-- Microsoft Access Database (MDB)
 - Microsoft Compiled HTML Help (CHM)
 - Microsoft Visual Studio Solution (SLN)
 - MusicXML
 - MusicXML Zipped (MXL)
 - Ogg Multiplexed Media (OGX)
-- OpenDocument Database (ODB)
 - PCAP Dump (PCAP)
 - PCAP Next Generation Dump (PCAPNG)
 - PEM Certificate Signing Request (PEM)
@@ -96,7 +94,6 @@ file-format = "0.18"
 - Personal Storage Table (PST)
 - PostScript (PS)
 - RealMedia (RM)
-- SQLite 3
 - Simple Object Access Protocol (SOAP)
 - Small Web Format (SWF)
 - TASTy
@@ -177,6 +174,7 @@ file-format = "0.18"
 - Electronic Publication (EPUB)
 - FictionBook (FB2)
 - FictionBook Zipped (FBZ)
+- Microsoft Reader (LIT)
 - Mobipocket (MOBI)
 
 ### Certificate
@@ -201,6 +199,13 @@ file-format = "0.18"
 - lzip (LZ)
 - lzop (LZO)
 - rzip (RZ)
+
+### Database
+
+- Microsoft Access 2007 Database (ACCDB)
+- Microsoft Access Database (MDB)
+- OpenDocument Database (ODB)
+- SQLite 3
 
 ### Disk
 
@@ -374,7 +379,14 @@ file-format = "0.18"
 - 3D Studio Max (MAX)
 - Additive Manufacturing Format (AMF)
 - AutoCAD Drawing (DWG)
+- Autodesk 123D (123DX)
+- Autodesk Alias (WIRE)
+- Autodesk Inventor Assembly (IAM)
+- Autodesk Inventor Drawing (IDW)
+- Autodesk Inventor Part (IPT)
+- Autodesk Inventor Presentation (IPN)
 - Blender (BLEND)
+- Cinema 4D (C4D)
 - Design Web Format (DWF)
 - Design Web Format XPS (DWFX)
 - Digital Asset Exchange (DAE)
@@ -382,8 +394,10 @@ file-format = "0.18"
 - Drawing Exchange Format Binary (DXF)
 - Extensible 3D (X3D)
 - Filmbox (FBX)
+- Fusion 360 (F3D)
 - GL Transmission Format Binary (GLB)
 - Google Draco (Draco)
+- Initial Graphics Exchange Specification (IGES)
 - Inter-Quake Export (IQE)
 - Inter-Quake Model (IQM)
 - MagicaVoxel (VOX)
@@ -394,10 +408,17 @@ file-format = "0.18"
 - Polygon ASCII (PLY)
 - Polygon Binary (PLY)
 - SketchUp (SKP)
+- SolidWorks Assembly (SLDASM)
+- SolidWorks Drawing (SLDDRW)
+- SolidWorks Part (SLDPRT)
 - SpaceClaim Document (SCDOC)
+- Standard for the Exchange of Product model data (STEP)
 - Stereolithography ASCII (STL)
-- Stereolithography Binary (STL)
 - Universal 3D (U3D)
+- Universal Scene Description ASCII (USDA)
+- Universal Scene Description Binary (USDC)
+- Universal Scene Description Zipped (USDZ)
+- Virtual Reality Modeling Language (VRML)
 - openNURBS (3DM)
 
 ### Package
@@ -423,6 +444,7 @@ file-format = "0.18"
 - Advanced Stream Redirector (ASX)
 - MP3 URL (M3U)
 - SHOUTcast Playlist (PLS)
+- Windows Media Playlist (WPL)
 - XML Shareable Playlist Format (XSPF)
 
 ### ROM

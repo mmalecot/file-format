@@ -34,6 +34,12 @@ fn test_fictionbook_zipped() {
 }
 
 #[test]
+fn test_microsoft_reader() {
+    let fmt = FileFormat::from_file("fixtures/book/sample.lit").unwrap();
+    assert_eq!(fmt, FileFormat::MicrosoftReader);
+}
+
+#[test]
 fn test_mobipocket() {
     let fmt = FileFormat::from_file("fixtures/book/sample.mobi").unwrap();
     assert_eq!(fmt, FileFormat::Mobipocket);

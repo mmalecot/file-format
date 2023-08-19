@@ -65,6 +65,11 @@ signatures! {
     value = b"-----BEGIN PGP SIGNED MESSAGE-----"
 
     // 32 bytes
+    format = MicrosoftReader
+    value =
+        b"ITOLITLS\x01\x00\x00\x00\x28\x00\x00\x00",
+        b"\xC1\x07\x90\x0A\x76\x40\xD3\x11\x87\x89\x00\x00\xF8\x10\x57\x54" offset = 0x18
+
     format = PemPublicKey
     value = b"-----BEGIN ECDSA PUBLIC KEY-----"
     value = b"-----BEGIN DSA PUBLIC KEY-----"
@@ -109,16 +114,6 @@ signatures! {
 
     format = PgpMessage
     value = b"-----BEGIN PGP MESSAGE-----"
-
-    format = StereolithographyBinary
-    value = b"3D Systems, Binary STL file"
-    value = b"Materialise Coloured STL"
-    value = b"Exported from Blender", b"\x00" offset = 79
-    value = b"STL binary file"
-    value = b"binary stl file"
-    value = b"Stratasys stl"
-    value = b"SketchUp STL"
-    value = b"STL File"
 
     // 26 bytes
     format = TrainingCenterXml
@@ -207,6 +202,9 @@ signatures! {
     value = b"#!/bin/ksh"
     value = b"#!/bin/sh"
 
+    format = WindowsMediaPlaylist
+    value = b"<?wpl version=\"1.0\"?>"
+
     // 20 bytes
     format = InterQuakeExport
     value = b"# Inter-Quake Export"
@@ -233,6 +231,9 @@ signatures! {
     value = b"<score-partwise"
 
     // 17 bytes
+    format = AutodeskAlias
+    value = b"\x8FStudioPacketFile"
+
     format = EncapsulatedPostscript
     value = b"%!PS-Adobe-", b" EPSF-" offset = 14
     value = b"\xC5\xD0\xD3\xC6"
@@ -280,6 +281,10 @@ signatures! {
     value = b"\xEF\xBB\xBF<USFSubtitles"
     value = b"<USFSubtitles"
 
+    format = VirtualRealityModelingLanguage
+    value = b"#VRML V1.0 ascii"
+    value = b"#VRML V2.0 utf8"
+
     format = WindowsRecordedTvShow
     value = b"\xB7\xD8\x00\x20\x37\x49\xDA\x11\xA6\x4E\x00\x07\xE9\x5E\xAD\x8D"
 
@@ -321,9 +326,16 @@ signatures! {
     format = WordperfectGraphics
     value = b"\xFFWPC\x10\x00\x00\x00\x01\x16\x01\x00", b"\x00\x00" offset = 14
 
+    // 13 bytes
+    format = StandardForTheExchangeOfProductModelData
+    value = b"ISO-10303-21;"
+
     // 12 bytes
     format = AnimatedPortableNetworkGraphics
     value = b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A", b"acTL" offset = 0x25
+
+    format = CdAudio
+    value = b"RIFF", b"CDDAfmt " offset = 0x08
 
     format = Djvu
     value = b"AT&TFORM", b"DJVM" offset = 12
@@ -403,6 +415,14 @@ signatures! {
     value = b"\xEF\xBB\xBF<mxfile"
     value = b"<mxfile"
 
+    format = InitialGraphicsExchangeSpecification
+    value = b"S      1\r\n" offset = 72
+    value = b"S0000001\r\n" offset = 72
+    value = b"S      1\r" offset = 72
+    value = b"S0000001\r" offset = 72
+    value = b"S      1\n" offset = 72
+    value = b"S0000001\n" offset = 72
+
     format = OggMedia
     value = b"OggS", b"\x01\x76\x69\x64\x65\x6F" offset = 28
 
@@ -464,6 +484,9 @@ signatures! {
     value = b"\xEF\xBB\xBF1\n00:"
     value = b"1\r\n00:"
     value = b"1\n00:"
+
+    format = UniversalSceneDescriptionAscii
+    value = b"#usda 1.0"
 
     format = WebVideoTextTracks
     value = b"\xEF\xBB\xBFWEBVTT"
@@ -642,6 +665,9 @@ signatures! {
     value = b"\x75\x73\x74\x61\x72\x00\x30\x30" offset = 257
     value = b"\x75\x73\x74\x61\x72\x20\x20\x00" offset = 257
 
+    format = UniversalSceneDescriptionBinary
+    value = b"PXR-USDC"
+
     format = WaveformAudio
     value = b"RIFF", b"WAVE" offset = 8
 
@@ -702,6 +728,9 @@ signatures! {
 
     format = CanonRaw3
     value = b"ftypcrx" offset = 4
+
+    format = Cinema4d
+    value = b"C4DC4D6" offset = 1
 
     format = ExtensibleStylesheetLanguageTransformations
     value = b"\xEF\xBB\xBF<xsl"

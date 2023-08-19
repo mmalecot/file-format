@@ -299,6 +299,20 @@ formats! {
     extension = "dwg"
     kind = Model
 
+    format = Autodesk123d
+    name = "Autodesk 123D"
+    short_name = "123DX"
+    media_type = "model/x-123dx"
+    extension = "123dx"
+    kind = Model
+
+    format = AutodeskAlias
+    name = "Autodesk Alias"
+    short_name = "WIRE"
+    media_type = "model/x-wire"
+    extension = "wire"
+    kind = Model
+
     format = AutodeskAnimator
     name = "Autodesk Animator"
     short_name = "FLI"
@@ -312,6 +326,34 @@ formats! {
     media_type = "video/x-flc"
     extension = "flc"
     kind = Video
+
+    format = AutodeskInventorAssembly
+    name = "Autodesk Inventor Assembly"
+    short_name = "IAM"
+    media_type = "model/x-iam"
+    extension = "iam"
+    kind = Model
+
+    format = AutodeskInventorDrawing
+    name = "Autodesk Inventor Drawing"
+    short_name = "IDW"
+    media_type = "model/x-idw"
+    extension = "idw"
+    kind = Model
+
+    format = AutodeskInventorPart
+    name = "Autodesk Inventor Part"
+    short_name = "IPT"
+    media_type = "model/x-ipt"
+    extension = "ipt"
+    kind = Model
+
+    format = AutodeskInventorPresentation
+    name = "Autodesk Inventor Presentation"
+    short_name = "IPN"
+    media_type = "model/x-ipn"
+    extension = "ipn"
+    kind = Model
 
     format = Av1ImageFileFormat
     name = "AV1 Image File Format"
@@ -424,6 +466,20 @@ formats! {
     media_type = "image/x-canon-cr3"
     extension = "cr3"
     kind = Image
+
+    format = CdAudio
+    name = "CD Audio"
+    short_name = "CDA"
+    media_type = "application/x-cdf"
+    extension = "cda"
+    kind = Application
+
+    format = Cinema4d
+    name = "Cinema 4D"
+    short_name = "C4D"
+    media_type = "model/x-c4d"
+    extension = "c4d"
+    kind = Model
 
     format = Cineon
     name = "Cineon"
@@ -716,6 +772,13 @@ formats! {
     extension = "raf"
     kind = Image
 
+    format = Fusion360
+    name = "Fusion 360"
+    short_name = "F3D"
+    media_type = "model/x-f3d"
+    extension = "f3d"
+    kind = Model
+
     format = GameBoyAdvanceRom
     name = "Game Boy Advance ROM"
     short_name = "GBA"
@@ -869,6 +932,13 @@ formats! {
     media_type = "application/vnd.adobe.indesign-idml-package"
     extension = "idml"
     kind = Document
+
+    format = InitialGraphicsExchangeSpecification
+    name = "Initial Graphics Exchange Specification"
+    short_name = "IGES"
+    media_type = "model/iges"
+    extension = "iges"
+    kind = Model
 
     format = InterQuakeExport
     name = "Inter-Quake Export"
@@ -1203,14 +1273,14 @@ formats! {
     short_name = "ACCDB"
     media_type = "application/x-msaccess"
     extension = "accdb"
-    kind = Application
+    kind = Database
 
     format = MicrosoftAccessDatabase
     name = "Microsoft Access Database"
     short_name = "MDB"
     media_type = "application/x-msaccess"
     extension = "mdb"
-    kind = Application
+    kind = Database
 
     format = MicrosoftCompiledHtmlHelp
     name = "Microsoft Compiled HTML Help"
@@ -1260,6 +1330,13 @@ formats! {
     media_type = "application/vnd.ms-publisher"
     extension = "pub"
     kind = Document
+
+    format = MicrosoftReader
+    name = "Microsoft Reader"
+    short_name = "LIT"
+    media_type = "application/x-ms-reader"
+    extension = "lit"
+    kind = Book
 
     format = MicrosoftSoftwareInstaller
     name = "Microsoft Software Installer"
@@ -1593,7 +1670,7 @@ formats! {
     short_name = "ODB"
     media_type = "application/vnd.oasis.opendocument.database"
     extension = "odb"
-    kind = Application
+    kind = Database
 
     format = OpendocumentFormula
     name = "OpenDocument Formula"
@@ -2094,6 +2171,27 @@ formats! {
     extension = "sz"
     kind = Compression
 
+    format = SolidworksAssembly
+    name = "SolidWorks Assembly"
+    short_name = "SLDASM"
+    media_type = "model/x-sldasm"
+    extension = "sldasm"
+    kind = Model
+
+    format = SolidworksDrawing
+    name = "SolidWorks Drawing"
+    short_name = "SLDDRW"
+    media_type = "model/x-slddrw"
+    extension = "slddrw"
+    kind = Model
+
+    format = SolidworksPart
+    name = "SolidWorks Part"
+    short_name = "SLDPRT"
+    media_type = "model/x-sldprt"
+    extension = "sldprt"
+    kind = Model
+
     format = SonyDsdStreamFile
     name = "Sony DSD Stream File"
     short_name = "DSF"
@@ -2126,13 +2224,20 @@ formats! {
     name = "SQLite 3"
     media_type = "application/vnd.sqlite3"
     extension = "sqlite"
-    kind = Application
+    kind = Database
 
     format = Squashfs
     name = "Squashfs"
     media_type = "application/x-squashfs"
     extension = "squashfs"
     kind = Archive
+
+    format = StandardForTheExchangeOfProductModelData
+    name = "Standard for the Exchange of Product model data"
+    short_name = "STEP"
+    media_type = "model/step"
+    extension = "step"
+    kind = Model
 
     format = Starcalc
     name = "StarCalc"
@@ -2180,13 +2285,6 @@ formats! {
     name = "Stereolithography ASCII"
     short_name = "STL"
     media_type = "model/x-stl-ascii"
-    extension = "stl"
-    kind = Model
-
-    format = StereolithographyBinary
-    name = "Stereolithography Binary"
-    short_name = "STL"
-    media_type = "model/x-stl-binary"
     extension = "stl"
     kind = Model
 
@@ -2392,6 +2490,27 @@ formats! {
     extension = "u3d"
     kind = Model
 
+    format = UniversalSceneDescriptionAscii
+    name = "Universal Scene Description ASCII"
+    short_name = "USDA"
+    media_type = "model/x-usd"
+    extension = "usda"
+    kind = Model
+
+    format = UniversalSceneDescriptionBinary
+    name = "Universal Scene Description Binary"
+    short_name = "USDC"
+    media_type = "model/x-usd"
+    extension = "usdc"
+    kind = Model
+
+    format = UniversalSceneDescriptionZipped
+    name = "Universal Scene Description Zipped"
+    short_name = "USDZ"
+    media_type = "model/vnd.usdz+zip"
+    extension = "usdz"
+    kind = Model
+
     format = UniversalSubtitleFormat
     name = "Universal Subtitle Format"
     short_name = "USF"
@@ -2433,6 +2552,13 @@ formats! {
     media_type = "application/x-vmdk"
     extension = "vmdk"
     kind = Disk
+
+    format = VirtualRealityModelingLanguage
+    name = "Virtual Reality Modeling Language"
+    short_name = "VRML"
+    media_type = "model/vrml"
+    extension = "wrl"
+    kind = Model
 
     format = VirtualboxVirtualDiskImage
     name = "VirtualBox Virtual Disk Image"
@@ -2557,6 +2683,13 @@ formats! {
     media_type = "audio/x-ms-wma"
     extension = "wma"
     kind = Audio
+
+    format = WindowsMediaPlaylist
+    name = "Windows Media Playlist"
+    short_name = "WPL"
+    media_type = "application/vnd.ms-wpl"
+    extension = "wpl"
+    kind = Playlist
 
     format = WindowsMediaVideo
     name = "Windows Media Video"

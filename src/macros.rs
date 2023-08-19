@@ -39,7 +39,7 @@ macro_rules! formats {
             ///
             /// # Examples
             ///
-            /// ```rust
+            /// ```
             /// use file_format::FileFormat;
             ///
             /// let format = FileFormat::Mpeg12AudioLayer3;
@@ -57,7 +57,7 @@ macro_rules! formats {
             ///
             /// # Examples
             ///
-            /// ```rust
+            /// ```
             /// use file_format::FileFormat;
             ///
             /// let format = FileFormat::MusicalInstrumentDigitalInterface;
@@ -78,7 +78,7 @@ macro_rules! formats {
             ///
             /// # Examples
             ///
-            /// ```rust
+            /// ```
             /// use file_format::FileFormat;
             ///
             /// let format = FileFormat::Zstandard;
@@ -96,7 +96,7 @@ macro_rules! formats {
             ///
             /// # Examples
             ///
-            /// ```rust
+            /// ```
             /// use file_format::FileFormat;
             ///
             /// let format = FileFormat::WindowsMediaVideo;
@@ -114,7 +114,7 @@ macro_rules! formats {
             ///
             /// # Examples
             ///
-            /// ```rust
+            /// ```
             /// use file_format::{FileFormat, Kind};
             ///
             /// let format = FileFormat::Zip;
@@ -147,6 +147,7 @@ macro_rules! signatures {
     } => {
         impl crate::FileFormat {
             /// Determines file format by checking its signature.
+            #[allow(clippy::int_plus_one)]
             pub(crate) fn from_signature(bytes: &[u8]) -> Option<Self> {
                 $(
                     if $($(bytes.len() >= $($offset +)? $value.len()
