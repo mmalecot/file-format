@@ -480,6 +480,8 @@ impl crate::FileFormat {
                 return Ok(Self::XmlLocalizationInterchangeFileFormat);
             } else if contains(&buffer, b"<playlist") {
                 return Ok(Self::XmlShareablePlaylistFormat);
+            } else if contains(&buffer, b"<MPD") {
+                return Ok(Self::DashPlaylist);
             }
         }
         Ok(Self::ExtensibleMarkupLanguage)

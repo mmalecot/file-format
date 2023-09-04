@@ -535,6 +535,13 @@ formats! {
     extension = "dex"
     kind = Executable
 
+    format = DashPlaylist
+    name = "MPEG-DASH manifest"
+    short_name= "DASH"
+    media_type = "application/dash+xml"
+    extension = "dash"
+    kind = Playlist
+
     format = DebianBinaryPackage
     name = "Debian Binary Package"
     short_name = "DEB"
