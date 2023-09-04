@@ -470,7 +470,8 @@ impl crate::FileFormat {
                 return Ok(Self::TiledMapXml);
             } else if contains(&buffer, b"<tileset") {
                 return Ok(Self::TiledTilesetXml);
-            } else if contains(&buffer, b"<tt xmlns=\"http://www.w3.org/ns/ttml\"") {
+            } else if contains(&buffer, b"<tt") &&
+                contains(&buffer, b"xmlns=\"http://www.w3.org/ns/ttml\"") {
                 return Ok(Self::TimedTextMarkupLanguage);
             } else if contains(&buffer, b"<TrainingCenterDatabase") {
                 return Ok(Self::TrainingCenterXml);
