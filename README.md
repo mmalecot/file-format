@@ -67,6 +67,7 @@ file-format = "0.19"
 - BitTorrent File (Torrent)
 - CD Audio (CDA)
 - Compound File Binary (CFB)
+- DASH playlist
 - Digital Imaging and Communications in Medicine (DICOM)
 - Encapsulated PostScript (EPS)
 - Extensible Binary Meta Language (EBML)
@@ -442,6 +443,7 @@ file-format = "0.19"
 ### Playlist
 
 - Advanced Stream Redirector (ASX)
+- MPEG DASH manifest (DASH)
 - MP3 URL (M3U)
 - SHOUTcast Playlist (PLS)
 - Windows Media Playlist (WPL)
