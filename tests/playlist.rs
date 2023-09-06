@@ -14,6 +14,12 @@ fn test_advanced_stream_redirector_2() {
 }
 
 #[test]
+fn test_mp3_url() {
+    let fmt = FileFormat::from_file("fixtures/playlist/sample.m3u").unwrap();
+    assert_eq!(fmt, FileFormat::Mp3Url);
+}
+
+#[test]
 fn test_mpeg_dash_manifest_1() {
     let fmt = FileFormat::from_file("fixtures/playlist/sample1.mpd").unwrap();
     assert_eq!(fmt, FileFormat::MpegDashManifest);
@@ -24,12 +30,6 @@ fn test_mpeg_dash_manifest_1() {
 fn test_mpeg_dash_manifest_2() {
     let fmt = FileFormat::from_file("fixtures/playlist/sample2.mpd").unwrap();
     assert_eq!(fmt, FileFormat::MpegDashManifest);
-}
-
-#[test]
-fn test_mp3_url() {
-    let fmt = FileFormat::from_file("fixtures/playlist/sample.m3u").unwrap();
-    assert_eq!(fmt, FileFormat::Mp3Url);
 }
 
 #[test]
