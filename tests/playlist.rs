@@ -13,10 +13,16 @@ fn test_advanced_stream_redirector_2() {
     assert_eq!(fmt, FileFormat::AdvancedStreamRedirector);
 }
 
+#[test]
+fn test_mpeg_dash_manifest_1() {
+    let fmt = FileFormat::from_file("fixtures/playlist/sample1.mpd").unwrap();
+    assert_eq!(fmt, FileFormat::MpegDashManifest);
+}
+
 #[cfg(feature = "reader-xml")]
 #[test]
-fn test_mpeg_dash_manifest() {
-    let fmt = FileFormat::from_file("fixtures/playlist/sample.mpd").unwrap();
+fn test_mpeg_dash_manifest_2() {
+    let fmt = FileFormat::from_file("fixtures/playlist/sample2.mpd").unwrap();
     assert_eq!(fmt, FileFormat::MpegDashManifest);
 }
 

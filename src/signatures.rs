@@ -758,6 +758,10 @@ signatures! {
     format = Mp3Url
     value = b"#EXTM3U"
 
+    format = MpegDashManifest
+    value = b"\xEF\xBB\xBF<MPD"
+    value = b"<MPD"
+
     format = ReallySimpleSyndication
     value = b"\xEF\xBB\xBF<rss"
     value = b"<rss"
