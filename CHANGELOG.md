@@ -1,3 +1,13 @@
+# Version 0.20.0 (unreleased)
+
+## New formats support
+
+- MPEG-DASH manifest (MPD)
+
+## Improvements
+
+- Improve Timed Text Markup Language (TTML) detection
+
 # Version 0.19.0 (2023-08-19)
 
 ## API
