@@ -13,6 +13,13 @@ fn test_advanced_stream_redirector_2() {
     assert_eq!(fmt, FileFormat::AdvancedStreamRedirector);
 }
 
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_mpeg_dash_manifest() {
+    let fmt = FileFormat::from_file("fixtures/playlist/sample.mpd").unwrap();
+    assert_eq!(fmt, FileFormat::MpegDashManifest);
+}
+
 #[test]
 fn test_mp3_url() {
     let fmt = FileFormat::from_file("fixtures/playlist/sample.m3u").unwrap();

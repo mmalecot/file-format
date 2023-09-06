@@ -1464,6 +1464,13 @@ formats! {
     extension = "mp4"
     kind = Video
 
+    format = MpegDashManifest
+    name = "MPEG-DASH manifest"
+    short_name= "MPD"
+    media_type = "application/dash+xml"
+    extension = "mpd"
+    kind = Playlist
+
     format = MsDosBatch
     name = "MS-DOS Batch"
     short_name = "Batch"
