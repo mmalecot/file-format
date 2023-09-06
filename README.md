@@ -442,8 +442,8 @@ file-format = "0.19"
 ### Playlist
 
 - Advanced Stream Redirector (ASX)
-- MPEG-DASH manifest (MPD)
 - MP3 URL (M3U)
+- MPEG-DASH manifest (MPD)
 - SHOUTcast Playlist (PLS)
 - Windows Media Playlist (WPL)
 - XML Shareable Playlist Format (XSPF)
