@@ -15,9 +15,9 @@ fn test_advanced_stream_redirector_2() {
 
 #[cfg(feature = "reader-xml")]
 #[test]
-fn test_dash() {
-    let fmt = FileFormat::from_file("fixtures/playlist/sample.dash").unwrap();
-    assert_eq!(fmt, FileFormat::DashPlaylist);
+fn test_mpeg_dash_manifest() {
+    let fmt = FileFormat::from_file("fixtures/playlist/sample.mpd").unwrap();
+    assert_eq!(fmt, FileFormat::MpegDashManifest);
 }
 
 #[test]

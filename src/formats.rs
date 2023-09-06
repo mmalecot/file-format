@@ -535,13 +535,6 @@ formats! {
     extension = "dex"
     kind = Executable
 
-    format = DashPlaylist
-    name = "MPEG-DASH manifest"
-    short_name= "DASH"
-    media_type = "application/dash+xml"
-    extension = "dash"
-    kind = Playlist
-
     format = DebianBinaryPackage
     name = "Debian Binary Package"
     short_name = "DEB"
@@ -1470,6 +1463,13 @@ formats! {
     media_type = "video/mp4"
     extension = "mp4"
     kind = Video
+
+    format = MpegDashManifest
+    name = "MPEG-DASH manifest"
+    short_name= "MPD"
+    media_type = "application/dash+xml"
+    extension = "mpd"
+    kind = Playlist
 
     format = MsDosBatch
     name = "MS-DOS Batch"

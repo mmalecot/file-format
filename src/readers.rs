@@ -483,7 +483,7 @@ impl crate::FileFormat {
             } else if contains(&buffer, b"<playlist") {
                 return Ok(Self::XmlShareablePlaylistFormat);
             } else if contains(&buffer, b"<MPD") {
-                return Ok(Self::DashPlaylist);
+                return Ok(Self::MpegDashManifest);
             }
         }
         Ok(Self::ExtensibleMarkupLanguage)
