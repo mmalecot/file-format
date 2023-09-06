@@ -458,6 +458,8 @@ impl crate::FileFormat {
                 return Ok(Self::KeyholeMarkupLanguage);
             } else if contains(&buffer, b"<math") {
                 return Ok(Self::MathematicalMarkupLanguage);
+            } else if contains(&buffer, b"<MPD") {
+                return Ok(Self::MpegDashManifest);
             } else if contains(&buffer, b"<score-partwise") {
                 return Ok(Self::Musicxml);
             } else if contains(&buffer, b"<rss") {
@@ -482,8 +484,6 @@ impl crate::FileFormat {
                 return Ok(Self::XmlLocalizationInterchangeFileFormat);
             } else if contains(&buffer, b"<playlist") {
                 return Ok(Self::XmlShareablePlaylistFormat);
-            } else if contains(&buffer, b"<MPD") {
-                return Ok(Self::MpegDashManifest);
             }
         }
         Ok(Self::ExtensibleMarkupLanguage)
