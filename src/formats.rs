@@ -1387,6 +1387,34 @@ formats! {
     extension = "doc"
     kind = Document
 
+    format = MicrosoftWorks6Spreadsheet
+    name = "Microsoft Works 6 Spreadsheet"
+    short_name = "XLR"
+    media_type = "application/vnd.ms-works"
+    extension = "xlr"
+    kind = Document
+
+    format = MicrosoftWorksDatabase
+    name = "Microsoft Works Database"
+    short_name = "WDB"
+    media_type = "application/vnd.ms-works-db"
+    extension = "wdb"
+    kind = Database
+
+    format = MicrosoftWorksSpreadsheet
+    name = "Microsoft Works Spreadsheet"
+    short_name = "WKS"
+    media_type = "application/vnd.ms-works"
+    extension = "wks"
+    kind = Document
+
+    format = MicrosoftWorksWordProcessor
+    name = "Microsoft Works Word Processor"
+    short_name = "WPS"
+    media_type = "application/vnd.ms-works"
+    extension = "wps"
+    kind = Document
+
     format = Mobipocket
     name = "Mobipocket"
     short_name = "MOBI"

@@ -101,6 +101,27 @@ fn test_microsoft_word_document() {
     assert_eq!(fmt, FileFormat::MicrosoftWordDocument);
 }
 
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_microsoft_works6_spreadsheet() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.xlr").unwrap();
+    assert_eq!(fmt, FileFormat::MicrosoftWorks6Spreadsheet);
+}
+
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_microsoft_works_spreadsheet() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.wks").unwrap();
+    assert_eq!(fmt, FileFormat::MicrosoftWorksSpreadsheet);
+}
+
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_microsoft_works_word_processor() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.wps").unwrap();
+    assert_eq!(fmt, FileFormat::MicrosoftWorksWordProcessor);
+}
+
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_office_open_xml_document() {

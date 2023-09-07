@@ -423,6 +423,13 @@ signatures! {
     value = b"S      1\n" offset = 72
     value = b"S0000001\n" offset = 72
 
+    format = MicrosoftWorksDatabase
+    value = b"\x20\x54\x02\x00\x00\x00\x05\x54\x02\x00"
+
+    format = MicrosoftWorksSpreadsheet
+    value = b"\x00\x00\x02\x00\x04\x04\x05\x54\x02\x00"
+    value = b"\xFF\x00\x02\x00\x04\x04\x05\x54\x02\x00"
+
     format = OggMedia
     value = b"OggS", b"\x01\x76\x69\x64\x65\x6F" offset = 28
 
@@ -1069,6 +1076,9 @@ signatures! {
 
     format = MicrosoftDirectdrawSurface
     value = b"DDS "
+
+    format = MicrosoftWorksWordProcessor
+    value = b"\x01\xFE", b"\x01\x00" offset = 112
 
     format = Model3dBinary
     value = b"3DMO"

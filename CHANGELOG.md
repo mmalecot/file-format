@@ -3,6 +3,10 @@
 ## New formats support
 
 - MPEG-DASH manifest (MPD)
+- Microsoft Works 6 Spreadsheet (XLR)
+- Microsoft Works Database (WDB)
+- Microsoft Works Spreadsheet (WKS)
+- Microsoft Works Word Processor (WPS)
 
 ## Improvements
 

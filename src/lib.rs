@@ -85,6 +85,10 @@ detected.
   * [StarWriter (SDW)](`FileFormat::Starwriter`)
   * [WordPerfect Document (WPD)](`FileFormat::WordperfectDocument`)
   * [WordPerfect Graphics (WPG)](`FileFormat::WordperfectGraphics`)
+  * [Microsoft Works 6 Spreadsheet (XLR)](`FileFormat::MicrosoftWorks6Spreadsheet`)
+  * [Microsoft Works Database (WDB)](`FileFormat::MicrosoftWorksDatabase`)
+  * [Microsoft Works Spreadsheet (WKS)](`FileFormat::MicrosoftWorksSpreadsheet`)
+  * [Microsoft Works Word Processor (WPS)](`FileFormat::MicrosoftWorksWordProcessor`)
 - `reader-ebml` - Enables [Extensible Binary Meta Language (EBML)](`FileFormat::ExtensibleBinaryMetaLanguage`)
   based file formats detection.
   * [Matroska 3D Video (MK3D)](`FileFormat::Matroska3dVideo`)
