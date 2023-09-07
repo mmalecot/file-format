@@ -11,6 +11,14 @@ fn test_microsoft_access_database() {
     let fmt = FileFormat::from_file("fixtures/database/sample.mdb").unwrap();
     assert_eq!(fmt, FileFormat::MicrosoftAccessDatabase);
 }
+
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_microsoft_works_database() {
+    let fmt = FileFormat::from_file("fixtures/database/sample.wdb").unwrap();
+    assert_eq!(fmt, FileFormat::MicrosoftWorksDatabase);
+}
+
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_opendocument_database() {

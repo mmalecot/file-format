@@ -50,7 +50,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.19"
+file-format = "0.20"
 ```
 
 ## Supported file formats
@@ -443,6 +443,7 @@ file-format = "0.19"
 
 - Advanced Stream Redirector (ASX)
 - MP3 URL (M3U)
+- MPEG-DASH manifest (MPD)
 - SHOUTcast Playlist (PLS)
 - Windows Media Playlist (WPL)
 - XML Shareable Playlist Format (XSPF)

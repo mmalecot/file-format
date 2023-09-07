@@ -1,3 +1,17 @@
+# Version 0.20.0 (2023-09-07)
+
+## New formats support
+
+- MPEG-DASH manifest (MPD)
+- Microsoft Works 6 Spreadsheet (XLR)
+- Microsoft Works Database (WDB)
+- Microsoft Works Spreadsheet (WKS)
+- Microsoft Works Word Processor (WPS)
+
+## Improvements
+
+- Improve Timed Text Markup Language (TTML) detection
+
 # Version 0.19.0 (2023-08-19)
 
 ## API

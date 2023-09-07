@@ -20,6 +20,19 @@ fn test_mp3_url() {
 }
 
 #[test]
+fn test_mpeg_dash_manifest_1() {
+    let fmt = FileFormat::from_file("fixtures/playlist/sample1.mpd").unwrap();
+    assert_eq!(fmt, FileFormat::MpegDashManifest);
+}
+
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_mpeg_dash_manifest_2() {
+    let fmt = FileFormat::from_file("fixtures/playlist/sample2.mpd").unwrap();
+    assert_eq!(fmt, FileFormat::MpegDashManifest);
+}
+
+#[test]
 fn test_shoutcast_playlist() {
     let fmt = FileFormat::from_file("fixtures/playlist/sample.pls").unwrap();
     assert_eq!(fmt, FileFormat::ShoutcastPlaylist);

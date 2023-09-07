@@ -113,6 +113,11 @@ impl crate::FileFormat {
             "00021a14-0000-0000-c000-000000000046" => Self::MicrosoftVisioDrawing,
             "00020900-0000-0000-c000-000000000046" => Self::MicrosoftWordDocument,
             "00020906-0000-0000-c000-000000000046" => Self::MicrosoftWordDocument,
+            "00021303-0000-0000-c000-000000000046" => Self::MicrosoftWorksDatabase,
+            "28cddbc3-0ae2-11ce-a29a-00aa004a1a72" => Self::MicrosoftWorksDatabase,
+            "00021302-0000-0000-c000-000000000046" => Self::MicrosoftWorksWordProcessor,
+            "0ea45ab2-9e0a-11d1-a407-00c04fb932ba" => Self::MicrosoftWorksWordProcessor,
+            "28cddbc2-0ae2-11ce-a29a-00aa004a1a72" => Self::MicrosoftWorksWordProcessor,
             "83a33d36-27c5-11ce-bfd4-00400513bb57" => Self::SolidworksAssembly,
             "83a33d34-27c5-11ce-bfd4-00400513bb57" => Self::SolidworksDrawing,
             "83a33d30-27c5-11ce-bfd4-00400513bb57" => Self::SolidworksPart,
@@ -135,7 +140,15 @@ impl crate::FileFormat {
             "1cdd8c7b-81c0-45a0-9fed-04143144cc1e" => Self::ThreeDimensionalStudioMax,
             "519873ff-2dad-0220-1937-0000929679cd" => Self::WordperfectDocument,
             "402efe60-1999-101b-99ae-04021c007002" => Self::WordperfectGraphics,
-            _ => Self::CompoundFileBinary,
+            _ => {
+                if file.exists("WksSSWorkBook") {
+                    Self::MicrosoftWorks6Spreadsheet
+                } else if file.exists("MatOST") {
+                    Self::MicrosoftWorksWordProcessor
+                } else {
+                    Self::CompoundFileBinary
+                }
+            }
         })
     }
 
@@ -458,6 +471,8 @@ impl crate::FileFormat {
                 return Ok(Self::KeyholeMarkupLanguage);
             } else if contains(&buffer, b"<math") {
                 return Ok(Self::MathematicalMarkupLanguage);
+            } else if contains(&buffer, b"<MPD") {
+                return Ok(Self::MpegDashManifest);
             } else if contains(&buffer, b"<score-partwise") {
                 return Ok(Self::Musicxml);
             } else if contains(&buffer, b"<rss") {
@@ -470,7 +485,9 @@ impl crate::FileFormat {
                 return Ok(Self::TiledMapXml);
             } else if contains(&buffer, b"<tileset") {
                 return Ok(Self::TiledTilesetXml);
-            } else if contains(&buffer, b"<tt xmlns=\"http://www.w3.org/ns/ttml\"") {
+            } else if contains(&buffer, b"<tt")
+                && contains(&buffer, b"xmlns=\"http://www.w3.org/ns/ttml\"")
+            {
                 return Ok(Self::TimedTextMarkupLanguage);
             } else if contains(&buffer, b"<TrainingCenterDatabase") {
                 return Ok(Self::TrainingCenterXml);
