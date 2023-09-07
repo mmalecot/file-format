@@ -204,6 +204,7 @@ file-format = "0.20"
 
 - Microsoft Access 2007 Database (ACCDB)
 - Microsoft Access Database (MDB)
+- Microsoft Works Database (WDB)
 - OpenDocument Database (ODB)
 - SQLite 3
 
@@ -230,6 +231,9 @@ file-format = "0.20"
 - Microsoft Publisher Document (PUB)
 - Microsoft Visio Drawing (VSD)
 - Microsoft Word Document (DOC)
+- Microsoft Works 6 Spreadsheet (XLR)
+- Microsoft Works Spreadsheet (WKS)
+- Microsoft Works Word Processor (WPS)
 - Office Open XML Document (DOCX)
 - Office Open XML Drawing (VSDX)
 - Office Open XML Presentation (PPTX)
