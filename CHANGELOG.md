@@ -1,4 +1,4 @@
-# Version 0.20.0 (unreleased)
+# Version 0.20.0 (2023-09-07)
 
 ## New formats support
 
