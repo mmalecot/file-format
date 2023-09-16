@@ -1450,13 +1450,6 @@ formats! {
     extension = "m3u"
     kind = Playlist
 
-    format = Mpeg12AudioLayer1
-    name = "MPEG-1/2 Audio Layer 1"
-    short_name = "MP1"
-    media_type = "audio/mpeg"
-    extension = "mp1"
-    kind = Audio
-
     format = Mpeg12AudioLayer2
     name = "MPEG-1/2 Audio Layer 2"
     short_name = "MP2"

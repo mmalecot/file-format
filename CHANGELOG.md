@@ -1,3 +1,9 @@
+# Version 0.21.0 (unreleased)
+
+## API
+
+- Drop MPEG-1/2 Audio Layer 1 (MP1) support
+
 # Version 0.20.0 (2023-09-07)
 
 ## New formats support

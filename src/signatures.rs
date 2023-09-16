@@ -1328,12 +1328,6 @@ signatures! {
     format = Gzip
     value = b"\x1F\x8B"
 
-    format = Mpeg12AudioLayer1
-    value = b"\xFF\xF6"
-    value = b"\xFF\xF7"
-    value = b"\xFF\xFE"
-    value = b"\xFF\xFF"
-
     format = Mpeg12AudioLayer2
     value = b"\xFF\xF4"
     value = b"\xFF\xF5"
