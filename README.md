@@ -210,6 +210,7 @@ file-format = "0.21"
 
 ### Disk
 
+- Amiga Disk File (ADF)
 - Apple Disk Image (DMG)
 - ISO 9660 (ISO)
 - Microsoft Virtual Hard Disk (VHD)

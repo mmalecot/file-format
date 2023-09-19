@@ -952,6 +952,14 @@ signatures! {
     format = Alz
     value = b"\x41\x4C\x5A\x01"
 
+    format = AmigaDiskFile
+    value = b"DOS\x00"
+    value = b"DOS\x01"
+    value = b"DOS\x02"
+    value = b"DOS\x03"
+    value = b"DOS\x04"
+    value = b"DOS\x05"
+
     format = AndroidBinaryXml
     value = b"\x03\x00\x08\x00"
 

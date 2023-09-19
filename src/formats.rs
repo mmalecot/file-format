@@ -140,6 +140,13 @@ formats! {
     extension = "alz"
     kind = Archive
 
+    format = AmigaDiskFile
+    name = "Amiga Disk File"
+    short_name = "ADF"
+    media_type = "application/x-amiga-disk-format"
+    extension = "adf"
+    kind = Disk
+
     format = AndroidBinaryXml
     name = "Android Binary XML"
     short_name = "AXML"

@@ -7,6 +7,7 @@
 ## New formats support
 
 - ActiveMime (MSO)
+- Amiga Disk File (ADF)
 
 # Version 0.20.0 (2023-09-07)
 
