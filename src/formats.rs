@@ -22,6 +22,13 @@ formats! {
     extension = "amv"
     kind = Video
 
+    format = Activemime
+    name = "ActiveMime"
+    short_name = "MSO"
+    media_type = "application/x-mso"
+    extension = "mso"
+    kind = Application
+
     format = AdaptableScalableTextureCompression
     name = "Adaptable Scalable Texture Compression"
     short_name = "ASTC"

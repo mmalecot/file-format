@@ -57,6 +57,7 @@ file-format = "0.20"
 
 ### Application
 
+- ActiveMime (MSO)
 - Advanced Systems Format (ASF)
 - Android Binary XML (AXML)
 - Android Compiled Resources (ARSC)

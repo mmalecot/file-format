@@ -331,6 +331,9 @@ signatures! {
     value = b"ISO-10303-21;"
 
     // 12 bytes
+    format = Activemime
+    value = b"ActiveMime\0\0"
+
     format = AnimatedPortableNetworkGraphics
     value = b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A", b"acTL" offset = 0x25
 

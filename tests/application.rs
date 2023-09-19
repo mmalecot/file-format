@@ -1,6 +1,12 @@
 use file_format::FileFormat;
 
 #[test]
+fn test_activemime() {
+    let fmt = FileFormat::from_file("fixtures/application/sample.mso").unwrap();
+    assert_eq!(fmt, FileFormat::Activemime);
+}
+
+#[test]
 fn test_advanced_systems_format() {
     let fmt = FileFormat::from_file("fixtures/application/sample.asf").unwrap();
     assert_eq!(fmt, FileFormat::AdvancedSystemsFormat);

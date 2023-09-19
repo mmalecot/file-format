@@ -4,6 +4,10 @@
 
 - Drop MPEG-1/2 Audio Layer 1 (MP1) support
 
+## New formats support
+
+- ActiveMime (MSO)
+
 # Version 0.20.0 (2023-09-07)
 
 ## New formats support
