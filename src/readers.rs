@@ -367,7 +367,7 @@ impl crate::FileFormat {
         // Iterates through boxes in the reader.
         let mut iteration_count = 0;
         let mut box_header = [0; 8];
-        while let Ok(_) = reader.read_exact(&mut box_header) {
+        while reader.read_exact(&mut box_header).is_ok() {
             let box_size =
                 u32::from_be_bytes([box_header[0], box_header[1], box_header[2], box_header[3]]);
             match &box_header[4..8] {
