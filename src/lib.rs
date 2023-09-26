@@ -101,6 +101,11 @@ detected.
   * [Linear Executable (LE)](`FileFormat::LinearExecutable`)
   * [New Executable (NE)](`FileFormat::NewExecutable`)
   * [Portable Executable (PE)](`FileFormat::PortableExecutable`)
+- `reader-mp4` - Enables [MPEG-4 Part 14 (MP4)](`FileFormat::Mpeg4Part14`) based file formats
+  detection.
+  * [MPEG-4 Part 14 Audio (MP4)](`FileFormat::Mpeg4Part14Audio`)
+  * [MPEG-4 Part 14 Subtitles (MP4)](`FileFormat::Mpeg4Part14Subtitles`)
+  * [MPEG-4 Part 14 Video (MP4)](`FileFormat::Mpeg4Part14Video`)
 - `reader-pdf` - Enables [Portable Document Format (PDF)](`FileFormat::PortableDocumentFormat`)
   based file formats detection.
   * [Adobe Illustrator Artwork (AI)](`FileFormat::AdobeIllustratorArtwork`)

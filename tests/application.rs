@@ -159,6 +159,12 @@ fn test_microsoft_visual_studio_solution() {
 }
 
 #[test]
+fn test_mpeg4_part14() {
+    let fmt = FileFormat::from_file("fixtures/application/sample.mp4").unwrap();
+    assert_eq!(fmt, FileFormat::Mpeg4Part14);
+}
+
+#[test]
 fn test_musicxml_1() {
     let fmt = FileFormat::from_file("fixtures/application/sample1.musicxml").unwrap();
     assert_eq!(fmt, FileFormat::Musicxml);

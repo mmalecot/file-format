@@ -1492,6 +1492,27 @@ formats! {
     extension = "ts"
     kind = Video
 
+    format = Mpeg4Part14
+    name = "MPEG-4 Part 14"
+    short_name = "MP4"
+    media_type = "application/mp4"
+    extension = "mp4"
+    kind = Application
+
+    format = Mpeg4Part14Audio
+    name = "MPEG-4 Part 14 Audio"
+    short_name = "MP4"
+    media_type = "audio/mp4"
+    extension = "mp4"
+    kind = Audio
+
+    format = Mpeg4Part14Subtitles
+    name = "MPEG-4 Part 14 Subtitles"
+    short_name = "MP4"
+    media_type = "application/mp4"
+    extension = "mp4"
+    kind = Subtitle
+
     format = Mpeg4Part14Video
     name = "MPEG-4 Part 14 Video"
     short_name = "MP4"

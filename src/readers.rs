@@ -19,6 +19,8 @@ impl crate::FileFormat {
             Self::ExtensibleBinaryMetaLanguage => Self::from_ebml_reader(reader)?,
             #[cfg(feature = "reader-exe")]
             Self::MsDosExecutable => Self::from_exe_reader(reader)?,
+            #[cfg(feature = "reader-mp4")]
+            Self::Mpeg4Part14 => Self::from_mp4_reader(reader)?,
             #[cfg(feature = "reader-pdf")]
             Self::PortableDocumentFormat => Self::from_pdf_reader(reader)?,
             #[cfg(feature = "reader-rm")]
@@ -346,6 +348,80 @@ impl crate::FileFormat {
             }
         }
         Ok(Self::MsDosExecutable)
+    }
+
+    /// Determines file format from a MP4 reader.
+    #[cfg(feature = "reader-mp4")]
+    pub(crate) fn from_mp4_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        // Constants for limits.
+        const ITERATION_LIMIT: usize = 512;
+
+        // Rewinds to the beginning of the stream.
+        reader.rewind()?;
+
+        // Flags indicating the presence of audio, video and subtitles tracks.
+        let mut audio_track = false;
+        let mut video_track = false;
+        let mut subtitles_track = false;
+
+        // Iterates through boxes in the reader.
+        let mut iteration_count = 0;
+        let mut box_header = [0; 8];
+        while let Ok(_) = reader.read_exact(&mut box_header) {
+            let box_size =
+                u32::from_be_bytes([box_header[0], box_header[1], box_header[2], box_header[3]]);
+            match &box_header[4..8] {
+                b"moov" | b"trak" | b"mdia" => {
+                    // Does nothing for these boxes.
+                }
+                b"hdlr" => {
+                    // Skips the first 8 bytes.
+                    reader.seek(SeekFrom::Current(8))?;
+
+                    // Reads the handler type.
+                    let mut handler_type = [0; 4];
+                    reader.read_exact(&mut handler_type)?;
+
+                    // Checks the handler type.
+                    if &handler_type == b"vide" {
+                        video_track = true
+                    } else if &handler_type == b"soun" {
+                        audio_track = true
+                    } else if &handler_type == b"sbtl"
+                        || &handler_type == b"subt"
+                        || &handler_type == b"text"
+                    {
+                        subtitles_track = true
+                    }
+
+                    // Seeks to the next box.
+                    reader.seek(SeekFrom::Current(box_size as i64 - 20))?;
+                }
+                _ => {
+                    // Seeks to the next box.
+                    reader.seek(SeekFrom::Current(box_size as i64 - 8))?;
+                }
+            }
+
+            // Increments the iteration count.
+            iteration_count += 1;
+
+            // Checks if the iteration limit has been reached.
+            if iteration_count == ITERATION_LIMIT {
+                break;
+            }
+        }
+
+        // Determines the file format based on the identified tracks.
+        Ok(if video_track {
+            Self::Mpeg4Part14Video
+        } else if audio_track {
+            Self::Mpeg4Part14Audio
+        } else if subtitles_track {
+            Self::Mpeg4Part14Subtitles
+        } else {
+            Self::Mpeg4Part14
+        })
     }
 
     /// Determines file format from a PDF reader.

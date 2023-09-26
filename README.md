@@ -75,6 +75,7 @@ file-format = "0.21"
 - Flexible Image Transport System (FITS)
 - ICC Profile (ICC)
 - Java KeyStore (JKS)
+- MPEG-4 Part 14 (MP4)
 - Mathematical Markup Language (MathML)
 - Meta Information Encapsulation (MIE)
 - Microsoft Compiled HTML Help (CHM)
@@ -149,6 +150,7 @@ file-format = "0.21"
 - Impulse Tracker Module (IT)
 - MPEG-1/2 Audio Layer 2 (MP2)
 - MPEG-1/2 Audio Layer 3 (MP3)
+- MPEG-4 Part 14 Audio (MP4)
 - Matroska Audio (MKA)
 - Monkey's Audio (APE)
 - Musepack (MPC)
@@ -470,6 +472,7 @@ file-format = "0.21"
 
 ### Subtitle
 
+- MPEG-4 Part 14 Subtitles (MP4)
 - SubRip Text (SRT)
 - Timed Text Markup Language (TTML)
 - Universal Subtitle Format (USF)

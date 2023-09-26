@@ -2,12 +2,16 @@
 
 ## API
 
+- Add `reader-mp4` feature
 - Drop MPEG-1/2 Audio Layer 1 (MP1) support
 
 ## New formats support
 
 - ActiveMime (MSO)
 - Amiga Disk File (ADF)
+- MPEG-4 Part 14 (MP4)
+- MPEG-4 Part 14 Audio (MP4)
+- MPEG-4 Part 14 Subtitles (MP4)
 
 # Version 0.20.0 (2023-09-07)
 

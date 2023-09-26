@@ -602,7 +602,7 @@ signatures! {
     format = Mobipocket
     value = b"BOOKMOBI" offset = 60
 
-    format = Mpeg4Part14Video
+    format = Mpeg4Part14
     value = b"ftypavc1" offset = 4
     value = b"ftypdash" offset = 4
     value = b"ftypiso2" offset = 4

@@ -29,6 +29,7 @@ reader = [
     "reader-cfb",
     "reader-ebml",
     "reader-exe",
+    "reader-mp4",
     "reader-pdf",
     "reader-rm",
     "reader-txt",
@@ -39,6 +40,7 @@ reader-asf = []
 reader-cfb = ["dep:cfb"]
 reader-ebml = []
 reader-exe = []
+reader-mp4 = []
 reader-pdf = []
 reader-rm = []
 reader-txt = []
