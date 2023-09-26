@@ -1247,6 +1247,13 @@ formats! {
     extension = "mka"
     kind = Audio
 
+    format = MatroskaSubtitles
+    name = "Matroska Subtitles"
+    short_name = "MKS"
+    media_type = "application/x-matroska"
+    extension = "mks"
+    kind = Subtitle
+
     format = MatroskaVideo
     name = "Matroska Video"
     short_name = "MKV"

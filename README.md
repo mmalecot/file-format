@@ -473,6 +473,7 @@ file-format = "0.21"
 ### Subtitle
 
 - MPEG-4 Part 14 Subtitles (MP4)
+- Matroska Subtitles (MKS)
 - SubRip Text (SRT)
 - Timed Text Markup Language (TTML)
 - Universal Subtitle Format (USF)

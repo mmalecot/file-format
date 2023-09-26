@@ -12,6 +12,7 @@
 - MPEG-4 Part 14 (MP4)
 - MPEG-4 Part 14 Audio (MP4)
 - MPEG-4 Part 14 Subtitles (MP4)
+- Matroska Subtitles (MKS)
 
 # Version 0.20.0 (2023-09-07)
 

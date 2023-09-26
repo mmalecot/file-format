@@ -93,6 +93,7 @@ detected.
   based file formats detection.
   * [Matroska 3D Video (MK3D)](`FileFormat::Matroska3dVideo`)
   * [Matroska Audio (MKA)](`FileFormat::MatroskaAudio`)
+  * [Matroska Subtitles (MKS)](`FileFormat::MatroskaSubtitles`)
   * [Matroska Video (MKV)](`FileFormat::MatroskaVideo`)
   * [WebM](`FileFormat::Webm`)
 - `reader-exe` - Enables [MS-DOS Executable (EXE)](`FileFormat::MsDosExecutable`) based file formats

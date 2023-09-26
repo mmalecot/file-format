@@ -219,9 +219,10 @@ impl crate::FileFormat {
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Flags indicating the presence of audio and video codecs.
+        // Flags indicating the presence of audio, video and subtitle codecs.
         let mut audio_codec = false;
         let mut video_codec = false;
+        let mut subtitle_codec = false;
 
         // Iterates through the EBML elements in the reader.
         let mut iteration_count = 0;
@@ -262,9 +263,10 @@ impl crate::FileFormat {
                     // Checks the Codec ID.
                     if codec_id.starts_with("A_") {
                         audio_codec = true;
-                    }
-                    if codec_id.starts_with("V_") {
+                    } else if codec_id.starts_with("V_") {
                         video_codec = true;
+                    } else if codec_id.starts_with("S_") {
+                        subtitle_codec = true;
                     }
                 }
                 STEREO_MODE => {
@@ -301,6 +303,8 @@ impl crate::FileFormat {
             Self::MatroskaVideo
         } else if audio_codec {
             Self::MatroskaAudio
+        } else if subtitle_codec {
+            Self::MatroskaSubtitles
         } else {
             Self::ExtensibleBinaryMetaLanguage
         })
