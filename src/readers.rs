@@ -363,10 +363,10 @@ impl crate::FileFormat {
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Flags indicating the presence of audio, video and subtitles tracks.
+        // Flags indicating the presence of audio, video and subtitle tracks.
         let mut audio_track = false;
         let mut video_track = false;
-        let mut subtitles_track = false;
+        let mut subtitle_track = false;
 
         // Iterates through boxes in the reader.
         let mut iteration_count = 0;
@@ -395,7 +395,7 @@ impl crate::FileFormat {
                         || &handler_type == b"subt"
                         || &handler_type == b"text"
                     {
-                        subtitles_track = true
+                        subtitle_track = true
                     }
 
                     // Seeks to the next box.
@@ -421,7 +421,7 @@ impl crate::FileFormat {
             Self::Mpeg4Part14Video
         } else if audio_track {
             Self::Mpeg4Part14Audio
-        } else if subtitles_track {
+        } else if subtitle_track {
             Self::Mpeg4Part14Subtitles
         } else {
             Self::Mpeg4Part14
