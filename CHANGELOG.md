@@ -5,6 +5,15 @@
 - Add `reader-mp4` feature
 - Drop MPEG-1/2 Audio Layer 1 (MP1) support
 
+## Improvements
+
+- Add precision to the 3rd Generation Partnership Project (3GPP) signature
+- Add precision to the 3rd Generation Partnership Project 2 (3GPP2) signature
+- Add precision to the High Efficiency Image File Format (HEIF) signature
+- Add precision to the High Efficiency Image File Format Sequence (HEIFS) signature
+- Add precision to the JPEG 2000 Part 1 (JP2) signature
+- Add precision to the MPEG-4 Part 14 (MP4) signature
+
 ## New formats support
 
 - ActiveMime (MSO)

@@ -567,15 +567,22 @@ signatures! {
     value = b"ftyphevx" offset = 4
 
     format = HighEfficiencyImageFileFormat
+    value = b"ftypavic" offset = 4
+    value = b"ftypheim" offset = 4
+    value = b"ftypheis" offset = 4
     value = b"ftypmif1" offset = 4
 
     format = HighEfficiencyImageFileFormatSequence
+    value = b"ftypavcs" offset = 4
+    value = b"ftyphevm" offset = 4
+    value = b"ftyphevs" offset = 4
     value = b"ftypmsf1" offset = 4
 
     format = Iff8BitSampledVoice
     value = b"FORM", b"8SVX" offset = 8
 
     format = Jpeg2000Part1
+    value = b"ftypJP2 " offset = 16
     value = b"ftypjp2 " offset = 16
 
     format = Jpeg2000Part2
@@ -603,6 +610,7 @@ signatures! {
     value = b"BOOKMOBI" offset = 60
 
     format = Mpeg4Part14
+    value = b"ftypARRI" offset = 4
     value = b"ftypMSNV" offset = 4
     value = b"ftypNDAS" offset = 4
     value = b"ftypNDSC" offset = 4
@@ -614,6 +622,8 @@ signatures! {
     value = b"ftypNDXH" offset = 4
     value = b"ftypNDXM" offset = 4
     value = b"ftypNDXP" offset = 4
+    value = b"ftypNDXS" offset = 4
+    value = b"ftypXAVC" offset = 4
     value = b"ftypavc1" offset = 4
     value = b"ftypdash" offset = 4
     value = b"ftypiso2" offset = 4
@@ -623,6 +633,8 @@ signatures! {
     value = b"ftypiso6" offset = 4
     value = b"ftypisom" offset = 4
     value = b"ftypmmp4" offset = 4
+    value = b"ftypmobi" offset = 4
+    value = b"ftypmp21" offset = 4
     value = b"ftypmp41" offset = 4
     value = b"ftypmp42" offset = 4
     value = b"ftypmp4v" offset = 4
@@ -786,10 +798,19 @@ signatures! {
     value = b"ftypmqt" offset = 4
 
     format = ThirdGenerationPartnershipProject
+    value = b"ftyp3ge" offset = 4
+    value = b"ftyp3gf" offset = 4
+    value = b"ftyp3gg" offset = 4
+    value = b"ftyp3gh" offset = 4
+    value = b"ftyp3gm" offset = 4
     value = b"ftyp3gp" offset = 4
+    value = b"ftyp3gr" offset = 4
+    value = b"ftyp3gs" offset = 4
+    value = b"ftyp3gt" offset = 4
 
     format = ThirdGenerationPartnershipProject2
     value = b"ftyp3g2" offset = 4
+    value = b"ftypKDDI" offset = 4
 
     format = TiledMapXml
     value = b"\xEF\xBB\xBF<map"
