@@ -603,6 +603,17 @@ signatures! {
     value = b"BOOKMOBI" offset = 60
 
     format = Mpeg4Part14
+    value = b"ftypMSNV" offset = 4
+    value = b"ftypNDAS" offset = 4
+    value = b"ftypNDSC" offset = 4
+    value = b"ftypNDSH" offset = 4
+    value = b"ftypNDSM" offset = 4
+    value = b"ftypNDSP" offset = 4
+    value = b"ftypNDSS" offset = 4
+    value = b"ftypNDXC" offset = 4
+    value = b"ftypNDXH" offset = 4
+    value = b"ftypNDXM" offset = 4
+    value = b"ftypNDXP" offset = 4
     value = b"ftypavc1" offset = 4
     value = b"ftypdash" offset = 4
     value = b"ftypiso2" offset = 4
@@ -616,17 +627,6 @@ signatures! {
     value = b"ftypmp42" offset = 4
     value = b"ftypmp4v" offset = 4
     value = b"ftypmp71" offset = 4
-    value = b"ftypMSNV" offset = 4
-    value = b"ftypNDAS" offset = 4
-    value = b"ftypNDSC" offset = 4
-    value = b"ftypNDSH" offset = 4
-    value = b"ftypNDSM" offset = 4
-    value = b"ftypNDSP" offset = 4
-    value = b"ftypNDSS" offset = 4
-    value = b"ftypNDXC" offset = 4
-    value = b"ftypNDXH" offset = 4
-    value = b"ftypNDXM" offset = 4
-    value = b"ftypNDXP" offset = 4
 
     format = MultipleImageNetworkGraphics
     value = b"\x8A\x4D\x4E\x47\x0D\x0A\x1A\x0A"
