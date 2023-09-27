@@ -2214,6 +2214,13 @@ formats! {
     extension = "sgi"
     kind = Image
 
+    format = SiliconGraphicsMovie
+    name = "Silicon Graphics Movie"
+    short_name = "SGI"
+    media_type = "video/x-sgi-movie"
+    extension = "sgi"
+    kind = Video
+
     format = SimpleObjectAccessProtocol
     name = "Simple Object Access Protocol"
     short_name = "SOAP"

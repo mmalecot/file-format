@@ -138,6 +138,12 @@ fn test_realvideo() {
 }
 
 #[test]
+fn test_silicon_graphics_movie() {
+    let fmt = FileFormat::from_file("fixtures/video/sample.sgi").unwrap();
+    assert_eq!(fmt, FileFormat::SiliconGraphicsMovie);
+}
+
+#[test]
 fn test_sony_movie() {
     let fmt = FileFormat::from_file("fixtures/video/sample.mqv").unwrap();
     assert_eq!(fmt, FileFormat::SonyMovie);

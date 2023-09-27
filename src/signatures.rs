@@ -1160,6 +1160,9 @@ signatures! {
     format = Shapefile
     value = b"\x00\x00\x27\x0A"
 
+    format = SiliconGraphicsMovie
+    value = b"MOVI"
+
     format = SonyDsdStreamFile
     value = b"DSD "
 

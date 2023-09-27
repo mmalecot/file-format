@@ -530,6 +530,7 @@ file-format = "0.21"
 - Ogg Media (OGM)
 - Ogg Theora (Theora)
 - RealVideo (RV)
+- Silicon Graphics Movie (SGI)
 - Sony Movie (MQV)
 - WebM
 - Windows Media Video (WMV)
