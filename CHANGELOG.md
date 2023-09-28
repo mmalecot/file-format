@@ -5,6 +5,10 @@
 - Add `reader-mp4` feature
 - Drop MPEG-1/2 Audio Layer 1 (MP1) support
 
+# Fixes
+
+- Fix MPEG-DASH Manifest (MPD) name
+
 ## Improvements
 
 - Add precision to the 3rd Generation Partnership Project (3GPP) signature
@@ -28,7 +32,7 @@
 
 ## New formats support
 
-- MPEG-DASH manifest (MPD)
+- MPEG-DASH Manifest (MPD)
 - Microsoft Works 6 Spreadsheet (XLR)
 - Microsoft Works Database (WDB)
 - Microsoft Works Spreadsheet (WKS)

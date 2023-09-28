@@ -131,7 +131,7 @@ detected.
   * [GPS Exchange Format (GPX)](`FileFormat::GpsExchangeFormat`)
   * [Geography Markup Language (GML)](`FileFormat::GeographyMarkupLanguage`)
   * [Keyhole Markup Language (KML)](`FileFormat::KeyholeMarkupLanguage`)
-  * [MPEG-DASH manifest (MPD)](`FileFormat::MpegDashManifest`)
+  * [MPEG-DASH Manifest (MPD)](`FileFormat::MpegDashManifest`)
   * [Mathematical Markup Language (MathML)](`FileFormat::MathematicalMarkupLanguage`)
   * [MusicXML](`FileFormat::Musicxml`)
   * [Really Simple Syndication (RSS)](`FileFormat::ReallySimpleSyndication`)
