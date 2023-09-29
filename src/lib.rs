@@ -93,6 +93,7 @@ detected.
   based file formats detection.
   * [Matroska 3D Video (MK3D)](`FileFormat::Matroska3dVideo`)
   * [Matroska Audio (MKA)](`FileFormat::MatroskaAudio`)
+  * [Matroska Subtitles (MKS)](`FileFormat::MatroskaSubtitles`)
   * [Matroska Video (MKV)](`FileFormat::MatroskaVideo`)
   * [WebM](`FileFormat::Webm`)
 - `reader-exe` - Enables [MS-DOS Executable (EXE)](`FileFormat::MsDosExecutable`) based file formats
@@ -101,6 +102,11 @@ detected.
   * [Linear Executable (LE)](`FileFormat::LinearExecutable`)
   * [New Executable (NE)](`FileFormat::NewExecutable`)
   * [Portable Executable (PE)](`FileFormat::PortableExecutable`)
+- `reader-mp4` - Enables [MPEG-4 Part 14 (MP4)](`FileFormat::Mpeg4Part14`) based file formats
+  detection.
+  * [MPEG-4 Part 14 Audio (MP4)](`FileFormat::Mpeg4Part14Audio`)
+  * [MPEG-4 Part 14 Subtitles (MP4)](`FileFormat::Mpeg4Part14Subtitles`)
+  * [MPEG-4 Part 14 Video (MP4)](`FileFormat::Mpeg4Part14Video`)
 - `reader-pdf` - Enables [Portable Document Format (PDF)](`FileFormat::PortableDocumentFormat`)
   based file formats detection.
   * [Adobe Illustrator Artwork (AI)](`FileFormat::AdobeIllustratorArtwork`)
@@ -111,8 +117,8 @@ detected.
   is not recognized by its signature. Please note that this option only detects files that contain
   ASCII/UTF-8-encoded text.
 - `reader-xml` - Enables [Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`)
-  based file formats detection. Please note that these formats could be detected without the feature
-  when they do not contain an XML declaration.
+  based file formats detection. Please note that these file formats may be detected without the
+  feature in some cases.
   * [AbiWord (ABW)](`FileFormat::Abiword`)
   * [AbiWord Template (AWT)](`FileFormat::AbiwordTemplate`)
   * [Additive Manufacturing Format (AMF)](`FileFormat::AdditiveManufacturingFormat`)
@@ -125,7 +131,7 @@ detected.
   * [GPS Exchange Format (GPX)](`FileFormat::GpsExchangeFormat`)
   * [Geography Markup Language (GML)](`FileFormat::GeographyMarkupLanguage`)
   * [Keyhole Markup Language (KML)](`FileFormat::KeyholeMarkupLanguage`)
-  * [MPEG-DASH manifest (MPD)](`FileFormat::MpegDashManifest`)
+  * [MPEG-DASH Manifest (MPD)](`FileFormat::MpegDashManifest`)
   * [Mathematical Markup Language (MathML)](`FileFormat::MathematicalMarkupLanguage`)
   * [MusicXML](`FileFormat::Musicxml`)
   * [Really Simple Syndication (RSS)](`FileFormat::ReallySimpleSyndication`)

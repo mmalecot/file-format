@@ -22,6 +22,13 @@ formats! {
     extension = "amv"
     kind = Video
 
+    format = Activemime
+    name = "ActiveMime"
+    short_name = "MSO"
+    media_type = "application/x-mso"
+    extension = "mso"
+    kind = Application
+
     format = AdaptableScalableTextureCompression
     name = "Adaptable Scalable Texture Compression"
     short_name = "ASTC"
@@ -132,6 +139,13 @@ formats! {
     media_type = "application/x-alz-compressed"
     extension = "alz"
     kind = Archive
+
+    format = AmigaDiskFile
+    name = "Amiga Disk File"
+    short_name = "ADF"
+    media_type = "application/x-amiga-disk-format"
+    extension = "adf"
+    kind = Disk
 
     format = AndroidBinaryXml
     name = "Android Binary XML"
@@ -1233,6 +1247,13 @@ formats! {
     extension = "mka"
     kind = Audio
 
+    format = MatroskaSubtitles
+    name = "Matroska Subtitles"
+    short_name = "MKS"
+    media_type = "application/x-matroska"
+    extension = "mks"
+    kind = Subtitle
+
     format = MatroskaVideo
     name = "Matroska Video"
     short_name = "MKV"
@@ -1450,13 +1471,6 @@ formats! {
     extension = "m3u"
     kind = Playlist
 
-    format = Mpeg12AudioLayer1
-    name = "MPEG-1/2 Audio Layer 1"
-    short_name = "MP1"
-    media_type = "audio/mpeg"
-    extension = "mp1"
-    kind = Audio
-
     format = Mpeg12AudioLayer2
     name = "MPEG-1/2 Audio Layer 2"
     short_name = "MP2"
@@ -1485,6 +1499,27 @@ formats! {
     extension = "ts"
     kind = Video
 
+    format = Mpeg4Part14
+    name = "MPEG-4 Part 14"
+    short_name = "MP4"
+    media_type = "application/mp4"
+    extension = "mp4"
+    kind = Application
+
+    format = Mpeg4Part14Audio
+    name = "MPEG-4 Part 14 Audio"
+    short_name = "MP4"
+    media_type = "audio/mp4"
+    extension = "mp4"
+    kind = Audio
+
+    format = Mpeg4Part14Subtitles
+    name = "MPEG-4 Part 14 Subtitles"
+    short_name = "MP4"
+    media_type = "application/mp4"
+    extension = "mp4"
+    kind = Subtitle
+
     format = Mpeg4Part14Video
     name = "MPEG-4 Part 14 Video"
     short_name = "MP4"
@@ -1493,7 +1528,7 @@ formats! {
     kind = Video
 
     format = MpegDashManifest
-    name = "MPEG-DASH manifest"
+    name = "MPEG-DASH Manifest"
     short_name= "MPD"
     media_type = "application/dash+xml"
     extension = "mpd"
@@ -2178,6 +2213,13 @@ formats! {
     media_type = "image/x-sgi"
     extension = "sgi"
     kind = Image
+
+    format = SiliconGraphicsMovie
+    name = "Silicon Graphics Movie"
+    short_name = "SGI"
+    media_type = "video/x-sgi-movie"
+    extension = "sgi"
+    kind = Video
 
     format = SimpleObjectAccessProtocol
     name = "Simple Object Access Protocol"

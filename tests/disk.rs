@@ -1,6 +1,12 @@
 use file_format::FileFormat;
 
 #[test]
+fn test_amiga_disk_file() {
+    let fmt = FileFormat::from_file("fixtures/disk/sample.adf").unwrap();
+    assert_eq!(fmt, FileFormat::AmigaDiskFile);
+}
+
+#[test]
 fn test_apple_disk_image() {
     let fmt = FileFormat::from_file("fixtures/disk/sample.dmg").unwrap();
     assert_eq!(fmt, FileFormat::AppleDiskImage);

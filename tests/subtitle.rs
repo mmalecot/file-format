@@ -1,5 +1,19 @@
 use file_format::FileFormat;
 
+#[cfg(feature = "reader-ebml")]
+#[test]
+fn test_matroska_subtitles() {
+    let fmt = FileFormat::from_file("fixtures/subtitle/sample.mks").unwrap();
+    assert_eq!(fmt, FileFormat::MatroskaSubtitles);
+}
+
+#[cfg(feature = "reader-mp4")]
+#[test]
+fn test_mpeg4_part14_subtitles() {
+    let fmt = FileFormat::from_file("fixtures/subtitle/sample.mp4").unwrap();
+    assert_eq!(fmt, FileFormat::Mpeg4Part14Subtitles);
+}
+
 #[test]
 fn test_subrip_text() {
     let fmt = FileFormat::from_file("fixtures/subtitle/sample.srt").unwrap();

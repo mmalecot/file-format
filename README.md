@@ -50,13 +50,14 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.20"
+file-format = "0.21"
 ```
 
 ## Supported file formats
 
 ### Application
 
+- ActiveMime (MSO)
 - Advanced Systems Format (ASF)
 - Android Binary XML (AXML)
 - Android Compiled Resources (ARSC)
@@ -74,6 +75,7 @@ file-format = "0.20"
 - Flexible Image Transport System (FITS)
 - ICC Profile (ICC)
 - Java KeyStore (JKS)
+- MPEG-4 Part 14 (MP4)
 - Mathematical Markup Language (MathML)
 - Meta Information Encapsulation (MIE)
 - Microsoft Compiled HTML Help (CHM)
@@ -146,9 +148,9 @@ file-format = "0.20"
 - Free Lossless Audio Codec (FLAC)
 - IFF 8-Bit Sampled Voice (8SVX)
 - Impulse Tracker Module (IT)
-- MPEG-1/2 Audio Layer 1 (MP1)
 - MPEG-1/2 Audio Layer 2 (MP2)
 - MPEG-1/2 Audio Layer 3 (MP3)
+- MPEG-4 Part 14 Audio (MP4)
 - Matroska Audio (MKA)
 - Monkey's Audio (APE)
 - Musepack (MPC)
@@ -210,6 +212,7 @@ file-format = "0.20"
 
 ### Disk
 
+- Amiga Disk File (ADF)
 - Apple Disk Image (DMG)
 - ISO 9660 (ISO)
 - Microsoft Virtual Hard Disk (VHD)
@@ -447,7 +450,7 @@ file-format = "0.20"
 
 - Advanced Stream Redirector (ASX)
 - MP3 URL (M3U)
-- MPEG-DASH manifest (MPD)
+- MPEG-DASH Manifest (MPD)
 - SHOUTcast Playlist (PLS)
 - Windows Media Playlist (WPL)
 - XML Shareable Playlist Format (XSPF)
@@ -469,6 +472,8 @@ file-format = "0.20"
 
 ### Subtitle
 
+- MPEG-4 Part 14 Subtitles (MP4)
+- Matroska Subtitles (MKS)
 - SubRip Text (SRT)
 - Timed Text Markup Language (TTML)
 - Universal Subtitle Format (USF)
@@ -525,6 +530,7 @@ file-format = "0.20"
 - Ogg Media (OGM)
 - Ogg Theora (Theora)
 - RealVideo (RV)
+- Silicon Graphics Movie (SGI)
 - Sony Movie (MQV)
 - WebM
 - Windows Media Video (WMV)

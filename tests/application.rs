@@ -1,6 +1,12 @@
 use file_format::FileFormat;
 
 #[test]
+fn test_activemime() {
+    let fmt = FileFormat::from_file("fixtures/application/sample.mso").unwrap();
+    assert_eq!(fmt, FileFormat::Activemime);
+}
+
+#[test]
 fn test_advanced_systems_format() {
     let fmt = FileFormat::from_file("fixtures/application/sample.asf").unwrap();
     assert_eq!(fmt, FileFormat::AdvancedSystemsFormat);
@@ -150,6 +156,12 @@ fn test_microsoft_compiled_html_help() {
 fn test_microsoft_visual_studio_solution() {
     let fmt = FileFormat::from_file("fixtures/application/sample.sln").unwrap();
     assert_eq!(fmt, FileFormat::MicrosoftVisualStudioSolution);
+}
+
+#[test]
+fn test_mpeg4_part14() {
+    let fmt = FileFormat::from_file("fixtures/application/sample.mp4").unwrap();
+    assert_eq!(fmt, FileFormat::Mpeg4Part14);
 }
 
 #[test]

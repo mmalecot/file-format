@@ -331,6 +331,9 @@ signatures! {
     value = b"ISO-10303-21;"
 
     // 12 bytes
+    format = Activemime
+    value = b"ActiveMime\0\0"
+
     format = AnimatedPortableNetworkGraphics
     value = b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A", b"acTL" offset = 0x25
 
@@ -564,15 +567,22 @@ signatures! {
     value = b"ftyphevx" offset = 4
 
     format = HighEfficiencyImageFileFormat
+    value = b"ftypavic" offset = 4
+    value = b"ftypheim" offset = 4
+    value = b"ftypheis" offset = 4
     value = b"ftypmif1" offset = 4
 
     format = HighEfficiencyImageFileFormatSequence
+    value = b"ftypavcs" offset = 4
+    value = b"ftyphevm" offset = 4
+    value = b"ftyphevs" offset = 4
     value = b"ftypmsf1" offset = 4
 
     format = Iff8BitSampledVoice
     value = b"FORM", b"8SVX" offset = 8
 
     format = Jpeg2000Part1
+    value = b"ftypJP2 " offset = 16
     value = b"ftypjp2 " offset = 16
 
     format = Jpeg2000Part2
@@ -599,20 +609,8 @@ signatures! {
     format = Mobipocket
     value = b"BOOKMOBI" offset = 60
 
-    format = Mpeg4Part14Video
-    value = b"ftypavc1" offset = 4
-    value = b"ftypdash" offset = 4
-    value = b"ftypiso2" offset = 4
-    value = b"ftypiso3" offset = 4
-    value = b"ftypiso4" offset = 4
-    value = b"ftypiso5" offset = 4
-    value = b"ftypiso6" offset = 4
-    value = b"ftypisom" offset = 4
-    value = b"ftypmmp4" offset = 4
-    value = b"ftypmp41" offset = 4
-    value = b"ftypmp42" offset = 4
-    value = b"ftypmp4v" offset = 4
-    value = b"ftypmp71" offset = 4
+    format = Mpeg4Part14
+    value = b"ftypARRI" offset = 4
     value = b"ftypMSNV" offset = 4
     value = b"ftypNDAS" offset = 4
     value = b"ftypNDSC" offset = 4
@@ -624,6 +622,23 @@ signatures! {
     value = b"ftypNDXH" offset = 4
     value = b"ftypNDXM" offset = 4
     value = b"ftypNDXP" offset = 4
+    value = b"ftypNDXS" offset = 4
+    value = b"ftypXAVC" offset = 4
+    value = b"ftypavc1" offset = 4
+    value = b"ftypdash" offset = 4
+    value = b"ftypiso2" offset = 4
+    value = b"ftypiso3" offset = 4
+    value = b"ftypiso4" offset = 4
+    value = b"ftypiso5" offset = 4
+    value = b"ftypiso6" offset = 4
+    value = b"ftypisom" offset = 4
+    value = b"ftypmmp4" offset = 4
+    value = b"ftypmobi" offset = 4
+    value = b"ftypmp21" offset = 4
+    value = b"ftypmp41" offset = 4
+    value = b"ftypmp42" offset = 4
+    value = b"ftypmp4v" offset = 4
+    value = b"ftypmp71" offset = 4
 
     format = MultipleImageNetworkGraphics
     value = b"\x8A\x4D\x4E\x47\x0D\x0A\x1A\x0A"
@@ -783,10 +798,19 @@ signatures! {
     value = b"ftypmqt" offset = 4
 
     format = ThirdGenerationPartnershipProject
+    value = b"ftyp3ge" offset = 4
+    value = b"ftyp3gf" offset = 4
+    value = b"ftyp3gg" offset = 4
+    value = b"ftyp3gh" offset = 4
+    value = b"ftyp3gm" offset = 4
     value = b"ftyp3gp" offset = 4
+    value = b"ftyp3gr" offset = 4
+    value = b"ftyp3gs" offset = 4
+    value = b"ftyp3gt" offset = 4
 
     format = ThirdGenerationPartnershipProject2
     value = b"ftyp3g2" offset = 4
+    value = b"ftypKDDI" offset = 4
 
     format = TiledMapXml
     value = b"\xEF\xBB\xBF<map"
@@ -948,6 +972,14 @@ signatures! {
 
     format = Alz
     value = b"\x41\x4C\x5A\x01"
+
+    format = AmigaDiskFile
+    value = b"DOS\x00"
+    value = b"DOS\x01"
+    value = b"DOS\x02"
+    value = b"DOS\x03"
+    value = b"DOS\x04"
+    value = b"DOS\x05"
 
     format = AndroidBinaryXml
     value = b"\x03\x00\x08\x00"
@@ -1149,6 +1181,9 @@ signatures! {
     format = Shapefile
     value = b"\x00\x00\x27\x0A"
 
+    format = SiliconGraphicsMovie
+    value = b"MOVI"
+
     format = SonyDsdStreamFile
     value = b"DSD "
 
@@ -1327,12 +1362,6 @@ signatures! {
 
     format = Gzip
     value = b"\x1F\x8B"
-
-    format = Mpeg12AudioLayer1
-    value = b"\xFF\xF6"
-    value = b"\xFF\xF7"
-    value = b"\xFF\xFE"
-    value = b"\xFF\xFF"
 
     format = Mpeg12AudioLayer2
     value = b"\xFF\xF4"

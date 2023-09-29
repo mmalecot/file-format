@@ -105,6 +105,7 @@ fn test_mpeg2_transport_stream() {
     assert_eq!(fmt, FileFormat::Mpeg2TransportStream);
 }
 
+#[cfg(feature = "reader-mp4")]
 #[test]
 fn test_mpeg4_part14_video() {
     let fmt = FileFormat::from_file("fixtures/video/sample.mp4").unwrap();
@@ -134,6 +135,12 @@ fn test_ogg_theora() {
 fn test_realvideo() {
     let fmt = FileFormat::from_file("fixtures/video/sample.rv").unwrap();
     assert_eq!(fmt, FileFormat::Realvideo);
+}
+
+#[test]
+fn test_silicon_graphics_movie() {
+    let fmt = FileFormat::from_file("fixtures/video/sample.sgi").unwrap();
+    assert_eq!(fmt, FileFormat::SiliconGraphicsMovie);
 }
 
 #[test]

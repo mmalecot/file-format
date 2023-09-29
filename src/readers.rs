@@ -19,6 +19,8 @@ impl crate::FileFormat {
             Self::ExtensibleBinaryMetaLanguage => Self::from_ebml_reader(reader)?,
             #[cfg(feature = "reader-exe")]
             Self::MsDosExecutable => Self::from_exe_reader(reader)?,
+            #[cfg(feature = "reader-mp4")]
+            Self::Mpeg4Part14 => Self::from_mp4_reader(reader)?,
             #[cfg(feature = "reader-pdf")]
             Self::PortableDocumentFormat => Self::from_pdf_reader(reader)?,
             #[cfg(feature = "reader-rm")]
@@ -217,9 +219,10 @@ impl crate::FileFormat {
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Flags indicating the presence of audio and video codecs.
+        // Flags indicating the presence of audio, video and subtitle codecs.
         let mut audio_codec = false;
         let mut video_codec = false;
+        let mut subtitle_codec = false;
 
         // Iterates through the EBML elements in the reader.
         let mut iteration_count = 0;
@@ -260,9 +263,10 @@ impl crate::FileFormat {
                     // Checks the Codec ID.
                     if codec_id.starts_with("A_") {
                         audio_codec = true;
-                    }
-                    if codec_id.starts_with("V_") {
+                    } else if codec_id.starts_with("V_") {
                         video_codec = true;
+                    } else if codec_id.starts_with("S_") {
+                        subtitle_codec = true;
                     }
                 }
                 STEREO_MODE => {
@@ -299,6 +303,8 @@ impl crate::FileFormat {
             Self::MatroskaVideo
         } else if audio_codec {
             Self::MatroskaAudio
+        } else if subtitle_codec {
+            Self::MatroskaSubtitles
         } else {
             Self::ExtensibleBinaryMetaLanguage
         })
@@ -346,6 +352,80 @@ impl crate::FileFormat {
             }
         }
         Ok(Self::MsDosExecutable)
+    }
+
+    /// Determines file format from a MP4 reader.
+    #[cfg(feature = "reader-mp4")]
+    pub(crate) fn from_mp4_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        // Constants for limits.
+        const ITERATION_LIMIT: usize = 512;
+
+        // Rewinds to the beginning of the stream.
+        reader.rewind()?;
+
+        // Flags indicating the presence of audio, video and subtitle tracks.
+        let mut audio_track = false;
+        let mut video_track = false;
+        let mut subtitle_track = false;
+
+        // Iterates through boxes in the reader.
+        let mut iteration_count = 0;
+        let mut box_header = [0; 8];
+        while reader.read_exact(&mut box_header).is_ok() {
+            let box_size =
+                u32::from_be_bytes([box_header[0], box_header[1], box_header[2], box_header[3]]);
+            match &box_header[4..8] {
+                b"moov" | b"trak" | b"mdia" => {
+                    // Does nothing for these boxes.
+                }
+                b"hdlr" => {
+                    // Skips the first 8 bytes.
+                    reader.seek(SeekFrom::Current(8))?;
+
+                    // Reads the handler type.
+                    let mut handler_type = [0; 4];
+                    reader.read_exact(&mut handler_type)?;
+
+                    // Checks the handler type.
+                    if &handler_type == b"vide" {
+                        video_track = true
+                    } else if &handler_type == b"soun" {
+                        audio_track = true
+                    } else if &handler_type == b"sbtl"
+                        || &handler_type == b"subt"
+                        || &handler_type == b"text"
+                    {
+                        subtitle_track = true
+                    }
+
+                    // Seeks to the next box.
+                    reader.seek(SeekFrom::Current(box_size as i64 - 20))?;
+                }
+                _ => {
+                    // Seeks to the next box.
+                    reader.seek(SeekFrom::Current(box_size as i64 - 8))?;
+                }
+            }
+
+            // Increments the iteration count.
+            iteration_count += 1;
+
+            // Checks if the iteration limit has been reached.
+            if iteration_count == ITERATION_LIMIT {
+                break;
+            }
+        }
+
+        // Determines the file format based on the identified tracks.
+        Ok(if video_track {
+            Self::Mpeg4Part14Video
+        } else if audio_track {
+            Self::Mpeg4Part14Audio
+        } else if subtitle_track {
+            Self::Mpeg4Part14Subtitles
+        } else {
+            Self::Mpeg4Part14
+        })
     }
 
     /// Determines file format from a PDF reader.
@@ -507,6 +587,7 @@ impl crate::FileFormat {
     pub(crate) fn from_zip_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Constants for limits.
         const FILE_LIMIT: usize = 4096;
+        const READ_LIMIT: u64 = 64;
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
@@ -531,7 +612,7 @@ impl crate::FileFormat {
                 "WEB-INF/web.xml" => return Ok(Self::WebApplicationArchive),
                 "doc.kml" => return Ok(Self::KeyholeMarkupLanguageZipped),
                 "extension.vsixmanifest" => return Ok(Self::MicrosoftVisualStudioExtension),
-                "mimetype" => match read_to_string(file.take(64))?.trim() {
+                "mimetype" => match read_to_string(file.take(READ_LIMIT))?.trim() {
                     "application/epub+zip" => return Ok(Self::ElectronicPublication),
                     "application/vnd.adobe.indesign-idml-package" => {
                         return Ok(Self::IndesignMarkupLanguage)
