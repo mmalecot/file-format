@@ -587,6 +587,7 @@ impl crate::FileFormat {
     pub(crate) fn from_zip_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Constants for limits.
         const FILE_LIMIT: usize = 4096;
+        const READ_LIMIT: u64 = 64;
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
@@ -611,7 +612,7 @@ impl crate::FileFormat {
                 "WEB-INF/web.xml" => return Ok(Self::WebApplicationArchive),
                 "doc.kml" => return Ok(Self::KeyholeMarkupLanguageZipped),
                 "extension.vsixmanifest" => return Ok(Self::MicrosoftVisualStudioExtension),
-                "mimetype" => match read_to_string(file.take(64))?.trim() {
+                "mimetype" => match read_to_string(file.take(READ_LIMIT))?.trim() {
                     "application/epub+zip" => return Ok(Self::ElectronicPublication),
                     "application/vnd.adobe.indesign-idml-package" => {
                         return Ok(Self::IndesignMarkupLanguage)
