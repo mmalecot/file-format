@@ -117,8 +117,8 @@ detected.
   is not recognized by its signature. Please note that this option only detects files that contain
   ASCII/UTF-8-encoded text.
 - `reader-xml` - Enables [Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`)
-  based file formats detection. Please note that these formats could be detected without the feature
-  when they do not contain an XML declaration.
+  based file formats detection. Please note that these file formats may be detected without the
+  feature in some cases.
   * [AbiWord (ABW)](`FileFormat::Abiword`)
   * [AbiWord Template (AWT)](`FileFormat::AbiwordTemplate`)
   * [Additive Manufacturing Format (AMF)](`FileFormat::AdditiveManufacturingFormat`)
