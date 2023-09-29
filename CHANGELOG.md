@@ -5,7 +5,7 @@
 - Add `reader-mp4` feature
 - Drop MPEG-1/2 Audio Layer 1 (MP1) support
 
-# Fixes
+## Fixes
 
 - Fix MPEG-DASH Manifest (MPD) name
 
