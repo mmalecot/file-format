@@ -601,7 +601,7 @@ impl crate::FileFormat {
         let mut buffer = [0; 4];
         let mut position = length.saturating_sub(22);
         while position >= length.saturating_sub(22 + u16::MAX as u64)
-            && &buffer != END_OF_CENTRAL_DIRECTORY_SIGNATURE
+            && buffer != END_OF_CENTRAL_DIRECTORY_SIGNATURE
         {
             reader.seek(SeekFrom::Start(position))?;
             reader.read_exact(&mut buffer)?;
@@ -628,7 +628,7 @@ impl crate::FileFormat {
         let mut file_count = 0;
         while file_count < FILE_LIMIT
             && reader.read_exact(&mut buffer).is_ok()
-            && &buffer == CENTRAL_DIRECTORY_FILE_HEADER_SIGNATURE
+            && buffer == CENTRAL_DIRECTORY_FILE_HEADER_SIGNATURE
         {
             // Reads compressed size.
             reader.seek(SeekFrom::Current(16))?;
