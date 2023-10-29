@@ -585,23 +585,90 @@ impl crate::FileFormat {
     /// Determines file format from a ZIP reader.
     #[cfg(feature = "reader-zip")]
     pub(crate) fn from_zip_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        // Constants for limits.
+        // Constants.
+        const CENTRAL_DIRECTORY_FILE_HEADER_SIGNATURE: &[u8] = b"\x50\x4B\x01\x02";
+        const END_OF_CENTRAL_DIRECTORY_SIGNATURE: &[u8] = b"\x50\x4B\x05\x06";
         const FILE_LIMIT: usize = 4096;
-        const READ_LIMIT: u64 = 64;
 
         // Rewinds to the beginning of the stream.
+         reader.rewind()?;
+
+        // Gets the stream length.
+        let length = reader.seek(SeekFrom::End(0))?;
         reader.rewind()?;
 
-        // Opens the archive.
-        let mut archive = zip::ZipArchive::new(reader)?;
+        // Searches for the end of central directory.
+        let mut buffer = [0; 4];
+        let mut position = length.saturating_sub(22);
+        while position >= length.saturating_sub(22 + u16::MAX as u64)
+            && &buffer != END_OF_CENTRAL_DIRECTORY_SIGNATURE
+        {
+            reader.seek(SeekFrom::Start(position))?;
+            reader.read_exact(&mut buffer)?;
+            position = match position.checked_sub(1) {
+                Some(position) => position,
+                None => break,
+            }
+        }
+
+        // Reads the start of central directory offset.
+        reader.seek(SeekFrom::Current(12))?;
+        let mut buffer = [0; 4];
+        reader.read_exact(&mut buffer)?;
+        let offset = u32::from_le_bytes(buffer);
+
+        // Seeks to the start of central directory.
+        reader.seek(SeekFrom::Start(offset as u64))?;
 
         // Sets the default variant.
         let mut format = Self::Zip;
 
-        // Browses archive files.
-        for index in 0..std::cmp::min(archive.len(), FILE_LIMIT) {
-            let file = archive.by_index(index)?;
-            match file.name() {
+        // Browses central directory file headers.
+        let mut buffer = [0; 4];
+        let mut file_count = 0;
+        while file_count < FILE_LIMIT
+            && reader.read_exact(&mut buffer).is_ok()
+            && &buffer == CENTRAL_DIRECTORY_FILE_HEADER_SIGNATURE
+        {
+            // Reads compressed size.
+            reader.seek(SeekFrom::Current(16))?;
+            let mut buffer = [0; 4];
+            reader.read_exact(&mut buffer)?;
+            let compressed_size = u32::from_le_bytes(buffer);
+
+            // Reads uncompressed size.
+            let mut buffer = [0; 4];
+            reader.read_exact(&mut buffer)?;
+            let uncompressed_size = u32::from_le_bytes(buffer);
+
+            // Reads filename length.
+            let mut buffer = [0; 2];
+            reader.read_exact(&mut buffer)?;
+            let filename_length = u16::from_le_bytes(buffer);
+
+            // Reads extra field length.
+            let mut buffer = [0; 2];
+            reader.read_exact(&mut buffer)?;
+            let extra_field_length = u16::from_le_bytes(buffer);
+
+            // Reads file comment length.
+            let mut buffer = [0; 2];
+            reader.read_exact(&mut buffer)?;
+            let file_comment_length = u16::from_le_bytes(buffer);
+
+            // Reads relative offset of local file header.
+            reader.seek(SeekFrom::Current(8))?;
+            let mut buffer = [0; 4];
+            reader.read_exact(&mut buffer)?;
+            let offset = u32::from_le_bytes(buffer);
+
+            // Reads filename.
+            let mut buffer = vec![0; filename_length as usize];
+            reader.read_exact(&mut buffer)?;
+            let filename = String::from_utf8_lossy(&buffer).to_string();
+
+            // Checks filename.
+            match filename.as_str() {
                 "AndroidManifest.xml" => return Ok(Self::AndroidPackage),
                 "AppManifest.xaml" => return Ok(Self::Xap),
                 "AppxManifest.xml" => return Ok(Self::WindowsAppPackage),
@@ -612,103 +679,127 @@ impl crate::FileFormat {
                 "WEB-INF/web.xml" => return Ok(Self::WebApplicationArchive),
                 "doc.kml" => return Ok(Self::KeyholeMarkupLanguageZipped),
                 "extension.vsixmanifest" => return Ok(Self::MicrosoftVisualStudioExtension),
-                "mimetype" => match read_to_string(file.take(READ_LIMIT))?.trim() {
-                    "application/epub+zip" => return Ok(Self::ElectronicPublication),
-                    "application/vnd.adobe.indesign-idml-package" => {
-                        return Ok(Self::IndesignMarkupLanguage)
-                    }
-                    "application/vnd.oasis.opendocument.base"
-                    | "application/vnd.oasis.opendocument.database" => {
-                        return Ok(Self::OpendocumentDatabase)
-                    }
-                    "application/vnd.oasis.opendocument.formula" => {
-                        return Ok(Self::OpendocumentFormula)
-                    }
-                    "application/vnd.oasis.opendocument.formula-template" => {
-                        return Ok(Self::OpendocumentFormulaTemplate)
-                    }
-                    "application/vnd.oasis.opendocument.graphics" => {
-                        return Ok(Self::OpendocumentGraphics)
-                    }
-                    "application/vnd.oasis.opendocument.graphics-template" => {
-                        return Ok(Self::OpendocumentGraphicsTemplate)
-                    }
-                    "application/vnd.oasis.opendocument.presentation" => {
-                        return Ok(Self::OpendocumentPresentation);
-                    }
-                    "application/vnd.oasis.opendocument.presentation-template" => {
-                        return Ok(Self::OpendocumentPresentationTemplate);
-                    }
-                    "application/vnd.oasis.opendocument.spreadsheet" => {
-                        return Ok(Self::OpendocumentSpreadsheet);
-                    }
-                    "application/vnd.oasis.opendocument.spreadsheet-template" => {
-                        return Ok(Self::OpendocumentSpreadsheetTemplate);
-                    }
-                    "application/vnd.oasis.opendocument.text" => {
-                        return Ok(Self::OpendocumentText);
-                    }
-                    "application/vnd.oasis.opendocument.text-master" => {
-                        return Ok(Self::OpendocumentTextMaster);
-                    }
-                    "application/vnd.oasis.opendocument.text-master-template" => {
-                        return Ok(Self::OpendocumentTextMasterTemplate);
-                    }
-                    "application/vnd.oasis.opendocument.text-template" => {
-                        return Ok(Self::OpendocumentTextTemplate);
-                    }
-                    "application/vnd.recordare.musicxml" => return Ok(Self::MusicxmlZipped),
-                    "application/vnd.sun.xml.calc" => return Ok(Self::SunXmlCalc),
-                    "application/vnd.sun.xml.calc.template" => return Ok(Self::SunXmlCalcTemplate),
-                    "application/vnd.sun.xml.draw" => return Ok(Self::SunXmlDraw),
-                    "application/vnd.sun.xml.draw.template" => return Ok(Self::SunXmlDrawTemplate),
-                    "application/vnd.sun.xml.impress" => return Ok(Self::SunXmlImpress),
-                    "application/vnd.sun.xml.impress.template" => {
-                        return Ok(Self::SunXmlImpressTemplate)
-                    }
-                    "application/vnd.sun.xml.math" => return Ok(Self::SunXmlMath),
-                    "application/vnd.sun.xml.writer" => return Ok(Self::SunXmlWriter),
-                    "application/vnd.sun.xml.writer.global" => return Ok(Self::SunXmlWriterGlobal),
-                    "application/vnd.sun.xml.writer.template" => {
-                        return Ok(Self::SunXmlWriterTemplate)
-                    }
-                    "image/openraster" => return Ok(Self::Openraster),
-                    _ => {}
-                },
+                "mimetype" if compressed_size == uncompressed_size => {
+                    // Seeks to the filename of the local file header.
+                    reader.seek(SeekFrom::Start(offset as u64 + 26))?;
+
+                    // Reads filename length.
+                    let mut buffer = [0; 2];
+                    reader.read_exact(&mut buffer)?;
+                    let filename_length = u16::from_le_bytes(buffer);
+
+                    // Reads extra field length.
+                    let mut buffer = [0; 2];
+                    reader.read_exact(&mut buffer)?;
+                    let extra_field_length = u16::from_le_bytes(buffer);
+
+                    // Seeks to the data.
+                    reader.seek(SeekFrom::Current(
+                        filename_length as i64 + extra_field_length as i64,
+                    ))?;
+
+                    // Reads the data.
+                    let mut buffer = vec![0; compressed_size as usize];
+                    reader.read_exact(&mut buffer)?;
+                    let data = String::from_utf8_lossy(&buffer).to_string();
+
+                    // Checks the trimmed data.
+                    return Ok(match data.trim() {
+                        "application/epub+zip" => Self::ElectronicPublication,
+                        "application/vnd.adobe.indesign-idml-package" => {
+                            Self::IndesignMarkupLanguage
+                        }
+                        "application/vnd.oasis.opendocument.base"
+                        | "application/vnd.oasis.opendocument.database" => {
+                            Self::OpendocumentDatabase
+                        }
+                        "application/vnd.oasis.opendocument.formula" => Self::OpendocumentFormula,
+                        "application/vnd.oasis.opendocument.formula-template" => {
+                            Self::OpendocumentFormulaTemplate
+                        }
+                        "application/vnd.oasis.opendocument.graphics" => Self::OpendocumentGraphics,
+                        "application/vnd.oasis.opendocument.graphics-template" => {
+                            Self::OpendocumentGraphicsTemplate
+                        }
+                        "application/vnd.oasis.opendocument.presentation" => {
+                            Self::OpendocumentPresentation
+                        }
+                        "application/vnd.oasis.opendocument.presentation-template" => {
+                            Self::OpendocumentPresentationTemplate
+                        }
+                        "application/vnd.oasis.opendocument.spreadsheet" => {
+                            Self::OpendocumentSpreadsheet
+                        }
+                        "application/vnd.oasis.opendocument.spreadsheet-template" => {
+                            Self::OpendocumentSpreadsheetTemplate
+                        }
+                        "application/vnd.oasis.opendocument.text" => Self::OpendocumentText,
+                        "application/vnd.oasis.opendocument.text-master" => {
+                            Self::OpendocumentTextMaster
+                        }
+                        "application/vnd.oasis.opendocument.text-master-template" => {
+                            Self::OpendocumentTextMasterTemplate
+                        }
+                        "application/vnd.oasis.opendocument.text-template" => {
+                            Self::OpendocumentTextTemplate
+                        }
+                        "application/vnd.recordare.musicxml" => Self::MusicxmlZipped,
+                        "application/vnd.sun.xml.calc" => Self::SunXmlCalc,
+                        "application/vnd.sun.xml.calc.template" => Self::SunXmlCalcTemplate,
+                        "application/vnd.sun.xml.draw" => Self::SunXmlDraw,
+                        "application/vnd.sun.xml.draw.template" => Self::SunXmlDrawTemplate,
+                        "application/vnd.sun.xml.impress" => Self::SunXmlImpress,
+                        "application/vnd.sun.xml.impress.template" => Self::SunXmlImpressTemplate,
+                        "application/vnd.sun.xml.math" => Self::SunXmlMath,
+                        "application/vnd.sun.xml.writer" => Self::SunXmlWriter,
+                        "application/vnd.sun.xml.writer.global" => Self::SunXmlWriterGlobal,
+                        "application/vnd.sun.xml.writer.template" => Self::SunXmlWriterTemplate,
+                        "image/openraster" => Self::Openraster,
+                        _ => Self::Zip,
+                    });
+                }
                 _ => {
-                    if file.name().starts_with("Fusion[Active]/") {
+                    if filename.starts_with("Fusion[Active]/") {
                         return Ok(Self::Autodesk123d);
-                    } else if file.name().starts_with("circuitdiagram/") {
+                    } else if filename.starts_with("circuitdiagram/") {
                         return Ok(Self::CircuitDiagramDocument);
-                    } else if file.name().starts_with("dwf/") {
+                    } else if filename.starts_with("dwf/") {
                         return Ok(Self::DesignWebFormatXps);
-                    } else if file.name().ends_with(".fb2") && !file.name().contains('/') {
+                    } else if filename.ends_with(".fb2") && !filename.contains('/') {
                         return Ok(Self::FictionbookZipped);
-                    } else if file.name().starts_with("FusionAssetName[Active]/") {
+                    } else if filename.starts_with("FusionAssetName[Active]/") {
                         return Ok(Self::Fusion360);
-                    } else if file.name().starts_with("Payload/") && file.name().contains(".app/") {
+                    } else if filename.starts_with("Payload/") && filename.contains(".app/") {
                         return Ok(Self::IosAppStorePackage);
-                    } else if file.name().starts_with("word/") {
+                    } else if filename.starts_with("word/") {
                         return Ok(Self::OfficeOpenXmlDocument);
-                    } else if file.name().starts_with("visio/") {
+                    } else if filename.starts_with("visio/") {
                         return Ok(Self::OfficeOpenXmlDrawing);
-                    } else if file.name().starts_with("ppt/") {
+                    } else if filename.starts_with("ppt/") {
                         return Ok(Self::OfficeOpenXmlPresentation);
-                    } else if file.name().starts_with("xl/") {
+                    } else if filename.starts_with("xl/") {
                         return Ok(Self::OfficeOpenXmlSpreadsheet);
-                    } else if file.name().starts_with("SpaceClaim/") {
+                    } else if filename.starts_with("SpaceClaim/") {
                         return Ok(Self::SpaceclaimDocument);
-                    } else if file.name().starts_with("3D/") && file.name().ends_with(".model") {
+                    } else if filename.starts_with("3D/") && filename.ends_with(".model") {
                         return Ok(Self::ThreeDimensionalManufacturingFormat);
-                    } else if (file.name().ends_with(".usd")
-                        || file.name().ends_with(".usda")
-                        || file.name().ends_with(".usdc"))
-                        && !file.name().contains('/')
+                    } else if (filename.ends_with(".usd")
+                        || filename.ends_with(".usda")
+                        || filename.ends_with(".usdc"))
+                        && !filename.contains('/')
                     {
                         return Ok(Self::UniversalSceneDescriptionZipped);
                     }
                 }
             }
+
+            // Seeks to the next central directory file header.
+            reader.seek(SeekFrom::Current(
+                extra_field_length as i64 + file_comment_length as i64,
+            ))?;
+
+            // Increments the file count.
+            file_count += 1;
         }
         Ok(format)
     }

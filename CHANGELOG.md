@@ -1,3 +1,9 @@
+# Version 0.22.0 (unreleased)
+
+## Improvements
+
+- Remove `zip` dependency when using `reader-zip` feature
+
 # Version 0.21.0 (2023-09-29)
 
 ## API
