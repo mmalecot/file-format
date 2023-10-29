@@ -591,7 +591,7 @@ impl crate::FileFormat {
         const FILE_LIMIT: usize = 4096;
 
         // Rewinds to the beginning of the stream.
-         reader.rewind()?;
+        reader.rewind()?;
 
         // Gets the stream length.
         let length = reader.seek(SeekFrom::End(0))?;
