@@ -599,13 +599,13 @@ impl crate::FileFormat {
 
         // Searches for the end of central directory.
         let mut buffer = [0; 4];
-        let mut position = length.saturating_sub(22);
-        while position >= length.saturating_sub(22 + u16::MAX as u64)
+        let mut pos = length.saturating_sub(22);
+        while pos >= length.saturating_sub(22 + u16::MAX as u64)
             && buffer != END_OF_CENTRAL_DIRECTORY_SIGNATURE
         {
-            reader.seek(SeekFrom::Start(position))?;
+            reader.seek(SeekFrom::Start(pos))?;
             reader.read_exact(&mut buffer)?;
-            position = match position.checked_sub(1) {
+            pos = match pos.checked_sub(1) {
                 Some(position) => position,
                 None => break,
             }
