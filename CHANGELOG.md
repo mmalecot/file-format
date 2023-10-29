@@ -1,8 +1,9 @@
 # Version 0.22.0 (unreleased)
 
-## Improvements
+## Internal changes
 
 - Remove `zip` dependency when using `reader-zip` feature
+- Update `cfb` dependency from 0.8 to 0.9
 
 # Version 0.21.0 (2023-09-29)
 
