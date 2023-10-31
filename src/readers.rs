@@ -941,6 +941,7 @@ impl crate::FileFormat {
 /// Checks if the `data` array contains the `target` sequence using the Boyer-Moore algorithm.
 #[cfg(any(
     feature = "reader-asf",
+    feature = "reader-cfb",
     feature = "reader-pdf",
     feature = "reader-rm",
     feature = "reader-xml"
