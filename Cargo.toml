@@ -15,7 +15,6 @@ exclude = ["/.github", "/examples", "/fixtures", "/tests", ".gitattributes", ".g
 rust-version = "1.60.0"
 
 [dependencies]
-cfb = { version = "0.9", optional = true }
 serde = { version = "1.0", optional = true, features = ["derive"], default-features = false }
 
 [features]
@@ -36,7 +35,7 @@ reader = [
     "reader-zip"
 ]
 reader-asf = []
-reader-cfb = ["dep:cfb"]
+reader-cfb = []
 reader-ebml = []
 reader-exe = []
 reader-mp4 = []
