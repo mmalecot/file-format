@@ -74,14 +74,10 @@ impl crate::FileFormat {
         let mut buffer = vec![0; std::cmp::min(SEARCH_LIMIT, length as usize)];
         reader.read_exact(&mut buffer)?;
 
-        // Searches for an Extended Content Description descriptor named "DVR File Version" in the
-        // buffer.
-        if contains(&buffer, DVR_DESCRIPTOR) {
+        // Searches for specific GUIDs or descriptors in the buffer.
+        Ok(if contains(&buffer, DVR_DESCRIPTOR) {
             return Ok(Self::MicrosoftDigitalVideoRecording);
-        }
-
-        // Searches for specific GUIDs in the buffer.
-        Ok(if contains(&buffer, VIDEO_MEDIA_GUID) {
+        } else if contains(&buffer, VIDEO_MEDIA_GUID) {
             Self::WindowsMediaVideo
         } else if contains(&buffer, AUDIO_MEDIA_GUID) {
             Self::WindowsMediaAudio
@@ -203,7 +199,7 @@ impl crate::FileFormat {
         let mut buffer = vec![0; std::cmp::min(SEARCH_LIMIT, (length - 512) as usize)];
         reader.read_exact(&mut buffer)?;
 
-        // Searches for specific CLSIDs and filenames in the buffer.
+        // Searches for specific CLSIDs or filenames in the buffer.
         Ok(if contains(&buffer, AUTODESK_INVENTORY_ASSEMBLY_CLSID) {
             Self::AutodeskInventorAssembly
         } else if contains(&buffer, AUTODESK_INVENTOR_DRAWING_CLSID) {
@@ -615,7 +611,7 @@ impl crate::FileFormat {
         let mut buffer = vec![0; std::cmp::min(SEARCH_LIMIT, length as usize)];
         reader.read_exact(&mut buffer)?;
 
-        // Searches for the media type in the buffer.
+        // Searches for specific media types in the buffer.
         Ok(if contains(&buffer, b"video/x-pn-realvideo") {
             Self::Realvideo
         } else if contains(&buffer, b"audio/x-pn-realaudio")
