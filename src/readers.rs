@@ -50,16 +50,18 @@ impl crate::FileFormat {
     /// Determines file format from an ASF reader.
     #[cfg(feature = "reader-asf")]
     pub(crate) fn from_asf_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        // Constants representing GUIDs and descriptors.
-        const VIDEO_MEDIA_GUID: &[u8] =
-            b"\xC0\xEF\x19\xBC\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
-        const AUDIO_MEDIA_GUID: &[u8] =
-            b"\x40\x9E\x69\xF8\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
-        const DVR_DESCRIPTOR: &[u8] =
-            b"D\x00V\x00R\x00 \x00F\x00i\x00l\x00e\x00 \x00V\x00e\x00r\x00s\x00i\x00o\x00n";
-
         // Constants for limits.
         const SEARCH_LIMIT: usize = 8192;
+
+        // Constants for GUIDs.
+        const AUDIO_MEDIA_GUID: &[u8] =
+            b"\x40\x9E\x69\xF8\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
+        const VIDEO_MEDIA_GUID: &[u8] =
+            b"\xC0\xEF\x19\xBC\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
+
+        // Constants for descriptors.
+        const DVR_DESCRIPTOR: &[u8] =
+            b"D\x00V\x00R\x00 \x00F\x00i\x00l\x00e\x00 \x00V\x00e\x00r\x00s\x00i\x00o\x00n";
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
@@ -201,7 +203,7 @@ impl crate::FileFormat {
         let mut buffer = vec![0; std::cmp::min(SEARCH_LIMIT, (length - 512) as usize)];
         reader.read_exact(&mut buffer)?;
 
-        // Searches for specific CLSIDs or filenames in the buffer.
+        // Searches for specific CLSIDs and filenames in the buffer.
         Ok(if contains(&buffer, AUTODESK_INVENTORY_ASSEMBLY_CLSID) {
             Self::AutodeskInventorAssembly
         } else if contains(&buffer, AUTODESK_INVENTOR_DRAWING_CLSID) {
@@ -290,20 +292,22 @@ impl crate::FileFormat {
     /// Determines file format from an EBML reader.
     #[cfg(feature = "reader-ebml")]
     pub(crate) fn from_ebml_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        // Constants representing EBML element IDs.
-        const EBML: u32 = 0x1A45DFA3;
-        const DOC_TYPE: u32 = 0x4282;
-        const SEGMENT: u32 = 0x18538067;
-        const TRACKS: u32 = 0x1654AE6B;
-        const TRACK_ENTRY: u32 = 0xAE;
-        const CODEC_ID: u32 = 0x86;
-        const VIDEO: u32 = 0xE0;
-        const STEREO_MODE: u32 = 0x53B8;
-        const CLUSTER: u32 = 0x1F43B675;
-
         // Constants for limits.
         const ITERATION_LIMIT: usize = 512;
         const STRING_LIMIT: usize = 64;
+
+        // Constants for EBML elements IDs.
+        const DOC_TYPE_ID: u32 = 0x4282;
+        const EBML_ID: u32 = 0x1A45DFA3;
+
+        // Constants for Matroska elements IDs.
+        const CLUSTER_ID: u32 = 0x1F43B675;
+        const CODEC_ID: u32 = 0x86;
+        const SEGMENT_ID: u32 = 0x18538067;
+        const STEREO_MODE_ID: u32 = 0x53B8;
+        const TRACKS_ID: u32 = 0x1654AE6B;
+        const TRACK_ENTRY_ID: u32 = 0xAE;
+        const VIDEO_ID: u32 = 0xE0;
 
         /// Helper function to read the ID of an EBML element.
         fn read_id<R: Read>(reader: &mut R) -> Result<u32> {
@@ -365,10 +369,10 @@ impl crate::FileFormat {
 
             // Checks the ID of the element to perform specific actions.
             match id {
-                EBML | SEGMENT | TRACKS | TRACK_ENTRY | VIDEO => {
+                EBML_ID | SEGMENT_ID | TRACKS_ID | TRACK_ENTRY_ID | VIDEO_ID => {
                     // Does nothing for these elements.
                 }
-                DOC_TYPE => {
+                DOC_TYPE_ID => {
                     // Reads the buffer containing the DocType.
                     let mut buffer = vec![0; std::cmp::min(STRING_LIMIT, size as usize)];
                     reader.read_exact(&mut buffer)?;
@@ -402,7 +406,7 @@ impl crate::FileFormat {
                         subtitle_codec = true;
                     }
                 }
-                STEREO_MODE => {
+                STEREO_MODE_ID => {
                     // Reads a single byte to determine the StereoMode.
                     let mut buffer = [0];
                     reader.read_exact(&mut buffer)?;
@@ -412,7 +416,7 @@ impl crate::FileFormat {
                         return Ok(Self::Matroska3dVideo);
                     }
                 }
-                CLUSTER => {
+                CLUSTER_ID => {
                     // No need to continue reading.
                     break;
                 }
@@ -446,6 +450,12 @@ impl crate::FileFormat {
     /// Determines file format from an EXE reader.
     #[cfg(feature = "reader-exe")]
     pub(crate) fn from_exe_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        // Constants for signatures.
+        const LINEAR_EXECUTABLE_SIGNATURE_1: &[u8] = b"LE";
+        const LINEAR_EXECUTABLE_SIGNATURE_2: &[u8] = b"LX";
+        const NEW_EXECUTABLE_SIGNATURE: &[u8] = b"NE";
+        const PORTABLE_EXECUTABLE_SIGNATURE: &[u8] = b"PE\0\0";
+
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
@@ -469,7 +479,7 @@ impl crate::FileFormat {
             reader.read_exact(&mut signature)?;
 
             // Checks the signature.
-            if &signature == b"PE\0\0" {
+            if signature == PORTABLE_EXECUTABLE_SIGNATURE {
                 reader.seek(SeekFrom::Current(0x12))?;
                 let mut characteristics = [0; 2];
                 reader.read_exact(&mut characteristics)?;
@@ -478,9 +488,11 @@ impl crate::FileFormat {
                 } else {
                     Self::PortableExecutable
                 });
-            } else if &signature[..2] == b"LE" || &signature[..2] == b"LX" {
+            } else if &signature[..2] == LINEAR_EXECUTABLE_SIGNATURE_1
+                || &signature[..2] == LINEAR_EXECUTABLE_SIGNATURE_2
+            {
                 return Ok(Self::LinearExecutable);
-            } else if &signature[..2] == b"NE" {
+            } else if &signature[..2] == NEW_EXECUTABLE_SIGNATURE {
                 return Ok(Self::NewExecutable);
             }
         }
@@ -619,8 +631,8 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-txt")]
     pub(crate) fn from_txt_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Constants for limits.
-        const READ_LIMIT: u64 = 8_388_608;
         const LINE_LIMIT: usize = 256;
+        const READ_LIMIT: u64 = 8_388_608;
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
@@ -645,9 +657,9 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-xml")]
     pub(crate) fn from_xml_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Constants for limits.
-        const READ_LIMIT: u64 = 262_144;
-        const LINE_LIMIT: usize = 8;
         const CHAR_LIMIT: usize = 2048;
+        const LINE_LIMIT: usize = 8;
+        const READ_LIMIT: u64 = 262_144;
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
@@ -718,10 +730,12 @@ impl crate::FileFormat {
     /// Determines file format from a ZIP reader.
     #[cfg(feature = "reader-zip")]
     pub(crate) fn from_zip_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        // Constants.
+        // Constants for limits.
+        const FILE_LIMIT: usize = 4096;
+
+        // Constants for signatures.
         const CENTRAL_DIRECTORY_FILE_HEADER_SIGNATURE: &[u8] = b"\x50\x4B\x01\x02";
         const END_OF_CENTRAL_DIRECTORY_SIGNATURE: &[u8] = b"\x50\x4B\x05\x06";
-        const FILE_LIMIT: usize = 4096;
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
@@ -732,13 +746,13 @@ impl crate::FileFormat {
 
         // Searches for the end of central directory.
         let mut buffer = [0; 4];
-        let mut pos = length.saturating_sub(22);
-        while pos >= length.saturating_sub(22 + u16::MAX as u64)
+        let mut position = length.saturating_sub(22);
+        while position >= length.saturating_sub(22 + u16::MAX as u64)
             && buffer != END_OF_CENTRAL_DIRECTORY_SIGNATURE
         {
-            reader.seek(SeekFrom::Start(pos))?;
+            reader.seek(SeekFrom::Start(position))?;
             reader.read_exact(&mut buffer)?;
-            pos = match pos.checked_sub(1) {
+            position = match position.checked_sub(1) {
                 Some(position) => position,
                 None => break,
             }
@@ -964,10 +978,10 @@ fn contains(data: &[u8], target: &[u8]) -> bool {
     }
 
     // Starts searching from the last possible position in the data array.
-    let mut pos = target.len() - 1;
-    while pos < data.len() {
+    let mut position = target.len() - 1;
+    while position < data.len() {
         let mut target_index = target.len() - 1;
-        let mut data_index = pos;
+        let mut data_index = position;
         while data[data_index] == target[target_index] {
             if target_index == 0 {
                 return true;
@@ -977,10 +991,10 @@ fn contains(data: &[u8], target: &[u8]) -> bool {
         }
 
         // Calculates the maximum shift based on the bad character rule and good suffix rule.
-        let bad_char_shift = bad_char_table[data[pos] as usize];
+        let bad_char_shift = bad_char_table[data[position] as usize];
         let good_suffix_shift = target.len() - target_index;
         let shift = std::cmp::max(bad_char_shift, good_suffix_shift);
-        pos += shift;
+        position += shift;
     }
     false
 }
