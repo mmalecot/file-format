@@ -90,198 +90,106 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-cfb")]
     pub(crate) fn from_cfb_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Constants for limits.
-        const SEARCH_LIMIT: usize = 32768;
+        const SEARCH_LIMIT: usize = 512;
 
-        // Constants for CLSIDs.
-        const AUTODESK_INVENTORY_ASSEMBLY_CLSID: &[u8] =
-            b"\xE1\x81\x0F\xE6\xB3\x49\xD0\x11\x93\xC3\x7E\x07\x06\x00\x00\x00";
-        const AUTODESK_INVENTOR_DRAWING_CLSID: &[u8] =
-            b"\xF1\xFD\xF9\xBB\xDC\x52\xD0\x11\x8C\x04\x08\x00\x09\x0B\xE8\xEC";
-        const AUTODESK_INVENTOR_PART_CLSID: &[u8] =
-            b"\x90\xB4\x29\x4D\xB2\x49\xD0\x11\x93\xC3\x7E\x07\x06\x00\x00\x00";
-        const AUTODESK_INVENTOR_PRESENTATION_CLSID: &[u8] =
-            b"\x80\x3A\x28\x76\xDD\x50\xD3\x11\xA7\xE3\x00\xC0\x4F\x79\xD7\xBC";
-        const MICROSOFT_EXCEL_SPREADSHEET_CLSID_1: &[u8] =
-            b"\x10\x08\x02\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x00\x46";
-        const MICROSOFT_EXCEL_SPREADSHEET_CLSID_2: &[u8] =
-            b"\x20\x08\x02\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x00\x46";
-        const MICROSOFT_POWERPOINT_PRESENTATION_CLSID_1: &[u8] =
-            b"\x51\x48\x04\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x00\x46";
-        const MICROSOFT_POWERPOINT_PRESENTATION_CLSID_2: &[u8] =
-            b"\x10\x8D\x81\x64\x9B\x4F\xCF\x11\x86\xEA\x00\xAA\x00\xB9\x29\xE8";
-        const MICROSOFT_POWERPOINT_PRESENTATION_CLSID_3: &[u8] =
-            b"\x70\xAE\x7B\xEA\x3B\xFB\xCD\x11\xA9\x03\x00\xAA\x00\x51\x0E\xA3";
-        const MICROSOFT_PROJECT_PLAN_CLSID: &[u8] =
-            b"\x3A\x8F\xB7\x74\xC8\xC8\xD1\x11\xBE\x11\x00\xC0\x4F\xB6\xFA\xF1";
-        const MICROSOFT_PUBLISHER_DOCUMENT_CLSID: &[u8] =
-            b"\x01\x12\x02\x00\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x46";
-        const MICROSOFT_SOFTWARE_INSTALLER_CLSID: &[u8] =
-            b"\x84\x10\x0C\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x00\x46";
-        const MICROSOFT_VISIO_DRAWING_CLSID_1: &[u8] =
-            b"\x13\x1A\x02\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x00\x46";
-        const MICROSOFT_VISIO_DRAWING_CLSID_2: &[u8] =
-            b"\x14\x1A\x02\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x00\x46";
-        const MICROSOFT_WORD_DOCUMENT_CLSID_1: &[u8] =
-            b"\x00\x09\x02\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x00\x46";
-        const MICROSOFT_WORD_DOCUMENT_CLSID_2: &[u8] =
-            b"\x06\x09\x02\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x00\x46";
-        const MICROSOFT_WORKS_DATABASE_CLSID_1: &[u8] =
-            b"\x03\x13\x02\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x00\x46";
-        const MICROSOFT_WORKS_DATABASE_CLSID_2: &[u8] =
-            b"\xC3\xDB\xCD\x28\xE2\x0A\xCE\x11\xA2\x9A\x00\xAA\x00\x4A\x1A\x72";
-        const MICROSOFT_WORKS_WORD_PROCESSOR_CLSID_1: &[u8] =
-            b"\x02\x13\x02\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x00\x46";
-        const MICROSOFT_WORKS_WORD_PROCESSOR_CLSID_2: &[u8] =
-            b"\xB2\x5A\xA4\x0E\x0A\x9E\xD1\x11\xA4\x07\x00\xC0\x4F\xB9\x32\xBA";
-        const MICROSOFT_WORKS_WORD_PROCESSOR_CLSID_3: &[u8] =
-            b"\xC2\xDB\xCD\x28\xE2\x0A\xCE\x11\xA2\x9A\x00\xAA\x00\x4A\x1A\x72";
-        const SOLIDWORKS_ASSEMBLY_CLSID: &[u8] =
-            b"\x36\x3D\xA3\x83\xC5\x27\xCE\x11\xBF\xD4\x00\x40\x05\x13\xBB\x57";
-        const SOLIDWORKS_DRAWING_CLSID: &[u8] =
-            b"\x34\x3D\xA3\x83\xC5\x27\xCE\x11\xBF\xD4\x00\x40\x05\x13\xBB\x57";
-        const SOLIDWORKS_PART_CLSID: &[u8] =
-            b"\x30\x3D\xA3\x83\xC5\x27\xCE\x11\xBF\xD4\x00\x40\x05\x13\xBB\x57";
-        const STARCALC_CLSID_1: &[u8] =
-            b"\xA0\x3F\x54\x3F\xA6\xB6\x1B\x10\x99\x61\x04\x02\x1C\x00\x70\x02";
-        const STARCALC_CLSID_2: &[u8] =
-            b"\x41\xD4\x61\x63\x35\x42\xD0\x11\x89\xCB\x00\x80\x29\xE4\xB0\xB1";
-        const STARCALC_CLSID_3: &[u8] =
-            b"\x61\xB8\xA5\xC6\xD6\x85\x1D\x11\x89\xCB\x00\x80\x29\xE4\xB0\xB1";
-        const STARCHART_CLSID_1: &[u8] =
-            b"\xE0\xB7\xB3\x02\x25\x42\xD0\x11\x89\xCA\x00\x80\x29\xE4\xB0\xB1";
-        const STARCHART_CLSID_2: &[u8] =
-            b"\x21\x43\x88\xBF\xDD\x85\x1D\x11\x89\xD0\x00\x80\x29\xE4\xB0\xB1";
-        const STARCHART_CLSID_3: &[u8] =
-            b"\xE0\x99\x9C\xFB\x6D\x2C\x1C\x10\x8E\x2C\x00\x00\x1B\x4C\xC7\x11";
-        const STARDRAW_CLSID_1: &[u8] =
-            b"\xA0\x05\x89\x2E\xBD\x85\xD1\x11\x89\xD0\x00\x80\x29\xE4\xB0\xB1";
-        const STARDRAW_CLSID_2: &[u8] =
-            b"\xE0\xAA\x10\xAF\x6D\xB3\x1B\x10\x99\x61\x04\x02\x1C\x00\x70\x02";
-        const STARIMPRESS_CLSID_1: &[u8] =
-            b"\xC0\x3C\x2D\x01\x16\x42\xD0\x11\x89\xCB\x00\x80\x29\xE4\xB0\xB1";
-        const STARIMPRESS_CLSID_2: &[u8] =
-            b"\x21\x72\x5C\x56\xBC\x85\x1D\x11\x89\xD0\x00\x80\x29\xE4\xB0\xB1";
-        const STARMATH_CLSID_1: &[u8] =
-            b"\xE1\xB7\xB3\x02\x25\x42\xD0\x11\x89\xCA\x00\x80\x29\xE4\xB0\xB1";
-        const STARMATH_CLSID_2: &[u8] =
-            b"\x60\x04\x59\xD4\xFD\x35\x1C\x10\xB1\x2A\x04\x02\x1C\x00\x70\x02";
-        const STARMATH_CLSID_3: &[u8] =
-            b"\x40\xE6\xB5\xFF\xDE\x85\x1D\x11\x89\xD0\x00\x80\x29\xE4\xB0\xB1";
-        const STARWRITER_CLSID_1: &[u8] =
-            b"\xB0\xE9\x04\x8B\x0E\x42\xD0\x11\xA4\x5E\x00\xA0\x24\x9D\x57\xB1";
-        const STARWRITER_CLSID_2: &[u8] =
-            b"\xD1\xF9\x0C\xC2\xAE\x85\x1D\x11\xAA\xB4\x00\x60\x97\xDA\x56\x1A";
-        const STARWRITER_CLSID_3: &[u8] =
-            b"\x40\x7E\x5C\xDC\x5C\xB3\x1B\x10\x99\x61\x04\x02\x1C\x00\x70\x02";
-        const THREE_DIMENSIONAL_STUDIO_MAX_CLSID: &[u8] =
-            b"\x7B\x8C\xDD\x1C\xC0\x81\xA0\x45\x9F\xED\x04\x14\x31\x44\xCC\x1E";
-        const WORDPERFECT_DOCUMENT_CLSID: &[u8] =
-            b"\xFF\x73\x98\x51\xAD\x2D\x20\x02\x19\x37\x00\x00\x92\x96\x79\xCD";
-        const WORDPERFECT_GRAPHICS_CLSID: &[u8] =
-            b"\x60\xFE\x2E\x40\x99\x19\x1B\x10\x99\xAE\x04\x02\x1C\x00\x70\x02";
-
-        // Constants for UTF-16-encoded filenames.
-        const MICROSOFT_WORKS6_SPREADSHEET_FILENAME: &[u8] =
-            b"\x00W\x00k\x00s\x00S\x00S\x00W\x00o\x00r\x00k\x00B\x00o\x00o\x00k";
-        const MICROSOFT_WORKS_WORD_PROCESSOR_FILENAME: &[u8] = b"\x00M\x00a\x00t\x00O\x00S\x00T";
+        // Constants for UTF-16-encoded entry names.
+        const MICROSOFT_WORKS6_SPREADSHEET_ENTRY_NAME: &[u8] =
+            b"W\x00k\x00s\x00S\x00S\x00W\x00o\x00r\x00k\x00B\x00o\x00o\x00k\x00";
+        const MICROSOFT_WORKS_WORD_PROCESSOR_ENTRY_NAME: &[u8] = b"M\x00a\x00t\x00O\x00S\x00T\x00";
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Gets the stream length.
-        let length = reader.seek(SeekFrom::End(0))?;
-        reader.rewind()?;
-
-        // Skips the CFB header.
-        reader.seek(SeekFrom::Start(512))?;
-
-        // Fills the buffer.
-        let mut buffer = vec![0; std::cmp::min(SEARCH_LIMIT, (length - 512) as usize)];
+        // Reads the major version.
+        reader.seek(SeekFrom::Current(26))?;
+        let mut buffer = [0; 2];
         reader.read_exact(&mut buffer)?;
+        let major_version = u16::from_le_bytes(buffer);
 
-        // Searches for specific CLSIDs or filenames in the buffer.
-        Ok(if contains(&buffer, AUTODESK_INVENTORY_ASSEMBLY_CLSID) {
-            Self::AutodeskInventorAssembly
-        } else if contains(&buffer, AUTODESK_INVENTOR_DRAWING_CLSID) {
-            Self::AutodeskInventorDrawing
-        } else if contains(&buffer, AUTODESK_INVENTOR_PART_CLSID) {
-            Self::AutodeskInventorPart
-        } else if contains(&buffer, AUTODESK_INVENTOR_PRESENTATION_CLSID) {
-            Self::AutodeskInventorPresentation
-        } else if contains(&buffer, MICROSOFT_EXCEL_SPREADSHEET_CLSID_1)
-            || contains(&buffer, MICROSOFT_EXCEL_SPREADSHEET_CLSID_2)
-        {
-            Self::MicrosoftExcelSpreadsheet
-        } else if contains(&buffer, MICROSOFT_POWERPOINT_PRESENTATION_CLSID_1)
-            || contains(&buffer, MICROSOFT_POWERPOINT_PRESENTATION_CLSID_2)
-            || contains(&buffer, MICROSOFT_POWERPOINT_PRESENTATION_CLSID_3)
-        {
-            Self::MicrosoftPowerpointPresentation
-        } else if contains(&buffer, MICROSOFT_PROJECT_PLAN_CLSID) {
-            Self::MicrosoftProjectPlan
-        } else if contains(&buffer, MICROSOFT_PUBLISHER_DOCUMENT_CLSID) {
-            Self::MicrosoftPublisherDocument
-        } else if contains(&buffer, MICROSOFT_SOFTWARE_INSTALLER_CLSID) {
-            Self::MicrosoftSoftwareInstaller
-        } else if contains(&buffer, MICROSOFT_VISIO_DRAWING_CLSID_1)
-            || contains(&buffer, MICROSOFT_VISIO_DRAWING_CLSID_2)
-        {
-            Self::MicrosoftVisioDrawing
-        } else if contains(&buffer, MICROSOFT_WORD_DOCUMENT_CLSID_1)
-            || contains(&buffer, MICROSOFT_WORD_DOCUMENT_CLSID_2)
-        {
-            Self::MicrosoftWordDocument
-        } else if contains(&buffer, MICROSOFT_WORKS_DATABASE_CLSID_1)
-            || contains(&buffer, MICROSOFT_WORKS_DATABASE_CLSID_2)
-        {
-            Self::MicrosoftWorksDatabase
-        } else if contains(&buffer, MICROSOFT_WORKS_WORD_PROCESSOR_CLSID_1)
-            || contains(&buffer, MICROSOFT_WORKS_WORD_PROCESSOR_CLSID_2)
-            || contains(&buffer, MICROSOFT_WORKS_WORD_PROCESSOR_CLSID_3)
-        {
-            Self::MicrosoftWorksWordProcessor
-        } else if contains(&buffer, SOLIDWORKS_ASSEMBLY_CLSID) {
-            Self::SolidworksAssembly
-        } else if contains(&buffer, SOLIDWORKS_DRAWING_CLSID) {
-            Self::SolidworksDrawing
-        } else if contains(&buffer, SOLIDWORKS_PART_CLSID) {
-            Self::SolidworksPart
-        } else if contains(&buffer, STARCALC_CLSID_1)
-            || contains(&buffer, STARCALC_CLSID_2)
-            || contains(&buffer, STARCALC_CLSID_3)
-        {
-            Self::Starcalc
-        } else if contains(&buffer, STARCHART_CLSID_1)
-            || contains(&buffer, STARCHART_CLSID_2)
-            || contains(&buffer, STARCHART_CLSID_3)
-        {
-            Self::Starchart
-        } else if contains(&buffer, STARDRAW_CLSID_1) || contains(&buffer, STARDRAW_CLSID_2) {
-            Self::Stardraw
-        } else if contains(&buffer, STARIMPRESS_CLSID_1) || contains(&buffer, STARIMPRESS_CLSID_2) {
-            Self::Starimpress
-        } else if contains(&buffer, STARMATH_CLSID_1)
-            || contains(&buffer, STARMATH_CLSID_2)
-            || contains(&buffer, STARMATH_CLSID_3)
-        {
-            Self::Starmath
-        } else if contains(&buffer, STARWRITER_CLSID_1)
-            || contains(&buffer, STARWRITER_CLSID_2)
-            || contains(&buffer, STARWRITER_CLSID_3)
-        {
-            Self::Starwriter
-        } else if contains(&buffer, THREE_DIMENSIONAL_STUDIO_MAX_CLSID) {
-            Self::ThreeDimensionalStudioMax
-        } else if contains(&buffer, WORDPERFECT_DOCUMENT_CLSID) {
-            Self::WordperfectDocument
-        } else if contains(&buffer, WORDPERFECT_GRAPHICS_CLSID) {
-            Self::WordperfectGraphics
-        } else if contains(&buffer, MICROSOFT_WORKS6_SPREADSHEET_FILENAME) {
-            Self::MicrosoftWorks6Spreadsheet
-        } else if contains(&buffer, MICROSOFT_WORKS_WORD_PROCESSOR_FILENAME) {
-            Self::MicrosoftWorksWordProcessor
-        } else {
-            Self::CompoundFileBinary
+        // Reads the first directory sector location.
+        reader.seek(SeekFrom::Current(20))?;
+        let mut buffer = [0; 4];
+        reader.read_exact(&mut buffer)?;
+        let first_directory_sector_location = u32::from_le_bytes(buffer);
+
+        // Seeks to the root entry CLSID.
+        let offset = if major_version == 0x0003 { 512 } else { 4096 }
+            * (1 + first_directory_sector_location as u64)
+            + 80;
+        reader.seek(SeekFrom::Start(offset))?;
+
+        // Reads and decodes the CLSID.
+        let mut buffer = [0; 16];
+        reader.read_exact(&mut buffer)?;
+        let clsid = format!(
+            "{:02x}{:02x}{:02x}{:02x}-{:02x}{:02x}-{:02x}{:02x}-{:02x}{:02x}-{:02x}{:02x}{:02x}{:02x}{:02x}{:02x}",
+            buffer[3], buffer[2], buffer[1], buffer[0],
+            buffer[5], buffer[4],
+            buffer[7], buffer[6],
+            buffer[8], buffer[9],
+            buffer[10], buffer[11], buffer[12], buffer[13], buffer[14], buffer[15]
+        );
+
+        // Checks the CLSID and returns the corresponding variant.
+        Ok(match clsid.as_str() {
+            "e60f81e1-49b3-11d0-93c3-7e0706000000" => Self::AutodeskInventorAssembly,
+            "bbf9fdf1-52dc-11d0-8c04-0800090be8ec" => Self::AutodeskInventorDrawing,
+            "4d29b490-49b2-11d0-93c3-7e0706000000" => Self::AutodeskInventorPart,
+            "76283a80-50dd-11d3-a7e3-00c04f79d7bc" => Self::AutodeskInventorPresentation,
+            "00020810-0000-0000-c000-000000000046" => Self::MicrosoftExcelSpreadsheet,
+            "00020820-0000-0000-c000-000000000046" => Self::MicrosoftExcelSpreadsheet,
+            "00044851-0000-0000-c000-000000000046" => Self::MicrosoftPowerpointPresentation,
+            "64818d10-4f9b-11cf-86ea-00aa00b929e8" => Self::MicrosoftPowerpointPresentation,
+            "ea7bae70-fb3b-11cd-a903-00aa00510ea3" => Self::MicrosoftPowerpointPresentation,
+            "74b78f3a-c8c8-11d1-be11-00c04fb6faf1" => Self::MicrosoftProjectPlan,
+            "00021201-0000-0000-00c0-000000000046" => Self::MicrosoftPublisherDocument,
+            "000c1084-0000-0000-c000-000000000046" => Self::MicrosoftSoftwareInstaller,
+            "00021a13-0000-0000-c000-000000000046" => Self::MicrosoftVisioDrawing,
+            "00021a14-0000-0000-c000-000000000046" => Self::MicrosoftVisioDrawing,
+            "00020900-0000-0000-c000-000000000046" => Self::MicrosoftWordDocument,
+            "00020906-0000-0000-c000-000000000046" => Self::MicrosoftWordDocument,
+            "00021303-0000-0000-c000-000000000046" => Self::MicrosoftWorksDatabase,
+            "28cddbc3-0ae2-11ce-a29a-00aa004a1a72" => Self::MicrosoftWorksDatabase,
+            "00021302-0000-0000-c000-000000000046" => Self::MicrosoftWorksWordProcessor,
+            "0ea45ab2-9e0a-11d1-a407-00c04fb932ba" => Self::MicrosoftWorksWordProcessor,
+            "28cddbc2-0ae2-11ce-a29a-00aa004a1a72" => Self::MicrosoftWorksWordProcessor,
+            "83a33d36-27c5-11ce-bfd4-00400513bb57" => Self::SolidworksAssembly,
+            "83a33d34-27c5-11ce-bfd4-00400513bb57" => Self::SolidworksDrawing,
+            "83a33d30-27c5-11ce-bfd4-00400513bb57" => Self::SolidworksPart,
+            "3f543fa0-b6a6-101b-9961-04021c007002" => Self::Starcalc,
+            "6361d441-4235-11d0-89cb-008029e4b0b1" => Self::Starcalc,
+            "c6a5b861-85d6-11d1-89cb-008029e4b0b1" => Self::Starcalc,
+            "02b3b7e0-4225-11d0-89ca-008029e4b0b1" => Self::Starchart,
+            "bf884321-85dd-11d1-89d0-008029e4b0b1" => Self::Starchart,
+            "fb9c99e0-2c6d-101c-8e2c-00001b4cc711" => Self::Starchart,
+            "2e8905a0-85bd-11d1-89d0-008029e4b0b1" => Self::Stardraw,
+            "af10aae0-b36d-101b-9961-04021c007002" => Self::Stardraw,
+            "012d3cc0-4216-11d0-89cb-008029e4b0b1" => Self::Starimpress,
+            "565c7221-85bc-11d1-89d0-008029e4b0b1" => Self::Starimpress,
+            "02b3b7e1-4225-11d0-89ca-008029e4b0b1" => Self::Starmath,
+            "d4590460-35fd-101c-b12a-04021c007002" => Self::Starmath,
+            "ffb5e640-85de-11d1-89d0-008029e4b0b1" => Self::Starmath,
+            "8b04e9b0-420e-11d0-a45e-00a0249d57b1" => Self::Starwriter,
+            "c20cf9d1-85ae-11d1-aab4-006097da561a" => Self::Starwriter,
+            "dc5c7e40-b35c-101b-9961-04021c007002" => Self::Starwriter,
+            "1cdd8c7b-81c0-45a0-9fed-04143144cc1e" => Self::ThreeDimensionalStudioMax,
+            "519873ff-2dad-0220-1937-0000929679cd" => Self::WordperfectDocument,
+            "402efe60-1999-101b-99ae-04021c007002" => Self::WordperfectGraphics,
+            "00000000-0000-0000-0000-000000000000" => {
+                // Fills the buffer.
+                let mut buffer = [0; SEARCH_LIMIT];
+                reader.read_exact(&mut buffer)?;
+
+                // Searches for specific entry names in the buffer.
+                if contains(&buffer, MICROSOFT_WORKS6_SPREADSHEET_ENTRY_NAME) {
+                    Self::MicrosoftWorks6Spreadsheet
+                } else if contains(&buffer, MICROSOFT_WORKS_WORD_PROCESSOR_ENTRY_NAME) {
+                    Self::MicrosoftWorksWordProcessor
+                } else {
+                    Self::CompoundFileBinary
+                }
+            }
+            _ => Self::CompoundFileBinary,
         })
     }
 
