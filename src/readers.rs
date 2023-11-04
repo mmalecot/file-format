@@ -121,14 +121,16 @@ impl crate::FileFormat {
         // Reads and decodes the CLSID.
         let mut buffer = [0; 16];
         reader.read_exact(&mut buffer)?;
-        let clsid = format!(
-            "{:02x}{:02x}{:02x}{:02x}-{:02x}{:02x}-{:02x}{:02x}-{:02x}{:02x}-{:02x}{:02x}{:02x}{:02x}{:02x}{:02x}",
-            buffer[3], buffer[2], buffer[1], buffer[0],
-            buffer[5], buffer[4],
-            buffer[7], buffer[6],
-            buffer[8], buffer[9],
-            buffer[10], buffer[11], buffer[12], buffer[13], buffer[14], buffer[15]
-        );
+        let clsid = [3, 2, 1, 0, 5, 4, 7, 6, 8, 9, 10, 11, 12, 13, 14, 15]
+            .iter()
+            .map(|&index| {
+                if index == 5 || index == 7 || index == 8 || index == 10 {
+                    format!("-{:02x}", buffer[index])
+                } else {
+                    format!("{:02x}", buffer[index])
+                }
+            })
+            .collect::<String>();
 
         // Checks the CLSID and returns the corresponding variant.
         Ok(match clsid.as_str() {
