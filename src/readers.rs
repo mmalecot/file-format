@@ -5,6 +5,7 @@ use std::io::*;
 impl crate::FileFormat {
     /// Determines file format from the specified format reader.
     #[allow(unused_variables)]
+    #[allow(clippy::needless_pass_by_ref_mut)]
     #[inline]
     pub(crate) fn from_format_reader<R: Read + Seek>(
         format: Self,
@@ -35,6 +36,7 @@ impl crate::FileFormat {
 
     /// Determines file format from a generic reader.
     #[allow(unused_variables)]
+    #[allow(clippy::needless_pass_by_ref_mut)]
     #[inline]
     pub(crate) fn from_generic_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Self {
         #[cfg(feature = "reader-txt")]
