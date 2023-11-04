@@ -50,7 +50,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.21"
+file-format = "0.22"
 ```
 
 ## Supported file formats

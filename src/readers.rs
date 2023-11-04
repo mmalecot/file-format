@@ -5,6 +5,7 @@ use std::io::*;
 impl crate::FileFormat {
     /// Determines file format from the specified format reader.
     #[allow(unused_variables)]
+    #[allow(clippy::needless_pass_by_ref_mut)]
     #[inline]
     pub(crate) fn from_format_reader<R: Read + Seek>(
         format: Self,
@@ -35,6 +36,7 @@ impl crate::FileFormat {
 
     /// Determines file format from a generic reader.
     #[allow(unused_variables)]
+    #[allow(clippy::needless_pass_by_ref_mut)]
     #[inline]
     pub(crate) fn from_generic_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Self {
         #[cfg(feature = "reader-txt")]
@@ -50,36 +52,32 @@ impl crate::FileFormat {
     /// Determines file format from an ASF reader.
     #[cfg(feature = "reader-asf")]
     pub(crate) fn from_asf_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        // Constants representing GUIDs and descriptors.
-        const VIDEO_MEDIA_GUID: &[u8] =
-            b"\xC0\xEF\x19\xBC\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
+        // Constants for limits.
+        const BUFFER_SIZE_LIMIT: usize = 8192;
+
+        // Constants for UTF-16-encoded descriptors.
+        const DVR_DESCRIPTOR: &[u8] = b"D\0V\0R\0 \0F\0i\0l\0e\0 \0V\0e\0r\0s\0i\0o\0n\0";
+
+        // Constants for GUIDs.
         const AUDIO_MEDIA_GUID: &[u8] =
             b"\x40\x9E\x69\xF8\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
-        const DVR_DESCRIPTOR: &[u8] =
-            b"D\x00V\x00R\x00 \x00F\x00i\x00l\x00e\x00 \x00V\x00e\x00r\x00s\x00i\x00o\x00n";
+        const VIDEO_MEDIA_GUID: &[u8] =
+            b"\xC0\xEF\x19\xBC\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
 
-        // Constants for limits.
-        const SEARCH_LIMIT: usize = 8192;
+        // Gets the stream length.
+        let length = reader.seek(SeekFrom::End(0))?;
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Gets the stream length.
-        let length = reader.seek(SeekFrom::End(0))?;
-        reader.rewind()?;
-
         // Fills the buffer.
-        let mut buffer = vec![0; std::cmp::min(SEARCH_LIMIT, length as usize)];
+        let mut buffer = vec![0; std::cmp::min(BUFFER_SIZE_LIMIT, length as usize)];
         reader.read_exact(&mut buffer)?;
 
-        // Searches for an Extended Content Description descriptor named "DVR File Version" in the
-        // buffer.
-        if contains(&buffer, DVR_DESCRIPTOR) {
+        // Searches for specific descriptors and GUIDs in the buffer.
+        Ok(if contains(&buffer, DVR_DESCRIPTOR) {
             return Ok(Self::MicrosoftDigitalVideoRecording);
-        }
-
-        // Searches for specific GUIDs in the buffer.
-        Ok(if contains(&buffer, VIDEO_MEDIA_GUID) {
+        } else if contains(&buffer, VIDEO_MEDIA_GUID) {
             Self::WindowsMediaVideo
         } else if contains(&buffer, AUDIO_MEDIA_GUID) {
             Self::WindowsMediaAudio
@@ -91,14 +89,48 @@ impl crate::FileFormat {
     /// Determines file format from a CFB reader.
     #[cfg(feature = "reader-cfb")]
     pub(crate) fn from_cfb_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+        // Constants for UTF-16-encoded entry names.
+        const MICROSOFT_WORKS6_SPREADSHEET_ENTRY_NAME: &[u8] =
+            b"W\0k\0s\0S\0S\0W\0o\0r\0k\0B\0o\0o\0k\0";
+        const MICROSOFT_WORKS_WORD_PROCESSOR_ENTRY_NAME: &[u8] = b"M\0a\0t\0O\0S\0T\0";
+
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Opens the compound file.
-        let file = cfb::CompoundFile::open(reader)?;
+        // Reads the major version.
+        reader.seek(SeekFrom::Current(26))?;
+        let mut buffer = [0; 2];
+        reader.read_exact(&mut buffer)?;
+        let major_version = u16::from_le_bytes(buffer);
 
-        // Reads the CLSID from the root entry and returns the corresponding variant.
-        Ok(match file.root_entry().clsid().to_string().as_str() {
+        // Reads the first directory sector location.
+        reader.seek(SeekFrom::Current(20))?;
+        let mut buffer = [0; 4];
+        reader.read_exact(&mut buffer)?;
+        let first_directory_sector_location = u32::from_le_bytes(buffer);
+
+        // Seeks to the root entry CLSID.
+        let offset = if major_version == 0x0003 { 512 } else { 4096 }
+            * (1 + first_directory_sector_location as u64)
+            + 80;
+        reader.seek(SeekFrom::Start(offset))?;
+
+        // Reads and decodes the CLSID.
+        let mut buffer = [0; 16];
+        reader.read_exact(&mut buffer)?;
+        let clsid = [3, 2, 1, 0, 5, 4, 7, 6, 8, 9, 10, 11, 12, 13, 14, 15]
+            .iter()
+            .map(|&index| {
+                if index == 5 || index == 7 || index == 8 || index == 10 {
+                    format!("-{:02x}", buffer[index])
+                } else {
+                    format!("{:02x}", buffer[index])
+                }
+            })
+            .collect::<String>();
+
+        // Determines the file format based on the CLSID.
+        Ok(match clsid.as_str() {
             "e60f81e1-49b3-11d0-93c3-7e0706000000" => Self::AutodeskInventorAssembly,
             "bbf9fdf1-52dc-11d0-8c04-0800090be8ec" => Self::AutodeskInventorDrawing,
             "4d29b490-49b2-11d0-93c3-7e0706000000" => Self::AutodeskInventorPart,
@@ -142,37 +174,46 @@ impl crate::FileFormat {
             "1cdd8c7b-81c0-45a0-9fed-04143144cc1e" => Self::ThreeDimensionalStudioMax,
             "519873ff-2dad-0220-1937-0000929679cd" => Self::WordperfectDocument,
             "402efe60-1999-101b-99ae-04021c007002" => Self::WordperfectGraphics,
-            _ => {
-                if file.exists("WksSSWorkBook") {
+            "00000000-0000-0000-0000-000000000000" => {
+                // Fills the buffer.
+                let mut buffer = [0; 512];
+                reader.read_exact(&mut buffer)?;
+
+                // Searches for specific entry names in the buffer.
+                if contains(&buffer, MICROSOFT_WORKS6_SPREADSHEET_ENTRY_NAME) {
                     Self::MicrosoftWorks6Spreadsheet
-                } else if file.exists("MatOST") {
+                } else if contains(&buffer, MICROSOFT_WORKS_WORD_PROCESSOR_ENTRY_NAME) {
                     Self::MicrosoftWorksWordProcessor
                 } else {
                     Self::CompoundFileBinary
                 }
             }
+            _ => Self::CompoundFileBinary,
         })
     }
 
     /// Determines file format from an EBML reader.
     #[cfg(feature = "reader-ebml")]
     pub(crate) fn from_ebml_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        // Constants representing EBML element IDs.
-        const EBML: u32 = 0x1A45DFA3;
-        const DOC_TYPE: u32 = 0x4282;
-        const SEGMENT: u32 = 0x18538067;
-        const TRACKS: u32 = 0x1654AE6B;
-        const TRACK_ENTRY: u32 = 0xAE;
-        const CODEC_ID: u32 = 0x86;
-        const VIDEO: u32 = 0xE0;
-        const STEREO_MODE: u32 = 0x53B8;
-        const CLUSTER: u32 = 0x1F43B675;
-
         // Constants for limits.
-        const ITERATION_LIMIT: usize = 512;
+        const ELEMENT_LIMIT: usize = 512;
         const STRING_LIMIT: usize = 64;
 
+        // Constants for EBML element IDs.
+        const DOC_TYPE_ID: u32 = 0x4282;
+        const EBML_ID: u32 = 0x1A45DFA3;
+
+        // Constants for Matroska element IDs.
+        const CLUSTER_ID: u32 = 0x1F43B675;
+        const CODEC_ID: u32 = 0x86;
+        const SEGMENT_ID: u32 = 0x18538067;
+        const STEREO_MODE_ID: u32 = 0x53B8;
+        const TRACKS_ID: u32 = 0x1654AE6B;
+        const TRACK_ENTRY_ID: u32 = 0xAE;
+        const VIDEO_ID: u32 = 0xE0;
+
         /// Helper function to read the ID of an EBML element.
+        #[inline]
         fn read_id<R: Read>(reader: &mut R) -> Result<u32> {
             // Reads the first byte.
             let mut first_byte = [0];
@@ -195,6 +236,7 @@ impl crate::FileFormat {
         }
 
         /// Helper function to read the size of an EBML element.
+        #[inline]
         fn read_size<R: Read>(reader: &mut R) -> Result<u64> {
             // Reads the first byte.
             let mut first_byte = [0];
@@ -219,23 +261,23 @@ impl crate::FileFormat {
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Flags indicating the presence of audio, video and subtitle codecs.
+        // Flags indicating the presence of audio, video or subtitle codecs.
         let mut audio_codec = false;
         let mut video_codec = false;
         let mut subtitle_codec = false;
 
         // Iterates through the EBML elements in the reader.
-        let mut iteration_count = 0;
+        let mut element_count = 0;
         while let Ok(id) = read_id(reader) {
             // Reads the size of the element.
             let size = read_size(reader)?;
 
             // Checks the ID of the element to perform specific actions.
             match id {
-                EBML | SEGMENT | TRACKS | TRACK_ENTRY | VIDEO => {
+                EBML_ID | SEGMENT_ID | TRACKS_ID | TRACK_ENTRY_ID | VIDEO_ID => {
                     // Does nothing for these elements.
                 }
-                DOC_TYPE => {
+                DOC_TYPE_ID => {
                     // Reads the buffer containing the DocType.
                     let mut buffer = vec![0; std::cmp::min(STRING_LIMIT, size as usize)];
                     reader.read_exact(&mut buffer)?;
@@ -269,7 +311,7 @@ impl crate::FileFormat {
                         subtitle_codec = true;
                     }
                 }
-                STEREO_MODE => {
+                STEREO_MODE_ID => {
                     // Reads a single byte to determine the StereoMode.
                     let mut buffer = [0];
                     reader.read_exact(&mut buffer)?;
@@ -279,7 +321,7 @@ impl crate::FileFormat {
                         return Ok(Self::Matroska3dVideo);
                     }
                 }
-                CLUSTER => {
+                CLUSTER_ID => {
                     // No need to continue reading.
                     break;
                 }
@@ -289,11 +331,11 @@ impl crate::FileFormat {
                 }
             }
 
-            // Increments the iteration count.
-            iteration_count += 1;
+            // Increments the element count.
+            element_count += 1;
 
-            // Checks if the iteration limit has been reached.
-            if iteration_count == ITERATION_LIMIT {
+            // Checks if the element limit has been reached.
+            if element_count == ELEMENT_LIMIT {
                 break;
             }
         }
@@ -313,41 +355,49 @@ impl crate::FileFormat {
     /// Determines file format from an EXE reader.
     #[cfg(feature = "reader-exe")]
     pub(crate) fn from_exe_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        // Rewinds to the beginning of the stream.
-        reader.rewind()?;
+        // Constants for signatures.
+        const LINEAR_EXECUTABLE_SIGNATURE_1: &[u8] = b"LE";
+        const LINEAR_EXECUTABLE_SIGNATURE_2: &[u8] = b"LX";
+        const NEW_EXECUTABLE_SIGNATURE: &[u8] = b"NE";
+        const PORTABLE_EXECUTABLE_SIGNATURE: &[u8] = b"PE\0\0";
 
         // Gets the stream length.
         let length = reader.seek(SeekFrom::End(0))?;
+
+        // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
         // Reads the e_lfanew field.
         reader.seek(SeekFrom::Current(0x3C))?;
-        let mut e_lfanew = [0; 4];
-        reader.read_exact(&mut e_lfanew)?;
-        let e_lfanew = u32::from_le_bytes(e_lfanew) as u64;
+        let mut buffer = [0; 4];
+        reader.read_exact(&mut buffer)?;
+        let e_lfanew = u32::from_le_bytes(buffer);
 
         // Checks that the e_lfanew value is not outside the stream's boundaries.
-        if e_lfanew + 4 < length {
+        if e_lfanew as u64 + 4 < length {
             // Seeks to e_lfanew.
-            reader.seek(SeekFrom::Start(e_lfanew))?;
+            reader.seek(SeekFrom::Start(e_lfanew as u64))?;
 
             // Reads the signature.
             let mut signature = [0; 4];
             reader.read_exact(&mut signature)?;
 
             // Checks the signature.
-            if &signature == b"PE\0\0" {
+            if signature == PORTABLE_EXECUTABLE_SIGNATURE {
+                // Checks the characteristics.
                 reader.seek(SeekFrom::Current(0x12))?;
-                let mut characteristics = [0; 2];
-                reader.read_exact(&mut characteristics)?;
-                return Ok(if u16::from_le_bytes(characteristics) & 0x2000 == 0x2000 {
+                let mut buffer = [0; 2];
+                reader.read_exact(&mut buffer)?;
+                return Ok(if u16::from_le_bytes(buffer) & 0x2000 == 0x2000 {
                     Self::DynamicLinkLibrary
                 } else {
                     Self::PortableExecutable
                 });
-            } else if &signature[..2] == b"LE" || &signature[..2] == b"LX" {
+            } else if &signature[..2] == LINEAR_EXECUTABLE_SIGNATURE_1
+                || &signature[..2] == LINEAR_EXECUTABLE_SIGNATURE_2
+            {
                 return Ok(Self::LinearExecutable);
-            } else if &signature[..2] == b"NE" {
+            } else if &signature[..2] == NEW_EXECUTABLE_SIGNATURE {
                 return Ok(Self::NewExecutable);
             }
         }
@@ -358,31 +408,28 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-mp4")]
     pub(crate) fn from_mp4_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Constants for limits.
-        const ITERATION_LIMIT: usize = 512;
+        const BOX_LIMIT: usize = 512;
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Flags indicating the presence of audio, video and subtitle tracks.
+        // Flags indicating the presence of audio, video or subtitle tracks.
         let mut audio_track = false;
         let mut video_track = false;
         let mut subtitle_track = false;
 
         // Iterates through boxes in the reader.
-        let mut iteration_count = 0;
-        let mut box_header = [0; 8];
-        while reader.read_exact(&mut box_header).is_ok() {
-            let box_size =
-                u32::from_be_bytes([box_header[0], box_header[1], box_header[2], box_header[3]]);
-            match &box_header[4..8] {
+        let mut box_count = 0;
+        let mut buffer = [0; 8];
+        while reader.read_exact(&mut buffer).is_ok() {
+            let box_size = u32::from_be_bytes([buffer[0], buffer[1], buffer[2], buffer[3]]);
+            match &buffer[4..8] {
                 b"moov" | b"trak" | b"mdia" => {
                     // Does nothing for these boxes.
                 }
                 b"hdlr" => {
-                    // Skips the first 8 bytes.
-                    reader.seek(SeekFrom::Current(8))?;
-
                     // Reads the handler type.
+                    reader.seek(SeekFrom::Current(8))?;
                     let mut handler_type = [0; 4];
                     reader.read_exact(&mut handler_type)?;
 
@@ -407,11 +454,11 @@ impl crate::FileFormat {
                 }
             }
 
-            // Increments the iteration count.
-            iteration_count += 1;
+            // Increments the box count.
+            box_count += 1;
 
-            // Checks if the iteration limit has been reached.
-            if iteration_count == ITERATION_LIMIT {
+            // Checks if the box limit has been reached.
+            if box_count == BOX_LIMIT {
                 break;
             }
         }
@@ -432,20 +479,19 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-pdf")]
     pub(crate) fn from_pdf_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Constants for limits.
-        const SEARCH_LIMIT: usize = 4_194_304;
+        const BUFFER_SIZE_LIMIT: usize = 4_194_304;
+
+        // Gets the stream length.
+        let length = reader.seek(SeekFrom::End(0))?;
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Gets the stream length.
-        let length = reader.seek(SeekFrom::End(0))?;
-        reader.rewind()?;
-
         // Fills the buffer.
-        let mut buffer = vec![0; std::cmp::min(SEARCH_LIMIT, length as usize)];
+        let mut buffer = vec![0; std::cmp::min(BUFFER_SIZE_LIMIT, length as usize)];
         reader.read_exact(&mut buffer)?;
 
-        // Searches for the "AIPrivateData" sequence in the buffer.
+        // Searches for the "AIPrivateData" tag in the buffer.
         Ok(if contains(&buffer, b"AIPrivateData") {
             Self::AdobeIllustratorArtwork
         } else {
@@ -457,20 +503,19 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-rm")]
     pub(crate) fn from_rm_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Constants for limits.
-        const SEARCH_LIMIT: usize = 4096;
+        const BUFFER_SIZE_LIMIT: usize = 4096;
+
+        // Gets the stream length.
+        let length = reader.seek(SeekFrom::End(0))?;
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Gets the stream length.
-        let length = reader.seek(SeekFrom::End(0))?;
-        reader.rewind()?;
-
         // Fills the buffer.
-        let mut buffer = vec![0; std::cmp::min(SEARCH_LIMIT, length as usize)];
+        let mut buffer = vec![0; std::cmp::min(BUFFER_SIZE_LIMIT, length as usize)];
         reader.read_exact(&mut buffer)?;
 
-        // Searches for the media type in the buffer.
+        // Searches for specific media types in the buffer.
         Ok(if contains(&buffer, b"video/x-pn-realvideo") {
             Self::Realvideo
         } else if contains(&buffer, b"audio/x-pn-realaudio")
@@ -486,8 +531,8 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-txt")]
     pub(crate) fn from_txt_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Constants for limits.
-        const READ_LIMIT: u64 = 8_388_608;
-        const LINE_LIMIT: usize = 256;
+        const LINE_LIMIT: usize = 128;
+        const READ_LIMIT: u64 = 4_194_304;
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
@@ -512,9 +557,9 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-xml")]
     pub(crate) fn from_xml_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Constants for limits.
-        const READ_LIMIT: u64 = 262_144;
-        const LINE_LIMIT: usize = 8;
         const CHAR_LIMIT: usize = 2048;
+        const LINE_LIMIT: usize = 8;
+        const READ_LIMIT: u64 = 262_144;
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
@@ -586,22 +631,90 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-zip")]
     pub(crate) fn from_zip_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Constants for limits.
-        const FILE_LIMIT: usize = 4096;
-        const READ_LIMIT: u64 = 64;
+        const FILE_LIMIT: usize = 2048;
+
+        // Constants for signatures.
+        const CENTRAL_DIRECTORY_FILE_HEADER_SIGNATURE: &[u8] = b"\x50\x4B\x01\x02";
+        const END_OF_CENTRAL_DIRECTORY_SIGNATURE: &[u8] = b"\x50\x4B\x05\x06";
+
+        // Gets the stream length.
+        let length = reader.seek(SeekFrom::End(0))?;
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Opens the archive.
-        let mut archive = zip::ZipArchive::new(reader)?;
+        // Searches for the end of central directory.
+        let mut buffer = [0; 4];
+        let mut position = length.saturating_sub(22);
+        while position >= length.saturating_sub(22 + u16::MAX as u64)
+            && buffer != END_OF_CENTRAL_DIRECTORY_SIGNATURE
+        {
+            reader.seek(SeekFrom::Start(position))?;
+            reader.read_exact(&mut buffer)?;
+            position = match position.checked_sub(1) {
+                Some(position) => position,
+                None => break,
+            }
+        }
+
+        // Reads the start of central directory offset.
+        reader.seek(SeekFrom::Current(12))?;
+        let mut buffer = [0; 4];
+        reader.read_exact(&mut buffer)?;
+        let offset = u32::from_le_bytes(buffer);
+
+        // Seeks to the start of central directory.
+        reader.seek(SeekFrom::Start(offset as u64))?;
 
         // Sets the default variant.
         let mut format = Self::Zip;
 
-        // Browses archive files.
-        for index in 0..std::cmp::min(archive.len(), FILE_LIMIT) {
-            let file = archive.by_index(index)?;
-            match file.name() {
+        // Browses central directory file headers.
+        let mut buffer = [0; 4];
+        let mut file_count = 0;
+        while file_count < FILE_LIMIT
+            && reader.read_exact(&mut buffer).is_ok()
+            && buffer == CENTRAL_DIRECTORY_FILE_HEADER_SIGNATURE
+        {
+            // Reads compressed size.
+            reader.seek(SeekFrom::Current(16))?;
+            let mut buffer = [0; 4];
+            reader.read_exact(&mut buffer)?;
+            let compressed_size = u32::from_le_bytes(buffer);
+
+            // Reads uncompressed size.
+            let mut buffer = [0; 4];
+            reader.read_exact(&mut buffer)?;
+            let uncompressed_size = u32::from_le_bytes(buffer);
+
+            // Reads filename length.
+            let mut buffer = [0; 2];
+            reader.read_exact(&mut buffer)?;
+            let filename_length = u16::from_le_bytes(buffer);
+
+            // Reads extra field length.
+            let mut buffer = [0; 2];
+            reader.read_exact(&mut buffer)?;
+            let extra_field_length = u16::from_le_bytes(buffer);
+
+            // Reads file comment length.
+            let mut buffer = [0; 2];
+            reader.read_exact(&mut buffer)?;
+            let file_comment_length = u16::from_le_bytes(buffer);
+
+            // Reads relative offset of local file header.
+            reader.seek(SeekFrom::Current(8))?;
+            let mut buffer = [0; 4];
+            reader.read_exact(&mut buffer)?;
+            let offset = u32::from_le_bytes(buffer);
+
+            // Reads filename.
+            let mut buffer = vec![0; filename_length as usize];
+            reader.read_exact(&mut buffer)?;
+            let filename = String::from_utf8_lossy(&buffer).to_string();
+
+            // Checks filename.
+            match filename.as_str() {
                 "AndroidManifest.xml" => return Ok(Self::AndroidPackage),
                 "AppManifest.xaml" => return Ok(Self::Xap),
                 "AppxManifest.xml" => return Ok(Self::WindowsAppPackage),
@@ -612,103 +725,127 @@ impl crate::FileFormat {
                 "WEB-INF/web.xml" => return Ok(Self::WebApplicationArchive),
                 "doc.kml" => return Ok(Self::KeyholeMarkupLanguageZipped),
                 "extension.vsixmanifest" => return Ok(Self::MicrosoftVisualStudioExtension),
-                "mimetype" => match read_to_string(file.take(READ_LIMIT))?.trim() {
-                    "application/epub+zip" => return Ok(Self::ElectronicPublication),
-                    "application/vnd.adobe.indesign-idml-package" => {
-                        return Ok(Self::IndesignMarkupLanguage)
-                    }
-                    "application/vnd.oasis.opendocument.base"
-                    | "application/vnd.oasis.opendocument.database" => {
-                        return Ok(Self::OpendocumentDatabase)
-                    }
-                    "application/vnd.oasis.opendocument.formula" => {
-                        return Ok(Self::OpendocumentFormula)
-                    }
-                    "application/vnd.oasis.opendocument.formula-template" => {
-                        return Ok(Self::OpendocumentFormulaTemplate)
-                    }
-                    "application/vnd.oasis.opendocument.graphics" => {
-                        return Ok(Self::OpendocumentGraphics)
-                    }
-                    "application/vnd.oasis.opendocument.graphics-template" => {
-                        return Ok(Self::OpendocumentGraphicsTemplate)
-                    }
-                    "application/vnd.oasis.opendocument.presentation" => {
-                        return Ok(Self::OpendocumentPresentation);
-                    }
-                    "application/vnd.oasis.opendocument.presentation-template" => {
-                        return Ok(Self::OpendocumentPresentationTemplate);
-                    }
-                    "application/vnd.oasis.opendocument.spreadsheet" => {
-                        return Ok(Self::OpendocumentSpreadsheet);
-                    }
-                    "application/vnd.oasis.opendocument.spreadsheet-template" => {
-                        return Ok(Self::OpendocumentSpreadsheetTemplate);
-                    }
-                    "application/vnd.oasis.opendocument.text" => {
-                        return Ok(Self::OpendocumentText);
-                    }
-                    "application/vnd.oasis.opendocument.text-master" => {
-                        return Ok(Self::OpendocumentTextMaster);
-                    }
-                    "application/vnd.oasis.opendocument.text-master-template" => {
-                        return Ok(Self::OpendocumentTextMasterTemplate);
-                    }
-                    "application/vnd.oasis.opendocument.text-template" => {
-                        return Ok(Self::OpendocumentTextTemplate);
-                    }
-                    "application/vnd.recordare.musicxml" => return Ok(Self::MusicxmlZipped),
-                    "application/vnd.sun.xml.calc" => return Ok(Self::SunXmlCalc),
-                    "application/vnd.sun.xml.calc.template" => return Ok(Self::SunXmlCalcTemplate),
-                    "application/vnd.sun.xml.draw" => return Ok(Self::SunXmlDraw),
-                    "application/vnd.sun.xml.draw.template" => return Ok(Self::SunXmlDrawTemplate),
-                    "application/vnd.sun.xml.impress" => return Ok(Self::SunXmlImpress),
-                    "application/vnd.sun.xml.impress.template" => {
-                        return Ok(Self::SunXmlImpressTemplate)
-                    }
-                    "application/vnd.sun.xml.math" => return Ok(Self::SunXmlMath),
-                    "application/vnd.sun.xml.writer" => return Ok(Self::SunXmlWriter),
-                    "application/vnd.sun.xml.writer.global" => return Ok(Self::SunXmlWriterGlobal),
-                    "application/vnd.sun.xml.writer.template" => {
-                        return Ok(Self::SunXmlWriterTemplate)
-                    }
-                    "image/openraster" => return Ok(Self::Openraster),
-                    _ => {}
-                },
+                "mimetype" if compressed_size == uncompressed_size => {
+                    // Seeks to the filename of the local file header.
+                    reader.seek(SeekFrom::Start(offset as u64 + 26))?;
+
+                    // Reads filename length.
+                    let mut buffer = [0; 2];
+                    reader.read_exact(&mut buffer)?;
+                    let filename_length = u16::from_le_bytes(buffer);
+
+                    // Reads extra field length.
+                    let mut buffer = [0; 2];
+                    reader.read_exact(&mut buffer)?;
+                    let extra_field_length = u16::from_le_bytes(buffer);
+
+                    // Seeks to the data.
+                    reader.seek(SeekFrom::Current(
+                        filename_length as i64 + extra_field_length as i64,
+                    ))?;
+
+                    // Reads the data.
+                    let mut buffer = vec![0; compressed_size as usize];
+                    reader.read_exact(&mut buffer)?;
+                    let data = String::from_utf8_lossy(&buffer).to_string();
+
+                    // Checks the trimmed data.
+                    return Ok(match data.trim() {
+                        "application/epub+zip" => Self::ElectronicPublication,
+                        "application/vnd.adobe.indesign-idml-package" => {
+                            Self::IndesignMarkupLanguage
+                        }
+                        "application/vnd.oasis.opendocument.base"
+                        | "application/vnd.oasis.opendocument.database" => {
+                            Self::OpendocumentDatabase
+                        }
+                        "application/vnd.oasis.opendocument.formula" => Self::OpendocumentFormula,
+                        "application/vnd.oasis.opendocument.formula-template" => {
+                            Self::OpendocumentFormulaTemplate
+                        }
+                        "application/vnd.oasis.opendocument.graphics" => Self::OpendocumentGraphics,
+                        "application/vnd.oasis.opendocument.graphics-template" => {
+                            Self::OpendocumentGraphicsTemplate
+                        }
+                        "application/vnd.oasis.opendocument.presentation" => {
+                            Self::OpendocumentPresentation
+                        }
+                        "application/vnd.oasis.opendocument.presentation-template" => {
+                            Self::OpendocumentPresentationTemplate
+                        }
+                        "application/vnd.oasis.opendocument.spreadsheet" => {
+                            Self::OpendocumentSpreadsheet
+                        }
+                        "application/vnd.oasis.opendocument.spreadsheet-template" => {
+                            Self::OpendocumentSpreadsheetTemplate
+                        }
+                        "application/vnd.oasis.opendocument.text" => Self::OpendocumentText,
+                        "application/vnd.oasis.opendocument.text-master" => {
+                            Self::OpendocumentTextMaster
+                        }
+                        "application/vnd.oasis.opendocument.text-master-template" => {
+                            Self::OpendocumentTextMasterTemplate
+                        }
+                        "application/vnd.oasis.opendocument.text-template" => {
+                            Self::OpendocumentTextTemplate
+                        }
+                        "application/vnd.recordare.musicxml" => Self::MusicxmlZipped,
+                        "application/vnd.sun.xml.calc" => Self::SunXmlCalc,
+                        "application/vnd.sun.xml.calc.template" => Self::SunXmlCalcTemplate,
+                        "application/vnd.sun.xml.draw" => Self::SunXmlDraw,
+                        "application/vnd.sun.xml.draw.template" => Self::SunXmlDrawTemplate,
+                        "application/vnd.sun.xml.impress" => Self::SunXmlImpress,
+                        "application/vnd.sun.xml.impress.template" => Self::SunXmlImpressTemplate,
+                        "application/vnd.sun.xml.math" => Self::SunXmlMath,
+                        "application/vnd.sun.xml.writer" => Self::SunXmlWriter,
+                        "application/vnd.sun.xml.writer.global" => Self::SunXmlWriterGlobal,
+                        "application/vnd.sun.xml.writer.template" => Self::SunXmlWriterTemplate,
+                        "image/openraster" => Self::Openraster,
+                        _ => Self::Zip,
+                    });
+                }
                 _ => {
-                    if file.name().starts_with("Fusion[Active]/") {
+                    if filename.starts_with("Fusion[Active]/") {
                         return Ok(Self::Autodesk123d);
-                    } else if file.name().starts_with("circuitdiagram/") {
+                    } else if filename.starts_with("circuitdiagram/") {
                         return Ok(Self::CircuitDiagramDocument);
-                    } else if file.name().starts_with("dwf/") {
+                    } else if filename.starts_with("dwf/") {
                         return Ok(Self::DesignWebFormatXps);
-                    } else if file.name().ends_with(".fb2") && !file.name().contains('/') {
+                    } else if filename.ends_with(".fb2") && !filename.contains('/') {
                         return Ok(Self::FictionbookZipped);
-                    } else if file.name().starts_with("FusionAssetName[Active]/") {
+                    } else if filename.starts_with("FusionAssetName[Active]/") {
                         return Ok(Self::Fusion360);
-                    } else if file.name().starts_with("Payload/") && file.name().contains(".app/") {
+                    } else if filename.starts_with("Payload/") && filename.contains(".app/") {
                         return Ok(Self::IosAppStorePackage);
-                    } else if file.name().starts_with("word/") {
+                    } else if filename.starts_with("word/") {
                         return Ok(Self::OfficeOpenXmlDocument);
-                    } else if file.name().starts_with("visio/") {
+                    } else if filename.starts_with("visio/") {
                         return Ok(Self::OfficeOpenXmlDrawing);
-                    } else if file.name().starts_with("ppt/") {
+                    } else if filename.starts_with("ppt/") {
                         return Ok(Self::OfficeOpenXmlPresentation);
-                    } else if file.name().starts_with("xl/") {
+                    } else if filename.starts_with("xl/") {
                         return Ok(Self::OfficeOpenXmlSpreadsheet);
-                    } else if file.name().starts_with("SpaceClaim/") {
+                    } else if filename.starts_with("SpaceClaim/") {
                         return Ok(Self::SpaceclaimDocument);
-                    } else if file.name().starts_with("3D/") && file.name().ends_with(".model") {
+                    } else if filename.starts_with("3D/") && filename.ends_with(".model") {
                         return Ok(Self::ThreeDimensionalManufacturingFormat);
-                    } else if (file.name().ends_with(".usd")
-                        || file.name().ends_with(".usda")
-                        || file.name().ends_with(".usdc"))
-                        && !file.name().contains('/')
+                    } else if (filename.ends_with(".usd")
+                        || filename.ends_with(".usda")
+                        || filename.ends_with(".usdc"))
+                        && !filename.contains('/')
                     {
                         return Ok(Self::UniversalSceneDescriptionZipped);
                     }
                 }
             }
+
+            // Seeks to the next central directory file header.
+            reader.seek(SeekFrom::Current(
+                extra_field_length as i64 + file_comment_length as i64,
+            ))?;
+
+            // Increments the file count.
+            file_count += 1;
         }
         Ok(format)
     }
@@ -717,6 +854,7 @@ impl crate::FileFormat {
 /// Checks if the `data` array contains the `target` sequence using the Boyer-Moore algorithm.
 #[cfg(any(
     feature = "reader-asf",
+    feature = "reader-cfb",
     feature = "reader-pdf",
     feature = "reader-rm",
     feature = "reader-xml"
@@ -739,10 +877,10 @@ fn contains(data: &[u8], target: &[u8]) -> bool {
     }
 
     // Starts searching from the last possible position in the data array.
-    let mut pos = target.len() - 1;
-    while pos < data.len() {
+    let mut position = target.len() - 1;
+    while position < data.len() {
         let mut target_index = target.len() - 1;
-        let mut data_index = pos;
+        let mut data_index = position;
         while data[data_index] == target[target_index] {
             if target_index == 0 {
                 return true;
@@ -752,10 +890,10 @@ fn contains(data: &[u8], target: &[u8]) -> bool {
         }
 
         // Calculates the maximum shift based on the bad character rule and good suffix rule.
-        let bad_char_shift = bad_char_table[data[pos] as usize];
+        let bad_char_shift = bad_char_table[data[position] as usize];
         let good_suffix_shift = target.len() - target_index;
         let shift = std::cmp::max(bad_char_shift, good_suffix_shift);
-        pos += shift;
+        position += shift;
     }
     false
 }

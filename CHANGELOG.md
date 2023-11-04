@@ -1,3 +1,10 @@
+# Version 0.22.0 (2023-11-04)
+
+## Internal changes
+
+- Remove `cfb` dependency when using `reader-cfb` feature
+- Remove `zip` dependency when using `reader-zip` feature
+
 # Version 0.21.0 (2023-09-29)
 
 ## API
