@@ -61,7 +61,7 @@ impl crate::FileFormat {
 
         // Constants for descriptors.
         const DVR_DESCRIPTOR: &[u8] =
-            b"D\x00V\x00R\x00 \x00F\x00i\x00l\x00e\x00 \x00V\x00e\x00r\x00s\x00i\x00o\x00n";
+            b"D\x00V\x00R\x00 \x00F\x00i\x00l\x00e\x00 \x00V\x00e\x00r\x00s\x00i\x00o\x00n\x00";
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
