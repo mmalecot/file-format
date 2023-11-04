@@ -51,7 +51,10 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-asf")]
     pub(crate) fn from_asf_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Constants for limits.
-        const SEARCH_LIMIT: usize = 8192;
+        const BUFFER_SIZE_LIMIT: usize = 8192;
+
+        // Constants for UTF-16-encoded descriptors.
+        const DVR_DESCRIPTOR: &[u8] = b"D\0V\0R\0 \0F\0i\0l\0e\0 \0V\0e\0r\0s\0i\0o\0n\0";
 
         // Constants for GUIDs.
         const AUDIO_MEDIA_GUID: &[u8] =
@@ -59,22 +62,17 @@ impl crate::FileFormat {
         const VIDEO_MEDIA_GUID: &[u8] =
             b"\xC0\xEF\x19\xBC\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
 
-        // Constants for descriptors.
-        const DVR_DESCRIPTOR: &[u8] =
-            b"D\x00V\x00R\x00 \x00F\x00i\x00l\x00e\x00 \x00V\x00e\x00r\x00s\x00i\x00o\x00n\x00";
+        // Gets the stream length.
+        let length = reader.seek(SeekFrom::End(0))?;
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Gets the stream length.
-        let length = reader.seek(SeekFrom::End(0))?;
-        reader.rewind()?;
-
         // Fills the buffer.
-        let mut buffer = vec![0; std::cmp::min(SEARCH_LIMIT, length as usize)];
+        let mut buffer = vec![0; std::cmp::min(BUFFER_SIZE_LIMIT, length as usize)];
         reader.read_exact(&mut buffer)?;
 
-        // Searches for specific GUIDs or descriptors in the buffer.
+        // Searches for specific descriptors and GUIDs in the buffer.
         Ok(if contains(&buffer, DVR_DESCRIPTOR) {
             return Ok(Self::MicrosoftDigitalVideoRecording);
         } else if contains(&buffer, VIDEO_MEDIA_GUID) {
@@ -89,13 +87,10 @@ impl crate::FileFormat {
     /// Determines file format from a CFB reader.
     #[cfg(feature = "reader-cfb")]
     pub(crate) fn from_cfb_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
-        // Constants for limits.
-        const SEARCH_LIMIT: usize = 512;
-
         // Constants for UTF-16-encoded entry names.
         const MICROSOFT_WORKS6_SPREADSHEET_ENTRY_NAME: &[u8] =
-            b"W\x00k\x00s\x00S\x00S\x00W\x00o\x00r\x00k\x00B\x00o\x00o\x00k\x00";
-        const MICROSOFT_WORKS_WORD_PROCESSOR_ENTRY_NAME: &[u8] = b"M\x00a\x00t\x00O\x00S\x00T\x00";
+            b"W\0k\0s\0S\0S\0W\0o\0r\0k\0B\0o\0o\0k\0";
+        const MICROSOFT_WORKS_WORD_PROCESSOR_ENTRY_NAME: &[u8] = b"M\0a\0t\0O\0S\0T\0";
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
@@ -132,7 +127,7 @@ impl crate::FileFormat {
             })
             .collect::<String>();
 
-        // Checks the CLSID and returns the corresponding variant.
+        // Determines the file format based on the CLSID.
         Ok(match clsid.as_str() {
             "e60f81e1-49b3-11d0-93c3-7e0706000000" => Self::AutodeskInventorAssembly,
             "bbf9fdf1-52dc-11d0-8c04-0800090be8ec" => Self::AutodeskInventorDrawing,
@@ -179,7 +174,7 @@ impl crate::FileFormat {
             "402efe60-1999-101b-99ae-04021c007002" => Self::WordperfectGraphics,
             "00000000-0000-0000-0000-000000000000" => {
                 // Fills the buffer.
-                let mut buffer = [0; SEARCH_LIMIT];
+                let mut buffer = [0; 512];
                 reader.read_exact(&mut buffer)?;
 
                 // Searches for specific entry names in the buffer.
@@ -199,14 +194,14 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-ebml")]
     pub(crate) fn from_ebml_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Constants for limits.
-        const ITERATION_LIMIT: usize = 512;
+        const ELEMENT_LIMIT: usize = 512;
         const STRING_LIMIT: usize = 64;
 
-        // Constants for EBML elements IDs.
+        // Constants for EBML element IDs.
         const DOC_TYPE_ID: u32 = 0x4282;
         const EBML_ID: u32 = 0x1A45DFA3;
 
-        // Constants for Matroska elements IDs.
+        // Constants for Matroska element IDs.
         const CLUSTER_ID: u32 = 0x1F43B675;
         const CODEC_ID: u32 = 0x86;
         const SEGMENT_ID: u32 = 0x18538067;
@@ -216,6 +211,7 @@ impl crate::FileFormat {
         const VIDEO_ID: u32 = 0xE0;
 
         /// Helper function to read the ID of an EBML element.
+        #[inline]
         fn read_id<R: Read>(reader: &mut R) -> Result<u32> {
             // Reads the first byte.
             let mut first_byte = [0];
@@ -238,6 +234,7 @@ impl crate::FileFormat {
         }
 
         /// Helper function to read the size of an EBML element.
+        #[inline]
         fn read_size<R: Read>(reader: &mut R) -> Result<u64> {
             // Reads the first byte.
             let mut first_byte = [0];
@@ -262,13 +259,13 @@ impl crate::FileFormat {
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Flags indicating the presence of audio, video and subtitle codecs.
+        // Flags indicating the presence of audio, video or subtitle codecs.
         let mut audio_codec = false;
         let mut video_codec = false;
         let mut subtitle_codec = false;
 
         // Iterates through the EBML elements in the reader.
-        let mut iteration_count = 0;
+        let mut element_count = 0;
         while let Ok(id) = read_id(reader) {
             // Reads the size of the element.
             let size = read_size(reader)?;
@@ -332,11 +329,11 @@ impl crate::FileFormat {
                 }
             }
 
-            // Increments the iteration count.
-            iteration_count += 1;
+            // Increments the element count.
+            element_count += 1;
 
-            // Checks if the iteration limit has been reached.
-            if iteration_count == ITERATION_LIMIT {
+            // Checks if the element limit has been reached.
+            if element_count == ELEMENT_LIMIT {
                 break;
             }
         }
@@ -362,23 +359,22 @@ impl crate::FileFormat {
         const NEW_EXECUTABLE_SIGNATURE: &[u8] = b"NE";
         const PORTABLE_EXECUTABLE_SIGNATURE: &[u8] = b"PE\0\0";
 
-        // Rewinds to the beginning of the stream.
-        reader.rewind()?;
-
         // Gets the stream length.
         let length = reader.seek(SeekFrom::End(0))?;
+
+        // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
         // Reads the e_lfanew field.
         reader.seek(SeekFrom::Current(0x3C))?;
-        let mut e_lfanew = [0; 4];
-        reader.read_exact(&mut e_lfanew)?;
-        let e_lfanew = u32::from_le_bytes(e_lfanew) as u64;
+        let mut buffer = [0; 4];
+        reader.read_exact(&mut buffer)?;
+        let e_lfanew = u32::from_le_bytes(buffer);
 
         // Checks that the e_lfanew value is not outside the stream's boundaries.
-        if e_lfanew + 4 < length {
+        if e_lfanew as u64 + 4 < length {
             // Seeks to e_lfanew.
-            reader.seek(SeekFrom::Start(e_lfanew))?;
+            reader.seek(SeekFrom::Start(e_lfanew as u64))?;
 
             // Reads the signature.
             let mut signature = [0; 4];
@@ -386,10 +382,11 @@ impl crate::FileFormat {
 
             // Checks the signature.
             if signature == PORTABLE_EXECUTABLE_SIGNATURE {
+                // Checks the characteristics.
                 reader.seek(SeekFrom::Current(0x12))?;
-                let mut characteristics = [0; 2];
-                reader.read_exact(&mut characteristics)?;
-                return Ok(if u16::from_le_bytes(characteristics) & 0x2000 == 0x2000 {
+                let mut buffer = [0; 2];
+                reader.read_exact(&mut buffer)?;
+                return Ok(if u16::from_le_bytes(buffer) & 0x2000 == 0x2000 {
                     Self::DynamicLinkLibrary
                 } else {
                     Self::PortableExecutable
@@ -409,31 +406,28 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-mp4")]
     pub(crate) fn from_mp4_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Constants for limits.
-        const ITERATION_LIMIT: usize = 512;
+        const BOX_LIMIT: usize = 512;
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Flags indicating the presence of audio, video and subtitle tracks.
+        // Flags indicating the presence of audio, video or subtitle tracks.
         let mut audio_track = false;
         let mut video_track = false;
         let mut subtitle_track = false;
 
         // Iterates through boxes in the reader.
-        let mut iteration_count = 0;
-        let mut box_header = [0; 8];
-        while reader.read_exact(&mut box_header).is_ok() {
-            let box_size =
-                u32::from_be_bytes([box_header[0], box_header[1], box_header[2], box_header[3]]);
-            match &box_header[4..8] {
+        let mut box_count = 0;
+        let mut buffer = [0; 8];
+        while reader.read_exact(&mut buffer).is_ok() {
+            let box_size = u32::from_be_bytes([buffer[0], buffer[1], buffer[2], buffer[3]]);
+            match &buffer[4..8] {
                 b"moov" | b"trak" | b"mdia" => {
                     // Does nothing for these boxes.
                 }
                 b"hdlr" => {
-                    // Skips the first 8 bytes.
-                    reader.seek(SeekFrom::Current(8))?;
-
                     // Reads the handler type.
+                    reader.seek(SeekFrom::Current(8))?;
                     let mut handler_type = [0; 4];
                     reader.read_exact(&mut handler_type)?;
 
@@ -458,11 +452,11 @@ impl crate::FileFormat {
                 }
             }
 
-            // Increments the iteration count.
-            iteration_count += 1;
+            // Increments the box count.
+            box_count += 1;
 
-            // Checks if the iteration limit has been reached.
-            if iteration_count == ITERATION_LIMIT {
+            // Checks if the box limit has been reached.
+            if box_count == BOX_LIMIT {
                 break;
             }
         }
@@ -483,20 +477,19 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-pdf")]
     pub(crate) fn from_pdf_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Constants for limits.
-        const SEARCH_LIMIT: usize = 4_194_304;
+        const BUFFER_SIZE_LIMIT: usize = 4_194_304;
+
+        // Gets the stream length.
+        let length = reader.seek(SeekFrom::End(0))?;
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Gets the stream length.
-        let length = reader.seek(SeekFrom::End(0))?;
-        reader.rewind()?;
-
         // Fills the buffer.
-        let mut buffer = vec![0; std::cmp::min(SEARCH_LIMIT, length as usize)];
+        let mut buffer = vec![0; std::cmp::min(BUFFER_SIZE_LIMIT, length as usize)];
         reader.read_exact(&mut buffer)?;
 
-        // Searches for the "AIPrivateData" sequence in the buffer.
+        // Searches for the "AIPrivateData" tag in the buffer.
         Ok(if contains(&buffer, b"AIPrivateData") {
             Self::AdobeIllustratorArtwork
         } else {
@@ -508,17 +501,16 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-rm")]
     pub(crate) fn from_rm_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Constants for limits.
-        const SEARCH_LIMIT: usize = 4096;
+        const BUFFER_SIZE_LIMIT: usize = 4096;
+
+        // Gets the stream length.
+        let length = reader.seek(SeekFrom::End(0))?;
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Gets the stream length.
-        let length = reader.seek(SeekFrom::End(0))?;
-        reader.rewind()?;
-
         // Fills the buffer.
-        let mut buffer = vec![0; std::cmp::min(SEARCH_LIMIT, length as usize)];
+        let mut buffer = vec![0; std::cmp::min(BUFFER_SIZE_LIMIT, length as usize)];
         reader.read_exact(&mut buffer)?;
 
         // Searches for specific media types in the buffer.
@@ -537,8 +529,8 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-txt")]
     pub(crate) fn from_txt_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Constants for limits.
-        const LINE_LIMIT: usize = 256;
-        const READ_LIMIT: u64 = 8_388_608;
+        const LINE_LIMIT: usize = 128;
+        const READ_LIMIT: u64 = 4_194_304;
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
@@ -637,17 +629,16 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-zip")]
     pub(crate) fn from_zip_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
         // Constants for limits.
-        const FILE_LIMIT: usize = 4096;
+        const FILE_LIMIT: usize = 2048;
 
         // Constants for signatures.
         const CENTRAL_DIRECTORY_FILE_HEADER_SIGNATURE: &[u8] = b"\x50\x4B\x01\x02";
         const END_OF_CENTRAL_DIRECTORY_SIGNATURE: &[u8] = b"\x50\x4B\x05\x06";
 
-        // Rewinds to the beginning of the stream.
-        reader.rewind()?;
-
         // Gets the stream length.
         let length = reader.seek(SeekFrom::End(0))?;
+
+        // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
         // Searches for the end of central directory.
