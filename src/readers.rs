@@ -222,7 +222,7 @@ impl crate::FileFormat {
             // Determines the number of bytes used to represent the ID.
             let num_bytes = first_byte[0].leading_zeros() + 1;
             if num_bytes > 4 {
-                return Err(Error::new(ErrorKind::InvalidData, "Invalid EBML ID"));
+                return Err(Error::new(ErrorKind::InvalidData, "invalid EBML ID"));
             }
 
             // Calculates the ID value based on the number of bytes.
@@ -245,7 +245,7 @@ impl crate::FileFormat {
             // Determines the number of bytes used to represent the size.
             let num_bytes = first_byte[0].leading_zeros() + 1;
             if num_bytes > 8 {
-                return Err(Error::new(ErrorKind::InvalidData, "Invalid EBML size"));
+                return Err(Error::new(ErrorKind::InvalidData, "invalid EBML size"));
             }
 
             // Calculates the size value based on the number of bytes.
@@ -547,7 +547,7 @@ impl crate::FileFormat {
                 line?
                     .chars()
                     .find(|char| char.is_control() && !char.is_whitespace())
-                    .map(|_| Err(Error::new(ErrorKind::InvalidData, "Invalid characters")))
+                    .map(|_| Err(Error::new(ErrorKind::InvalidData, "invalid characters")))
                     .unwrap_or(Ok(()))
             })
             .map(|_| Self::PlainText)
