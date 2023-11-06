@@ -637,28 +637,25 @@ impl crate::FileFormat {
         const CENTRAL_DIRECTORY_FILE_HEADER_SIGNATURE: &[u8] = b"\x50\x4B\x01\x02";
         const END_OF_CENTRAL_DIRECTORY_SIGNATURE: &[u8] = b"\x50\x4B\x05\x06";
 
+        // Constants for max sizes.
+        const END_OF_CENTRAL_DIRECTORY_MAX_SIZE: usize = 22 + u16::MAX as usize;
+
         // Gets the stream length.
         let length = reader.seek(SeekFrom::End(0))?;
 
-        // Rewinds to the beginning of the stream.
-        reader.rewind()?;
-
         // Searches for the end of central directory.
-        let mut buffer = [0; 4];
-        let mut position = length.saturating_sub(22);
-        while position >= length.saturating_sub(22 + u16::MAX as u64)
-            && buffer != END_OF_CENTRAL_DIRECTORY_SIGNATURE
-        {
-            reader.seek(SeekFrom::Start(position))?;
-            reader.read_exact(&mut buffer)?;
-            position = match position.checked_sub(1) {
-                Some(position) => position,
-                None => break,
-            }
+        let offset = length.saturating_sub(END_OF_CENTRAL_DIRECTORY_MAX_SIZE as u64);
+        reader.seek(SeekFrom::Start(offset))?;
+        let mut buffer = vec![0; std::cmp::min(END_OF_CENTRAL_DIRECTORY_MAX_SIZE, length as usize)];
+        reader.read_exact(&mut buffer)?;
+        if let Some(buffer_index) = find(&buffer, END_OF_CENTRAL_DIRECTORY_SIGNATURE) {
+            reader.seek(SeekFrom::Start(offset + buffer_index as u64))?;
+        } else {
+            return Err(Error::new(ErrorKind::InvalidData, "cannot find the EOCD"));
         }
 
         // Reads the start of central directory offset.
-        reader.seek(SeekFrom::Current(12))?;
+        reader.seek(SeekFrom::Current(16))?;
         let mut buffer = [0; 4];
         reader.read_exact(&mut buffer)?;
         let offset = u32::from_le_bytes(buffer);
@@ -851,23 +848,39 @@ impl crate::FileFormat {
     }
 }
 
-/// Checks if the `data` array contains the `target` sequence using the Boyer-Moore algorithm.
+/// Checks if the `data` slice contains the `target` sequence.
 #[cfg(any(
     feature = "reader-asf",
     feature = "reader-cfb",
     feature = "reader-pdf",
     feature = "reader-rm",
-    feature = "reader-xml"
+    feature = "reader-xml",
 ))]
+#[inline]
 fn contains(data: &[u8], target: &[u8]) -> bool {
+    find(data, target).is_some()
+}
+
+/// Searches for the `target` byte sequence in the `data` slice using the Boyer-Moore algorithm.
+///
+/// If the sequence is found, the function returns the index of the first occurrence.
+#[cfg(any(
+    feature = "reader-asf",
+    feature = "reader-cfb",
+    feature = "reader-pdf",
+    feature = "reader-rm",
+    feature = "reader-xml",
+    feature = "reader-zip",
+))]
+fn find(data: &[u8], target: &[u8]) -> Option<usize> {
     // An empty target sequence is always considered to be contained in the data.
     if target.is_empty() {
-        return true;
+        return Some(0);
     }
 
     // The data array is shorter than the target sequence, so it cannot contain the target.
     if data.len() < target.len() {
-        return false;
+        return None;
     }
 
     // Builds the bad character shift table.
@@ -883,7 +896,7 @@ fn contains(data: &[u8], target: &[u8]) -> bool {
         let mut data_index = position;
         while data[data_index] == target[target_index] {
             if target_index == 0 {
-                return true;
+                return Some(data_index);
             }
             target_index -= 1;
             data_index -= 1;
@@ -895,5 +908,5 @@ fn contains(data: &[u8], target: &[u8]) -> bool {
         let shift = std::cmp::max(bad_char_shift, good_suffix_shift);
         position += shift;
     }
-    false
+    None
 }
