@@ -1,5 +1,9 @@
 # Version 0.23.0 (unreleased)
 
+## Internal changes
+
+- Improve ZIP reader performance when using `reader-zip` feature
+
 # Version 0.22.0 (2023-11-04)
 
 ## Internal changes
