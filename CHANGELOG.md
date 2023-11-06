@@ -2,7 +2,7 @@
 
 ## Internal changes
 
-- Improve ZIP reader performance when using `reader-zip` feature
+- Improve ZIP reader performance and precision when using `reader-zip` feature
 
 # Version 0.22.0 (2023-11-04)
 
