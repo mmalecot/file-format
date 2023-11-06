@@ -1,3 +1,5 @@
+# Version 0.23.0 (unreleased)
+
 # Version 0.22.0 (2023-11-04)
 
 ## Internal changes
