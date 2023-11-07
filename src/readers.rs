@@ -648,11 +648,9 @@ impl crate::FileFormat {
         reader.seek(SeekFrom::Start(offset))?;
         let mut buffer = vec![0; std::cmp::min(END_OF_CENTRAL_DIRECTORY_MAX_SIZE, length as usize)];
         reader.read_exact(&mut buffer)?;
-        if let Some(buffer_index) = find(&buffer, END_OF_CENTRAL_DIRECTORY_SIGNATURE) {
-            reader.seek(SeekFrom::Start(offset + buffer_index as u64))?;
-        } else {
-            return Err(Error::new(ErrorKind::InvalidData, "cannot find the EOCD"));
-        }
+        let buffer_index = find(&buffer, END_OF_CENTRAL_DIRECTORY_SIGNATURE)
+            .ok_or_else(|| Error::new(ErrorKind::InvalidData, "cannot find the EOCD"))?;
+        reader.seek(SeekFrom::Start(offset + buffer_index as u64))?;
 
         // Reads the start of central directory offset.
         reader.seek(SeekFrom::Current(16))?;
