@@ -473,25 +473,50 @@ impl crate::FileFormat {
     /// Determines file format from a PDF reader.
     #[cfg(feature = "reader-pdf")]
     pub(crate) fn from_pdf_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
-        // Constants for limits.
-        const BUFFER_SIZE_LIMIT: usize = 4_194_304;
+        // Size of each chunk to read (32 KB).
+        const CHUNK_SIZE: usize = 32_768;
 
-        // Gets the stream length.
-        let length = reader.seek(SeekFrom::End(0))?;
+        // Maximum size that can be read from the stream (16 MB).
+        const MAX_READ_SIZE: usize = 16_777_216;
+
+        // Size of overlap to keep between chunks.
+        const OVERLAP_SIZE: usize = AI_PRIVATE_DATA_MARKER.len() - 1;
+
+        // Marker to look for.
+        const AI_PRIVATE_DATA_MARKER: &[u8] = b"AIPrivateData";
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Fills the buffer.
-        let mut buffer = vec![0; std::cmp::min(BUFFER_SIZE_LIMIT, length as usize)];
-        reader.read_exact(&mut buffer)?;
+        // Defines a buffer to hold the chunk of data being read.
+        let mut buffer = [0; OVERLAP_SIZE + CHUNK_SIZE];
 
-        // Searches for the "AIPrivateData" tag in the buffer.
-        Ok(if contains(&buffer, b"AIPrivateData") {
-            Self::AdobeIllustratorArtwork
-        } else {
-            Self::PortableDocumentFormat
-        })
+        // Reads the data from the stream in chunks.
+        let mut total_size = 0;
+        while total_size < MAX_READ_SIZE {
+            // Reads a chunk of the stream into the buffer.
+            let size = reader.read(&mut buffer[OVERLAP_SIZE..])?;
+            if size == 0 {
+                break;
+            }
+
+            // Determines the start index for searching the buffer.
+            let start = if total_size == 0 { OVERLAP_SIZE } else { 0 };
+
+            // Checks if the buffer contains the AIPrivateData marker.
+            if contains(&buffer[start..OVERLAP_SIZE + size], AI_PRIVATE_DATA_MARKER) {
+                return Ok(Self::AdobeIllustratorArtwork);
+            }
+
+            // Rotates the buffer to the right by the overlap size.
+            buffer[..OVERLAP_SIZE + size].rotate_right(OVERLAP_SIZE);
+
+            // Updates the total size of data read.
+            total_size += size;
+        }
+
+        // Returns the default value.
+        Ok(Self::PortableDocumentFormat)
     }
 
     /// Determines file format from a RM reader.

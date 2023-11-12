@@ -3,6 +3,7 @@
 ## Internal changes
 
 - Improve ZIP reader performance and precision when using `reader-zip` feature
+- Reduce PDF reader memory usage and increase accuracy when using `reader-pdf` feature
 
 # Version 0.22.0 (2023-11-04)
 
