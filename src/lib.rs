@@ -198,6 +198,7 @@ detected.
 */
 
 #![deny(missing_docs)]
+#![forbid(unsafe_code)]
 
 #[macro_use]
 mod macros;
