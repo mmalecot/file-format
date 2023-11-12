@@ -5,12 +5,8 @@ use std::io::*;
 impl crate::FileFormat {
     /// Determines file format from the specified format reader.
     #[allow(unused_variables)]
-    #[allow(clippy::needless_pass_by_ref_mut)]
     #[inline]
-    pub(crate) fn from_format_reader<R: Read + Seek>(
-        format: Self,
-        reader: &mut BufReader<R>,
-    ) -> Result<Self> {
+    pub(crate) fn from_format_reader<R: Read + Seek>(format: Self, reader: R) -> Result<Self> {
         Ok(match format {
             #[cfg(feature = "reader-asf")]
             Self::AdvancedSystemsFormat => Self::from_asf_reader(reader)?,
@@ -36,9 +32,8 @@ impl crate::FileFormat {
 
     /// Determines file format from a generic reader.
     #[allow(unused_variables)]
-    #[allow(clippy::needless_pass_by_ref_mut)]
     #[inline]
-    pub(crate) fn from_generic_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Self {
+    pub(crate) fn from_generic_reader<R: Read + Seek>(reader: R) -> Self {
         #[cfg(feature = "reader-txt")]
         {
             Self::from_txt_reader(reader).unwrap_or_default()
@@ -51,7 +46,7 @@ impl crate::FileFormat {
 
     /// Determines file format from an ASF reader.
     #[cfg(feature = "reader-asf")]
-    pub(crate) fn from_asf_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+    pub(crate) fn from_asf_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
         // Constants for limits.
         const BUFFER_SIZE_LIMIT: usize = 8192;
 
@@ -88,7 +83,7 @@ impl crate::FileFormat {
 
     /// Determines file format from a CFB reader.
     #[cfg(feature = "reader-cfb")]
-    pub(crate) fn from_cfb_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+    pub(crate) fn from_cfb_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
         // Constants for UTF-16-encoded entry names.
         const MICROSOFT_WORKS6_SPREADSHEET_ENTRY_NAME: &[u8] =
             b"W\0k\0s\0S\0S\0W\0o\0r\0k\0B\0o\0o\0k\0";
@@ -194,7 +189,7 @@ impl crate::FileFormat {
 
     /// Determines file format from an EBML reader.
     #[cfg(feature = "reader-ebml")]
-    pub(crate) fn from_ebml_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+    pub(crate) fn from_ebml_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
         // Constants for limits.
         const ELEMENT_LIMIT: usize = 512;
         const STRING_LIMIT: usize = 64;
@@ -268,9 +263,9 @@ impl crate::FileFormat {
 
         // Iterates through the EBML elements in the reader.
         let mut element_count = 0;
-        while let Ok(id) = read_id(reader) {
+        while let Ok(id) = read_id(&mut reader) {
             // Reads the size of the element.
-            let size = read_size(reader)?;
+            let size = read_size(&mut reader)?;
 
             // Checks the ID of the element to perform specific actions.
             match id {
@@ -354,7 +349,7 @@ impl crate::FileFormat {
 
     /// Determines file format from an EXE reader.
     #[cfg(feature = "reader-exe")]
-    pub(crate) fn from_exe_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+    pub(crate) fn from_exe_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
         // Constants for signatures.
         const LINEAR_EXECUTABLE_SIGNATURE_1: &[u8] = b"LE";
         const LINEAR_EXECUTABLE_SIGNATURE_2: &[u8] = b"LX";
@@ -406,7 +401,7 @@ impl crate::FileFormat {
 
     /// Determines file format from a MP4 reader.
     #[cfg(feature = "reader-mp4")]
-    pub(crate) fn from_mp4_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+    pub(crate) fn from_mp4_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
         // Constants for limits.
         const BOX_LIMIT: usize = 512;
 
@@ -477,7 +472,7 @@ impl crate::FileFormat {
 
     /// Determines file format from a PDF reader.
     #[cfg(feature = "reader-pdf")]
-    pub(crate) fn from_pdf_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+    pub(crate) fn from_pdf_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
         // Constants for limits.
         const BUFFER_SIZE_LIMIT: usize = 4_194_304;
 
@@ -501,7 +496,7 @@ impl crate::FileFormat {
 
     /// Determines file format from a RM reader.
     #[cfg(feature = "reader-rm")]
-    pub(crate) fn from_rm_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+    pub(crate) fn from_rm_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
         // Constants for limits.
         const BUFFER_SIZE_LIMIT: usize = 4096;
 
@@ -529,10 +524,13 @@ impl crate::FileFormat {
 
     /// Determines file format from a TXT reader.
     #[cfg(feature = "reader-txt")]
-    pub(crate) fn from_txt_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+    pub(crate) fn from_txt_reader<R: Read + Seek>(reader: R) -> Result<Self> {
         // Constants for limits.
         const LINE_LIMIT: usize = 128;
         const READ_LIMIT: u64 = 4_194_304;
+
+        // Creates a buffered reader.
+        let mut reader = BufReader::new(reader);
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
@@ -555,11 +553,14 @@ impl crate::FileFormat {
 
     /// Determines file format from a XML reader.
     #[cfg(feature = "reader-xml")]
-    pub(crate) fn from_xml_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+    pub(crate) fn from_xml_reader<R: Read + Seek>(reader: R) -> Result<Self> {
         // Constants for limits.
         const CHAR_LIMIT: usize = 2048;
         const LINE_LIMIT: usize = 8;
         const READ_LIMIT: u64 = 262_144;
+
+        // Creates a buffered reader.
+        let mut reader = BufReader::new(reader);
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
@@ -629,7 +630,7 @@ impl crate::FileFormat {
 
     /// Determines file format from a ZIP reader.
     #[cfg(feature = "reader-zip")]
-    pub(crate) fn from_zip_reader<R: Read + Seek>(reader: &mut BufReader<R>) -> Result<Self> {
+    pub(crate) fn from_zip_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
         // Constants for limits.
         const FILE_LIMIT: usize = 2048;
 

@@ -209,7 +209,7 @@ mod signatures;
 use std::{
     fmt::{self, Display, Formatter},
     fs::File,
-    io::{BufRead, BufReader, Cursor, Read, Result, Seek},
+    io::{Cursor, Read, Result, Seek},
     path::Path,
 };
 
@@ -272,17 +272,18 @@ impl FileFormat {
     /// assert_eq!(format, FileFormat::default());
     /// # Ok::<(), std::io::Error>(())
     ///```
-    pub fn from_reader<R: Read + Seek>(reader: R) -> Result<Self> {
-        // Maximum required size to read and detect the file format from its signature.
+    pub fn from_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
+        // Maximum size required to detect a file format from its signature.
         const BUFFER_SIZE: usize = 36870;
 
-        // Creates a buffered reader with the specified size.
-        let mut reader = BufReader::with_capacity(BUFFER_SIZE, reader);
+        // Reads data into a buffer.
+        let mut buffer = [0; BUFFER_SIZE];
+        let size = reader.read(&mut buffer)?;
 
         // Attempts to detect the file format.
-        Ok(if reader.fill_buf()?.is_empty() {
+        Ok(if size == 0 {
             Self::default()
-        } else if let Some(format) = Self::from_signature(reader.buffer()) {
+        } else if let Some(format) = Self::from_signature(&buffer[..size]) {
             Self::from_format_reader(format, &mut reader)
                 .unwrap_or_else(|_| Self::from_generic_reader(&mut reader))
         } else {
