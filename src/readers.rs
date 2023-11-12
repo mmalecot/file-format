@@ -47,34 +47,33 @@ impl crate::FileFormat {
     /// Determines file format from an ASF reader.
     #[cfg(feature = "reader-asf")]
     pub(crate) fn from_asf_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
-        // Constants for limits.
-        const BUFFER_SIZE_LIMIT: usize = 8192;
+        // Size of the buffer.
+        const BUFFER_SIZE: usize = 8192;
 
-        // Constants for UTF-16-encoded descriptors.
-        const DVR_DESCRIPTOR: &[u8] = b"D\0V\0R\0 \0F\0i\0l\0e\0 \0V\0e\0r\0s\0i\0o\0n\0";
+        // Marker for DVR-MS files.
+        const DVR_FILE_VERSION_MARKER: &[u8] = b"D\0V\0R\0 \0F\0i\0l\0e\0 \0V\0e\0r\0s\0i\0o\0n\0";
 
-        // Constants for GUIDs.
+        // Audio media GUID.
         const AUDIO_MEDIA_GUID: &[u8] =
             b"\x40\x9E\x69\xF8\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
+
+        // Video media GUID.
         const VIDEO_MEDIA_GUID: &[u8] =
             b"\xC0\xEF\x19\xBC\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
-
-        // Gets the stream length.
-        let length = reader.seek(SeekFrom::End(0))?;
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Fills the buffer.
-        let mut buffer = vec![0; std::cmp::min(BUFFER_SIZE_LIMIT, length as usize)];
-        reader.read_exact(&mut buffer)?;
+        // Creates a buffer and reads into it.
+        let mut buffer = [0; BUFFER_SIZE];
+        let size = reader.read(&mut buffer)?;
 
-        // Searches for specific descriptors and GUIDs in the buffer.
-        Ok(if contains(&buffer, DVR_DESCRIPTOR) {
+        // Searches for specific markers and GUIDs in the buffer.
+        Ok(if contains(&buffer[..size], DVR_FILE_VERSION_MARKER) {
             return Ok(Self::MicrosoftDigitalVideoRecording);
-        } else if contains(&buffer, VIDEO_MEDIA_GUID) {
+        } else if contains(&buffer[..size], VIDEO_MEDIA_GUID) {
             Self::WindowsMediaVideo
-        } else if contains(&buffer, AUDIO_MEDIA_GUID) {
+        } else if contains(&buffer[..size], AUDIO_MEDIA_GUID) {
             Self::WindowsMediaAudio
         } else {
             Self::AdvancedSystemsFormat
@@ -482,7 +481,7 @@ impl crate::FileFormat {
         // Size of overlap to keep between chunks.
         const OVERLAP_SIZE: usize = AI_PRIVATE_DATA_MARKER.len() - 1;
 
-        // Marker to look for.
+        // Marker for AI files.
         const AI_PRIVATE_DATA_MARKER: &[u8] = b"AIPrivateData";
 
         // Rewinds to the beginning of the stream.
