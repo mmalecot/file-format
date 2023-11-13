@@ -50,19 +50,19 @@ impl crate::FileFormat {
         // Size of the buffer.
         const BUFFER_SIZE: usize = 8192;
 
-        // Marker for DVR-MS files.
+        // UTF-16-encoded marker for DVR-MS files.
         const DVR_FILE_VERSION_MARKER: &[u8] = b"D\0V\0R\0 \0F\0i\0l\0e\0 \0V\0e\0r\0s\0i\0o\0n\0";
 
-        // Audio media GUID.
+        // Encoded GUID for audio media (f8699e40-5b4d-11cf-a8fd-00805f5c442b).
         const AUDIO_MEDIA_GUID: &[u8] =
             b"\x40\x9E\x69\xF8\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
 
-        // Video media GUID.
+        // Encoded GUID for video media (bc19efc0-5b4d-11cf-a8fd-00805f5c442b).
         const VIDEO_MEDIA_GUID: &[u8] =
             b"\xC0\xEF\x19\xBC\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
 
-        // Rewinds to the beginning of the stream.
-        reader.rewind()?;
+        // Rewinds to the beginning of the stream plus the size of the ASF signature.
+        reader.seek(SeekFrom::Start(16))?;
 
         // Creates a buffer and reads into it.
         let mut buffer = [0; BUFFER_SIZE];
