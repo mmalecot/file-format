@@ -187,24 +187,40 @@ impl crate::FileFormat {
     /// Determines file format from an EBML reader.
     #[cfg(feature = "reader-ebml")]
     pub(crate) fn from_ebml_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
-        // Constants for limits.
+        // Maximum number of EBML elements that the reader will process.
         const ELEMENT_LIMIT: usize = 512;
+
+        // Maximum size of a string that can be handled by the reader.
         const STRING_LIMIT: usize = 64;
 
-        // Constants for EBML element IDs.
+        // DocType element ID.
         const DOC_TYPE_ID: u32 = 0x4282;
+
+        // EBML element ID.
         const EBML_ID: u32 = 0x1A45DFA3;
 
-        // Constants for Matroska element IDs.
+        // Cluster element ID.
         const CLUSTER_ID: u32 = 0x1F43B675;
-        const CODEC_ID: u32 = 0x86;
+
+        // CodecID element ID.
+        const CODEC_ID_ID: u32 = 0x86;
+
+        // Segment element ID.
         const SEGMENT_ID: u32 = 0x18538067;
+
+        // StereoMode element ID.
         const STEREO_MODE_ID: u32 = 0x53B8;
+
+        // Tracks element ID.
         const TRACKS_ID: u32 = 0x1654AE6B;
+
+        // TrackEntry element ID.
         const TRACK_ENTRY_ID: u32 = 0xAE;
+
+        // Video element ID.
         const VIDEO_ID: u32 = 0xE0;
 
-        /// Helper function to read the ID of an EBML element.
+        // Helper function to read the ID of an EBML element.
         #[inline]
         fn read_id<R: Read>(reader: &mut R) -> Result<u32> {
             // Reads the first byte.
@@ -227,7 +243,7 @@ impl crate::FileFormat {
             Ok(value)
         }
 
-        /// Helper function to read the size of an EBML element.
+        // Helper function to read the size of an EBML element.
         #[inline]
         fn read_size<R: Read>(reader: &mut R) -> Result<u64> {
             // Reads the first byte.
@@ -253,10 +269,10 @@ impl crate::FileFormat {
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Flags indicating the presence of audio, video or subtitle codecs.
-        let mut audio_codec = false;
-        let mut video_codec = false;
-        let mut subtitle_codec = false;
+        // Flags indicating the presence of audio, video and subtitle tracks.
+        let mut audio_track = false;
+        let mut video_track = false;
+        let mut subtitle_track = false;
 
         // Iterates through the EBML elements in the reader.
         let mut element_count = 0;
@@ -270,7 +286,7 @@ impl crate::FileFormat {
                     // Does nothing for these elements.
                 }
                 DOC_TYPE_ID => {
-                    // Reads the buffer containing the DocType.
+                    // Creates and fills a buffer containing the DocType.
                     let mut buffer = vec![0; std::cmp::min(STRING_LIMIT, size as usize)];
                     reader.read_exact(&mut buffer)?;
 
@@ -286,8 +302,8 @@ impl crate::FileFormat {
                         return Ok(Self::ExtensibleBinaryMetaLanguage);
                     }
                 }
-                CODEC_ID => {
-                    // Reads the buffer containing the Codec ID.
+                CODEC_ID_ID => {
+                    // Creates and fills a buffer containing the Codec ID.
                     let mut buffer = vec![0; std::cmp::min(STRING_LIMIT, size as usize)];
                     reader.read_exact(&mut buffer)?;
 
@@ -296,19 +312,19 @@ impl crate::FileFormat {
 
                     // Checks the Codec ID.
                     if codec_id.starts_with("A_") {
-                        audio_codec = true;
+                        audio_track = true;
                     } else if codec_id.starts_with("V_") {
-                        video_codec = true;
+                        video_track = true;
                     } else if codec_id.starts_with("S_") {
-                        subtitle_codec = true;
+                        subtitle_track = true;
                     }
                 }
                 STEREO_MODE_ID => {
-                    // Reads a single byte to determine the StereoMode.
+                    // Creates and fills a buffer containing the StereoMode.
                     let mut buffer = [0];
                     reader.read_exact(&mut buffer)?;
 
-                    // Positive value indicates stereoscopic video.
+                    // A positive value indicates a stereoscopic video.
                     if buffer[0] > 0 {
                         return Ok(Self::Matroska3dVideo);
                     }
@@ -332,12 +348,12 @@ impl crate::FileFormat {
             }
         }
 
-        // Determines the file format based on the identified codecs.
-        Ok(if video_codec {
+        // Determines the file format based on the identified tracks.
+        Ok(if video_track {
             Self::MatroskaVideo
-        } else if audio_codec {
+        } else if audio_track {
             Self::MatroskaAudio
-        } else if subtitle_codec {
+        } else if subtitle_track {
             Self::MatroskaSubtitles
         } else {
             Self::ExtensibleBinaryMetaLanguage
