@@ -83,16 +83,15 @@ impl crate::FileFormat {
     /// Determines file format from a CFB reader.
     #[cfg(feature = "reader-cfb")]
     pub(crate) fn from_cfb_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
-        // Constants for UTF-16-encoded entry names.
+        // UTF-16-encoded entry name for Microsoft Works 6 Spreadsheet files.
         const MICROSOFT_WORKS6_SPREADSHEET_ENTRY_NAME: &[u8] =
             b"W\0k\0s\0S\0S\0W\0o\0r\0k\0B\0o\0o\0k\0";
+
+        // UTF-16-encoded entry name for Microsoft Works Word Processor files.
         const MICROSOFT_WORKS_WORD_PROCESSOR_ENTRY_NAME: &[u8] = b"M\0a\0t\0O\0S\0T\0";
 
-        // Rewinds to the beginning of the stream.
-        reader.rewind()?;
-
         // Reads the major version.
-        reader.seek(SeekFrom::Current(26))?;
+        reader.seek(SeekFrom::Start(26))?;
         let mut buffer = [0; 2];
         reader.read_exact(&mut buffer)?;
         let major_version = u16::from_le_bytes(buffer);
@@ -112,7 +111,7 @@ impl crate::FileFormat {
         // Reads and decodes the CLSID.
         let mut buffer = [0; 16];
         reader.read_exact(&mut buffer)?;
-        let clsid = [3, 2, 1, 0, 5, 4, 7, 6, 8, 9, 10, 11, 12, 13, 14, 15]
+        let clsid: String = [3, 2, 1, 0, 5, 4, 7, 6, 8, 9, 10, 11, 12, 13, 14, 15]
             .iter()
             .map(|&index| {
                 if index == 5 || index == 7 || index == 8 || index == 10 {
@@ -121,7 +120,7 @@ impl crate::FileFormat {
                     format!("{:02x}", buffer[index])
                 }
             })
-            .collect::<String>();
+            .collect();
 
         // Determines the file format based on the CLSID.
         Ok(match clsid.as_str() {
@@ -169,14 +168,14 @@ impl crate::FileFormat {
             "519873ff-2dad-0220-1937-0000929679cd" => Self::WordperfectDocument,
             "402efe60-1999-101b-99ae-04021c007002" => Self::WordperfectGraphics,
             "00000000-0000-0000-0000-000000000000" => {
-                // Fills the buffer.
+                // Creates and fills a buffer.
                 let mut buffer = [0; 512];
-                reader.read_exact(&mut buffer)?;
+                let size = reader.read(&mut buffer)?;
 
                 // Searches for specific entry names in the buffer.
-                if contains(&buffer, MICROSOFT_WORKS6_SPREADSHEET_ENTRY_NAME) {
+                if contains(&buffer[..size], MICROSOFT_WORKS6_SPREADSHEET_ENTRY_NAME) {
                     Self::MicrosoftWorks6Spreadsheet
-                } else if contains(&buffer, MICROSOFT_WORKS_WORD_PROCESSOR_ENTRY_NAME) {
+                } else if contains(&buffer[..size], MICROSOFT_WORKS_WORD_PROCESSOR_ENTRY_NAME) {
                     Self::MicrosoftWorksWordProcessor
                 } else {
                     Self::CompoundFileBinary
