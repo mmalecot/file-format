@@ -421,7 +421,7 @@ impl crate::FileFormat {
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Flags indicating the presence of audio, video or subtitle tracks.
+        // Flags indicating the presence of audio, video and subtitle tracks.
         let mut audio_track = false;
         let mut video_track = false;
         let mut subtitle_track = false;
