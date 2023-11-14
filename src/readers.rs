@@ -51,7 +51,7 @@ impl crate::FileFormat {
         const BUFFER_SIZE: usize = 8192;
 
         // UTF-16-encoded marker for DVR-MS files.
-        const DVR_FILE_VERSION_MARKER: &[u8] = b"D\0V\0R\0 \0F\0i\0l\0e\0 \0V\0e\0r\0s\0i\0o\0n\0";
+        const DVR_MS_MARKER: &[u8] = b"D\0V\0R\0 \0F\0i\0l\0e\0 \0V\0e\0r\0s\0i\0o\0n\0";
 
         // Encoded GUID for audio media (f8699e40-5b4d-11cf-a8fd-00805f5c442b).
         const AUDIO_MEDIA_GUID: &[u8] =
@@ -69,7 +69,7 @@ impl crate::FileFormat {
         let size = reader.read(&mut buffer)?;
 
         // Searches for specific markers and GUIDs in the buffer.
-        Ok(if contains(&buffer[..size], DVR_FILE_VERSION_MARKER) {
+        Ok(if contains(&buffer[..size], DVR_MS_MARKER) {
             return Ok(Self::MicrosoftDigitalVideoRecording);
         } else if contains(&buffer[..size], VIDEO_MEDIA_GUID) {
             Self::WindowsMediaVideo
@@ -83,12 +83,11 @@ impl crate::FileFormat {
     /// Determines file format from a CFB reader.
     #[cfg(feature = "reader-cfb")]
     pub(crate) fn from_cfb_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
-        // UTF-16-encoded entry name for Microsoft Works 6 Spreadsheet files.
-        const MICROSOFT_WORKS6_SPREADSHEET_ENTRY_NAME: &[u8] =
-            b"W\0k\0s\0S\0S\0W\0o\0r\0k\0B\0o\0o\0k\0";
+        // UTF-16-encoded entry name for XLR files.
+        const XLR_ENTRY_NAME: &[u8] = b"W\0k\0s\0S\0S\0W\0o\0r\0k\0B\0o\0o\0k\0";
 
-        // UTF-16-encoded entry name for Microsoft Works Word Processor files.
-        const MICROSOFT_WORKS_WORD_PROCESSOR_ENTRY_NAME: &[u8] = b"M\0a\0t\0O\0S\0T\0";
+        // UTF-16-encoded entry name for WPS files.
+        const WPS_ENTRY_NAME: &[u8] = b"M\0a\0t\0O\0S\0T\0";
 
         // Reads the major version.
         reader.seek(SeekFrom::Start(26))?;
@@ -173,9 +172,9 @@ impl crate::FileFormat {
                 let size = reader.read(&mut buffer)?;
 
                 // Searches for specific entry names in the buffer.
-                if contains(&buffer[..size], MICROSOFT_WORKS6_SPREADSHEET_ENTRY_NAME) {
+                if contains(&buffer[..size], XLR_ENTRY_NAME) {
                     Self::MicrosoftWorks6Spreadsheet
-                } else if contains(&buffer[..size], MICROSOFT_WORKS_WORD_PROCESSOR_ENTRY_NAME) {
+                } else if contains(&buffer[..size], WPS_ENTRY_NAME) {
                     Self::MicrosoftWorksWordProcessor
                 } else {
                     Self::CompoundFileBinary
