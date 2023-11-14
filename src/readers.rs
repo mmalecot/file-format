@@ -64,7 +64,7 @@ impl crate::FileFormat {
         // Rewinds to the beginning of the stream plus the size of the ASF signature.
         reader.seek(SeekFrom::Start(16))?;
 
-        // Creates a buffer and reads into it.
+        // Creates and fills a buffer.
         let mut buffer = [0; BUFFER_SIZE];
         let size = reader.read(&mut buffer)?;
 
