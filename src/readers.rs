@@ -188,7 +188,7 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-ebml")]
     pub(crate) fn from_ebml_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
         // Maximum number of EBML elements that the reader will process.
-        const ELEMENT_LIMIT: usize = 512;
+        const ELEMENT_LIMIT: usize = 256;
 
         // Maximum size of a string that can be handled by the reader.
         const STRING_LIMIT: usize = 64;
@@ -266,6 +266,9 @@ impl crate::FileFormat {
             Ok(value)
         }
 
+        // Gets the stream length.
+        let length = reader.seek(SeekFrom::End(0))?;
+
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
@@ -276,7 +279,10 @@ impl crate::FileFormat {
 
         // Iterates through the EBML elements in the reader.
         let mut element_count = 0;
-        while let Ok(id) = read_id(&mut reader) {
+        while element_count < ELEMENT_LIMIT && reader.stream_position()? < length {
+            // Reads the ID of the element.
+            let id = read_id(&mut reader)?;
+
             // Reads the size of the element.
             let size = read_size(&mut reader)?;
 
@@ -341,11 +347,6 @@ impl crate::FileFormat {
 
             // Increments the element count.
             element_count += 1;
-
-            // Checks if the element limit has been reached.
-            if element_count == ELEMENT_LIMIT {
-                break;
-            }
         }
 
         // Determines the file format based on the identified tracks.
