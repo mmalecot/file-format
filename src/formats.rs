@@ -1958,6 +1958,13 @@ formats! {
     extension = "asc"
     kind = Application
 
+    format = PictureExchange
+    name = "Picture Exchange"
+    short_name = "PCX"
+    media_type = "image/x-pcx"
+    extension = "pcx"
+    kind = Image
+
     format = PlainText
     name = "Plain Text"
     short_name = "TXT"

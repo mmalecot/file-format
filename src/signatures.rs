@@ -1157,6 +1157,18 @@ signatures! {
     format = PersonalStorageTable
     value = b"!BDN"
 
+    format = PictureExchange
+    value = b"\x0A\x00\x00", b"\x00" offset = 64
+    value = b"\x0A\x00\x01", b"\x00" offset = 64
+    value = b"\x0A\x02\x00", b"\x00" offset = 64
+    value = b"\x0A\x02\x01", b"\x00" offset = 64
+    value = b"\x0A\x03\x00", b"\x00" offset = 64
+    value = b"\x0A\x03\x01", b"\x00" offset = 64
+    value = b"\x0A\x04\x00", b"\x00" offset = 64
+    value = b"\x0A\x04\x01", b"\x00" offset = 64
+    value = b"\x0A\x05\x00", b"\x00" offset = 64
+    value = b"\x0A\x05\x01", b"\x00" offset = 64
+
     format = QemuCopyOnWrite
     value = b"QFI\xFB"
 

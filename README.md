@@ -359,6 +359,7 @@ file-format = "0.23"
 - OpenEXR (EXR)
 - OpenRaster (ORA)
 - Panasonic Raw (RW2)
+- Picture Exchange (PCX)
 - Portable Arbitrary Map (PAM)
 - Portable BitMap (PBM)
 - Portable FloatMap (PFM)
