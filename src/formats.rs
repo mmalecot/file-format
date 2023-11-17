@@ -1436,6 +1436,13 @@ formats! {
     extension = "wps"
     kind = Document
 
+    format = MicrosoftWrite
+    name = "Microsoft Write"
+    short_name = "WRI"
+    media_type = "application/x-mswrite"
+    extension = "wri"
+    kind = Document
+
     format = Mobipocket
     name = "Mobipocket"
     short_name = "MOBI"

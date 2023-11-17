@@ -845,6 +845,10 @@ signatures! {
     value = b"GIF87a"
     value = b"GIF89a"
 
+    format = MicrosoftWrite
+    value = b"\x31\xBE\x00\x00\x00\xAB"
+    value = b"\x32\xBE\x00\x00\x00\xAB"
+
     format = SevenZip
     value = b"\x37\x7A\xBC\xAF\x27\x1C"
     value = b"\x37\x7A\xBC\xAF\x27\x1C"

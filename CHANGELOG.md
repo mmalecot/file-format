@@ -7,6 +7,7 @@
 
 ## New formats support
 
+- Microsoft Write (WRI)
 - Picture Exchange (PCX)
 
 # Version 0.22.0 (2023-11-04)

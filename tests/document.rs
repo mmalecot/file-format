@@ -122,6 +122,12 @@ fn test_microsoft_works_word_processor() {
     assert_eq!(fmt, FileFormat::MicrosoftWorksWordProcessor);
 }
 
+#[test]
+fn test_microsoft_write() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.wri").unwrap();
+    assert_eq!(fmt, FileFormat::MicrosoftWrite);
+}
+
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_office_open_xml_document() {

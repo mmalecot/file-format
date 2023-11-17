@@ -237,6 +237,7 @@ file-format = "0.23"
 - Microsoft Works 6 Spreadsheet (XLR)
 - Microsoft Works Spreadsheet (WKS)
 - Microsoft Works Word Processor (WPS)
+- Microsoft Write (WRI)
 - Office Open XML Document (DOCX)
 - Office Open XML Drawing (VSDX)
 - Office Open XML Presentation (PPTX)
