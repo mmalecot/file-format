@@ -27,8 +27,11 @@ signatures! {
     value = b"{\n    \"version\": \"https://jsonfeed.org/version/"
     value = b"{\r    \"version\": \"https://jsonfeed.org/version/"
     value = b"{\r\n  \"version\": \"https://jsonfeed.org/version/"
+    value = b"{\r\n\t\"version\": \"https://jsonfeed.org/version/"
     value = b"{\n  \"version\": \"https://jsonfeed.org/version/"
+    value = b"{\n\t\"version\": \"https://jsonfeed.org/version/"
     value = b"{\r  \"version\": \"https://jsonfeed.org/version/"
+    value = b"{\r\t\"version\": \"https://jsonfeed.org/version/"
     value = b"{\"version\":\"https://jsonfeed.org/version/"
 
     // 40 bytes

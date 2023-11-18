@@ -1,5 +1,9 @@
 # Version 0.23.0 (unreleased)
 
+## Improvements
+
+- Add precision to the JSON Feed signature
+
 ## Internal changes
 
 - Improve ZIP reader performance and precision when using `reader-zip` feature
