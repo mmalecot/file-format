@@ -92,6 +92,9 @@ impl crate::FileFormat {
         reader.read_exact(&mut buffer)?;
         let major_version = u16::from_le_bytes(buffer);
 
+        // Computes the directory sector size based on the major version.
+        let directory_sector_size = if major_version == 0x0003 { 512 } else { 4096 };
+
         // Reads the first directory sector location.
         reader.seek(SeekFrom::Current(20))?;
         let mut buffer = [0; 4];
@@ -99,9 +102,7 @@ impl crate::FileFormat {
         let first_directory_sector_location = u32::from_le_bytes(buffer);
 
         // Seeks to the root entry CLSID.
-        let offset = if major_version == 0x0003 { 512 } else { 4096 }
-            * (1 + first_directory_sector_location as u64)
-            + 80;
+        let offset = directory_sector_size * (1 + first_directory_sector_location as u64) + 80;
         reader.seek(SeekFrom::Start(offset))?;
 
         // Reads and decodes the CLSID.
@@ -164,14 +165,17 @@ impl crate::FileFormat {
             "519873ff-2dad-0220-1937-0000929679cd" => Self::WordperfectDocument,
             "402efe60-1999-101b-99ae-04021c007002" => Self::WordperfectGraphics,
             "00000000-0000-0000-0000-000000000000" => {
+                // Seeks to the next directory entry.
+                reader.seek(SeekFrom::Current(32))?;
+
                 // Creates and fills a buffer.
-                let mut buffer = [0; 512];
-                let bytes_read = reader.read(&mut buffer)?;
+                let mut buffer = vec![0; directory_sector_size as usize - 128];
+                reader.read_exact(&mut buffer)?;
 
                 // Searches for specific entry names in the buffer.
-                if contains(&buffer[..bytes_read], XLR_ENTRY_NAME) {
+                if contains(&buffer, XLR_ENTRY_NAME) {
                     Self::MicrosoftWorks6Spreadsheet
-                } else if contains(&buffer[..bytes_read], WPS_ENTRY_NAME) {
+                } else if contains(&buffer, WPS_ENTRY_NAME) {
                     Self::MicrosoftWorksWordProcessor
                 } else {
                     Self::CompoundFileBinary
