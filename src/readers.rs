@@ -506,8 +506,8 @@ impl crate::FileFormat {
         // Marker for the AI file format.
         const AI_MARKER: &[u8] = b"AIPrivateData";
 
-        // Rewinds to the beginning of the stream.
-        reader.rewind()?;
+        // Rewinds to the beginning of the stream plus the size of the PDF file format signature.
+        reader.seek(SeekFrom::Start(5))?;
 
         // Creates a buffer to hold the chunk of data being read.
         let mut buffer = [0; OVERLAP_SIZE + CHUNK_SIZE];
