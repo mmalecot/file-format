@@ -164,24 +164,34 @@ impl crate::FileFormat {
             "1cdd8c7b-81c0-45a0-9fed-04143144cc1e" => Self::ThreeDimensionalStudioMax,
             "519873ff-2dad-0220-1937-0000929679cd" => Self::WordperfectDocument,
             "402efe60-1999-101b-99ae-04021c007002" => Self::WordperfectGraphics,
-            "00000000-0000-0000-0000-000000000000" => {
-                // Seeks to the next directory entry.
+            _ => {
+                // Seeks to the second directory entry.
                 reader.seek(SeekFrom::Current(32))?;
 
-                // Creates and fills a buffer.
-                let mut buffer = vec![0; directory_sector_size as usize - 128];
+                // Reads the second directory entry name.
+                let mut buffer = [0; 64];
                 reader.read_exact(&mut buffer)?;
 
-                // Searches for specific entry names in the buffer.
-                if contains(&buffer, XLR_ENTRY_NAME) {
-                    Self::MicrosoftWorks6Spreadsheet
-                } else if contains(&buffer, WPS_ENTRY_NAME) {
-                    Self::MicrosoftWorksWordProcessor
-                } else {
-                    Self::CompoundFileBinary
+                // Checks the second directory entry name.
+                if buffer.starts_with(WPS_ENTRY_NAME) {
+                    return Ok(Self::MicrosoftWorksWordProcessor);
                 }
+
+                // Seeks to the third directory entry.
+                reader.seek(SeekFrom::Current(64))?;
+
+                // Reads the second directory entry name.
+                let mut buffer = [0; 64];
+                reader.read_exact(&mut buffer)?;
+
+                // Checks the second directory entry name.
+                if buffer.starts_with(XLR_ENTRY_NAME) {
+                    return Ok(Self::MicrosoftWorks6Spreadsheet);
+                }
+
+                // Returns the default value.
+                Self::CompoundFileBinary
             }
-            _ => Self::CompoundFileBinary,
         })
     }
 
@@ -917,12 +927,7 @@ impl crate::FileFormat {
 }
 
 /// Checks if the `data` slice contains the `target` sequence.
-#[cfg(any(
-    feature = "reader-asf",
-    feature = "reader-cfb",
-    feature = "reader-pdf",
-    feature = "reader-rm",
-))]
+#[cfg(any(feature = "reader-asf", feature = "reader-pdf", feature = "reader-rm",))]
 #[inline]
 fn contains(data: &[u8], target: &[u8]) -> bool {
     find(data, target).is_some()
@@ -933,7 +938,6 @@ fn contains(data: &[u8], target: &[u8]) -> bool {
 /// If the sequence is found, the function returns the index of the first occurrence.
 #[cfg(any(
     feature = "reader-asf",
-    feature = "reader-cfb",
     feature = "reader-pdf",
     feature = "reader-rm",
     feature = "reader-zip",
