@@ -46,31 +46,139 @@ impl crate::FileFormat {
 
     /// Determines file format from an ASF reader.
     #[cfg(feature = "reader-asf")]
-    pub(crate) fn from_asf_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
-        // UTF-16-encoded marker for DVR-MS file format.
-        const DVR_MS_MARKER: &[u8] = b"D\0V\0R\0 \0F\0i\0l\0e\0 \0V\0e\0r\0s\0i\0o\0n\0";
+    pub(crate) fn from_asf_reader<R: Read + Seek>(reader: R) -> Result<Self> {
+        // Maximum number of descriptors that can be processed by the reader.
+        const DESCRIPTOR_LIMIT: usize = 32;
+
+        // Maximum size of a descriptor name that can be handled by the reader.
+        const DESCRIPTOR_NAME_LIMIT: usize = 1024;
+
+        // Maximum number of objects that can be processed by the reader.
+        const OBJECT_LIMIT: usize = 32;
+
+        // UTF-16-encoded descriptor name for DVR-MS file format.
+        const DVR_MS_DESCRIPTOR_NAME: &[u8] =
+            b"D\0V\0R\0 \0F\0i\0l\0e\0 \0V\0e\0r\0s\0i\0o\0n\0\0\0";
+
+        // Binary-encoded GUID for extended content description object
+        // (d2d0a440-e307-11d2-97f0-00a0c95ea850).
+        const EXTENDED_CONTENT_DESCRIPTION_OBJECT_GUID: &[u8; 16] =
+            b"\x40\xA4\xD0\xD2\x07\xE3\xD2\x11\x97\xF0\x00\xA0\xC9\x5E\xA8\x50";
+
+        // Binary-encoded GUID for stream properties object (b7dc0791-a9b7-11cf-8ee6-00c00c205365).
+        const STREAM_PROPERTIES_OBJECT_GUID: &[u8; 16] =
+            b"\x91\x07\xDC\xB7\xB7\xA9\xCF\x11\x8E\xE6\x00\xC0\x0C\x20\x53\x65";
 
         // Binary-encoded GUID for audio media (f8699e40-5b4d-11cf-a8fd-00805f5c442b).
-        const AUDIO_MEDIA_GUID: &[u8] =
+        const AUDIO_MEDIA_GUID: &[u8; 16] =
             b"\x40\x9E\x69\xF8\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
 
         // Binary-encoded GUID for video media (bc19efc0-5b4d-11cf-a8fd-00805f5c442b).
-        const VIDEO_MEDIA_GUID: &[u8] =
+        const VIDEO_MEDIA_GUID: &[u8; 16] =
             b"\xC0\xEF\x19\xBC\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
 
-        // Rewinds to the beginning of the stream plus the size of the ASF file format signature.
-        reader.seek(SeekFrom::Start(16))?;
+        // Creates a buffered reader.
+        let mut reader = BufReader::new(reader);
 
-        // Creates and fills a buffer.
-        let mut buffer = [0; 8192];
-        let bytes_read = reader.read(&mut buffer)?;
+        // Reads the number of header objects.
+        reader.seek(SeekFrom::Start(24))?;
+        let mut buffer = [0; 4];
+        reader.read_exact(&mut buffer)?;
+        let number_of_header_objects = u32::from_le_bytes(buffer);
 
-        // Searches for specific markers and GUIDs in the buffer.
-        Ok(if contains(&buffer[..bytes_read], DVR_MS_MARKER) {
-            Self::MicrosoftDigitalVideoRecording
-        } else if contains(&buffer[..bytes_read], VIDEO_MEDIA_GUID) {
+        // Skips the reserved fields.
+        reader.seek(SeekFrom::Current(2))?;
+
+        // Flags indicating the presence of audio and video streams.
+        let mut audio_stream = false;
+        let mut video_stream = false;
+
+        // Iterates through the header objects.
+        let mut object_count = 0;
+        while object_count < std::cmp::min(OBJECT_LIMIT, number_of_header_objects as usize) {
+            // Reads the GUID.
+            let mut guid = [0; 16];
+            reader.read_exact(&mut guid)?;
+
+            // Reads the size.
+            let mut buffer = [0; 8];
+            reader.read_exact(&mut buffer)?;
+            let size = u64::from_le_bytes(buffer);
+
+            // Checks the GUID.
+            match &guid {
+                STREAM_PROPERTIES_OBJECT_GUID => {
+                    // Reads the stream type.
+                    let mut buffer = [0; 16];
+                    reader.read_exact(&mut buffer)?;
+
+                    // Checks the stream type.
+                    match &buffer {
+                        AUDIO_MEDIA_GUID => audio_stream = true,
+                        VIDEO_MEDIA_GUID => video_stream = true,
+                        _ => {}
+                    }
+
+                    // Seeks to the next object.
+                    reader.seek(SeekFrom::Current(size as i64 - 40))?;
+                }
+                EXTENDED_CONTENT_DESCRIPTION_OBJECT_GUID => {
+                    // Reads the content descriptors count.
+                    let mut buffer = [0; 2];
+                    reader.read_exact(&mut buffer)?;
+                    let count = u16::from_le_bytes(buffer);
+
+                    // Keeps the offset of content descriptors.
+                    let offset = reader.stream_position()?;
+
+                    // Iterates through the descriptors.
+                    let mut descriptors_count = 0;
+                    while descriptors_count < std::cmp::min(DESCRIPTOR_LIMIT, count as usize) {
+                        // Reads the descriptor name length.
+                        let mut buffer = [0; 2];
+                        reader.read_exact(&mut buffer)?;
+                        let length = u16::from_le_bytes(buffer);
+
+                        // Reads the descriptor name.
+                        let mut name =
+                            vec![0; std::cmp::min(length as usize, DESCRIPTOR_NAME_LIMIT)];
+                        reader.read_exact(&mut name)?;
+
+                        // Checks the descriptor name.
+                        if name == DVR_MS_DESCRIPTOR_NAME {
+                            return Ok(Self::MicrosoftDigitalVideoRecording);
+                        }
+
+                        // Reads the descriptor value length.
+                        reader.seek(SeekFrom::Current(2))?;
+                        let mut buffer = [0; 2];
+                        reader.read_exact(&mut buffer)?;
+                        let length = u16::from_le_bytes(buffer);
+
+                        // Seeks to the next descriptor.
+                        reader.seek(SeekFrom::Current(length as i64))?;
+
+                        // Increments the descriptor count.
+                        descriptors_count += 1;
+                    }
+
+                    // Seeks to the next object.
+                    reader.seek(SeekFrom::Start(offset + size - 26))?;
+                }
+                _ => {
+                    // Seeks to the next object.
+                    reader.seek(SeekFrom::Current(size as i64 - 24))?;
+                }
+            }
+
+            // Increments the object count.
+            object_count += 1;
+        }
+
+        // Determines the file format based on the identified streams.
+        Ok(if video_stream {
             Self::WindowsMediaVideo
-        } else if contains(&buffer[..bytes_read], AUDIO_MEDIA_GUID) {
+        } else if audio_stream {
             Self::WindowsMediaAudio
         } else {
             Self::AdvancedSystemsFormat
@@ -927,7 +1035,7 @@ impl crate::FileFormat {
 }
 
 /// Checks if the `data` slice contains the `target` sequence.
-#[cfg(any(feature = "reader-asf", feature = "reader-pdf", feature = "reader-rm",))]
+#[cfg(any(feature = "reader-pdf", feature = "reader-rm"))]
 #[inline]
 fn contains(data: &[u8], target: &[u8]) -> bool {
     find(data, target).is_some()
@@ -936,12 +1044,7 @@ fn contains(data: &[u8], target: &[u8]) -> bool {
 /// Searches for the `target` byte sequence in the `data` slice using the Boyer-Moore algorithm.
 ///
 /// If the sequence is found, the function returns the index of the first occurrence.
-#[cfg(any(
-    feature = "reader-asf",
-    feature = "reader-pdf",
-    feature = "reader-rm",
-    feature = "reader-zip",
-))]
+#[cfg(any(feature = "reader-pdf", feature = "reader-rm", feature = "reader-zip"))]
 fn find(data: &[u8], target: &[u8]) -> Option<usize> {
     // An empty target sequence is always considered to be contained in the data.
     if target.is_empty() {
