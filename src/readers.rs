@@ -51,7 +51,7 @@ impl crate::FileFormat {
         const DESCRIPTOR_LIMIT: usize = 32;
 
         // Maximum size of a descriptor name that can be handled by the reader.
-        const DESCRIPTOR_NAME_LIMIT: usize = 32;
+        const DESCRIPTOR_NAME_LIMIT: usize = 64;
 
         // Maximum number of objects that can be processed by the reader.
         const OBJECT_LIMIT: usize = 256;
