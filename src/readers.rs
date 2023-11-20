@@ -191,33 +191,33 @@ impl crate::FileFormat {
 
         // Reads the major version.
         reader.seek(SeekFrom::Start(26))?;
-        let mut buffer = [0; 2];
-        reader.read_exact(&mut buffer)?;
-        let major_version = u16::from_le_bytes(buffer);
+        let mut version = [0; 2];
+        reader.read_exact(&mut version)?;
+        let version = u16::from_le_bytes(version);
 
-        // Computes the directory sector size based on the major version.
-        let directory_sector_size = if major_version == 0x0003 { 512 } else { 4096 };
+        // Calculates the directory sector size based on the major version.
+        let directory_sector_size = if version == 0x0003 { 512 } else { 4096 };
 
         // Reads the first directory sector location.
         reader.seek(SeekFrom::Current(20))?;
-        let mut buffer = [0; 4];
-        reader.read_exact(&mut buffer)?;
-        let first_directory_sector_location = u32::from_le_bytes(buffer);
+        let mut first_directory_sector_location = [0; 4];
+        reader.read_exact(&mut first_directory_sector_location)?;
+        let first_directory_sector_location = u32::from_le_bytes(first_directory_sector_location);
 
         // Seeks to the root entry CLSID.
         let offset = directory_sector_size * (1 + first_directory_sector_location as u64) + 80;
         reader.seek(SeekFrom::Start(offset))?;
 
-        // Reads and decodes the CLSID.
-        let mut buffer = [0; 16];
-        reader.read_exact(&mut buffer)?;
+        // Reads the CLSID.
+        let mut clsid = [0; 16];
+        reader.read_exact(&mut clsid)?;
         let clsid: String = [3, 2, 1, 0, 5, 4, 7, 6, 8, 9, 10, 11, 12, 13, 14, 15]
             .iter()
             .map(|&index| {
                 if index == 5 || index == 7 || index == 8 || index == 10 {
-                    format!("-{:02x}", buffer[index])
+                    format!("-{:02x}", clsid[index])
                 } else {
-                    format!("{:02x}", buffer[index])
+                    format!("{:02x}", clsid[index])
                 }
             })
             .collect();
@@ -268,27 +268,23 @@ impl crate::FileFormat {
             "519873ff-2dad-0220-1937-0000929679cd" => Self::WordperfectDocument,
             "402efe60-1999-101b-99ae-04021c007002" => Self::WordperfectGraphics,
             _ => {
-                // Seeks to the second directory entry.
-                reader.seek(SeekFrom::Current(32))?;
-
                 // Reads the second directory entry name.
-                let mut buffer = [0; 64];
-                reader.read_exact(&mut buffer)?;
+                reader.seek(SeekFrom::Current(32))?;
+                let mut second_directory_entry_name = [0; 64];
+                reader.read_exact(&mut second_directory_entry_name)?;
 
                 // Checks the second directory entry name.
-                if buffer.starts_with(WPS_ENTRY_NAME) {
+                if second_directory_entry_name.starts_with(WPS_ENTRY_NAME) {
                     return Ok(Self::MicrosoftWorksWordProcessor);
                 }
 
-                // Seeks to the third directory entry.
+                // Reads the third directory entry name.
                 reader.seek(SeekFrom::Current(64))?;
+                let mut third_directory_entry_name = [0; 64];
+                reader.read_exact(&mut third_directory_entry_name)?;
 
-                // Reads the second directory entry name.
-                let mut buffer = [0; 64];
-                reader.read_exact(&mut buffer)?;
-
-                // Checks the second directory entry name.
-                if buffer.starts_with(XLR_ENTRY_NAME) {
+                // Checks the third directory entry name.
+                if third_directory_entry_name.starts_with(XLR_ENTRY_NAME) {
                     return Ok(Self::MicrosoftWorks6Spreadsheet);
                 }
 
