@@ -51,10 +51,10 @@ impl crate::FileFormat {
         const DESCRIPTOR_LIMIT: usize = 32;
 
         // Maximum size of a descriptor name that can be handled by the reader.
-        const DESCRIPTOR_NAME_LIMIT: usize = 1024;
+        const DESCRIPTOR_NAME_LIMIT: usize = 32;
 
         // Maximum number of objects that can be processed by the reader.
-        const OBJECT_LIMIT: usize = 32;
+        const OBJECT_LIMIT: usize = 256;
 
         // UTF-16-encoded descriptor name for DVR-MS file format.
         const DVR_MS_DESCRIPTOR_NAME: &[u8] =
@@ -82,9 +82,9 @@ impl crate::FileFormat {
 
         // Reads the number of header objects.
         reader.seek(SeekFrom::Start(24))?;
-        let mut buffer = [0; 4];
-        reader.read_exact(&mut buffer)?;
-        let number_of_header_objects = u32::from_le_bytes(buffer);
+        let mut number_of_header_objects = [0; 4];
+        reader.read_exact(&mut number_of_header_objects)?;
+        let number_of_header_objects = u32::from_le_bytes(number_of_header_objects);
 
         // Skips the reserved fields.
         reader.seek(SeekFrom::Current(2))?;
@@ -94,26 +94,25 @@ impl crate::FileFormat {
         let mut video_stream = false;
 
         // Iterates through the header objects.
-        let mut object_count = 0;
-        while object_count < std::cmp::min(OBJECT_LIMIT, number_of_header_objects as usize) {
-            // Reads the GUID.
+        for _ in 0..std::cmp::min(OBJECT_LIMIT, number_of_header_objects as usize) {
+            // Reads the object GUID.
             let mut guid = [0; 16];
             reader.read_exact(&mut guid)?;
 
-            // Reads the size.
-            let mut buffer = [0; 8];
-            reader.read_exact(&mut buffer)?;
-            let size = u64::from_le_bytes(buffer);
+            // Reads the object size.
+            let mut size = [0; 8];
+            reader.read_exact(&mut size)?;
+            let size = u64::from_le_bytes(size);
 
-            // Checks the GUID.
+            // Checks the object GUID.
             match &guid {
                 STREAM_PROPERTIES_OBJECT_GUID => {
                     // Reads the stream type.
-                    let mut buffer = [0; 16];
-                    reader.read_exact(&mut buffer)?;
+                    let mut stream_type = [0; 16];
+                    reader.read_exact(&mut stream_type)?;
 
                     // Checks the stream type.
-                    match &buffer {
+                    match &stream_type {
                         AUDIO_MEDIA_GUID => audio_stream = true,
                         VIDEO_MEDIA_GUID => video_stream = true,
                         _ => {}
@@ -124,24 +123,23 @@ impl crate::FileFormat {
                 }
                 EXTENDED_CONTENT_DESCRIPTION_OBJECT_GUID => {
                     // Reads the content descriptors count.
-                    let mut buffer = [0; 2];
-                    reader.read_exact(&mut buffer)?;
-                    let count = u16::from_le_bytes(buffer);
+                    let mut count = [0; 2];
+                    reader.read_exact(&mut count)?;
+                    let count = u16::from_le_bytes(count);
 
-                    // Keeps the offset of content descriptors.
+                    // Calculates the offset of the content descriptors.
                     let offset = reader.stream_position()?;
 
-                    // Iterates through the descriptors.
-                    let mut descriptors_count = 0;
-                    while descriptors_count < std::cmp::min(DESCRIPTOR_LIMIT, count as usize) {
+                    // Iterates through the content descriptors.
+                    for _ in 0..std::cmp::min(DESCRIPTOR_LIMIT, count as usize) {
                         // Reads the descriptor name length.
-                        let mut buffer = [0; 2];
-                        reader.read_exact(&mut buffer)?;
-                        let length = u16::from_le_bytes(buffer);
+                        let mut length = [0; 2];
+                        reader.read_exact(&mut length)?;
+                        let length = u16::from_le_bytes(length);
 
                         // Reads the descriptor name.
                         let mut name =
-                            vec![0; std::cmp::min(length as usize, DESCRIPTOR_NAME_LIMIT)];
+                            vec![0; std::cmp::min(DESCRIPTOR_NAME_LIMIT, length as usize)];
                         reader.read_exact(&mut name)?;
 
                         // Checks the descriptor name.
@@ -149,17 +147,17 @@ impl crate::FileFormat {
                             return Ok(Self::MicrosoftDigitalVideoRecording);
                         }
 
+                        // Calculates the remaining length.
+                        let remaining_length = length.saturating_sub(DESCRIPTOR_NAME_LIMIT as u16);
+
                         // Reads the descriptor value length.
-                        reader.seek(SeekFrom::Current(2))?;
-                        let mut buffer = [0; 2];
-                        reader.read_exact(&mut buffer)?;
-                        let length = u16::from_le_bytes(buffer);
+                        reader.seek(SeekFrom::Current(remaining_length as i64 + 2))?;
+                        let mut length = [0; 2];
+                        reader.read_exact(&mut length)?;
+                        let length = u16::from_le_bytes(length);
 
-                        // Seeks to the next descriptor.
+                        // Seeks to the next content descriptor.
                         reader.seek(SeekFrom::Current(length as i64))?;
-
-                        // Increments the descriptor count.
-                        descriptors_count += 1;
                     }
 
                     // Seeks to the next object.
@@ -170,9 +168,6 @@ impl crate::FileFormat {
                     reader.seek(SeekFrom::Current(size as i64 - 24))?;
                 }
             }
-
-            // Increments the object count.
-            object_count += 1;
         }
 
         // Determines the file format based on the identified streams.
