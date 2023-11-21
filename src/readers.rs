@@ -805,9 +805,9 @@ impl crate::FileFormat {
 
         // Reads the start of central directory offset.
         reader.seek(SeekFrom::Current(16))?;
-        let mut buffer = [0; 4];
-        reader.read_exact(&mut buffer)?;
-        let offset = u32::from_le_bytes(buffer);
+        let mut offset = [0; 4];
+        reader.read_exact(&mut offset)?;
+        let offset = u32::from_le_bytes(offset);
 
         // Seeks to the start of central directory.
         reader.seek(SeekFrom::Start(offset as u64))?;
@@ -819,48 +819,48 @@ impl crate::FileFormat {
         let mut file_count = 0;
         while file_count < FILE_LIMIT && reader.stream_position()? < length {
             // Reads and checks the signature.
-            let mut buffer = [0; 4];
-            reader.read_exact(&mut buffer)?;
-            if buffer != CENTRAL_DIRECTORY_FILE_HEADER_SIGNATURE {
+            let mut signature = [0; 4];
+            reader.read_exact(&mut signature)?;
+            if signature != CENTRAL_DIRECTORY_FILE_HEADER_SIGNATURE {
                 break;
             }
 
             // Reads the compressed size.
             reader.seek(SeekFrom::Current(16))?;
-            let mut buffer = [0; 4];
-            reader.read_exact(&mut buffer)?;
-            let compressed_size = u32::from_le_bytes(buffer);
+            let mut compressed_size = [0; 4];
+            reader.read_exact(&mut compressed_size)?;
+            let compressed_size = u32::from_le_bytes(compressed_size);
 
             // Reads the uncompressed size.
-            let mut buffer = [0; 4];
-            reader.read_exact(&mut buffer)?;
-            let uncompressed_size = u32::from_le_bytes(buffer);
+            let mut uncompressed_size = [0; 4];
+            reader.read_exact(&mut uncompressed_size)?;
+            let uncompressed_size = u32::from_le_bytes(uncompressed_size);
 
             // Reads the filename length.
-            let mut buffer = [0; 2];
-            reader.read_exact(&mut buffer)?;
-            let filename_length = u16::from_le_bytes(buffer);
+            let mut filename_length = [0; 2];
+            reader.read_exact(&mut filename_length)?;
+            let filename_length = u16::from_le_bytes(filename_length);
 
             // Reads the extra field length.
-            let mut buffer = [0; 2];
-            reader.read_exact(&mut buffer)?;
-            let extra_field_length = u16::from_le_bytes(buffer);
+            let mut extra_field_length = [0; 2];
+            reader.read_exact(&mut extra_field_length)?;
+            let extra_field_length = u16::from_le_bytes(extra_field_length);
 
             // Reads the file comment length.
-            let mut buffer = [0; 2];
-            reader.read_exact(&mut buffer)?;
-            let file_comment_length = u16::from_le_bytes(buffer);
+            let mut file_comment_length = [0; 2];
+            reader.read_exact(&mut file_comment_length)?;
+            let file_comment_length = u16::from_le_bytes(file_comment_length);
 
             // Reads the relative offset of local file header.
             reader.seek(SeekFrom::Current(8))?;
-            let mut buffer = [0; 4];
-            reader.read_exact(&mut buffer)?;
-            let offset = u32::from_le_bytes(buffer);
+            let mut offset = [0; 4];
+            reader.read_exact(&mut offset)?;
+            let offset = u32::from_le_bytes(offset);
 
             // Reads the filename.
-            let mut buffer = vec![0; filename_length as usize];
-            reader.read_exact(&mut buffer)?;
-            let filename = String::from_utf8_lossy(&buffer).to_string();
+            let mut filename = vec![0; filename_length as usize];
+            reader.read_exact(&mut filename)?;
+            let filename = String::from_utf8_lossy(&filename).to_string();
 
             // Checks the filename.
             match filename.as_str() {
@@ -879,14 +879,14 @@ impl crate::FileFormat {
                     reader.seek(SeekFrom::Start(offset as u64 + 26))?;
 
                     // Reads the filename length.
-                    let mut buffer = [0; 2];
-                    reader.read_exact(&mut buffer)?;
-                    let filename_length = u16::from_le_bytes(buffer);
+                    let mut filename_length = [0; 2];
+                    reader.read_exact(&mut filename_length)?;
+                    let filename_length = u16::from_le_bytes(filename_length);
 
                     // Reads the extra field length.
-                    let mut buffer = [0; 2];
-                    reader.read_exact(&mut buffer)?;
-                    let extra_field_length = u16::from_le_bytes(buffer);
+                    let mut extra_field_length = [0; 2];
+                    reader.read_exact(&mut extra_field_length)?;
+                    let extra_field_length = u16::from_le_bytes(extra_field_length);
 
                     // Seeks to the data.
                     reader.seek(SeekFrom::Current(
@@ -894,9 +894,9 @@ impl crate::FileFormat {
                     ))?;
 
                     // Reads the data.
-                    let mut buffer = vec![0; compressed_size as usize];
-                    reader.read_exact(&mut buffer)?;
-                    let data = String::from_utf8_lossy(&buffer).to_string();
+                    let mut data = vec![0; compressed_size as usize];
+                    reader.read_exact(&mut data)?;
+                    let data = String::from_utf8_lossy(&data).to_string();
 
                     // Checks the trimmed data.
                     return Ok(match data.trim() {
