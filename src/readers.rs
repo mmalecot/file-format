@@ -667,10 +667,10 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-txt")]
     pub(crate) fn from_txt_reader<R: Read + Seek>(reader: R) -> Result<Self> {
         // Maximum number of lines that the can be processed by the reader.
-        const LINE_LIMIT: usize = 8;
+        const LINE_LIMIT: usize = 16;
 
-        // Maximum number of bytes that can be read by the reader (32 KB).
-        const READ_LIMIT: u64 = 32_768;
+        // Maximum number of bytes that can be processed by the reader (64 KB).
+        const READ_LIMIT: u64 = 65_536;
 
         // Creates a buffered reader.
         let mut reader = BufReader::new(reader);
