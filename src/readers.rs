@@ -463,26 +463,14 @@ impl crate::FileFormat {
     /// Determines file format from an EXE reader.
     #[cfg(feature = "reader-exe")]
     pub(crate) fn from_exe_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
-        // Signature for the LE file format.
-        const LE_SIGNATURE_1: &[u8] = b"LE";
-
-        // Signature for the LE file format.
-        const LE_SIGNATURE_2: &[u8] = b"LX";
-
-        // Signature for the NE file format.
-        const NE_SIGNATURE: &[u8] = b"NE";
-
-        // Signature for the PE file format.
-        const PE_SIGNATURE: &[u8] = b"PE\0\0";
-
         // Gets the stream length.
         let length = reader.seek(SeekFrom::End(0))?;
 
         // Reads the extended header address.
         reader.seek(SeekFrom::Start(60))?;
-        let mut buffer = [0; 4];
-        reader.read_exact(&mut buffer)?;
-        let offset = u32::from_le_bytes(buffer);
+        let mut offset = [0; 4];
+        reader.read_exact(&mut offset)?;
+        let offset = u32::from_le_bytes(offset);
 
         // Checks that the offset value is not outside the stream's boundaries.
         if offset as u64 + 4 < length {
@@ -490,25 +478,25 @@ impl crate::FileFormat {
             reader.seek(SeekFrom::Start(offset as u64))?;
 
             // Reads the signature.
-            let mut buffer = [0; 4];
-            reader.read_exact(&mut buffer)?;
+            let mut signature = [0; 4];
+            reader.read_exact(&mut signature)?;
 
             // Checks the signature.
-            if buffer == PE_SIGNATURE {
+            if &signature == b"PE\0\0" {
                 // Reads the characteristics.
                 reader.seek(SeekFrom::Current(18))?;
-                let mut buffer = [0; 2];
-                reader.read_exact(&mut buffer)?;
+                let mut characteristics = [0; 2];
+                reader.read_exact(&mut characteristics)?;
 
                 // Checks the characteristics
-                return Ok(if u16::from_le_bytes(buffer) & 0x2000 == 0x2000 {
+                return Ok(if u16::from_le_bytes(characteristics) & 0x2000 == 0x2000 {
                     Self::DynamicLinkLibrary
                 } else {
                     Self::PortableExecutable
                 });
-            } else if &buffer[..2] == LE_SIGNATURE_1 || &buffer[..2] == LE_SIGNATURE_2 {
+            } else if &signature[..2] == b"LE" || &signature[..2] == b"LX" {
                 return Ok(Self::LinearExecutable);
-            } else if &buffer[..2] == NE_SIGNATURE {
+            } else if &signature[..2] == b"NE" {
                 return Ok(Self::NewExecutable);
             }
         }
