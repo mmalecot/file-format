@@ -56,7 +56,7 @@ impl crate::FileFormat {
         // Maximum number of objects that can be processed by the reader.
         const OBJECT_LIMIT: usize = 256;
 
-        // UTF-16-encoded descriptor name for DVR-MS file format.
+        // UTF-16-encoded descriptor name for DVR-MS file format (DVR File Version).
         const DVR_MS_DESCRIPTOR_NAME: &[u8] =
             b"D\0V\0R\0 \0F\0i\0l\0e\0 \0V\0e\0r\0s\0i\0o\0n\0\0\0";
 
@@ -183,10 +183,10 @@ impl crate::FileFormat {
     /// Determines file format from a CFB reader.
     #[cfg(feature = "reader-cfb")]
     pub(crate) fn from_cfb_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
-        // UTF-16-encoded entry name for WPS file format.
+        // UTF-16-encoded entry name for WPS file format (MatOST).
         const WPS_ENTRY_NAME: &[u8] = b"M\0a\0t\0O\0S\0T\0";
 
-        // UTF-16-encoded entry name for XLR file format.
+        // UTF-16-encoded entry name for XLR file format (WksSSWorkBook).
         const XLR_ENTRY_NAME: &[u8] = b"W\0k\0s\0S\0S\0W\0o\0r\0k\0B\0o\0o\0k\0";
 
         // Reads the major version.
