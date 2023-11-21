@@ -525,29 +525,29 @@ impl crate::FileFormat {
         let mut video_track = false;
         let mut subtitle_track = false;
 
-        // Iterates through boxes in the reader.
+        // Iterates through boxes.
         let mut box_count = 0;
         while box_count < BOX_LIMIT && reader.stream_position()? < length {
             // Reads the box size.
-            let mut buffer = [0; 4];
-            reader.read_exact(&mut buffer)?;
-            let size = u32::from_be_bytes(buffer);
+            let mut size = [0; 4];
+            reader.read_exact(&mut size)?;
+            let size = u32::from_be_bytes(size);
 
             // Reads the box type.
-            let mut buffer = [0; 4];
-            reader.read_exact(&mut buffer)?;
+            let mut box_type = [0; 4];
+            reader.read_exact(&mut box_type)?;
 
-            // Checks the box type to perform specific actions.
-            match &buffer {
+            // Checks the box type.
+            match &box_type {
                 b"moov" | b"trak" | b"mdia" => {}
                 b"hdlr" => {
                     // Reads the handler type.
                     reader.seek(SeekFrom::Current(8))?;
-                    let mut buffer = [0; 4];
-                    reader.read_exact(&mut buffer)?;
+                    let mut handler_type = [0; 4];
+                    reader.read_exact(&mut handler_type)?;
 
                     // Checks the handler type.
-                    match &buffer {
+                    match &handler_type {
                         b"vide" => video_track = true,
                         b"soun" => audio_track = true,
                         b"sbtl" | b"subt" | b"text" => subtitle_track = true,
