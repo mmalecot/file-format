@@ -641,65 +641,61 @@ impl crate::FileFormat {
         // Creates a buffered reader.
         let mut reader = BufReader::new(reader);
 
-        // Gets stream length.
-        let length = reader.seek(SeekFrom::End(0))?;
-
-        // Skips the RealMedia file header fields.
-        reader.seek(SeekFrom::Start(18))?;
+        // Reads the number of headers.
+        reader.seek(SeekFrom::Start(14))?;
+        let mut number_of_headers = [0; 4];
+        reader.read_exact(&mut number_of_headers)?;
+        let number_of_headers = u32::from_be_bytes(number_of_headers);
 
         // Flags indicating the presence of audio and video streams.
         let mut audio_stream = false;
         let mut video_stream = false;
 
         // Iterates through the chunks.
-        let mut chunk_count = 0;
-        while chunk_count < CHUNK_LIMIT && reader.stream_position()? < length {
+        for _ in 0..std::cmp::min(CHUNK_LIMIT, number_of_headers.saturating_sub(1) as usize) {
             // Reads the chunk type.
             let mut chunk_type = [0; 4];
             reader.read_exact(&mut chunk_type)?;
 
             // Reads the chunk size.
-            let mut size = [0; 4];
-            reader.read_exact(&mut size)?;
-            let size = u32::from_be_bytes(size);
+            let mut chunk_size = [0; 4];
+            reader.read_exact(&mut chunk_size)?;
+            let chunk_size = u32::from_be_bytes(chunk_size);
 
             // Checks the chunk type.
             if &chunk_type == b"MDPR" {
-                // Calculates the offset of the media properties header.
+                // Calculates the offset of the media properties.
                 let offset = reader.stream_position()?;
 
-                // Reads the size of description string.
+                // Reads the size of the stream name.
                 reader.seek(SeekFrom::Current(32))?;
-                let mut size = [0; 1];
-                reader.read_exact(&mut size)?;
+                let mut stream_name_size = [0; 1];
+                reader.read_exact(&mut stream_name_size)?;
 
-                // Skips the stream description string.
-                reader.seek(SeekFrom::Current(size[0] as i64))?;
+                // Skips the stream name.
+                reader.seek(SeekFrom::Current(stream_name_size[0] as i64))?;
 
-                // Reads the size of stream mime type string.
-                let mut size = [0; 1];
-                reader.read_exact(&mut size)?;
+                // Reads the size of stream mime type.
+                let mut mime_type_size = [0; 1];
+                reader.read_exact(&mut mime_type_size)?;
 
-                // Reads the mime type string.
-                let mut mime_type = vec![0; size[0] as usize];
+                // Reads the mime type.
+                let mut mime_type = vec![0; mime_type_size[0] as usize];
                 reader.read_exact(&mut mime_type)?;
 
-                // Checks the mime type string.
+                // Checks the mime type.
                 if mime_type.starts_with(b"audio/") {
                     audio_stream = true;
                 } else if mime_type.starts_with(b"video/") {
                     video_stream = true;
                 }
 
-                // Rewinds to the media properties header.
+                // Rewinds to the offset of the media properties.
                 reader.seek(SeekFrom::Start(offset))?;
             }
 
             // Seeks to the next chunk.
-            reader.seek(SeekFrom::Current(size as i64 - 8))?;
-
-            // Increments the chunk count.
-            chunk_count += 1;
+            reader.seek(SeekFrom::Current(chunk_size as i64 - 8))?;
         }
 
         // Determines the file format based on the identified streams.
