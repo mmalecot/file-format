@@ -617,7 +617,7 @@ impl crate::FileFormat {
             };
 
             // Checks if the buffer contains the AI file format marker.
-            if contains(&buffer[start..OVERLAP_SIZE + bytes_read], AI_MARKER) {
+            if find(&buffer[start..OVERLAP_SIZE + bytes_read], AI_MARKER).is_some() {
                 return Ok(Self::AdobeIllustratorArtwork);
             }
 
@@ -635,28 +635,74 @@ impl crate::FileFormat {
     /// Determines file format from a RM reader.
     #[cfg(feature = "reader-rm")]
     pub(crate) fn from_rm_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
-        // Media type for the RV file format.
-        const RV_MEDIA_TYPE: &[u8] = b"video/x-pn-realvideo";
+        // Maximum number of chunks that can be processed by the reader.
+        const CHUNK_LIMIT: usize = 64;
 
-        // Media type for the RA file format.
-        const RA_MEDIA_TYPE_1: &[u8] = b"audio/x-pn-realaudio";
+        // Gets stream length.
+        let length = reader.seek(SeekFrom::End(0))?;
 
-        // Media type for the RA file format.
-        const RA_MEDIA_TYPE_2: &[u8] = b"audio/x-pn-multirate-realaudio";
+        // Skips the RealMedia file header fields.
+        reader.seek(SeekFrom::Start(18))?;
 
-        // Rewinds to the beginning of the stream plus the size of the RM file format signature.
-        reader.seek(SeekFrom::Start(8))?;
+        // Flags indicating the presence of audio and video streams.
+        let mut audio_stream = false;
+        let mut video_stream = false;
 
-        // Creates and fills a buffer.
-        let mut buffer = [0; 4096];
-        let bytes_read = reader.read(&mut buffer)?;
+        // Iterates through the chunks.
+        let mut chunk_count = 0;
+        while chunk_count < CHUNK_LIMIT && reader.stream_position()? < length {
+            // Reads the chunk type.
+            let mut chunk_type = [0; 4];
+            reader.read_exact(&mut chunk_type)?;
 
-        // Searches for specific media types in the buffer.
-        Ok(if contains(&buffer[..bytes_read], RV_MEDIA_TYPE) {
+            // Reads the chunk size.
+            let mut size = [0; 4];
+            reader.read_exact(&mut size)?;
+            let size = u32::from_be_bytes(size);
+
+            // Checks the chunk type.
+            if &chunk_type == b"MDPR" {
+                // Calculates the offset of the media properties header.
+                let offset = reader.stream_position()?;
+
+                // Reads the size of description string.
+                reader.seek(SeekFrom::Current(32))?;
+                let mut size = [0; 1];
+                reader.read_exact(&mut size)?;
+
+                // Skips the stream description string.
+                reader.seek(SeekFrom::Current(size[0] as i64))?;
+
+                // Reads the size of stream mime type string.
+                let mut size = [0; 1];
+                reader.read_exact(&mut size)?;
+
+                // Reads the mime type string.
+                let mut mime_type = vec![0; size[0] as usize];
+                reader.read_exact(&mut mime_type)?;
+
+                // Checks the mime type string.
+                if mime_type.starts_with(b"audio/") {
+                    audio_stream = true;
+                } else if mime_type.starts_with(b"video/") {
+                    video_stream = true;
+                }
+
+                // Rewinds to the media properties header.
+                reader.seek(SeekFrom::Start(offset))?;
+            }
+
+            // Seeks to the next chunk.
+            reader.seek(SeekFrom::Current(size as i64 - 8))?;
+
+            // Increments the chunk count.
+            chunk_count += 1;
+        }
+
+        // Determines the file format based on the identified streams.
+        Ok(if video_stream {
             Self::Realvideo
-        } else if contains(&buffer[..bytes_read], RA_MEDIA_TYPE_1)
-            || contains(&buffer[..bytes_read], RA_MEDIA_TYPE_2)
-        {
+        } else if audio_stream {
             Self::Realaudio
         } else {
             Self::Realmedia
@@ -1000,17 +1046,10 @@ impl crate::FileFormat {
     }
 }
 
-/// Checks if the `data` slice contains the `target` sequence.
-#[cfg(any(feature = "reader-pdf", feature = "reader-rm"))]
-#[inline]
-fn contains(data: &[u8], target: &[u8]) -> bool {
-    find(data, target).is_some()
-}
-
 /// Searches for the `target` byte sequence in the `data` slice using the Boyer-Moore algorithm.
 ///
 /// If the sequence is found, the function returns the index of the first occurrence.
-#[cfg(any(feature = "reader-pdf", feature = "reader-rm", feature = "reader-zip"))]
+#[cfg(any(feature = "reader-pdf", feature = "reader-zip"))]
 fn find(data: &[u8], target: &[u8]) -> Option<usize> {
     // An empty target sequence is always considered to be contained in the data.
     if target.is_empty() {
