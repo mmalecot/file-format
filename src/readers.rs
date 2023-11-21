@@ -700,7 +700,7 @@ impl crate::FileFormat {
         // Maximum number of lines that the can be processed by the reader.
         const LINE_LIMIT: usize = 8;
 
-        // Maximum number of bytes that can be read by the reader (32 KB).
+        // Maximum number of bytes that can be processed by the reader (32 KB).
         const READ_LIMIT: u64 = 32_768;
 
         // Creates a buffered reader.
