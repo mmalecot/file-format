@@ -355,14 +355,14 @@ impl crate::FileFormat {
             reader.read_exact(&mut first_byte)?;
 
             // Determines the number of bytes used to represent the element ID.
-            let num_bytes = first_byte[0].leading_zeros() + 1;
-            if num_bytes > 4 {
+            let number_of_bytes = first_byte[0].leading_zeros() + 1;
+            if number_of_bytes > 4 {
                 return Err(Error::new(ErrorKind::InvalidData, "invalid EBML ID"));
             }
 
             // Calculates the element ID value based on the number of bytes.
             let mut id = first_byte[0] as u32;
-            for _ in 1..num_bytes {
+            for _ in 1..number_of_bytes {
                 let mut byte = [0];
                 reader.read_exact(&mut byte)?;
                 id = (id << 8) | (byte[0] as u32);
@@ -373,14 +373,14 @@ impl crate::FileFormat {
             reader.read_exact(&mut first_byte)?;
 
             // Determines the number of bytes used to represent the element size.
-            let num_bytes = first_byte[0].leading_zeros() + 1;
-            if num_bytes > 8 {
+            let number_of_bytes = first_byte[0].leading_zeros() + 1;
+            if number_of_bytes > 8 {
                 return Err(Error::new(ErrorKind::InvalidData, "invalid EBML size"));
             }
 
             // Calculates the element size value based on the number of bytes.
             let mut size = u64::from(first_byte[0] & ((128 >> first_byte[0].leading_zeros()) - 1));
-            for _ in 1..num_bytes {
+            for _ in 1..number_of_bytes {
                 let mut byte = [0];
                 reader.read_exact(&mut byte)?;
                 size = (size << 8) | (byte[0] as u64);
