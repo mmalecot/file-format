@@ -582,8 +582,8 @@ impl crate::FileFormat {
     /// Determines file format from a PDF reader.
     #[cfg(feature = "reader-pdf")]
     pub(crate) fn from_pdf_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
-        // Maximum number of bytes that can be read by the reader (16 MB).
-        const READ_LIMIT: usize = 16_777_216;
+        // Maximum number of bytes that can be processed by the reader (32 MB).
+        const READ_LIMIT: usize = 33_554_432;
 
         // Size of each chunk to read (32 KB).
         const CHUNK_SIZE: usize = 32_768;
