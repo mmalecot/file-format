@@ -638,6 +638,9 @@ impl crate::FileFormat {
         // Maximum number of chunks that can be processed by the reader.
         const CHUNK_LIMIT: usize = 64;
 
+        // Creates a buffered reader.
+        let mut reader = BufReader::new(reader);
+
         // Gets stream length.
         let length = reader.seek(SeekFrom::End(0))?;
 
