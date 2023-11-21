@@ -634,7 +634,7 @@ impl crate::FileFormat {
 
     /// Determines file format from a RM reader.
     #[cfg(feature = "reader-rm")]
-    pub(crate) fn from_rm_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
+    pub(crate) fn from_rm_reader<R: Read + Seek>(reader: R) -> Result<Self> {
         // Maximum number of chunks that can be processed by the reader.
         const CHUNK_LIMIT: usize = 64;
 
