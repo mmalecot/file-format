@@ -300,8 +300,11 @@ impl crate::FileFormat {
         // Maximum number of EBML elements that can be processed by the reader.
         const ELEMENT_LIMIT: usize = 256;
 
-        // Maximum size of a string that can be handled by the reader.
-        const STRING_LIMIT: usize = 64;
+        // Maximum size of a Codec ID that can be processed by the reader.
+        const CODEC_ID_LIMIT: usize = 64;
+
+        // Maximum size of a DocType that can be processed by the reader.
+        const DOC_TYPE_LIMIT: usize = 8;
 
         // DocType element ID.
         const DOC_TYPE_ELEMENT_ID: u32 = 0x4282;
@@ -330,52 +333,6 @@ impl crate::FileFormat {
         // Video element ID.
         const VIDEO_ELEMENT_ID: u32 = 0xE0;
 
-        // Helper function to read the ID of an EBML element.
-        #[inline]
-        fn read_id<R: Read>(reader: &mut R) -> Result<u32> {
-            // Reads the first byte.
-            let mut first_byte = [0];
-            reader.read_exact(&mut first_byte)?;
-
-            // Determines the number of bytes used to represent the ID.
-            let num_bytes = first_byte[0].leading_zeros() + 1;
-            if num_bytes > 4 {
-                return Err(Error::new(ErrorKind::InvalidData, "invalid EBML ID"));
-            }
-
-            // Calculates the ID value based on the number of bytes.
-            let mut value = first_byte[0] as u32;
-            for _ in 1..num_bytes {
-                let mut byte = [0];
-                reader.read_exact(&mut byte)?;
-                value = (value << 8) | (byte[0] as u32);
-            }
-            Ok(value)
-        }
-
-        // Helper function to read the size of an EBML element.
-        #[inline]
-        fn read_size<R: Read>(reader: &mut R) -> Result<u64> {
-            // Reads the first byte.
-            let mut first_byte = [0];
-            reader.read_exact(&mut first_byte)?;
-
-            // Determines the number of bytes used to represent the size.
-            let num_bytes = first_byte[0].leading_zeros() + 1;
-            if num_bytes > 8 {
-                return Err(Error::new(ErrorKind::InvalidData, "invalid EBML size"));
-            }
-
-            // Calculates the size value based on the number of bytes.
-            let mut value = u64::from(first_byte[0] & ((128 >> first_byte[0].leading_zeros()) - 1));
-            for _ in 1..num_bytes {
-                let mut byte = [0];
-                reader.read_exact(&mut byte)?;
-                value = (value << 8) | (byte[0] as u64);
-            }
-            Ok(value)
-        }
-
         // Creates a buffered reader.
         let mut reader = BufReader::new(reader);
 
@@ -390,16 +347,46 @@ impl crate::FileFormat {
         let mut video_track = false;
         let mut subtitle_track = false;
 
-        // Iterates through the EBML elements in the reader.
+        // Iterates through the EBML elements.
         let mut element_count = 0;
         while element_count < ELEMENT_LIMIT && reader.stream_position()? < length {
-            // Reads the element ID.
-            let id = read_id(&mut reader)?;
+            // Reads the first byte of the element ID.
+            let mut first_byte = [0];
+            reader.read_exact(&mut first_byte)?;
 
-            // Reads the element size.
-            let size = read_size(&mut reader)?;
+            // Determines the number of bytes used to represent the element ID.
+            let num_bytes = first_byte[0].leading_zeros() + 1;
+            if num_bytes > 4 {
+                return Err(Error::new(ErrorKind::InvalidData, "invalid EBML ID"));
+            }
 
-            // Checks the element ID to perform specific actions.
+            // Calculates the element ID value based on the number of bytes.
+            let mut id = first_byte[0] as u32;
+            for _ in 1..num_bytes {
+                let mut byte = [0];
+                reader.read_exact(&mut byte)?;
+                id = (id << 8) | (byte[0] as u32);
+            }
+
+            // Reads the first byte of the element size.
+            let mut first_byte = [0];
+            reader.read_exact(&mut first_byte)?;
+
+            // Determines the number of bytes used to represent the element size.
+            let num_bytes = first_byte[0].leading_zeros() + 1;
+            if num_bytes > 8 {
+                return Err(Error::new(ErrorKind::InvalidData, "invalid EBML size"));
+            }
+
+            // Calculates the element size value based on the number of bytes.
+            let mut size = u64::from(first_byte[0] & ((128 >> first_byte[0].leading_zeros()) - 1));
+            for _ in 1..num_bytes {
+                let mut byte = [0];
+                reader.read_exact(&mut byte)?;
+                size = (size << 8) | (byte[0] as u64);
+            }
+
+            // Checks the element ID.
             match id {
                 EBML_ELEMENT_ID
                 | SEGMENT_ELEMENT_ID
@@ -408,49 +395,49 @@ impl crate::FileFormat {
                 | VIDEO_ELEMENT_ID => {}
                 DOC_TYPE_ELEMENT_ID => {
                     // Reads the DocType.
-                    let mut buffer = vec![0; std::cmp::min(STRING_LIMIT, size as usize)];
-                    reader.read_exact(&mut buffer)?;
-                    let doc_type = String::from_utf8_lossy(&buffer)
-                        .trim_end_matches('\0')
-                        .to_string();
+                    let mut doc_type = vec![0; std::cmp::min(DOC_TYPE_LIMIT, size as usize)];
+                    reader.read_exact(&mut doc_type)?;
 
                     // Checks the DocType.
-                    match doc_type.as_str() {
-                        "webm" => return Ok(Self::Webm),
-                        "matroska" => {}
-                        _ => return Ok(Self::ExtensibleBinaryMetaLanguage),
+                    if doc_type.starts_with(b"webm") {
+                        return Ok(Self::Webm);
+                    } else if !doc_type.starts_with(b"matroska") {
+                        return Ok(Self::ExtensibleBinaryMetaLanguage);
                     }
+
+                    // Skips the remaining size.
+                    let remaining_size = size.saturating_sub(DOC_TYPE_LIMIT as u64);
+                    reader.seek(SeekFrom::Current(remaining_size as i64))?;
                 }
                 CODEC_ID_ELEMENT_ID => {
                     // Reads the Codec ID.
-                    let mut buffer = vec![0; std::cmp::min(STRING_LIMIT, size as usize)];
-                    reader.read_exact(&mut buffer)?;
-                    let codec_id = String::from_utf8_lossy(&buffer).to_string();
+                    let mut codec_id = vec![0; std::cmp::min(CODEC_ID_LIMIT, size as usize)];
+                    reader.read_exact(&mut codec_id)?;
 
                     // Checks the Codec ID.
-                    if codec_id.starts_with("A_") {
+                    if codec_id.starts_with(b"A_") {
                         audio_track = true;
-                    } else if codec_id.starts_with("V_") {
+                    } else if codec_id.starts_with(b"V_") {
                         video_track = true;
-                    } else if codec_id.starts_with("S_") {
+                    } else if codec_id.starts_with(b"S_") {
                         subtitle_track = true;
                     }
+
+                    // Skips the remaining size.
+                    let remaining_size = size.saturating_sub(CODEC_ID_LIMIT as u64);
+                    reader.seek(SeekFrom::Current(remaining_size as i64))?;
                 }
                 STEREO_MODE_ELEMENT_ID => {
                     // Reads the StereoMode.
-                    let mut buffer = [0];
-                    reader.read_exact(&mut buffer)?;
-                    let stereo_mode = buffer[0];
+                    let mut stereo_mode = [0];
+                    reader.read_exact(&mut stereo_mode)?;
 
                     // Checks the StereoMode.
-                    if stereo_mode > 0 {
+                    if stereo_mode[0] > 0 {
                         return Ok(Self::Matroska3dVideo);
                     }
                 }
-                CLUSTER_ELEMENT_ID => {
-                    // No need to continue reading.
-                    break;
-                }
+                CLUSTER_ELEMENT_ID => break,
                 _ => {
                     // Seeks to the next element.
                     reader.seek(SeekFrom::Current(size as i64))?;
