@@ -592,7 +592,7 @@ impl crate::FileFormat {
         const OVERLAP_SIZE: usize = AI_MARKER.len() - 1;
 
         // Marker for the AI file format.
-        const AI_MARKER: &[u8] = b"AIPrivateData";
+        const AI_MARKER: &[u8] = b"<</AIMetaData";
 
         // Rewinds to the beginning of the stream plus the size of the PDF file format signature.
         reader.seek(SeekFrom::Start(5))?;
