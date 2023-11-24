@@ -819,17 +819,23 @@ impl crate::FileFormat {
     /// Determines file format from a ZIP reader.
     #[cfg(feature = "reader-zip")]
     pub(crate) fn from_zip_reader<R: Read + Seek>(reader: R) -> Result<Self> {
-        // Maximum number of files that can be processed by the reader.
-        const FILE_LIMIT: usize = 1024;
+        // Maximum number of entries that can be processed by the reader.
+        const ENTRY_LIMIT: usize = 1024;
 
-        // Signature of the central directory file header.
-        const CENTRAL_DIRECTORY_FILE_HEADER_SIGNATURE: &[u8] = b"\x50\x4B\x01\x02";
+        // Signature of the ZIP64 end of central directory locator.
+        const EOCD64_LOCATOR_SIGNATURE: &[u8] = b"\x50\x4B\x06\x07";
 
-        // Signature of the end of central directory.
-        const END_OF_CENTRAL_DIRECTORY_SIGNATURE: &[u8] = b"\x50\x4B\x05\x06";
+        // Signature of the end of central directory record.
+        const EOCD_SIGNATURE: &[u8] = b"\x50\x4B\x05\x06";
 
-        // Maximum size of the end of central directory.
-        const END_OF_CENTRAL_DIRECTORY_MAX_SIZE: usize = 22 + u16::MAX as usize;
+        // Size of the ZIP64 end of central directory locator.
+        const EOCD64_LOCATOR_SIZE: usize = 20;
+
+        // Maximum size of the end of central directory record.
+        const EOCD_MAX_SIZE: usize = EOCD_MIN_SIZE + u16::MAX as usize;
+
+        // Minimum size of the end of central directory record.
+        const EOCD_MIN_SIZE: usize = 22;
 
         // Creates a buffered reader.
         let mut reader = BufReader::new(reader);
@@ -837,41 +843,77 @@ impl crate::FileFormat {
         // Gets the stream length.
         let length = reader.seek(SeekFrom::End(0))?;
 
-        // Searches for the end of central directory.
-        let offset = length.saturating_sub(END_OF_CENTRAL_DIRECTORY_MAX_SIZE as u64);
+        // Searches for the end of central directory record.
+        let offset = length.saturating_sub(EOCD_MAX_SIZE as u64);
         reader.seek(SeekFrom::Start(offset))?;
-        let mut buffer = vec![0; std::cmp::min(END_OF_CENTRAL_DIRECTORY_MAX_SIZE, length as usize)];
+        let mut buffer = vec![0; (length as usize).clamp(EOCD_MIN_SIZE, EOCD_MAX_SIZE)];
         reader.read_exact(&mut buffer)?;
-        let buffer_index = find(&buffer, END_OF_CENTRAL_DIRECTORY_SIGNATURE)
-            .ok_or_else(|| Error::new(ErrorKind::InvalidData, "cannot find the EOCD"))?;
+        let buffer_index = find(&buffer, EOCD_SIGNATURE)
+            .ok_or_else(|| Error::new(ErrorKind::InvalidData, "cannot find the EOCD record"))?;
+        let eocd_offset = offset + buffer_index as u64;
 
-        // Seeks to the end of central directory.
-        reader.seek(SeekFrom::Start(offset + buffer_index as u64))?;
+        // Checks if the end of central directory record is at the beginning of the file, which
+        // corresponds to an empty ZIP.
+        if eocd_offset == 0 {
+            return Ok(Self::Zip);
+        }
 
-        // Reads the start of central directory offset.
-        reader.seek(SeekFrom::Current(16))?;
-        let mut offset = [0; 4];
-        reader.read_exact(&mut offset)?;
-        let offset = u32::from_le_bytes(offset);
+        // Seeks to the potential ZIP64 end of central directory locator.
+        reader.seek(SeekFrom::Start(eocd_offset - EOCD64_LOCATOR_SIZE as u64))?;
+
+        // Reads the signature.
+        let mut signature = [0; 4];
+        reader.read_exact(&mut signature)?;
+
+        // Reads the number of entries and the start of central directory offset.
+        let (number_of_entries, socd_offset) = if signature == EOCD64_LOCATOR_SIGNATURE {
+            // Reads the offset of the ZIP64 end of central directory record.
+            reader.seek(SeekFrom::Current(4))?;
+            let mut eocd64_offset = [0; 8];
+            reader.read_exact(&mut eocd64_offset)?;
+            let eocd64_offset = u64::from_le_bytes(eocd64_offset);
+
+            // Reads the number of entries.
+            reader.seek(SeekFrom::Start(eocd64_offset + 32))?;
+            let mut number_of_entries = [0; 8];
+            reader.read_exact(&mut number_of_entries)?;
+            let number_of_entries = u64::from_le_bytes(number_of_entries) as usize;
+
+            // Reads the start of central directory offset.
+            reader.seek(SeekFrom::Current(8))?;
+            let mut socd_offset = [0; 8];
+            reader.read_exact(&mut socd_offset)?;
+            let socd_offset = u64::from_le_bytes(socd_offset);
+
+            // Returns the result.
+            (number_of_entries, socd_offset)
+        } else {
+            // Reads the number of entries.
+            reader.seek(SeekFrom::Start(eocd_offset + 10))?;
+            let mut number_of_entries = [0; 2];
+            reader.read_exact(&mut number_of_entries)?;
+            let number_of_entries = u16::from_le_bytes(number_of_entries);
+
+            // Reads the start of central directory offset.
+            reader.seek(SeekFrom::Current(4))?;
+            let mut socd_offset = [0; 4];
+            reader.read_exact(&mut socd_offset)?;
+            let socd_offset = u32::from_le_bytes(socd_offset);
+
+            // Returns the result.
+            (number_of_entries as usize, socd_offset as u64)
+        };
 
         // Seeks to the start of central directory.
-        reader.seek(SeekFrom::Start(offset as u64))?;
+        reader.seek(SeekFrom::Start(socd_offset))?;
 
         // Sets the default value.
         let mut format = Self::Zip;
 
-        // Browses central directory file headers.
-        let mut file_count = 0;
-        while file_count < FILE_LIMIT && reader.stream_position()? < length {
-            // Reads and checks the signature.
-            let mut signature = [0; 4];
-            reader.read_exact(&mut signature)?;
-            if signature != CENTRAL_DIRECTORY_FILE_HEADER_SIGNATURE {
-                break;
-            }
-
+        // Browses central directory headers.
+        for _ in 0..std::cmp::min(ENTRY_LIMIT, number_of_entries) {
             // Reads the compressed size.
-            reader.seek(SeekFrom::Current(16))?;
+            reader.seek(SeekFrom::Current(20))?;
             let mut compressed_size = [0; 4];
             reader.read_exact(&mut compressed_size)?;
             let compressed_size = u32::from_le_bytes(compressed_size);
@@ -1033,13 +1075,10 @@ impl crate::FileFormat {
                 }
             }
 
-            // Seeks to the next central directory file header.
+            // Seeks to the next central directory entry.
             reader.seek(SeekFrom::Current(
                 extra_field_length as i64 + file_comment_length as i64,
             ))?;
-
-            // Increments the file count.
-            file_count += 1;
         }
         Ok(format)
     }
