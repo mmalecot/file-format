@@ -1084,9 +1084,7 @@ impl crate::FileFormat {
     }
 }
 
-/// Searches for the `target` byte sequence in the `data` slice using the Boyer-Moore algorithm.
-///
-/// If the sequence is found, the function returns the index of the first occurrence.
+/// Finds the first occurrence of a target sequence in a data array using the Boyer-Moore algorithm.
 #[cfg(any(feature = "reader-pdf", feature = "reader-zip"))]
 fn find(data: &[u8], target: &[u8]) -> Option<usize> {
     // An empty target sequence is always considered to be contained in the data.
@@ -1099,10 +1097,10 @@ fn find(data: &[u8], target: &[u8]) -> Option<usize> {
         return None;
     }
 
-    // Builds the bad character shift table.
-    let mut bad_char_table = [0; 256];
-    for (index, &char) in target.iter().enumerate().take(target.len() - 1) {
-        bad_char_table[char as usize] = target.len() - 1 - index;
+    // Builds the skip table.
+    let mut skip_table = [0; 256];
+    for (index, &byte) in target.iter().enumerate().take(target.len() - 1) {
+        skip_table[byte as usize] = target.len() - 1 - index;
     }
 
     // Starts searching from the last possible position in the data array.
@@ -1118,11 +1116,10 @@ fn find(data: &[u8], target: &[u8]) -> Option<usize> {
             data_index -= 1;
         }
 
-        // Calculates the maximum shift based on the bad character rule and good suffix rule.
-        let bad_char_shift = bad_char_table[data[position] as usize];
+        // Calculates and applies the shift.
+        let bad_byte_shift = skip_table[data[position] as usize];
         let good_suffix_shift = target.len() - target_index;
-        let shift = std::cmp::max(bad_char_shift, good_suffix_shift);
-        position += shift;
+        position += std::cmp::max(bad_byte_shift, good_suffix_shift);
     }
     None
 }
