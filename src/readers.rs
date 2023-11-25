@@ -852,21 +852,24 @@ impl crate::FileFormat {
             .ok_or_else(|| Error::new(ErrorKind::InvalidData, "cannot find the EOCD record"))?;
         let eocd_offset = offset + buffer_index as u64;
 
-        // Checks if the end of central directory record is at the beginning of the file, which
-        // corresponds to an empty ZIP.
-        if eocd_offset == 0 {
-            return Ok(Self::Zip);
+        // Checks for ZIP64 end of central directory locator.
+        let mut zip64 = false;
+        if eocd_offset as usize >= EOCD64_LOCATOR_SIZE {
+            // Seeks to the ZIP64 end of central directory locator.
+            reader.seek(SeekFrom::Start(eocd_offset - EOCD64_LOCATOR_SIZE as u64))?;
+
+            // Reads the signature.
+            let mut signature = [0; 4];
+            reader.read_exact(&mut signature)?;
+
+            // Checks the signature.
+            if signature == EOCD64_LOCATOR_SIGNATURE {
+                zip64 = true;
+            }
         }
 
-        // Seeks to the potential ZIP64 end of central directory locator.
-        reader.seek(SeekFrom::Start(eocd_offset - EOCD64_LOCATOR_SIZE as u64))?;
-
-        // Reads the signature.
-        let mut signature = [0; 4];
-        reader.read_exact(&mut signature)?;
-
         // Reads the number of entries and the start of central directory offset.
-        let (number_of_entries, socd_offset) = if signature == EOCD64_LOCATOR_SIGNATURE {
+        let (number_of_entries, socd_offset) = if zip64 {
             // Reads the offset of the ZIP64 end of central directory record.
             reader.seek(SeekFrom::Current(4))?;
             let mut eocd64_offset = [0; 8];
@@ -877,7 +880,7 @@ impl crate::FileFormat {
             reader.seek(SeekFrom::Start(eocd64_offset + 32))?;
             let mut number_of_entries = [0; 8];
             reader.read_exact(&mut number_of_entries)?;
-            let number_of_entries = u64::from_le_bytes(number_of_entries) as usize;
+            let number_of_entries = u64::from_le_bytes(number_of_entries);
 
             // Reads the start of central directory offset.
             reader.seek(SeekFrom::Current(8))?;
@@ -886,7 +889,7 @@ impl crate::FileFormat {
             let socd_offset = u64::from_le_bytes(socd_offset);
 
             // Returns the result.
-            (number_of_entries, socd_offset)
+            (number_of_entries as usize, socd_offset)
         } else {
             // Reads the number of entries.
             reader.seek(SeekFrom::Start(eocd_offset + 10))?;
