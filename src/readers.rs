@@ -1087,9 +1087,9 @@ impl crate::FileFormat {
     }
 }
 
-/// Finds the first occurrence of a target sequence in a data array using the Boyer-Moore algorithm.
+/// Finds the first occurrence of a target sequence in a data array.
 #[cfg(any(feature = "reader-pdf", feature = "reader-zip"))]
-fn find(data: &[u8], target: &[u8]) -> Option<usize> {
+pub fn find(data: &[u8], target: &[u8]) -> Option<usize> {
     // An empty target sequence is always considered to be contained in the data.
     if target.is_empty() {
         return Some(0);
@@ -1100,29 +1100,23 @@ fn find(data: &[u8], target: &[u8]) -> Option<usize> {
         return None;
     }
 
-    // Builds the skip table.
-    let mut skip_table = [0; 256];
+    // Creates a bad byte table to determine the shift distance for each byte in the target pattern.
+    let mut bad_byte_table = [target.len(); 256];
     for (index, &byte) in target.iter().enumerate().take(target.len() - 1) {
-        skip_table[byte as usize] = target.len() - 1 - index;
+        bad_byte_table[byte as usize] = target.len() - 1 - index;
     }
 
-    // Starts searching from the last possible position in the data array.
-    let mut position = target.len() - 1;
-    while position < data.len() {
+    // Boyer-Moore-Horspool algorithm.
+    let mut data_index = target.len() - 1;
+    while data_index < data.len() {
         let mut target_index = target.len() - 1;
-        let mut data_index = position;
-        while data[data_index] == target[target_index] {
+        while target[target_index] == data[data_index - (target.len() - 1 - target_index)] {
             if target_index == 0 {
-                return Some(data_index);
+                return Some(data_index - (target.len() - 1));
             }
             target_index -= 1;
-            data_index -= 1;
         }
-
-        // Calculates and applies the shift.
-        let bad_byte_shift = skip_table[data[position] as usize];
-        let good_suffix_shift = target.len() - target_index;
-        position += std::cmp::max(bad_byte_shift, good_suffix_shift);
+        data_index += bad_byte_table[data[data_index] as usize];
     }
     None
 }
