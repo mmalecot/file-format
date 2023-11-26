@@ -191,12 +191,12 @@ impl crate::FileFormat {
 
         // Reads the major version.
         reader.seek(SeekFrom::Start(26))?;
-        let mut version = [0; 2];
-        reader.read_exact(&mut version)?;
-        let version = u16::from_le_bytes(version);
+        let mut major_version = [0; 2];
+        reader.read_exact(&mut major_version)?;
+        let major_version = u16::from_le_bytes(major_version);
 
         // Calculates the directory sector size based on the major version.
-        let directory_sector_size = if version == 0x0003 { 512 } else { 4096 };
+        let directory_sector_size = if major_version == 0x0003 { 512 } else { 4096 };
 
         // Reads the first directory sector location.
         reader.seek(SeekFrom::Current(20))?;
@@ -354,7 +354,7 @@ impl crate::FileFormat {
             let mut first_byte = [0];
             reader.read_exact(&mut first_byte)?;
 
-            // Determines the number of bytes used to represent the element ID.
+            // Calculates the number of bytes used to represent the element ID.
             let number_of_bytes = first_byte[0].leading_zeros() + 1;
             if number_of_bytes > 4 {
                 return Err(Error::new(ErrorKind::InvalidData, "invalid EBML ID"));
@@ -372,7 +372,7 @@ impl crate::FileFormat {
             let mut first_byte = [0];
             reader.read_exact(&mut first_byte)?;
 
-            // Determines the number of bytes used to represent the element size.
+            // Calculates the number of bytes used to represent the element size.
             let number_of_bytes = first_byte[0].leading_zeros() + 1;
             if number_of_bytes > 8 {
                 return Err(Error::new(ErrorKind::InvalidData, "invalid EBML size"));
