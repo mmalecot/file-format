@@ -53,6 +53,33 @@ Add this to your `Cargo.toml`:
 file-format = "0.23"
 ```
 
+## Crate features
+
+All features below are disabled by default.
+
+### Ecosystem features
+
+- `serde` - Adds the ability to serialize and deserialize a `FileFormat` and `Kind` using serde.
+
+### Reader features
+
+These features enable the detection of file formats that need a specific reader in order to be
+detected.
+
+- `reader` - Enables all reader features.
+- `reader-asf` - Enables Advanced Systems Format (ASF) based file formats detection.
+- `reader-cfb` - Enables Compound File Binary (CFB) based file formats detection.
+- `reader-ebml` - Enables Extensible Binary Meta Language (EBML) based file formats detection.
+- `reader-exe` - Enables MS-DOS Executable (EXE) based file formats detection.
+- `reader-mp4` - Enables MPEG-4 Part 14 (MP4) based file formats detection.
+- `reader-pdf` - Enables Portable Document Format (PDF) based file formats detection.
+- `reader-rm` - Enables[RealMedia (RM) based file formats detection.
+- `reader-txt` - Enables Plain Text (TXT) detection when the file format is not recognized by its
+  signature. Please note that this option only detects files that contain ASCII/UTF-8-encoded text.
+- `reader-xml` - Enables Extensible Markup Language (XML) based file formats detection. Please note
+  that these file formats may be detected without the feature in some cases.
+- `reader-zip` - Enables ZIP-based file formats detection.
+
 ## Supported file formats
 
 ### Application
