@@ -278,7 +278,7 @@ impl FileFormat {
         let mut buffer = [0; 36870];
         let bytes_read = reader.read(&mut buffer)?;
 
-        // Determines the file format.
+        // Determines file format.
         Ok(if bytes_read == 0 {
             Self::Empty
         } else if let Some(format) = Self::from_signature(&buffer[..bytes_read]) {
