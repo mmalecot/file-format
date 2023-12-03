@@ -6,14 +6,7 @@
 
 ## Internal changes
 
-- Improve ASF reader performance and precision when using `reader-asf` feature
-- Improve CFB reader performance and precision when using `reader-cfb` feature
-- Improve EBML reader performance and precision when using `reader-ebml` feature
-- Improve MP4 reader performance and precision when using `reader-mp4` feature
-- Improve PDF reader performance and precision when using `reader-pdf` feature
-- Improve RM reader performance and precision when using `reader-rm` feature
-- Improve XML reader performance and precision when using `reader-xml` feature
-- Improve ZIP reader performance and precision when using `reader-zip` feature
+- Improve performance and precision of all readers
 
 ## New formats support
 
