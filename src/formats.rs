@@ -646,6 +646,12 @@ formats! {
     extension = "eot"
     kind = Font
 
+    format = Empty
+    name = "Empty"
+    media_type = "application/x-empty"
+    extension = "empty"
+    kind = Application
+
     format = EncapsulatedPostscript
     name = "Encapsulated PostScript"
     short_name = "EPS"

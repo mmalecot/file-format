@@ -73,6 +73,12 @@ fn test_digital_imaging_and_communications_in_medicine() {
 }
 
 #[test]
+fn test_empty() {
+    let fmt = FileFormat::from_file("fixtures/application/sample.empty").unwrap();
+    assert_eq!(fmt, FileFormat::Empty);
+}
+
+#[test]
 fn test_encapsulated_postscript() {
     let fmt = FileFormat::from_file("fixtures/application/sample.eps").unwrap();
     assert_eq!(fmt, FileFormat::EncapsulatedPostscript);

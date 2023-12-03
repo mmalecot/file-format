@@ -96,6 +96,7 @@ detected.
 - CD Audio (CDA)
 - Compound File Binary (CFB)
 - Digital Imaging and Communications in Medicine (DICOM)
+- Empty
 - Encapsulated PostScript (EPS)
 - Extensible Binary Meta Language (EBML)
 - Extensible Stylesheet Language Transformations (XSLT)

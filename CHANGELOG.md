@@ -11,6 +11,7 @@
 
 ## New formats support
 
+- Empty
 - Microsoft Write (WRI)
 - Picture Exchange (PCX)
 

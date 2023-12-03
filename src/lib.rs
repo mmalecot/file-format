@@ -270,7 +270,7 @@ impl FileFormat {
     /// use file_format::FileFormat;
     ///
     /// let format = FileFormat::from_reader(std::io::empty())?;
-    /// assert_eq!(format, FileFormat::default());
+    /// assert_eq!(format, FileFormat::Empty);
     /// # Ok::<(), std::io::Error>(())
     ///```
     pub fn from_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
@@ -280,7 +280,7 @@ impl FileFormat {
 
         // Determines the file format.
         Ok(if bytes_read == 0 {
-            Self::default()
+            Self::Empty
         } else if let Some(format) = Self::from_signature(&buffer[..bytes_read]) {
             Self::from_format_reader(format, &mut reader)
                 .unwrap_or_else(|_| Self::from_generic_reader(&mut reader))
