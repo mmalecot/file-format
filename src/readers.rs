@@ -537,6 +537,15 @@ impl crate::FileFormat {
             let mut box_type = [0; 4];
             reader.read_exact(&mut box_type)?;
 
+            // Handles the extended box size.
+            let size = if size == 1 {
+                let mut extended_size = [0; 8];
+                reader.read_exact(&mut extended_size)?;
+                u64::from_be_bytes(extended_size)
+            } else {
+                size as u64
+            };
+
             // Checks the box type.
             match &box_type {
                 b"moov" | b"trak" | b"mdia" => {}
