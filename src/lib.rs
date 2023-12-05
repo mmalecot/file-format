@@ -116,11 +116,11 @@ identification.
   * [RealAudio (RA)](`FileFormat::Realaudio`)
   * [RealVideo (RV)](`FileFormat::Realvideo`)
 - `reader-txt` - Enables [Plain Text (TXT)](`FileFormat::PlainText`) detection when the file format
-  is not recognized by its signature. Please note that this option only detects files that contain
+  is not recognized by its signature. Please note that this feature only detects files containing
   ASCII/UTF-8-encoded text.
 - `reader-xml` - Enables [Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`)
   based file formats detection. Please note that these file formats may be detected without the
-  feature in some cases.
+  feature in certain cases.
   * [AbiWord (ABW)](`FileFormat::Abiword`)
   * [AbiWord Template (AWT)](`FileFormat::AbiwordTemplate`)
   * [Additive Manufacturing Format (AMF)](`FileFormat::AdditiveManufacturingFormat`)
