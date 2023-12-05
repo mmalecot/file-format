@@ -6,7 +6,7 @@
 ///
 /// - `format`: Variant name representing the file format.
 /// - `name`: Full name of the file format.
-/// - `short_name`: Abbreviated name for the file format (optional).
+/// - `short_name`: Abbreviated name of the file format (optional).
 /// - `media_type`: Common media type associated with the file format.
 /// - `extension`: Common file extension used for the file format.
 /// - `kind`: Type or category of the file format.
