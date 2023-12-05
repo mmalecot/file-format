@@ -6,8 +6,9 @@ It provides a variety of functions for identifying a wide range of file formats,
 [Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`) and
 [much more](`FileFormat`).
 
-It checks the signature of the file to determine its format. If it is not recognized by its
-signature, it returns the default file format which is
+It checks the signature of the file to determine its format and intelligently employs specific
+readers when available for accurate identification. If the signature is not recognized, the crate
+falls back to the default file format, which is
 [Arbitrary Binary Data (BIN)](`FileFormat::ArbitraryBinaryData`).
 
 # Examples
