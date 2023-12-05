@@ -3,7 +3,8 @@ Crate for determining the file format of a [given file](`FileFormat::from_file`)
 
 It provides a variety of functions for identifying a wide range of file formats, including
 [ZIP](`FileFormat::Zip`), [Compound File Binary (CFB)](`FileFormat::CompoundFileBinary`),
-[Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`) and [more](`FileFormat`).
+[Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`) and
+[much more](`FileFormat`).
 
 It checks the signature of the file to determine its format. If it is not recognized by its
 signature, it returns the default file format which is
