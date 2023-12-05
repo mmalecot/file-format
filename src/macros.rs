@@ -2,7 +2,7 @@
 
 /// Generates the [FileFormat](crate::FileFormat) enum with methods for retrieving information.
 ///
-/// Each file format includes the following properties:
+/// # Parameters
 ///
 /// - `format`: Variant name representing the file format.
 /// - `name`: Full name of the file format.
@@ -133,7 +133,7 @@ macro_rules! formats {
 
 /// Generates the [FileFormat::from_signature](crate::FileFormat::from_signature) function.
 ///
-/// Each signature group includes the following properties:
+/// # Parameters
 ///
 /// - `format`: Variant name representing the file format.
 /// - `value`: Signature value associated with the format (can be repeated).
