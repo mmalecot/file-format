@@ -322,7 +322,7 @@ pub enum Kind {
     /// Data which do not fit in any of the other kinds, and particularly for data to be processed
     /// by some type of application program.
     Application,
-    /// Stored files and directories into a single file, possibly compressed.
+    /// Files and directories stored in a single, possibly compressed, archive.
     Archive,
     /// Musics, sound effects, and spoken audio recordings.
     Audio,
@@ -336,10 +336,10 @@ pub enum Kind {
     Database,
     /// Floppy disk images, optical disc images and virtual machine disks.
     Disk,
-    /// Word processing documents, spreadsheets, presentations, documents templates, diagrams,
+    /// Word processing documents, spreadsheets, presentations, document templates, diagrams,
     /// charts, and other formatted documents.
     Document,
-    /// Machine executable codes, virtual machine codes and shared libraries.
+    /// Machine-executable codes, virtual machine codes and shared libraries.
     Executable,
     /// Typefaces used for displaying text on screen or in print.
     Font,
@@ -349,21 +349,21 @@ pub enum Kind {
     Image,
     /// 3D models, CAD drawings, and other types of files used for creating or displaying 3D images.
     Model,
-    /// Archives or other containers that bundles programs and resources that can be run on target
+    /// Archives or other containers that bundle programs and resources that can be run on target
     /// environments.
     Package,
     /// Lists of audio or video files that are played in a specific order.
     Playlist,
-    /// Copies of a read-only memory chip of computers, cartridges or other electronic devices.
+    /// Copies of a read-only memory chip of computers, cartridges, or other electronic devices.
     Rom,
     /// Subtitles and captions.
     Subtitle,
     /// Web feeds and syndication.
     Syndication,
-    /// Plain text, source codes, markup languages, and other types of files that contain written
+    /// Plain text, source codes, markup languages, and other types of files containing written
     /// text.
     Text,
-    /// Movies, animations, and other types of files that contain moving images, possibly with color
+    /// Movies, animations, and other types of files containing moving images, possibly with color
     /// and coordinated sound.
     Video,
 }
