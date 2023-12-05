@@ -52,8 +52,8 @@ All features below are disabled by default.
 
 ## Reader features
 
-These features enable the detection of file formats that need a specific reader in order to be
-detected.
+These features enable the detection of file formats that require a specific reader for
+identification.
 
 - `reader` - Enables all reader features.
 - `reader-asf` - Enables [Advanced Systems Format (ASF)](`FileFormat::AdvancedSystemsFormat`) based
