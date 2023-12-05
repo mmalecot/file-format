@@ -55,6 +55,9 @@ macro_rules! formats {
 
             /// Returns the short name of the file format.
             ///
+            /// Note: This information is not necessarily unique, as multiple file formats might
+            /// share the same short name.
+            ///
             /// # Examples
             ///
             /// ```
@@ -93,6 +96,8 @@ macro_rules! formats {
             }
 
             /// Returns the common extension of the file format.
+            ///
+            /// Note: This information is never empty.
             ///
             /// # Examples
             ///
