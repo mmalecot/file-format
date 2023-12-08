@@ -108,7 +108,6 @@ fn test_microsoft_works6_spreadsheet() {
     assert_eq!(fmt, FileFormat::MicrosoftWorks6Spreadsheet);
 }
 
-#[cfg(feature = "reader-cfb")]
 #[test]
 fn test_microsoft_works_spreadsheet() {
     let fmt = FileFormat::from_file("fixtures/document/sample.wks").unwrap();
