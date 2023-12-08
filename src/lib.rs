@@ -64,7 +64,6 @@ identification.
 - `reader-cfb` - Enables [Compound File Binary (CFB)](`FileFormat::CompoundFileBinary`) based file
   formats detection.
   * [3D Studio Max (MAX)](`FileFormat::ThreeDimensionalStudioMax`)
-  * [Autodesk 123D (123DX)](`FileFormat::Autodesk123d`)
   * [Autodesk Inventor Assembly (IAM)](`FileFormat::AutodeskInventorAssembly`)
   * [Autodesk Inventor Drawing (IDW)](`FileFormat::AutodeskInventorDrawing`)
   * [Autodesk Inventor Part (IPT)](`FileFormat::AutodeskInventorPart`)
@@ -78,7 +77,6 @@ identification.
   * [Microsoft Word Document (DOC)](`FileFormat::MicrosoftWordDocument`)
   * [Microsoft Works 6 Spreadsheet (XLR)](`FileFormat::MicrosoftWorks6Spreadsheet`)
   * [Microsoft Works Database (WDB)](`FileFormat::MicrosoftWorksDatabase`)
-  * [Microsoft Works Spreadsheet (WKS)](`FileFormat::MicrosoftWorksSpreadsheet`)
   * [Microsoft Works Word Processor (WPS)](`FileFormat::MicrosoftWorksWordProcessor`)
   * [SolidWorks Assembly (SLDASM)](`FileFormat::SolidworksAssembly`)
   * [SolidWorks Drawing (SLDDRW)](`FileFormat::SolidworksDrawing`)
@@ -151,6 +149,7 @@ identification.
   * [3D Manufacturing Format (3MF)](`FileFormat::ThreeDimensionalManufacturingFormat`)
   * [Adobe Integrated Runtime (AIR)](`FileFormat::AdobeIntegratedRuntime`)
   * [Android Package (APK)](`FileFormat::AndroidPackage`)
+  * [Autodesk 123D (123DX)](`FileFormat::Autodesk123d`)
   * [Circuit Diagram Document (CDDX)](`FileFormat::CircuitDiagramDocument`)
   * [Design Web Format XPS (DWFX)](`FileFormat::DesignWebFormatXps`)
   * [Electronic Publication (EPUB)](`FileFormat::ElectronicPublication`)
