@@ -1542,7 +1542,7 @@ formats! {
 
     format = MpegDashManifest
     name = "MPEG-DASH Manifest"
-    short_name= "MPD"
+    short_name = "MPD"
     media_type = "application/dash+xml"
     extension = "mpd"
     kind = Playlist
