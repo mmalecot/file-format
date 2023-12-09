@@ -45,14 +45,14 @@ fn test_windows_media_playlist() {
 }
 
 #[test]
-fn test_xml_shareable_playlist_1() {
+fn test_xml_shareable_playlist_format_1() {
     let fmt = FileFormat::from_file("fixtures/playlist/sample1.xspf").unwrap();
     assert_eq!(fmt, FileFormat::XmlShareablePlaylistFormat);
 }
 
 #[cfg(feature = "reader-xml")]
 #[test]
-fn test_xml_shareable_playlist_2() {
+fn test_xml_shareable_playlist_format_2() {
     let fmt = FileFormat::from_file("fixtures/playlist/sample2.xspf").unwrap();
     assert_eq!(fmt, FileFormat::XmlShareablePlaylistFormat);
 }

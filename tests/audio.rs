@@ -85,7 +85,7 @@ fn test_free_lossless_audio_codec() {
 }
 
 #[test]
-fn test_iff_8_bit_sampled_voice() {
+fn test_iff8_bit_sampled_voice() {
     let fmt = FileFormat::from_file("fixtures/audio/sample.8svx").unwrap();
     assert_eq!(fmt, FileFormat::Iff8BitSampledVoice);
 }
