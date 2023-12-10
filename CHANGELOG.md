@@ -1,4 +1,4 @@
-# Version 0.23.0 (unreleased)
+# Version 0.23.0 (2024-12-10)
 
 ## Fixes
 
