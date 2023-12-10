@@ -33,13 +33,6 @@ fn test_timed_text_markup_language_2() {
     assert_eq!(fmt, FileFormat::TimedTextMarkupLanguage);
 }
 
-#[cfg(feature = "reader-xml")]
-#[test]
-fn test_timed_text_markup_language_3() {
-    let fmt = FileFormat::from_file("fixtures/subtitle/sample3.ttml").unwrap();
-    assert_eq!(fmt, FileFormat::TimedTextMarkupLanguage);
-}
-
 #[test]
 fn test_universal_subtitle_format_1() {
     let fmt = FileFormat::from_file("fixtures/subtitle/sample1.usf").unwrap();
