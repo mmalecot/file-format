@@ -12,10 +12,16 @@ fn test_microsoft_access_database() {
     assert_eq!(fmt, FileFormat::MicrosoftAccessDatabase);
 }
 
+#[test]
+fn test_microsoft_works_database_1() {
+    let fmt = FileFormat::from_file("fixtures/database/sample1.wdb").unwrap();
+    assert_eq!(fmt, FileFormat::MicrosoftWorksDatabase);
+}
+
 #[cfg(feature = "reader-cfb")]
 #[test]
-fn test_microsoft_works_database() {
-    let fmt = FileFormat::from_file("fixtures/database/sample.wdb").unwrap();
+fn test_microsoft_works_database_2() {
+    let fmt = FileFormat::from_file("fixtures/database/sample2.wdb").unwrap();
     assert_eq!(fmt, FileFormat::MicrosoftWorksDatabase);
 }
 
