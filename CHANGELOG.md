@@ -1,5 +1,9 @@
 # Version 0.23.0 (unreleased)
 
+## Fixes
+
+- Fix Neo Geo Pocket ROM (NGP) extension
+
 ## Improvements
 
 - Add precision to the JSON Feed signature

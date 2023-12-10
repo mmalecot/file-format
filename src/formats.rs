@@ -1605,7 +1605,7 @@ formats! {
     name = "Neo Geo Pocket ROM"
     short_name = "NGP"
     media_type = "application/x-neo-geo-pocket-rom"
-    extension = "npg"
+    extension = "ngp"
     kind = Rom
 
     format = NewExecutable
