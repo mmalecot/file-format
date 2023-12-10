@@ -37,6 +37,12 @@ fn test_mega_drive_rom() {
 }
 
 #[test]
+fn test_neo_geo_pocket_color_rom() {
+    let fmt = FileFormat::from_file("fixtures/rom/sample.ngc").unwrap();
+    assert_eq!(fmt, FileFormat::NeoGeoPocketColorRom);
+}
+
+#[test]
 fn test_neo_geo_pocket_rom() {
     let fmt = FileFormat::from_file("fixtures/rom/sample.ngp").unwrap();
     assert_eq!(fmt, FileFormat::NeoGeoPocketRom);

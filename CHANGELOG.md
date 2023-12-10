@@ -16,6 +16,7 @@
 
 - Empty
 - Microsoft Write (WRI)
+- Neo Geo Pocket Color ROM (NGC)
 - Picture Exchange (PCX)
 
 # Version 0.22.0 (2023-11-04)

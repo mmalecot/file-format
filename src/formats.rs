@@ -1601,6 +1601,13 @@ formats! {
     extension = "mxl"
     kind = Application
 
+    format = NeoGeoPocketColorRom
+    name = "Neo Geo Pocket Color ROM"
+    short_name = "NGC"
+    media_type = "application/x-neo-geo-pocket-rom"
+    extension = "ngc"
+    kind = Rom
+
     format = NeoGeoPocketRom
     name = "Neo Geo Pocket ROM"
     short_name = "NGP"

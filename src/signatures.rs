@@ -98,6 +98,10 @@ signatures! {
     value =b"SIMPLE  =                    T"
 
     // 29 bytes
+    format = NeoGeoPocketColorRom
+    value = b" LICENSED BY SNK CORPORATION", b"\x10" offset = 0x23
+    value = b"COPYRIGHT BY SNK CORPORATION", b"\x10" offset = 0x23
+
     format = PgpSignature
     value = b"-----BEGIN PGP SIGNATURE-----"
 

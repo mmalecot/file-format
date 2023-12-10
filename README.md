@@ -494,6 +494,7 @@ identification.
 - Game Boy ROM (GB)
 - Game Gear ROM (GG)
 - Mega Drive ROM (MD)
+- Neo Geo Pocket Color ROM (NGC)
 - Neo Geo Pocket ROM (NGP)
 - Nintendo 64 ROM (Z64)
 - Nintendo DS ROM (NDS)
