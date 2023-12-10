@@ -114,10 +114,16 @@ fn test_microsoft_works_spreadsheet() {
     assert_eq!(fmt, FileFormat::MicrosoftWorksSpreadsheet);
 }
 
+#[test]
+fn test_microsoft_works_word_processor_1() {
+    let fmt = FileFormat::from_file("fixtures/document/sample1.wps").unwrap();
+    assert_eq!(fmt, FileFormat::MicrosoftWorksWordProcessor);
+}
+
 #[cfg(feature = "reader-cfb")]
 #[test]
-fn test_microsoft_works_word_processor() {
-    let fmt = FileFormat::from_file("fixtures/document/sample.wps").unwrap();
+fn test_microsoft_works_word_processor_2() {
+    let fmt = FileFormat::from_file("fixtures/document/sample2.wps").unwrap();
     assert_eq!(fmt, FileFormat::MicrosoftWorksWordProcessor);
 }
 
