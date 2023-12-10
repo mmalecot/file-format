@@ -82,10 +82,10 @@ signatures! {
 
     format = PolygonBinary
     value = b"ply\r\nformat binary_little_endian"
-    value = b"ply\r\nformat binary_big_endian"
     value = b"ply\nformat binary_little_endian"
-    value = b"ply\nformat binary_big_endian"
     value = b"ply\rformat binary_little_endian"
+    value = b"ply\r\nformat binary_big_endian"
+    value = b"ply\nformat binary_big_endian"
     value = b"ply\rformat binary_big_endian"
 
     format = Sketchup
@@ -166,8 +166,8 @@ signatures! {
     format = ToolCommandLanguageScript
     value = b"#!/usr/local/bin/tclsh"
     value = b"#!/usr/local/bin/wish"
-    value = b"#!/usr/local/bin/tcl"
     value = b"#!/usr/bin/env tclsh"
+    value = b"#!/usr/local/bin/tcl"
     value = b"#!/usr/bin/env wish"
     value = b"#!/usr/bin/env tcl"
     value = b"#!/usr/bin/tclsh"
@@ -203,10 +203,10 @@ signatures! {
     value = b"#!/usr/bin/zsh"
     value = b"#!/bin/bash"
     value = b"#!/bin/tcsh"
-    value = b"#!/bin/zsh"
     value = b"#!/bin/ash"
     value = b"#!/bin/csh"
     value = b"#!/bin/ksh"
+    value = b"#!/bin/zsh"
     value = b"#!/bin/sh"
 
     format = WindowsMediaPlaylist
@@ -348,9 +348,9 @@ signatures! {
     value = b"RIFF", b"CDDAfmt " offset = 0x08
 
     format = Djvu
+    value = b"AT&TFORM", b"DJVI" offset = 12
     value = b"AT&TFORM", b"DJVM" offset = 12
     value = b"AT&TFORM", b"DJVU" offset = 12
-    value = b"AT&TFORM", b"DJVI" offset = 12
     value = b"AT&TFORM", b"THUM" offset = 12
 
     format = DrawingExchangeFormatAscii
@@ -378,8 +378,8 @@ signatures! {
 
     format = ShoutcastPlaylist
     value = b"[playlist]\r\n"
-    value = b"[playlist]\r"
     value = b"[playlist]\n"
+    value = b"[playlist]\r"
 
     format = XmlShareablePlaylistFormat
     value = b"\xEF\xBB\xBF<playlist"
@@ -428,10 +428,10 @@ signatures! {
     format = InitialGraphicsExchangeSpecification
     value = b"S      1\r\n" offset = 72
     value = b"S0000001\r\n" offset = 72
-    value = b"S      1\r" offset = 72
-    value = b"S0000001\r" offset = 72
     value = b"S      1\n" offset = 72
+    value = b"S      1\r" offset = 72
     value = b"S0000001\n" offset = 72
+    value = b"S0000001\r" offset = 72
 
     format = MicrosoftWorksDatabase
     value = b"\x20\x54\x02\x00\x00\x00\x05\x54\x02\x00"
@@ -528,8 +528,8 @@ signatures! {
     value = b"<feed"
 
     format = AudioInterchangeFileFormat
-    value = b"FORM", b"AIFF" offset = 8
     value = b"FORM", b"AIFC" offset = 8
+    value = b"FORM", b"AIFF" offset = 8
 
     format = AudioVideoInterleave
     value = b"RIFF", b"\x41\x56\x49\x20" offset = 8
@@ -651,16 +651,16 @@ signatures! {
     value = b"\x8A\x4D\x4E\x47\x0D\x0A\x1A\x0A"
 
     format = NikonElectronicFile
-    value = b"\x4D\x4D\x00\x2A", b"\x1C\x00\xFE\x00" offset = 8
-    value = b"\x4D\x4D\x00\x2A", b"\x1F\x00\x0B\x00" offset = 8
     value = b"\x49\x49\x2A\x00", b"\x1C\x00\xFE\x00" offset = 8
     value = b"\x49\x49\x2A\x00", b"\x1F\x00\x0B\x00" offset = 8
+    value = b"\x4D\x4D\x00\x2A", b"\x1C\x00\xFE\x00" offset = 8
+    value = b"\x4D\x4D\x00\x2A", b"\x1F\x00\x0B\x00" offset = 8
 
     format = Nintendo64Rom
-    value = b"\x80\x37\x12\x40\x00\x00\x00\x0F"
-    value = b"\x37\x80\x40\x12\x00\x00\x0F\x00"
     value = b"\x12\x40\x80\x37\x00\x0F\x00\x00"
+    value = b"\x37\x80\x40\x12\x00\x00\x0F\x00"
     value = b"\x40\x12\x37\x80\x0F\x00\x00\x00"
+    value = b"\x80\x37\x12\x40\x00\x00\x00\x0F"
 
     format = NintendoDsRom
     value = b"\x24\xFF\xAE\x51\x69\x9A\xA2\x21" offset = 0xC0
@@ -693,6 +693,10 @@ signatures! {
     format = TapeArchive
     value = b"\x75\x73\x74\x61\x72\x00\x30\x30" offset = 257
     value = b"\x75\x73\x74\x61\x72\x20\x20\x00" offset = 257
+
+    format = ThirdGenerationPartnershipProject2
+    value = b"ftypKDDI" offset = 4
+    value = b"ftyp3g2" offset = 4
 
     format = UniversalSceneDescriptionBinary
     value = b"PXR-USDC"
@@ -815,10 +819,6 @@ signatures! {
     value = b"ftyp3gs" offset = 4
     value = b"ftyp3gt" offset = 4
 
-    format = ThirdGenerationPartnershipProject2
-    value = b"ftyp3g2" offset = 4
-    value = b"ftypKDDI" offset = 4
-
     format = TiledMapXml
     value = b"\xEF\xBB\xBF<map"
     value = b"<map"
@@ -835,15 +835,15 @@ signatures! {
 
     format = AppleQuicktime
     value = b"ftypqt" offset = 4
-    value = b"moov" offset = 4
-    value = b"mdat" offset = 4
-    value = b"wide" offset = 4
-    value = b"skip" offset = 4
     value = b"free" offset = 4
+    value = b"mdat" offset = 4
+    value = b"moov" offset = 4
+    value = b"skip" offset = 4
+    value = b"wide" offset = 4
 
     format = CanonRaw2
-    value = b"\x4D\x4D\x00\x2A", b"CR" offset = 8
     value = b"\x49\x49\x2A\x00", b"CR" offset = 8
+    value = b"\x4D\x4D\x00\x2A", b"CR" offset = 8
 
     format = DesignWebFormat
     value = b"(DWF V"
@@ -936,18 +936,18 @@ signatures! {
     value = b"\xCA\xFE\xBA\xBE", b"\x11" offset = 7
     value = b"\xCA\xFE\xBA\xBE", b"\x12" offset = 7
     value = b"\xCA\xFE\xBA\xBE", b"\xFF" offset = 7
-    value = b"\xFE\xED\xFA\xCE"
-    value = b"\xFE\xED\xFA\xCF"
     value = b"\xCE\xFA\xED\xFE"
     value = b"\xCF\xFA\xED\xFE"
+    value = b"\xFE\xED\xFA\xCE"
+    value = b"\xFE\xED\xFA\xCF"
 
     format = NintendoSwitchRom
-    value = b"HEAD" offset = 0x100, b"\xFA" offset = 0x10D
-    value = b"HEAD" offset = 0x100, b"\xF8" offset = 0x10D
-    value = b"HEAD" offset = 0x100, b"\xF0" offset = 0x10D
     value = b"HEAD" offset = 0x100, b"\xE0" offset = 0x10D
     value = b"HEAD" offset = 0x100, b"\xE1" offset = 0x10D
     value = b"HEAD" offset = 0x100, b"\xE2" offset = 0x10D
+    value = b"HEAD" offset = 0x100, b"\xF0" offset = 0x10D
+    value = b"HEAD" offset = 0x100, b"\xF8" offset = 0x10D
+    value = b"HEAD" offset = 0x100, b"\xFA" offset = 0x10D
 
     format = Opentype
     value = b"\x4F\x54\x54\x4F\x00"
@@ -1023,16 +1023,16 @@ signatures! {
     value = b"BMF\x03"
 
     format = Cabinet
-    value = b"MSCF"
     value = b"ISc("
+    value = b"MSCF"
 
     format = Cineon
     value = b"\x80\x2A\x5F\xD7"
 
     format = Cpio
     value = b"0707"
-    value = b"\xC7\x71"
     value = b"\x71\xC7"
+    value = b"\xC7\x71"
 
     format = DigitalImagingAndCommunicationsInMedicine
     value = b"\x44\x49\x43\x4D" offset = 128
@@ -1130,8 +1130,8 @@ signatures! {
     value = b"MAC "
 
     format = Mpeg12Video
-    value = b"\x00\x00\x01\xBA"
     value = b"\x00\x00\x01\xB3"
+    value = b"\x00\x00\x01\xBA"
 
     format = Musepack
     value = b"MPCK"
@@ -1214,10 +1214,10 @@ signatures! {
     value = b"hsqs"
 
     format = TagImageFileFormat
-    value = b"\x4D\x4D\x00\x2A"
     value = b"\x49\x49\x2A\x00"
-    value = b"\x4D\x4D\x00\x2B"
     value = b"\x49\x49\x2B\x00"
+    value = b"\x4D\x4D\x00\x2A"
+    value = b"\x4D\x4D\x00\x2B"
 
     format = Tasty
     value = b"\x5C\xA1\xAB\x1F"
@@ -1247,9 +1247,9 @@ signatures! {
     value = b"\x00\x00\x01\x00"
 
     format = WindowsMetafile
-    value = b"\xD7\xCD\xC6\x9A"
-    value = b"\x02\x00\x09\x00"
     value = b"\x01\x00\x09\x00"
+    value = b"\x02\x00\x09\x00"
+    value = b"\xD7\xCD\xC6\x9A"
 
     format = WordperfectDocument
     value = b"\xFFWPC"
@@ -1302,49 +1302,49 @@ signatures! {
 
     format = PortableArbitraryMap
     value = b"P7 "
-    value = b"P7\t"
-    value = b"P7\r"
     value = b"P7\n"
+    value = b"P7\r"
+    value = b"P7\t"
 
     format = PortableBitmap
     value = b"P1 "
-    value = b"P1\t"
-    value = b"P1\r"
     value = b"P1\n"
+    value = b"P1\r"
+    value = b"P1\t"
     value = b"P4 "
-    value = b"P4\t"
-    value = b"P4\r"
     value = b"P4\n"
+    value = b"P4\r"
+    value = b"P4\t"
 
     format = PortableFloatmap
     value = b"PF "
-    value = b"PF\t"
-    value = b"PF\r"
     value = b"PF\n"
+    value = b"PF\r"
+    value = b"PF\t"
     value = b"Pf "
-    value = b"Pf\t"
-    value = b"Pf\r"
     value = b"Pf\n"
+    value = b"Pf\r"
+    value = b"Pf\t"
 
     format = PortableGraymap
     value = b"P2 "
-    value = b"P2\t"
-    value = b"P2\r"
     value = b"P2\n"
+    value = b"P2\r"
+    value = b"P2\t"
     value = b"P5 "
-    value = b"P5\t"
-    value = b"P5\r"
     value = b"P5\n"
+    value = b"P5\r"
+    value = b"P5\t"
 
     format = PortablePixmap
     value = b"P3 "
-    value = b"P3\t"
-    value = b"P3\r"
     value = b"P3\n"
+    value = b"P3\r"
+    value = b"P3\t"
     value = b"P6 "
-    value = b"P6\t"
-    value = b"P6\r"
     value = b"P6\n"
+    value = b"P6\r"
+    value = b"P6\t"
 
     format = Seqbox
     value = b"SBx"
@@ -1377,9 +1377,9 @@ signatures! {
     value = b"\x47" offset = 4, b"\x47" offset = 196
 
     format = CommonObjectFileFormat
+    value = b"\x00\x02"
     value = b"\x4C\x01"
     value = b"\x64\x86"
-    value = b"\x00\x02"
 
     format = DerCertificate
     value = b"\x30\x82"
@@ -1407,6 +1407,6 @@ signatures! {
     value = b"\x01\xDA"
 
     format = UnixCompress
-    value = b"\x1F\xA0"
     value = b"\x1F\x9D"
+    value = b"\x1F\xA0"
 }
