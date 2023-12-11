@@ -3,10 +3,12 @@ Crate for determining the file format of a [given file](`FileFormat::from_file`)
 
 It provides a variety of functions for identifying a wide range of file formats, including
 [ZIP](`FileFormat::Zip`), [Compound File Binary (CFB)](`FileFormat::CompoundFileBinary`),
-[Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`) and [more](`FileFormat`).
+[Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`) and
+[much more](`FileFormat`).
 
-It checks the signature of the file to determine its format. If it is not recognized by its
-signature, it returns the default file format which is
+It checks the signature of the file to determine its format and intelligently employs specific
+readers when available for accurate identification. If the signature is not recognized, the crate
+falls back to the default file format, which is
 [Arbitrary Binary Data (BIN)](`FileFormat::ArbitraryBinaryData`).
 
 # Examples
@@ -50,8 +52,8 @@ All features below are disabled by default.
 
 ## Reader features
 
-These features enable the detection of file formats that need a specific reader in order to be
-detected.
+These features enable the detection of file formats that require a specific reader for
+identification.
 
 - `reader` - Enables all reader features.
 - `reader-asf` - Enables [Advanced Systems Format (ASF)](`FileFormat::AdvancedSystemsFormat`) based
@@ -62,7 +64,6 @@ detected.
 - `reader-cfb` - Enables [Compound File Binary (CFB)](`FileFormat::CompoundFileBinary`) based file
   formats detection.
   * [3D Studio Max (MAX)](`FileFormat::ThreeDimensionalStudioMax`)
-  * [Autodesk 123D (123DX)](`FileFormat::Autodesk123d`)
   * [Autodesk Inventor Assembly (IAM)](`FileFormat::AutodeskInventorAssembly`)
   * [Autodesk Inventor Drawing (IDW)](`FileFormat::AutodeskInventorDrawing`)
   * [Autodesk Inventor Part (IPT)](`FileFormat::AutodeskInventorPart`)
@@ -76,7 +77,6 @@ detected.
   * [Microsoft Word Document (DOC)](`FileFormat::MicrosoftWordDocument`)
   * [Microsoft Works 6 Spreadsheet (XLR)](`FileFormat::MicrosoftWorks6Spreadsheet`)
   * [Microsoft Works Database (WDB)](`FileFormat::MicrosoftWorksDatabase`)
-  * [Microsoft Works Spreadsheet (WKS)](`FileFormat::MicrosoftWorksSpreadsheet`)
   * [Microsoft Works Word Processor (WPS)](`FileFormat::MicrosoftWorksWordProcessor`)
   * [SolidWorks Assembly (SLDASM)](`FileFormat::SolidworksAssembly`)
   * [SolidWorks Drawing (SLDDRW)](`FileFormat::SolidworksDrawing`)
@@ -114,11 +114,11 @@ detected.
   * [RealAudio (RA)](`FileFormat::Realaudio`)
   * [RealVideo (RV)](`FileFormat::Realvideo`)
 - `reader-txt` - Enables [Plain Text (TXT)](`FileFormat::PlainText`) detection when the file format
-  is not recognized by its signature. Please note that this option only detects files that contain
+  is not recognized by its signature. Please note that this feature only detects files containing
   ASCII/UTF-8-encoded text.
 - `reader-xml` - Enables [Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`)
   based file formats detection. Please note that these file formats may be detected without the
-  feature in some cases.
+  feature in certain cases.
   * [AbiWord (ABW)](`FileFormat::Abiword`)
   * [AbiWord Template (AWT)](`FileFormat::AbiwordTemplate`)
   * [Additive Manufacturing Format (AMF)](`FileFormat::AdditiveManufacturingFormat`)
@@ -149,6 +149,7 @@ detected.
   * [3D Manufacturing Format (3MF)](`FileFormat::ThreeDimensionalManufacturingFormat`)
   * [Adobe Integrated Runtime (AIR)](`FileFormat::AdobeIntegratedRuntime`)
   * [Android Package (APK)](`FileFormat::AndroidPackage`)
+  * [Autodesk 123D (123DX)](`FileFormat::Autodesk123d`)
   * [Circuit Diagram Document (CDDX)](`FileFormat::CircuitDiagramDocument`)
   * [Design Web Format XPS (DWFX)](`FileFormat::DesignWebFormatXps`)
   * [Electronic Publication (EPUB)](`FileFormat::ElectronicPublication`)
@@ -198,6 +199,7 @@ detected.
 */
 
 #![deny(missing_docs)]
+#![forbid(unsafe_code)]
 
 #[macro_use]
 mod macros;
@@ -209,7 +211,7 @@ mod signatures;
 use std::{
     fmt::{self, Display, Formatter},
     fs::File,
-    io::{BufRead, BufReader, Cursor, Read, Result, Seek},
+    io::{Cursor, Read, Result, Seek},
     path::Path,
 };
 
@@ -269,20 +271,18 @@ impl FileFormat {
     /// use file_format::FileFormat;
     ///
     /// let format = FileFormat::from_reader(std::io::empty())?;
-    /// assert_eq!(format, FileFormat::default());
+    /// assert_eq!(format, FileFormat::Empty);
     /// # Ok::<(), std::io::Error>(())
     ///```
-    pub fn from_reader<R: Read + Seek>(reader: R) -> Result<Self> {
-        // Maximum required size to read and detect the file format from its signature.
-        const BUFFER_SIZE: usize = 36870;
+    pub fn from_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
+        // Creates and fills a buffer.
+        let mut buffer = [0; 36870];
+        let bytes_read = reader.read(&mut buffer)?;
 
-        // Creates a buffered reader with the specified size.
-        let mut reader = BufReader::with_capacity(BUFFER_SIZE, reader);
-
-        // Attempts to detect the file format.
-        Ok(if reader.fill_buf()?.is_empty() {
-            Self::default()
-        } else if let Some(format) = Self::from_signature(reader.buffer()) {
+        // Determines file format.
+        Ok(if bytes_read == 0 {
+            Self::Empty
+        } else if let Some(format) = Self::from_signature(&buffer[..bytes_read]) {
             Self::from_format_reader(format, &mut reader)
                 .unwrap_or_else(|_| Self::from_generic_reader(&mut reader))
         } else {
@@ -321,7 +321,7 @@ pub enum Kind {
     /// Data which do not fit in any of the other kinds, and particularly for data to be processed
     /// by some type of application program.
     Application,
-    /// Stored files and directories into a single file, possibly compressed.
+    /// Files and directories stored in a single, possibly compressed, archive.
     Archive,
     /// Musics, sound effects, and spoken audio recordings.
     Audio,
@@ -335,10 +335,10 @@ pub enum Kind {
     Database,
     /// Floppy disk images, optical disc images and virtual machine disks.
     Disk,
-    /// Word processing documents, spreadsheets, presentations, documents templates, diagrams,
+    /// Word processing documents, spreadsheets, presentations, document templates, diagrams,
     /// charts, and other formatted documents.
     Document,
-    /// Machine executable codes, virtual machine codes and shared libraries.
+    /// Machine-executable codes, virtual machine codes and shared libraries.
     Executable,
     /// Typefaces used for displaying text on screen or in print.
     Font,
@@ -348,21 +348,21 @@ pub enum Kind {
     Image,
     /// 3D models, CAD drawings, and other types of files used for creating or displaying 3D images.
     Model,
-    /// Archives or other containers that bundles programs and resources that can be run on target
+    /// Archives or other containers that bundle programs and resources that can be run on target
     /// environments.
     Package,
     /// Lists of audio or video files that are played in a specific order.
     Playlist,
-    /// Copies of a read-only memory chip of computers, cartridges or other electronic devices.
+    /// Copies of a read-only memory chip of computers, cartridges, or other electronic devices.
     Rom,
     /// Subtitles and captions.
     Subtitle,
     /// Web feeds and syndication.
     Syndication,
-    /// Plain text, source codes, markup languages, and other types of files that contain written
+    /// Plain text, source codes, markup languages, and other types of files containing written
     /// text.
     Text,
-    /// Movies, animations, and other types of files that contain moving images, possibly with color
+    /// Movies, animations, and other types of files containing moving images, possibly with color
     /// and coordinated sound.
     Video,
 }

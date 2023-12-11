@@ -646,6 +646,12 @@ formats! {
     extension = "eot"
     kind = Font
 
+    format = Empty
+    name = "Empty"
+    media_type = "application/x-empty"
+    extension = "empty"
+    kind = Application
+
     format = EncapsulatedPostscript
     name = "Encapsulated PostScript"
     short_name = "EPS"
@@ -1436,6 +1442,13 @@ formats! {
     extension = "wps"
     kind = Document
 
+    format = MicrosoftWrite
+    name = "Microsoft Write"
+    short_name = "WRI"
+    media_type = "application/x-mswrite"
+    extension = "wri"
+    kind = Document
+
     format = Mobipocket
     name = "Mobipocket"
     short_name = "MOBI"
@@ -1529,7 +1542,7 @@ formats! {
 
     format = MpegDashManifest
     name = "MPEG-DASH Manifest"
-    short_name= "MPD"
+    short_name = "MPD"
     media_type = "application/dash+xml"
     extension = "mpd"
     kind = Playlist
@@ -1588,11 +1601,18 @@ formats! {
     extension = "mxl"
     kind = Application
 
+    format = NeoGeoPocketColorRom
+    name = "Neo Geo Pocket Color ROM"
+    short_name = "NGC"
+    media_type = "application/x-neo-geo-pocket-rom"
+    extension = "ngc"
+    kind = Rom
+
     format = NeoGeoPocketRom
     name = "Neo Geo Pocket ROM"
     short_name = "NGP"
     media_type = "application/x-neo-geo-pocket-rom"
-    extension = "npg"
+    extension = "ngp"
     kind = Rom
 
     format = NewExecutable
@@ -1957,6 +1977,13 @@ formats! {
     media_type = "application/pgp"
     extension = "asc"
     kind = Application
+
+    format = PictureExchange
+    name = "Picture Exchange"
+    short_name = "PCX"
+    media_type = "image/x-pcx"
+    extension = "pcx"
+    kind = Image
 
     format = PlainText
     name = "Plain Text"

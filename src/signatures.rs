@@ -27,8 +27,11 @@ signatures! {
     value = b"{\n    \"version\": \"https://jsonfeed.org/version/"
     value = b"{\r    \"version\": \"https://jsonfeed.org/version/"
     value = b"{\r\n  \"version\": \"https://jsonfeed.org/version/"
+    value = b"{\r\n\t\"version\": \"https://jsonfeed.org/version/"
     value = b"{\n  \"version\": \"https://jsonfeed.org/version/"
+    value = b"{\n\t\"version\": \"https://jsonfeed.org/version/"
     value = b"{\r  \"version\": \"https://jsonfeed.org/version/"
+    value = b"{\r\t\"version\": \"https://jsonfeed.org/version/"
     value = b"{\"version\":\"https://jsonfeed.org/version/"
 
     // 40 bytes
@@ -66,9 +69,7 @@ signatures! {
 
     // 32 bytes
     format = MicrosoftReader
-    value =
-        b"ITOLITLS\x01\x00\x00\x00\x28\x00\x00\x00",
-        b"\xC1\x07\x90\x0A\x76\x40\xD3\x11\x87\x89\x00\x00\xF8\x10\x57\x54" offset = 0x18
+    value = b"ITOLITLS\x01\0\0\0(\0\0\0", b"\xC1\x07\x90\x0A\x76\x40\xD3\x11\x87\x89\x00\x00\xF8\x10\x57\x54" offset = 24
 
     format = PemPublicKey
     value = b"-----BEGIN ECDSA PUBLIC KEY-----"
@@ -79,22 +80,24 @@ signatures! {
 
     format = PolygonBinary
     value = b"ply\r\nformat binary_little_endian"
-    value = b"ply\r\nformat binary_big_endian"
     value = b"ply\nformat binary_little_endian"
-    value = b"ply\nformat binary_big_endian"
     value = b"ply\rformat binary_little_endian"
+    value = b"ply\r\nformat binary_big_endian"
+    value = b"ply\nformat binary_big_endian"
     value = b"ply\rformat binary_big_endian"
 
     format = Sketchup
-    value =
-        b"\xFF\xFE\xFF\x0E\x53\x00\x6B\x00\x65\x00\x74\x00\x63\x00\x68\x00",
-        b"\x55\x00\x70\x00\x20\x00\x4D\x00\x6F\x00\x64\x00\x65\x00\x6C\x00" offset = 16
+    value = b"\xFF\xFE\xFF\x0ES\0k\0e\0t\0c\0h\0U\0p\0 \0M\0o\0d\0e\0l\0"
 
     // 30 bytes
     format = FlexibleImageTransportSystem
     value =b"SIMPLE  =                    T"
 
     // 29 bytes
+    format = NeoGeoPocketColorRom
+    value = b" LICENSED BY SNK CORPORATION", b"\x10" offset = 35
+    value = b"COPYRIGHT BY SNK CORPORATION", b"\x10" offset = 35
+
     format = PgpSignature
     value = b"-----BEGIN PGP SIGNATURE-----"
 
@@ -154,13 +157,13 @@ signatures! {
 
     // 22 bytes
     format = CreativeVoice
-    value = b"Creative Voice File\x1A\x1A\x00"
+    value = b"Creative Voice File\x1A\x1A\0"
 
     format = ToolCommandLanguageScript
     value = b"#!/usr/local/bin/tclsh"
     value = b"#!/usr/local/bin/wish"
-    value = b"#!/usr/local/bin/tcl"
     value = b"#!/usr/bin/env tclsh"
+    value = b"#!/usr/local/bin/tcl"
     value = b"#!/usr/bin/env wish"
     value = b"#!/usr/bin/env tcl"
     value = b"#!/usr/bin/tclsh"
@@ -172,7 +175,7 @@ signatures! {
     value = b"!<arch>\ndebian-binary"
 
     format = Filmbox
-    value = b"Kaydara FBX Binary  \x00"
+    value = b"Kaydara FBX Binary  \0"
 
     format = RubyScript
     value = b"#!/usr/local/bin/ruby"
@@ -196,10 +199,10 @@ signatures! {
     value = b"#!/usr/bin/zsh"
     value = b"#!/bin/bash"
     value = b"#!/bin/tcsh"
-    value = b"#!/bin/zsh"
     value = b"#!/bin/ash"
     value = b"#!/bin/csh"
     value = b"#!/bin/ksh"
+    value = b"#!/bin/zsh"
     value = b"#!/bin/sh"
 
     format = WindowsMediaPlaylist
@@ -264,17 +267,17 @@ signatures! {
     value = b"Extended Module:"
 
     format = InterQuakeModel
-    value = b"INTERQUAKEMODEL\x00"
+    value = b"INTERQUAKEMODEL\0"
 
     format = MacosAlias
-    value = b"\x62\x6F\x6F\x6B\x00\x00\x00\x00\x6D\x61\x72\x6B\x00\x00\x00\x00"
+    value = b"book\0\0\0\0mark\0\0\0\0"
 
     format = Sqlite3
-    value = b"\x53\x51\x4C\x69\x74\x65\x20\x66\x6F\x72\x6D\x61\x74\x20\x33\x00"
+    value = b"SQLite format 3\0"
 
     format = Stuffit
     value = b"StuffIt (c)1997", b"\x05" offset = 82
-    value = b"SIT!" offset = 0x80, b"rLau" offset = 0x8A
+    value = b"SIT!" offset = 128, b"rLau" offset = 138
     value = b"SIT!", b"rLau" offset = 10
 
     format = UniversalSubtitleFormat
@@ -300,8 +303,8 @@ signatures! {
     value = b"BEGIN:VCALENDAR"
 
     format = MegaDriveRom
-    value = b"SEGA MEGA DRIVE" offset = 0x100
-    value = b"SEGA GENESIS" offset = 0x100
+    value = b"SEGA MEGA DRIVE" offset = 256
+    value = b"SEGA GENESIS" offset = 256
 
     format = MicrosoftAccess2007Database
     value = b"Standard ACE DB" offset = 4
@@ -311,7 +314,7 @@ signatures! {
 
     // 14 bytes
     format = CanonRaw
-    value = b"\x49\x49\x1A\x00\x00\x00\x48\x45\x41\x50\x43\x43\x44\x52"
+    value = b"II\x1A\0\0\0HEAPCCDR"
 
     format = Latex
     value = b"\\documentclass"
@@ -324,7 +327,7 @@ signatures! {
     value = b"\x06\x0E\x2B\x34\x02\x05\x01\x01\x0D\x01\x02\x01\x01\x02"
 
     format = WordperfectGraphics
-    value = b"\xFFWPC\x10\x00\x00\x00\x01\x16\x01\x00", b"\x00\x00" offset = 14
+    value = b"\xFFWPC\x10\0\0\0\x01\x16\x01\0", b"\0\0" offset = 14
 
     // 13 bytes
     format = StandardForTheExchangeOfProductModelData
@@ -335,15 +338,15 @@ signatures! {
     value = b"ActiveMime\0\0"
 
     format = AnimatedPortableNetworkGraphics
-    value = b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A", b"acTL" offset = 0x25
+    value = b"\x89PNG\r\n\x1A\n", b"acTL" offset = 37
 
     format = CdAudio
-    value = b"RIFF", b"CDDAfmt " offset = 0x08
+    value = b"RIFF", b"CDDAfmt " offset = 8
 
     format = Djvu
+    value = b"AT&TFORM", b"DJVI" offset = 12
     value = b"AT&TFORM", b"DJVM" offset = 12
     value = b"AT&TFORM", b"DJVU" offset = 12
-    value = b"AT&TFORM", b"DJVI" offset = 12
     value = b"AT&TFORM", b"THUM" offset = 12
 
     format = DrawingExchangeFormatAscii
@@ -351,14 +354,14 @@ signatures! {
     value = b"  0\nSECTION"
 
     format = JpegXl
-    value = b"\x00\x00\x00\x0C\x4A\x58\x4C\x20\x0D\x0A\x87\x0A"
-    value = b"\xFF\x0A"
+    value = b"\0\0\0\x0CJXL \r\n\x87\n"
+    value = b"\xFF\n"
 
     format = KhronosTexture
-    value = b"\xAB\x4B\x54\x58\x20\x31\x31\xBB\x0D\x0A\x1A\x0A"
+    value = b"\xABKTX 11\xBB\r\n\x1A\n"
 
     format = KhronosTexture2
-    value = b"\xAB\x4B\x54\x58\x20\x32\x30\xBB\x0D\x0A\x1A\x0A"
+    value = b"\xABKTX 20\xBB\r\n\x1A\n"
 
     format = MayaAscii
     value = b"//Maya ASCII"
@@ -371,8 +374,8 @@ signatures! {
 
     format = ShoutcastPlaylist
     value = b"[playlist]\r\n"
-    value = b"[playlist]\r"
     value = b"[playlist]\n"
+    value = b"[playlist]\r"
 
     format = XmlShareablePlaylistFormat
     value = b"\xEF\xBB\xBF<playlist"
@@ -392,13 +395,13 @@ signatures! {
     value = b"OggS", b"Speex  " offset = 28
 
     format = OggTheora
-    value = b"OggS", b"\x80\x74\x68\x65\x6F\x72\x61" offset = 28
+    value = b"OggS", b"\x80theora" offset = 28
 
     format = OggVorbis
-    value = b"OggS", b"\x01\x76\x6F\x72\x62\x69\x73" offset = 28
+    value = b"OggS", b"\x01vorbis" offset = 28
 
     format = RadianceHdr
-    value = b"\x23\x3F\x52\x41\x44\x49\x41\x4E\x43\x45\x0A"
+    value = b"#?RADIANCE\n"
 
     format = TiledTilesetXml
     value = b"\xEF\xBB\xBF<tileset"
@@ -421,10 +424,10 @@ signatures! {
     format = InitialGraphicsExchangeSpecification
     value = b"S      1\r\n" offset = 72
     value = b"S0000001\r\n" offset = 72
-    value = b"S      1\r" offset = 72
-    value = b"S0000001\r" offset = 72
     value = b"S      1\n" offset = 72
+    value = b"S      1\r" offset = 72
     value = b"S0000001\n" offset = 72
+    value = b"S0000001\r" offset = 72
 
     format = MicrosoftWorksDatabase
     value = b"\x20\x54\x02\x00\x00\x00\x05\x54\x02\x00"
@@ -434,35 +437,35 @@ signatures! {
     value = b"\xFF\x00\x02\x00\x04\x04\x05\x54\x02\x00"
 
     format = OggMedia
-    value = b"OggS", b"\x01\x76\x69\x64\x65\x6F" offset = 28
+    value = b"OggS", b"\x01video" offset = 28
 
     format = Snappy
-    value = b"\xFF\x06\x00\x00\x73\x4E\x61\x50\x70\x59"
+    value = b"\xFF\x06\0\0sNaPpY"
 
     // 9 bytes
     format = GameBoyColorRom
-    value = b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B" offset = 0x104, b"\x80" offset = 0x143
-    value = b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B" offset = 0x104, b"\xC0" offset = 0x143
+    value = b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B" offset = 260, b"\x80" offset = 323
+    value = b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B" offset = 260, b"\xC0" offset = 323
 
     format = GameGearRom
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x50" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x51" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x5C" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x5E" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x5F" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x60" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x61" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x6C" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x6E" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x6F" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x70" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x71" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x7C" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x7E" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x7F" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 32752, b"\x50" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x51" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x5C" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x5E" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x5F" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x60" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x61" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x6C" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x6E" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x6F" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x70" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x71" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x7C" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x7E" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x7F" offset = 32767
 
     format = Lzop
-    value = b"\x89\x4C\x5A\x4F\x00\x0D\x0A\x1A\x0A"
+    value = b"\x89LZO\0\r\n\x1A\n"
 
     format = MicrosoftVirtualHardDisk
     value = b"connectix"
@@ -472,22 +475,22 @@ signatures! {
     value = b"@echo off"
 
     format = OggFlac
-    value = b"OggS", b"\x7F\x46\x4C\x41\x43" offset = 28
+    value = b"OggS", b"\x7FFLAC" offset = 28
 
     format = OlympusRawFormat
     value = b"\x49\x49\x52\x4F\x08\x00\x00\x00\x18"
 
     format = SegaMasterSystemRom
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x30" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x31" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x3C" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x3E" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x3F" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x40" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x41" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x4C" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x4E" offset = 0x7FFF
-    value = b"TMR SEGA" offset = 0x7FF0, b"\x4F" offset = 0x7FFF
+    value = b"TMR SEGA" offset = 32752, b"\x30" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x31" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x3C" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x3E" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x3F" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x40" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x41" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x4C" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x4E" offset = 32767
+    value = b"TMR SEGA" offset = 32752, b"\x4F" offset = 32767
 
     format = SubripText
     value = b"\xEF\xBB\xBF1\r\n00:"
@@ -503,7 +506,7 @@ signatures! {
     value = b"WEBVTT"
 
     format = WindowsBitmap
-    value = b"BM", b"\x00\x00" offset = 12, b"\x00\x00\x00" offset = 15, b"\x01\x00" offset = 26
+    value = b"BM", b"\0\0" offset = 12, b"\0\0\0" offset = 15, b"\x01\x00" offset = 26
 
     format = XPixmap
     value = b"/* XPM */"
@@ -521,11 +524,11 @@ signatures! {
     value = b"<feed"
 
     format = AudioInterchangeFileFormat
-    value = b"FORM", b"AIFF" offset = 8
     value = b"FORM", b"AIFC" offset = 8
+    value = b"FORM", b"AIFF" offset = 8
 
     format = AudioVideoInterleave
-    value = b"RIFF", b"\x41\x56\x49\x20" offset = 8
+    value = b"RIFF", b"AVI " offset = 8
 
     format = Av1ImageFileFormat
     value = b"ftypavif" offset = 4
@@ -534,13 +537,13 @@ signatures! {
     value = b"ftypavis" offset = 4
 
     format = BroadBandEbook
-    value = b"L\x00R\x00F\x00\x00\x00"
+    value = b"L\0R\0F\0\0\0"
 
     format = CompoundFileBinary
     value = b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"
 
     format = DalvikExecutable
-    value = b"\x64\x65\x78\x0A\x30\x33\x35\x00"
+    value = b"dex\n035\0"
 
     format = ExperimentalComputingFacility
     value = b"gimp xcf"
@@ -556,7 +559,7 @@ signatures! {
     value = b"\x24\xFF\xAE\x51\x69\x9A\xA2\x21" offset = 4
 
     format = GameBoyRom
-    value = b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B" offset = 0x104
+    value = b"\xCE\xED\x66\x66\xCC\x0D\x00\x0B" offset = 260
 
     format = HighEfficiencyImageCoding
     value = b"ftypheic" offset = 4
@@ -595,7 +598,7 @@ signatures! {
     value = b"ftypjpm " offset = 16
 
     format = JpegNetworkGraphics
-    value = b"\x8B\x4A\x4E\x47\x0D\x0A\x1A\x0A"
+    value = b"\x8BJNG\r\n\x1A\n"
 
     format = MayaBinary
     value = b"FOR4", b"MAYA" offset = 8
@@ -641,36 +644,36 @@ signatures! {
     value = b"ftypmp71" offset = 4
 
     format = MultipleImageNetworkGraphics
-    value = b"\x8A\x4D\x4E\x47\x0D\x0A\x1A\x0A"
+    value = b"\x8AMNG\r\n\x1A\n"
 
     format = NikonElectronicFile
-    value = b"\x4D\x4D\x00\x2A", b"\x1C\x00\xFE\x00" offset = 8
-    value = b"\x4D\x4D\x00\x2A", b"\x1F\x00\x0B\x00" offset = 8
     value = b"\x49\x49\x2A\x00", b"\x1C\x00\xFE\x00" offset = 8
     value = b"\x49\x49\x2A\x00", b"\x1F\x00\x0B\x00" offset = 8
+    value = b"\x4D\x4D\x00\x2A", b"\x1C\x00\xFE\x00" offset = 8
+    value = b"\x4D\x4D\x00\x2A", b"\x1F\x00\x0B\x00" offset = 8
 
     format = Nintendo64Rom
-    value = b"\x80\x37\x12\x40\x00\x00\x00\x0F"
-    value = b"\x37\x80\x40\x12\x00\x00\x0F\x00"
     value = b"\x12\x40\x80\x37\x00\x0F\x00\x00"
+    value = b"\x37\x80\x40\x12\x00\x00\x0F\x00"
     value = b"\x40\x12\x37\x80\x0F\x00\x00\x00"
+    value = b"\x80\x37\x12\x40\x00\x00\x00\x0F"
 
     format = NintendoDsRom
-    value = b"\x24\xFF\xAE\x51\x69\x9A\xA2\x21" offset = 0xC0
-    value = b"\xC8\x60\x4F\xE2\x01\x70\x8F\xE2" offset = 0xC0
+    value = b"\x24\xFF\xAE\x51\x69\x9A\xA2\x21" offset = 192
+    value = b"\xC8\x60\x4F\xE2\x01\x70\x8F\xE2" offset = 192
 
     format = PortableNetworkGraphics
-    value = b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"
+    value = b"\x89PNG\r\n\x1A\n"
 
     format = QualcommPurevoice
     value = b"RIFF", b"QLCM" offset = 8
 
     format = Realmedia
-    value = b".RMF\x00\x00\x00\x12"
+    value = b".RMF\0\0\0\x12"
 
     format = RoshalArchive
-    value = b"\x52\x61\x72\x21\x1A\x07\x01\x00"
-    value = b"\x52\x61\x72\x21\x1A\x07\x00"
+    value = b"Rar!\x1A\x07\x01\0"
+    value = b"Rar!\x1A\x07\0"
 
     format = SimpleObjectAccessProtocol
     value = b"\xEF\xBB\xBF<soap"
@@ -684,8 +687,12 @@ signatures! {
     value = b"StuffIt?"
 
     format = TapeArchive
-    value = b"\x75\x73\x74\x61\x72\x00\x30\x30" offset = 257
-    value = b"\x75\x73\x74\x61\x72\x20\x20\x00" offset = 257
+    value = b"ustar\0\x30\x30" offset = 257
+    value = b"ustar  \0" offset = 257
+
+    format = ThirdGenerationPartnershipProject2
+    value = b"ftypKDDI" offset = 4
+    value = b"ftyp3g2" offset = 4
 
     format = UniversalSceneDescriptionBinary
     value = b"PXR-USDC"
@@ -700,8 +707,8 @@ signatures! {
     value = b"RIFF", b"ACON" offset = 8
 
     format = WindowsImagingFormat
-    value = b"MSWIM\x00\x00\x00"
-    value = b"WLPWM\x00\x00\x00"
+    value = b"MSWIM\0\0\0"
+    value = b"WLPWM\0\0\0"
 
     // 7 bytes
     format = AdditiveManufacturingFormat
@@ -771,8 +778,8 @@ signatures! {
     value = b"<kml"
 
     format = MetaInformationEncapsulation
-    value = b"\x7E\x10\x04", b"\x30\x4D\x49\x45" offset = 4
-    value = b"\x7E\x18\x04", b"\x30\x4D\x49\x45" offset = 4
+    value = b"\x7E\x10\x04", b"0MIE" offset = 4
+    value = b"\x7E\x18\x04", b"0MIE" offset = 4
 
     format = Model3dAscii
     value = b"3dmodel"
@@ -808,10 +815,6 @@ signatures! {
     value = b"ftyp3gs" offset = 4
     value = b"ftyp3gt" offset = 4
 
-    format = ThirdGenerationPartnershipProject2
-    value = b"ftyp3g2" offset = 4
-    value = b"ftypKDDI" offset = 4
-
     format = TiledMapXml
     value = b"\xEF\xBB\xBF<map"
     value = b"<map"
@@ -828,15 +831,15 @@ signatures! {
 
     format = AppleQuicktime
     value = b"ftypqt" offset = 4
-    value = b"moov" offset = 4
-    value = b"mdat" offset = 4
-    value = b"wide" offset = 4
-    value = b"skip" offset = 4
     value = b"free" offset = 4
+    value = b"mdat" offset = 4
+    value = b"moov" offset = 4
+    value = b"skip" offset = 4
+    value = b"wide" offset = 4
 
     format = CanonRaw2
-    value = b"\x4D\x4D\x00\x2A", b"CR" offset = 8
     value = b"\x49\x49\x2A\x00", b"CR" offset = 8
+    value = b"\x4D\x4D\x00\x2A", b"CR" offset = 8
 
     format = DesignWebFormat
     value = b"(DWF V"
@@ -845,21 +848,24 @@ signatures! {
     value = b"GIF87a"
     value = b"GIF89a"
 
+    format = MicrosoftWrite
+    value = b"\x31\xBE\x00\x00\x00\xAB"
+    value = b"\x32\xBE\x00\x00\x00\xAB"
+
     format = SevenZip
-    value = b"\x37\x7A\xBC\xAF\x27\x1C"
-    value = b"\x37\x7A\xBC\xAF\x27\x1C"
+    value = b"7z\xBC\xAF\x27\x1C"
 
     format = StereolithographyAscii
     value = b"solid "
 
     format = ThreeDimensionalStudio
-    value = b"MM", b"\x02" offset = 6, b"\x0A" offset = 8, b"\x3D\x3D" offset = 16
+    value = b"MM", b"\x02" offset = 6, b"\n" offset = 8, b"==" offset = 16
 
     format = WordperfectMacro
     value = b"\xFFWPC", b"\x01\x01" offset = 8
 
     format = Xz
-    value = b"\xFD\x37\x7A\x58\x5A\x00"
+    value = b"\xFD7zXZ\0"
 
     // 5 bytes
     format = AdaptiveMultiRate
@@ -869,17 +875,17 @@ signatures! {
     value = b"BZ3v1"
 
     format = EmbeddedOpentype
-    value = b"\x00\x00\x01" offset = 8, b"\x4C\x50" offset = 34
-    value = b"\x01\x00\x02" offset = 8, b"\x4C\x50" offset = 34
-    value = b"\x02\x00\x02" offset = 8, b"\x4C\x50" offset = 34
+    value = b"\x00\x00\x01" offset = 8, b"LP" offset = 34
+    value = b"\x01\x00\x02" offset = 8, b"LP" offset = 34
+    value = b"\x02\x00\x02" offset = 8, b"LP" offset = 34
 
     format = GoogleDraco
     value = b"DRACO"
 
     format = Iso9660
-    value = b"CD001" offset = 0x8001
-    value = b"CD001" offset = 0x8801
-    value = b"CD001" offset = 0x9001
+    value = b"CD001" offset = 32769
+    value = b"CD001" offset = 34817
+    value = b"CD001" offset = 36865
 
     format = Larc
     value = b"-lz2-" offset = 2
@@ -925,21 +931,21 @@ signatures! {
     value = b"\xCA\xFE\xBA\xBE", b"\x11" offset = 7
     value = b"\xCA\xFE\xBA\xBE", b"\x12" offset = 7
     value = b"\xCA\xFE\xBA\xBE", b"\xFF" offset = 7
-    value = b"\xFE\xED\xFA\xCE"
-    value = b"\xFE\xED\xFA\xCF"
     value = b"\xCE\xFA\xED\xFE"
     value = b"\xCF\xFA\xED\xFE"
+    value = b"\xFE\xED\xFA\xCE"
+    value = b"\xFE\xED\xFA\xCF"
 
     format = NintendoSwitchRom
-    value = b"HEAD" offset = 0x100, b"\xFA" offset = 0x10D
-    value = b"HEAD" offset = 0x100, b"\xF8" offset = 0x10D
-    value = b"HEAD" offset = 0x100, b"\xF0" offset = 0x10D
-    value = b"HEAD" offset = 0x100, b"\xE0" offset = 0x10D
-    value = b"HEAD" offset = 0x100, b"\xE1" offset = 0x10D
-    value = b"HEAD" offset = 0x100, b"\xE2" offset = 0x10D
+    value = b"HEAD" offset = 256, b"\xE0" offset = 269
+    value = b"HEAD" offset = 256, b"\xE1" offset = 269
+    value = b"HEAD" offset = 256, b"\xE2" offset = 269
+    value = b"HEAD" offset = 256, b"\xF0" offset = 269
+    value = b"HEAD" offset = 256, b"\xF8" offset = 269
+    value = b"HEAD" offset = 256, b"\xFA" offset = 269
 
     format = Opentype
-    value = b"\x4F\x54\x54\x4F\x00"
+    value = b"OTTO\0"
 
     format = Pmarc
     value = b"-pc1-" offset = 2
@@ -952,7 +958,7 @@ signatures! {
     value = b"%PDF-"
 
     format = RichTextFormat
-    value = b"\x7B\x5C\x72\x74\x66"
+    value = b"{\\rtf"
 
     format = Truetype
     value = b"\x00\x01\x00\x00\x00"
@@ -971,10 +977,10 @@ signatures! {
     value = b"8BPS"
 
     format = Alz
-    value = b"\x41\x4C\x5A\x01"
+    value = b"ALZ\x01"
 
     format = AmigaDiskFile
-    value = b"DOS\x00"
+    value = b"DOS\0"
     value = b"DOS\x01"
     value = b"DOS\x02"
     value = b"DOS\x03"
@@ -1006,32 +1012,32 @@ signatures! {
     value = b"AC10"
 
     format = BetterPortableGraphics
-    value = b"\x42\x50\x47\xFB"
+    value = b"BPG\xFB"
 
     format = BitmapFontBinary
     value = b"BMF\x03"
 
     format = Cabinet
-    value = b"MSCF"
     value = b"ISc("
+    value = b"MSCF"
 
     format = Cineon
     value = b"\x80\x2A\x5F\xD7"
 
     format = Cpio
     value = b"0707"
-    value = b"\xC7\x71"
     value = b"\x71\xC7"
+    value = b"\xC7\x71"
 
     format = DigitalImagingAndCommunicationsInMedicine
-    value = b"\x44\x49\x43\x4D" offset = 128
+    value = b"DICM" offset = 128
 
     format = DigitalPictureExchange
     value = b"SDPX"
     value = b"XPDS"
 
     format = ExecutableAndLinkableFormat
-    value = b"\x7F\x45\x4C\x46"
+    value = b"\x7FELF"
 
     format = ExtensibleArchive
     value = b"xar!"
@@ -1040,7 +1046,7 @@ signatures! {
     value = b"\x1A\x45\xDF\xA3"
 
     format = FlashVideo
-    value = b"\x46\x4C\x56\x01"
+    value = b"FLV\x01"
 
     format = FlexibleAndInteroperableDataTransfer
     value = b".FIT" offset = 8
@@ -1092,7 +1098,7 @@ signatures! {
     value = b"LRZI"
 
     format = LuaBytecode
-    value = b"\x1B\x4C\x75\x61"
+    value = b"\x1BLua"
 
     format = Lz4
     value = b"\x04\x22\x4D\x18"
@@ -1119,8 +1125,8 @@ signatures! {
     value = b"MAC "
 
     format = Mpeg12Video
-    value = b"\x00\x00\x01\xBA"
     value = b"\x00\x00\x01\xB3"
+    value = b"\x00\x00\x01\xBA"
 
     format = Musepack
     value = b"MPCK"
@@ -1130,7 +1136,7 @@ signatures! {
     value = b"MThd"
 
     format = NintendoEntertainmentSystemRom
-    value = b"\x4E\x45\x53\x1A"
+    value = b"NES\x1A"
 
     format = NintendoSwitchExecutable
     value = b"NSO0"
@@ -1157,6 +1163,18 @@ signatures! {
     format = PersonalStorageTable
     value = b"!BDN"
 
+    format = PictureExchange
+    value = b"\x0A\x00\x00", b"\x00" offset = 64
+    value = b"\x0A\x00\x01", b"\x00" offset = 64
+    value = b"\x0A\x02\x00", b"\x00" offset = 64
+    value = b"\x0A\x02\x01", b"\x00" offset = 64
+    value = b"\x0A\x03\x00", b"\x00" offset = 64
+    value = b"\x0A\x03\x01", b"\x00" offset = 64
+    value = b"\x0A\x04\x00", b"\x00" offset = 64
+    value = b"\x0A\x04\x01", b"\x00" offset = 64
+    value = b"\x0A\x05\x00", b"\x00" offset = 64
+    value = b"\x0A\x05\x01", b"\x00" offset = 64
+
     format = QemuCopyOnWrite
     value = b"QFI\xFB"
 
@@ -1179,7 +1197,7 @@ signatures! {
     value = b"SCRM" offset = 44
 
     format = Shapefile
-    value = b"\x00\x00\x27\x0A"
+    value = b"\0\0'\n"
 
     format = SiliconGraphicsMovie
     value = b"MOVI"
@@ -1191,19 +1209,19 @@ signatures! {
     value = b"hsqs"
 
     format = TagImageFileFormat
-    value = b"\x4D\x4D\x00\x2A"
     value = b"\x49\x49\x2A\x00"
-    value = b"\x4D\x4D\x00\x2B"
     value = b"\x49\x49\x2B\x00"
+    value = b"\x4D\x4D\x00\x2A"
+    value = b"\x4D\x4D\x00\x2B"
 
     format = Tasty
     value = b"\x5C\xA1\xAB\x1F"
 
     format = UltimateSoundtrackerModule
-    value = b"M.K." offset = 0x438
+    value = b"M.K." offset = 1080
 
     format = Universal3d
-    value = b"U3D\x00"
+    value = b"U3D\0"
 
     format = Wavpack
     value = b"wvpk"
@@ -1215,7 +1233,7 @@ signatures! {
     value = b"wOF2"
 
     format = WebassemblyBinary
-    value = b"\x00\x61\x73\x6D"
+    value = b"\0asm"
 
     format = WindowsCursor
     value = b"\x00\x00\x02\x00"
@@ -1224,9 +1242,9 @@ signatures! {
     value = b"\x00\x00\x01\x00"
 
     format = WindowsMetafile
-    value = b"\xD7\xCD\xC6\x9A"
-    value = b"\x02\x00\x09\x00"
     value = b"\x01\x00\x09\x00"
+    value = b"\x02\x00\x09\x00"
+    value = b"\xD7\xCD\xC6\x9A"
 
     format = WordperfectDocument
     value = b"\xFFWPC"
@@ -1239,8 +1257,8 @@ signatures! {
     value = b"XBEH"
 
     format = Zip
-    value = b"\x50\x4B\x03\x04"
-    value = b"\x50\x4B\x05\x06"
+    value = b"PK\x03\x04"
+    value = b"PK\x05\x06"
 
     format = Zpaq
     value = b"7kSt"
@@ -1279,56 +1297,56 @@ signatures! {
 
     format = PortableArbitraryMap
     value = b"P7 "
-    value = b"P7\t"
-    value = b"P7\r"
     value = b"P7\n"
+    value = b"P7\r"
+    value = b"P7\t"
 
     format = PortableBitmap
     value = b"P1 "
-    value = b"P1\t"
-    value = b"P1\r"
     value = b"P1\n"
+    value = b"P1\r"
+    value = b"P1\t"
     value = b"P4 "
-    value = b"P4\t"
-    value = b"P4\r"
     value = b"P4\n"
+    value = b"P4\r"
+    value = b"P4\t"
 
     format = PortableFloatmap
     value = b"PF "
-    value = b"PF\t"
-    value = b"PF\r"
     value = b"PF\n"
+    value = b"PF\r"
+    value = b"PF\t"
     value = b"Pf "
-    value = b"Pf\t"
-    value = b"Pf\r"
     value = b"Pf\n"
+    value = b"Pf\r"
+    value = b"Pf\t"
 
     format = PortableGraymap
     value = b"P2 "
-    value = b"P2\t"
-    value = b"P2\r"
     value = b"P2\n"
+    value = b"P2\r"
+    value = b"P2\t"
     value = b"P5 "
-    value = b"P5\t"
-    value = b"P5\r"
     value = b"P5\n"
+    value = b"P5\r"
+    value = b"P5\t"
 
     format = PortablePixmap
     value = b"P3 "
-    value = b"P3\t"
-    value = b"P3\r"
     value = b"P3\n"
+    value = b"P3\r"
+    value = b"P3\t"
     value = b"P6 "
-    value = b"P6\t"
-    value = b"P6\r"
     value = b"P6\n"
+    value = b"P6\r"
+    value = b"P6\t"
 
     format = Seqbox
     value = b"SBx"
 
     format = SmallWebFormat
-    value = b"\x43\x57\x53"
-    value = b"\x46\x57\x53"
+    value = b"CWS"
+    value = b"FWS"
 
     format = Zoo
     value = b"ZOO"
@@ -1354,9 +1372,9 @@ signatures! {
     value = b"\x47" offset = 4, b"\x47" offset = 196
 
     format = CommonObjectFileFormat
+    value = b"\x00\x02"
     value = b"\x4C\x01"
     value = b"\x64\x86"
-    value = b"\x00\x02"
 
     format = DerCertificate
     value = b"\x30\x82"
@@ -1384,6 +1402,6 @@ signatures! {
     value = b"\x01\xDA"
 
     format = UnixCompress
-    value = b"\x1F\xA0"
     value = b"\x1F\x9D"
+    value = b"\x1F\xA0"
 }

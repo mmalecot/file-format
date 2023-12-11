@@ -254,6 +254,12 @@ fn test_panasonic_raw() {
 }
 
 #[test]
+fn test_picture_exchange() {
+    let fmt = FileFormat::from_file("fixtures/image/sample.pcx").unwrap();
+    assert_eq!(fmt, FileFormat::PictureExchange);
+}
+
+#[test]
 fn test_portable_arbitrary_map() {
     let fmt = FileFormat::from_file("fixtures/image/sample.pam").unwrap();
     assert_eq!(fmt, FileFormat::PortableArbitraryMap);

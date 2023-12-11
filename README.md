@@ -9,10 +9,11 @@
 Crate for determining the file format of a given file or stream.
 
 It provides a variety of functions for identifying a wide range of file formats, including ZIP,
-Compound File Binary (CFB), Extensible Markup Language (XML) and more.
+Compound File Binary (CFB), Extensible Markup Language (XML) and much more.
 
-It checks the signature of the file to determine its format. If it is not recognized by its
-signature, it returns the default file format which is Arbitrary Binary Data (BIN).
+It checks the signature of the file to determine its format and intelligently employs specific
+readers when available for accurate identification. If the signature is not recognized, the crate
+falls back to the default file format, which is Arbitrary Binary Data (BIN).
 
 ## Examples
 
@@ -50,8 +51,35 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.22"
+file-format = "0.23"
 ```
+
+## Crate features
+
+All features below are disabled by default.
+
+### Ecosystem features
+
+- `serde` - Adds the ability to serialize and deserialize a `FileFormat` and `Kind` using serde.
+
+### Reader features
+
+These features enable the detection of file formats that require a specific reader for
+identification.
+
+- `reader` - Enables all reader features.
+- `reader-asf` - Enables Advanced Systems Format (ASF) based file formats detection.
+- `reader-cfb` - Enables Compound File Binary (CFB) based file formats detection.
+- `reader-ebml` - Enables Extensible Binary Meta Language (EBML) based file formats detection.
+- `reader-exe` - Enables MS-DOS Executable (EXE) based file formats detection.
+- `reader-mp4` - Enables MPEG-4 Part 14 (MP4) based file formats detection.
+- `reader-pdf` - Enables Portable Document Format (PDF) based file formats detection.
+- `reader-rm` - Enables RealMedia (RM) based file formats detection.
+- `reader-txt` - Enables Plain Text (TXT) detection when the file format is not recognized by its
+  signature. Please note that this feature only detects files containing ASCII/UTF-8-encoded text.
+- `reader-xml` - Enables Extensible Markup Language (XML) based file formats detection. Please note
+  that these file formats may be detected without the feature in certain cases.
+- `reader-zip` - Enables ZIP-based file formats detection.
 
 ## Supported file formats
 
@@ -69,6 +97,7 @@ file-format = "0.22"
 - CD Audio (CDA)
 - Compound File Binary (CFB)
 - Digital Imaging and Communications in Medicine (DICOM)
+- Empty
 - Encapsulated PostScript (EPS)
 - Extensible Binary Meta Language (EBML)
 - Extensible Stylesheet Language Transformations (XSLT)
@@ -237,6 +266,7 @@ file-format = "0.22"
 - Microsoft Works 6 Spreadsheet (XLR)
 - Microsoft Works Spreadsheet (WKS)
 - Microsoft Works Word Processor (WPS)
+- Microsoft Write (WRI)
 - Office Open XML Document (DOCX)
 - Office Open XML Drawing (VSDX)
 - Office Open XML Presentation (PPTX)
@@ -359,6 +389,7 @@ file-format = "0.22"
 - OpenEXR (EXR)
 - OpenRaster (ORA)
 - Panasonic Raw (RW2)
+- Picture Exchange (PCX)
 - Portable Arbitrary Map (PAM)
 - Portable BitMap (PBM)
 - Portable FloatMap (PFM)
@@ -463,6 +494,7 @@ file-format = "0.22"
 - Game Boy ROM (GB)
 - Game Gear ROM (GG)
 - Mega Drive ROM (MD)
+- Neo Geo Pocket Color ROM (NGC)
 - Neo Geo Pocket ROM (NGP)
 - Nintendo 64 ROM (Z64)
 - Nintendo DS ROM (NDS)

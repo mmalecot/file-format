@@ -1,3 +1,24 @@
+# Version 0.23.0 (2023-12-11)
+
+## Fixes
+
+- Fix Neo Geo Pocket ROM (NGP) extension
+
+## Improvements
+
+- Add precision to the JSON Feed signature
+
+## Internal changes
+
+- Improve performance and precision of all readers
+
+## New formats support
+
+- Empty
+- Microsoft Write (WRI)
+- Neo Geo Pocket Color ROM (NGC)
+- Picture Exchange (PCX)
+
 # Version 0.22.0 (2023-11-04)
 
 ## Internal changes

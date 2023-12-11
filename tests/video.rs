@@ -50,7 +50,7 @@ fn test_autodesk_animator_pro() {
 
 #[test]
 fn test_bdav_mpeg2_transport_stream() {
-    let fmt = FileFormat::from_file("fixtures/video/sample.mts").unwrap();
+    let fmt = FileFormat::from_file("fixtures/video/sample.m2ts").unwrap();
     assert_eq!(fmt, FileFormat::BdavMpeg2TransportStream);
 }
 
