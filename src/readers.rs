@@ -832,10 +832,10 @@ impl crate::FileFormat {
         const ENTRY_LIMIT: usize = 1024;
 
         // Signature of the ZIP64 end of central directory locator.
-        const EOCD64_LOCATOR_SIGNATURE: &[u8] = b"\x50\x4B\x06\x07";
+        const EOCD64_LOCATOR_SIGNATURE: &[u8] = b"PK\x06\x07";
 
         // Signature of the end of central directory record.
-        const EOCD_SIGNATURE: &[u8] = b"\x50\x4B\x05\x06";
+        const EOCD_SIGNATURE: &[u8] = b"PK\x05\x06";
 
         // Size of the ZIP64 end of central directory locator.
         const EOCD64_LOCATOR_SIZE: usize = 20;
