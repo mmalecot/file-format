@@ -1117,7 +1117,7 @@ trait DataFind: AsRef<[u8]> {
             bad_byte_table[byte as usize] = target.len() - 1 - index;
         }
 
-        // Boyer-Moore-Horspool algorithm.
+        // Searches for the target sequence using the Boyer-Moore-Horspool algorithm.
         let mut data_index = target.len() - 1;
         while data_index < data.len() {
             let mut target_index = target.len() - 1;
