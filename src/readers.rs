@@ -4,9 +4,11 @@ use std::io::*;
 
 impl crate::FileFormat {
     /// Determines file format from the specified format reader, if any.
-    #[allow(unused_variables)]
     #[inline]
-    pub(crate) fn from_format_reader<R: Read + Seek>(format: Self, reader: R) -> Result<Self> {
+    pub(crate) fn from_format_reader<R: Read + Seek>(
+        format: Self,
+        #[allow(unused_variables)] reader: R,
+    ) -> Result<Self> {
         Ok(match format {
             #[cfg(feature = "reader-asf")]
             Self::AdvancedSystemsFormat => Self::from_asf_reader(reader)?,
@@ -31,9 +33,10 @@ impl crate::FileFormat {
     }
 
     /// Determines file format from a generic reader.
-    #[allow(unused_variables)]
     #[inline]
-    pub(crate) fn from_generic_reader<R: Read + Seek>(reader: R) -> Self {
+    pub(crate) fn from_generic_reader<R: Read + Seek>(
+        #[allow(unused_variables)] reader: R,
+    ) -> Self {
         #[cfg(feature = "reader-txt")]
         {
             Self::from_txt_reader(reader).unwrap_or_default()
@@ -62,19 +65,19 @@ impl crate::FileFormat {
 
         // Binary-encoded GUID for extended content description object
         // (d2d0a440-e307-11d2-97f0-00a0c95ea850).
-        const EXTENDED_CONTENT_DESCRIPTION_OBJECT_GUID: &[u8; 16] =
+        const EXTENDED_CONTENT_DESCRIPTION_OBJECT_GUID: &[u8] =
             b"\x40\xA4\xD0\xD2\x07\xE3\xD2\x11\x97\xF0\x00\xA0\xC9\x5E\xA8\x50";
 
         // Binary-encoded GUID for stream properties object (b7dc0791-a9b7-11cf-8ee6-00c00c205365).
-        const STREAM_PROPERTIES_OBJECT_GUID: &[u8; 16] =
+        const STREAM_PROPERTIES_OBJECT_GUID: &[u8] =
             b"\x91\x07\xDC\xB7\xB7\xA9\xCF\x11\x8E\xE6\x00\xC0\x0C\x20\x53\x65";
 
         // Binary-encoded GUID for audio media (f8699e40-5b4d-11cf-a8fd-00805f5c442b).
-        const AUDIO_MEDIA_GUID: &[u8; 16] =
+        const AUDIO_MEDIA_GUID: &[u8] =
             b"\x40\x9E\x69\xF8\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
 
         // Binary-encoded GUID for video media (bc19efc0-5b4d-11cf-a8fd-00805f5c442b).
-        const VIDEO_MEDIA_GUID: &[u8; 16] =
+        const VIDEO_MEDIA_GUID: &[u8] =
             b"\xC0\xEF\x19\xBC\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
 
         // Creates a buffered reader.
@@ -82,9 +85,7 @@ impl crate::FileFormat {
 
         // Reads the number of header objects.
         reader.seek(SeekFrom::Start(24))?;
-        let mut number_of_header_objects = [0; 4];
-        reader.read_exact(&mut number_of_header_objects)?;
-        let number_of_header_objects = u32::from_le_bytes(number_of_header_objects);
+        let number_of_header_objects = reader.read_u32_le()?;
 
         // Skips the reserved fields.
         reader.seek(SeekFrom::Current(2))?;
@@ -96,23 +97,19 @@ impl crate::FileFormat {
         // Iterates through the header objects.
         for _ in 0..std::cmp::min(OBJECT_LIMIT, number_of_header_objects as usize) {
             // Reads the object GUID.
-            let mut guid = [0; 16];
-            reader.read_exact(&mut guid)?;
+            let guid = reader.read_vec(16)?;
 
             // Reads the object size.
-            let mut size = [0; 8];
-            reader.read_exact(&mut size)?;
-            let size = u64::from_le_bytes(size);
+            let size = reader.read_u64_le()?;
 
             // Checks the object GUID.
-            match &guid {
+            match guid.as_slice() {
                 STREAM_PROPERTIES_OBJECT_GUID => {
                     // Reads the stream type.
-                    let mut stream_type = [0; 16];
-                    reader.read_exact(&mut stream_type)?;
+                    let stream_type = reader.read_vec(16)?;
 
                     // Checks the stream type.
-                    match &stream_type {
+                    match stream_type.as_slice() {
                         AUDIO_MEDIA_GUID => audio_stream = true,
                         VIDEO_MEDIA_GUID => video_stream = true,
                         _ => {}
@@ -123,9 +120,7 @@ impl crate::FileFormat {
                 }
                 EXTENDED_CONTENT_DESCRIPTION_OBJECT_GUID => {
                     // Reads the content descriptors count.
-                    let mut count = [0; 2];
-                    reader.read_exact(&mut count)?;
-                    let count = u16::from_le_bytes(count);
+                    let count = reader.read_u16_le()?;
 
                     // Calculates the offset of the content descriptors.
                     let offset = reader.stream_position()?;
@@ -133,14 +128,11 @@ impl crate::FileFormat {
                     // Iterates through the content descriptors.
                     for _ in 0..std::cmp::min(DESCRIPTOR_LIMIT, count as usize) {
                         // Reads the descriptor name length.
-                        let mut length = [0; 2];
-                        reader.read_exact(&mut length)?;
-                        let length = u16::from_le_bytes(length);
+                        let length = reader.read_u16_le()?;
 
                         // Reads the descriptor name.
-                        let mut name =
-                            vec![0; std::cmp::min(DESCRIPTOR_NAME_LIMIT, length as usize)];
-                        reader.read_exact(&mut name)?;
+                        let name = reader
+                            .read_vec(std::cmp::min(DESCRIPTOR_NAME_LIMIT, length as usize))?;
 
                         // Checks the descriptor name.
                         if name == DVR_MS_DESCRIPTOR_NAME {
@@ -152,9 +144,7 @@ impl crate::FileFormat {
 
                         // Reads the descriptor value length.
                         reader.seek(SeekFrom::Current(remaining_length as i64 + 2))?;
-                        let mut length = [0; 2];
-                        reader.read_exact(&mut length)?;
-                        let length = u16::from_le_bytes(length);
+                        let length = reader.read_u16_le()?;
 
                         // Seeks to the next content descriptor.
                         reader.seek(SeekFrom::Current(length as i64))?;
@@ -191,26 +181,21 @@ impl crate::FileFormat {
 
         // Reads the major version.
         reader.seek(SeekFrom::Start(26))?;
-        let mut major_version = [0; 2];
-        reader.read_exact(&mut major_version)?;
-        let major_version = u16::from_le_bytes(major_version);
+        let major_version = reader.read_u16_le()?;
 
         // Calculates the directory sector size based on the major version.
         let directory_sector_size = if major_version == 0x0003 { 512 } else { 4096 };
 
         // Reads the first directory sector location.
         reader.seek(SeekFrom::Current(20))?;
-        let mut first_directory_sector_location = [0; 4];
-        reader.read_exact(&mut first_directory_sector_location)?;
-        let first_directory_sector_location = u32::from_le_bytes(first_directory_sector_location);
+        let first_directory_sector_location = reader.read_u32_le()?;
 
         // Seeks to the root entry CLSID.
         let offset = directory_sector_size * (1 + first_directory_sector_location as u64) + 80;
         reader.seek(SeekFrom::Start(offset))?;
 
         // Reads the CLSID.
-        let mut clsid = [0; 16];
-        reader.read_exact(&mut clsid)?;
+        let clsid = reader.read_vec(16)?;
         let clsid: String = [3, 2, 1, 0, 5, 4, 7, 6, 8, 9, 10, 11, 12, 13, 14, 15]
             .iter()
             .map(|&index| {
@@ -270,8 +255,7 @@ impl crate::FileFormat {
             _ => {
                 // Reads the second directory entry name.
                 reader.seek(SeekFrom::Current(32))?;
-                let mut second_directory_entry_name = [0; 64];
-                reader.read_exact(&mut second_directory_entry_name)?;
+                let second_directory_entry_name = reader.read_vec(64)?;
 
                 // Checks the second directory entry name.
                 if second_directory_entry_name.starts_with(WPS_ENTRY_NAME) {
@@ -280,8 +264,7 @@ impl crate::FileFormat {
 
                 // Reads the third directory entry name.
                 reader.seek(SeekFrom::Current(64))?;
-                let mut third_directory_entry_name = [0; 64];
-                reader.read_exact(&mut third_directory_entry_name)?;
+                let third_directory_entry_name = reader.read_vec(64)?;
 
                 // Checks the third directory entry name.
                 if third_directory_entry_name.starts_with(XLR_ENTRY_NAME) {
@@ -351,39 +334,35 @@ impl crate::FileFormat {
         let mut element_count = 0;
         while element_count < ELEMENT_LIMIT && reader.stream_position()? < length {
             // Reads the first byte of the element ID.
-            let mut first_byte = [0];
-            reader.read_exact(&mut first_byte)?;
+            let first_byte = reader.read_u8()?;
 
             // Calculates the number of bytes used to represent the element ID.
-            let number_of_bytes = first_byte[0].leading_zeros() + 1;
+            let number_of_bytes = first_byte.leading_zeros() + 1;
             if number_of_bytes > 4 {
                 return Err(Error::new(ErrorKind::InvalidData, "invalid EBML ID"));
             }
 
             // Calculates the element ID value based on the number of bytes.
-            let mut id = first_byte[0] as u32;
+            let mut id = first_byte as u32;
             for _ in 1..number_of_bytes {
-                let mut byte = [0];
-                reader.read_exact(&mut byte)?;
-                id = (id << 8) | (byte[0] as u32);
+                let byte = reader.read_u8()?;
+                id = (id << 8) | (byte as u32);
             }
 
             // Reads the first byte of the element size.
-            let mut first_byte = [0];
-            reader.read_exact(&mut first_byte)?;
+            let first_byte = reader.read_u8()?;
 
             // Calculates the number of bytes used to represent the element size.
-            let number_of_bytes = first_byte[0].leading_zeros() + 1;
+            let number_of_bytes = first_byte.leading_zeros() + 1;
             if number_of_bytes > 8 {
                 return Err(Error::new(ErrorKind::InvalidData, "invalid EBML size"));
             }
 
             // Calculates the element size value based on the number of bytes.
-            let mut size = u64::from(first_byte[0] & ((128 >> first_byte[0].leading_zeros()) - 1));
+            let mut size = u64::from(first_byte & ((128 >> first_byte.leading_zeros()) - 1));
             for _ in 1..number_of_bytes {
-                let mut byte = [0];
-                reader.read_exact(&mut byte)?;
-                size = (size << 8) | (byte[0] as u64);
+                let byte = reader.read_u8()?;
+                size = (size << 8) | (byte as u64);
             }
 
             // Checks the element ID.
@@ -395,8 +374,7 @@ impl crate::FileFormat {
                 | VIDEO_ELEMENT_ID => {}
                 DOC_TYPE_ELEMENT_ID => {
                     // Reads the DocType.
-                    let mut doc_type = vec![0; std::cmp::min(DOC_TYPE_LIMIT, size as usize)];
-                    reader.read_exact(&mut doc_type)?;
+                    let doc_type = reader.read_vec(std::cmp::min(DOC_TYPE_LIMIT, size as usize))?;
 
                     // Checks the DocType.
                     if doc_type.starts_with(b"webm") {
@@ -411,8 +389,7 @@ impl crate::FileFormat {
                 }
                 CODEC_ID_ELEMENT_ID => {
                     // Reads the Codec ID.
-                    let mut codec_id = vec![0; std::cmp::min(CODEC_ID_LIMIT, size as usize)];
-                    reader.read_exact(&mut codec_id)?;
+                    let codec_id = reader.read_vec(std::cmp::min(CODEC_ID_LIMIT, size as usize))?;
 
                     // Checks the Codec ID.
                     if codec_id.starts_with(b"A_") {
@@ -429,11 +406,10 @@ impl crate::FileFormat {
                 }
                 STEREO_MODE_ELEMENT_ID => {
                     // Reads the StereoMode.
-                    let mut stereo_mode = [0];
-                    reader.read_exact(&mut stereo_mode)?;
+                    let stereo_mode = reader.read_u8()?;
 
                     // Checks the StereoMode.
-                    if stereo_mode[0] > 0 {
+                    if stereo_mode > 0 {
                         return Ok(Self::Matroska3dVideo);
                     }
                 }
@@ -468,9 +444,7 @@ impl crate::FileFormat {
 
         // Reads the extended header address.
         reader.seek(SeekFrom::Start(60))?;
-        let mut offset = [0; 4];
-        reader.read_exact(&mut offset)?;
-        let offset = u32::from_le_bytes(offset);
+        let offset = reader.read_u32_le()?;
 
         // Checks that the offset value is not outside the stream's boundaries.
         if offset as u64 + 4 < length {
@@ -478,18 +452,16 @@ impl crate::FileFormat {
             reader.seek(SeekFrom::Start(offset as u64))?;
 
             // Reads the signature.
-            let mut signature = [0; 4];
-            reader.read_exact(&mut signature)?;
+            let signature = reader.read_vec(4)?;
 
             // Checks the signature.
             if &signature == b"PE\0\0" {
                 // Reads the characteristics.
                 reader.seek(SeekFrom::Current(18))?;
-                let mut characteristics = [0; 2];
-                reader.read_exact(&mut characteristics)?;
+                let characteristics = reader.read_u16_le()?;
 
                 // Checks the characteristics
-                return Ok(if u16::from_le_bytes(characteristics) & 0x2000 == 0x2000 {
+                return Ok(if characteristics & 0x2000 == 0x2000 {
                     Self::DynamicLinkLibrary
                 } else {
                     Self::PortableExecutable
@@ -529,34 +501,28 @@ impl crate::FileFormat {
         let mut box_count = 0;
         while box_count < BOX_LIMIT && reader.stream_position()? < length {
             // Reads the box size.
-            let mut size = [0; 4];
-            reader.read_exact(&mut size)?;
-            let size = u32::from_be_bytes(size);
+            let size = reader.read_u32_be()?;
 
             // Reads the box type.
-            let mut box_type = [0; 4];
-            reader.read_exact(&mut box_type)?;
+            let box_type = reader.read_vec(4)?;
 
             // Handles the extended box size.
             let size = if size == 1 {
-                let mut extended_size = [0; 8];
-                reader.read_exact(&mut extended_size)?;
-                u64::from_be_bytes(extended_size)
+                reader.read_u64_be()?
             } else {
                 size as u64
             };
 
             // Checks the box type.
-            match &box_type {
+            match box_type.as_slice() {
                 b"moov" | b"trak" | b"mdia" => {}
                 b"hdlr" => {
                     // Reads the handler type.
                     reader.seek(SeekFrom::Current(8))?;
-                    let mut handler_type = [0; 4];
-                    reader.read_exact(&mut handler_type)?;
+                    let handler_type = reader.read_vec(4)?;
 
                     // Checks the handler type.
-                    match &handler_type {
+                    match handler_type.as_slice() {
                         b"vide" => video_track = true,
                         b"soun" => audio_track = true,
                         b"sbtl" | b"subt" | b"text" => subtitle_track = true,
@@ -626,7 +592,10 @@ impl crate::FileFormat {
             };
 
             // Checks if the buffer contains the AI file format marker.
-            if find(&buffer[start..OVERLAP_SIZE + bytes_read], AI_MARKER).is_some() {
+            if buffer[start..OVERLAP_SIZE + bytes_read]
+                .find(AI_MARKER)
+                .is_some()
+            {
                 return Ok(Self::AdobeIllustratorArtwork);
             }
 
@@ -652,9 +621,7 @@ impl crate::FileFormat {
 
         // Reads the number of headers.
         reader.seek(SeekFrom::Start(14))?;
-        let mut number_of_headers = [0; 4];
-        reader.read_exact(&mut number_of_headers)?;
-        let number_of_headers = u32::from_be_bytes(number_of_headers);
+        let number_of_headers = reader.read_u32_be()?;
 
         // Flags indicating the presence of audio and video streams.
         let mut audio_stream = false;
@@ -663,13 +630,10 @@ impl crate::FileFormat {
         // Iterates through the chunks.
         for _ in 0..std::cmp::min(CHUNK_LIMIT, number_of_headers.saturating_sub(1) as usize) {
             // Reads the chunk type.
-            let mut chunk_type = [0; 4];
-            reader.read_exact(&mut chunk_type)?;
+            let chunk_type = reader.read_vec(4)?;
 
             // Reads the chunk size.
-            let mut chunk_size = [0; 4];
-            reader.read_exact(&mut chunk_size)?;
-            let chunk_size = u32::from_be_bytes(chunk_size);
+            let chunk_size = reader.read_u32_be()?;
 
             // Checks the chunk type.
             if &chunk_type == b"MDPR" {
@@ -678,19 +642,16 @@ impl crate::FileFormat {
 
                 // Reads the size of the stream name.
                 reader.seek(SeekFrom::Current(32))?;
-                let mut stream_name_size = [0; 1];
-                reader.read_exact(&mut stream_name_size)?;
+                let stream_name_size = reader.read_u8()?;
 
                 // Skips the stream name.
-                reader.seek(SeekFrom::Current(stream_name_size[0] as i64))?;
+                reader.seek(SeekFrom::Current(stream_name_size as i64))?;
 
                 // Reads the size of stream mime type.
-                let mut mime_type_size = [0; 1];
-                reader.read_exact(&mut mime_type_size)?;
+                let mime_type_size = reader.read_u8()?;
 
                 // Reads the mime type.
-                let mut mime_type = vec![0; mime_type_size[0] as usize];
-                reader.read_exact(&mut mime_type)?;
+                let mime_type = reader.read_vec(mime_type_size as usize)?;
 
                 // Checks the mime type.
                 if mime_type.starts_with(b"audio/") {
@@ -855,9 +816,9 @@ impl crate::FileFormat {
         // Searches for the end of central directory record.
         let offset = length.saturating_sub(EOCD_MAX_SIZE as u64);
         reader.seek(SeekFrom::Start(offset))?;
-        let mut buffer = vec![0; (length as usize).clamp(EOCD_MIN_SIZE, EOCD_MAX_SIZE)];
-        reader.read_exact(&mut buffer)?;
-        let buffer_index = find(&buffer, EOCD_SIGNATURE)
+        let buffer_index = reader
+            .read_vec((length as usize).clamp(EOCD_MIN_SIZE, EOCD_MAX_SIZE))?
+            .find(EOCD_SIGNATURE)
             .ok_or_else(|| Error::new(ErrorKind::InvalidData, "cannot find the EOCD record"))?;
         let eocd_offset = offset + buffer_index as u64;
 
@@ -868,8 +829,7 @@ impl crate::FileFormat {
             reader.seek(SeekFrom::Start(eocd_offset - EOCD64_LOCATOR_SIZE as u64))?;
 
             // Reads the signature.
-            let mut signature = [0; 4];
-            reader.read_exact(&mut signature)?;
+            let signature = reader.read_vec(4)?;
 
             // Checks the signature.
             if signature == EOCD64_LOCATOR_SIGNATURE {
@@ -881,36 +841,26 @@ impl crate::FileFormat {
         let (number_of_entries, socd_offset) = if zip64 {
             // Reads the offset of the ZIP64 end of central directory record.
             reader.seek(SeekFrom::Current(4))?;
-            let mut eocd64_offset = [0; 8];
-            reader.read_exact(&mut eocd64_offset)?;
-            let eocd64_offset = u64::from_le_bytes(eocd64_offset);
+            let eocd64_offset = reader.read_u64_le()?;
 
             // Reads the number of entries.
             reader.seek(SeekFrom::Start(eocd64_offset + 32))?;
-            let mut number_of_entries = [0; 8];
-            reader.read_exact(&mut number_of_entries)?;
-            let number_of_entries = u64::from_le_bytes(number_of_entries);
+            let number_of_entries = reader.read_u64_le()?;
 
             // Reads the start of central directory offset.
             reader.seek(SeekFrom::Current(8))?;
-            let mut socd_offset = [0; 8];
-            reader.read_exact(&mut socd_offset)?;
-            let socd_offset = u64::from_le_bytes(socd_offset);
+            let socd_offset = reader.read_u64_le()?;
 
             // Returns the result.
             (number_of_entries as usize, socd_offset)
         } else {
             // Reads the number of entries.
             reader.seek(SeekFrom::Start(eocd_offset + 10))?;
-            let mut number_of_entries = [0; 2];
-            reader.read_exact(&mut number_of_entries)?;
-            let number_of_entries = u16::from_le_bytes(number_of_entries);
+            let number_of_entries = reader.read_u16_le()?;
 
             // Reads the start of central directory offset.
             reader.seek(SeekFrom::Current(4))?;
-            let mut socd_offset = [0; 4];
-            reader.read_exact(&mut socd_offset)?;
-            let socd_offset = u32::from_le_bytes(socd_offset);
+            let socd_offset = reader.read_u32_le()?;
 
             // Returns the result.
             (number_of_entries as usize, socd_offset as u64)
@@ -926,40 +876,26 @@ impl crate::FileFormat {
         for _ in 0..std::cmp::min(ENTRY_LIMIT, number_of_entries) {
             // Reads the compressed size.
             reader.seek(SeekFrom::Current(20))?;
-            let mut compressed_size = [0; 4];
-            reader.read_exact(&mut compressed_size)?;
-            let compressed_size = u32::from_le_bytes(compressed_size);
+            let compressed_size = reader.read_u32_le()?;
 
             // Reads the uncompressed size.
-            let mut uncompressed_size = [0; 4];
-            reader.read_exact(&mut uncompressed_size)?;
-            let uncompressed_size = u32::from_le_bytes(uncompressed_size);
+            let uncompressed_size = reader.read_u32_le()?;
 
             // Reads the filename length.
-            let mut filename_length = [0; 2];
-            reader.read_exact(&mut filename_length)?;
-            let filename_length = u16::from_le_bytes(filename_length);
+            let filename_length = reader.read_u16_le()?;
 
             // Reads the extra field length.
-            let mut extra_field_length = [0; 2];
-            reader.read_exact(&mut extra_field_length)?;
-            let extra_field_length = u16::from_le_bytes(extra_field_length);
+            let extra_field_length = reader.read_u16_le()?;
 
             // Reads the file comment length.
-            let mut file_comment_length = [0; 2];
-            reader.read_exact(&mut file_comment_length)?;
-            let file_comment_length = u16::from_le_bytes(file_comment_length);
+            let file_comment_length = reader.read_u16_le()?;
 
             // Reads the relative offset of local file header.
             reader.seek(SeekFrom::Current(8))?;
-            let mut offset = [0; 4];
-            reader.read_exact(&mut offset)?;
-            let offset = u32::from_le_bytes(offset);
+            let offset = reader.read_u32_le()?;
 
             // Reads the filename.
-            let mut filename = vec![0; filename_length as usize];
-            reader.read_exact(&mut filename)?;
-            let filename = String::from_utf8_lossy(&filename).to_string();
+            let filename = reader.read_string(filename_length as usize)?;
 
             // Checks the filename.
             match filename.as_str() {
@@ -978,14 +914,10 @@ impl crate::FileFormat {
                     reader.seek(SeekFrom::Start(offset as u64 + 26))?;
 
                     // Reads the filename length.
-                    let mut filename_length = [0; 2];
-                    reader.read_exact(&mut filename_length)?;
-                    let filename_length = u16::from_le_bytes(filename_length);
+                    let filename_length = reader.read_u16_le()?;
 
                     // Reads the extra field length.
-                    let mut extra_field_length = [0; 2];
-                    reader.read_exact(&mut extra_field_length)?;
-                    let extra_field_length = u16::from_le_bytes(extra_field_length);
+                    let extra_field_length = reader.read_u16_le()?;
 
                     // Seeks to the data.
                     reader.seek(SeekFrom::Current(
@@ -993,9 +925,7 @@ impl crate::FileFormat {
                     ))?;
 
                     // Reads the data.
-                    let mut data = vec![0; compressed_size as usize];
-                    reader.read_exact(&mut data)?;
-                    let data = String::from_utf8_lossy(&data).to_string();
+                    let data = reader.read_string(compressed_size as usize)?;
 
                     // Checks the trimmed data.
                     return Ok(match data.trim() {
@@ -1096,36 +1026,111 @@ impl crate::FileFormat {
     }
 }
 
-/// Finds the first occurrence of a target sequence in a data array.
-#[cfg(any(feature = "reader-pdf", feature = "reader-zip"))]
-pub fn find(data: &[u8], target: &[u8]) -> Option<usize> {
-    // An empty target sequence is always considered to be contained in the data.
-    if target.is_empty() {
-        return Some(0);
+/// A trait providing methods for reading data.
+trait DataRead: Read {
+    /// Reads a string of the specified size.
+    #[inline]
+    fn read_string(&mut self, size: usize) -> Result<String> {
+        Ok(String::from_utf8_lossy(&self.read_vec(size)?).to_string())
     }
 
-    // The data array is shorter than the target sequence, so it cannot contain the target.
-    if data.len() < target.len() {
-        return None;
+    /// Reads a single u8 value.
+    #[inline]
+    fn read_u8(&mut self) -> Result<u8> {
+        let mut buffer = [0; 1];
+        self.read_exact(&mut buffer)?;
+        Ok(buffer[0])
     }
 
-    // Creates a bad byte table to determine the shift distance for each byte in the target pattern.
-    let mut bad_byte_table = [target.len(); 256];
-    for (index, &byte) in target.iter().enumerate().take(target.len() - 1) {
-        bad_byte_table[byte as usize] = target.len() - 1 - index;
+    /// Reads a u16 value in little-endian byte order.
+    #[inline]
+    fn read_u16_le(&mut self) -> Result<u16> {
+        let mut buffer = [0; 2];
+        self.read_exact(&mut buffer)?;
+        Ok(u16::from_le_bytes(buffer))
     }
 
-    // Boyer-Moore-Horspool algorithm.
-    let mut data_index = target.len() - 1;
-    while data_index < data.len() {
-        let mut target_index = target.len() - 1;
-        while target[target_index] == data[data_index - (target.len() - 1 - target_index)] {
-            if target_index == 0 {
-                return Some(data_index - (target.len() - 1));
-            }
-            target_index -= 1;
-        }
-        data_index += bad_byte_table[data[data_index] as usize];
+    /// Reads a u32 value in big-endian byte order.
+    #[inline]
+    fn read_u32_be(&mut self) -> Result<u32> {
+        let mut buffer = [0; 4];
+        self.read_exact(&mut buffer)?;
+        Ok(u32::from_be_bytes(buffer))
     }
-    None
+
+    /// Reads a u32 value in little-endian byte order.
+    #[inline]
+    fn read_u32_le(&mut self) -> Result<u32> {
+        let mut buffer = [0; 4];
+        self.read_exact(&mut buffer)?;
+        Ok(u32::from_le_bytes(buffer))
+    }
+
+    /// Reads a u64 value in big-endian byte order.
+    #[inline]
+    fn read_u64_be(&mut self) -> Result<u64> {
+        let mut buffer = [0; 8];
+        self.read_exact(&mut buffer)?;
+        Ok(u64::from_be_bytes(buffer))
+    }
+
+    /// Reads a u64 value in little-endian byte order.
+    #[inline]
+    fn read_u64_le(&mut self) -> Result<u64> {
+        let mut buffer = [0; 8];
+        self.read_exact(&mut buffer)?;
+        Ok(u64::from_le_bytes(buffer))
+    }
+
+    /// Reads a vec of the specified size.
+    #[inline]
+    fn read_vec(&mut self, size: usize) -> Result<Vec<u8>> {
+        let mut buffer = vec![0; size];
+        self.read_exact(&mut buffer)?;
+        Ok(buffer)
+    }
 }
+
+impl<R: Read> DataRead for R {}
+
+/// A trait providing a method to find a sequence in the data.
+trait DataFind: AsRef<[u8]> {
+    /// Finds the first occurrence of the specified target sequence in the data.
+    fn find(&self, target: &[u8]) -> Option<usize> {
+        // Gets the data.
+        let data = self.as_ref();
+
+        // An empty target sequence is always considered to be contained in the data.
+        if target.is_empty() {
+            return Some(0);
+        }
+
+        // The data array is shorter than the target sequence, so it cannot contain the target.
+        if data.len() < target.len() {
+            return None;
+        }
+
+        // Creates a bad byte table to determine the shift distance for each byte in the target
+        // sequence.
+        let mut bad_byte_table = [target.len(); 256];
+        for (index, &byte) in target.iter().enumerate().take(target.len() - 1) {
+            bad_byte_table[byte as usize] = target.len() - 1 - index;
+        }
+
+        // Boyer-Moore-Horspool algorithm.
+        let mut data_index = target.len() - 1;
+        while data_index < data.len() {
+            let mut target_index = target.len() - 1;
+            while target[target_index] == data[data_index - (target.len() - 1 - target_index)] {
+                if target_index == 0 {
+                    return Some(data_index - (target.len() - 1));
+                }
+                target_index -= 1;
+            }
+            data_index += bad_byte_table[data[data_index] as usize];
+        }
+        None
+    }
+}
+
+impl DataFind for [u8] {}
