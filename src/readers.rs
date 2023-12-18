@@ -1133,4 +1133,4 @@ trait DataFind: AsRef<[u8]> {
     }
 }
 
-impl DataFind for [u8] {}
+impl<A: AsRef<[u8]> + ?Sized> DataFind for A {}
