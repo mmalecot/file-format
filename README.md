@@ -9,7 +9,7 @@
 Crate for determining the file format of a given file or stream.
 
 It provides a variety of functions for identifying a wide range of file formats, including ZIP,
-Compound File Binary (CFB), Extensible Markup Language (XML) and much more.
+Compound File Binary (CFB), Extensible Markup Language (XML) and more.
 
 It checks the signature of the file to determine its format and intelligently employs specific
 readers when available for accurate identification. If the signature is not recognized, the crate
