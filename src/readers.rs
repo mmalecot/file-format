@@ -97,7 +97,7 @@ impl crate::FileFormat {
         // Iterates through the header objects.
         for _ in 0..std::cmp::min(OBJECT_LIMIT, number_of_header_objects as usize) {
             // Reads the object GUID.
-            let guid = reader.read_vec(16)?;
+            let guid = reader.read_bytes(16)?;
 
             // Reads the object size.
             let size = reader.read_u64_le()?;
@@ -106,7 +106,7 @@ impl crate::FileFormat {
             match guid.as_slice() {
                 STREAM_PROPERTIES_OBJECT_GUID => {
                     // Reads the stream type.
-                    let stream_type = reader.read_vec(16)?;
+                    let stream_type = reader.read_bytes(16)?;
 
                     // Checks the stream type.
                     match stream_type.as_slice() {
@@ -132,7 +132,7 @@ impl crate::FileFormat {
 
                         // Reads the descriptor name.
                         let name = reader
-                            .read_vec(std::cmp::min(DESCRIPTOR_NAME_LIMIT, length as usize))?;
+                            .read_bytes(std::cmp::min(DESCRIPTOR_NAME_LIMIT, length as usize))?;
 
                         // Checks the descriptor name.
                         if name == DVR_MS_DESCRIPTOR_NAME {
@@ -195,7 +195,7 @@ impl crate::FileFormat {
         reader.seek(SeekFrom::Start(offset))?;
 
         // Reads the CLSID.
-        let clsid = reader.read_vec(16)?;
+        let clsid = reader.read_bytes(16)?;
         let clsid: String = [3, 2, 1, 0, 5, 4, 7, 6, 8, 9, 10, 11, 12, 13, 14, 15]
             .iter()
             .map(|&index| {
@@ -255,7 +255,7 @@ impl crate::FileFormat {
             _ => {
                 // Reads the second directory entry name.
                 reader.seek(SeekFrom::Current(32))?;
-                let second_directory_entry_name = reader.read_vec(64)?;
+                let second_directory_entry_name = reader.read_bytes(64)?;
 
                 // Checks the second directory entry name.
                 if second_directory_entry_name.starts_with(WPS_ENTRY_NAME) {
@@ -264,7 +264,7 @@ impl crate::FileFormat {
 
                 // Reads the third directory entry name.
                 reader.seek(SeekFrom::Current(64))?;
-                let third_directory_entry_name = reader.read_vec(64)?;
+                let third_directory_entry_name = reader.read_bytes(64)?;
 
                 // Checks the third directory entry name.
                 if third_directory_entry_name.starts_with(XLR_ENTRY_NAME) {
@@ -319,7 +319,7 @@ impl crate::FileFormat {
         // Creates a buffered reader.
         let mut reader = BufReader::new(reader);
 
-        // Gets the stream length.
+        // Retrieves the stream length.
         let length = reader.seek(SeekFrom::End(0))?;
 
         // Rewinds to the beginning of the stream.
@@ -374,7 +374,8 @@ impl crate::FileFormat {
                 | VIDEO_ELEMENT_ID => {}
                 DOC_TYPE_ELEMENT_ID => {
                     // Reads the DocType.
-                    let doc_type = reader.read_vec(std::cmp::min(DOC_TYPE_LIMIT, size as usize))?;
+                    let doc_type =
+                        reader.read_bytes(std::cmp::min(DOC_TYPE_LIMIT, size as usize))?;
 
                     // Checks the DocType.
                     if doc_type.starts_with(b"webm") {
@@ -389,7 +390,8 @@ impl crate::FileFormat {
                 }
                 CODEC_ID_ELEMENT_ID => {
                     // Reads the Codec ID.
-                    let codec_id = reader.read_vec(std::cmp::min(CODEC_ID_LIMIT, size as usize))?;
+                    let codec_id =
+                        reader.read_bytes(std::cmp::min(CODEC_ID_LIMIT, size as usize))?;
 
                     // Checks the Codec ID.
                     if codec_id.starts_with(b"A_") {
@@ -439,7 +441,7 @@ impl crate::FileFormat {
     /// Determines file format from an EXE reader.
     #[cfg(feature = "reader-exe")]
     pub(crate) fn from_exe_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
-        // Gets the stream length.
+        // Retrieves the stream length.
         let length = reader.seek(SeekFrom::End(0))?;
 
         // Reads the extended header address.
@@ -452,7 +454,7 @@ impl crate::FileFormat {
             reader.seek(SeekFrom::Start(offset as u64))?;
 
             // Reads the signature.
-            let signature = reader.read_vec(4)?;
+            let signature = reader.read_bytes(4)?;
 
             // Checks the signature.
             if &signature == b"PE\0\0" {
@@ -486,7 +488,7 @@ impl crate::FileFormat {
         // Creates a buffered reader.
         let mut reader = BufReader::new(reader);
 
-        // Gets the stream length.
+        // Retrieves the stream length.
         let length = reader.seek(SeekFrom::End(0))?;
 
         // Rewinds to the beginning of the stream.
@@ -504,7 +506,7 @@ impl crate::FileFormat {
             let size = reader.read_u32_be()?;
 
             // Reads the box type.
-            let box_type = reader.read_vec(4)?;
+            let box_type = reader.read_bytes(4)?;
 
             // Handles the extended box size.
             let size = if size == 1 {
@@ -519,7 +521,7 @@ impl crate::FileFormat {
                 b"hdlr" => {
                     // Reads the handler type.
                     reader.seek(SeekFrom::Current(8))?;
-                    let handler_type = reader.read_vec(4)?;
+                    let handler_type = reader.read_bytes(4)?;
 
                     // Checks the handler type.
                     match handler_type.as_slice() {
@@ -630,7 +632,7 @@ impl crate::FileFormat {
         // Iterates through the chunks.
         for _ in 0..std::cmp::min(CHUNK_LIMIT, number_of_headers.saturating_sub(1) as usize) {
             // Reads the chunk type.
-            let chunk_type = reader.read_vec(4)?;
+            let chunk_type = reader.read_bytes(4)?;
 
             // Reads the chunk size.
             let chunk_size = reader.read_u32_be()?;
@@ -651,7 +653,7 @@ impl crate::FileFormat {
                 let mime_type_size = reader.read_u8()?;
 
                 // Reads the mime type.
-                let mime_type = reader.read_vec(mime_type_size as usize)?;
+                let mime_type = reader.read_bytes(mime_type_size as usize)?;
 
                 // Checks the mime type.
                 if mime_type.starts_with(b"audio/") {
@@ -810,14 +812,14 @@ impl crate::FileFormat {
         // Creates a buffered reader.
         let mut reader = BufReader::new(reader);
 
-        // Gets the stream length.
+        // Retrieves the stream length.
         let length = reader.seek(SeekFrom::End(0))?;
 
         // Searches for the end of central directory record.
         let offset = length.saturating_sub(EOCD_MAX_SIZE as u64);
         reader.seek(SeekFrom::Start(offset))?;
         let buffer_index = reader
-            .read_vec((length as usize).clamp(EOCD_MIN_SIZE, EOCD_MAX_SIZE))?
+            .read_bytes((length as usize).clamp(EOCD_MIN_SIZE, EOCD_MAX_SIZE))?
             .find(EOCD_SIGNATURE)
             .ok_or_else(|| Error::new(ErrorKind::InvalidData, "cannot find the EOCD record"))?;
         let eocd_offset = offset + buffer_index as u64;
@@ -829,7 +831,7 @@ impl crate::FileFormat {
             reader.seek(SeekFrom::Start(eocd_offset - EOCD64_LOCATOR_SIZE as u64))?;
 
             // Reads the signature.
-            let signature = reader.read_vec(4)?;
+            let signature = reader.read_bytes(4)?;
 
             // Checks the signature.
             if signature == EOCD64_LOCATOR_SIGNATURE {
@@ -1026,15 +1028,23 @@ impl crate::FileFormat {
     }
 }
 
-/// A trait providing methods for reading data.
-trait DataRead: Read {
-    /// Reads a string of the specified size.
+/// A trait extending the standard `Read` trait with methods for convenient data reading.
+trait ReadData: Read {
+    /// Reads a specified number of bytes into a `Vec<u8>`.
     #[inline]
-    fn read_string(&mut self, size: usize) -> Result<String> {
-        Ok(String::from_utf8_lossy(&self.read_vec(size)?).to_string())
+    fn read_bytes(&mut self, count: usize) -> Result<Vec<u8>> {
+        let mut buffer = vec![0; count];
+        self.read_exact(&mut buffer)?;
+        Ok(buffer)
     }
 
-    /// Reads a single u8 value.
+    /// Reads a specified number of bytes and converts them into a `String`.
+    #[inline]
+    fn read_string(&mut self, count: usize) -> Result<String> {
+        Ok(String::from_utf8_lossy(&self.read_bytes(count)?).to_string())
+    }
+
+    /// Reads a single `u8` value.
     #[inline]
     fn read_u8(&mut self) -> Result<u8> {
         let mut buffer = [0; 1];
@@ -1042,7 +1052,7 @@ trait DataRead: Read {
         Ok(buffer[0])
     }
 
-    /// Reads a u16 value in little-endian byte order.
+    /// Reads a `u16` value in little-endian byte order.
     #[inline]
     fn read_u16_le(&mut self) -> Result<u16> {
         let mut buffer = [0; 2];
@@ -1050,7 +1060,7 @@ trait DataRead: Read {
         Ok(u16::from_le_bytes(buffer))
     }
 
-    /// Reads a u32 value in big-endian byte order.
+    /// Reads a `u32` value in big-endian byte order.
     #[inline]
     fn read_u32_be(&mut self) -> Result<u32> {
         let mut buffer = [0; 4];
@@ -1058,7 +1068,7 @@ trait DataRead: Read {
         Ok(u32::from_be_bytes(buffer))
     }
 
-    /// Reads a u32 value in little-endian byte order.
+    /// Reads a `u32` value in little-endian byte order.
     #[inline]
     fn read_u32_le(&mut self) -> Result<u32> {
         let mut buffer = [0; 4];
@@ -1066,7 +1076,7 @@ trait DataRead: Read {
         Ok(u32::from_le_bytes(buffer))
     }
 
-    /// Reads a u64 value in big-endian byte order.
+    /// Reads a `u64` value in big-endian byte order.
     #[inline]
     fn read_u64_be(&mut self) -> Result<u64> {
         let mut buffer = [0; 8];
@@ -1074,63 +1084,59 @@ trait DataRead: Read {
         Ok(u64::from_be_bytes(buffer))
     }
 
-    /// Reads a u64 value in little-endian byte order.
+    /// Reads a `u64` value in little-endian byte order.
     #[inline]
     fn read_u64_le(&mut self) -> Result<u64> {
         let mut buffer = [0; 8];
         self.read_exact(&mut buffer)?;
         Ok(u64::from_le_bytes(buffer))
     }
-
-    /// Reads a vec of the specified size.
-    #[inline]
-    fn read_vec(&mut self, size: usize) -> Result<Vec<u8>> {
-        let mut buffer = vec![0; size];
-        self.read_exact(&mut buffer)?;
-        Ok(buffer)
-    }
 }
 
-impl<R: Read> DataRead for R {}
+/// Allows any type `R` that implements the `Read` trait to automatically benefit from the
+/// additional methods provided by the `ReadData` trait.
+impl<R: Read> ReadData for R {}
 
-/// A trait providing a method to find a sequence in the data.
-trait DataFind: AsRef<[u8]> {
-    /// Finds the first occurrence of the specified target sequence in the data.
-    fn find(&self, target: &[u8]) -> Option<usize> {
-        // Gets the data.
+/// A trait for finding a byte pattern within data that can be represented as a slice of bytes.
+trait FindBytes: AsRef<[u8]> {
+    /// Searches for the specified byte pattern and returns the index of the first occurrence.
+    fn find<P: AsRef<[u8]>>(&self, pattern: P) -> Option<usize> {
+        // Retrieves references to data and pattern.
         let data = self.as_ref();
+        let pattern = pattern.as_ref();
 
-        // An empty target sequence is always considered to be contained in the data.
-        if target.is_empty() {
+        // An empty pattern is always considered to be contained in the data.
+        if pattern.is_empty() {
             return Some(0);
         }
 
-        // The data array is shorter than the target sequence, so it cannot contain the target.
-        if data.len() < target.len() {
+        // The data is shorter than the pattern, so it cannot contain it.
+        if data.len() < pattern.len() {
             return None;
         }
 
-        // Creates a bad byte table to determine the shift distance for each byte in the target
-        // sequence.
-        let mut bad_byte_table = [target.len(); 256];
-        for (index, &byte) in target.iter().enumerate().take(target.len() - 1) {
-            bad_byte_table[byte as usize] = target.len() - 1 - index;
+        // Creates a shift table for efficient pattern matching.
+        let mut shift_table = [pattern.len(); 256];
+        for (index, &byte) in pattern.iter().enumerate().take(pattern.len() - 1) {
+            shift_table[byte as usize] = pattern.len() - 1 - index;
         }
 
-        // Searches for the target sequence using the Boyer-Moore-Horspool algorithm.
-        let mut data_index = target.len() - 1;
+        // Searches for the pattern using the Boyer-Moore-Horspool algorithm.
+        let mut data_index = pattern.len() - 1;
         while data_index < data.len() {
-            let mut target_index = target.len() - 1;
-            while target[target_index] == data[data_index - (target.len() - 1 - target_index)] {
+            let mut target_index = pattern.len() - 1;
+            while pattern[target_index] == data[data_index - (pattern.len() - 1 - target_index)] {
                 if target_index == 0 {
-                    return Some(data_index - (target.len() - 1));
+                    return Some(data_index - (pattern.len() - 1));
                 }
                 target_index -= 1;
             }
-            data_index += bad_byte_table[data[data_index] as usize];
+            data_index += shift_table[data[data_index] as usize];
         }
         None
     }
 }
 
-impl<A: AsRef<[u8]> + ?Sized> DataFind for A {}
+/// Allows any type `A` that implements the `AsRef<[u8]>` trait to benefit from the additional
+/// `find` method provided by the `FindBytes` trait.
+impl<A: AsRef<[u8]> + ?Sized> FindBytes for A {}
