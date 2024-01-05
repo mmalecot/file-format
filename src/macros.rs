@@ -1,4 +1,4 @@
-//! Macros for generating [FileFormat](crate::FileFormat) enum and associated methods.
+//! Macros for generating the [FileFormat](crate::FileFormat) enum and associated methods.
 
 /// Generates the [FileFormat](crate::FileFormat) enum with methods for retrieving information.
 ///
