@@ -59,26 +59,18 @@ impl crate::FileFormat {
         // Maximum number of objects that can be processed by the reader.
         const OBJECT_LIMIT: usize = 256;
 
-        // UTF-16-encoded descriptor name for DVR-MS file format (DVR File Version).
-        const DVR_MS_DESCRIPTOR_NAME: &[u8] =
-            b"D\0V\0R\0 \0F\0i\0l\0e\0 \0V\0e\0r\0s\0i\0o\0n\0\0\0";
+        // GUID for extended content description object.
+        const EXTENDED_CONTENT_DESCRIPTION_OBJECT_GUID: &str =
+            "d2d0a440-e307-11d2-97f0-00a0c95ea850";
 
-        // Binary-encoded GUID for extended content description object
-        // (d2d0a440-e307-11d2-97f0-00a0c95ea850).
-        const EXTENDED_CONTENT_DESCRIPTION_OBJECT_GUID: &[u8] =
-            b"\x40\xA4\xD0\xD2\x07\xE3\xD2\x11\x97\xF0\x00\xA0\xC9\x5E\xA8\x50";
+        // GUID for stream properties object.
+        const STREAM_PROPERTIES_OBJECT_GUID: &str = "b7dc0791-a9b7-11cf-8ee6-00c00c205365";
 
-        // Binary-encoded GUID for stream properties object (b7dc0791-a9b7-11cf-8ee6-00c00c205365).
-        const STREAM_PROPERTIES_OBJECT_GUID: &[u8] =
-            b"\x91\x07\xDC\xB7\xB7\xA9\xCF\x11\x8E\xE6\x00\xC0\x0C\x20\x53\x65";
+        // GUID for audio media.
+        const AUDIO_MEDIA_GUID: &str = "f8699e40-5b4d-11cf-a8fd-00805f5c442b";
 
-        // Binary-encoded GUID for audio media (f8699e40-5b4d-11cf-a8fd-00805f5c442b).
-        const AUDIO_MEDIA_GUID: &[u8] =
-            b"\x40\x9E\x69\xF8\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
-
-        // Binary-encoded GUID for video media (bc19efc0-5b4d-11cf-a8fd-00805f5c442b).
-        const VIDEO_MEDIA_GUID: &[u8] =
-            b"\xC0\xEF\x19\xBC\x4D\x5B\xCF\x11\xA8\xFD\x00\x80\x5F\x5C\x44\x2B";
+        // GUID for video media.
+        const VIDEO_MEDIA_GUID: &str = "bc19efc0-5b4d-11cf-a8fd-00805f5c442b";
 
         // Creates a buffered reader.
         let mut reader = BufReader::new(reader);
@@ -97,19 +89,19 @@ impl crate::FileFormat {
         // Iterates through the header objects.
         for _ in 0..std::cmp::min(OBJECT_LIMIT, number_of_header_objects as usize) {
             // Reads the object GUID.
-            let guid = reader.read_bytes(16)?;
+            let guid = reader.read_uuid()?;
 
             // Reads the object size.
             let size = reader.read_u64_le()?;
 
             // Checks the object GUID.
-            match guid.as_slice() {
+            match guid.as_str() {
                 STREAM_PROPERTIES_OBJECT_GUID => {
                     // Reads the stream type.
-                    let stream_type = reader.read_bytes(16)?;
+                    let stream_type = reader.read_uuid()?;
 
                     // Checks the stream type.
-                    match stream_type.as_slice() {
+                    match stream_type.as_str() {
                         AUDIO_MEDIA_GUID => audio_stream = true,
                         VIDEO_MEDIA_GUID => video_stream = true,
                         _ => {}
@@ -135,7 +127,7 @@ impl crate::FileFormat {
                             .read_bytes(std::cmp::min(DESCRIPTOR_NAME_LIMIT, length as usize))?;
 
                         // Checks the descriptor name.
-                        if name == DVR_MS_DESCRIPTOR_NAME {
+                        if name == b"D\0V\0R\0 \0F\0i\0l\0e\0 \0V\0e\0r\0s\0i\0o\0n\0\0\0" {
                             return Ok(Self::MicrosoftDigitalVideoRecording);
                         }
 
@@ -173,12 +165,6 @@ impl crate::FileFormat {
     /// Determines file format from a CFB reader.
     #[cfg(feature = "reader-cfb")]
     pub(crate) fn from_cfb_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
-        // UTF-16-encoded entry name for WPS file format (MatOST).
-        const WPS_ENTRY_NAME: &[u8] = b"M\0a\0t\0O\0S\0T\0";
-
-        // UTF-16-encoded entry name for XLR file format (WksSSWorkBook).
-        const XLR_ENTRY_NAME: &[u8] = b"W\0k\0s\0S\0S\0W\0o\0r\0k\0B\0o\0o\0k\0";
-
         // Reads the major version.
         reader.seek(SeekFrom::Start(26))?;
         let major_version = reader.read_u16_le()?;
@@ -195,17 +181,7 @@ impl crate::FileFormat {
         reader.seek(SeekFrom::Start(offset))?;
 
         // Reads the CLSID.
-        let clsid = reader.read_bytes(16)?;
-        let clsid: String = [3, 2, 1, 0, 5, 4, 7, 6, 8, 9, 10, 11, 12, 13, 14, 15]
-            .iter()
-            .map(|&index| {
-                if index == 5 || index == 7 || index == 8 || index == 10 {
-                    format!("-{:02x}", clsid[index])
-                } else {
-                    format!("{:02x}", clsid[index])
-                }
-            })
-            .collect();
+        let clsid = reader.read_uuid()?;
 
         // Determines the file format based on the CLSID.
         Ok(match clsid.as_str() {
@@ -255,19 +231,19 @@ impl crate::FileFormat {
             _ => {
                 // Reads the second directory entry name.
                 reader.seek(SeekFrom::Current(32))?;
-                let second_directory_entry_name = reader.read_bytes(64)?;
+                let directory_entry_name = reader.read_bytes(64)?;
 
                 // Checks the second directory entry name.
-                if second_directory_entry_name.starts_with(WPS_ENTRY_NAME) {
+                if directory_entry_name.starts_with(b"M\0a\0t\0O\0S\0T\0") {
                     return Ok(Self::MicrosoftWorksWordProcessor);
                 }
 
                 // Reads the third directory entry name.
                 reader.seek(SeekFrom::Current(64))?;
-                let third_directory_entry_name = reader.read_bytes(64)?;
+                let directory_entry_name = reader.read_bytes(64)?;
 
                 // Checks the third directory entry name.
-                if third_directory_entry_name.starts_with(XLR_ENTRY_NAME) {
+                if directory_entry_name.starts_with(b"W\0k\0s\0S\0S\0W\0o\0r\0k\0B\0o\0o\0k\0") {
                     return Ok(Self::MicrosoftWorks6Spreadsheet);
                 }
 
@@ -1042,6 +1018,22 @@ trait ReadData: Read {
     #[inline]
     fn read_string(&mut self, count: usize) -> Result<String> {
         Ok(String::from_utf8_lossy(&self.read_bytes(count)?).to_string())
+    }
+
+    /// Reads a UUID and decodes it into a hyphenated `String`.
+    #[inline]
+    fn read_uuid(&mut self) -> Result<String> {
+        let buffer = self.read_bytes(16)?;
+        Ok([3, 2, 1, 0, 5, 4, 7, 6, 8, 9, 10, 11, 12, 13, 14, 15]
+        .iter()
+        .map(|&index| {
+            if index == 5 || index == 7 || index == 8 || index == 10 {
+                format!("-{:02x}", buffer[index])
+            } else {
+                format!("{:02x}", buffer[index])
+            }
+        })
+        .collect())
     }
 
     /// Reads a single `u8` value.
