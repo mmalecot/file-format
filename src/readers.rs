@@ -89,7 +89,7 @@ impl crate::FileFormat {
         // Iterates through the header objects.
         for _ in 0..std::cmp::min(OBJECT_LIMIT, number_of_header_objects as usize) {
             // Reads the object GUID.
-            let guid = reader.read_uuid()?;
+            let guid = reader.read_guid()?;
 
             // Reads the object size.
             let size = reader.read_u64_le()?;
@@ -98,7 +98,7 @@ impl crate::FileFormat {
             match guid.as_str() {
                 STREAM_PROPERTIES_OBJECT_GUID => {
                     // Reads the stream type.
-                    let stream_type = reader.read_uuid()?;
+                    let stream_type = reader.read_guid()?;
 
                     // Checks the stream type.
                     match stream_type.as_str() {
@@ -181,7 +181,7 @@ impl crate::FileFormat {
         reader.seek(SeekFrom::Start(offset))?;
 
         // Reads the CLSID.
-        let clsid = reader.read_uuid()?;
+        let clsid = reader.read_guid()?;
 
         // Determines the file format based on the CLSID.
         Ok(match clsid.as_str() {
@@ -1014,15 +1014,9 @@ trait ReadData: Read {
         Ok(buffer)
     }
 
-    /// Reads a specified number of bytes and converts them into a `String`.
+    /// Reads a GUID and converts it into a hyphenated `String`.
     #[inline]
-    fn read_string(&mut self, count: usize) -> Result<String> {
-        Ok(String::from_utf8_lossy(&self.read_bytes(count)?).to_string())
-    }
-
-    /// Reads a UUID and decodes it into a hyphenated `String`.
-    #[inline]
-    fn read_uuid(&mut self) -> Result<String> {
+    fn read_guid(&mut self) -> Result<String> {
         let buffer = self.read_bytes(16)?;
         Ok([3, 2, 1, 0, 5, 4, 7, 6, 8, 9, 10, 11, 12, 13, 14, 15]
             .iter()
@@ -1034,6 +1028,12 @@ trait ReadData: Read {
                 }
             })
             .collect())
+    }
+
+    /// Reads a specified number of bytes and converts them into a `String`.
+    #[inline]
+    fn read_string(&mut self, count: usize) -> Result<String> {
+        Ok(String::from_utf8_lossy(&self.read_bytes(count)?).to_string())
     }
 
     /// Reads a single `u8` value.
