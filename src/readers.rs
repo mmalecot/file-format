@@ -1025,15 +1025,15 @@ trait ReadData: Read {
     fn read_uuid(&mut self) -> Result<String> {
         let buffer = self.read_bytes(16)?;
         Ok([3, 2, 1, 0, 5, 4, 7, 6, 8, 9, 10, 11, 12, 13, 14, 15]
-        .iter()
-        .map(|&index| {
-            if index == 5 || index == 7 || index == 8 || index == 10 {
-                format!("-{:02x}", buffer[index])
-            } else {
-                format!("{:02x}", buffer[index])
-            }
-        })
-        .collect())
+            .iter()
+            .map(|&index| {
+                if index == 5 || index == 7 || index == 8 || index == 10 {
+                    format!("-{:02x}", buffer[index])
+                } else {
+                    format!("{:02x}", buffer[index])
+                }
+            })
+            .collect())
     }
 
     /// Reads a single `u8` value.
