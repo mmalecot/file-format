@@ -328,7 +328,7 @@ pub enum Kind {
     Archive,
     /// Musics, sound effects, and spoken audio recordings.
     Audio,
-    /// Ebooks.
+    /// Electronic books.
     Book,
     /// Digital certificates.
     Certificate,
@@ -338,8 +338,7 @@ pub enum Kind {
     Database,
     /// Floppy disk images, optical disc images and virtual machine disks.
     Disk,
-    /// Word processing documents, spreadsheets, presentations, document templates, diagrams,
-    /// charts, and other formatted documents.
+    /// Word processing, desktop publishing, spreadsheets, presentations, diagrams and charts.
     Document,
     /// Machine-executable codes, virtual machine codes and shared libraries.
     Executable,
@@ -347,14 +346,13 @@ pub enum Kind {
     Font,
     /// Collections of geospatial features, GPS tracks and other location-related files.
     Geospatial,
-    /// Photographs, illustrations, and other types of image files.
+    /// Animated images, icons, cursors, raster graphics and vector graphics.
     Image,
     /// 3D models, CAD drawings, and other types of files used for creating or displaying 3D images.
     Model,
-    /// Archives or other containers that bundle programs and resources that can be run on target
-    /// environments.
+    /// Collections of files bundled together for software distribution.
     Package,
-    /// Lists of audio or video files that are played in a specific order.
+    /// Lists of audio or video files, organized in a specific order for sequential playback.
     Playlist,
     /// Copies of a read-only memory chip of computers, cartridges, or other electronic devices.
     Rom,
