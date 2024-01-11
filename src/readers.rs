@@ -1008,8 +1008,8 @@ impl crate::FileFormat {
 trait ReadData: Read {
     /// Reads a specified number of bytes into a `Vec<u8>`.
     #[inline]
-    fn read_bytes(&mut self, count: usize) -> Result<Vec<u8>> {
-        let mut buffer = vec![0; count];
+    fn read_bytes(&mut self, size: usize) -> Result<Vec<u8>> {
+        let mut buffer = vec![0; size];
         self.read_exact(&mut buffer)?;
         Ok(buffer)
     }
@@ -1032,8 +1032,8 @@ trait ReadData: Read {
 
     /// Reads a specified number of bytes and converts them into a `String`.
     #[inline]
-    fn read_string(&mut self, count: usize) -> Result<String> {
-        Ok(String::from_utf8_lossy(&self.read_bytes(count)?).to_string())
+    fn read_string(&mut self, size: usize) -> Result<String> {
+        Ok(String::from_utf8_lossy(&self.read_bytes(size)?).to_string())
     }
 
     /// Reads a single `u8` value.
