@@ -250,6 +250,8 @@ impl FileFormat {
     ///
     /// # Examples
     ///
+    /// Basic usage:
+    ///
     /// ```no_run
     /// use file_format::FileFormat;
     ///
@@ -265,6 +267,8 @@ impl FileFormat {
     /// Determines file format from a reader.
     ///
     /// # Examples
+    ///
+    /// Basic usage:
     ///
     /// ```
     /// use file_format::FileFormat;

@@ -39,6 +39,8 @@ macro_rules! formats {
             ///
             /// # Examples
             ///
+            /// Basic usage:
+            ///
             /// ```
             /// use file_format::FileFormat;
             ///
@@ -59,6 +61,8 @@ macro_rules! formats {
             /// share the same short name.
             ///
             /// # Examples
+            ///
+            /// Basic usage:
             ///
             /// ```
             /// use file_format::FileFormat;
@@ -81,6 +85,8 @@ macro_rules! formats {
             ///
             /// # Examples
             ///
+            /// Basic usage:
+            ///
             /// ```
             /// use file_format::FileFormat;
             ///
@@ -101,6 +107,8 @@ macro_rules! formats {
             ///
             /// # Examples
             ///
+            /// Basic usage:
+            ///
             /// ```
             /// use file_format::FileFormat;
             ///
@@ -118,6 +126,8 @@ macro_rules! formats {
             /// Returns the [Kind](crate::Kind) of the file format.
             ///
             /// # Examples
+            ///
+            /// Basic usage:
             ///
             /// ```
             /// use file_format::{FileFormat, Kind};
