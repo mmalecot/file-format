@@ -57,7 +57,7 @@ macro_rules! formats {
 
             /// Returns the short name of the file format.
             ///
-            /// Note: This information is not necessarily unique, as multiple file formats might
+            /// Note: this information is not necessarily unique, as multiple file formats might
             /// share the same short name.
             ///
             /// # Examples
@@ -81,7 +81,7 @@ macro_rules! formats {
 
             /// Returns the common media type (formerly known as MIME type) of the file format.
             ///
-            /// Note: Some media types may not be defined in the IANA registry.
+            /// Note: some media types may not be defined in the IANA registry.
             ///
             /// # Examples
             ///
@@ -103,7 +103,7 @@ macro_rules! formats {
 
             /// Returns the common extension of the file format.
             ///
-            /// Note: This information is never empty.
+            /// Note: this information is never empty.
             ///
             /// # Examples
             ///
