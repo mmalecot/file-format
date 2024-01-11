@@ -42,8 +42,8 @@ macro_rules! formats {
             /// ```
             /// use file_format::FileFormat;
             ///
-            /// let format = FileFormat::Mpeg12AudioLayer3;
-            /// assert_eq!(format.name(), "MPEG-1/2 Audio Layer 3");
+            /// let fmt = FileFormat::Mpeg12AudioLayer3;
+            /// assert_eq!(fmt.name(), "MPEG-1/2 Audio Layer 3");
             ///```
             pub const fn name(&self) -> &str {
                 match self {
@@ -63,8 +63,8 @@ macro_rules! formats {
             /// ```
             /// use file_format::FileFormat;
             ///
-            /// let format = FileFormat::MusicalInstrumentDigitalInterface;
-            /// assert_eq!(format.short_name(), Some("MIDI"));
+            /// let fmt = FileFormat::MusicalInstrumentDigitalInterface;
+            /// assert_eq!(fmt.short_name(), Some("MIDI"));
             ///```
             pub const fn short_name(&self) -> Option<&str> {
                 match self {
@@ -84,8 +84,8 @@ macro_rules! formats {
             /// ```
             /// use file_format::FileFormat;
             ///
-            /// let format = FileFormat::Zstandard;
-            /// assert_eq!(format.media_type(), "application/zstd");
+            /// let fmt = FileFormat::Zstandard;
+            /// assert_eq!(fmt.media_type(), "application/zstd");
             ///```
             pub const fn media_type(&self) -> &str {
                 match self {
@@ -104,8 +104,8 @@ macro_rules! formats {
             /// ```
             /// use file_format::FileFormat;
             ///
-            /// let format = FileFormat::WindowsMediaVideo;
-            /// assert_eq!(format.extension(), "wmv");
+            /// let fmt = FileFormat::WindowsMediaVideo;
+            /// assert_eq!(fmt.extension(), "wmv");
             ///```
             pub const fn extension(&self) -> &str {
                 match self {
@@ -122,8 +122,8 @@ macro_rules! formats {
             /// ```
             /// use file_format::{FileFormat, Kind};
             ///
-            /// let format = FileFormat::Zip;
-            /// assert_eq!(format.kind(), Kind::Archive);
+            /// let fmt = FileFormat::Zip;
+            /// assert_eq!(fmt.kind(), Kind::Archive);
             ///```
             pub const fn kind(&self) -> crate::Kind {
                 match self {

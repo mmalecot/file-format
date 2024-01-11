@@ -7,7 +7,7 @@ It provides a variety of functions for identifying a wide range of file formats,
 
 It checks the signature of the file to determine its format and intelligently employs specific
 readers when available for accurate identification. If the signature is not recognized, the crate
-falls back to the default file format, which is
+falls back to the [default](`FileFormat::default`) file format, which is
 [Arbitrary Binary Data (BIN)](`FileFormat::ArbitraryBinaryData`).
 
 # Examples
@@ -17,13 +17,13 @@ Determines from a file:
 ```no_run
 use file_format::{FileFormat, Kind};
 
-let format = FileFormat::from_file("fixtures/document/sample.pdf")?;
-assert_eq!(format, FileFormat::PortableDocumentFormat);
-assert_eq!(format.name(), "Portable Document Format");
-assert_eq!(format.short_name(), Some("PDF"));
-assert_eq!(format.media_type(), "application/pdf");
-assert_eq!(format.extension(), "pdf");
-assert_eq!(format.kind(), Kind::Document);
+let fmt = FileFormat::from_file("fixtures/document/sample.pdf")?;
+assert_eq!(fmt, FileFormat::PortableDocumentFormat);
+assert_eq!(fmt.name(), "Portable Document Format");
+assert_eq!(fmt.short_name(), Some("PDF"));
+assert_eq!(fmt.media_type(), "application/pdf");
+assert_eq!(fmt.extension(), "pdf");
+assert_eq!(fmt.kind(), Kind::Document);
 # Ok::<(), std::io::Error>(())
 ```
 
@@ -32,13 +32,13 @@ Determines from bytes:
 ```
 use file_format::{FileFormat, Kind};
 
-let format = FileFormat::from_bytes(&[0xFF, 0xD8, 0xFF]);
-assert_eq!(format, FileFormat::JointPhotographicExpertsGroup);
-assert_eq!(format.name(), "Joint Photographic Experts Group");
-assert_eq!(format.short_name(), Some("JPEG"));
-assert_eq!(format.media_type(), "image/jpeg");
-assert_eq!(format.extension(), "jpg");
-assert_eq!(format.kind(), Kind::Image);
+let fmt = FileFormat::from_bytes(&[0xFF, 0xD8, 0xFF]);
+assert_eq!(fmt, FileFormat::JointPhotographicExpertsGroup);
+assert_eq!(fmt.name(), "Joint Photographic Experts Group");
+assert_eq!(fmt.short_name(), Some("JPEG"));
+assert_eq!(fmt.media_type(), "image/jpeg");
+assert_eq!(fmt.extension(), "jpg");
+assert_eq!(fmt.kind(), Kind::Image);
 ```
 
 # Crate features
@@ -227,8 +227,8 @@ impl FileFormat {
     /// ```
     /// use file_format::FileFormat;
     ///
-    /// let format = FileFormat::from_bytes(b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A");
-    /// assert_eq!(format, FileFormat::PortableNetworkGraphics);
+    /// let fmt = FileFormat::from_bytes(b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A");
+    /// assert_eq!(fmt, FileFormat::PortableNetworkGraphics);
     ///```
     ///
     /// Detects from a zeroed buffer:
@@ -236,8 +236,8 @@ impl FileFormat {
     /// ```
     /// use file_format::FileFormat;
     ///
-    /// let format = FileFormat::from_bytes(&[0; 1000]);
-    /// assert_eq!(format, FileFormat::ArbitraryBinaryData);
+    /// let fmt = FileFormat::from_bytes(&[0; 1000]);
+    /// assert_eq!(fmt, FileFormat::ArbitraryBinaryData);
     ///```
     ///
     /// [default value]: FileFormat::default
@@ -253,8 +253,8 @@ impl FileFormat {
     /// ```no_run
     /// use file_format::FileFormat;
     ///
-    /// let format = FileFormat::from_file("fixtures/video/sample.avi")?;
-    /// assert_eq!(format, FileFormat::AudioVideoInterleave);
+    /// let fmt = FileFormat::from_file("fixtures/video/sample.avi")?;
+    /// assert_eq!(fmt, FileFormat::AudioVideoInterleave);
     /// # Ok::<(), std::io::Error>(())
     ///```
     #[inline]
@@ -269,20 +269,20 @@ impl FileFormat {
     /// ```
     /// use file_format::FileFormat;
     ///
-    /// let format = FileFormat::from_reader(std::io::empty())?;
-    /// assert_eq!(format, FileFormat::Empty);
+    /// let fmt = FileFormat::from_reader(std::io::empty())?;
+    /// assert_eq!(fmt, FileFormat::Empty);
     /// # Ok::<(), std::io::Error>(())
     ///```
     pub fn from_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
         // Creates and fills a buffer.
-        let mut buffer = [0; 36870];
-        let bytes_read = reader.read(&mut buffer)?;
+        let mut buf = [0; 36_870];
+        let nread = reader.read(&mut buf)?;
 
         // Determines file format.
-        Ok(if bytes_read == 0 {
+        Ok(if nread == 0 {
             Self::Empty
-        } else if let Some(format) = Self::from_signature(&buffer[..bytes_read]) {
-            Self::from_format_reader(format, &mut reader)
+        } else if let Some(fmt) = Self::from_signature(&buf[..nread]) {
+            Self::from_format_reader(fmt, &mut reader)
                 .unwrap_or_else(|_| Self::from_generic_reader(&mut reader))
         } else {
             Self::from_generic_reader(&mut reader)

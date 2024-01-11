@@ -22,13 +22,13 @@ Determines from a file:
 ```rust
 use file_format::{FileFormat, Kind};
 
-let format = FileFormat::from_file("fixtures/document/sample.pdf")?;
-assert_eq!(format, FileFormat::PortableDocumentFormat);
-assert_eq!(format.name(), "Portable Document Format");
-assert_eq!(format.short_name(), Some("PDF"));
-assert_eq!(format.media_type(), "application/pdf");
-assert_eq!(format.extension(), "pdf");
-assert_eq!(format.kind(), Kind::Document);
+let fmt = FileFormat::from_file("fixtures/document/sample.pdf")?;
+assert_eq!(fmt, FileFormat::PortableDocumentFormat);
+assert_eq!(fmt.name(), "Portable Document Format");
+assert_eq!(fmt.short_name(), Some("PDF"));
+assert_eq!(fmt.media_type(), "application/pdf");
+assert_eq!(fmt.extension(), "pdf");
+assert_eq!(fmt.kind(), Kind::Document);
 ```
 
 Determines from bytes:
@@ -36,13 +36,13 @@ Determines from bytes:
 ```rust
 use file_format::{FileFormat, Kind};
 
-let format = FileFormat::from_bytes(&[0xFF, 0xD8, 0xFF]);
-assert_eq!(format, FileFormat::JointPhotographicExpertsGroup);
-assert_eq!(format.name(), "Joint Photographic Experts Group");
-assert_eq!(format.short_name(), Some("JPEG"));
-assert_eq!(format.media_type(), "image/jpeg");
-assert_eq!(format.extension(), "jpg");
-assert_eq!(format.kind(), Kind::Image);
+let fmt = FileFormat::from_bytes(&[0xFF, 0xD8, 0xFF]);
+assert_eq!(fmt, FileFormat::JointPhotographicExpertsGroup);
+assert_eq!(fmt.name(), "Joint Photographic Experts Group");
+assert_eq!(fmt.short_name(), Some("JPEG"));
+assert_eq!(fmt.media_type(), "image/jpeg");
+assert_eq!(fmt.extension(), "jpg");
+assert_eq!(fmt.kind(), Kind::Image);
 ```
 
 ## Usage

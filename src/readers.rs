@@ -6,10 +6,10 @@ impl crate::FileFormat {
     /// Determines file format from the specified format reader, if any.
     #[inline]
     pub(crate) fn from_format_reader<R: Read + Seek>(
-        format: Self,
+        fmt: Self,
         #[allow(unused_variables)] reader: R,
     ) -> Result<Self> {
-        Ok(match format {
+        Ok(match fmt {
             #[cfg(feature = "reader-asf")]
             Self::AdvancedSystemsFormat => Self::from_asf_reader(reader)?,
             #[cfg(feature = "reader-cfb")]
@@ -28,7 +28,7 @@ impl crate::FileFormat {
             Self::ExtensibleMarkupLanguage => Self::from_xml_reader(reader)?,
             #[cfg(feature = "reader-zip")]
             Self::Zip => Self::from_zip_reader(reader)?,
-            _ => format,
+            _ => fmt,
         })
     }
 
@@ -120,11 +120,11 @@ impl crate::FileFormat {
                     // Iterates through the content descriptors.
                     for _ in 0..std::cmp::min(DESCRIPTOR_LIMIT, count as usize) {
                         // Reads the descriptor name length.
-                        let length = reader.read_u16_le()?;
+                        let len = reader.read_u16_le()?;
 
                         // Reads the descriptor name.
                         let name = reader
-                            .read_bytes(std::cmp::min(DESCRIPTOR_NAME_LIMIT, length as usize))?;
+                            .read_bytes(std::cmp::min(DESCRIPTOR_NAME_LIMIT, len as usize))?;
 
                         // Checks the descriptor name.
                         if name == b"D\0V\0R\0 \0F\0i\0l\0e\0 \0V\0e\0r\0s\0i\0o\0n\0\0\0" {
@@ -132,14 +132,14 @@ impl crate::FileFormat {
                         }
 
                         // Calculates the remaining length.
-                        let remaining_length = length.saturating_sub(DESCRIPTOR_NAME_LIMIT as u16);
+                        let remaining_len = len.saturating_sub(DESCRIPTOR_NAME_LIMIT as u16);
 
                         // Reads the descriptor value length.
-                        reader.seek(SeekFrom::Current(remaining_length as i64 + 2))?;
-                        let length = reader.read_u16_le()?;
+                        reader.seek(SeekFrom::Current(remaining_len as i64 + 2))?;
+                        let len = reader.read_u16_le()?;
 
                         // Seeks to the next content descriptor.
-                        reader.seek(SeekFrom::Current(length as i64))?;
+                        reader.seek(SeekFrom::Current(len as i64))?;
                     }
 
                     // Seeks to the next object.
@@ -296,7 +296,7 @@ impl crate::FileFormat {
         let mut reader = BufReader::new(reader);
 
         // Retrieves the stream length.
-        let length = reader.seek(SeekFrom::End(0))?;
+        let len = reader.seek(SeekFrom::End(0))?;
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
@@ -308,7 +308,7 @@ impl crate::FileFormat {
 
         // Iterates through the EBML elements.
         let mut element_count = 0;
-        while element_count < ELEMENT_LIMIT && reader.stream_position()? < length {
+        while element_count < ELEMENT_LIMIT && reader.stream_position()? < len {
             // Reads the first byte of the element ID.
             let first_byte = reader.read_u8()?;
 
@@ -418,14 +418,14 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-exe")]
     pub(crate) fn from_exe_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
         // Retrieves the stream length.
-        let length = reader.seek(SeekFrom::End(0))?;
+        let len = reader.seek(SeekFrom::End(0))?;
 
         // Reads the extended header address.
         reader.seek(SeekFrom::Start(60))?;
         let offset = reader.read_u32_le()?;
 
         // Checks that the offset value is not outside the stream's boundaries.
-        if offset as u64 + 4 < length {
+        if offset as u64 + 4 < len {
             // Seeks to the offset.
             reader.seek(SeekFrom::Start(offset as u64))?;
 
@@ -465,7 +465,7 @@ impl crate::FileFormat {
         let mut reader = BufReader::new(reader);
 
         // Retrieves the stream length.
-        let length = reader.seek(SeekFrom::End(0))?;
+        let len = reader.seek(SeekFrom::End(0))?;
 
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
@@ -477,7 +477,7 @@ impl crate::FileFormat {
 
         // Iterates through boxes.
         let mut box_count = 0;
-        while box_count < BOX_LIMIT && reader.stream_position()? < length {
+        while box_count < BOX_LIMIT && reader.stream_position()? < len {
             // Reads the box size.
             let size = reader.read_u32_be()?;
 
@@ -551,37 +551,30 @@ impl crate::FileFormat {
         reader.seek(SeekFrom::Start(5))?;
 
         // Creates a buffer to hold the chunk of data being read.
-        let mut buffer = [0; OVERLAP_SIZE + CHUNK_SIZE];
+        let mut buf = [0; OVERLAP_SIZE + CHUNK_SIZE];
 
         // Reads the data from the stream in chunks.
-        let mut total_bytes_read = 0;
-        while total_bytes_read < READ_LIMIT {
+        let mut total_nread = 0;
+        while total_nread < READ_LIMIT {
             // Reads a chunk of the stream into the buffer.
-            let bytes_read = reader.read(&mut buffer[OVERLAP_SIZE..])?;
-            if bytes_read == 0 {
+            let nread = reader.read(&mut buf[OVERLAP_SIZE..])?;
+            if nread == 0 {
                 break;
             }
 
             // Determines the start index for searching the buffer.
-            let start = if total_bytes_read == 0 {
-                OVERLAP_SIZE
-            } else {
-                0
-            };
+            let start = if total_nread == 0 { OVERLAP_SIZE } else { 0 };
 
             // Checks if the buffer contains the AI file format marker.
-            if buffer[start..OVERLAP_SIZE + bytes_read]
-                .find(AI_MARKER)
-                .is_some()
-            {
+            if buf[start..OVERLAP_SIZE + nread].find(AI_MARKER).is_some() {
                 return Ok(Self::AdobeIllustratorArtwork);
             }
 
             // Rotates the buffer to the right by the overlap size.
-            buffer[..OVERLAP_SIZE + bytes_read].rotate_right(OVERLAP_SIZE);
+            buf[..OVERLAP_SIZE + nread].rotate_right(OVERLAP_SIZE);
 
             // Updates the total bytes read.
-            total_bytes_read += bytes_read;
+            total_nread += nread;
         }
 
         // Returns the default value.
@@ -789,16 +782,16 @@ impl crate::FileFormat {
         let mut reader = BufReader::new(reader);
 
         // Retrieves the stream length.
-        let length = reader.seek(SeekFrom::End(0))?;
+        let len = reader.seek(SeekFrom::End(0))?;
 
         // Searches for the end of central directory record.
-        let offset = length.saturating_sub(EOCD_MAX_SIZE as u64);
+        let offset = len.saturating_sub(EOCD_MAX_SIZE as u64);
         reader.seek(SeekFrom::Start(offset))?;
-        let buffer_index = reader
-            .read_bytes((length as usize).clamp(EOCD_MIN_SIZE, EOCD_MAX_SIZE))?
+        let buf_index = reader
+            .read_bytes((len as usize).clamp(EOCD_MIN_SIZE, EOCD_MAX_SIZE))?
             .find(EOCD_SIGNATURE)
             .ok_or_else(|| Error::new(ErrorKind::InvalidData, "cannot find the EOCD record"))?;
-        let eocd_offset = offset + buffer_index as u64;
+        let eocd_offset = offset + buf_index as u64;
 
         // Checks for ZIP64 end of central directory locator.
         let mut zip64 = false;
@@ -848,7 +841,7 @@ impl crate::FileFormat {
         reader.seek(SeekFrom::Start(socd_offset))?;
 
         // Sets the default value.
-        let mut format = Self::Zip;
+        let mut fmt = Self::Zip;
 
         // Browses central directory headers.
         for _ in 0..std::cmp::min(ENTRY_LIMIT, number_of_entries) {
@@ -860,20 +853,20 @@ impl crate::FileFormat {
             let uncompressed_size = reader.read_u32_le()?;
 
             // Reads the filename length.
-            let filename_length = reader.read_u16_le()?;
+            let filename_len = reader.read_u16_le()?;
 
             // Reads the extra field length.
-            let extra_field_length = reader.read_u16_le()?;
+            let extra_field_len = reader.read_u16_le()?;
 
             // Reads the file comment length.
-            let file_comment_length = reader.read_u16_le()?;
+            let file_comment_len = reader.read_u16_le()?;
 
             // Reads the relative offset of local file header.
             reader.seek(SeekFrom::Current(8))?;
             let offset = reader.read_u32_le()?;
 
             // Reads the filename.
-            let filename = reader.read_string(filename_length as usize)?;
+            let filename = reader.read_string(filename_len as usize)?;
 
             // Checks the filename.
             match filename.as_str() {
@@ -881,7 +874,7 @@ impl crate::FileFormat {
                 "AppManifest.xaml" => return Ok(Self::Xap),
                 "AppxManifest.xml" => return Ok(Self::WindowsAppPackage),
                 "META-INF/AIR/application.xml" => return Ok(Self::AdobeIntegratedRuntime),
-                "META-INF/MANIFEST.MF" => format = Self::JavaArchive,
+                "META-INF/MANIFEST.MF" => fmt = Self::JavaArchive,
                 "META-INF/application.xml" => return Ok(Self::EnterpriseApplicationArchive),
                 "META-INF/mozilla.rsa" => return Ok(Self::Xpinstall),
                 "WEB-INF/web.xml" => return Ok(Self::WebApplicationArchive),
@@ -892,14 +885,14 @@ impl crate::FileFormat {
                     reader.seek(SeekFrom::Start(offset as u64 + 26))?;
 
                     // Reads the filename length.
-                    let filename_length = reader.read_u16_le()?;
+                    let filename_len = reader.read_u16_le()?;
 
                     // Reads the extra field length.
-                    let extra_field_length = reader.read_u16_le()?;
+                    let extra_field_len = reader.read_u16_le()?;
 
                     // Seeks to the data.
                     reader.seek(SeekFrom::Current(
-                        filename_length as i64 + extra_field_length as i64,
+                        filename_len as i64 + extra_field_len as i64,
                     ))?;
 
                     // Reads the data.
@@ -997,10 +990,10 @@ impl crate::FileFormat {
 
             // Seeks to the next central directory entry.
             reader.seek(SeekFrom::Current(
-                extra_field_length as i64 + file_comment_length as i64,
+                extra_field_len as i64 + file_comment_len as i64,
             ))?;
         }
-        Ok(format)
+        Ok(fmt)
     }
 }
 
@@ -1009,22 +1002,22 @@ trait ReadData: Read {
     /// Reads a specified number of bytes into a `Vec<u8>`.
     #[inline]
     fn read_bytes(&mut self, size: usize) -> Result<Vec<u8>> {
-        let mut buffer = vec![0; size];
-        self.read_exact(&mut buffer)?;
-        Ok(buffer)
+        let mut buf = vec![0; size];
+        self.read_exact(&mut buf)?;
+        Ok(buf)
     }
 
     /// Reads a GUID and converts it into a hyphenated `String`.
     #[inline]
     fn read_guid(&mut self) -> Result<String> {
-        let buffer = self.read_bytes(16)?;
+        let buf = self.read_bytes(16)?;
         Ok([3, 2, 1, 0, 5, 4, 7, 6, 8, 9, 10, 11, 12, 13, 14, 15]
             .iter()
             .map(|&index| {
                 if index == 5 || index == 7 || index == 8 || index == 10 {
-                    format!("-{:02x}", buffer[index])
+                    format!("-{:02x}", buf[index])
                 } else {
-                    format!("{:02x}", buffer[index])
+                    format!("{:02x}", buf[index])
                 }
             })
             .collect())
@@ -1039,49 +1032,49 @@ trait ReadData: Read {
     /// Reads a single `u8` value.
     #[inline]
     fn read_u8(&mut self) -> Result<u8> {
-        let mut buffer = [0; 1];
-        self.read_exact(&mut buffer)?;
-        Ok(buffer[0])
+        let mut buf = [0; 1];
+        self.read_exact(&mut buf)?;
+        Ok(buf[0])
     }
 
     /// Reads a `u16` value in little-endian byte order.
     #[inline]
     fn read_u16_le(&mut self) -> Result<u16> {
-        let mut buffer = [0; 2];
-        self.read_exact(&mut buffer)?;
-        Ok(u16::from_le_bytes(buffer))
+        let mut buf = [0; 2];
+        self.read_exact(&mut buf)?;
+        Ok(u16::from_le_bytes(buf))
     }
 
     /// Reads a `u32` value in big-endian byte order.
     #[inline]
     fn read_u32_be(&mut self) -> Result<u32> {
-        let mut buffer = [0; 4];
-        self.read_exact(&mut buffer)?;
-        Ok(u32::from_be_bytes(buffer))
+        let mut buf = [0; 4];
+        self.read_exact(&mut buf)?;
+        Ok(u32::from_be_bytes(buf))
     }
 
     /// Reads a `u32` value in little-endian byte order.
     #[inline]
     fn read_u32_le(&mut self) -> Result<u32> {
-        let mut buffer = [0; 4];
-        self.read_exact(&mut buffer)?;
-        Ok(u32::from_le_bytes(buffer))
+        let mut buf = [0; 4];
+        self.read_exact(&mut buf)?;
+        Ok(u32::from_le_bytes(buf))
     }
 
     /// Reads a `u64` value in big-endian byte order.
     #[inline]
     fn read_u64_be(&mut self) -> Result<u64> {
-        let mut buffer = [0; 8];
-        self.read_exact(&mut buffer)?;
-        Ok(u64::from_be_bytes(buffer))
+        let mut buf = [0; 8];
+        self.read_exact(&mut buf)?;
+        Ok(u64::from_be_bytes(buf))
     }
 
     /// Reads a `u64` value in little-endian byte order.
     #[inline]
     fn read_u64_le(&mut self) -> Result<u64> {
-        let mut buffer = [0; 8];
-        self.read_exact(&mut buffer)?;
-        Ok(u64::from_le_bytes(buffer))
+        let mut buf = [0; 8];
+        self.read_exact(&mut buf)?;
+        Ok(u64::from_le_bytes(buf))
     }
 }
 
