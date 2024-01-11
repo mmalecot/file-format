@@ -105,7 +105,6 @@ identification.
 - ICC Profile (ICC)
 - Java KeyStore (JKS)
 - MPEG-4 Part 14 (MP4)
-- Mathematical Markup Language (MathML)
 - Meta Information Encapsulation (MIE)
 - Microsoft Compiled HTML Help (CHM)
 - Microsoft Visual Studio Solution (SLN)
@@ -271,8 +270,6 @@ identification.
 - Office Open XML Drawing (VSDX)
 - Office Open XML Presentation (PPTX)
 - Office Open XML Spreadsheet (XLSX)
-- OpenDocument Formula (ODF)
-- OpenDocument Formula Template (OTF)
 - OpenDocument Graphics (ODG)
 - OpenDocument Graphics Template (OTG)
 - OpenDocument Presentation (ODP)
@@ -289,7 +286,6 @@ identification.
 - StarChart (SDS)
 - StarDraw (SDA)
 - StarImpress (SDD)
-- StarMath (SMF)
 - StarWriter (SDW)
 - Sun XML Calc (SXC)
 - Sun XML Calc Template (STC)
@@ -297,7 +293,6 @@ identification.
 - Sun XML Draw Template (STD)
 - Sun XML Impress (SXI)
 - Sun XML Impress Template (STI)
-- Sun XML Math (SXM)
 - Sun XML Writer (SXW)
 - Sun XML Writer Global (SGW)
 - Sun XML Writer Template (STW)
@@ -409,6 +404,14 @@ identification.
 - Windows Metafile (WMF)
 - X PixMap (XPM)
 - farbfeld (FF)
+
+### Mathematical
+
+- Mathematical Markup Language (MathML)
+- OpenDocument Formula (ODF)
+- OpenDocument Formula Template (OTF)
+- StarMath (SMF)
+- Sun XML Math (SXM)
 
 ### Model
 

@@ -1237,7 +1237,7 @@ formats! {
     short_name = "MathML"
     media_type = "application/mathml+xml"
     extension = "mathml"
-    kind = Application
+    kind = Mathematical
 
     format = Matroska3dVideo
     name = "Matroska 3D Video"
@@ -1767,14 +1767,14 @@ formats! {
     short_name = "ODF"
     media_type = "application/vnd.oasis.opendocument.formula"
     extension = "odf"
-    kind = Document
+    kind = Mathematical
 
     format = OpendocumentFormulaTemplate
     name = "OpenDocument Formula Template"
     short_name = "OTF"
     media_type = "application/vnd.oasis.opendocument.formula-template"
     extension = "otf"
-    kind = Document
+    kind = Mathematical
 
     format = OpendocumentGraphics
     name = "OpenDocument Graphics"
@@ -2376,7 +2376,7 @@ formats! {
     short_name = "SMF"
     media_type = "application/vnd.stardivision.math"
     extension = "smf"
-    kind = Document
+    kind = Mathematical
 
     format = Starwriter
     name = "StarWriter"
@@ -2460,7 +2460,7 @@ formats! {
     short_name = "SXM"
     media_type = "application/vnd.sun.xml.math"
     extension = "sxm"
-    kind = Document
+    kind = Mathematical
 
     format = SunXmlWriter
     name = "Sun XML Writer"

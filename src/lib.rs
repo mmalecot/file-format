@@ -348,6 +348,8 @@ pub enum Kind {
     Geospatial,
     /// Animated images, icons, cursors, raster graphics and vector graphics.
     Image,
+    /// Mathematical formulas.
+    Mathematical,
     /// 3D models, CAD drawings, and other types of files used for creating or displaying 3D images.
     Model,
     /// Collections of files bundled together for software distribution.

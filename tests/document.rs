@@ -163,20 +163,6 @@ fn test_office_open_xml_spreadsheet() {
 
 #[cfg(feature = "reader-zip")]
 #[test]
-fn test_opendocument_formula() {
-    let fmt = FileFormat::from_file("fixtures/document/sample.odf").unwrap();
-    assert_eq!(fmt, FileFormat::OpendocumentFormula);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_opendocument_formula_template() {
-    let fmt = FileFormat::from_file("fixtures/document/sample.otf").unwrap();
-    assert_eq!(fmt, FileFormat::OpendocumentFormulaTemplate);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
 fn test_opendocument_graphics() {
     let fmt = FileFormat::from_file("fixtures/document/sample.odg").unwrap();
     assert_eq!(fmt, FileFormat::OpendocumentGraphics);
@@ -287,13 +273,6 @@ fn test_starimpress() {
 
 #[cfg(feature = "reader-cfb")]
 #[test]
-fn test_starmath() {
-    let fmt = FileFormat::from_file("fixtures/document/sample.smf").unwrap();
-    assert_eq!(fmt, FileFormat::Starmath);
-}
-
-#[cfg(feature = "reader-cfb")]
-#[test]
 fn test_starwriter() {
     let fmt = FileFormat::from_file("fixtures/document/sample.sdw").unwrap();
     assert_eq!(fmt, FileFormat::Starwriter);
@@ -339,13 +318,6 @@ fn test_sun_xml_impress() {
 fn test_sun_xml_impress_template() {
     let fmt = FileFormat::from_file("fixtures/document/sample.sti").unwrap();
     assert_eq!(fmt, FileFormat::SunXmlImpressTemplate);
-}
-
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_sun_xml_math() {
-    let fmt = FileFormat::from_file("fixtures/document/sample.sxm").unwrap();
-    assert_eq!(fmt, FileFormat::SunXmlMath);
 }
 
 #[cfg(feature = "reader-zip")]
