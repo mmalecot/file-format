@@ -5,7 +5,7 @@ use std::io::*;
 impl crate::FileFormat {
     /// Determines file format from the specified format reader, if any.
     #[inline]
-    pub(crate) fn from_format_reader<R: Read + Seek>(
+    pub(crate) fn from_fmt_reader<R: Read + Seek>(
         fmt: Self,
         #[allow(unused_variables)] reader: R,
     ) -> Result<Self> {

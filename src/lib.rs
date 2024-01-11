@@ -282,7 +282,7 @@ impl FileFormat {
         Ok(if nread == 0 {
             Self::Empty
         } else if let Some(fmt) = Self::from_signature(&buf[..nread]) {
-            Self::from_format_reader(fmt, &mut reader)
+            Self::from_fmt_reader(fmt, &mut reader)
                 .unwrap_or_else(|_| Self::from_generic_reader(&mut reader))
         } else {
             Self::from_generic_reader(&mut reader)
