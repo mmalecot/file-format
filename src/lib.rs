@@ -242,8 +242,8 @@ impl FileFormat {
     ///
     /// [default value]: FileFormat::default
     #[inline]
-    pub fn from_bytes(bytes: &[u8]) -> Self {
-        Self::from(bytes)
+    pub fn from_bytes<B: AsRef<[u8]>>(bytes: B) -> Self {
+        Self::from(bytes.as_ref())
     }
 
     /// Determines file format from a file.
