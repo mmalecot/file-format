@@ -79,9 +79,11 @@ macro_rules! formats {
                 }
             }
 
-            /// Returns the common media type (formerly known as MIME type) of the file format.
+            /// Returns the common media type (formerly known as MIME type) of the file format as
+            /// defined in [IETF RFC 6838](https://tools.ietf.org/html/rfc6838).
             ///
-            /// Note: some media types may not be defined in the IANA registry.
+            /// Note: some media types may not be defined in the
+            /// [IANA registry](https://www.iana.org/assignments/media-types/media-types.xhtml).
             ///
             /// # Examples
             ///
