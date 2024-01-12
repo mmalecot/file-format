@@ -1082,13 +1082,13 @@ trait ReadData: Read {
 /// additional methods provided by the `ReadData` trait.
 impl<R: Read> ReadData for R {}
 
-/// A trait for finding a byte pattern within data that can be represented as a slice of bytes.
+/// A trait for finding a byte pattern within data.
 trait FindBytes: AsRef<[u8]> {
     /// Searches for the specified byte pattern and returns the index of the first occurrence.
-    fn find<P: AsRef<[u8]>>(&self, pattern: P) -> Option<usize> {
+    fn find<B: AsRef<[u8]>>(&self, bytes: B) -> Option<usize> {
         // Retrieves references to data and pattern.
         let data = self.as_ref();
-        let pattern = pattern.as_ref();
+        let pattern = bytes.as_ref();
 
         // An empty pattern is always considered to be contained in the data.
         if pattern.is_empty() {
@@ -1122,6 +1122,6 @@ trait FindBytes: AsRef<[u8]> {
     }
 }
 
-/// Allows any type `A` that implements the `AsRef<[u8]>` trait to benefit from the additional
+/// Allows any type `B` that implements the `AsRef<[u8]>` trait to benefit from the additional
 /// `find` method provided by the `FindBytes` trait.
-impl<A: AsRef<[u8]> + ?Sized> FindBytes for A {}
+impl<B: AsRef<[u8]> + ?Sized> FindBytes for B {}
