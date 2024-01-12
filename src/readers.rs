@@ -127,7 +127,7 @@ impl crate::FileFormat {
                             .read_bytes(std::cmp::min(DESCRIPTOR_NAME_LIMIT, len as usize))?;
 
                         // Checks the descriptor name.
-                        if name == b"D\0V\0R\0 \0F\0i\0l\0e\0 \0V\0e\0r\0s\0i\0o\0n\0\0\0" {
+                        if name.starts_with(b"D\0V\0R\0 \0F\0i\0l\0e\0 \0V\0e\0r\0s\0i\0o\0n\0") {
                             return Ok(Self::MicrosoftDigitalVideoRecording);
                         }
 
