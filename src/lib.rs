@@ -317,7 +317,7 @@ impl From<&[u8]> for FileFormat {
     }
 }
 
-/// A kind of [`FileFormat`].
+/// A kind of file format.
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 #[cfg_attr(feature = "serde", derive(serde::Deserialize, serde::Serialize))]
 pub enum Kind {

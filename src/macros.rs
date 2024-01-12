@@ -1,6 +1,6 @@
-//! Macros for generating the [FileFormat](crate::FileFormat) enum and associated methods.
+//! Macros for generating the [`FileFormat`](crate::FileFormat) enum and associated methods.
 
-/// Generates the [FileFormat](crate::FileFormat) enum with methods for retrieving information.
+/// Generates the [`FileFormat`](crate::FileFormat) enum with methods for retrieving information.
 ///
 /// # Parameters
 ///
@@ -123,7 +123,7 @@ macro_rules! formats {
                 }
             }
 
-            /// Returns the [Kind](crate::Kind) of the file format.
+            /// Returns the [`Kind`](crate::Kind) of the file format.
             ///
             /// # Examples
             ///
@@ -146,7 +146,7 @@ macro_rules! formats {
     };
 }
 
-/// Generates the [FileFormat::from_signature](crate::FileFormat::from_signature) function.
+/// Generates the [`FileFormat::from_signature`](crate::FileFormat::from_signature) function.
 ///
 /// # Parameters
 ///
