@@ -1085,10 +1085,10 @@ impl<R: Read> ReadData for R {}
 /// A trait for finding a byte pattern within data.
 trait FindBytes: AsRef<[u8]> {
     /// Searches for the specified byte pattern and returns the index of the first occurrence.
-    fn find<B: AsRef<[u8]>>(&self, bytes: B) -> Option<usize> {
+    fn find<P: AsRef<[u8]>>(&self, pattern: P) -> Option<usize> {
         // Retrieves references to data and pattern.
         let data = self.as_ref();
-        let pattern = bytes.as_ref();
+        let pattern = pattern.as_ref();
 
         // An empty pattern is always considered to be contained in the data.
         if pattern.is_empty() {
@@ -1100,13 +1100,12 @@ trait FindBytes: AsRef<[u8]> {
             return None;
         }
 
-        // Creates a shift table for efficient pattern matching.
+        // Searches for the byte pattern using a modified Boyer-Moore-Horspool algorithm for forward
+        // search.
         let mut shift_table = [pattern.len(); 256];
         for (index, &byte) in pattern.iter().enumerate().take(pattern.len() - 1) {
             shift_table[byte as usize] = pattern.len() - 1 - index;
         }
-
-        // Searches for the pattern using the Boyer-Moore-Horspool algorithm.
         let mut data_index = pattern.len() - 1;
         while data_index < data.len() {
             let mut pattern_index = pattern.len() - 1;
@@ -1122,10 +1121,10 @@ trait FindBytes: AsRef<[u8]> {
     }
 
     /// Searches for the specified byte pattern and returns the index of the last occurrence.
-    fn rfind<B: AsRef<[u8]>>(&self, bytes: B) -> Option<usize> {
+    fn rfind<P: AsRef<[u8]>>(&self, pattern: P) -> Option<usize> {
         // Retrieves references to data and pattern.
         let data = self.as_ref();
-        let pattern = bytes.as_ref();
+        let pattern = pattern.as_ref();
 
         // An empty pattern is always considered to be contained in the data.
         if pattern.is_empty() {
@@ -1137,13 +1136,12 @@ trait FindBytes: AsRef<[u8]> {
             return None;
         }
 
-        // Creates a shift table for efficient pattern matching.
+        // Searches for the byte pattern using a modified Boyer-Moore-Horspool algorithm for reverse
+        // search.
         let mut shift_table = [pattern.len(); 256];
         for (index, &byte) in pattern.iter().rev().enumerate().take(pattern.len() - 1) {
             shift_table[byte as usize] = pattern.len() - 1 - index;
         }
-
-        // Searches for the pattern using the Boyer-Moore-Horspool algorithm.
         let mut data_index = data.len() - pattern.len();
         loop {
             let mut pattern_index = 0;
