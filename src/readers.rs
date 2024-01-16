@@ -789,8 +789,8 @@ impl crate::FileFormat {
         reader.seek(SeekFrom::Start(offset))?;
         let buf_index = reader
             .read_bytes((len as usize).clamp(EOCD_MIN_SIZE, EOCD_MAX_SIZE))?
-            .find(EOCD_SIGNATURE)
-            .ok_or_else(|| Error::new(ErrorKind::InvalidData, "cannot find the EOCD record"))?;
+            .rfind(EOCD_SIGNATURE)
+            .ok_or_else(|| Error::new(ErrorKind::InvalidData, "cannot find the EOCD"))?;
         let eocd_offset = offset + buf_index as u64;
 
         // Checks for ZIP64 end of central directory locator.
@@ -997,7 +997,7 @@ impl crate::FileFormat {
     }
 }
 
-/// A trait extending the standard `Read` trait with methods for convenient data reading.
+/// A trait for convenient data reading.
 trait ReadData: Read {
     /// Reads a specified number of bytes into a `Vec<u8>`.
     #[inline]
@@ -1109,19 +1109,59 @@ trait FindBytes: AsRef<[u8]> {
         // Searches for the pattern using the Boyer-Moore-Horspool algorithm.
         let mut data_index = pattern.len() - 1;
         while data_index < data.len() {
-            let mut target_index = pattern.len() - 1;
-            while pattern[target_index] == data[data_index - (pattern.len() - 1 - target_index)] {
-                if target_index == 0 {
+            let mut pattern_index = pattern.len() - 1;
+            while pattern[pattern_index] == data[data_index - (pattern.len() - 1 - pattern_index)] {
+                if pattern_index == 0 {
                     return Some(data_index - (pattern.len() - 1));
                 }
-                target_index -= 1;
+                pattern_index -= 1;
             }
             data_index += shift_table[data[data_index] as usize];
+        }
+        None
+    }
+
+    /// Searches for the specified byte pattern and returns the index of the last occurrence.
+    fn rfind<B: AsRef<[u8]>>(&self, bytes: B) -> Option<usize> {
+        // Retrieves references to data and pattern.
+        let data = self.as_ref();
+        let pattern = bytes.as_ref();
+
+        // An empty pattern is always considered to be contained in the data.
+        if pattern.is_empty() {
+            return Some(data.len());
+        }
+
+        // The data is shorter than the pattern, so it cannot contain it.
+        if data.len() < pattern.len() {
+            return None;
+        }
+
+        // Creates a shift table for efficient pattern matching.
+        let mut shift_table = [pattern.len(); 256];
+        for (index, &byte) in pattern.iter().rev().enumerate().take(pattern.len() - 1) {
+            shift_table[byte as usize] = pattern.len() - 1 - index;
+        }
+
+        // Searches for the pattern using the Boyer-Moore-Horspool algorithm.
+        let mut data_index = data.len() - pattern.len();
+        loop {
+            let mut pattern_index = 0;
+            while pattern[pattern_index] == data[data_index + pattern_index] {
+                if pattern_index == pattern.len() - 1 {
+                    return Some(data_index);
+                }
+                pattern_index += 1;
+            }
+            data_index = match data_index.checked_sub(shift_table[data[data_index] as usize]) {
+                Some(data_index) => data_index,
+                _ => break,
+            }
         }
         None
     }
 }
 
 /// Allows any type `B` that implements the `AsRef<[u8]>` trait to benefit from the additional
-/// `find` method provided by the `FindBytes` trait.
+/// methods provided by the `FindBytes` trait.
 impl<B: AsRef<[u8]> + ?Sized> FindBytes for B {}
