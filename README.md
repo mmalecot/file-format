@@ -96,7 +96,6 @@ identification.
 - Compound File Binary (CFB)
 - Digital Imaging and Communications in Medicine (DICOM)
 - Empty
-- Encapsulated PostScript (EPS)
 - Extensible Binary Meta Language (EBML)
 - Extensible Stylesheet Language Transformations (XSLT)
 - Flexible Image Transport System (FITS)
@@ -120,7 +119,6 @@ identification.
 - PGP Signature (PGP)
 - PGP Signed Message (PGP)
 - Personal Storage Table (PST)
-- PostScript (PS)
 - RealMedia (RM)
 - Simple Object Access Protocol (SOAP)
 - Small Web Format (SWF)
@@ -279,6 +277,7 @@ identification.
 - OpenDocument Text Master Template (OTM)
 - OpenDocument Text Template (OTT)
 - Portable Document Format (PDF)
+- PostScript (PS)
 - Rich Text Format (RTF)
 - StarCalc (SDC)
 - StarChart (SDS)
@@ -355,6 +354,7 @@ identification.
 - Cineon (CIN)
 - Digital Picture Exchange (DPX)
 - DjVu
+- Encapsulated PostScript (EPS)
 - Experimental Computing Facility (XCF)
 - Free Lossless Image Format (FLIF)
 - Fujifilm Raw (RAF)

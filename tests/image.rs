@@ -86,6 +86,12 @@ fn test_djvu() {
 }
 
 #[test]
+fn test_encapsulated_postscript() {
+    let fmt = FileFormat::from_file("fixtures/image/sample.eps").unwrap();
+    assert_eq!(fmt, FileFormat::EncapsulatedPostscript);
+}
+
+#[test]
 fn test_experimental_computing_facility() {
     let fmt = FileFormat::from_file("fixtures/image/sample.xcf").unwrap();
     assert_eq!(fmt, FileFormat::ExperimentalComputingFacility);

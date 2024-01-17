@@ -238,6 +238,12 @@ fn test_portable_document_format() {
 }
 
 #[test]
+fn test_postscript() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.ps").unwrap();
+    assert_eq!(fmt, FileFormat::Postscript);
+}
+
+#[test]
 fn test_rich_text_format() {
     let fmt = FileFormat::from_file("fixtures/document/sample.rtf").unwrap();
     assert_eq!(fmt, FileFormat::RichTextFormat);

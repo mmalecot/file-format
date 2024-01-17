@@ -657,7 +657,7 @@ formats! {
     short_name = "EPS"
     media_type = "application/eps"
     extension = "eps"
-    kind = Application
+    kind = Image
 
     format = EnterpriseApplicationArchive
     name = "Enterprise Application Archive"
@@ -2074,7 +2074,7 @@ formats! {
     short_name = "PS"
     media_type = "application/postscript"
     extension = "ps"
-    kind = Application
+    kind = Document
 
     format = PythonScript
     name = "Python Script"

@@ -79,12 +79,6 @@ fn test_empty() {
 }
 
 #[test]
-fn test_encapsulated_postscript() {
-    let fmt = FileFormat::from_file("fixtures/application/sample.eps").unwrap();
-    assert_eq!(fmt, FileFormat::EncapsulatedPostscript);
-}
-
-#[test]
 fn test_extensible_binary_meta_language() {
     let fmt = FileFormat::from_file("fixtures/application/sample.ebml").unwrap();
     assert_eq!(fmt, FileFormat::ExtensibleBinaryMetaLanguage);
@@ -247,12 +241,6 @@ fn test_pgp_signature() {
 fn test_pgp_signed_message() {
     let fmt = FileFormat::from_file("fixtures/application/sample5.asc").unwrap();
     assert_eq!(fmt, FileFormat::PgpSignedMessage);
-}
-
-#[test]
-fn test_postscript() {
-    let fmt = FileFormat::from_file("fixtures/application/sample.ps").unwrap();
-    assert_eq!(fmt, FileFormat::Postscript);
 }
 
 #[test]
