@@ -1085,35 +1085,35 @@ impl<R: Read> ReadData for R {}
 /// A trait for finding a byte pattern within data.
 trait FindBytes: AsRef<[u8]> {
     /// Searches for the specified byte pattern and returns the index of the first occurrence.
-    fn find<P: AsRef<[u8]>>(&self, pattern: P) -> Option<usize> {
+    fn find<P: AsRef<[u8]>>(&self, pat: P) -> Option<usize> {
         // Retrieves references to data and pattern.
         let data = self.as_ref();
-        let pattern = pattern.as_ref();
+        let pat = pat.as_ref();
 
         // An empty pattern is always considered to be contained in the data.
-        if pattern.is_empty() {
+        if pat.is_empty() {
             return Some(0);
         }
 
         // The data is shorter than the pattern, so it cannot contain it.
-        if data.len() < pattern.len() {
+        if data.len() < pat.len() {
             return None;
         }
 
         // Searches for the byte pattern using a modified Boyer-Moore-Horspool algorithm for forward
         // search.
-        let mut shift_table = [pattern.len(); 256];
-        for (index, &byte) in pattern.iter().enumerate().take(pattern.len() - 1) {
-            shift_table[byte as usize] = pattern.len() - 1 - index;
+        let mut shift_table = [pat.len(); 256];
+        for (index, &byte) in pat.iter().enumerate().take(pat.len() - 1) {
+            shift_table[byte as usize] = pat.len() - 1 - index;
         }
-        let mut data_index = pattern.len() - 1;
+        let mut data_index = pat.len() - 1;
         while data_index < data.len() {
-            let mut pattern_index = pattern.len() - 1;
-            while pattern[pattern_index] == data[data_index - (pattern.len() - 1 - pattern_index)] {
-                if pattern_index == 0 {
-                    return Some(data_index - (pattern.len() - 1));
+            let mut pat_index = pat.len() - 1;
+            while pat[pat_index] == data[data_index - (pat.len() - 1 - pat_index)] {
+                if pat_index == 0 {
+                    return Some(data_index - (pat.len() - 1));
                 }
-                pattern_index -= 1;
+                pat_index -= 1;
             }
             data_index += shift_table[data[data_index] as usize];
         }
@@ -1121,35 +1121,35 @@ trait FindBytes: AsRef<[u8]> {
     }
 
     /// Searches for the specified byte pattern and returns the index of the last occurrence.
-    fn rfind<P: AsRef<[u8]>>(&self, pattern: P) -> Option<usize> {
+    fn rfind<P: AsRef<[u8]>>(&self, pat: P) -> Option<usize> {
         // Retrieves references to data and pattern.
         let data = self.as_ref();
-        let pattern = pattern.as_ref();
+        let pat = pat.as_ref();
 
         // An empty pattern is always considered to be contained in the data.
-        if pattern.is_empty() {
+        if pat.is_empty() {
             return Some(data.len());
         }
 
         // The data is shorter than the pattern, so it cannot contain it.
-        if data.len() < pattern.len() {
+        if data.len() < pat.len() {
             return None;
         }
 
         // Searches for the byte pattern using a modified Boyer-Moore-Horspool algorithm for reverse
         // search.
-        let mut shift_table = [pattern.len(); 256];
-        for (index, &byte) in pattern.iter().rev().enumerate().take(pattern.len() - 1) {
-            shift_table[byte as usize] = pattern.len() - 1 - index;
+        let mut shift_table = [pat.len(); 256];
+        for (index, &byte) in pat.iter().rev().enumerate().take(pat.len() - 1) {
+            shift_table[byte as usize] = pat.len() - 1 - index;
         }
-        let mut data_index = data.len() - pattern.len();
+        let mut data_index = data.len() - pat.len();
         loop {
-            let mut pattern_index = 0;
-            while pattern[pattern_index] == data[data_index + pattern_index] {
-                if pattern_index == pattern.len() - 1 {
+            let mut pat_index = 0;
+            while pat[pat_index] == data[data_index + pat_index] {
+                if pat_index == pat.len() - 1 {
                     return Some(data_index);
                 }
-                pattern_index += 1;
+                pat_index += 1;
             }
             data_index = match data_index.checked_sub(shift_table[data[data_index] as usize]) {
                 Some(data_index) => data_index,
