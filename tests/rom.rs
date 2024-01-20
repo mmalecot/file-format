@@ -13,6 +13,12 @@ fn test_commmodore64_cartridge() {
 }
 
 #[test]
+fn test_commodore_program() {
+    let fmt = FileFormat::from_file("fixtures/rom/sample.prg").unwrap();
+    assert_eq!(fmt, FileFormat::Commodore64Program);
+}
+
+#[test]
 fn test_game_boy_advance_rom() {
     let fmt = FileFormat::from_file("fixtures/rom/sample.gba").unwrap();
     assert_eq!(fmt, FileFormat::GameBoyAdvanceRom);

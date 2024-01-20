@@ -522,6 +522,13 @@ formats! {
     extension = "crt"
     kind = Rom
 
+    format = Commodore64Program
+    name = "Commodore 64 program file"
+    short_name = "PRG"
+    media_type = "application/x-commmodore-64-program"
+    extension = "prg"
+    kind = Rom
+
     format = CommonObjectFileFormat
     name = "Common Object File Format"
     short_name = "COFF"

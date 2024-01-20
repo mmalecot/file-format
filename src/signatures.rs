@@ -1374,6 +1374,9 @@ signatures! {
     format = BdavMpeg2TransportStream
     value = b"\x47" offset = 4, b"\x47" offset = 196
 
+    format = Commodore64Program
+    value = b"\x01\x08"
+
     format = CommonObjectFileFormat
     value = b"\x00\x02"
     value = b"\x4C\x01"
