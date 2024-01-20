@@ -330,6 +330,9 @@ signatures! {
     value = b"\xFFWPC\x10\0\0\0\x01\x16\x01\0", b"\0\0" offset = 14
 
     // 13 bytes
+    format = Commodore64Cartridge
+    value = b"\x43\x36\x34\x20\x43\x41\x52\x54\x52\x49\x44\x47\x45"
+
     format = StandardForTheExchangeOfProductModelData
     value = b"ISO-10303-21;"
 

@@ -7,6 +7,12 @@ fn test_atari7800_rom() {
 }
 
 #[test]
+fn test_commmodore64_cartridge() {
+    let fmt = FileFormat::from_file("fixtures/rom/sample.crt").unwrap();
+    assert_eq!(fmt, FileFormat::Commodore64Cartridge);
+}
+
+#[test]
 fn test_game_boy_advance_rom() {
     let fmt = FileFormat::from_file("fixtures/rom/sample.gba").unwrap();
     assert_eq!(fmt, FileFormat::GameBoyAdvanceRom);

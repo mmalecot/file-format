@@ -489,6 +489,7 @@ identification.
 ### ROM
 
 - Atari 7800 ROM (A78)
+- Commodore 64 Cartridge (CRT)
 - Game Boy Advance ROM (GBA)
 - Game Boy Color ROM (GBC)
 - Game Boy ROM (GB)

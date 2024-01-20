@@ -515,6 +515,13 @@ formats! {
     extension = "clj"
     kind = Text
 
+    format = Commodore64Cartridge
+    name = "Commodore 64 cartridge file"
+    short_name = "CRT"
+    media_type = "application/x-commmodore-64-cartridge"
+    extension = "crt"
+    kind = Rom
+
     format = CommonObjectFileFormat
     name = "Common Object File Format"
     short_name = "COFF"
