@@ -331,7 +331,7 @@ signatures! {
 
     // 13 bytes
     format = Commodore64Cartridge
-    value = b"\x43\x36\x34\x20\x43\x41\x52\x54\x52\x49\x44\x47\x45"
+    value = b"C64 CARTRIDGE"
 
     format = StandardForTheExchangeOfProductModelData
     value = b"ISO-10303-21;"
