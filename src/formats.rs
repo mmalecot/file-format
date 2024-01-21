@@ -516,18 +516,18 @@ formats! {
     kind = Text
 
     format = Commodore64Cartridge
-    name = "Commodore 64 cartridge file"
+    name = "Commodore 64 Cartridge"
     short_name = "CRT"
-    media_type = "application/x-commmodore-64-cartridge"
+    media_type = "application/x-commodore-64-cartridge"
     extension = "crt"
-    kind = Executable
+    kind = Rom
 
     format = Commodore64Program
-    name = "Commodore 64 program file"
+    name = "Commodore 64 Program"
     short_name = "PRG"
-    media_type = "application/x-commmodore-64-program"
+    media_type = "application/x-commodore-64-program"
     extension = "prg"
-    kind = Rom
+    kind = Executable
 
     format = CommonObjectFileFormat
     name = "Common Object File Format"
