@@ -520,7 +520,7 @@ formats! {
     short_name = "CRT"
     media_type = "application/x-commmodore-64-cartridge"
     extension = "crt"
-    kind = Rom
+    kind = Executable
 
     format = Commodore64Program
     name = "Commodore 64 program file"
