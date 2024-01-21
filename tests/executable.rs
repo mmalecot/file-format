@@ -2,7 +2,7 @@ use file_format::FileFormat;
 
 #[test]
 fn test_commodore64_program() {
-    let fmt = FileFormat::from_file("fixtures/rom/sample.prg").unwrap();
+    let fmt = FileFormat::from_file("fixtures/executable/sample.prg").unwrap();
     assert_eq!(fmt, FileFormat::Commodore64Program);
 }
 
