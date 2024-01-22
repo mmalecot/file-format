@@ -7,7 +7,7 @@ fn test_atari7800_rom() {
 }
 
 #[test]
-fn test_commmodore64_cartridge() {
+fn test_commodore64_cartridge() {
     let fmt = FileFormat::from_file("fixtures/rom/sample.crt").unwrap();
     assert_eq!(fmt, FileFormat::Commodore64Cartridge);
 }
