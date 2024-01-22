@@ -543,6 +543,20 @@ formats! {
     extension = "cfb"
     kind = Other
 
+    format = CorelPresentations
+    name = "Corel Presentations"
+    short_name = "SHW"
+    media_type = "application/x-corelpresentations"
+    extension = "shw"
+    kind = Presentation
+
+    format = CorelPresentations7
+    name = "Corel Presentations 7"
+    short_name = "SHW"
+    media_type = "application/x-corelpresentations"
+    extension = "shw"
+    kind = Presentation
+
     format = Cpio
     name = "cpio"
     media_type = "application/x-cpio"
@@ -2857,6 +2871,13 @@ formats! {
     media_type = "application/vnd.wordperfect"
     extension = "wpm"
     kind = Other
+
+    format = WordperfectPresentations
+    name = "WordPerfect Presentations"
+    short_name = "SHW"
+    media_type = "application/vnd.wordperfect"
+    extension = "shw"
+    kind = Presentation
 
     format = XPixmap
     name = "X PixMap"

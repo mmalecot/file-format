@@ -877,6 +877,10 @@ signatures! {
     format = Bzip3
     value = b"BZ3v1"
 
+    format = CorelPresentations
+    value = b"\xFFWPC", b"\x0F" offset = 9
+    value = b"\xFFWPC", b"\x10" offset = 9
+
     format = EmbeddedOpentype
     value = b"\x00\x00\x01" offset = 8, b"LP" offset = 34
     value = b"\x01\x00\x02" offset = 8, b"LP" offset = 34
@@ -971,6 +975,9 @@ signatures! {
     value = b"KDMV\x01"
     value = b"KDMV\x02"
     value = b"KDMV\x03"
+
+    format = WordperfectPresentations
+    value = b"\xFFWPC", b"\x0A" offset = 9
 
     // 4 bytes
     format = AdaptableScalableTextureCompression

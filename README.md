@@ -496,6 +496,8 @@ identification.
 
 ### Presentation
 
+- Corel Presentations (SHW)
+- Corel Presentations 7 (SHW)
 - Microsoft PowerPoint Presentation (PPT)
 - Office Open XML Presentation (PPTX)
 - OpenDocument Presentation (ODP)
@@ -503,6 +505,7 @@ identification.
 - StarImpress (SDD)
 - Sun XML Impress (SXI)
 - Sun XML Impress Template (STI)
+- WordPerfect Presentations (SHW)
 
 ### ROM
 

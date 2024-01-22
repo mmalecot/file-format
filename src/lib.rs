@@ -67,6 +67,7 @@ identification.
   * [Autodesk Inventor Drawing (IDW)](`FileFormat::AutodeskInventorDrawing`)
   * [Autodesk Inventor Part (IPT)](`FileFormat::AutodeskInventorPart`)
   * [Autodesk Inventor Presentation (IPN)](`FileFormat::AutodeskInventorPresentation`)
+  * [Corel Presentations 7 (SHW)](`FileFormat::CorelPresentations7`)
   * [Microsoft Excel Spreadsheet (XLS)](`FileFormat::MicrosoftExcelSpreadsheet`)
   * [Microsoft PowerPoint Presentation (PPT)](`FileFormat::MicrosoftPowerpointPresentation`)
   * [Microsoft Project Plan (MPP)](`FileFormat::MicrosoftProjectPlan`)

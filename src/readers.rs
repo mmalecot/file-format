@@ -189,6 +189,7 @@ impl crate::FileFormat {
             "bbf9fdf1-52dc-11d0-8c04-0800090be8ec" => Self::AutodeskInventorDrawing,
             "4d29b490-49b2-11d0-93c3-7e0706000000" => Self::AutodeskInventorPart,
             "76283a80-50dd-11d3-a7e3-00c04f79d7bc" => Self::AutodeskInventorPresentation,
+            "402efe62-1999-101b-99ae-04021c007002" => Self::CorelPresentations7,
             "00020810-0000-0000-c000-000000000046" => Self::MicrosoftExcelSpreadsheet,
             "00020820-0000-0000-c000-000000000046" => Self::MicrosoftExcelSpreadsheet,
             "00044851-0000-0000-c000-000000000046" => Self::MicrosoftPowerpointPresentation,

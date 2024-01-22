@@ -1,5 +1,17 @@
-#[cfg(any(feature = "reader-cfb", feature = "reader-zip"))]
 use file_format::FileFormat;
+
+#[test]
+fn test_corel_presentations() {
+    let fmt = FileFormat::from_file("fixtures/presentation/sample1.shw").unwrap();
+    assert_eq!(fmt, FileFormat::CorelPresentations);
+}
+
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_corel_presentations7() {
+    let fmt = FileFormat::from_file("fixtures/presentation/sample2.shw").unwrap();
+    assert_eq!(fmt, FileFormat::CorelPresentations7);
+}
 
 #[cfg(feature = "reader-cfb")]
 #[test]
@@ -48,4 +60,10 @@ fn test_sun_xml_impress() {
 fn test_sun_xml_impress_template() {
     let fmt = FileFormat::from_file("fixtures/presentation/sample.sti").unwrap();
     assert_eq!(fmt, FileFormat::SunXmlImpressTemplate);
+}
+
+#[test]
+fn test_wordperfect_presentations() {
+    let fmt = FileFormat::from_file("fixtures/presentation/sample3.shw").unwrap();
+    assert_eq!(fmt, FileFormat::WordperfectPresentations);
 }
