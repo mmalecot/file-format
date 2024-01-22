@@ -330,6 +330,9 @@ signatures! {
     value = b"\xFFWPC\x10\0\0\0\x01\x16\x01\0", b"\0\0" offset = 14
 
     // 13 bytes
+    format = Commodore64Cartridge
+    value = b"C64 CARTRIDGE"
+
     format = StandardForTheExchangeOfProductModelData
     value = b"ISO-10303-21;"
 
@@ -1276,6 +1279,9 @@ signatures! {
 
     format = Bzip2
     value = b"BZh"
+
+    format = Commodore64Program
+    value = b"\x01\x08", b"\x9E" offset = 6
 
     format = JointPhotographicExpertsGroup
     value = b"\xFF\xD8\xFF"

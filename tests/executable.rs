@@ -1,6 +1,12 @@
 use file_format::FileFormat;
 
 #[test]
+fn test_commodore64_program() {
+    let fmt = FileFormat::from_file("fixtures/executable/sample.prg").unwrap();
+    assert_eq!(fmt, FileFormat::Commodore64Program);
+}
+
+#[test]
 fn test_common_object_file_format() {
     let fmt = FileFormat::from_file("fixtures/executable/sample.coff").unwrap();
     assert_eq!(fmt, FileFormat::CommonObjectFileFormat);
