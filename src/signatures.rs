@@ -1281,8 +1281,7 @@ signatures! {
     value = b"BZh"
 
     format = Commodore64Program
-    value = b"\x01\x08"
-    value = b"\x9E" offset = 6
+    value = b"\x01\x08", b"\x9E" offset = 6
 
     format = JointPhotographicExpertsGroup
     value = b"\xFF\xD8\xFF"
