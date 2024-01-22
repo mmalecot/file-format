@@ -81,55 +81,6 @@ identification.
 
 ## Supported file formats
 
-### Application
-
-- ActiveMime (MSO)
-- Advanced Systems Format (ASF)
-- Android Binary XML (AXML)
-- Android Compiled Resources (ARSC)
-- Apache Arrow Columnar (Arrow)
-- Apache Avro Object Container (Avro)
-- Apache Parquet (Parquet)
-- Arbitrary Binary Data (BIN)
-- BitTorrent File (Torrent)
-- CD Audio (CDA)
-- Compound File Binary (CFB)
-- Digital Imaging and Communications in Medicine (DICOM)
-- Empty
-- Extensible Binary Meta Language (EBML)
-- Extensible Stylesheet Language Transformations (XSLT)
-- Flexible Image Transport System (FITS)
-- ICC Profile (ICC)
-- Java KeyStore (JKS)
-- MPEG-4 Part 14 (MP4)
-- Meta Information Encapsulation (MIE)
-- Microsoft Compiled HTML Help (CHM)
-- Microsoft Visual Studio Solution (SLN)
-- MusicXML
-- MusicXML Zipped (MXL)
-- Ogg Multiplexed Media (OGX)
-- PCAP Dump (PCAP)
-- PCAP Next Generation Dump (PCAPNG)
-- PEM Certificate Signing Request (PEM)
-- PEM Private Key (PEM)
-- PEM Public Key (PEM)
-- PGP Message (PGP)
-- PGP Private Key Block (PGP)
-- PGP Public Key Block (PGP)
-- PGP Signature (PGP)
-- PGP Signed Message (PGP)
-- Personal Storage Table (PST)
-- RealMedia (RM)
-- Simple Object Access Protocol (SOAP)
-- Small Web Format (SWF)
-- TASTy
-- Tiled Map XML (TMX)
-- Tiled Tileset XML (TSX)
-- Windows Shortcut (LNK)
-- XML Localization Interchange File Format (XLIFF)
-- gettext Machine Object (MO)
-- macOS Alias
-
 ### Archive
 
 - 7-Zip (7Z)
@@ -203,12 +154,7 @@ identification.
 - Microsoft Reader (LIT)
 - Mobipocket (MOBI)
 
-### Certificate
-
-- DER Certificate (DER)
-- PEM Certificate (PEM)
-
-### Compression
+### Compressed
 
 - BZip3 (BZ3)
 - LZ4
@@ -234,6 +180,14 @@ identification.
 - OpenDocument Database (ODB)
 - SQLite 3
 
+### Diagram
+
+- Circuit Diagram Document (CDDX)
+- Microsoft Visio Drawing (VSD)
+- Office Open XML Drawing (VSDX)
+- StarChart (SDS)
+- draw.io (DRAWIO)
+
 ### Disk
 
 - Amiga Disk File (ADF)
@@ -250,28 +204,13 @@ identification.
 - AbiWord (ABW)
 - AbiWord Template (AWT)
 - Adobe InDesign Document (INDD)
-- Circuit Diagram Document (CDDX)
 - InDesign Markup Language (IDML)
-- Microsoft Excel Spreadsheet (XLS)
-- Microsoft PowerPoint Presentation (PPT)
-- Microsoft Project Plan (MPP)
+- LaTeX (TeX)
 - Microsoft Publisher Document (PUB)
-- Microsoft Visio Drawing (VSD)
 - Microsoft Word Document (DOC)
-- Microsoft Works 6 Spreadsheet (XLR)
-- Microsoft Works Spreadsheet (WKS)
 - Microsoft Works Word Processor (WPS)
 - Microsoft Write (WRI)
 - Office Open XML Document (DOCX)
-- Office Open XML Drawing (VSDX)
-- Office Open XML Presentation (PPTX)
-- Office Open XML Spreadsheet (XLSX)
-- OpenDocument Graphics (ODG)
-- OpenDocument Graphics Template (OTG)
-- OpenDocument Presentation (ODP)
-- OpenDocument Presentation Template (OTP)
-- OpenDocument Spreadsheet (ODS)
-- OpenDocument Spreadsheet Template (OTS)
 - OpenDocument Text (ODT)
 - OpenDocument Text Master (ODM)
 - OpenDocument Text Master Template (OTM)
@@ -279,24 +218,11 @@ identification.
 - Portable Document Format (PDF)
 - PostScript (PS)
 - Rich Text Format (RTF)
-- StarCalc (SDC)
-- StarChart (SDS)
-- StarDraw (SDA)
-- StarImpress (SDD)
 - StarWriter (SDW)
-- Sun XML Calc (SXC)
-- Sun XML Calc Template (STC)
-- Sun XML Draw (SXD)
-- Sun XML Draw Template (STD)
-- Sun XML Impress (SXI)
-- Sun XML Impress Template (STI)
 - Sun XML Writer (SXW)
 - Sun XML Writer Global (SGW)
 - Sun XML Writer Template (STW)
 - WordPerfect Document (WPD)
-- WordPerfect Graphics (WPG)
-- WordPerfect Macro (WPM)
-- draw.io (DRAWIO)
 
 ### Executable
 
@@ -328,6 +254,14 @@ identification.
 - TrueType (TTF)
 - Web Open Font Format (WOFF)
 - Web Open Font Format 2 (WOFF2)
+
+### Formula
+
+- Mathematical Markup Language (MathML)
+- OpenDocument Formula (ODF)
+- OpenDocument Formula Template (OTF)
+- StarMath (SMF)
+- Sun XML Math (SXM)
 
 ### Geospatial
 
@@ -380,6 +314,8 @@ identification.
 - Multiple-image Network Graphics (MNG)
 - Nikon Electronic File (NEF)
 - Olympus Raw Format (ORF)
+- OpenDocument Graphics (ODG)
+- OpenDocument Graphics Template (OTG)
 - OpenEXR (EXR)
 - OpenRaster (ORA)
 - Panasonic Raw (RW2)
@@ -394,6 +330,9 @@ identification.
 - Radiance HDR (HDR)
 - Scalable Vector Graphics (SVG)
 - Silicon Graphics Image (SGI)
+- StarDraw (SDA)
+- Sun XML Draw (SXD)
+- Sun XML Draw Template (STD)
 - Tag Image File Format (TIFF)
 - WebP
 - Windows Animated Cursor (ANI)
@@ -401,16 +340,19 @@ identification.
 - Windows Cursor (CUR)
 - Windows Icon (ICO)
 - Windows Metafile (WMF)
+- WordPerfect Graphics (WPG)
 - X PixMap (XPM)
 - farbfeld (FF)
 
-### Mathematical
+### Metadata
 
-- Mathematical Markup Language (MathML)
-- OpenDocument Formula (ODF)
-- OpenDocument Formula Template (OTF)
-- StarMath (SMF)
-- Sun XML Math (SXM)
+- Android Binary XML (AXML)
+- BitTorrent File (Torrent)
+- CD Audio (CDA)
+- Meta Information Encapsulation (MIE)
+- TASTy
+- Windows Shortcut (LNK)
+- macOS Alias
 
 ### Model
 
@@ -461,6 +403,70 @@ identification.
 - Virtual Reality Modeling Language (VRML)
 - openNURBS (3DM)
 
+### Other
+
+- ActiveMime (MSO)
+- Advanced Systems Format (ASF)
+- Android Compiled Resources (ARSC)
+- Apache Arrow Columnar (Arrow)
+- Apache Avro Object Container (Avro)
+- Apache Parquet (Parquet)
+- Arbitrary Binary Data (BIN)
+- Atom
+- Clojure Script
+- Compound File Binary (CFB)
+- DER Certificate (DER)
+- Digital Imaging and Communications in Medicine (DICOM)
+- Empty
+- Extensible Binary Meta Language (EBML)
+- Extensible Markup Language (XML)
+- Extensible Stylesheet Language Transformations (XSLT)
+- Flexible Image Transport System (FITS)
+- HyperText Markup Language (HTML)
+- ICC Profile (ICC)
+- JSON Feed
+- Java KeyStore (JKS)
+- Lua Script
+- MPEG-4 Part 14 (MP4)
+- MS-DOS Batch (Batch)
+- Microsoft Compiled HTML Help (CHM)
+- Microsoft Project Plan (MPP)
+- Microsoft Visual Studio Solution (SLN)
+- MusicXML
+- MusicXML Zipped (MXL)
+- Ogg Multiplexed Media (OGX)
+- PCAP Dump (PCAP)
+- PCAP Next Generation Dump (PCAPNG)
+- PEM Certificate (PEM)
+- PEM Certificate Signing Request (PEM)
+- PEM Private Key (PEM)
+- PEM Public Key (PEM)
+- PGP Message (PGP)
+- PGP Private Key Block (PGP)
+- PGP Public Key Block (PGP)
+- PGP Signature (PGP)
+- PGP Signed Message (PGP)
+- Perl Script
+- Personal Storage Table (PST)
+- Plain Text (TXT)
+- Python Script
+- RealMedia (RM)
+- Really Simple Syndication (RSS)
+- Ruby Script
+- Shell Script
+- Simple Object Access Protocol (SOAP)
+- Small Web Format (SWF)
+- Tiled Map XML (TMX)
+- Tiled Tileset XML (TSX)
+- Tool Command Language Script (Tcl Script)
+- WebAssembly Text (WAT)
+- WordPerfect Macro (WPM)
+- XML Localization Interchange File Format (XLIFF)
+- gettext Machine Object (MO)
+- iCalendar (ICS)
+- vCalendar (VCS)
+- vCard (VCF)
+
 ### Package
 
 - Adobe Integrated Runtime (AIR)
@@ -488,6 +494,16 @@ identification.
 - Windows Media Playlist (WPL)
 - XML Shareable Playlist Format (XSPF)
 
+### Presentation
+
+- Microsoft PowerPoint Presentation (PPT)
+- Office Open XML Presentation (PPTX)
+- OpenDocument Presentation (ODP)
+- OpenDocument Presentation Template (OTP)
+- StarImpress (SDD)
+- Sun XML Impress (SXI)
+- Sun XML Impress Template (STI)
+
 ### ROM
 
 - Atari 7800 ROM (A78)
@@ -505,6 +521,18 @@ identification.
 - Nintendo Switch ROM (XCI)
 - Sega Master System ROM (SMS)
 
+### Spreadsheet
+
+- Microsoft Excel Spreadsheet (XLS)
+- Microsoft Works 6 Spreadsheet (XLR)
+- Microsoft Works Spreadsheet (WKS)
+- Office Open XML Spreadsheet (XLSX)
+- OpenDocument Spreadsheet (ODS)
+- OpenDocument Spreadsheet Template (OTS)
+- StarCalc (SDC)
+- Sun XML Calc (SXC)
+- Sun XML Calc Template (STC)
+
 ### Subtitle
 
 - MPEG-4 Part 14 Subtitles (MP4)
@@ -513,31 +541,6 @@ identification.
 - Timed Text Markup Language (TTML)
 - Universal Subtitle Format (USF)
 - Web Video Text Tracks (WebVTT)
-
-### Syndication
-
-- Atom
-- JSON Feed
-- Really Simple Syndication (RSS)
-
-### Text
-
-- Clojure Script
-- Extensible Markup Language (XML)
-- HyperText Markup Language (HTML)
-- LaTeX (TeX)
-- Lua Script
-- MS-DOS Batch (Batch)
-- Perl Script
-- Plain Text (TXT)
-- Python Script
-- Ruby Script
-- Shell Script
-- Tool Command Language Script (Tcl Script)
-- WebAssembly Text (WAT)
-- iCalendar (ICS)
-- vCalendar (VCS)
-- vCard (VCF)
 
 ### Video
 

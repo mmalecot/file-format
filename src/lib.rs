@@ -321,21 +321,18 @@ impl From<&[u8]> for FileFormat {
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 #[cfg_attr(feature = "serde", derive(serde::Deserialize, serde::Serialize))]
 pub enum Kind {
-    /// Data which do not fit in any of the other kinds, and particularly for data to be processed
-    /// by some type of application program.
-    Application,
     /// Files and directories stored in a single, possibly compressed, archive.
     Archive,
     /// Musics, sound effects, and spoken audio recordings.
     Audio,
     /// Electronic books.
     Book,
-    /// Digital certificates.
-    Certificate,
     /// Compressed single files or streams.
-    Compression,
+    Compressed,
     /// Organized collections of data.
     Database,
+    /// Visual information using graphics and spatial relationships.
+    Diagram,
     /// Floppy disk images, optical disc images and virtual machine disks.
     Disk,
     /// Word processing, desktop publishing, spreadsheets, presentations, diagrams and charts.
@@ -344,27 +341,30 @@ pub enum Kind {
     Executable,
     /// Typefaces used for displaying text on screen or in print.
     Font,
+    /// Mathematical formulas.
+    Formula,
     /// Collections of geospatial features, GPS tracks and other location-related files.
     Geospatial,
     /// Animated images, icons, cursors, raster graphics and vector graphics.
     Image,
-    /// Mathematical formulas.
-    Mathematical,
+    /// Data that provides information about other data.
+    Metadata,
     /// 3D models, CAD drawings, and other types of files used for creating or displaying 3D images.
     Model,
+    /// Data which do not fit in any of the other kinds.
+    Other,
     /// Collections of files bundled together for software distribution.
     Package,
     /// Lists of audio or video files, organized in a specific order for sequential playback.
     Playlist,
+    /// Slide shows.
+    Presentation,
     /// Copies of a read-only memory chip of computers, cartridges, or other electronic devices.
     Rom,
+    /// Data in tabular form.
+    Spreadsheet,
     /// Subtitles and captions.
     Subtitle,
-    /// Web feeds and syndication.
-    Syndication,
-    /// Plain text, source codes, markup languages, and other types of files containing written
-    /// text.
-    Text,
     /// Movies, animations, and other types of files containing moving images, possibly with color
     /// and coordinated sound.
     Video,
