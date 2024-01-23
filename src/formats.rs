@@ -2781,6 +2781,13 @@ formats! {
     extension = "ani"
     kind = Image
 
+    format = WindowsAppBundle
+    name = "Windows App Bundle"
+    short_name = "APPXBUNDLE"
+    media_type = "application/vnd.ms-appx.bundle"
+    extension = "appxbundle"
+    kind = Package
+
     format = WindowsAppPackage
     name = "Windows App Package"
     short_name = "APPX"

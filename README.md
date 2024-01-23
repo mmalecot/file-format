@@ -481,6 +481,7 @@ identification.
 - Nintendo Switch Package (NSP)
 - Red Hat Package Manager (RPM)
 - Web Application Archive (WAR)
+- Windows App Bundle (APPXBUNDLE)
 - Windows App Package (APPX)
 - XAP
 - XPInstall (XPI)

@@ -192,6 +192,7 @@ identification.
   * [Sun XML Writer Template (STW)](`FileFormat::SunXmlWriterTemplate`)
   * [Universal Scene Description Zipped (USDZ)](`FileFormat::UniversalSceneDescriptionZipped`)
   * [Web Application Archive (WAR)](`FileFormat::WebApplicationArchive`)
+  * [Windows App Bundle (APPXBUNDLE)](`FileFormat::WindowsAppBundle`)
   * [Windows App Package (APPX)](`FileFormat::WindowsAppPackage`)
   * [XAP](`FileFormat::Xap`)
   * [XPInstall (XPI)](`FileFormat::Xpinstall`)

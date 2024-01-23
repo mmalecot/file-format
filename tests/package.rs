@@ -82,6 +82,13 @@ fn test_web_application_archive() {
 
 #[cfg(feature = "reader-zip")]
 #[test]
+fn test_windows_app_bundle() {
+    let fmt = FileFormat::from_file("fixtures/package/sample.appxbundle").unwrap();
+    assert_eq!(fmt, FileFormat::WindowsAppBundle);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
 fn test_windows_app_package() {
     let fmt = FileFormat::from_file("fixtures/package/sample.appx").unwrap();
     assert_eq!(fmt, FileFormat::WindowsAppPackage);
