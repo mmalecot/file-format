@@ -196,6 +196,12 @@ formats! {
     extension = "parquet"
     kind = Other
 
+    format = Appimage
+    name = "AppImage"
+    media_type = "application/x-appimage"
+    extension = "AppImage"
+    kind = Package
+
     format = AppleDiskImage
     name = "Apple Disk Image"
     short_name = "DMG"

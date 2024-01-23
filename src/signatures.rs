@@ -343,6 +343,9 @@ signatures! {
     format = AnimatedPortableNetworkGraphics
     value = b"\x89PNG\r\n\x1A\n", b"acTL" offset = 37
 
+    format = Appimage
+    value = b"\x7FELF", b"AI\x02\x00\x00\x00\x00\x00" offset = 8
+
     format = CdAudio
     value = b"RIFF", b"CDDAfmt " offset = 8
 

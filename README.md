@@ -469,6 +469,7 @@ identification.
 
 - Adobe Integrated Runtime (AIR)
 - Android Package (APK)
+- AppImage
 - Debian Binary Package (DEB)
 - Enterprise Application Archive (EAR)
 - Google Chrome Extension (CRX)

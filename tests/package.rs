@@ -15,6 +15,12 @@ fn test_android_package() {
 }
 
 #[test]
+fn test_appimage() {
+    let fmt = FileFormat::from_file("fixtures/package/sample.AppImage").unwrap();
+    assert_eq!(fmt, FileFormat::Appimage);
+}
+
+#[test]
 fn test_debian_binary_package() {
     let fmt = FileFormat::from_file("fixtures/package/sample.deb").unwrap();
     assert_eq!(fmt, FileFormat::DebianBinaryPackage);
