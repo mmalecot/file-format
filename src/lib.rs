@@ -337,9 +337,9 @@ pub enum Kind {
     Diagram,
     /// Floppy disk images, optical disc images and virtual machine disks.
     Disk,
-    /// Word processing, desktop publishing, spreadsheets, presentations, diagrams and charts.
+    /// Word processing and desktop publishing documents.
     Document,
-    /// Machine-executable codes, virtual machine codes and shared libraries.
+    /// Machine-executable code, virtual machine code and shared libraries.
     Executable,
     /// Typefaces used for displaying text on screen or in print.
     Font,
