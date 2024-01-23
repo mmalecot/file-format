@@ -55,6 +55,12 @@ fn test_mozilla_archive() {
 }
 
 #[test]
+fn test_multi_layer_archive() {
+    let fmt = FileFormat::from_file("fixtures/archive/sample.mla").unwrap();
+    assert_eq!(fmt, FileFormat::MultiLayerArchive);
+}
+
+#[test]
 fn test_pmarc() {
     let fmt = FileFormat::from_file("fixtures/archive/sample.pma").unwrap();
     assert_eq!(fmt, FileFormat::Pmarc);

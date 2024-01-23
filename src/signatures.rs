@@ -794,6 +794,9 @@ signatures! {
     value = b"\xEF\xBB\xBF<MPD"
     value = b"<MPD"
 
+    format = MultiLayerArchive
+    value = b"MLA\x01\x00\x00\x00"
+
     format = ReallySimpleSyndication
     value = b"\xEF\xBB\xBF<rss"
     value = b"<rss"

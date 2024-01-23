@@ -1602,6 +1602,13 @@ formats! {
     extension = "mtv"
     kind = Video
 
+    format = MultiLayerArchive
+    name = "Multi Layer Archive"
+    short_name = "MLA"
+    media_type = "application/x-mla"
+    extension = "mla"
+    kind = Archive
+
     format = MultipleImageNetworkGraphics
     name = "Multiple-image Network Graphics"
     short_name = "MNG"
