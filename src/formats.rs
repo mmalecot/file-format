@@ -1505,6 +1505,13 @@ formats! {
     extension = "ape"
     kind = Audio
 
+    format = MozillaArchive
+    name = "Mozilla Archive"
+    short_name = "MAR"
+    media_type = "application/x-mozilla-archive"
+    extension = "mar"
+    kind = Archive
+
     format = Mp3Url
     name = "MP3 URL"
     short_name = "M3U"

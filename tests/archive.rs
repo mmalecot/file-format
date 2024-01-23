@@ -49,6 +49,12 @@ fn test_lha() {
 }
 
 #[test]
+fn test_mozilla_archive() {
+    let fmt = FileFormat::from_file("fixtures/archive/sample.mar").unwrap();
+    assert_eq!(fmt, FileFormat::MozillaArchive);
+}
+
+#[test]
 fn test_pmarc() {
     let fmt = FileFormat::from_file("fixtures/archive/sample.pma").unwrap();
     assert_eq!(fmt, FileFormat::Pmarc);

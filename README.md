@@ -91,6 +91,7 @@ identification.
 - Extensible Archive (XAR)
 - LArc (LZS)
 - LHA
+- Mozilla Archive (MAR)
 - PMarc (PMA)
 - Roshal Archive (RAR)
 - SeqBox (SBX)

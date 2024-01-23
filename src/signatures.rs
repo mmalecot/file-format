@@ -1134,6 +1134,9 @@ signatures! {
     format = MonkeysAudio
     value = b"MAC "
 
+    format = MozillaArchive
+    value = b"MAR1"
+
     format = Mpeg12Video
     value = b"\x00\x00\x01\xB3"
     value = b"\x00\x00\x01\xBA"
