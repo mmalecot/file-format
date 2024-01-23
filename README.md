@@ -58,10 +58,6 @@ file-format = "0.23"
 
 All features below are disabled by default.
 
-### Ecosystem features
-
-- `serde` - Adds the ability to serialize and deserialize a `FileFormat` and `Kind` using serde.
-
 ### Reader features
 
 These features enable the detection of file formats that require a specific reader for

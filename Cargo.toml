@@ -14,13 +14,7 @@ documentation = "https://docs.rs/file-format"
 exclude = ["/.github", "/examples", "/fixtures", "/tests", ".gitattributes", ".gitignore"]
 rust-version = "1.60.0"
 
-[dependencies]
-serde = { version = "1.0", optional = true, features = ["derive"], default-features = false }
-
 [features]
-## Ecosystem features
-serde = ["dep:serde"]
-
 ## Reader features
 reader = [
     "reader-asf",

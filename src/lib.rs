@@ -45,10 +45,6 @@ assert_eq!(fmt.kind(), Kind::Image);
 
 All features below are disabled by default.
 
-## Ecosystem features
-
-- `serde` - Adds the ability to serialize and deserialize a [`FileFormat`] and [`Kind`] using serde.
-
 ## Reader features
 
 These features enable the detection of file formats that require a specific reader for
@@ -321,7 +317,6 @@ impl From<&[u8]> for FileFormat {
 
 /// A kind of file format.
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
-#[cfg_attr(feature = "serde", derive(serde::Deserialize, serde::Serialize))]
 pub enum Kind {
     /// Files and directories stored in a single, possibly compressed, archive.
     Archive,
