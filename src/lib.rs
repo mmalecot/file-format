@@ -367,7 +367,6 @@ pub enum Kind {
     Spreadsheet,
     /// Subtitles and captions.
     Subtitle,
-    /// Movies, animations, and other types of files containing moving images, possibly with color
-    /// and coordinated sound.
+    /// Moving images, possibly with color and coordinated sound.
     Video,
 }
