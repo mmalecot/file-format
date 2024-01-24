@@ -32,17 +32,17 @@ fn test_adobe_indesign_document() {
     assert_eq!(fmt, FileFormat::AdobeIndesignDocument);
 }
 
+#[test]
+fn test_djvu() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.djvu").unwrap();
+    assert_eq!(fmt, FileFormat::Djvu);
+}
+
 #[cfg(feature = "reader-zip")]
 #[test]
 fn test_indesign_markup_language() {
     let fmt = FileFormat::from_file("fixtures/document/sample.idml").unwrap();
     assert_eq!(fmt, FileFormat::IndesignMarkupLanguage);
-}
-
-#[test]
-fn test_djvu() {
-    let fmt = FileFormat::from_file("fixtures/document/sample.djvu").unwrap();
-    assert_eq!(fmt, FileFormat::Djvu);
 }
 
 #[test]
