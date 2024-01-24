@@ -548,9 +548,6 @@ signatures! {
     format = CompoundFileBinary
     value = b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"
 
-    format = DalvikExecutable
-    value = b"dex\n", b"\0" offset = 7
-
     format = ExperimentalComputingFacility
     value = b"gimp xcf"
 
@@ -886,6 +883,9 @@ signatures! {
     format = CorelPresentations
     value = b"\xFFWPC", b"\x0F" offset = 9
     value = b"\xFFWPC", b"\x10" offset = 9
+
+    format = DalvikExecutable
+    value = b"dex\n", b"\0" offset = 7
 
     format = EmbeddedOpentype
     value = b"\x00\x00\x01" offset = 8, b"LP" offset = 34
