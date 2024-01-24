@@ -9,6 +9,13 @@ fn test_adobe_integrated_runtime() {
 
 #[cfg(feature = "reader-zip")]
 #[test]
+fn test_android_app_bundle() {
+    let fmt = FileFormat::from_file("fixtures/package/sample.aab").unwrap();
+    assert_eq!(fmt, FileFormat::AndroidAppBundle);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
 fn test_android_package() {
     let fmt = FileFormat::from_file("fixtures/package/sample.apk").unwrap();
     assert_eq!(fmt, FileFormat::AndroidPackage);

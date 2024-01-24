@@ -144,6 +144,7 @@ identification.
 - `reader-zip` - Enables [ZIP](`FileFormat::Zip`)-based file formats detection.
   * [3D Manufacturing Format (3MF)](`FileFormat::ThreeDimensionalManufacturingFormat`)
   * [Adobe Integrated Runtime (AIR)](`FileFormat::AdobeIntegratedRuntime`)
+  * [Android App Bundle (AAB)](`FileFormat::AndroidAppBundle`)
   * [Android Package (APK)](`FileFormat::AndroidPackage`)
   * [Autodesk 123D (123DX)](`FileFormat::Autodesk123d`)
   * [Circuit Diagram Document (CDDX)](`FileFormat::CircuitDiagramDocument`)

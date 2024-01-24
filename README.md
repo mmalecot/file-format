@@ -468,6 +468,7 @@ identification.
 ### Package
 
 - Adobe Integrated Runtime (AIR)
+- Android App Bundle (AAB)
 - Android Package (APK)
 - AppImage
 - Debian Binary Package (DEB)

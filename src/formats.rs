@@ -147,6 +147,13 @@ formats! {
     extension = "adf"
     kind = Disk
 
+    format = AndroidAppBundle
+    name = "Android App Bundle"
+    short_name = "AAB"
+    media_type = "application/vnd.android.aab"
+    extension = "aab"
+    kind = Package
+
     format = AndroidBinaryXml
     name = "Android Binary XML"
     short_name = "AXML"
