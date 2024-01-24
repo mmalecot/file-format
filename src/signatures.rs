@@ -549,7 +549,7 @@ signatures! {
     value = b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"
 
     format = DalvikExecutable
-    value = b"dex\n035\0"
+    value = b"dex\n", b"\0" offset = 7
 
     format = ExperimentalComputingFacility
     value = b"gimp xcf"
