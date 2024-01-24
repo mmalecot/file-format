@@ -636,7 +636,7 @@ formats! {
     name = "DjVu"
     media_type = "image/vnd.djvu"
     extension = "djvu"
-    kind = Image
+    kind = Document
 
     format = DrawingExchangeFormatAscii
     name = "Drawing Exchange Format ASCII"

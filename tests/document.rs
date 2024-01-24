@@ -40,6 +40,12 @@ fn test_indesign_markup_language() {
 }
 
 #[test]
+fn test_djvu() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.djvu").unwrap();
+    assert_eq!(fmt, FileFormat::Djvu);
+}
+
+#[test]
 fn test_latex() {
     let fmt = FileFormat::from_file("fixtures/document/sample.tex").unwrap();
     assert_eq!(fmt, FileFormat::Latex);

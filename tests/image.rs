@@ -80,12 +80,6 @@ fn test_digital_picture_exchange() {
 }
 
 #[test]
-fn test_djvu() {
-    let fmt = FileFormat::from_file("fixtures/image/sample.djvu").unwrap();
-    assert_eq!(fmt, FileFormat::Djvu);
-}
-
-#[test]
 fn test_encapsulated_postscript() {
     let fmt = FileFormat::from_file("fixtures/image/sample.eps").unwrap();
     assert_eq!(fmt, FileFormat::EncapsulatedPostscript);

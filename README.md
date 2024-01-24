@@ -202,6 +202,7 @@ identification.
 - AbiWord (ABW)
 - AbiWord Template (AWT)
 - Adobe InDesign Document (INDD)
+- DjVu
 - InDesign Markup Language (IDML)
 - LaTeX (TeX)
 - Microsoft Publisher Document (PUB)
@@ -286,7 +287,6 @@ identification.
 - Canon Raw 3 (CR3)
 - Cineon (CIN)
 - Digital Picture Exchange (DPX)
-- DjVu
 - Encapsulated PostScript (EPS)
 - Experimental Computing Facility (XCF)
 - Free Lossless Image Format (FLIF)
