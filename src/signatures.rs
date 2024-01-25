@@ -718,19 +718,19 @@ signatures! {
     value = b"\xEF\xBB\xBF<amf"
     value = b"<amf"
 
-    format = AdobeFlashPlayerAudio
+    format = AdobeFlashMp4Audio
     value = b"ftypF4A" offset = 4
     value = b"ftypf4a" offset = 4
 
-    format = AdobeFlashPlayerAudiobook
+    format = AdobeFlashMp4Audiobook
     value = b"ftypF4B" offset = 4
     value = b"ftypf4b" offset = 4
 
-    format = AdobeFlashPlayerProtectedVideo
+    format = AdobeFlashMp4ProtectedVideo
     value = b"ftypF4P" offset = 4
     value = b"ftypf4p" offset = 4
 
-    format = AdobeFlashPlayerVideo
+    format = AdobeFlashMp4Video
     value = b"ftypF4V" offset = 4
     value = b"ftypf4v" offset = 4
 
@@ -989,6 +989,9 @@ signatures! {
     format = AdaptableScalableTextureCompression
     value = b"\x13\xAB\xA1\x5C"
 
+    format = AdobeFlashVideo
+    value = b"FLV\x01"
+
     format = AdobePhotoshopDocument
     value = b"8BPS"
 
@@ -1060,9 +1063,6 @@ signatures! {
 
     format = ExtensibleBinaryMetaLanguage
     value = b"\x1A\x45\xDF\xA3"
-
-    format = FlashVideo
-    value = b"FLV\x01"
 
     format = FlexibleAndInteroperableDataTransfer
     value = b".FIT" offset = 8

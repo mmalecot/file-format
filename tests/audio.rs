@@ -7,15 +7,15 @@ fn test_adaptive_multi_rate() {
 }
 
 #[test]
-fn test_adobe_flash_player_audio() {
+fn test_adobe_flash_mp4_audio() {
     let fmt = FileFormat::from_file("fixtures/audio/sample.f4a").unwrap();
-    assert_eq!(fmt, FileFormat::AdobeFlashPlayerAudio);
+    assert_eq!(fmt, FileFormat::AdobeFlashMp4Audio);
 }
 
 #[test]
-fn test_adobe_flash_player_audiobook() {
+fn test_adobe_flash_mp4_audiobook() {
     let fmt = FileFormat::from_file("fixtures/audio/sample.f4b").unwrap();
-    assert_eq!(fmt, FileFormat::AdobeFlashPlayerAudiobook);
+    assert_eq!(fmt, FileFormat::AdobeFlashMp4Audiobook);
 }
 
 #[test]

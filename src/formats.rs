@@ -50,32 +50,39 @@ formats! {
     extension = "amf"
     kind = Model
 
-    format = AdobeFlashPlayerAudio
-    name = "Adobe Flash Player Audio"
+    format = AdobeFlashMp4Audio
+    name = "Adobe Flash MP4 Audio"
     short_name = "F4A"
     media_type = "audio/mp4"
     extension = "f4a"
     kind = Audio
 
-    format = AdobeFlashPlayerAudiobook
-    name = "Adobe Flash Player Audiobook"
+    format = AdobeFlashMp4Audiobook
+    name = "Adobe Flash MP4 Audiobook"
     short_name = "F4B"
     media_type = "audio/mp4"
     extension = "f4b"
     kind = Audio
 
-    format = AdobeFlashPlayerProtectedVideo
-    name = "Adobe Flash Player Protected Video"
+    format = AdobeFlashMp4ProtectedVideo
+    name = "Adobe Flash MP4 Protected Video"
     short_name = "F4P"
     media_type = "video/mp4"
     extension = "f4p"
     kind = Video
 
-    format = AdobeFlashPlayerVideo
-    name = "Adobe Flash Player Video"
+    format = AdobeFlashMp4Video
+    name = "Adobe Flash MP4 Video"
     short_name = "F4V"
     media_type = "video/mp4"
     extension = "f4v"
+    kind = Video
+
+    format = AdobeFlashVideo
+    name = "Adobe Flash Video"
+    short_name = "FLV"
+    media_type = "video/x-flv"
+    extension = "flv"
     kind = Video
 
     format = AdobeIllustratorArtwork
@@ -790,13 +797,6 @@ formats! {
     media_type = "application/vnd.autodesk.fbx"
     extension = "fbx"
     kind = Model
-
-    format = FlashVideo
-    name = "Flash Video"
-    short_name = "FLV"
-    media_type = "video/x-flv"
-    extension = "flv"
-    kind = Video
 
     format = FlexibleAndInteroperableDataTransfer
     name = "Flexible and Interoperable Data Transfer"
