@@ -50,6 +50,13 @@ formats! {
     extension = "amf"
     kind = Model
 
+    format = AdobeFlashCs5Project
+    name = "Adobe Flash CS5 Project"
+    short_name = "FLA"
+    media_type = "application/vnd.adobe.fla"
+    extension = "fla"
+    kind = Other
+
     format = AdobeFlashMp4Audio
     name = "Adobe Flash MP4 Audio"
     short_name = "F4A"
@@ -77,6 +84,13 @@ formats! {
     media_type = "video/mp4"
     extension = "f4v"
     kind = Video
+
+    format = AdobeFlashProject
+    name = "Adobe Flash Project"
+    short_name = "FLA"
+    media_type = "application/vnd.adobe.fla"
+    extension = "fla"
+    kind = Other
 
     format = AdobeFlashVideo
     name = "Adobe Flash Video"

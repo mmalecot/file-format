@@ -59,6 +59,7 @@ identification.
 - `reader-cfb` - Enables [Compound File Binary (CFB)](`FileFormat::CompoundFileBinary`) based file
   formats detection.
   * [3D Studio Max (MAX)](`FileFormat::ThreeDimensionalStudioMax`)
+  * [Adobe Flash Project (FLA)](`FileFormat::AdobeFlashProject`)
   * [Autodesk Inventor Assembly (IAM)](`FileFormat::AutodeskInventorAssembly`)
   * [Autodesk Inventor Drawing (IDW)](`FileFormat::AutodeskInventorDrawing`)
   * [Autodesk Inventor Part (IPT)](`FileFormat::AutodeskInventorPart`)
@@ -143,6 +144,7 @@ identification.
   * [draw.io (DRAWIO)](`FileFormat::Drawio`)
 - `reader-zip` - Enables [ZIP](`FileFormat::Zip`)-based file formats detection.
   * [3D Manufacturing Format (3MF)](`FileFormat::ThreeDimensionalManufacturingFormat`)
+  * [Adobe Flash CS5 Project (FLA)](`FileFormat::AdobeFlashCs5Project`)
   * [Adobe Integrated Runtime (AIR)](`FileFormat::AdobeIntegratedRuntime`)
   * [Android App Bundle (AAB)](`FileFormat::AndroidAppBundle`)
   * [Android Package (APK)](`FileFormat::AndroidPackage`)

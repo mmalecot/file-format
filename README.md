@@ -404,6 +404,8 @@ identification.
 ### Other
 
 - ActiveMime (MSO)
+- Adobe Flash CS5 Project (FLA)
+- Adobe Flash Project (FLA)
 - Advanced Systems Format (ASF)
 - Android Compiled Resources (ARSC)
 - Apache Arrow Columnar (Arrow)

@@ -185,6 +185,8 @@ impl crate::FileFormat {
 
         // Determines the file format based on the CLSID.
         Ok(match clsid.as_str() {
+            "597caa70-72aa-11cf-831e-524153480000" => Self::AdobeFlashProject,
+            "b4f235fe-dca6-4803-b7b2-c25a453c836b" => Self::AdobeFlashProject,
             "e60f81e1-49b3-11d0-93c3-7e0706000000" => Self::AutodeskInventorAssembly,
             "bbf9fdf1-52dc-11d0-8c04-0800090be8ec" => Self::AutodeskInventorDrawing,
             "4d29b490-49b2-11d0-93c3-7e0706000000" => Self::AutodeskInventorPart,
@@ -871,6 +873,7 @@ impl crate::FileFormat {
 
             // Checks the filename.
             match filename.as_str() {
+                "DOMDocument.xml" => return Ok(Self::AdobeFlashCs5Project),
                 "AndroidManifest.xml" => return Ok(Self::AndroidPackage),
                 "AppManifest.xaml" => return Ok(Self::Xap),
                 "AppxManifest.xml" => return Ok(Self::WindowsAppPackage),
