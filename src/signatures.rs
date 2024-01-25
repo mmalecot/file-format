@@ -1369,6 +1369,7 @@ signatures! {
     format = SmallWebFormat
     value = b"CWS"
     value = b"FWS"
+    value = b"ZWS"
 
     format = Zoo
     value = b"ZOO"
