@@ -655,7 +655,7 @@ impl crate::FileFormat {
     /// Determines file format from a TXT reader.
     #[cfg(feature = "reader-txt")]
     pub(crate) fn from_txt_reader<R: Read + Seek>(reader: R) -> Result<Self> {
-        // Maximum number of lines that the can be processed by the reader.
+        // Maximum number of lines that can be processed by the reader.
         const LINE_LIMIT: usize = 16;
 
         // Maximum number of bytes that can be processed by the reader (64 KB).
@@ -686,7 +686,7 @@ impl crate::FileFormat {
     /// Determines file format from a XML reader.
     #[cfg(feature = "reader-xml")]
     pub(crate) fn from_xml_reader<R: Read + Seek>(reader: R) -> Result<Self> {
-        // Maximum number of lines that the can be processed by the reader.
+        // Maximum number of lines that can be processed by the reader.
         const LINE_LIMIT: usize = 8;
 
         // Maximum number of bytes that can be processed by the reader (32 KB).
