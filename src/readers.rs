@@ -461,7 +461,7 @@ impl crate::FileFormat {
     /// Determines file format from a MP4 reader.
     #[cfg(feature = "reader-mp4")]
     pub(crate) fn from_mp4_reader<R: Read + Seek>(reader: R) -> Result<Self> {
-        // Maximum number of boxes that the can be processed by the reader.
+        // Maximum number of boxes that can be processed by the reader.
         const BOX_LIMIT: usize = 256;
 
         // Creates a buffered reader.
