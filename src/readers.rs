@@ -692,73 +692,66 @@ impl crate::FileFormat {
         // Creates and fills a buffer.
         let mut buf = [0; 8192];
         let nread = reader.read(&mut buf)?;
+        let buf = &buf[..nread];
 
         // Checks if the buffer holds markers indicating the presence of various file formats.
-        Ok(if buf[..nread].holds("<abiword template=\"false\"") {
+        Ok(if buf.holds("<abiword template=\"false\"") {
             Self::Abiword
-        } else if buf[..nread].holds("<abiword template=\"true\"") {
+        } else if buf.holds("<abiword template=\"true\"") {
             Self::AbiwordTemplate
-        } else if buf[..nread].holds("<amf") {
+        } else if buf.holds("<amf") {
             Self::AdditiveManufacturingFormat
-        } else if buf[..nread].holds("<ASX") || buf[..nread].holds("<asx") {
+        } else if buf.holds("<ASX") || buf.holds("<asx") {
             Self::AdvancedStreamRedirector
-        } else if buf[..nread].holds("<feed") {
+        } else if buf.holds("<feed") {
             Self::Atom
-        } else if buf[..nread].holds("<COLLADA") || buf[..nread].holds("<collada") {
+        } else if buf.holds("<COLLADA") || buf.holds("<collada") {
             Self::DigitalAssetExchange
-        } else if buf[..nread].holds("<mxfile") {
+        } else if buf.holds("<mxfile") {
             Self::Drawio
-        } else if buf[..nread].holds("<X3D") || buf[..nread].holds("<x3d") {
+        } else if buf.holds("<X3D") || buf.holds("<x3d") {
             Self::Extensible3d
-        } else if buf[..nread].holds("<xsl") {
+        } else if buf.holds("<xsl") {
             Self::ExtensibleStylesheetLanguageTransformations
-        } else if buf[..nread].holds("<FictionBook") {
+        } else if buf.holds("<FictionBook") {
             Self::Fictionbook
-        } else if buf[..nread].holds("<gml") {
+        } else if buf.holds("<gml") {
             Self::GeographyMarkupLanguage
-        } else if buf[..nread].holds("<gpx") {
+        } else if buf.holds("<gpx") {
             Self::GpsExchangeFormat
-        } else if buf[..nread].holds("<kml") {
+        } else if buf.holds("<kml") {
             Self::KeyholeMarkupLanguage
-        } else if buf[..nread].holds("<math") {
+        } else if buf.holds("<math") {
             Self::MathematicalMarkupLanguage
-        } else if buf[..nread].holds("<MPD") {
+        } else if buf.holds("<MPD") {
             Self::MpegDashManifest
-        } else if buf[..nread].holds("<score-partwise") {
+        } else if buf.holds("<score-partwise") {
             Self::Musicxml
-        } else if buf[..nread].holds("<rss") {
+        } else if buf.holds("<rss") {
             Self::ReallySimpleSyndication
-        } else if buf[..nread].holds("<SVG") || buf[..nread].holds("<svg") {
+        } else if buf.holds("<SVG") || buf.holds("<svg") {
             Self::ScalableVectorGraphics
-        } else if buf[..nread].holds("<soap") {
+        } else if buf.holds("<soap") {
             Self::SimpleObjectAccessProtocol
-        } else if buf[..nread].holds("<map") {
+        } else if buf.holds("<map") {
             Self::TiledMapXml
-        } else if buf[..nread].holds("<tileset") {
+        } else if buf.holds("<tileset") {
             Self::TiledTilesetXml
-        } else if buf[..nread].holds("<tt")
-            && buf[..nread].holds("xmlns=\"http://www.w3.org/ns/ttml\"")
-        {
+        } else if buf.holds("<tt") && buf.holds("xmlns=\"http://www.w3.org/ns/ttml\"") {
             Self::TimedTextMarkupLanguage
-        } else if buf[..nread].holds("<TrainingCenterDatabase") {
+        } else if buf.holds("<TrainingCenterDatabase") {
             Self::TrainingCenterXml
-        } else if buf[..nread].holds("<uof:UOF")
-            & buf[..nread].holds("uof:mimetype=\"vnd.uof.presentation\"")
-        {
+        } else if buf.holds("<uof:UOF") & buf.holds("uof:mimetype=\"vnd.uof.presentation\"") {
             Self::UniformOfficeFormatPresentation
-        } else if buf[..nread].holds("<uof:UOF")
-            & buf[..nread].holds("uof:mimetype=\"vnd.uof.spreadsheet\"")
-        {
+        } else if buf.holds("<uof:UOF") & buf.holds("uof:mimetype=\"vnd.uof.spreadsheet\"") {
             Self::UniformOfficeFormatSpreadsheet
-        } else if buf[..nread].holds("<uof:UOF")
-            & buf[..nread].holds("uof:mimetype=\"vnd.uof.text\"")
-        {
+        } else if buf.holds("<uof:UOF") & buf.holds("uof:mimetype=\"vnd.uof.text\"") {
             Self::UniformOfficeFormatText
-        } else if buf[..nread].holds("<USFSubtitles") {
+        } else if buf.holds("<USFSubtitles") {
             Self::UniversalSubtitleFormat
-        } else if buf[..nread].holds("<xliff") {
+        } else if buf.holds("<xliff") {
             Self::XmlLocalizationInterchangeFileFormat
-        } else if buf[..nread].holds("<playlist") {
+        } else if buf.holds("<playlist") {
             Self::XmlShareablePlaylistFormat
         } else {
             Self::ExtensibleMarkupLanguage
