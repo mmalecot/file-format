@@ -694,76 +694,75 @@ impl crate::FileFormat {
         let nread = reader.read(&mut buf)?;
 
         // Checks if the buffer holds markers indicating the presence of various file formats.
-        if buf[..nread].holds("<abiword template=\"false\"") {
-            return Ok(Self::Abiword);
+        Ok(if buf[..nread].holds("<abiword template=\"false\"") {
+            Self::Abiword
         } else if buf[..nread].holds("<abiword template=\"true\"") {
-            return Ok(Self::AbiwordTemplate);
+            Self::AbiwordTemplate
         } else if buf[..nread].holds("<amf") {
-            return Ok(Self::AdditiveManufacturingFormat);
+            Self::AdditiveManufacturingFormat
         } else if buf[..nread].holds("<ASX") || buf[..nread].holds("<asx") {
-            return Ok(Self::AdvancedStreamRedirector);
+            Self::AdvancedStreamRedirector
         } else if buf[..nread].holds("<feed") {
-            return Ok(Self::Atom);
+            Self::Atom
         } else if buf[..nread].holds("<COLLADA") || buf[..nread].holds("<collada") {
-            return Ok(Self::DigitalAssetExchange);
+            Self::DigitalAssetExchange
         } else if buf[..nread].holds("<mxfile") {
-            return Ok(Self::Drawio);
+            Self::Drawio
         } else if buf[..nread].holds("<X3D") || buf[..nread].holds("<x3d") {
-            return Ok(Self::Extensible3d);
+            Self::Extensible3d
         } else if buf[..nread].holds("<xsl") {
-            return Ok(Self::ExtensibleStylesheetLanguageTransformations);
+            Self::ExtensibleStylesheetLanguageTransformations
         } else if buf[..nread].holds("<FictionBook") {
-            return Ok(Self::Fictionbook);
+            Self::Fictionbook
         } else if buf[..nread].holds("<gml") {
-            return Ok(Self::GeographyMarkupLanguage);
+            Self::GeographyMarkupLanguage
         } else if buf[..nread].holds("<gpx") {
-            return Ok(Self::GpsExchangeFormat);
+            Self::GpsExchangeFormat
         } else if buf[..nread].holds("<kml") {
-            return Ok(Self::KeyholeMarkupLanguage);
+            Self::KeyholeMarkupLanguage
         } else if buf[..nread].holds("<math") {
-            return Ok(Self::MathematicalMarkupLanguage);
+            Self::MathematicalMarkupLanguage
         } else if buf[..nread].holds("<MPD") {
-            return Ok(Self::MpegDashManifest);
+            Self::MpegDashManifest
         } else if buf[..nread].holds("<score-partwise") {
-            return Ok(Self::Musicxml);
+            Self::Musicxml
         } else if buf[..nread].holds("<rss") {
-            return Ok(Self::ReallySimpleSyndication);
+            Self::ReallySimpleSyndication
         } else if buf[..nread].holds("<SVG") || buf[..nread].holds("<svg") {
-            return Ok(Self::ScalableVectorGraphics);
+            Self::ScalableVectorGraphics
         } else if buf[..nread].holds("<soap") {
-            return Ok(Self::SimpleObjectAccessProtocol);
+            Self::SimpleObjectAccessProtocol
         } else if buf[..nread].holds("<map") {
-            return Ok(Self::TiledMapXml);
+            Self::TiledMapXml
         } else if buf[..nread].holds("<tileset") {
-            return Ok(Self::TiledTilesetXml);
+            Self::TiledTilesetXml
         } else if buf[..nread].holds("<tt")
             && buf[..nread].holds("xmlns=\"http://www.w3.org/ns/ttml\"")
         {
-            return Ok(Self::TimedTextMarkupLanguage);
+            Self::TimedTextMarkupLanguage
         } else if buf[..nread].holds("<TrainingCenterDatabase") {
-            return Ok(Self::TrainingCenterXml);
+            Self::TrainingCenterXml
         } else if buf[..nread].holds("<uof:UOF")
             & buf[..nread].holds("uof:mimetype=\"vnd.uof.presentation\"")
         {
-            return Ok(Self::UniformOfficeFormatPresentation);
+            Self::UniformOfficeFormatPresentation
         } else if buf[..nread].holds("<uof:UOF")
             & buf[..nread].holds("uof:mimetype=\"vnd.uof.spreadsheet\"")
         {
-            return Ok(Self::UniformOfficeFormatSpreadsheet);
+            Self::UniformOfficeFormatSpreadsheet
         } else if buf[..nread].holds("<uof:UOF")
             & buf[..nread].holds("uof:mimetype=\"vnd.uof.text\"")
         {
-            return Ok(Self::UniformOfficeFormatText);
+            Self::UniformOfficeFormatText
         } else if buf[..nread].holds("<USFSubtitles") {
-            return Ok(Self::UniversalSubtitleFormat);
+            Self::UniversalSubtitleFormat
         } else if buf[..nread].holds("<xliff") {
-            return Ok(Self::XmlLocalizationInterchangeFileFormat);
+            Self::XmlLocalizationInterchangeFileFormat
         } else if buf[..nread].holds("<playlist") {
-            return Ok(Self::XmlShareablePlaylistFormat);
-        }
-
-        // Returns the default value.
-        Ok(Self::ExtensibleMarkupLanguage)
+            Self::XmlShareablePlaylistFormat
+        } else {
+            Self::ExtensibleMarkupLanguage
+        })
     }
 
     /// Determines file format from a ZIP reader.
