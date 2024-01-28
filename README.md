@@ -214,6 +214,7 @@ identification.
 - OpenDocument Text Master (ODM)
 - OpenDocument Text Master Template (OTM)
 - OpenDocument Text Template (OTT)
+- OpenXPS (OXPS)
 - Portable Document Format (PDF)
 - PostScript (PS)
 - Rich Text Format (RTF)

@@ -119,6 +119,13 @@ fn test_opendocument_text_template() {
     assert_eq!(fmt, FileFormat::OpendocumentTextTemplate);
 }
 
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_openxps() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.xps").unwrap();
+    assert_eq!(fmt, FileFormat::Openxps);
+}
+
 #[test]
 fn test_portable_document_format() {
     let fmt = FileFormat::from_file("fixtures/document/sample.pdf").unwrap();

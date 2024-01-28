@@ -167,6 +167,7 @@ identification.
   * [Office Open XML Drawing (VSDX)](`FileFormat::OfficeOpenXmlDrawing`)
   * [Office Open XML Presentation (PPTX)](`FileFormat::OfficeOpenXmlPresentation`)
   * [Office Open XML Spreadsheet (XLSX)](`FileFormat::OfficeOpenXmlSpreadsheet`)
+  * [OpenXPS (OXPS)](`FileFormat::Openxps`)
   * [OpenDocument Database (ODB)](`FileFormat::OpendocumentDatabase`)
   * [OpenDocument Formula (ODF)](`FileFormat::OpendocumentFormula`)
   * [OpenDocument Formula Template (OTF)](`FileFormat::OpendocumentFormulaTemplate`)

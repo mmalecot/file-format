@@ -1943,6 +1943,13 @@ formats! {
     extension = "otf"
     kind = Font
 
+    format = Openxps
+    name = "OpenXPS"
+    short_name = "OXPS"
+    media_type = "application/oxps"
+    extension = "xps"
+    kind = Document
+
     format = OptimizedDalvikExecutable
     name = "Optimized Dalvik Executable"
     short_name = "DEY"

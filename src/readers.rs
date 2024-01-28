@@ -986,6 +986,8 @@ impl crate::FileFormat {
                         return Ok(Self::OfficeOpenXmlPresentation);
                     } else if filename.starts_with("xl/") {
                         return Ok(Self::OfficeOpenXmlSpreadsheet);
+                    } else if filename.starts_with("Documents/") && filename.ends_with(".fpage") {
+                        return Ok(Self::Openxps);
                     } else if filename.starts_with("SpaceClaim/") {
                         return Ok(Self::SpaceclaimDocument);
                     } else if filename.starts_with("3D/") && filename.ends_with(".model") {
