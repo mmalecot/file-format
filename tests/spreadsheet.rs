@@ -61,3 +61,10 @@ fn test_sun_xml_calc_template() {
     let fmt = FileFormat::from_file("fixtures/spreadsheet/sample.stc").unwrap();
     assert_eq!(fmt, FileFormat::SunXmlCalcTemplate);
 }
+
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_uniform_office_format_spreadsheet() {
+    let fmt = FileFormat::from_file("fixtures/spreadsheet/sample.uos").unwrap();
+    assert_eq!(fmt, FileFormat::UniformOfficeFormatSpreadsheet);
+}

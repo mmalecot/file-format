@@ -2656,6 +2656,27 @@ formats! {
     extension = "mod"
     kind = Audio
 
+    format = UniformOfficeFormatPresentation
+    name = "Uniform Office Format Presentation"
+    short_name = "UOP"
+    media_type = "application/vnd.uof.presentation"
+    extension = "uop"
+    kind = Presentation
+
+    format = UniformOfficeFormatSpreadsheet
+    name = "Uniform Office Format Spreadsheet"
+    short_name = "UOS"
+    media_type = "application/vnd.uof.spreadsheet"
+    extension = "uos"
+    kind = Spreadsheet
+
+    format = UniformOfficeFormatText
+    name = "Uniform Office Format Text"
+    short_name = "UOT"
+    media_type = "application/vnd.uof.text"
+    extension = "uot"
+    kind = Document
+
     format = Universal3d
     name = "Universal 3D"
     short_name = "U3D"

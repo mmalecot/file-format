@@ -62,6 +62,13 @@ fn test_sun_xml_impress_template() {
     assert_eq!(fmt, FileFormat::SunXmlImpressTemplate);
 }
 
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_uniform_office_format_presentation() {
+    let fmt = FileFormat::from_file("fixtures/presentation/sample.uop").unwrap();
+    assert_eq!(fmt, FileFormat::UniformOfficeFormatPresentation);
+}
+
 #[test]
 fn test_wordperfect_presentations() {
     let fmt = FileFormat::from_file("fixtures/presentation/sample3.shw").unwrap();

@@ -165,6 +165,13 @@ fn test_sun_xml_writer_template() {
     assert_eq!(fmt, FileFormat::SunXmlWriterTemplate);
 }
 
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_uniform_office_format_text() {
+    let fmt = FileFormat::from_file("fixtures/document/sample.uot").unwrap();
+    assert_eq!(fmt, FileFormat::UniformOfficeFormatText);
+}
+
 #[test]
 fn test_wordperfect_document_1() {
     let fmt = FileFormat::from_file("fixtures/document/sample1.wpd").unwrap();

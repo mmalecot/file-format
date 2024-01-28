@@ -568,8 +568,8 @@ impl crate::FileFormat {
             // Determines the start index for searching the buffer.
             let start = if total_nread == 0 { OVERLAP_SIZE } else { 0 };
 
-            // Checks if the buffer contains the AI file format marker.
-            if buf[start..OVERLAP_SIZE + nread].find(AI_MARKER).is_some() {
+            // Checks if the buffer holds the AI file format marker.
+            if buf[start..OVERLAP_SIZE + nread].holds(AI_MARKER) {
                 return Ok(Self::AdobeIllustratorArtwork);
             }
 
@@ -685,75 +685,81 @@ impl crate::FileFormat {
 
     /// Determines file format from a XML reader.
     #[cfg(feature = "reader-xml")]
-    pub(crate) fn from_xml_reader<R: Read + Seek>(reader: R) -> Result<Self> {
-        // Maximum number of lines that can be processed by the reader.
-        const LINE_LIMIT: usize = 8;
+    pub(crate) fn from_xml_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
+        // Rewinds to the beginning of the stream plus the size of the XML file format signature.
+        reader.seek(SeekFrom::Start(5))?;
 
-        // Maximum number of bytes that can be processed by the reader (32 KB).
-        const READ_LIMIT: u64 = 32_768;
+        // Creates and fills a buffer.
+        let mut buf = [0; 8192];
+        let nread = reader.read(&mut buf)?;
 
-        // Creates a buffered reader.
-        let mut reader = BufReader::new(reader);
-
-        // Rewinds to the beginning of the stream.
-        reader.rewind()?;
-
-        // Searches the reader for lines indicating the presence of various file formats.
-        for result in reader.take(READ_LIMIT).lines().take(LINE_LIMIT) {
-            let line = result?;
-            if line.contains("<abiword template=\"false\"") {
-                return Ok(Self::Abiword);
-            } else if line.contains("<abiword template=\"true\"") {
-                return Ok(Self::AbiwordTemplate);
-            } else if line.contains("<amf") {
-                return Ok(Self::AdditiveManufacturingFormat);
-            } else if line.contains("<ASX") || line.contains("<asx") {
-                return Ok(Self::AdvancedStreamRedirector);
-            } else if line.contains("<feed") {
-                return Ok(Self::Atom);
-            } else if line.contains("<COLLADA") || line.contains("<collada") {
-                return Ok(Self::DigitalAssetExchange);
-            } else if line.contains("<mxfile") {
-                return Ok(Self::Drawio);
-            } else if line.contains("<X3D") || line.contains("<x3d") {
-                return Ok(Self::Extensible3d);
-            } else if line.contains("<xsl") {
-                return Ok(Self::ExtensibleStylesheetLanguageTransformations);
-            } else if line.contains("<FictionBook") {
-                return Ok(Self::Fictionbook);
-            } else if line.contains("<gml") {
-                return Ok(Self::GeographyMarkupLanguage);
-            } else if line.contains("<gpx") {
-                return Ok(Self::GpsExchangeFormat);
-            } else if line.contains("<kml") {
-                return Ok(Self::KeyholeMarkupLanguage);
-            } else if line.contains("<math") {
-                return Ok(Self::MathematicalMarkupLanguage);
-            } else if line.contains("<MPD") {
-                return Ok(Self::MpegDashManifest);
-            } else if line.contains("<score-partwise") {
-                return Ok(Self::Musicxml);
-            } else if line.contains("<rss") {
-                return Ok(Self::ReallySimpleSyndication);
-            } else if line.contains("<SVG") || line.contains("<svg") {
-                return Ok(Self::ScalableVectorGraphics);
-            } else if line.contains("<soap") {
-                return Ok(Self::SimpleObjectAccessProtocol);
-            } else if line.contains("<map") {
-                return Ok(Self::TiledMapXml);
-            } else if line.contains("<tileset") {
-                return Ok(Self::TiledTilesetXml);
-            } else if line.contains("<tt") && line.contains("xmlns=\"http://www.w3.org/ns/ttml\"") {
-                return Ok(Self::TimedTextMarkupLanguage);
-            } else if line.contains("<TrainingCenterDatabase") {
-                return Ok(Self::TrainingCenterXml);
-            } else if line.contains("<USFSubtitles") {
-                return Ok(Self::UniversalSubtitleFormat);
-            } else if line.contains("<xliff") {
-                return Ok(Self::XmlLocalizationInterchangeFileFormat);
-            } else if line.contains("<playlist") {
-                return Ok(Self::XmlShareablePlaylistFormat);
-            }
+        // Checks if the buffer holds markers indicating the presence of various file formats.
+        if buf[..nread].holds("<abiword template=\"false\"") {
+            return Ok(Self::Abiword);
+        } else if buf[..nread].holds("<abiword template=\"true\"") {
+            return Ok(Self::AbiwordTemplate);
+        } else if buf[..nread].holds("<amf") {
+            return Ok(Self::AdditiveManufacturingFormat);
+        } else if buf[..nread].holds("<ASX") || buf[..nread].holds("<asx") {
+            return Ok(Self::AdvancedStreamRedirector);
+        } else if buf[..nread].holds("<feed") {
+            return Ok(Self::Atom);
+        } else if buf[..nread].holds("<COLLADA") || buf[..nread].holds("<collada") {
+            return Ok(Self::DigitalAssetExchange);
+        } else if buf[..nread].holds("<mxfile") {
+            return Ok(Self::Drawio);
+        } else if buf[..nread].holds("<X3D") || buf[..nread].holds("<x3d") {
+            return Ok(Self::Extensible3d);
+        } else if buf[..nread].holds("<xsl") {
+            return Ok(Self::ExtensibleStylesheetLanguageTransformations);
+        } else if buf[..nread].holds("<FictionBook") {
+            return Ok(Self::Fictionbook);
+        } else if buf[..nread].holds("<gml") {
+            return Ok(Self::GeographyMarkupLanguage);
+        } else if buf[..nread].holds("<gpx") {
+            return Ok(Self::GpsExchangeFormat);
+        } else if buf[..nread].holds("<kml") {
+            return Ok(Self::KeyholeMarkupLanguage);
+        } else if buf[..nread].holds("<math") {
+            return Ok(Self::MathematicalMarkupLanguage);
+        } else if buf[..nread].holds("<MPD") {
+            return Ok(Self::MpegDashManifest);
+        } else if buf[..nread].holds("<score-partwise") {
+            return Ok(Self::Musicxml);
+        } else if buf[..nread].holds("<rss") {
+            return Ok(Self::ReallySimpleSyndication);
+        } else if buf[..nread].holds("<SVG") || buf[..nread].holds("<svg") {
+            return Ok(Self::ScalableVectorGraphics);
+        } else if buf[..nread].holds("<soap") {
+            return Ok(Self::SimpleObjectAccessProtocol);
+        } else if buf[..nread].holds("<map") {
+            return Ok(Self::TiledMapXml);
+        } else if buf[..nread].holds("<tileset") {
+            return Ok(Self::TiledTilesetXml);
+        } else if buf[..nread].holds("<tt")
+            && buf[..nread].holds("xmlns=\"http://www.w3.org/ns/ttml\"")
+        {
+            return Ok(Self::TimedTextMarkupLanguage);
+        } else if buf[..nread].holds("<TrainingCenterDatabase") {
+            return Ok(Self::TrainingCenterXml);
+        } else if buf[..nread].holds("<uof:UOF")
+            & buf[..nread].holds("uof:mimetype=\"vnd.uof.presentation\"")
+        {
+            return Ok(Self::UniformOfficeFormatPresentation);
+        } else if buf[..nread].holds("<uof:UOF")
+            & buf[..nread].holds("uof:mimetype=\"vnd.uof.spreadsheet\"")
+        {
+            return Ok(Self::UniformOfficeFormatSpreadsheet);
+        } else if buf[..nread].holds("<uof:UOF")
+            & buf[..nread].holds("uof:mimetype=\"vnd.uof.text\"")
+        {
+            return Ok(Self::UniformOfficeFormatText);
+        } else if buf[..nread].holds("<USFSubtitles") {
+            return Ok(Self::UniversalSubtitleFormat);
+        } else if buf[..nread].holds("<xliff") {
+            return Ok(Self::XmlLocalizationInterchangeFileFormat);
+        } else if buf[..nread].holds("<playlist") {
+            return Ok(Self::XmlShareablePlaylistFormat);
         }
 
         // Returns the default value.
@@ -1124,6 +1130,12 @@ trait FindBytes: AsRef<[u8]> {
             data_index += shift_table[data[data_index] as usize];
         }
         None
+    }
+
+    /// Returns `true` if the data holds the specified byte pattern.
+    #[inline]
+    fn holds<P: AsRef<[u8]>>(&self, pat: P) -> bool {
+        self.find(pat).is_some()
     }
 
     /// Searches for the specified byte pattern and returns the index of the last occurrence.

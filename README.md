@@ -221,6 +221,7 @@ identification.
 - Sun XML Writer (SXW)
 - Sun XML Writer Global (SGW)
 - Sun XML Writer Template (STW)
+- Uniform Office Format Text (UOT)
 - WordPerfect Document (WPD)
 
 ### Executable
@@ -508,6 +509,7 @@ identification.
 - StarImpress (SDD)
 - Sun XML Impress (SXI)
 - Sun XML Impress Template (STI)
+- Uniform Office Format Presentation (UOP)
 - WordPerfect Presentations (SHW)
 
 ### ROM
@@ -538,6 +540,7 @@ identification.
 - StarCalc (SDC)
 - Sun XML Calc (SXC)
 - Sun XML Calc Template (STC)
+- Uniform Office Format Spreadsheet (UOS)
 
 ### Subtitle
 
