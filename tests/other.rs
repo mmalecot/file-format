@@ -6,20 +6,6 @@ fn test_activemime() {
     assert_eq!(fmt, FileFormat::Activemime);
 }
 
-#[cfg(feature = "reader-zip")]
-#[test]
-fn test_adobe_flash_cs5_project() {
-    let fmt = FileFormat::from_file("fixtures/other/sample1.fla").unwrap();
-    assert_eq!(fmt, FileFormat::AdobeFlashCs5Project);
-}
-
-#[cfg(feature = "reader-cfb")]
-#[test]
-fn test_adobe_flash_project() {
-    let fmt = FileFormat::from_file("fixtures/other/sample2.fla").unwrap();
-    assert_eq!(fmt, FileFormat::AdobeFlashProject);
-}
-
 #[test]
 fn test_advanced_systems_format() {
     let fmt = FileFormat::from_file("fixtures/other/sample.asf").unwrap();
@@ -122,6 +108,20 @@ fn test_extensible_stylesheet_language_transformations_1() {
 fn test_extensible_stylesheet_language_transformations_2() {
     let fmt = FileFormat::from_file("fixtures/other/sample2.xsl").unwrap();
     assert_eq!(fmt, FileFormat::ExtensibleStylesheetLanguageTransformations);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_flash_cs5_project() {
+    let fmt = FileFormat::from_file("fixtures/other/sample1.fla").unwrap();
+    assert_eq!(fmt, FileFormat::FlashCs5Project);
+}
+
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_flash_project() {
+    let fmt = FileFormat::from_file("fixtures/other/sample2.fla").unwrap();
+    assert_eq!(fmt, FileFormat::FlashProject);
 }
 
 #[test]

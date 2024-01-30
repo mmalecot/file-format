@@ -16,11 +16,10 @@
 - Drop `Syndication` kind
 - Drop `Text` kind
 - Drop `serde` feature
-- Rename `AdobeFlashPlayerAudio` to `AdobeFlashMp4Audio`
-- Rename `AdobeFlashPlayerAudiobook` to `AdobeFlashMp4Audiobook`
-- Rename `AdobeFlashPlayerProtectedVideo` to `AdobeFlashMp4ProtectedVideo`
-- Rename `AdobeFlashPlayerVideo` to `AdobeFlashMp4Video`
-- Rename `FlashVideo` to `AdobeFlashVideo`
+- Rename `AdobeFlashPlayerAudio` to `FlashMp4Audio`
+- Rename `AdobeFlashPlayerAudiobook` to `FlashMp4Audiobook`
+- Rename `AdobeFlashPlayerProtectedVideo` to `FlashMp4ProtectedVideo`
+- Rename `AdobeFlashPlayerVideo` to `FlashMp4Video`
 
 ## Fixes
 
@@ -46,14 +45,14 @@
 
 ## New formats support
 
-- Adobe Flash CS5 Project (FLA)
-- Adobe Flash Project (FLA)
 - Android App Bundle (AAB)
 - AppImage
 - Commodore 64 Cartridge (CRT)
 - Commodore 64 Program (PRG)
 - Corel Presentations (SHW)
 - Corel Presentations 7 (SHW)
+- Flash CS5 Project (FLA)
+- Flash Project (FLA)
 - Mozilla Archive (MAR)
 - Multi Layer Archive (MLA)
 - OpenXPS (OXPS)
@@ -290,11 +289,11 @@
 
 - Add precision to the AbiWord (ABW) signature
 - Add precision to the AbiWord Template (AWT) signature
-- Add precision to the Adobe Flash Player Audio (F4A) signature
-- Add precision to the Adobe Flash Player Audiobook (F4B) signature
-- Add precision to the Adobe Flash Player Protected Video (F4P) signature
-- Add precision to the Adobe Flash Player Video (F4V) signature
 - Add precision to the Archived by Robert Jung (ARJ) signature
+- Add precision to the Flash MP4 Audio (F4A) signature
+- Add precision to the Flash MP4 Audiobook (F4B) signature
+- Add precision to the Flash MP4 Protected Video (F4P) signature
+- Add precision to the Flash MP4 Video (F4V) signature
 - Add precision to the LLVM Bitcode (BC) signature
 - Add precision to the MS-DOS Executable (EXE) signature
 - Add precision to the Stereolithography Binary (STL) signature
@@ -812,13 +811,13 @@
 ## New formats support
 
 - ALZ
-- Adobe Flash Player Audio (F4A)
-- Adobe Flash Player Audiobook (F4B)
 - Apache Arrow Columnar (Arrow)
 - Apple iTunes Audiobook (M4B)
 - Canon Raw 2 (CR2)
 - Canon Raw 3 (CR3)
 - FastTracker 2 Extended Module (XM)
+- Flash MP4 Audio (F4A)
+- Flash MP4 Audiobook (F4B)
 - Fujifilm Raw (RAF)
 - Impulse Tracker Module (IT)
 - LHA

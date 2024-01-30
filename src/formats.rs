@@ -50,55 +50,6 @@ formats! {
     extension = "amf"
     kind = Model
 
-    format = AdobeFlashCs5Project
-    name = "Adobe Flash CS5 Project"
-    short_name = "FLA"
-    media_type = "application/vnd.adobe.fla"
-    extension = "fla"
-    kind = Other
-
-    format = AdobeFlashMp4Audio
-    name = "Adobe Flash MP4 Audio"
-    short_name = "F4A"
-    media_type = "audio/mp4"
-    extension = "f4a"
-    kind = Audio
-
-    format = AdobeFlashMp4Audiobook
-    name = "Adobe Flash MP4 Audiobook"
-    short_name = "F4B"
-    media_type = "audio/mp4"
-    extension = "f4b"
-    kind = Audio
-
-    format = AdobeFlashMp4ProtectedVideo
-    name = "Adobe Flash MP4 Protected Video"
-    short_name = "F4P"
-    media_type = "video/mp4"
-    extension = "f4p"
-    kind = Video
-
-    format = AdobeFlashMp4Video
-    name = "Adobe Flash MP4 Video"
-    short_name = "F4V"
-    media_type = "video/mp4"
-    extension = "f4v"
-    kind = Video
-
-    format = AdobeFlashProject
-    name = "Adobe Flash Project"
-    short_name = "FLA"
-    media_type = "application/vnd.adobe.fla"
-    extension = "fla"
-    kind = Other
-
-    format = AdobeFlashVideo
-    name = "Adobe Flash Video"
-    short_name = "FLV"
-    media_type = "video/x-flv"
-    extension = "flv"
-    kind = Video
-
     format = AdobeIllustratorArtwork
     name = "Adobe Illustrator Artwork"
     short_name = "AI"
@@ -811,6 +762,55 @@ formats! {
     media_type = "application/vnd.autodesk.fbx"
     extension = "fbx"
     kind = Model
+
+    format = FlashCs5Project
+    name = "Flash CS5 Project"
+    short_name = "FLA"
+    media_type = "application/vnd.adobe.fla"
+    extension = "fla"
+    kind = Other
+
+    format = FlashMp4Audio
+    name = "Flash MP4 Audio"
+    short_name = "F4A"
+    media_type = "audio/mp4"
+    extension = "f4a"
+    kind = Audio
+
+    format = FlashMp4Audiobook
+    name = "Flash MP4 Audiobook"
+    short_name = "F4B"
+    media_type = "audio/mp4"
+    extension = "f4b"
+    kind = Audio
+
+    format = FlashMp4ProtectedVideo
+    name = "Flash MP4 Protected Video"
+    short_name = "F4P"
+    media_type = "video/mp4"
+    extension = "f4p"
+    kind = Video
+
+    format = FlashMp4Video
+    name = "Flash MP4 Video"
+    short_name = "F4V"
+    media_type = "video/mp4"
+    extension = "f4v"
+    kind = Video
+
+    format = FlashProject
+    name = "Flash Project"
+    short_name = "FLA"
+    media_type = "application/vnd.adobe.fla"
+    extension = "fla"
+    kind = Other
+
+    format = FlashVideo
+    name = "Flash Video"
+    short_name = "FLV"
+    media_type = "video/x-flv"
+    extension = "flv"
+    kind = Video
 
     format = FlexibleAndInteroperableDataTransfer
     name = "Flexible and Interoperable Data Transfer"

@@ -7,18 +7,6 @@ fn test_adaptive_multi_rate() {
 }
 
 #[test]
-fn test_adobe_flash_mp4_audio() {
-    let fmt = FileFormat::from_file("fixtures/audio/sample.f4a").unwrap();
-    assert_eq!(fmt, FileFormat::AdobeFlashMp4Audio);
-}
-
-#[test]
-fn test_adobe_flash_mp4_audiobook() {
-    let fmt = FileFormat::from_file("fixtures/audio/sample.f4b").unwrap();
-    assert_eq!(fmt, FileFormat::AdobeFlashMp4Audiobook);
-}
-
-#[test]
 fn test_advanced_audio_coding() {
     let fmt = FileFormat::from_file("fixtures/audio/sample.aac").unwrap();
     assert_eq!(fmt, FileFormat::AdvancedAudioCoding);
@@ -76,6 +64,18 @@ fn test_creative_voice() {
 fn test_fasttracker2_extended_module() {
     let fmt = FileFormat::from_file("fixtures/audio/sample.xm").unwrap();
     assert_eq!(fmt, FileFormat::Fasttracker2ExtendedModule);
+}
+
+#[test]
+fn test_flash_mp4_audio() {
+    let fmt = FileFormat::from_file("fixtures/audio/sample.f4a").unwrap();
+    assert_eq!(fmt, FileFormat::FlashMp4Audio);
+}
+
+#[test]
+fn test_flash_mp4_audiobook() {
+    let fmt = FileFormat::from_file("fixtures/audio/sample.f4b").unwrap();
+    assert_eq!(fmt, FileFormat::FlashMp4Audiobook);
 }
 
 #[test]

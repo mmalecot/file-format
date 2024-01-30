@@ -718,22 +718,6 @@ signatures! {
     value = b"\xEF\xBB\xBF<amf"
     value = b"<amf"
 
-    format = AdobeFlashMp4Audio
-    value = b"ftypF4A" offset = 4
-    value = b"ftypf4a" offset = 4
-
-    format = AdobeFlashMp4Audiobook
-    value = b"ftypF4B" offset = 4
-    value = b"ftypf4b" offset = 4
-
-    format = AdobeFlashMp4ProtectedVideo
-    value = b"ftypF4P" offset = 4
-    value = b"ftypf4p" offset = 4
-
-    format = AdobeFlashMp4Video
-    value = b"ftypF4V" offset = 4
-    value = b"ftypf4v" offset = 4
-
     format = AdvancedCompressionEngine
     value = b"**ACE**" offset = 7
 
@@ -767,6 +751,22 @@ signatures! {
     format = ExtensibleStylesheetLanguageTransformations
     value = b"\xEF\xBB\xBF<xsl"
     value = b"<xsl"
+
+    format = FlashMp4Audio
+    value = b"ftypF4A" offset = 4
+    value = b"ftypf4a" offset = 4
+
+    format = FlashMp4Audiobook
+    value = b"ftypF4B" offset = 4
+    value = b"ftypf4b" offset = 4
+
+    format = FlashMp4ProtectedVideo
+    value = b"ftypF4P" offset = 4
+    value = b"ftypf4p" offset = 4
+
+    format = FlashMp4Video
+    value = b"ftypF4V" offset = 4
+    value = b"ftypf4v" offset = 4
 
     format = GeographyMarkupLanguage
     value = b"\xEF\xBB\xBF<gml"
@@ -989,9 +989,6 @@ signatures! {
     format = AdaptableScalableTextureCompression
     value = b"\x13\xAB\xA1\x5C"
 
-    format = AdobeFlashVideo
-    value = b"FLV\x01"
-
     format = AdobePhotoshopDocument
     value = b"8BPS"
 
@@ -1063,6 +1060,9 @@ signatures! {
 
     format = ExtensibleBinaryMetaLanguage
     value = b"\x1A\x45\xDF\xA3"
+
+    format = FlashVideo
+    value = b"FLV\x01"
 
     format = FlexibleAndInteroperableDataTransfer
     value = b".FIT" offset = 8
