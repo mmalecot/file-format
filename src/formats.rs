@@ -415,7 +415,7 @@ formats! {
     short_name = "BBeB"
     media_type = "application/x-lrf"
     extension = "lrf"
-    kind = Book
+    kind = Ebook
 
     format = Bzip
     name = "bzip"
@@ -650,7 +650,7 @@ formats! {
     short_name = "EPUB"
     media_type = "application/epub+zip"
     extension = "epub"
-    kind = Book
+    kind = Ebook
 
     format = EmbeddedOpentype
     name = "Embedded OpenType"
@@ -747,14 +747,14 @@ formats! {
     short_name = "FB2"
     media_type = "application/x-fb2+xml"
     extension = "fb2"
-    kind = Book
+    kind = Ebook
 
     format = FictionbookZipped
     name = "FictionBook Zipped"
     short_name = "FBZ"
     media_type = "application/x-fbz"
     extension = "fbz"
-    kind = Book
+    kind = Ebook
 
     format = Filmbox
     name = "Filmbox"
@@ -1418,7 +1418,7 @@ formats! {
     short_name = "LIT"
     media_type = "application/x-ms-reader"
     extension = "lit"
-    kind = Book
+    kind = Ebook
 
     format = MicrosoftSoftwareInstaller
     name = "Microsoft Software Installer"
@@ -1509,7 +1509,7 @@ formats! {
     short_name = "MOBI"
     media_type = "application/x-mobipocket-ebook"
     extension = "mobi"
-    kind = Book
+    kind = Ebook
 
     format = Model3dAscii
     name = "Model 3D ASCII"

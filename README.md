@@ -143,15 +143,6 @@ identification.
 - Waveform Audio (WAV)
 - Windows Media Audio (WMA)
 
-### Book
-
-- Broad Band eBook (BBeB)
-- Electronic Publication (EPUB)
-- FictionBook (FB2)
-- FictionBook Zipped (FBZ)
-- Microsoft Reader (LIT)
-- Mobipocket (MOBI)
-
 ### Compressed
 
 - BZip3 (BZ3)
@@ -224,6 +215,15 @@ identification.
 - Sun XML Writer Template (STW)
 - Uniform Office Format Text (UOT)
 - WordPerfect Document (WPD)
+
+### Ebook
+
+- Broad Band eBook (BBeB)
+- Electronic Publication (EPUB)
+- FictionBook (FB2)
+- FictionBook Zipped (FBZ)
+- Microsoft Reader (LIT)
+- Mobipocket (MOBI)
 
 ### Executable
 

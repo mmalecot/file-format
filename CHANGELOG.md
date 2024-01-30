@@ -4,6 +4,7 @@
 
 - Add `Compressed` kind
 - Add `Diagram` kind
+- Add `Ebook` kind
 - Add `Formula` kind
 - Add `Metadata` kind
 - Add `Other` kind
@@ -11,6 +12,7 @@
 - Add `Spreadsheet` kind
 - Change `FileFormat::from_bytes` argument type
 - Drop `Application` kind
+- Drop `Book` kind
 - Drop `Certificate` kind
 - Drop `Compression` kind
 - Drop `Syndication` kind

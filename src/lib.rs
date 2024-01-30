@@ -329,8 +329,6 @@ pub enum Kind {
     Archive,
     /// Musics, sound effects, and spoken audio recordings.
     Audio,
-    /// Electronic books.
-    Book,
     /// Compressed single files or streams.
     Compressed,
     /// Organized collections of data.
@@ -341,6 +339,8 @@ pub enum Kind {
     Disk,
     /// Word processing and desktop publishing documents.
     Document,
+    /// Electronic books.
+    Ebook,
     /// Machine-executable code, virtual machine code and shared libraries.
     Executable,
     /// Typefaces used for displaying text on screen or in print.
