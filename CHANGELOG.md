@@ -1,3 +1,68 @@
+# Version 0.24.0 (unreleased)
+
+## API
+
+- Add `Compressed` kind
+- Add `Diagram` kind
+- Add `Formula` kind
+- Add `Metadata` kind
+- Add `Other` kind
+- Add `Presentation` kind
+- Add `Spreadsheet` kind
+- Change `FileFormat::from_bytes` argument type
+- Drop `Application` kind
+- Drop `Certificate` kind
+- Drop `Compression` kind
+- Drop `Syndication` kind
+- Drop `Text` kind
+- Drop `serde` feature
+- Rename `AdobeFlashPlayerAudio` to `AdobeFlashMp4Audio`
+- Rename `AdobeFlashPlayerAudiobook` to `AdobeFlashMp4Audiobook`
+- Rename `AdobeFlashPlayerProtectedVideo` to `AdobeFlashMp4ProtectedVideo`
+- Rename `AdobeFlashPlayerVideo` to `AdobeFlashMp4Video`
+- Rename `FlashVideo` to `AdobeFlashVideo`
+
+## Fixes
+
+- Fix Dalvik Executable (DEX) signature
+- Fix DjVu kind
+- Fix EOCD research when using `reader-zip` feature
+- Fix Encapsulated PostScript (EPS) kind
+- Fix LaTeX (TeX) kind
+- Fix Microsoft Project Plan (MPP) kind
+- Fix OpenDocument Graphics (ODG) kind
+- Fix OpenDocument Graphics Template (OTG) kind
+- Fix PostScript (PS) kind
+- Fix Small Web Format (SWF) signature
+- Fix StarDraw (SDA) kind
+- Fix Sun XML Draw (SXD) kind
+- Fix Sun XML Draw Template (STD) kind
+- Fix WordPerfect Graphics (WPG) kind
+- Fix WordPerfect Macro (WPM) kind
+
+## Internal changes
+
+- Refactor and improve readers
+
+## New formats support
+
+- Adobe Flash CS5 Project (FLA)
+- Adobe Flash Project (FLA)
+- Android App Bundle (AAB)
+- AppImage
+- Commodore 64 Cartridge (CRT)
+- Commodore 64 Program (PRG)
+- Corel Presentations (SHW)
+- Corel Presentations 7 (SHW)
+- Mozilla Archive (MAR)
+- Multi Layer Archive (MLA)
+- OpenXPS (OXPS)
+- Uniform Office Format Presentation (UOP)
+- Uniform Office Format Spreadsheet (UOS)
+- Uniform Office Format Text (UOT)
+- Windows App Bundle (APPXBUNDLE)
+- WordPerfect Presentations (SHW)
+
 # Version 0.23.0 (2023-12-11)
 
 ## Fixes
@@ -163,13 +228,13 @@
 
 ## Fixes
 
-- Fix performance issue on malformed EBML files when using the `reader-ebml` feature
+- Fix performance issue on malformed EBML files when using `reader-ebml` feature
 
 # Version 0.17.2 (2023-06-08)
 
 ## Fixes
 
-- Fix performance issue on large Matroska files when using the `reader-ebml` feature
+- Fix performance issue on large Matroska files when using `reader-ebml` feature
 
 # Version 0.17.1 (2023-06-07)
 
@@ -251,8 +316,8 @@
 - Detect XML Shareable Playlist Format (XSPF) without XML declaration
 - Detect draw.io (DRAWIO) without XML declaration
 - Distinguish between BDAV MPEG-2 Transport Stream (MT2S) and MPEG-2 Transport Stream (TS)
-- Optimize detection of EXE-based file formats when using the `reader-exe` feature
-- Optimize detection of XML-based file formats when using the `reader-xml` feature
+- Optimize detection of EXE-based file formats when using `reader-exe` feature
+- Optimize detection of XML-based file formats when using `reader-xml` feature
 
 ## Internal changes
 
