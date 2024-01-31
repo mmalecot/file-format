@@ -705,11 +705,11 @@ impl crate::FileFormat {
             Self::AdvancedStreamRedirector
         } else if buf.holds("<feed") {
             Self::Atom
-        } else if buf.holds("<COLLADA") || buf.holds("<collada") {
+        } else if buf.holds("<COLLADA") {
             Self::DigitalAssetExchange
         } else if buf.holds("<mxfile") {
             Self::Drawio
-        } else if buf.holds("<X3D") || buf.holds("<x3d") {
+        } else if buf.holds("<X3D") {
             Self::Extensible3d
         } else if buf.holds("<xsl") {
             Self::ExtensibleStylesheetLanguageTransformations
@@ -741,11 +741,11 @@ impl crate::FileFormat {
             Self::TimedTextMarkupLanguage
         } else if buf.holds("<TrainingCenterDatabase") {
             Self::TrainingCenterXml
-        } else if buf.holds("<uof:UOF") & buf.holds("uof:mimetype=\"vnd.uof.presentation\"") {
+        } else if buf.holds("<uof:UOF") && buf.holds("uof:mimetype=\"vnd.uof.presentation\"") {
             Self::UniformOfficeFormatPresentation
-        } else if buf.holds("<uof:UOF") & buf.holds("uof:mimetype=\"vnd.uof.spreadsheet\"") {
+        } else if buf.holds("<uof:UOF") && buf.holds("uof:mimetype=\"vnd.uof.spreadsheet\"") {
             Self::UniformOfficeFormatSpreadsheet
-        } else if buf.holds("<uof:UOF") & buf.holds("uof:mimetype=\"vnd.uof.text\"") {
+        } else if buf.holds("<uof:UOF") && buf.holds("uof:mimetype=\"vnd.uof.text\"") {
             Self::UniformOfficeFormatText
         } else if buf.holds("<USFSubtitles") {
             Self::UniversalSubtitleFormat
