@@ -1,10 +1,10 @@
-//! Macros for generating [FileFormat](crate::FileFormat) enum and associated methods.
+//! Macros for generating the [`FileFormat`](crate::FileFormat) enum and associated methods.
 
-/// Generates the [FileFormat](crate::FileFormat) enum with methods for retrieving information.
+/// Generates the [`FileFormat`](crate::FileFormat) enum with methods for retrieving information.
 ///
 /// # Parameters
 ///
-/// - `format`: Variant name representing the file format.
+/// - `format`: Variant representing the file format.
 /// - `name`: Full name of the file format.
 /// - `short_name`: Abbreviated name of the file format (optional).
 /// - `media_type`: Common media type associated with the file format.
@@ -23,12 +23,11 @@ macro_rules! formats {
     } => {
         /// A file format.
         #[derive(Clone, Copy, Debug, Eq, PartialEq)]
-        #[cfg_attr(feature = "serde", derive(serde::Deserialize, serde::Serialize))]
         pub enum FileFormat {
             $(
                 #[doc=concat!($name, $(" (", $short_name, ")",)? ".")]
                 #[doc=concat!("- Media type: `", $media_type, "`")]
-                #[doc=concat!("- Extension: `", $extension, "`")]
+                #[doc=concat!("- Extension: `.", $extension, "`")]
                 #[doc=concat!("- Kind: [", stringify!($kind), "](crate::Kind::", stringify!($kind), ")")]
                 $format,
             )*
@@ -39,11 +38,13 @@ macro_rules! formats {
             ///
             /// # Examples
             ///
+            /// Basic usage:
+            ///
             /// ```
             /// use file_format::FileFormat;
             ///
-            /// let format = FileFormat::Mpeg12AudioLayer3;
-            /// assert_eq!(format.name(), "MPEG-1/2 Audio Layer 3");
+            /// let fmt = FileFormat::Mpeg12AudioLayer3;
+            /// assert_eq!(fmt.name(), "MPEG-1/2 Audio Layer 3");
             ///```
             pub const fn name(&self) -> &str {
                 match self {
@@ -55,16 +56,18 @@ macro_rules! formats {
 
             /// Returns the short name of the file format.
             ///
-            /// Note: This information is not necessarily unique, as multiple file formats might
+            /// Note: this information is not necessarily unique, as multiple file formats might
             /// share the same short name.
             ///
             /// # Examples
             ///
+            /// Basic usage:
+            ///
             /// ```
             /// use file_format::FileFormat;
             ///
-            /// let format = FileFormat::MusicalInstrumentDigitalInterface;
-            /// assert_eq!(format.short_name(), Some("MIDI"));
+            /// let fmt = FileFormat::MusicalInstrumentDigitalInterface;
+            /// assert_eq!(fmt.short_name(), Some("MIDI"));
             ///```
             pub const fn short_name(&self) -> Option<&str> {
                 match self {
@@ -75,17 +78,21 @@ macro_rules! formats {
                 }
             }
 
-            /// Returns the common media type (formerly known as MIME type) of the file format.
+            /// Returns the common media type (formerly known as MIME type) of the file format as
+            /// defined in [IETF RFC 6838](https://tools.ietf.org/html/rfc6838).
             ///
-            /// Note: Some media types may not be defined in the IANA registry.
+            /// Note: some media types may not be defined in the
+            /// [IANA registry](https://www.iana.org/assignments/media-types/media-types.xhtml).
             ///
             /// # Examples
+            ///
+            /// Basic usage:
             ///
             /// ```
             /// use file_format::FileFormat;
             ///
-            /// let format = FileFormat::Zstandard;
-            /// assert_eq!(format.media_type(), "application/zstd");
+            /// let fmt = FileFormat::Zstandard;
+            /// assert_eq!(fmt.media_type(), "application/zstd");
             ///```
             pub const fn media_type(&self) -> &str {
                 match self {
@@ -97,15 +104,17 @@ macro_rules! formats {
 
             /// Returns the common extension of the file format.
             ///
-            /// Note: This information is never empty.
+            /// Note: this information is never empty.
             ///
             /// # Examples
+            ///
+            /// Basic usage:
             ///
             /// ```
             /// use file_format::FileFormat;
             ///
-            /// let format = FileFormat::WindowsMediaVideo;
-            /// assert_eq!(format.extension(), "wmv");
+            /// let fmt = FileFormat::WindowsMediaVideo;
+            /// assert_eq!(fmt.extension(), "wmv");
             ///```
             pub const fn extension(&self) -> &str {
                 match self {
@@ -115,15 +124,17 @@ macro_rules! formats {
                 }
             }
 
-            /// Returns the [Kind](crate::Kind) of the file format.
+            /// Returns the [`Kind`](crate::Kind) of the file format.
             ///
             /// # Examples
+            ///
+            /// Basic usage:
             ///
             /// ```
             /// use file_format::{FileFormat, Kind};
             ///
-            /// let format = FileFormat::Zip;
-            /// assert_eq!(format.kind(), Kind::Archive);
+            /// let fmt = FileFormat::Zip;
+            /// assert_eq!(fmt.kind(), Kind::Archive);
             ///```
             pub const fn kind(&self) -> crate::Kind {
                 match self {
@@ -136,11 +147,11 @@ macro_rules! formats {
     };
 }
 
-/// Generates the [FileFormat::from_signature](crate::FileFormat::from_signature) function.
+/// Generates the [`FileFormat::from_signature`](crate::FileFormat::from_signature) function.
 ///
 /// # Parameters
 ///
-/// - `format`: Variant name representing the file format.
+/// - `format`: Variant representing the file format.
 /// - `value`: Signature value associated with the format (can be repeated).
 /// - `offset`: Offset to start matching the signature value (defaults to 0 if not specified).
 macro_rules! signatures {

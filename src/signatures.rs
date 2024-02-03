@@ -171,7 +171,7 @@ signatures! {
     value = b"#!/usr/bin/tcl"
 
     // 21 bytes
-    format = DebianBinaryPackage
+    format = DebianPackage
     value = b"!<arch>\ndebian-binary"
 
     format = Filmbox
@@ -330,6 +330,9 @@ signatures! {
     value = b"\xFFWPC\x10\0\0\0\x01\x16\x01\0", b"\0\0" offset = 14
 
     // 13 bytes
+    format = Commodore64Cartridge
+    value = b"C64 CARTRIDGE"
+
     format = StandardForTheExchangeOfProductModelData
     value = b"ISO-10303-21;"
 
@@ -339,6 +342,9 @@ signatures! {
 
     format = AnimatedPortableNetworkGraphics
     value = b"\x89PNG\r\n\x1A\n", b"acTL" offset = 37
+
+    format = Appimage
+    value = b"\x7FELF", b"AI\x02\x00\x00\x00\x00\x00" offset = 8
 
     format = CdAudio
     value = b"RIFF", b"CDDAfmt " offset = 8
@@ -382,10 +388,10 @@ signatures! {
     value = b"<playlist"
 
     // 11 bytes
-    format = BittorrentFile
+    format = Bittorrent
     value = b"d8:announce"
 
-    format = DigitalAssetExchange
+    format = CollaborativeDesignActivity
     value = b"\xEF\xBB\xBF<COLLADA"
     value = b"\xEF\xBB\xBF<collada"
     value = b"<COLLADA"
@@ -414,7 +420,7 @@ signatures! {
     format = Atari7800Rom
     value = b"\x01ATARI7800"
 
-    format = BitmapFontAscii
+    format = BmfontAscii
     value = b"info face="
 
     format = Drawio
@@ -542,8 +548,8 @@ signatures! {
     format = CompoundFileBinary
     value = b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"
 
-    format = DalvikExecutable
-    value = b"dex\n035\0"
+    format = EightBitSampledVoice
+    value = b"FORM", b"8SVX" offset = 8
 
     format = ExperimentalComputingFacility
     value = b"gimp xcf"
@@ -580,9 +586,6 @@ signatures! {
     value = b"ftyphevm" offset = 4
     value = b"ftyphevs" offset = 4
     value = b"ftypmsf1" offset = 4
-
-    format = Iff8BitSampledVoice
-    value = b"FORM", b"8SVX" offset = 8
 
     format = Jpeg2000Part1
     value = b"ftypJP2 " offset = 16
@@ -711,28 +714,12 @@ signatures! {
     value = b"WLPWM\0\0\0"
 
     // 7 bytes
+    format = Ace
+    value = b"**ACE**" offset = 7
+
     format = AdditiveManufacturingFormat
     value = b"\xEF\xBB\xBF<amf"
     value = b"<amf"
-
-    format = AdobeFlashPlayerAudio
-    value = b"ftypF4A" offset = 4
-    value = b"ftypf4a" offset = 4
-
-    format = AdobeFlashPlayerAudiobook
-    value = b"ftypF4B" offset = 4
-    value = b"ftypf4b" offset = 4
-
-    format = AdobeFlashPlayerProtectedVideo
-    value = b"ftypF4P" offset = 4
-    value = b"ftypf4p" offset = 4
-
-    format = AdobeFlashPlayerVideo
-    value = b"ftypF4V" offset = 4
-    value = b"ftypf4v" offset = 4
-
-    format = AdvancedCompressionEngine
-    value = b"**ACE**" offset = 7
 
     format = AdvancedStreamRedirector
     value = b"\xEF\xBB\xBF<ASX"
@@ -765,6 +752,22 @@ signatures! {
     value = b"\xEF\xBB\xBF<xsl"
     value = b"<xsl"
 
+    format = FlashMp4Audio
+    value = b"ftypF4A" offset = 4
+    value = b"ftypf4a" offset = 4
+
+    format = FlashMp4Audiobook
+    value = b"ftypF4B" offset = 4
+    value = b"ftypf4b" offset = 4
+
+    format = FlashMp4ProtectedVideo
+    value = b"ftypF4P" offset = 4
+    value = b"ftypf4p" offset = 4
+
+    format = FlashMp4Video
+    value = b"ftypF4V" offset = 4
+    value = b"ftypf4v" offset = 4
+
     format = GeographyMarkupLanguage
     value = b"\xEF\xBB\xBF<gml"
     value = b"<gml"
@@ -787,9 +790,12 @@ signatures! {
     format = Mp3Url
     value = b"#EXTM3U"
 
-    format = MpegDashManifest
+    format = MpegDashMpd
     value = b"\xEF\xBB\xBF<MPD"
     value = b"<MPD"
+
+    format = MultiLayerArchive
+    value = b"MLA\x01\x00\x00\x00"
 
     format = ReallySimpleSyndication
     value = b"\xEF\xBB\xBF<rss"
@@ -873,6 +879,13 @@ signatures! {
 
     format = Bzip3
     value = b"BZ3v1"
+
+    format = CorelPresentations
+    value = b"\xFFWPC", b"\x0F" offset = 9
+    value = b"\xFFWPC", b"\x10" offset = 9
+
+    format = DalvikExecutable
+    value = b"dex\n", b"\0" offset = 7
 
     format = EmbeddedOpentype
     value = b"\x00\x00\x01" offset = 8, b"LP" offset = 34
@@ -969,6 +982,9 @@ signatures! {
     value = b"KDMV\x02"
     value = b"KDMV\x03"
 
+    format = WordperfectPresentations
+    value = b"\xFFWPC", b"\x0A" offset = 9
+
     // 4 bytes
     format = AdaptableScalableTextureCompression
     value = b"\x13\xAB\xA1\x5C"
@@ -990,10 +1006,10 @@ signatures! {
     format = AndroidBinaryXml
     value = b"\x03\x00\x08\x00"
 
-    format = AndroidCompiledResources
+    format = AndroidResourceStorageContainer
     value = b"\x02\x00\x0C\x00"
 
-    format = ApacheAvroObjectContainer
+    format = ApacheAvro
     value = b"Obj\x01"
 
     format = ApacheParquet
@@ -1014,7 +1030,7 @@ signatures! {
     format = BetterPortableGraphics
     value = b"BPG\xFB"
 
-    format = BitmapFontBinary
+    format = BmfontBinary
     value = b"BMF\x03"
 
     format = Cabinet
@@ -1123,6 +1139,9 @@ signatures! {
 
     format = MonkeysAudio
     value = b"MAC "
+
+    format = MozillaArchive
+    value = b"MAR1"
 
     format = Mpeg12Video
     value = b"\x00\x00\x01\xB3"
@@ -1277,6 +1296,9 @@ signatures! {
     format = Bzip2
     value = b"BZh"
 
+    format = Commodore64Program
+    value = b"\x01\x08", b"\x9E" offset = 6
+
     format = JointPhotographicExpertsGroup
     value = b"\xFF\xD8\xFF"
 
@@ -1347,6 +1369,7 @@ signatures! {
     format = SmallWebFormat
     value = b"CWS"
     value = b"FWS"
+    value = b"ZWS"
 
     format = Zoo
     value = b"ZOO"

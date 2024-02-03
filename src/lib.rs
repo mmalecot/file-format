@@ -3,12 +3,11 @@ Crate for determining the file format of a [given file](`FileFormat::from_file`)
 
 It provides a variety of functions for identifying a wide range of file formats, including
 [ZIP](`FileFormat::Zip`), [Compound File Binary (CFB)](`FileFormat::CompoundFileBinary`),
-[Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`) and
-[much more](`FileFormat`).
+[Extensible Markup Language (XML)](`FileFormat::ExtensibleMarkupLanguage`) and [more](`FileFormat`).
 
 It checks the signature of the file to determine its format and intelligently employs specific
 readers when available for accurate identification. If the signature is not recognized, the crate
-falls back to the default file format, which is
+falls back to the [default](`FileFormat::default`) file format, which is
 [Arbitrary Binary Data (BIN)](`FileFormat::ArbitraryBinaryData`).
 
 # Examples
@@ -18,13 +17,13 @@ Determines from a file:
 ```no_run
 use file_format::{FileFormat, Kind};
 
-let format = FileFormat::from_file("fixtures/document/sample.pdf")?;
-assert_eq!(format, FileFormat::PortableDocumentFormat);
-assert_eq!(format.name(), "Portable Document Format");
-assert_eq!(format.short_name(), Some("PDF"));
-assert_eq!(format.media_type(), "application/pdf");
-assert_eq!(format.extension(), "pdf");
-assert_eq!(format.kind(), Kind::Document);
+let fmt = FileFormat::from_file("fixtures/document/sample.pdf")?;
+assert_eq!(fmt, FileFormat::PortableDocumentFormat);
+assert_eq!(fmt.name(), "Portable Document Format");
+assert_eq!(fmt.short_name(), Some("PDF"));
+assert_eq!(fmt.media_type(), "application/pdf");
+assert_eq!(fmt.extension(), "pdf");
+assert_eq!(fmt.kind(), Kind::Document);
 # Ok::<(), std::io::Error>(())
 ```
 
@@ -33,22 +32,18 @@ Determines from bytes:
 ```
 use file_format::{FileFormat, Kind};
 
-let format = FileFormat::from_bytes(&[0xFF, 0xD8, 0xFF]);
-assert_eq!(format, FileFormat::JointPhotographicExpertsGroup);
-assert_eq!(format.name(), "Joint Photographic Experts Group");
-assert_eq!(format.short_name(), Some("JPEG"));
-assert_eq!(format.media_type(), "image/jpeg");
-assert_eq!(format.extension(), "jpg");
-assert_eq!(format.kind(), Kind::Image);
+let fmt = FileFormat::from_bytes(&[0xFF, 0xD8, 0xFF]);
+assert_eq!(fmt, FileFormat::JointPhotographicExpertsGroup);
+assert_eq!(fmt.name(), "Joint Photographic Experts Group");
+assert_eq!(fmt.short_name(), Some("JPEG"));
+assert_eq!(fmt.media_type(), "image/jpeg");
+assert_eq!(fmt.extension(), "jpg");
+assert_eq!(fmt.kind(), Kind::Image);
 ```
 
 # Crate features
 
 All features below are disabled by default.
-
-## Ecosystem features
-
-- `serde` - Adds the ability to serialize and deserialize a [`FileFormat`] and [`Kind`] using serde.
 
 ## Reader features
 
@@ -68,6 +63,8 @@ identification.
   * [Autodesk Inventor Drawing (IDW)](`FileFormat::AutodeskInventorDrawing`)
   * [Autodesk Inventor Part (IPT)](`FileFormat::AutodeskInventorPart`)
   * [Autodesk Inventor Presentation (IPN)](`FileFormat::AutodeskInventorPresentation`)
+  * [Corel Presentations 7 (SHW)](`FileFormat::CorelPresentations7`)
+  * [Flash Project (FLA)](`FileFormat::FlashProject`)
   * [Microsoft Excel Spreadsheet (XLS)](`FileFormat::MicrosoftExcelSpreadsheet`)
   * [Microsoft PowerPoint Presentation (PPT)](`FileFormat::MicrosoftPowerpointPresentation`)
   * [Microsoft Project Plan (MPP)](`FileFormat::MicrosoftProjectPlan`)
@@ -124,14 +121,14 @@ identification.
   * [Additive Manufacturing Format (AMF)](`FileFormat::AdditiveManufacturingFormat`)
   * [Advanced Stream Redirector (ASX)](`FileFormat::AdvancedStreamRedirector`)
   * [Atom](`FileFormat::Atom`)
-  * [Digital Asset Exchange (DAE)](`FileFormat::DigitalAssetExchange`)
+  * [Collaborative Design Activity (COLLADA)](`FileFormat::CollaborativeDesignActivity`)
   * [Extensible 3D (X3D)](`FileFormat::Extensible3d`)
   * [Extensible Stylesheet Language Transformations (XSLT)](`FileFormat::ExtensibleStylesheetLanguageTransformations`)
   * [FictionBook (FB2)](`FileFormat::Fictionbook`)
   * [GPS Exchange Format (GPX)](`FileFormat::GpsExchangeFormat`)
   * [Geography Markup Language (GML)](`FileFormat::GeographyMarkupLanguage`)
   * [Keyhole Markup Language (KML)](`FileFormat::KeyholeMarkupLanguage`)
-  * [MPEG-DASH Manifest (MPD)](`FileFormat::MpegDashManifest`)
+  * [MPEG-DASH MPD (MPD)](`FileFormat::MpegDashMpd`)
   * [Mathematical Markup Language (MathML)](`FileFormat::MathematicalMarkupLanguage`)
   * [MusicXML](`FileFormat::Musicxml`)
   * [Really Simple Syndication (RSS)](`FileFormat::ReallySimpleSyndication`)
@@ -141,6 +138,9 @@ identification.
   * [Tiled Tileset XML (TSX)](`FileFormat::TiledTilesetXml`)
   * [Timed Text Markup Language (TTML)](`FileFormat::TimedTextMarkupLanguage`)
   * [Training Center XML (TCX)](`FileFormat::TrainingCenterXml`)
+  * [Uniform Office Format Presentation (UOP)](`FileFormat::UniformOfficeFormatPresentation`)
+  * [Uniform Office Format Spreadsheet (UOS)](`FileFormat::UniformOfficeFormatSpreadsheet`)
+  * [Uniform Office Format Text (UOT)](`FileFormat::UniformOfficeFormatText`)
   * [Universal Subtitle Format (USF)](`FileFormat::UniversalSubtitleFormat`)
   * [XML Localization Interchange File Format (XLIFF)](`FileFormat::XmlLocalizationInterchangeFileFormat`)
   * [XML Shareable Playlist Format (XSPF)](`FileFormat::XmlShareablePlaylistFormat`)
@@ -148,19 +148,21 @@ identification.
 - `reader-zip` - Enables [ZIP](`FileFormat::Zip`)-based file formats detection.
   * [3D Manufacturing Format (3MF)](`FileFormat::ThreeDimensionalManufacturingFormat`)
   * [Adobe Integrated Runtime (AIR)](`FileFormat::AdobeIntegratedRuntime`)
+  * [Android App Bundle (AAB)](`FileFormat::AndroidAppBundle`)
   * [Android Package (APK)](`FileFormat::AndroidPackage`)
   * [Autodesk 123D (123DX)](`FileFormat::Autodesk123d`)
   * [Circuit Diagram Document (CDDX)](`FileFormat::CircuitDiagramDocument`)
   * [Design Web Format XPS (DWFX)](`FileFormat::DesignWebFormatXps`)
   * [Electronic Publication (EPUB)](`FileFormat::ElectronicPublication`)
   * [Enterprise Application Archive (EAR)](`FileFormat::EnterpriseApplicationArchive`)
-  * [FictionBook Zipped (FBZ)](`FileFormat::FictionbookZipped`)
+  * [FictionBook ZIP (FBZ)](`FileFormat::FictionbookZip`)
+  * [Flash CS5 Project (FLA)](`FileFormat::FlashCs5Project`)
   * [Fusion 360 (F3D)](`FileFormat::Fusion360`)
   * [InDesign Markup Language (IDML)](`FileFormat::IndesignMarkupLanguage`)
   * [Java Archive (JAR)](`FileFormat::JavaArchive`)
-  * [Keyhole Markup Language Zipped (KMZ)](`FileFormat::KeyholeMarkupLanguageZipped`)
+  * [Keyhole Markup Language ZIP (KMZ)](`FileFormat::KeyholeMarkupLanguageZip`)
   * [Microsoft Visual Studio Extension (VSIX)](`FileFormat::MicrosoftVisualStudioExtension`)
-  * [MusicXML Zipped (MXL)](`FileFormat::MusicxmlZipped`)
+  * [MusicXML ZIP (MXL)](`FileFormat::MusicxmlZip`)
   * [Office Open XML Document (DOCX)](`FileFormat::OfficeOpenXmlDocument`)
   * [Office Open XML Drawing (VSDX)](`FileFormat::OfficeOpenXmlDrawing`)
   * [Office Open XML Presentation (PPTX)](`FileFormat::OfficeOpenXmlPresentation`)
@@ -179,6 +181,7 @@ identification.
   * [OpenDocument Text Master Template (OTM)](`FileFormat::OpendocumentTextMasterTemplate`)
   * [OpenDocument Text Template (OTT)](`FileFormat::OpendocumentTextTemplate`)
   * [OpenRaster (ORA)](`FileFormat::Openraster`)
+  * [OpenXPS (OXPS)](`FileFormat::Openxps`)
   * [SpaceClaim Document (SCDOC)](`FileFormat::SpaceclaimDocument`)
   * [Sun XML Calc (SXC)](`FileFormat::SunXmlCalc`)
   * [Sun XML Calc Template (STC)](`FileFormat::SunXmlCalcTemplate`)
@@ -190,8 +193,9 @@ identification.
   * [Sun XML Writer (SXW)](`FileFormat::SunXmlWriter`)
   * [Sun XML Writer Global (SGW)](`FileFormat::SunXmlWriterGlobal`)
   * [Sun XML Writer Template (STW)](`FileFormat::SunXmlWriterTemplate`)
-  * [Universal Scene Description Zipped (USDZ)](`FileFormat::UniversalSceneDescriptionZipped`)
+  * [Universal Scene Description ZIP (USDZ)](`FileFormat::UniversalSceneDescriptionZip`)
   * [Web Application Archive (WAR)](`FileFormat::WebApplicationArchive`)
+  * [Windows App Bundle (APPXBUNDLE)](`FileFormat::WindowsAppBundle`)
   * [Windows App Package (APPX)](`FileFormat::WindowsAppPackage`)
   * [XAP](`FileFormat::Xap`)
   * [XPInstall (XPI)](`FileFormat::Xpinstall`)
@@ -228,8 +232,8 @@ impl FileFormat {
     /// ```
     /// use file_format::FileFormat;
     ///
-    /// let format = FileFormat::from_bytes(b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A");
-    /// assert_eq!(format, FileFormat::PortableNetworkGraphics);
+    /// let fmt = FileFormat::from_bytes(b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A");
+    /// assert_eq!(fmt, FileFormat::PortableNetworkGraphics);
     ///```
     ///
     /// Detects from a zeroed buffer:
@@ -237,25 +241,27 @@ impl FileFormat {
     /// ```
     /// use file_format::FileFormat;
     ///
-    /// let format = FileFormat::from_bytes(&[0; 1000]);
-    /// assert_eq!(format, FileFormat::ArbitraryBinaryData);
+    /// let fmt = FileFormat::from_bytes(&[0; 1000]);
+    /// assert_eq!(fmt, FileFormat::ArbitraryBinaryData);
     ///```
     ///
     /// [default value]: FileFormat::default
     #[inline]
-    pub fn from_bytes(bytes: &[u8]) -> Self {
-        Self::from(bytes)
+    pub fn from_bytes<B: AsRef<[u8]>>(bytes: B) -> Self {
+        Self::from(bytes.as_ref())
     }
 
     /// Determines file format from a file.
     ///
     /// # Examples
     ///
+    /// Basic usage:
+    ///
     /// ```no_run
     /// use file_format::FileFormat;
     ///
-    /// let format = FileFormat::from_file("fixtures/video/sample.avi")?;
-    /// assert_eq!(format, FileFormat::AudioVideoInterleave);
+    /// let fmt = FileFormat::from_file("fixtures/video/sample.avi")?;
+    /// assert_eq!(fmt, FileFormat::AudioVideoInterleave);
     /// # Ok::<(), std::io::Error>(())
     ///```
     #[inline]
@@ -267,23 +273,25 @@ impl FileFormat {
     ///
     /// # Examples
     ///
+    /// Basic usage:
+    ///
     /// ```
     /// use file_format::FileFormat;
     ///
-    /// let format = FileFormat::from_reader(std::io::empty())?;
-    /// assert_eq!(format, FileFormat::Empty);
+    /// let fmt = FileFormat::from_reader(std::io::empty())?;
+    /// assert_eq!(fmt, FileFormat::Empty);
     /// # Ok::<(), std::io::Error>(())
     ///```
     pub fn from_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
         // Creates and fills a buffer.
-        let mut buffer = [0; 36870];
-        let bytes_read = reader.read(&mut buffer)?;
+        let mut buf = [0; 36_870];
+        let nread = reader.read(&mut buf)?;
 
         // Determines file format.
-        Ok(if bytes_read == 0 {
+        Ok(if nread == 0 {
             Self::Empty
-        } else if let Some(format) = Self::from_signature(&buffer[..bytes_read]) {
-            Self::from_format_reader(format, &mut reader)
+        } else if let Some(fmt) = Self::from_signature(&buf[..nread]) {
+            Self::from_fmt_reader(fmt, &mut reader)
                 .unwrap_or_else(|_| Self::from_generic_reader(&mut reader))
         } else {
             Self::from_generic_reader(&mut reader)
@@ -314,55 +322,53 @@ impl From<&[u8]> for FileFormat {
     }
 }
 
-/// A kind of [`FileFormat`].
+/// A kind of file format.
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
-#[cfg_attr(feature = "serde", derive(serde::Deserialize, serde::Serialize))]
 pub enum Kind {
-    /// Data which do not fit in any of the other kinds, and particularly for data to be processed
-    /// by some type of application program.
-    Application,
     /// Files and directories stored in a single, possibly compressed, archive.
     Archive,
     /// Musics, sound effects, and spoken audio recordings.
     Audio,
-    /// Ebooks.
-    Book,
-    /// Digital certificates.
-    Certificate,
     /// Compressed single files or streams.
-    Compression,
+    Compressed,
     /// Organized collections of data.
     Database,
+    /// Visual information using graphics and spatial relationships.
+    Diagram,
     /// Floppy disk images, optical disc images and virtual machine disks.
     Disk,
-    /// Word processing documents, spreadsheets, presentations, document templates, diagrams,
-    /// charts, and other formatted documents.
+    /// Word processing and desktop publishing documents.
     Document,
-    /// Machine-executable codes, virtual machine codes and shared libraries.
+    /// Electronic books.
+    Ebook,
+    /// Machine-executable code, virtual machine code and shared libraries.
     Executable,
     /// Typefaces used for displaying text on screen or in print.
     Font,
+    /// Mathematical formulas.
+    Formula,
     /// Collections of geospatial features, GPS tracks and other location-related files.
     Geospatial,
-    /// Photographs, illustrations, and other types of image files.
+    /// Animated images, icons, cursors, raster graphics and vector graphics.
     Image,
+    /// Data that provides information about other data.
+    Metadata,
     /// 3D models, CAD drawings, and other types of files used for creating or displaying 3D images.
     Model,
-    /// Archives or other containers that bundle programs and resources that can be run on target
-    /// environments.
+    /// Data which do not fit in any of the other kinds.
+    Other,
+    /// Collections of files bundled together for software distribution.
     Package,
-    /// Lists of audio or video files that are played in a specific order.
+    /// Lists of audio or video files, organized in a specific order for sequential playback.
     Playlist,
+    /// Slide shows.
+    Presentation,
     /// Copies of a read-only memory chip of computers, cartridges, or other electronic devices.
     Rom,
+    /// Data in tabular form.
+    Spreadsheet,
     /// Subtitles and captions.
     Subtitle,
-    /// Web feeds and syndication.
-    Syndication,
-    /// Plain text, source codes, markup languages, and other types of files containing written
-    /// text.
-    Text,
-    /// Movies, animations, and other types of files containing moving images, possibly with color
-    /// and coordinated sound.
+    /// Moving images, possibly with color and coordinated sound.
     Video,
 }

@@ -21,17 +21,17 @@ fn main() -> Result<()> {
         .max_by_key(|&count| count)
         .unwrap_or_default()
         .add(1);
-    for input in env::args().skip(1) {
-        let path = Path::new(&input);
-        let input = format!("{input}:");
+    for arg in env::args().skip(1) {
+        let path = Path::new(&arg);
+        let input = format!("{arg}:");
         if path.is_symlink() {
             println!("{input:width$} Symbolic Link");
         } else if path.is_dir() {
             println!("{input:width$} Directory");
         } else {
-            let format = FileFormat::from_file(path)?;
-            let name = format.name();
-            if let Some(short_name) = format.short_name() {
+            let fmt = FileFormat::from_file(path)?;
+            let name = fmt.name();
+            if let Some(short_name) = fmt.short_name() {
                 println!("{input:width$} {name} ({short_name})");
             } else {
                 println!("{input:width$} {name}");

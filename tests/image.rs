@@ -80,9 +80,9 @@ fn test_digital_picture_exchange() {
 }
 
 #[test]
-fn test_djvu() {
-    let fmt = FileFormat::from_file("fixtures/image/sample.djvu").unwrap();
-    assert_eq!(fmt, FileFormat::Djvu);
+fn test_encapsulated_postscript() {
+    let fmt = FileFormat::from_file("fixtures/image/sample.eps").unwrap();
+    assert_eq!(fmt, FileFormat::EncapsulatedPostscript);
 }
 
 #[test]
@@ -234,6 +234,20 @@ fn test_olympus_raw_format() {
     assert_eq!(fmt, FileFormat::OlympusRawFormat);
 }
 
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_opendocument_graphics() {
+    let fmt = FileFormat::from_file("fixtures/image/sample.odg").unwrap();
+    assert_eq!(fmt, FileFormat::OpendocumentGraphics);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_opendocument_graphics_template() {
+    let fmt = FileFormat::from_file("fixtures/image/sample.otg").unwrap();
+    assert_eq!(fmt, FileFormat::OpendocumentGraphicsTemplate);
+}
+
 #[test]
 fn test_openexr() {
     let fmt = FileFormat::from_file("fixtures/image/sample.exr").unwrap();
@@ -326,6 +340,27 @@ fn test_silicon_graphics_image() {
     assert_eq!(fmt, FileFormat::SiliconGraphicsImage);
 }
 
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_stardraw() {
+    let fmt = FileFormat::from_file("fixtures/image/sample.sda").unwrap();
+    assert_eq!(fmt, FileFormat::Stardraw);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_sun_xml_draw() {
+    let fmt = FileFormat::from_file("fixtures/image/sample.sxd").unwrap();
+    assert_eq!(fmt, FileFormat::SunXmlDraw);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_sun_xml_draw_template() {
+    let fmt = FileFormat::from_file("fixtures/image/sample.std").unwrap();
+    assert_eq!(fmt, FileFormat::SunXmlDrawTemplate);
+}
+
 #[test]
 fn test_tag_image_file_format() {
     let fmt = FileFormat::from_file("fixtures/image/sample.tiff").unwrap();
@@ -366,6 +401,19 @@ fn test_windows_icon() {
 fn test_windows_metafile() {
     let fmt = FileFormat::from_file("fixtures/image/sample.wmf").unwrap();
     assert_eq!(fmt, FileFormat::WindowsMetafile);
+}
+
+#[test]
+fn test_wordperfect_graphics_1() {
+    let fmt = FileFormat::from_file("fixtures/image/sample1.wpg").unwrap();
+    assert_eq!(fmt, FileFormat::WordperfectGraphics);
+}
+
+#[cfg(feature = "reader-cfb")]
+#[test]
+fn test_wordperfect_graphics_2() {
+    let fmt = FileFormat::from_file("fixtures/image/sample2.wpg").unwrap();
+    assert_eq!(fmt, FileFormat::WordperfectGraphics);
 }
 
 #[test]

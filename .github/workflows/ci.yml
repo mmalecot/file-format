@@ -20,7 +20,7 @@ jobs:
             os: windows-latest
             toolchain: stable
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install Rust (rustup)
         run: |
           rustup update ${{ matrix.toolchain }}
@@ -37,7 +37,7 @@ jobs:
     name: Format
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install Rust (rustup)
         run: |
           rustup update ${{ matrix.toolchain }}

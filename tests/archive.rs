@@ -1,9 +1,9 @@
 use file_format::FileFormat;
 
 #[test]
-fn test_advanced_compression_engine() {
+fn test_ace() {
     let fmt = FileFormat::from_file("fixtures/archive/sample.ace").unwrap();
-    assert_eq!(fmt, FileFormat::AdvancedCompressionEngine);
+    assert_eq!(fmt, FileFormat::Ace);
 }
 
 #[test]
@@ -49,6 +49,18 @@ fn test_lha() {
 }
 
 #[test]
+fn test_mozilla_archive() {
+    let fmt = FileFormat::from_file("fixtures/archive/sample.mar").unwrap();
+    assert_eq!(fmt, FileFormat::MozillaArchive);
+}
+
+#[test]
+fn test_multi_layer_archive() {
+    let fmt = FileFormat::from_file("fixtures/archive/sample.mla").unwrap();
+    assert_eq!(fmt, FileFormat::MultiLayerArchive);
+}
+
+#[test]
 fn test_pmarc() {
     let fmt = FileFormat::from_file("fixtures/archive/sample.pma").unwrap();
     assert_eq!(fmt, FileFormat::Pmarc);
@@ -74,7 +86,7 @@ fn test_seven_zip() {
 
 #[test]
 fn test_squashfs() {
-    let fmt = FileFormat::from_file("fixtures/archive/sample.squashfs").unwrap();
+    let fmt = FileFormat::from_file("fixtures/archive/sample.sqsh").unwrap();
     assert_eq!(fmt, FileFormat::Squashfs);
 }
 

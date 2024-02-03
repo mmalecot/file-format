@@ -73,6 +73,19 @@ fn test_cinema4d() {
 }
 
 #[test]
+fn test_collaborative_design_activity_1() {
+    let fmt = FileFormat::from_file("fixtures/model/sample1.dae").unwrap();
+    assert_eq!(fmt, FileFormat::CollaborativeDesignActivity);
+}
+
+#[cfg(feature = "reader-xml")]
+#[test]
+fn test_collaborative_design_activity_2() {
+    let fmt = FileFormat::from_file("fixtures/model/sample2.dae").unwrap();
+    assert_eq!(fmt, FileFormat::CollaborativeDesignActivity);
+}
+
+#[test]
 fn test_design_web_format() {
     let fmt = FileFormat::from_file("fixtures/model/sample.dwf").unwrap();
     assert_eq!(fmt, FileFormat::DesignWebFormat);
@@ -83,19 +96,6 @@ fn test_design_web_format() {
 fn test_design_web_format_xps() {
     let fmt = FileFormat::from_file("fixtures/model/sample.dwfx").unwrap();
     assert_eq!(fmt, FileFormat::DesignWebFormatXps);
-}
-
-#[test]
-fn test_digital_asset_exchange_1() {
-    let fmt = FileFormat::from_file("fixtures/model/sample1.dae").unwrap();
-    assert_eq!(fmt, FileFormat::DigitalAssetExchange);
-}
-
-#[cfg(feature = "reader-xml")]
-#[test]
-fn test_digital_asset_exchange_2() {
-    let fmt = FileFormat::from_file("fixtures/model/sample2.dae").unwrap();
-    assert_eq!(fmt, FileFormat::DigitalAssetExchange);
 }
 
 #[test]
@@ -300,9 +300,9 @@ fn test_universal_scene_description_binary() {
 
 #[cfg(feature = "reader-zip")]
 #[test]
-fn test_universal_scene_description_zipped() {
+fn test_universal_scene_description_zip() {
     let fmt = FileFormat::from_file("fixtures/model/sample.usdz").unwrap();
-    assert_eq!(fmt, FileFormat::UniversalSceneDescriptionZipped);
+    assert_eq!(fmt, FileFormat::UniversalSceneDescriptionZip);
 }
 
 #[test]

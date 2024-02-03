@@ -1,3 +1,91 @@
+# Version 0.24.0 (2024-02-03)
+
+## API
+
+- Add `Compressed` kind
+- Add `Diagram` kind
+- Add `Ebook` kind
+- Add `Formula` kind
+- Add `Metadata` kind
+- Add `Other` kind
+- Add `Presentation` kind
+- Add `Spreadsheet` kind
+- Change `FileFormat::from_bytes` argument type
+- Drop `Application` kind
+- Drop `Book` kind
+- Drop `Certificate` kind
+- Drop `Compression` kind
+- Drop `Syndication` kind
+- Drop `Text` kind
+- Drop `serde` feature
+- Rename `AdobeFlashPlayerAudio` to `FlashMp4Audio`
+- Rename `AdobeFlashPlayerAudiobook` to `FlashMp4Audiobook`
+- Rename `AdobeFlashPlayerProtectedVideo` to `FlashMp4ProtectedVideo`
+- Rename `AdobeFlashPlayerVideo` to `FlashMp4Video`
+- Rename `AdvancedCompressionEngine` to `Ace`
+- Rename `AndroidCompiledResources` to `AndroidResourceStorageContainer`
+- Rename `ApacheAvroObjectContainer` to `ApacheAvro`
+- Rename `BitmapFontAscii` to `BmfontAscii`
+- Rename `BitmapFontBinary` to `BmfontBinary`
+- Rename `BittorrentFile` to `Bittorrent`
+- Rename `DebianBinaryPackage` to `DebianPackage`
+- Rename `DigitalAssetExchange` to `CollaborativeDesignActivity`
+- Rename `FictionbookZipped` to `FictionbookZip`
+- Rename `Iff8BitSampledVoice` to `EightBitSampledVoice`
+- Rename `KeyholeMarkupLanguageZipped` to `KeyholeMarkupLanguageZip`
+- Rename `MpegDashManifest` to `MpegDashMpd`
+- Rename `MusicxmlZipped` to `MusicxmlZip`
+- Rename `UniversalSceneDescriptionZipped` to `UniversalSceneDescriptionZip`
+
+## Fixes
+
+- Fix Apache Arrow Columnar (Arrow) media type
+- Fix Apache Parquet (Parquet) media type
+- Fix Audio Codec 3 (AC-3) media type
+- Fix Audio Codec 3 (AC-3) short name
+- Fix BMFont ASCII (FNT) media type
+- Fix BMFont Binary (FNT) media type
+- Fix Dalvik Executable (DEX) signature
+- Fix DjVu kind
+- Fix EOCD research when using `reader-zip` feature
+- Fix Encapsulated PostScript (EPS) kind
+- Fix LaTeX (TeX) kind
+- Fix MTV media type
+- Fix Microsoft Project Plan (MPP) kind
+- Fix OpenDocument Graphics (ODG) kind
+- Fix OpenDocument Graphics Template (OTG) kind
+- Fix PostScript (PS) kind
+- Fix Small Web Format (SWF) signature
+- Fix Squashfs extension
+- Fix StarDraw (SDA) kind
+- Fix Sun XML Draw (SXD) kind
+- Fix Sun XML Draw Template (STD) kind
+- Fix WordPerfect Graphics (WPG) kind
+- Fix WordPerfect Macro (WPM) kind
+
+## Internal changes
+
+- Refactor and improve readers
+
+## New formats support
+
+- Android App Bundle (AAB)
+- AppImage
+- Commodore 64 Cartridge (CRT)
+- Commodore 64 Program (PRG)
+- Corel Presentations (SHW)
+- Corel Presentations 7 (SHW)
+- Flash CS5 Project (FLA)
+- Flash Project (FLA)
+- Mozilla Archive (MAR)
+- Multi Layer Archive (MLA)
+- OpenXPS (OXPS)
+- Uniform Office Format Presentation (UOP)
+- Uniform Office Format Spreadsheet (UOS)
+- Uniform Office Format Text (UOT)
+- Windows App Bundle (APPXBUNDLE)
+- WordPerfect Presentations (SHW)
+
 # Version 0.23.0 (2023-12-11)
 
 ## Fixes
@@ -35,7 +123,7 @@
 
 ## Fixes
 
-- Fix MPEG-DASH Manifest (MPD) name
+- Fix MPEG-DASH MPD (MPD) name
 
 ## Improvements
 
@@ -60,7 +148,7 @@
 
 ## New formats support
 
-- MPEG-DASH Manifest (MPD)
+- MPEG-DASH MPD (MPD)
 - Microsoft Works 6 Spreadsheet (XLR)
 - Microsoft Works Database (WDB)
 - Microsoft Works Spreadsheet (WKS)
@@ -79,7 +167,7 @@
 
 ## Improvements
 
-- Detect FictionBook Zipped (FBZ) only with files in the root of the archive
+- Detect FictionBook ZIP (FBZ) only with files in the root of the archive
 
 ## New formats support
 
@@ -100,7 +188,7 @@
 - Standard for the Exchange of Product model data (STEP)
 - Universal Scene Description ASCII (USDA)
 - Universal Scene Description Binary (USDC)
-- Universal Scene Description Zipped (USDZ)
+- Universal Scene Description ZIP (USDZ)
 - Virtual Reality Modeling Language (VRML)
 - Windows Media Playlist (WPL)
 
@@ -163,13 +251,13 @@
 
 ## Fixes
 
-- Fix performance issue on malformed EBML files when using the `reader-ebml` feature
+- Fix performance issue on malformed EBML files when using `reader-ebml` feature
 
 # Version 0.17.2 (2023-06-08)
 
 ## Fixes
 
-- Fix performance issue on large Matroska files when using the `reader-ebml` feature
+- Fix performance issue on large Matroska files when using `reader-ebml` feature
 
 # Version 0.17.1 (2023-06-07)
 
@@ -225,11 +313,11 @@
 
 - Add precision to the AbiWord (ABW) signature
 - Add precision to the AbiWord Template (AWT) signature
-- Add precision to the Adobe Flash Player Audio (F4A) signature
-- Add precision to the Adobe Flash Player Audiobook (F4B) signature
-- Add precision to the Adobe Flash Player Protected Video (F4P) signature
-- Add precision to the Adobe Flash Player Video (F4V) signature
 - Add precision to the Archived by Robert Jung (ARJ) signature
+- Add precision to the Flash MP4 Audio (F4A) signature
+- Add precision to the Flash MP4 Audiobook (F4B) signature
+- Add precision to the Flash MP4 Protected Video (F4P) signature
+- Add precision to the Flash MP4 Video (F4V) signature
 - Add precision to the LLVM Bitcode (BC) signature
 - Add precision to the MS-DOS Executable (EXE) signature
 - Add precision to the Stereolithography Binary (STL) signature
@@ -237,7 +325,7 @@
 - Add precision to the cpio signature
 - Detect Additive Manufacturing Format (AMF) without XML declaration
 - Detect Advanced Stream Redirector (ASX) with XML declaration
-- Detect Digital Asset Exchange (DAE) without XML declaration
+- Detect Collaborative Design Activity (COLLADA) without XML declaration
 - Detect Extensible 3D (X3D) without XML declaration
 - Detect Extensible Stylesheet Language Transformations (XSLT) without XML declaration
 - Detect GPS Exchange Format (GPX) without XML declaration
@@ -251,8 +339,8 @@
 - Detect XML Shareable Playlist Format (XSPF) without XML declaration
 - Detect draw.io (DRAWIO) without XML declaration
 - Distinguish between BDAV MPEG-2 Transport Stream (MT2S) and MPEG-2 Transport Stream (TS)
-- Optimize detection of EXE-based file formats when using the `reader-exe` feature
-- Optimize detection of XML-based file formats when using the `reader-xml` feature
+- Optimize detection of EXE-based file formats when using `reader-exe` feature
+- Optimize detection of XML-based file formats when using `reader-xml` feature
 
 ## Internal changes
 
@@ -260,10 +348,11 @@
 
 ## New formats support
 
+- 8-Bit Sampled Voice (8SVX)
+- ACE
 - AbiWord (ABW)
 - AbiWord Template (AWT)
 - Adobe Integrated Runtime (AIR)
-- Advanced Compression Engine (ACE)
 - Advanced Systems Format (ASF)
 - Atari 7800 ROM (A78)
 - Audio Visual Research (AVR)
@@ -272,10 +361,9 @@
 - Canon Raw (CRW)
 - Design Web Format (DWF)
 - FictionBook (FB2)
-- FictionBook Zipped (FBZ)
+- FictionBook ZIP (FBZ)
 - Flexible and Interoperable Data Transfer (FIT)
 - Game Gear ROM (GG)
-- IFF 8-Bit Sampled Voice (8SVX)
 - JPEG 2000 Codestream (J2C)
 - Linear Executable (LE)
 - MTV
@@ -358,8 +446,8 @@
 - Advanced Stream Redirector (ASX)
 - Autodesk Animator (FLI)
 - Autodesk Animator Pro (FLC)
-- Bitmap Font ASCII (FNT)
-- Bitmap Font Binary (FNT)
+- BMFont ASCII (FNT)
+- BMFont Binary (FNT)
 - Drawing Exchange Format ASCII (DXF)
 - Drawing Exchange Format Binary (DXF)
 - Inter-Quake Export (IQE)
@@ -397,7 +485,7 @@
 
 ## New formats support
 
-- Digital Asset Exchange (DAE)
+- Collaborative Design Activity (COLLADA)
 - Filmbox (FBX)
 - InDesign Markup Language (IDML)
 - MS-DOS Batch (Batch)
@@ -422,10 +510,10 @@
 
 ## New formats support
 
-- Apache Avro Object Container (Avro)
+- Apache Avro (Avro)
 - Apache Parquet (Parquet)
 - AutoCAD Drawing (DWG)
-- BitTorrent File (Torrent)
+- BitTorrent (Torrent)
 - JPEG-LS (JLS)
 - MP3 URL (M3U)
 - Personal Storage Table (PST)
@@ -492,7 +580,7 @@
 - Keyhole Markup Language (KML)
 - Lua Script
 - MusicXML
-- MusicXML Zipped (MXL)
+- MusicXML ZIP (MXL)
 - Perl Script
 - Plain Text (TXT)
 - Python Script
@@ -577,7 +665,7 @@
 - Dynamic Link Library (DLL)
 - Encapsulated PostScript (EPS)
 - Enterprise Application Archive (EAR)
-- Keyhole Markup Language Zipped (KMZ)
+- Keyhole Markup Language ZIP (KMZ)
 - LLVM Bitcode (BC)
 - Lua Bytecode
 - MPEG-1/2 Audio Layer 1 (MP1)
@@ -653,7 +741,7 @@
 ## New formats support
 
 - Android Binary XML (AXML)
-- Android Compiled Resources (ARSC)
+- Android Resource Storage Container (ARSC)
 - Optimized Dalvik Executable (DEY)
 
 # Version 0.6.0 (2021-12-18)
@@ -737,7 +825,7 @@
 
 - Add new Apple QuickTime (MOV) signatures
 - Add new Audio Interchange File Format (AIFF) signature
-- Add precision to the Debian Binary Package (DEB) signature
+- Add precision to the Debian Package (DEB) signature
 - Add precision to the Flexible Image Transport System (FITS) signature
 - Add precision to the Windows Media Video (WMV) signature
 - Add precision to the Windows Shortcut (LNK) signature
@@ -747,13 +835,13 @@
 ## New formats support
 
 - ALZ
-- Adobe Flash Player Audio (F4A)
-- Adobe Flash Player Audiobook (F4B)
 - Apache Arrow Columnar (Arrow)
 - Apple iTunes Audiobook (M4B)
 - Canon Raw 2 (CR2)
 - Canon Raw 3 (CR3)
 - FastTracker 2 Extended Module (XM)
+- Flash MP4 Audio (F4A)
+- Flash MP4 Audiobook (F4B)
 - Fujifilm Raw (RAF)
 - Impulse Tracker Module (IT)
 - LHA

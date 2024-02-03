@@ -47,9 +47,9 @@ fn test_keyhole_markup_language_2() {
 
 #[cfg(feature = "reader-zip")]
 #[test]
-fn test_keyhole_markup_language_zipped() {
+fn test_keyhole_markup_language_zip() {
     let fmt = FileFormat::from_file("fixtures/geospatial/sample.kmz").unwrap();
-    assert_eq!(fmt, FileFormat::KeyholeMarkupLanguageZipped);
+    assert_eq!(fmt, FileFormat::KeyholeMarkupLanguageZip);
 }
 
 #[test]

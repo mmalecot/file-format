@@ -9,15 +9,28 @@ fn test_adobe_integrated_runtime() {
 
 #[cfg(feature = "reader-zip")]
 #[test]
+fn test_android_app_bundle() {
+    let fmt = FileFormat::from_file("fixtures/package/sample.aab").unwrap();
+    assert_eq!(fmt, FileFormat::AndroidAppBundle);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
 fn test_android_package() {
     let fmt = FileFormat::from_file("fixtures/package/sample.apk").unwrap();
     assert_eq!(fmt, FileFormat::AndroidPackage);
 }
 
 #[test]
-fn test_debian_binary_package() {
+fn test_appimage() {
+    let fmt = FileFormat::from_file("fixtures/package/sample.AppImage").unwrap();
+    assert_eq!(fmt, FileFormat::Appimage);
+}
+
+#[test]
+fn test_debian_package() {
     let fmt = FileFormat::from_file("fixtures/package/sample.deb").unwrap();
-    assert_eq!(fmt, FileFormat::DebianBinaryPackage);
+    assert_eq!(fmt, FileFormat::DebianPackage);
 }
 
 #[cfg(feature = "reader-zip")]
@@ -78,6 +91,13 @@ fn test_red_hat_package_manager() {
 fn test_web_application_archive() {
     let fmt = FileFormat::from_file("fixtures/package/sample.war").unwrap();
     assert_eq!(fmt, FileFormat::WebApplicationArchive);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_windows_app_bundle() {
+    let fmt = FileFormat::from_file("fixtures/package/sample.appxbundle").unwrap();
+    assert_eq!(fmt, FileFormat::WindowsAppBundle);
 }
 
 #[cfg(feature = "reader-zip")]

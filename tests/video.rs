@@ -7,18 +7,6 @@ fn test_actions_media_video() {
 }
 
 #[test]
-fn test_adobe_flash_player_protected_video() {
-    let fmt = FileFormat::from_file("fixtures/video/sample.f4p").unwrap();
-    assert_eq!(fmt, FileFormat::AdobeFlashPlayerProtectedVideo);
-}
-
-#[test]
-fn test_adobe_flash_player_video() {
-    let fmt = FileFormat::from_file("fixtures/video/sample.f4v").unwrap();
-    assert_eq!(fmt, FileFormat::AdobeFlashPlayerVideo);
-}
-
-#[test]
 fn test_apple_itunes_video() {
     let fmt = FileFormat::from_file("fixtures/video/sample.m4v").unwrap();
     assert_eq!(fmt, FileFormat::AppleItunesVideo);
@@ -52,6 +40,18 @@ fn test_autodesk_animator_pro() {
 fn test_bdav_mpeg2_transport_stream() {
     let fmt = FileFormat::from_file("fixtures/video/sample.m2ts").unwrap();
     assert_eq!(fmt, FileFormat::BdavMpeg2TransportStream);
+}
+
+#[test]
+fn test_flash_mp4_protected_video() {
+    let fmt = FileFormat::from_file("fixtures/video/sample.f4p").unwrap();
+    assert_eq!(fmt, FileFormat::FlashMp4ProtectedVideo);
+}
+
+#[test]
+fn test_flash_mp4_video() {
+    let fmt = FileFormat::from_file("fixtures/video/sample.f4v").unwrap();
+    assert_eq!(fmt, FileFormat::FlashMp4Video);
 }
 
 #[test]

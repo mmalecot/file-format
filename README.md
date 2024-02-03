@@ -9,7 +9,7 @@
 Crate for determining the file format of a given file or stream.
 
 It provides a variety of functions for identifying a wide range of file formats, including ZIP,
-Compound File Binary (CFB), Extensible Markup Language (XML) and much more.
+Compound File Binary (CFB), Extensible Markup Language (XML) and more.
 
 It checks the signature of the file to determine its format and intelligently employs specific
 readers when available for accurate identification. If the signature is not recognized, the crate
@@ -22,13 +22,13 @@ Determines from a file:
 ```rust
 use file_format::{FileFormat, Kind};
 
-let format = FileFormat::from_file("fixtures/document/sample.pdf")?;
-assert_eq!(format, FileFormat::PortableDocumentFormat);
-assert_eq!(format.name(), "Portable Document Format");
-assert_eq!(format.short_name(), Some("PDF"));
-assert_eq!(format.media_type(), "application/pdf");
-assert_eq!(format.extension(), "pdf");
-assert_eq!(format.kind(), Kind::Document);
+let fmt = FileFormat::from_file("fixtures/document/sample.pdf")?;
+assert_eq!(fmt, FileFormat::PortableDocumentFormat);
+assert_eq!(fmt.name(), "Portable Document Format");
+assert_eq!(fmt.short_name(), Some("PDF"));
+assert_eq!(fmt.media_type(), "application/pdf");
+assert_eq!(fmt.extension(), "pdf");
+assert_eq!(fmt.kind(), Kind::Document);
 ```
 
 Determines from bytes:
@@ -36,13 +36,13 @@ Determines from bytes:
 ```rust
 use file_format::{FileFormat, Kind};
 
-let format = FileFormat::from_bytes(&[0xFF, 0xD8, 0xFF]);
-assert_eq!(format, FileFormat::JointPhotographicExpertsGroup);
-assert_eq!(format.name(), "Joint Photographic Experts Group");
-assert_eq!(format.short_name(), Some("JPEG"));
-assert_eq!(format.media_type(), "image/jpeg");
-assert_eq!(format.extension(), "jpg");
-assert_eq!(format.kind(), Kind::Image);
+let fmt = FileFormat::from_bytes(&[0xFF, 0xD8, 0xFF]);
+assert_eq!(fmt, FileFormat::JointPhotographicExpertsGroup);
+assert_eq!(fmt.name(), "Joint Photographic Experts Group");
+assert_eq!(fmt.short_name(), Some("JPEG"));
+assert_eq!(fmt.media_type(), "image/jpeg");
+assert_eq!(fmt.extension(), "jpg");
+assert_eq!(fmt.kind(), Kind::Image);
 ```
 
 ## Usage
@@ -51,16 +51,12 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.23"
+file-format = "0.24"
 ```
 
 ## Crate features
 
 All features below are disabled by default.
-
-### Ecosystem features
-
-- `serde` - Adds the ability to serialize and deserialize a `FileFormat` and `Kind` using serde.
 
 ### Reader features
 
@@ -75,76 +71,24 @@ identification.
 - `reader-mp4` - Enables MPEG-4 Part 14 (MP4) based file formats detection.
 - `reader-pdf` - Enables Portable Document Format (PDF) based file formats detection.
 - `reader-rm` - Enables RealMedia (RM) based file formats detection.
-- `reader-txt` - Enables Plain Text (TXT) detection when the file format is not recognized by its
-  signature. Please note that this feature only detects files containing ASCII/UTF-8-encoded text.
-- `reader-xml` - Enables Extensible Markup Language (XML) based file formats detection. Please note
-  that these file formats may be detected without the feature in certain cases.
+- `reader-txt` - Enables Plain Text (TXT) file format detection.
+- `reader-xml` - Enables Extensible Markup Language (XML) based file formats detection.
 - `reader-zip` - Enables ZIP-based file formats detection.
 
 ## Supported file formats
 
-### Application
-
-- ActiveMime (MSO)
-- Advanced Systems Format (ASF)
-- Android Binary XML (AXML)
-- Android Compiled Resources (ARSC)
-- Apache Arrow Columnar (Arrow)
-- Apache Avro Object Container (Avro)
-- Apache Parquet (Parquet)
-- Arbitrary Binary Data (BIN)
-- BitTorrent File (Torrent)
-- CD Audio (CDA)
-- Compound File Binary (CFB)
-- Digital Imaging and Communications in Medicine (DICOM)
-- Empty
-- Encapsulated PostScript (EPS)
-- Extensible Binary Meta Language (EBML)
-- Extensible Stylesheet Language Transformations (XSLT)
-- Flexible Image Transport System (FITS)
-- ICC Profile (ICC)
-- Java KeyStore (JKS)
-- MPEG-4 Part 14 (MP4)
-- Mathematical Markup Language (MathML)
-- Meta Information Encapsulation (MIE)
-- Microsoft Compiled HTML Help (CHM)
-- Microsoft Visual Studio Solution (SLN)
-- MusicXML
-- MusicXML Zipped (MXL)
-- Ogg Multiplexed Media (OGX)
-- PCAP Dump (PCAP)
-- PCAP Next Generation Dump (PCAPNG)
-- PEM Certificate Signing Request (PEM)
-- PEM Private Key (PEM)
-- PEM Public Key (PEM)
-- PGP Message (PGP)
-- PGP Private Key Block (PGP)
-- PGP Public Key Block (PGP)
-- PGP Signature (PGP)
-- PGP Signed Message (PGP)
-- Personal Storage Table (PST)
-- PostScript (PS)
-- RealMedia (RM)
-- Simple Object Access Protocol (SOAP)
-- Small Web Format (SWF)
-- TASTy
-- Tiled Map XML (TMX)
-- Tiled Tileset XML (TSX)
-- Windows Shortcut (LNK)
-- XML Localization Interchange File Format (XLIFF)
-- gettext Machine Object (MO)
-- macOS Alias
-
 ### Archive
 
 - 7-Zip (7Z)
+- ACE
 - ALZ
-- Advanced Compression Engine (ACE)
 - Archived by Robert Jung (ARJ)
 - Cabinet (CAB)
 - Extensible Archive (XAR)
 - LArc (LZS)
 - LHA
+- Mozilla Archive (MAR)
+- Multi Layer Archive (MLA)
 - PMarc (PMA)
 - Roshal Archive (RAR)
 - SeqBox (SBX)
@@ -161,21 +105,21 @@ identification.
 
 ### Audio
 
+- 8-Bit Sampled Voice (8SVX)
 - Adaptive Multi-Rate (AMR)
-- Adobe Flash Player Audio (F4A)
-- Adobe Flash Player Audiobook (F4B)
 - Advanced Audio Coding (AAC)
 - Apple iTunes Audio (M4A)
 - Apple iTunes Audiobook (M4B)
 - Apple iTunes Protected Audio (M4P)
 - Au
-- Audio Codec 3 (AC3)
+- Audio Codec 3 (AC-3)
 - Audio Interchange File Format (AIFF)
 - Audio Visual Research (AVR)
 - Creative Voice (VOC)
 - FastTracker 2 Extended Module (XM)
+- Flash MP4 Audio (F4A)
+- Flash MP4 Audiobook (F4B)
 - Free Lossless Audio Codec (FLAC)
-- IFF 8-Bit Sampled Voice (8SVX)
 - Impulse Tracker Module (IT)
 - MPEG-1/2 Audio Layer 2 (MP2)
 - MPEG-1/2 Audio Layer 3 (MP3)
@@ -199,21 +143,7 @@ identification.
 - Waveform Audio (WAV)
 - Windows Media Audio (WMA)
 
-### Book
-
-- Broad Band eBook (BBeB)
-- Electronic Publication (EPUB)
-- FictionBook (FB2)
-- FictionBook Zipped (FBZ)
-- Microsoft Reader (LIT)
-- Mobipocket (MOBI)
-
-### Certificate
-
-- DER Certificate (DER)
-- PEM Certificate (PEM)
-
-### Compression
+### Compressed
 
 - BZip3 (BZ3)
 - LZ4
@@ -239,6 +169,14 @@ identification.
 - OpenDocument Database (ODB)
 - SQLite 3
 
+### Diagram
+
+- Circuit Diagram Document (CDDX)
+- Microsoft Visio Drawing (VSD)
+- Office Open XML Drawing (VSDX)
+- StarChart (SDS)
+- draw.io (DRAWIO)
+
 ### Disk
 
 - Amiga Disk File (ADF)
@@ -255,59 +193,41 @@ identification.
 - AbiWord (ABW)
 - AbiWord Template (AWT)
 - Adobe InDesign Document (INDD)
-- Circuit Diagram Document (CDDX)
+- DjVu
 - InDesign Markup Language (IDML)
-- Microsoft Excel Spreadsheet (XLS)
-- Microsoft PowerPoint Presentation (PPT)
-- Microsoft Project Plan (MPP)
+- LaTeX (TeX)
 - Microsoft Publisher Document (PUB)
-- Microsoft Visio Drawing (VSD)
 - Microsoft Word Document (DOC)
-- Microsoft Works 6 Spreadsheet (XLR)
-- Microsoft Works Spreadsheet (WKS)
 - Microsoft Works Word Processor (WPS)
 - Microsoft Write (WRI)
 - Office Open XML Document (DOCX)
-- Office Open XML Drawing (VSDX)
-- Office Open XML Presentation (PPTX)
-- Office Open XML Spreadsheet (XLSX)
-- OpenDocument Formula (ODF)
-- OpenDocument Formula Template (OTF)
-- OpenDocument Graphics (ODG)
-- OpenDocument Graphics Template (OTG)
-- OpenDocument Presentation (ODP)
-- OpenDocument Presentation Template (OTP)
-- OpenDocument Spreadsheet (ODS)
-- OpenDocument Spreadsheet Template (OTS)
 - OpenDocument Text (ODT)
 - OpenDocument Text Master (ODM)
 - OpenDocument Text Master Template (OTM)
 - OpenDocument Text Template (OTT)
+- OpenXPS (OXPS)
 - Portable Document Format (PDF)
+- PostScript (PS)
 - Rich Text Format (RTF)
-- StarCalc (SDC)
-- StarChart (SDS)
-- StarDraw (SDA)
-- StarImpress (SDD)
-- StarMath (SMF)
 - StarWriter (SDW)
-- Sun XML Calc (SXC)
-- Sun XML Calc Template (STC)
-- Sun XML Draw (SXD)
-- Sun XML Draw Template (STD)
-- Sun XML Impress (SXI)
-- Sun XML Impress Template (STI)
-- Sun XML Math (SXM)
 - Sun XML Writer (SXW)
 - Sun XML Writer Global (SGW)
 - Sun XML Writer Template (STW)
+- Uniform Office Format Text (UOT)
 - WordPerfect Document (WPD)
-- WordPerfect Graphics (WPG)
-- WordPerfect Macro (WPM)
-- draw.io (DRAWIO)
+
+### Ebook
+
+- Broad Band eBook (BBeB)
+- Electronic Publication (EPUB)
+- FictionBook (FB2)
+- FictionBook ZIP (FBZ)
+- Microsoft Reader (LIT)
+- Mobipocket (MOBI)
 
 ### Executable
 
+- Commodore 64 Program (PRG)
 - Common Object File Format (COFF)
 - Dalvik Executable (DEX)
 - Dynamic Link Library (DLL)
@@ -328,13 +248,21 @@ identification.
 
 ### Font
 
-- Bitmap Font ASCII (FNT)
-- Bitmap Font Binary (FNT)
+- BMFont ASCII (FNT)
+- BMFont Binary (FNT)
 - Embedded OpenType (EOT)
 - OpenType (OTF)
 - TrueType (TTF)
 - Web Open Font Format (WOFF)
 - Web Open Font Format 2 (WOFF2)
+
+### Formula
+
+- Mathematical Markup Language (MathML)
+- OpenDocument Formula (ODF)
+- OpenDocument Formula Template (OTF)
+- StarMath (SMF)
+- Sun XML Math (SXM)
 
 ### Geospatial
 
@@ -342,7 +270,7 @@ identification.
 - GPS Exchange Format (GPX)
 - Geography Markup Language (GML)
 - Keyhole Markup Language (KML)
-- Keyhole Markup Language Zipped (KMZ)
+- Keyhole Markup Language ZIP (KMZ)
 - Shapefile (SHP)
 - Training Center XML (TCX)
 
@@ -361,7 +289,7 @@ identification.
 - Canon Raw 3 (CR3)
 - Cineon (CIN)
 - Digital Picture Exchange (DPX)
-- DjVu
+- Encapsulated PostScript (EPS)
 - Experimental Computing Facility (XCF)
 - Free Lossless Image Format (FLIF)
 - Fujifilm Raw (RAF)
@@ -386,6 +314,8 @@ identification.
 - Multiple-image Network Graphics (MNG)
 - Nikon Electronic File (NEF)
 - Olympus Raw Format (ORF)
+- OpenDocument Graphics (ODG)
+- OpenDocument Graphics Template (OTG)
 - OpenEXR (EXR)
 - OpenRaster (ORA)
 - Panasonic Raw (RW2)
@@ -400,6 +330,9 @@ identification.
 - Radiance HDR (HDR)
 - Scalable Vector Graphics (SVG)
 - Silicon Graphics Image (SGI)
+- StarDraw (SDA)
+- Sun XML Draw (SXD)
+- Sun XML Draw Template (STD)
 - Tag Image File Format (TIFF)
 - WebP
 - Windows Animated Cursor (ANI)
@@ -407,8 +340,19 @@ identification.
 - Windows Cursor (CUR)
 - Windows Icon (ICO)
 - Windows Metafile (WMF)
+- WordPerfect Graphics (WPG)
 - X PixMap (XPM)
 - farbfeld (FF)
+
+### Metadata
+
+- Android Binary XML (AXML)
+- BitTorrent (Torrent)
+- CD Audio (CDA)
+- Meta Information Encapsulation (MIE)
+- TASTy
+- Windows Shortcut (LNK)
+- macOS Alias
 
 ### Model
 
@@ -425,9 +369,9 @@ identification.
 - Autodesk Inventor Presentation (IPN)
 - Blender (BLEND)
 - Cinema 4D (C4D)
+- Collaborative Design Activity (COLLADA)
 - Design Web Format (DWF)
 - Design Web Format XPS (DWFX)
-- Digital Asset Exchange (DAE)
 - Drawing Exchange Format ASCII (DXF)
 - Drawing Exchange Format Binary (DXF)
 - Extensible 3D (X3D)
@@ -455,15 +399,83 @@ identification.
 - Universal 3D (U3D)
 - Universal Scene Description ASCII (USDA)
 - Universal Scene Description Binary (USDC)
-- Universal Scene Description Zipped (USDZ)
+- Universal Scene Description ZIP (USDZ)
 - Virtual Reality Modeling Language (VRML)
 - openNURBS (3DM)
+
+### Other
+
+- ActiveMime (MSO)
+- Advanced Systems Format (ASF)
+- Android Resource Storage Container (ARSC)
+- Apache Arrow Columnar (Arrow)
+- Apache Avro (Avro)
+- Apache Parquet (Parquet)
+- Arbitrary Binary Data (BIN)
+- Atom
+- Clojure Script
+- Compound File Binary (CFB)
+- DER Certificate (DER)
+- Digital Imaging and Communications in Medicine (DICOM)
+- Empty
+- Extensible Binary Meta Language (EBML)
+- Extensible Markup Language (XML)
+- Extensible Stylesheet Language Transformations (XSLT)
+- Flash CS5 Project (FLA)
+- Flash Project (FLA)
+- Flexible Image Transport System (FITS)
+- HyperText Markup Language (HTML)
+- ICC Profile (ICC)
+- JSON Feed
+- Java KeyStore (JKS)
+- Lua Script
+- MPEG-4 Part 14 (MP4)
+- MS-DOS Batch (Batch)
+- Microsoft Compiled HTML Help (CHM)
+- Microsoft Project Plan (MPP)
+- Microsoft Visual Studio Solution (SLN)
+- MusicXML
+- MusicXML ZIP (MXL)
+- Ogg Multiplexed Media (OGX)
+- PCAP Dump (PCAP)
+- PCAP Next Generation Dump (PCAPNG)
+- PEM Certificate (PEM)
+- PEM Certificate Signing Request (PEM)
+- PEM Private Key (PEM)
+- PEM Public Key (PEM)
+- PGP Message (PGP)
+- PGP Private Key Block (PGP)
+- PGP Public Key Block (PGP)
+- PGP Signature (PGP)
+- PGP Signed Message (PGP)
+- Perl Script
+- Personal Storage Table (PST)
+- Plain Text (TXT)
+- Python Script
+- RealMedia (RM)
+- Really Simple Syndication (RSS)
+- Ruby Script
+- Shell Script
+- Simple Object Access Protocol (SOAP)
+- Small Web Format (SWF)
+- Tiled Map XML (TMX)
+- Tiled Tileset XML (TSX)
+- Tool Command Language Script (Tcl Script)
+- WebAssembly Text (WAT)
+- WordPerfect Macro (WPM)
+- XML Localization Interchange File Format (XLIFF)
+- gettext Machine Object (MO)
+- iCalendar (ICS)
+- vCalendar (VCS)
+- vCard (VCF)
 
 ### Package
 
 - Adobe Integrated Runtime (AIR)
+- Android App Bundle (AAB)
 - Android Package (APK)
-- Debian Binary Package (DEB)
+- AppImage
+- Debian Package (DEB)
 - Enterprise Application Archive (EAR)
 - Google Chrome Extension (CRX)
 - Java Archive (JAR)
@@ -472,6 +484,7 @@ identification.
 - Nintendo Switch Package (NSP)
 - Red Hat Package Manager (RPM)
 - Web Application Archive (WAR)
+- Windows App Bundle (APPXBUNDLE)
 - Windows App Package (APPX)
 - XAP
 - XPInstall (XPI)
@@ -481,14 +494,29 @@ identification.
 
 - Advanced Stream Redirector (ASX)
 - MP3 URL (M3U)
-- MPEG-DASH Manifest (MPD)
+- MPEG-DASH MPD (MPD)
 - SHOUTcast Playlist (PLS)
 - Windows Media Playlist (WPL)
 - XML Shareable Playlist Format (XSPF)
 
+### Presentation
+
+- Corel Presentations (SHW)
+- Corel Presentations 7 (SHW)
+- Microsoft PowerPoint Presentation (PPT)
+- Office Open XML Presentation (PPTX)
+- OpenDocument Presentation (ODP)
+- OpenDocument Presentation Template (OTP)
+- StarImpress (SDD)
+- Sun XML Impress (SXI)
+- Sun XML Impress Template (STI)
+- Uniform Office Format Presentation (UOP)
+- WordPerfect Presentations (SHW)
+
 ### ROM
 
 - Atari 7800 ROM (A78)
+- Commodore 64 Cartridge (CRT)
 - Game Boy Advance ROM (GBA)
 - Game Boy Color ROM (GBC)
 - Game Boy ROM (GB)
@@ -502,6 +530,19 @@ identification.
 - Nintendo Switch ROM (XCI)
 - Sega Master System ROM (SMS)
 
+### Spreadsheet
+
+- Microsoft Excel Spreadsheet (XLS)
+- Microsoft Works 6 Spreadsheet (XLR)
+- Microsoft Works Spreadsheet (WKS)
+- Office Open XML Spreadsheet (XLSX)
+- OpenDocument Spreadsheet (ODS)
+- OpenDocument Spreadsheet Template (OTS)
+- StarCalc (SDC)
+- Sun XML Calc (SXC)
+- Sun XML Calc Template (STC)
+- Uniform Office Format Spreadsheet (UOS)
+
 ### Subtitle
 
 - MPEG-4 Part 14 Subtitles (MP4)
@@ -511,44 +552,19 @@ identification.
 - Universal Subtitle Format (USF)
 - Web Video Text Tracks (WebVTT)
 
-### Syndication
-
-- Atom
-- JSON Feed
-- Really Simple Syndication (RSS)
-
-### Text
-
-- Clojure Script
-- Extensible Markup Language (XML)
-- HyperText Markup Language (HTML)
-- LaTeX (TeX)
-- Lua Script
-- MS-DOS Batch (Batch)
-- Perl Script
-- Plain Text (TXT)
-- Python Script
-- Ruby Script
-- Shell Script
-- Tool Command Language Script (Tcl Script)
-- WebAssembly Text (WAT)
-- iCalendar (ICS)
-- vCalendar (VCS)
-- vCard (VCF)
-
 ### Video
 
 - 3rd Generation Partnership Project (3GPP)
 - 3rd Generation Partnership Project 2 (3GPP2)
 - Actions Media Video (AMV)
-- Adobe Flash Player Protected Video (F4P)
-- Adobe Flash Player Video (F4V)
 - Apple QuickTime (MOV)
 - Apple iTunes Video (M4V)
 - Audio Video Interleave (AVI)
 - Autodesk Animator (FLI)
 - Autodesk Animator Pro (FLC)
 - BDAV MPEG-2 Transport Stream (M2TS)
+- Flash MP4 Protected Video (F4P)
+- Flash MP4 Video (F4V)
 - Flash Video (FLV)
 - JPEG 2000 Part 3 (MJ2)
 - MPEG-1/2 Video (MPG)

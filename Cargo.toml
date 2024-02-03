@@ -1,6 +1,6 @@
 [package]
 name = "file-format"
-version = "0.23.0"
+version = "0.24.0"
 authors = ["Mickaël Malécot <mickael.malecot@gmail.com>"]
 edition = "2021"
 description = "Crate for determining the file format of a given file or stream."
@@ -14,13 +14,7 @@ documentation = "https://docs.rs/file-format"
 exclude = ["/.github", "/examples", "/fixtures", "/tests", ".gitattributes", ".gitignore"]
 rust-version = "1.60.0"
 
-[dependencies]
-serde = { version = "1.0", optional = true, features = ["derive"], default-features = false }
-
 [features]
-## Ecosystem features
-serde = ["dep:serde"]
-
 ## Reader features
 reader = [
     "reader-asf",
