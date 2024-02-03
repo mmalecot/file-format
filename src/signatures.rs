@@ -1006,7 +1006,7 @@ signatures! {
     format = AndroidBinaryXml
     value = b"\x03\x00\x08\x00"
 
-    format = AndroidCompiledResources
+    format = AndroidResourceStorageContainer
     value = b"\x02\x00\x0C\x00"
 
     format = ApacheAvroObjectContainer

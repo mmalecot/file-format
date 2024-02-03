@@ -13,9 +13,9 @@ fn test_advanced_systems_format() {
 }
 
 #[test]
-fn test_android_compiled_resources() {
+fn test_android_resource_storage_container() {
     let fmt = FileFormat::from_file("fixtures/other/sample.arsc").unwrap();
-    assert_eq!(fmt, FileFormat::AndroidCompiledResources);
+    assert_eq!(fmt, FileFormat::AndroidResourceStorageContainer);
 }
 
 #[test]

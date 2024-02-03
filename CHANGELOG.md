@@ -23,6 +23,7 @@
 - Rename `AdobeFlashPlayerProtectedVideo` to `FlashMp4ProtectedVideo`
 - Rename `AdobeFlashPlayerVideo` to `FlashMp4Video`
 - Rename `AdvancedCompressionEngine` to `Ace`
+- Rename `AndroidCompiledResources` to `AndroidResourceStorageContainer`
 
 ## Fixes
 
@@ -327,10 +328,10 @@
 
 ## New formats support
 
+- ACE
 - AbiWord (ABW)
 - AbiWord Template (AWT)
 - Adobe Integrated Runtime (AIR)
-- Advanced Compression Engine (ACE)
 - Advanced Systems Format (ASF)
 - Atari 7800 ROM (A78)
 - Audio Visual Research (AVR)
@@ -720,7 +721,7 @@
 ## New formats support
 
 - Android Binary XML (AXML)
-- Android Compiled Resources (ARSC)
+- Android Resource Storage Container (ARSC)
 - Optimized Dalvik Executable (DEY)
 
 # Version 0.6.0 (2021-12-18)

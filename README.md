@@ -407,7 +407,7 @@ identification.
 
 - ActiveMime (MSO)
 - Advanced Systems Format (ASF)
-- Android Compiled Resources (ARSC)
+- Android Resource Storage Container (ARSC)
 - Apache Arrow Columnar (Arrow)
 - Apache Avro Object Container (Avro)
 - Apache Parquet (Parquet)

@@ -132,19 +132,19 @@ formats! {
     extension = "xml"
     kind = Metadata
 
-    format = AndroidCompiledResources
-    name = "Android Compiled Resources"
-    short_name = "ARSC"
-    media_type = "application/vnd.android.arsc"
-    extension = "arsc"
-    kind = Other
-
     format = AndroidPackage
     name = "Android Package"
     short_name = "APK"
     media_type = "application/vnd.android.package-archive"
     extension = "apk"
     kind = Package
+
+    format = AndroidResourceStorageContainer
+    name = "Android Resource Storage Container"
+    short_name = "ARSC"
+    media_type = "application/vnd.android.arsc"
+    extension = "arsc"
+    kind = Other
 
     format = AnimatedPortableNetworkGraphics
     name = "Animated Portable Network Graphics"
