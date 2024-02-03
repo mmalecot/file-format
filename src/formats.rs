@@ -2408,7 +2408,7 @@ formats! {
     format = Squashfs
     name = "Squashfs"
     media_type = "application/x-squashfs"
-    extension = "squashfs"
+    extension = "sqsh"
     kind = Archive
 
     format = StandardForTheExchangeOfProductModelData

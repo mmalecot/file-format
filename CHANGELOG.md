@@ -56,6 +56,7 @@
 - Fix OpenDocument Graphics Template (OTG) kind
 - Fix PostScript (PS) kind
 - Fix Small Web Format (SWF) signature
+- Fix Squashfs extension
 - Fix StarDraw (SDA) kind
 - Fix Sun XML Draw (SXD) kind
 - Fix Sun XML Draw Template (STD) kind
