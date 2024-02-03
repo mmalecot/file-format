@@ -381,20 +381,6 @@ formats! {
     extension = "bpg"
     kind = Image
 
-    format = BitmapFontAscii
-    name = "Bitmap Font ASCII"
-    short_name = "FNT"
-    media_type = "font/x-fnt-ascii"
-    extension = "fnt"
-    kind = Font
-
-    format = BitmapFontBinary
-    name = "Bitmap Font Binary"
-    short_name = "FNT"
-    media_type = "font/x-fnt-binary"
-    extension = "fnt"
-    kind = Font
-
     format = BittorrentFile
     name = "BitTorrent File"
     short_name = "Torrent"
@@ -408,6 +394,20 @@ formats! {
     media_type = "application/x-blender"
     extension = "blend"
     kind = Model
+
+    format = BmfontAscii
+    name = "BMFont ASCII"
+    short_name = "FNT"
+    media_type = "application/x-angelcode-bmfont"
+    extension = "fnt"
+    kind = Font
+
+    format = BmfontBinary
+    name = "BMFont Binary"
+    short_name = "FNT"
+    media_type = "application/x-angelcode-bmfont"
+    extension = "fnt"
+    kind = Font
 
     format = BroadBandEbook
     name = "Broad Band eBook"

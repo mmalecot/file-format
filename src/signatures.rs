@@ -420,7 +420,7 @@ signatures! {
     format = Atari7800Rom
     value = b"\x01ATARI7800"
 
-    format = BitmapFontAscii
+    format = BmfontAscii
     value = b"info face="
 
     format = Drawio
@@ -1030,7 +1030,7 @@ signatures! {
     format = BetterPortableGraphics
     value = b"BPG\xFB"
 
-    format = BitmapFontBinary
+    format = BmfontBinary
     value = b"BMF\x03"
 
     format = Cabinet

@@ -25,11 +25,15 @@
 - Rename `AdvancedCompressionEngine` to `Ace`
 - Rename `AndroidCompiledResources` to `AndroidResourceStorageContainer`
 - Rename `ApacheAvroObjectContainer` to `ApacheAvro`
+- Rename `BitmapFontAscii` to `BmfontAscii`
+- Rename `BitmapFontBinary` to `BmfontBinary`
 
 ## Fixes
 
 - Fix Apache Arrow Columnar (Arrow) media type
 - Fix Apache Parquet (Parquet) media type
+- Fix BMFont ASCII (FNT) media type
+- Fix BMFont Binary (FNT) media type
 - Fix Dalvik Executable (DEX) signature
 - Fix DjVu kind
 - Fix EOCD research when using `reader-zip` feature
@@ -429,8 +433,8 @@
 - Advanced Stream Redirector (ASX)
 - Autodesk Animator (FLI)
 - Autodesk Animator Pro (FLC)
-- Bitmap Font ASCII (FNT)
-- Bitmap Font Binary (FNT)
+- BMFont ASCII (FNT)
+- BMFont Binary (FNT)
 - Drawing Exchange Format ASCII (DXF)
 - Drawing Exchange Format Binary (DXF)
 - Inter-Quake Export (IQE)

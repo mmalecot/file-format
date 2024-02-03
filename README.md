@@ -248,8 +248,8 @@ identification.
 
 ### Font
 
-- Bitmap Font ASCII (FNT)
-- Bitmap Font Binary (FNT)
+- BMFont ASCII (FNT)
+- BMFont Binary (FNT)
 - Embedded OpenType (EOT)
 - OpenType (OTF)
 - TrueType (TTF)
