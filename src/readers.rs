@@ -882,7 +882,7 @@ impl crate::FileFormat {
                 "META-INF/application.xml" => return Ok(Self::EnterpriseApplicationArchive),
                 "META-INF/mozilla.rsa" => return Ok(Self::Xpinstall),
                 "WEB-INF/web.xml" => return Ok(Self::WebApplicationArchive),
-                "doc.kml" => return Ok(Self::KeyholeMarkupLanguageZipped),
+                "doc.kml" => return Ok(Self::KeyholeMarkupLanguageZip),
                 "extension.vsixmanifest" => return Ok(Self::MicrosoftVisualStudioExtension),
                 "mimetype" if compressed_size == uncompressed_size => {
                     // Seeks to the filename of the local file header.
@@ -942,7 +942,7 @@ impl crate::FileFormat {
                         "application/vnd.oasis.opendocument.text-template" => {
                             Self::OpendocumentTextTemplate
                         }
-                        "application/vnd.recordare.musicxml" => Self::MusicxmlZipped,
+                        "application/vnd.recordare.musicxml" => Self::MusicxmlZip,
                         "application/vnd.sun.xml.calc" => Self::SunXmlCalc,
                         "application/vnd.sun.xml.calc.template" => Self::SunXmlCalcTemplate,
                         "application/vnd.sun.xml.draw" => Self::SunXmlDraw,
@@ -965,7 +965,7 @@ impl crate::FileFormat {
                     } else if filename.starts_with("dwf/") {
                         return Ok(Self::DesignWebFormatXps);
                     } else if filename.ends_with(".fb2") && !filename.contains('/') {
-                        return Ok(Self::FictionbookZipped);
+                        return Ok(Self::FictionbookZip);
                     } else if filename.starts_with("FusionAssetName[Active]/") {
                         return Ok(Self::Fusion360);
                     } else if filename.starts_with("Payload/") && filename.contains(".app/") {
@@ -989,7 +989,7 @@ impl crate::FileFormat {
                         || filename.ends_with(".usdc"))
                         && !filename.contains('/')
                     {
-                        return Ok(Self::UniversalSceneDescriptionZipped);
+                        return Ok(Self::UniversalSceneDescriptionZip);
                     }
                 }
             }

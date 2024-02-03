@@ -221,7 +221,7 @@ identification.
 - Broad Band eBook (BBeB)
 - Electronic Publication (EPUB)
 - FictionBook (FB2)
-- FictionBook Zipped (FBZ)
+- FictionBook ZIP (FBZ)
 - Microsoft Reader (LIT)
 - Mobipocket (MOBI)
 
@@ -270,7 +270,7 @@ identification.
 - GPS Exchange Format (GPX)
 - Geography Markup Language (GML)
 - Keyhole Markup Language (KML)
-- Keyhole Markup Language Zipped (KMZ)
+- Keyhole Markup Language ZIP (KMZ)
 - Shapefile (SHP)
 - Training Center XML (TCX)
 
@@ -399,7 +399,7 @@ identification.
 - Universal 3D (U3D)
 - Universal Scene Description ASCII (USDA)
 - Universal Scene Description Binary (USDC)
-- Universal Scene Description Zipped (USDZ)
+- Universal Scene Description ZIP (USDZ)
 - Virtual Reality Modeling Language (VRML)
 - openNURBS (3DM)
 
@@ -435,7 +435,7 @@ identification.
 - Microsoft Project Plan (MPP)
 - Microsoft Visual Studio Solution (SLN)
 - MusicXML
-- MusicXML Zipped (MXL)
+- MusicXML ZIP (MXL)
 - Ogg Multiplexed Media (OGX)
 - PCAP Dump (PCAP)
 - PCAP Next Generation Dump (PCAPNG)

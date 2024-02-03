@@ -755,8 +755,8 @@ formats! {
     extension = "fb2"
     kind = Ebook
 
-    format = FictionbookZipped
-    name = "FictionBook Zipped"
+    format = FictionbookZip
+    name = "FictionBook ZIP"
     short_name = "FBZ"
     media_type = "application/x-fbz"
     extension = "fbz"
@@ -1145,8 +1145,8 @@ formats! {
     extension = "kml"
     kind = Geospatial
 
-    format = KeyholeMarkupLanguageZipped
-    name = "Keyhole Markup Language Zipped"
+    format = KeyholeMarkupLanguageZip
+    name = "Keyhole Markup Language ZIP"
     short_name = "KMZ"
     media_type = "application/vnd.google-earth.kmz"
     extension = "kmz"
@@ -1662,8 +1662,8 @@ formats! {
     extension = "musicxml"
     kind = Other
 
-    format = MusicxmlZipped
-    name = "MusicXML Zipped"
+    format = MusicxmlZip
+    name = "MusicXML ZIP"
     short_name = "MXL"
     media_type = "application/vnd.recordare.musicxml"
     extension = "mxl"
@@ -2704,8 +2704,8 @@ formats! {
     extension = "usdc"
     kind = Model
 
-    format = UniversalSceneDescriptionZipped
-    name = "Universal Scene Description Zipped"
+    format = UniversalSceneDescriptionZip
+    name = "Universal Scene Description ZIP"
     short_name = "USDZ"
     media_type = "model/vnd.usdz+zip"
     extension = "usdz"

@@ -30,8 +30,12 @@
 - Rename `BittorrentFile` to `Bittorrent`
 - Rename `DebianBinaryPackage` to `DebianPackage`
 - Rename `DigitalAssetExchange` to `CollaborativeDesignActivity`
+- Rename `FictionbookZipped` to `FictionbookZip`
 - Rename `Iff8BitSampledVoice` to `EightBitSampledVoice`
+- Rename `KeyholeMarkupLanguageZipped` to `KeyholeMarkupLanguageZip`
 - Rename `MpegDashManifest` to `MpegDashMpd`
+- Rename `MusicxmlZipped` to `MusicxmlZip`
+- Rename `UniversalSceneDescriptionZipped` to `UniversalSceneDescriptionZip`
 
 ## Fixes
 
@@ -162,7 +166,7 @@
 
 ## Improvements
 
-- Detect FictionBook Zipped (FBZ) only with files in the root of the archive
+- Detect FictionBook ZIP (FBZ) only with files in the root of the archive
 
 ## New formats support
 
@@ -183,7 +187,7 @@
 - Standard for the Exchange of Product model data (STEP)
 - Universal Scene Description ASCII (USDA)
 - Universal Scene Description Binary (USDC)
-- Universal Scene Description Zipped (USDZ)
+- Universal Scene Description ZIP (USDZ)
 - Virtual Reality Modeling Language (VRML)
 - Windows Media Playlist (WPL)
 
@@ -356,7 +360,7 @@
 - Canon Raw (CRW)
 - Design Web Format (DWF)
 - FictionBook (FB2)
-- FictionBook Zipped (FBZ)
+- FictionBook ZIP (FBZ)
 - Flexible and Interoperable Data Transfer (FIT)
 - Game Gear ROM (GG)
 - JPEG 2000 Codestream (J2C)
@@ -575,7 +579,7 @@
 - Keyhole Markup Language (KML)
 - Lua Script
 - MusicXML
-- MusicXML Zipped (MXL)
+- MusicXML ZIP (MXL)
 - Perl Script
 - Plain Text (TXT)
 - Python Script
@@ -660,7 +664,7 @@
 - Dynamic Link Library (DLL)
 - Encapsulated PostScript (EPS)
 - Enterprise Application Archive (EAR)
-- Keyhole Markup Language Zipped (KMZ)
+- Keyhole Markup Language ZIP (KMZ)
 - LLVM Bitcode (BC)
 - Lua Bytecode
 - MPEG-1/2 Audio Layer 1 (MP1)

@@ -28,9 +28,9 @@ fn test_fictionbook_2() {
 
 #[cfg(feature = "reader-zip")]
 #[test]
-fn test_fictionbook_zipped() {
+fn test_fictionbook_zip() {
     let fmt = FileFormat::from_file("fixtures/ebook/sample.fbz").unwrap();
-    assert_eq!(fmt, FileFormat::FictionbookZipped);
+    assert_eq!(fmt, FileFormat::FictionbookZip);
 }
 
 #[test]

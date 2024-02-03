@@ -218,9 +218,9 @@ fn test_musicxml_2() {
 
 #[cfg(feature = "reader-zip")]
 #[test]
-fn test_musicxml_zipped() {
+fn test_musicxml_zip() {
     let fmt = FileFormat::from_file("fixtures/other/sample.mxl").unwrap();
-    assert_eq!(fmt, FileFormat::MusicxmlZipped);
+    assert_eq!(fmt, FileFormat::MusicxmlZip);
 }
 
 #[test]

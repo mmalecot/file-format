@@ -300,9 +300,9 @@ fn test_universal_scene_description_binary() {
 
 #[cfg(feature = "reader-zip")]
 #[test]
-fn test_universal_scene_description_zipped() {
+fn test_universal_scene_description_zip() {
     let fmt = FileFormat::from_file("fixtures/model/sample.usdz").unwrap();
-    assert_eq!(fmt, FileFormat::UniversalSceneDescriptionZipped);
+    assert_eq!(fmt, FileFormat::UniversalSceneDescriptionZip);
 }
 
 #[test]
