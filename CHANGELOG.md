@@ -27,6 +27,7 @@
 - Rename `ApacheAvroObjectContainer` to `ApacheAvro`
 - Rename `BitmapFontAscii` to `BmfontAscii`
 - Rename `BitmapFontBinary` to `BmfontBinary`
+- Rename `BittorrentFile` to `Bittorrent`
 
 ## Fixes
 
@@ -502,7 +503,7 @@
 - Apache Avro (Avro)
 - Apache Parquet (Parquet)
 - AutoCAD Drawing (DWG)
-- BitTorrent File (Torrent)
+- BitTorrent (Torrent)
 - JPEG-LS (JLS)
 - MP3 URL (M3U)
 - Personal Storage Table (PST)

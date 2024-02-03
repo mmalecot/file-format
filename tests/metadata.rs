@@ -7,9 +7,9 @@ fn test_android_binary_xml() {
 }
 
 #[test]
-fn test_bittorrent_file() {
+fn test_bittorrent() {
     let fmt = FileFormat::from_file("fixtures/metadata/sample.torrent").unwrap();
-    assert_eq!(fmt, FileFormat::BittorrentFile);
+    assert_eq!(fmt, FileFormat::Bittorrent);
 }
 
 #[test]

@@ -381,8 +381,8 @@ formats! {
     extension = "bpg"
     kind = Image
 
-    format = BittorrentFile
-    name = "BitTorrent File"
+    format = Bittorrent
+    name = "BitTorrent"
     short_name = "Torrent"
     media_type = "application/x-bittorrent"
     extension = "torrent"

@@ -388,7 +388,7 @@ signatures! {
     value = b"<playlist"
 
     // 11 bytes
-    format = BittorrentFile
+    format = Bittorrent
     value = b"d8:announce"
 
     format = DigitalAssetExchange

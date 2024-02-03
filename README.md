@@ -347,7 +347,7 @@ identification.
 ### Metadata
 
 - Android Binary XML (AXML)
-- BitTorrent File (Torrent)
+- BitTorrent (Torrent)
 - CD Audio (CDA)
 - Meta Information Encapsulation (MIE)
 - TASTy
