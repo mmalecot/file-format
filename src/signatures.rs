@@ -171,7 +171,7 @@ signatures! {
     value = b"#!/usr/bin/tcl"
 
     // 21 bytes
-    format = DebianBinaryPackage
+    format = DebianPackage
     value = b"!<arch>\ndebian-binary"
 
     format = Filmbox

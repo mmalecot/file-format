@@ -28,6 +28,7 @@
 - Rename `BitmapFontAscii` to `BmfontAscii`
 - Rename `BitmapFontBinary` to `BmfontBinary`
 - Rename `BittorrentFile` to `Bittorrent`
+- Rename `DebianBinaryPackage` to `DebianPackage`
 
 ## Fixes
 
@@ -815,7 +816,7 @@
 
 - Add new Apple QuickTime (MOV) signatures
 - Add new Audio Interchange File Format (AIFF) signature
-- Add precision to the Debian Binary Package (DEB) signature
+- Add precision to the Debian Package (DEB) signature
 - Add precision to the Flexible Image Transport System (FITS) signature
 - Add precision to the Windows Media Video (WMV) signature
 - Add precision to the Windows Shortcut (LNK) signature

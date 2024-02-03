@@ -561,8 +561,8 @@ formats! {
     extension = "dex"
     kind = Executable
 
-    format = DebianBinaryPackage
-    name = "Debian Binary Package"
+    format = DebianPackage
+    name = "Debian Package"
     short_name = "DEB"
     media_type = "application/vnd.debian.binary-package"
     extension = "deb"

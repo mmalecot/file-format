@@ -28,9 +28,9 @@ fn test_appimage() {
 }
 
 #[test]
-fn test_debian_binary_package() {
+fn test_debian_package() {
     let fmt = FileFormat::from_file("fixtures/package/sample.deb").unwrap();
-    assert_eq!(fmt, FileFormat::DebianBinaryPackage);
+    assert_eq!(fmt, FileFormat::DebianPackage);
 }
 
 #[cfg(feature = "reader-zip")]

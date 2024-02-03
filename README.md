@@ -475,7 +475,7 @@ identification.
 - Android App Bundle (AAB)
 - Android Package (APK)
 - AppImage
-- Debian Binary Package (DEB)
+- Debian Package (DEB)
 - Enterprise Application Archive (EAR)
 - Google Chrome Extension (CRX)
 - Java Archive (JAR)
