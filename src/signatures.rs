@@ -1009,7 +1009,7 @@ signatures! {
     format = AndroidResourceStorageContainer
     value = b"\x02\x00\x0C\x00"
 
-    format = ApacheAvroObjectContainer
+    format = ApacheAvro
     value = b"Obj\x01"
 
     format = ApacheParquet

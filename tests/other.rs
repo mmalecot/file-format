@@ -25,9 +25,9 @@ fn test_apache_arrow_columnar() {
 }
 
 #[test]
-fn test_apache_avro_object_container() {
+fn test_apache_avro() {
     let fmt = FileFormat::from_file("fixtures/other/sample.avro").unwrap();
-    assert_eq!(fmt, FileFormat::ApacheAvroObjectContainer);
+    assert_eq!(fmt, FileFormat::ApacheAvro);
 }
 
 #[test]

@@ -409,7 +409,7 @@ identification.
 - Advanced Systems Format (ASF)
 - Android Resource Storage Container (ARSC)
 - Apache Arrow Columnar (Arrow)
-- Apache Avro Object Container (Avro)
+- Apache Avro (Avro)
 - Apache Parquet (Parquet)
 - Arbitrary Binary Data (BIN)
 - Atom

@@ -24,9 +24,12 @@
 - Rename `AdobeFlashPlayerVideo` to `FlashMp4Video`
 - Rename `AdvancedCompressionEngine` to `Ace`
 - Rename `AndroidCompiledResources` to `AndroidResourceStorageContainer`
+- Rename `ApacheAvroObjectContainer` to `ApacheAvro`
 
 ## Fixes
 
+- Fix Apache Arrow Columnar (Arrow) media type
+- Fix Apache Parquet (Parquet) media type
 - Fix Dalvik Executable (DEX) signature
 - Fix DjVu kind
 - Fix EOCD research when using `reader-zip` feature
@@ -490,7 +493,7 @@
 
 ## New formats support
 
-- Apache Avro Object Container (Avro)
+- Apache Avro (Avro)
 - Apache Parquet (Parquet)
 - AutoCAD Drawing (DWG)
 - BitTorrent File (Torrent)

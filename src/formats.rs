@@ -156,12 +156,12 @@ formats! {
     format = ApacheArrowColumnar
     name = "Apache Arrow Columnar"
     short_name = "Arrow"
-    media_type = "application/x-apache-arrow"
+    media_type = "application/vnd.apache.arrow.file"
     extension = "arrow"
     kind = Other
 
-    format = ApacheAvroObjectContainer
-    name = "Apache Avro Object Container"
+    format = ApacheAvro
+    name = "Apache Avro"
     short_name = "Avro"
     media_type = "application/vnd.apache.avro"
     extension = "avro"
@@ -170,7 +170,7 @@ formats! {
     format = ApacheParquet
     name = "Apache Parquet"
     short_name = "Parquet"
-    media_type = "application/x-parquet"
+    media_type = "application/vnd.apache.parquet"
     extension = "parquet"
     kind = Other
 
