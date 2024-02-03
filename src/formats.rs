@@ -1601,8 +1601,8 @@ formats! {
     extension = "mp4"
     kind = Video
 
-    format = MpegDashManifest
-    name = "MPEG-DASH Manifest"
+    format = MpegDashMpd
+    name = "MPEG-DASH MPD"
     short_name = "MPD"
     media_type = "application/dash+xml"
     extension = "mpd"

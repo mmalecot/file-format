@@ -724,7 +724,7 @@ impl crate::FileFormat {
         } else if buf.holds("<math") {
             Self::MathematicalMarkupLanguage
         } else if buf.holds("<MPD") {
-            Self::MpegDashManifest
+            Self::MpegDashMpd
         } else if buf.holds("<score-partwise") {
             Self::Musicxml
         } else if buf.holds("<rss") {

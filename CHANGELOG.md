@@ -31,6 +31,7 @@
 - Rename `DebianBinaryPackage` to `DebianPackage`
 - Rename `DigitalAssetExchange` to `CollaborativeDesignActivity`
 - Rename `Iff8BitSampledVoice` to `EightBitSampledVoice`
+- Rename `MpegDashManifest` to `MpegDashMpd`
 
 ## Fixes
 
@@ -116,7 +117,7 @@
 
 ## Fixes
 
-- Fix MPEG-DASH Manifest (MPD) name
+- Fix MPEG-DASH MPD (MPD) name
 
 ## Improvements
 
@@ -141,7 +142,7 @@
 
 ## New formats support
 
-- MPEG-DASH Manifest (MPD)
+- MPEG-DASH MPD (MPD)
 - Microsoft Works 6 Spreadsheet (XLR)
 - Microsoft Works Database (WDB)
 - Microsoft Works Spreadsheet (WKS)

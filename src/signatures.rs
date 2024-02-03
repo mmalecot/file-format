@@ -790,7 +790,7 @@ signatures! {
     format = Mp3Url
     value = b"#EXTM3U"
 
-    format = MpegDashManifest
+    format = MpegDashMpd
     value = b"\xEF\xBB\xBF<MPD"
     value = b"<MPD"
 

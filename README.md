@@ -494,7 +494,7 @@ identification.
 
 - Advanced Stream Redirector (ASX)
 - MP3 URL (M3U)
-- MPEG-DASH Manifest (MPD)
+- MPEG-DASH MPD (MPD)
 - SHOUTcast Playlist (PLS)
 - Windows Media Playlist (WPL)
 - XML Shareable Playlist Format (XSPF)

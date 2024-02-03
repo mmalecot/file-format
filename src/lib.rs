@@ -128,7 +128,7 @@ identification.
   * [GPS Exchange Format (GPX)](`FileFormat::GpsExchangeFormat`)
   * [Geography Markup Language (GML)](`FileFormat::GeographyMarkupLanguage`)
   * [Keyhole Markup Language (KML)](`FileFormat::KeyholeMarkupLanguage`)
-  * [MPEG-DASH Manifest (MPD)](`FileFormat::MpegDashManifest`)
+  * [MPEG-DASH MPD (MPD)](`FileFormat::MpegDashMpd`)
   * [Mathematical Markup Language (MathML)](`FileFormat::MathematicalMarkupLanguage`)
   * [MusicXML](`FileFormat::Musicxml`)
   * [Really Simple Syndication (RSS)](`FileFormat::ReallySimpleSyndication`)
