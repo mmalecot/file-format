@@ -86,7 +86,7 @@ fn test_seven_zip() {
 
 #[test]
 fn test_squashfs() {
-    let fmt = FileFormat::from_file("fixtures/archive/sample.squashfs").unwrap();
+    let fmt = FileFormat::from_file("fixtures/archive/sample.sqsh").unwrap();
     assert_eq!(fmt, FileFormat::Squashfs);
 }
 
