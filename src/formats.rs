@@ -15,6 +15,12 @@ formats! {
     extension = "awt"
     kind = Document
 
+    format = Ace
+    name = "ACE"
+    media_type = "application/x-ace-compressed"
+    extension = "ace"
+    kind = Archive
+
     format = ActionsMediaVideo
     name = "Actions Media Video"
     short_name = "AMV"
@@ -84,13 +90,6 @@ formats! {
     media_type = "audio/aac"
     extension = "aac"
     kind = Audio
-
-    format = AdvancedCompressionEngine
-    name = "Advanced Compression Engine"
-    short_name = "ACE"
-    media_type = "application/x-ace-compressed"
-    extension = "ace"
-    kind = Archive
 
     format = AdvancedStreamRedirector
     name = "Advanced Stream Redirector"

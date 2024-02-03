@@ -714,12 +714,12 @@ signatures! {
     value = b"WLPWM\0\0\0"
 
     // 7 bytes
+    format = Ace
+    value = b"**ACE**" offset = 7
+
     format = AdditiveManufacturingFormat
     value = b"\xEF\xBB\xBF<amf"
     value = b"<amf"
-
-    format = AdvancedCompressionEngine
-    value = b"**ACE**" offset = 7
 
     format = AdvancedStreamRedirector
     value = b"\xEF\xBB\xBF<ASX"

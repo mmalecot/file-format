@@ -22,6 +22,7 @@
 - Rename `AdobeFlashPlayerAudiobook` to `FlashMp4Audiobook`
 - Rename `AdobeFlashPlayerProtectedVideo` to `FlashMp4ProtectedVideo`
 - Rename `AdobeFlashPlayerVideo` to `FlashMp4Video`
+- Rename `AdvancedCompressionEngine` to `Ace`
 
 ## Fixes
 

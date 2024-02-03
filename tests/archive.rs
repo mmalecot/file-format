@@ -1,9 +1,9 @@
 use file_format::FileFormat;
 
 #[test]
-fn test_advanced_compression_engine() {
+fn test_ace() {
     let fmt = FileFormat::from_file("fixtures/archive/sample.ace").unwrap();
-    assert_eq!(fmt, FileFormat::AdvancedCompressionEngine);
+    assert_eq!(fmt, FileFormat::Ace);
 }
 
 #[test]

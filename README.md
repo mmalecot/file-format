@@ -80,8 +80,8 @@ identification.
 ### Archive
 
 - 7-Zip (7Z)
+- ACE
 - ALZ
-- Advanced Compression Engine (ACE)
 - Archived by Robert Jung (ARJ)
 - Cabinet (CAB)
 - Extensible Archive (XAR)
