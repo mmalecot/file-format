@@ -1624,7 +1624,7 @@ formats! {
 
     format = Mtv
     name = "MTV"
-    media_type = "video/x-amv"
+    media_type = "video/x-mtv"
     extension = "mtv"
     kind = Video
 

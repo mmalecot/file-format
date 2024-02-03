@@ -46,6 +46,7 @@
 - Fix EOCD research when using `reader-zip` feature
 - Fix Encapsulated PostScript (EPS) kind
 - Fix LaTeX (TeX) kind
+- Fix MTV media type
 - Fix Microsoft Project Plan (MPP) kind
 - Fix OpenDocument Graphics (ODG) kind
 - Fix OpenDocument Graphics Template (OTG) kind
