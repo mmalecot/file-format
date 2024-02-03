@@ -29,6 +29,7 @@
 - Rename `BitmapFontBinary` to `BmfontBinary`
 - Rename `BittorrentFile` to `Bittorrent`
 - Rename `DebianBinaryPackage` to `DebianPackage`
+- Rename `DigitalAssetExchange` to `CollaborativeDesignActivity`
 
 ## Fixes
 
@@ -316,7 +317,7 @@
 - Add precision to the cpio signature
 - Detect Additive Manufacturing Format (AMF) without XML declaration
 - Detect Advanced Stream Redirector (ASX) with XML declaration
-- Detect Digital Asset Exchange (DAE) without XML declaration
+- Detect Collaborative Design Activity (COLLADA) without XML declaration
 - Detect Extensible 3D (X3D) without XML declaration
 - Detect Extensible Stylesheet Language Transformations (XSLT) without XML declaration
 - Detect GPS Exchange Format (GPX) without XML declaration
@@ -476,7 +477,7 @@
 
 ## New formats support
 
-- Digital Asset Exchange (DAE)
+- Collaborative Design Activity (COLLADA)
 - Filmbox (FBX)
 - InDesign Markup Language (IDML)
 - MS-DOS Batch (Batch)

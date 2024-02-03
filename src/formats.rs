@@ -499,6 +499,13 @@ formats! {
     extension = "clj"
     kind = Other
 
+    format = CollaborativeDesignActivity
+    name = "Collaborative Design Activity"
+    short_name = "COLLADA"
+    media_type = "model/vnd.collada+xml"
+    extension = "dae"
+    kind = Model
+
     format = Commodore64Cartridge
     name = "Commodore 64 Cartridge"
     short_name = "CRT"
@@ -587,13 +594,6 @@ formats! {
     short_name = "DWFX"
     media_type = "model/vnd.dwfx+xps"
     extension = "dwfx"
-    kind = Model
-
-    format = DigitalAssetExchange
-    name = "Digital Asset Exchange"
-    short_name = "DAE"
-    media_type = "model/vnd.collada+xml"
-    extension = "dae"
     kind = Model
 
     format = DigitalImagingAndCommunicationsInMedicine

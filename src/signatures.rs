@@ -391,7 +391,7 @@ signatures! {
     format = Bittorrent
     value = b"d8:announce"
 
-    format = DigitalAssetExchange
+    format = CollaborativeDesignActivity
     value = b"\xEF\xBB\xBF<COLLADA"
     value = b"\xEF\xBB\xBF<collada"
     value = b"<COLLADA"

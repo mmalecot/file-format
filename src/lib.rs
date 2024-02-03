@@ -121,7 +121,7 @@ identification.
   * [Additive Manufacturing Format (AMF)](`FileFormat::AdditiveManufacturingFormat`)
   * [Advanced Stream Redirector (ASX)](`FileFormat::AdvancedStreamRedirector`)
   * [Atom](`FileFormat::Atom`)
-  * [Digital Asset Exchange (DAE)](`FileFormat::DigitalAssetExchange`)
+  * [Collaborative Design Activity (COLLADA)](`FileFormat::CollaborativeDesignActivity`)
   * [Extensible 3D (X3D)](`FileFormat::Extensible3d`)
   * [Extensible Stylesheet Language Transformations (XSLT)](`FileFormat::ExtensibleStylesheetLanguageTransformations`)
   * [FictionBook (FB2)](`FileFormat::Fictionbook`)

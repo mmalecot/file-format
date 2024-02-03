@@ -706,7 +706,7 @@ impl crate::FileFormat {
         } else if buf.holds("<feed") {
             Self::Atom
         } else if buf.holds("<COLLADA") {
-            Self::DigitalAssetExchange
+            Self::CollaborativeDesignActivity
         } else if buf.holds("<mxfile") {
             Self::Drawio
         } else if buf.holds("<X3D") {
