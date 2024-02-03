@@ -61,6 +61,12 @@ fn test_creative_voice() {
 }
 
 #[test]
+fn test_eight_bit_sampled_voice() {
+    let fmt = FileFormat::from_file("fixtures/audio/sample.8svx").unwrap();
+    assert_eq!(fmt, FileFormat::EightBitSampledVoice);
+}
+
+#[test]
 fn test_fasttracker2_extended_module() {
     let fmt = FileFormat::from_file("fixtures/audio/sample.xm").unwrap();
     assert_eq!(fmt, FileFormat::Fasttracker2ExtendedModule);
@@ -82,12 +88,6 @@ fn test_flash_mp4_audiobook() {
 fn test_free_lossless_audio_codec() {
     let fmt = FileFormat::from_file("fixtures/audio/sample.flac").unwrap();
     assert_eq!(fmt, FileFormat::FreeLosslessAudioCodec);
-}
-
-#[test]
-fn test_iff8_bit_sampled_voice() {
-    let fmt = FileFormat::from_file("fixtures/audio/sample.8svx").unwrap();
-    assert_eq!(fmt, FileFormat::Iff8BitSampledVoice);
 }
 
 #[test]

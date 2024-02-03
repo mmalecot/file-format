@@ -30,6 +30,7 @@
 - Rename `BittorrentFile` to `Bittorrent`
 - Rename `DebianBinaryPackage` to `DebianPackage`
 - Rename `DigitalAssetExchange` to `CollaborativeDesignActivity`
+- Rename `Iff8BitSampledVoice` to `EightBitSampledVoice`
 
 ## Fixes
 
@@ -340,6 +341,7 @@
 
 ## New formats support
 
+- 8-Bit Sampled Voice (8SVX)
 - ACE
 - AbiWord (ABW)
 - AbiWord Template (AWT)
@@ -355,7 +357,6 @@
 - FictionBook Zipped (FBZ)
 - Flexible and Interoperable Data Transfer (FIT)
 - Game Gear ROM (GG)
-- IFF 8-Bit Sampled Voice (8SVX)
 - JPEG 2000 Codestream (J2C)
 - Linear Executable (LE)
 - MTV

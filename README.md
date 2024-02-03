@@ -105,6 +105,7 @@ identification.
 
 ### Audio
 
+- 8-Bit Sampled Voice (8SVX)
 - Adaptive Multi-Rate (AMR)
 - Advanced Audio Coding (AAC)
 - Apple iTunes Audio (M4A)
@@ -119,7 +120,6 @@ identification.
 - Flash MP4 Audio (F4A)
 - Flash MP4 Audiobook (F4B)
 - Free Lossless Audio Codec (FLAC)
-- IFF 8-Bit Sampled Voice (8SVX)
 - Impulse Tracker Module (IT)
 - MPEG-1/2 Audio Layer 2 (MP2)
 - MPEG-1/2 Audio Layer 3 (MP3)

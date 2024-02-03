@@ -644,6 +644,13 @@ formats! {
     extension = "dll"
     kind = Executable
 
+    format = EightBitSampledVoice
+    name = "8-Bit Sampled Voice"
+    short_name = "8SVX"
+    media_type = "audio/x-8svx"
+    extension = "8svx"
+    kind = Audio
+
     format = ElectronicPublication
     name = "Electronic Publication"
     short_name = "EPUB"
@@ -985,13 +992,6 @@ formats! {
     media_type = "application/vnd.iccprofile"
     extension = "icc"
     kind = Other
-
-    format = Iff8BitSampledVoice
-    name = "IFF 8-Bit Sampled Voice"
-    short_name = "8SVX"
-    media_type = "audio/x-8svx"
-    extension = "8svx"
-    kind = Audio
 
     format = ImpulseTrackerModule
     name = "Impulse Tracker Module"

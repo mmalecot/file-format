@@ -548,6 +548,9 @@ signatures! {
     format = CompoundFileBinary
     value = b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"
 
+    format = EightBitSampledVoice
+    value = b"FORM", b"8SVX" offset = 8
+
     format = ExperimentalComputingFacility
     value = b"gimp xcf"
 
@@ -583,9 +586,6 @@ signatures! {
     value = b"ftyphevm" offset = 4
     value = b"ftyphevs" offset = 4
     value = b"ftypmsf1" offset = 4
-
-    format = Iff8BitSampledVoice
-    value = b"FORM", b"8SVX" offset = 8
 
     format = Jpeg2000Part1
     value = b"ftypJP2 " offset = 16
