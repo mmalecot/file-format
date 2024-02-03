@@ -32,6 +32,8 @@
 
 - Fix Apache Arrow Columnar (Arrow) media type
 - Fix Apache Parquet (Parquet) media type
+- Fix Audio Codec 3 (AC-3) media type
+- Fix Audio Codec 3 (AC-3) short name
 - Fix BMFont ASCII (FNT) media type
 - Fix BMFont Binary (FNT) media type
 - Fix Dalvik Executable (DEX) signature

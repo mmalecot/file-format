@@ -264,8 +264,8 @@ formats! {
 
     format = AudioCodec3
     name = "Audio Codec 3"
-    short_name = "AC3"
-    media_type = "audio/vnd.dolby.dd-raw"
+    short_name = "AC-3"
+    media_type = "audio/ac3"
     extension = "ac3"
     kind = Audio
 

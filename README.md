@@ -111,7 +111,7 @@ identification.
 - Apple iTunes Audiobook (M4B)
 - Apple iTunes Protected Audio (M4P)
 - Au
-- Audio Codec 3 (AC3)
+- Audio Codec 3 (AC-3)
 - Audio Interchange File Format (AIFF)
 - Audio Visual Research (AVR)
 - Creative Voice (VOC)
