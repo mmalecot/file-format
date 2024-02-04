@@ -1025,7 +1025,10 @@ signatures! {
     value = b"2BIT"
 
     format = AutocadDrawing
+    value = b"AC1."
     value = b"AC10"
+    value = b"AC2."
+    value = b"MC0."
 
     format = BetterPortableGraphics
     value = b"BPG\xFB"
