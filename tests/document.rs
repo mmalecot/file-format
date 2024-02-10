@@ -1,4 +1,4 @@
-use file_format::FileFormat;
+use file_format::{FileFormat, Kind};
 
 #[test]
 fn test_abiword_1() {
@@ -35,7 +35,15 @@ fn test_adobe_indesign_document() {
 #[test]
 fn test_djvu() {
     let fmt = FileFormat::from_file("fixtures/document/sample.djvu").unwrap();
-    assert_eq!(fmt, FileFormat::Djvu);
+    test_format(
+        fmt,
+        FileFormat::Djvu,
+        "DjVu",
+        "djvu",
+        "image/vnd.djvu",
+        "djvu",
+        Kind::Document,
+    );
 }
 
 #[cfg(feature = "reader-zip")]
@@ -190,4 +198,21 @@ fn test_wordperfect_document_1() {
 fn test_wordperfect_document_2() {
     let fmt = FileFormat::from_file("fixtures/document/sample2.wpd").unwrap();
     assert_eq!(fmt, FileFormat::WordperfectDocument);
+}
+
+fn test_format(
+    fmt: FileFormat,
+    expected_fmt: FileFormat,
+    name: &str,
+    short_name: &str,
+    media_type: &str,
+    extension: &str,
+    kind: Kind,
+) {
+    assert_eq!(fmt, expected_fmt);
+    assert_eq!(fmt.name(), name);
+    assert_eq!(fmt.short_name().unwrap(), short_name);
+    assert_eq!(fmt.media_type(), media_type);
+    assert_eq!(fmt.extension(), extension);
+    assert_eq!(fmt.kind(), kind);
 }

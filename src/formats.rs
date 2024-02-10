@@ -612,6 +612,7 @@ formats! {
 
     format = Djvu
     name = "DjVu"
+    short_name = "djvu"
     media_type = "image/vnd.djvu"
     extension = "djvu"
     kind = Document
