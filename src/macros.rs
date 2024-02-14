@@ -144,6 +144,12 @@ macro_rules! formats {
                 }
             }
         }
+
+        pub(crate) static EXTENSIONS_TO_FORMATS: &[(&str, FileFormat)] = &[
+            $(
+                ($extension, FileFormat::$format),
+            )*
+        ];
     };
 }
 
