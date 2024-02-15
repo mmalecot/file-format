@@ -297,39 +297,6 @@ impl FileFormat {
             Self::from_generic_reader(&mut reader)
         })
     }
-
-    /// Determines the file formats associated with the given extension.
-    /// If the extension is not recognized, `None` is returned.
-    ///
-    /// # Examples
-    ///
-    /// Basic usage:
-    ///
-    /// ```
-    /// use file_format::FileFormat;
-    ///
-    /// let fmts = FileFormat::from_extension("pdf");
-    /// assert_eq!(fmts, vec![FileFormat::PortableDocumentFormat]);
-    ///
-    /// let fmts = FileFormat::from_extension("tar.gz");
-    /// assert_eq!(fmts, vec![FileFormat::Gzip]);
-    /// ```
-    pub fn from_extension(extension: &str) -> Vec<Self> {
-        let extensions = crate::formats::EXTENSIONS_TO_FORMATS
-            .iter()
-            .filter_map(|(ext, fmt)| if *ext == extension { Some(*fmt) } else { None })
-            .collect::<Vec<_>>();
-
-        if extensions.is_empty() {
-            if let Some((_, extension)) = extension.split_once('.') {
-                return Self::from_extension(extension);
-            } else {
-                return vec![Self::ArbitraryBinaryData];
-            }
-        }
-
-        extensions
-    }
 }
 
 impl Default for FileFormat {
