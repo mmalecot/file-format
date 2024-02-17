@@ -22,7 +22,7 @@ assert_eq!(fmt, FileFormat::PortableDocumentFormat);
 assert_eq!(fmt.name(), "Portable Document Format");
 assert_eq!(fmt.short_name(), Some("PDF"));
 assert_eq!(fmt.media_type(), "application/pdf");
-assert_eq!(fmt.extension(), "pdf");
+assert_eq!(fmt.extensions(), &["pdf"]);
 assert_eq!(fmt.kind(), Kind::Document);
 # Ok::<(), std::io::Error>(())
 ```
@@ -37,7 +37,7 @@ assert_eq!(fmt, FileFormat::JointPhotographicExpertsGroup);
 assert_eq!(fmt.name(), "Joint Photographic Experts Group");
 assert_eq!(fmt.short_name(), Some("JPEG"));
 assert_eq!(fmt.media_type(), "image/jpeg");
-assert_eq!(fmt.extension(), "jpg");
+assert_eq!(fmt.extensions(), &["jfif", "jpe", "jpeg", "jpg"]);
 assert_eq!(fmt.kind(), Kind::Image);
 ```
 
