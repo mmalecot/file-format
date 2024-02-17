@@ -38,5 +38,3 @@ reader-rm = []
 reader-txt = []
 reader-xml = []
 reader-zip = []
-
-rust-1_70 = []
