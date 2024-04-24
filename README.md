@@ -407,7 +407,6 @@ identification.
 
 - ActiveMime (MSO)
 - Advanced Systems Format (ASF)
-- Age Encryption
 - Android Resource Storage Container (ARSC)
 - Apache Arrow Columnar (Arrow)
 - Apache Avro (Avro)
@@ -465,6 +464,7 @@ identification.
 - WebAssembly Text (WAT)
 - WordPerfect Macro (WPM)
 - XML Localization Interchange File Format (XLIFF)
+- age encryption
 - gettext Machine Object (MO)
 - iCalendar (ICS)
 - vCalendar (VCS)
