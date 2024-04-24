@@ -105,6 +105,12 @@ formats! {
     extension = "asf"
     kind = Other
 
+    format = AgeEncryption
+    name = "age encryption"
+    media_type = "application/x-age-encryption"
+    extension = "age"
+    kind = Other
+
     format = Alz
     name = "ALZ"
     media_type = "application/x-alz-compressed"

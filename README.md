@@ -464,6 +464,7 @@ identification.
 - WebAssembly Text (WAT)
 - WordPerfect Macro (WPM)
 - XML Localization Interchange File Format (XLIFF)
+- age encryption
 - gettext Machine Object (MO)
 - iCalendar (ICS)
 - vCalendar (VCS)
