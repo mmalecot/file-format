@@ -407,6 +407,7 @@ identification.
 
 - ActiveMime (MSO)
 - Advanced Systems Format (ASF)
+- Age Encryption
 - Android Resource Storage Container (ARSC)
 - Apache Arrow Columnar (Arrow)
 - Apache Avro (Avro)
@@ -588,5 +589,5 @@ identification.
 
 This project is licensed under either of:
 
-* [Apache License, Version 2.0](LICENSE-APACHE)
-* [MIT license](LICENSE-MIT)
+- [Apache License, Version 2.0](LICENSE-APACHE)
+- [MIT license](LICENSE-MIT)
