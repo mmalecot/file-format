@@ -4,6 +4,10 @@
 
 - Fix AutoCAD Drawing (DWG) signature
 
+## New formats support
+
+- age encryption
+
 # Version 0.24.0 (2024-02-03)
 
 ## API
