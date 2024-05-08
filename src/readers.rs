@@ -1029,6 +1029,7 @@ impl crate::FileFormat {
 }
 
 /// A trait for convenient data reading.
+#[allow(dead_code)]
 trait ReadData: Read {
     /// Reads a specified number of bytes into a `Vec<u8>`.
     #[inline]
@@ -1114,6 +1115,7 @@ trait ReadData: Read {
 impl<R: Read> ReadData for R {}
 
 /// A trait for finding a byte pattern within data.
+#[allow(dead_code)]
 trait FindBytes: AsRef<[u8]> {
     /// Searches for the specified byte pattern and returns the index of the first occurrence.
     fn find<P: AsRef<[u8]>>(&self, pat: P) -> Option<usize> {
