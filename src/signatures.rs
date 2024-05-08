@@ -232,6 +232,11 @@ signatures! {
     format = DrawingExchangeFormatBinary
     value = b"AutoCAD Binary DXF"
 
+    format = Glyphs
+    value = b"{\r\n.appVersion = \""
+    value = b"{\n.appVersion = \""
+    value = b"{\r.appVersion = \""
+
     format = Musicxml
     value = b"\xEF\xBB\xBF<score-partwise"
     value = b"<score-partwise"
@@ -243,9 +248,6 @@ signatures! {
     format = EncapsulatedPostscript
     value = b"%!PS-Adobe-", b" EPSF-" offset = 14
     value = b"\xC5\xD0\xD3\xC6"
-
-    format = Glyphs
-    value = b"{\n.appVersion = \""
 
     format = HypertextMarkupLanguage
     value = b"\xEF\xBB\xBF<!DOCTYPE HTML"
