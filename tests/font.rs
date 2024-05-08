@@ -19,6 +19,12 @@ fn test_embedded_opentype() {
 }
 
 #[test]
+fn test_glyphs() {
+    let fmt = FileFormat::from_file("fixtures/font/sample.glyphs").unwrap();
+    assert_eq!(fmt, FileFormat::Glyphs);
+}
+
+#[test]
 fn test_opentype() {
     let fmt = FileFormat::from_file("fixtures/font/sample.otf").unwrap();
     assert_eq!(fmt, FileFormat::Opentype);

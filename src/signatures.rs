@@ -244,6 +244,9 @@ signatures! {
     value = b"%!PS-Adobe-", b" EPSF-" offset = 14
     value = b"\xC5\xD0\xD3\xC6"
 
+    format = Glyphs
+    value = b"{\n.appVersion = \""
+
     format = HypertextMarkupLanguage
     value = b"\xEF\xBB\xBF<!DOCTYPE HTML"
     value = b"\xEF\xBB\xBF<!DOCTYPE html"

@@ -251,6 +251,7 @@ identification.
 - BMFont ASCII (FNT)
 - BMFont Binary (FNT)
 - Embedded OpenType (EOT)
+- Glyphs
 - OpenType (OTF)
 - TrueType (TTF)
 - Web Open Font Format (WOFF)

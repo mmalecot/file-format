@@ -915,6 +915,12 @@ formats! {
     extension = "glb"
     kind = Model
 
+    format = Glyphs
+    name = "Glyphs"
+    media_type = "font/x-glyphs"
+    extension = "glyphs"
+    kind = Font
+
     format = GoogleChromeExtension
     name = "Google Chrome Extension"
     short_name = "CRX"

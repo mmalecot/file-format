@@ -6,6 +6,7 @@
 
 ## New formats support
 
+- Glyphs
 - Sketch
 - Sketch 43
 - age encryption
