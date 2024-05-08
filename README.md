@@ -330,6 +330,8 @@ identification.
 - Radiance HDR (HDR)
 - Scalable Vector Graphics (SVG)
 - Silicon Graphics Image (SGI)
+- Sketch
+- Sketch 43
 - StarDraw (SDA)
 - Sun XML Draw (SXD)
 - Sun XML Draw Template (STD)

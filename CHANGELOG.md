@@ -6,6 +6,8 @@
 
 ## New formats support
 
+- Sketch
+- Sketch 43
 - age encryption
 
 # Version 0.24.0 (2024-02-03)

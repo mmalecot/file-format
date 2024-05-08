@@ -24,6 +24,8 @@ impl crate::FileFormat {
             Self::PortableDocumentFormat => Self::from_pdf_reader(reader)?,
             #[cfg(feature = "reader-rm")]
             Self::Realmedia => Self::from_rm_reader(reader)?,
+            #[cfg(feature = "reader-sqlite3")]
+            Self::Sqlite3 => Self::from_sqlite3_reader(reader)?,
             #[cfg(feature = "reader-xml")]
             Self::ExtensibleMarkupLanguage => Self::from_xml_reader(reader)?,
             #[cfg(feature = "reader-zip")]
@@ -652,6 +654,28 @@ impl crate::FileFormat {
         })
     }
 
+    /// Determines file format from a SQLite 3 reader.
+    #[cfg(feature = "reader-sqlite3")]
+    pub(crate) fn from_sqlite3_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
+        // Marker for the Sketch file format.
+        const SKETCH_MARKER: &[u8] = b"com.bohemiancoding.sketch3";
+
+        // Rewinds to the beginning of the stream plus the size of the SQLite 3 file format header.
+        reader.seek(SeekFrom::Start(100))?;
+
+        // Creates and fills a buffer.
+        let mut buf = [0; 32_768];
+        let nread = reader.read(&mut buf)?;
+
+        // Checks if the buffer holds the Sketch file format marker.
+        if buf[..nread].holds(SKETCH_MARKER) {
+            return Ok(Self::Sketch);
+        }
+
+        // Returns the default value.
+        Ok(Self::Sqlite3)
+    }
+
     /// Determines file format from a TXT reader.
     #[cfg(feature = "reader-txt")]
     pub(crate) fn from_txt_reader<R: Read + Seek>(reader: R) -> Result<Self> {
@@ -883,6 +907,7 @@ impl crate::FileFormat {
                 "META-INF/mozilla.rsa" => return Ok(Self::Xpinstall),
                 "WEB-INF/web.xml" => return Ok(Self::WebApplicationArchive),
                 "doc.kml" => return Ok(Self::KeyholeMarkupLanguageZip),
+                "document.json" => return Ok(Self::Sketch43),
                 "extension.vsixmanifest" => return Ok(Self::MicrosoftVisualStudioExtension),
                 "mimetype" if compressed_size == uncompressed_size => {
                     // Seeks to the filename of the local file header.

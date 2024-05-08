@@ -2336,6 +2336,18 @@ formats! {
     extension = "soap"
     kind = Other
 
+    format = Sketch
+    name = "Sketch"
+    media_type = "image/x-sketch"
+    extension = "sketch"
+    kind = Image
+
+    format = Sketch43
+    name = "Sketch 43"
+    media_type = "image/x-sketch"
+    extension = "sketch"
+    kind = Image
+
     format = Sketchup
     name = "SketchUp"
     short_name = "SKP"

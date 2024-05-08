@@ -24,6 +24,7 @@ reader = [
     "reader-mp4",
     "reader-pdf",
     "reader-rm",
+    "reader-sqlite3",
     "reader-txt",
     "reader-xml",
     "reader-zip"
@@ -35,6 +36,7 @@ reader-exe = []
 reader-mp4 = []
 reader-pdf = []
 reader-rm = []
+reader-sqlite3 = []
 reader-txt = []
 reader-xml = []
 reader-zip = []
