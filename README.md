@@ -71,6 +71,7 @@ identification.
 - `reader-mp4` - Enables MPEG-4 Part 14 (MP4) based file formats detection.
 - `reader-pdf` - Enables Portable Document Format (PDF) based file formats detection.
 - `reader-rm` - Enables RealMedia (RM) based file formats detection.
+- `reader-sqlite3` - Enables SQLite 3 based file formats detection.
 - `reader-txt` - Enables Plain Text (TXT) file format detection.
 - `reader-xml` - Enables Extensible Markup Language (XML) based file formats detection.
 - `reader-zip` - Enables ZIP-based file formats detection.
