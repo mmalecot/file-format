@@ -13,6 +13,12 @@ fn test_advanced_systems_format() {
 }
 
 #[test]
+fn test_age_encryption() {
+    let fmt = FileFormat::from_file("fixtures/other/sample.age").unwrap();
+    assert_eq!(fmt, FileFormat::AgeEncryption);
+}
+
+#[test]
 fn test_android_resource_storage_container() {
     let fmt = FileFormat::from_file("fixtures/other/sample.arsc").unwrap();
     assert_eq!(fmt, FileFormat::AndroidResourceStorageContainer);

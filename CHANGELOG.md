@@ -1,3 +1,16 @@
+# Version 0.25.0 (2024-05-08)
+
+## Fixes
+
+- Fix AutoCAD Drawing (DWG) signature
+
+## New formats support
+
+- Glyphs
+- Sketch
+- Sketch 43
+- age encryption
+
 # Version 0.24.0 (2024-02-03)
 
 ## API

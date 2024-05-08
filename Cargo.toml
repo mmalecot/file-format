@@ -1,6 +1,6 @@
 [package]
 name = "file-format"
-version = "0.24.0"
+version = "0.25.0"
 authors = ["Mickaël Malécot <mickael.malecot@gmail.com>"]
 edition = "2021"
 description = "Crate for determining the file format of a given file or stream."
@@ -24,6 +24,7 @@ reader = [
     "reader-mp4",
     "reader-pdf",
     "reader-rm",
+    "reader-sqlite3",
     "reader-txt",
     "reader-xml",
     "reader-zip"
@@ -35,6 +36,7 @@ reader-exe = []
 reader-mp4 = []
 reader-pdf = []
 reader-rm = []
+reader-sqlite3 = []
 reader-txt = []
 reader-xml = []
 reader-zip = []

@@ -1,0 +1,11 @@
+{
+.appVersion = "3179";
+.formatVersion = 3;
+axes = (
+{
+hidden = 1;
+name = Weight;
+tag = wght;
+}
+);
+

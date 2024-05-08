@@ -105,6 +105,12 @@ formats! {
     extension = "asf"
     kind = Other
 
+    format = AgeEncryption
+    name = "age encryption"
+    media_type = "application/x-age-encryption"
+    extension = "age"
+    kind = Other
+
     format = Alz
     name = "ALZ"
     media_type = "application/x-alz-compressed"
@@ -908,6 +914,12 @@ formats! {
     media_type = "model/gltf-binary"
     extension = "glb"
     kind = Model
+
+    format = Glyphs
+    name = "Glyphs"
+    media_type = "font/x-glyphs"
+    extension = "glyphs"
+    kind = Font
 
     format = GoogleChromeExtension
     name = "Google Chrome Extension"
@@ -2329,6 +2341,18 @@ formats! {
     media_type = "application/soap+xml"
     extension = "soap"
     kind = Other
+
+    format = Sketch
+    name = "Sketch"
+    media_type = "image/x-sketch"
+    extension = "sketch"
+    kind = Image
+
+    format = Sketch43
+    name = "Sketch 43"
+    media_type = "image/x-sketch"
+    extension = "sketch"
+    kind = Image
 
     format = Sketchup
     name = "SketchUp"

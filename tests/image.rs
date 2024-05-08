@@ -340,6 +340,20 @@ fn test_silicon_graphics_image() {
     assert_eq!(fmt, FileFormat::SiliconGraphicsImage);
 }
 
+#[cfg(feature = "reader-sqlite3")]
+#[test]
+fn test_sketch() {
+    let fmt = FileFormat::from_file("fixtures/image/sample1.sketch").unwrap();
+    assert_eq!(fmt, FileFormat::Sketch);
+}
+
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_sketch43() {
+    let fmt = FileFormat::from_file("fixtures/image/sample2.sketch").unwrap();
+    assert_eq!(fmt, FileFormat::Sketch43);
+}
+
 #[cfg(feature = "reader-cfb")]
 #[test]
 fn test_stardraw() {

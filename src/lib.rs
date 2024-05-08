@@ -110,6 +110,8 @@ identification.
 - `reader-rm` - Enables [RealMedia (RM)](`FileFormat::Realmedia`) based file formats detection.
   * [RealAudio (RA)](`FileFormat::Realaudio`)
   * [RealVideo (RV)](`FileFormat::Realvideo`)
+- `reader-sqlite3` - Enables [SQLite 3](`FileFormat::Sqlite3`) based file formats detection.
+  * [Sketch](`FileFormat::Sketch`)
 - `reader-txt` - Enables [Plain Text (TXT)](`FileFormat::PlainText`) detection when the file format
   is not recognized by its signature. Please note that this feature only detects files containing
   ASCII/UTF-8-encoded text.
@@ -182,6 +184,7 @@ identification.
   * [OpenDocument Text Template (OTT)](`FileFormat::OpendocumentTextTemplate`)
   * [OpenRaster (ORA)](`FileFormat::Openraster`)
   * [OpenXPS (OXPS)](`FileFormat::Openxps`)
+  * [Sketch 43](`FileFormat::Sketch43`)
   * [SpaceClaim Document (SCDOC)](`FileFormat::SpaceclaimDocument`)
   * [Sun XML Calc (SXC)](`FileFormat::SunXmlCalc`)
   * [Sun XML Calc Template (STC)](`FileFormat::SunXmlCalcTemplate`)

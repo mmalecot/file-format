@@ -1,10 +1,10 @@
 # file-format
 
-![Build](https://img.shields.io/github/actions/workflow/status/mmalecot/file-format/ci.yml?branch=main)
-[![Crates.io](https://img.shields.io/crates/v/file-format.svg)](https://crates.io/crates/file-format)
-[![Docs](https://docs.rs/file-format/badge.svg)](https://docs.rs/file-format)
-![Rust](https://img.shields.io/badge/rust-1.60+-blueviolet.svg?logo=rust)
-![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg)
+![Build](https://img.shields.io/github/actions/workflow/status/mmalecot/file-format/ci.yml?branch=main&style=flat-square&logo=github)
+[![Crates.io](https://img.shields.io/crates/v/file-format.svg?style=flat-square)](https://crates.io/crates/file-format)
+[![Docs](https://img.shields.io/docsrs/file-format?style=flat-square&logo=docs.rs)](https://docs.rs/file-format)
+![Rust](https://img.shields.io/badge/rust-1.60+-blueviolet.svg?logo=rust&style=flat-square)
+![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg?style=flat-square)
 
 Crate for determining the file format of a given file or stream.
 
@@ -51,7 +51,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.24"
+file-format = "0.25"
 ```
 
 ## Crate features
@@ -71,6 +71,7 @@ identification.
 - `reader-mp4` - Enables MPEG-4 Part 14 (MP4) based file formats detection.
 - `reader-pdf` - Enables Portable Document Format (PDF) based file formats detection.
 - `reader-rm` - Enables RealMedia (RM) based file formats detection.
+- `reader-sqlite3` - Enables SQLite 3 based file formats detection.
 - `reader-txt` - Enables Plain Text (TXT) file format detection.
 - `reader-xml` - Enables Extensible Markup Language (XML) based file formats detection.
 - `reader-zip` - Enables ZIP-based file formats detection.
@@ -251,6 +252,7 @@ identification.
 - BMFont ASCII (FNT)
 - BMFont Binary (FNT)
 - Embedded OpenType (EOT)
+- Glyphs
 - OpenType (OTF)
 - TrueType (TTF)
 - Web Open Font Format (WOFF)
@@ -330,6 +332,8 @@ identification.
 - Radiance HDR (HDR)
 - Scalable Vector Graphics (SVG)
 - Silicon Graphics Image (SGI)
+- Sketch
+- Sketch 43
 - StarDraw (SDA)
 - Sun XML Draw (SXD)
 - Sun XML Draw Template (STD)
@@ -464,6 +468,7 @@ identification.
 - WebAssembly Text (WAT)
 - WordPerfect Macro (WPM)
 - XML Localization Interchange File Format (XLIFF)
+- age encryption
 - gettext Machine Object (MO)
 - iCalendar (ICS)
 - vCalendar (VCS)
@@ -583,6 +588,12 @@ identification.
 - WebM
 - Windows Media Video (WMV)
 - Windows Recorded TV Show (WTV)
+
+## Fixtures
+
+The fixtures are samples of file formats used for testing purposes, located in the `fixtures`
+directory and organized by kind in subdirectories. These samples are often intentionally truncated
+to reduce size, which can sometimes prevent them from being fully decoded by compatible software.
 
 ## License
 

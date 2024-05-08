@@ -221,6 +221,9 @@ signatures! {
     value = b"\x4C\x00\x00\x00\x01\x14\x02\x00\x00\x00\x00\x00\xC0\x00\x00\x00\x00\x00\x00\x46"
 
     // 19 bytes
+    format = AgeEncryption
+    value = b"age-encryption.org/"
+
     format = PerlScript
     value = b"#!/usr/bin/env perl"
     value = b"#!/usr/bin/perl"
@@ -228,6 +231,11 @@ signatures! {
     // 18 bytes
     format = DrawingExchangeFormatBinary
     value = b"AutoCAD Binary DXF"
+
+    format = Glyphs
+    value = b"{\r\n.appVersion = \""
+    value = b"{\n.appVersion = \""
+    value = b"{\r.appVersion = \""
 
     format = Musicxml
     value = b"\xEF\xBB\xBF<score-partwise"
@@ -1025,7 +1033,10 @@ signatures! {
     value = b"2BIT"
 
     format = AutocadDrawing
+    value = b"AC1."
     value = b"AC10"
+    value = b"AC2."
+    value = b"MC0."
 
     format = BetterPortableGraphics
     value = b"BPG\xFB"
