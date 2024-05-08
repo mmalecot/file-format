@@ -1,4 +1,4 @@
-# Version dev (unreleased)
+# Version 0.25.0 (2024-05-08)
 
 ## Fixes
 
