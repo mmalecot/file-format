@@ -589,6 +589,12 @@ identification.
 - Windows Media Video (WMV)
 - Windows Recorded TV Show (WTV)
 
+## Fixtures
+
+The fixtures are samples of file formats used for testing purposes, located in the `fixtures`
+directory and organized by kind in subdirectories. These samples are often intentionally truncated
+to reduce size, which can sometimes prevent them from being fully decoded by compatible software.
+
 ## License
 
 This project is licensed under either of:
