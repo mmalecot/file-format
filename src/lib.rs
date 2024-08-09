@@ -214,6 +214,8 @@ mod macros;
 mod formats;
 mod readers;
 mod signatures;
+mod extension;
+mod media_type;
 
 use std::{
     fmt::{self, Display, Formatter},
@@ -223,6 +225,9 @@ use std::{
 };
 
 pub use formats::FileFormat;
+
+#[cfg(feature = "extended-enums")]
+pub use strum::IntoEnumIterator;
 
 impl FileFormat {
     /// Determines file format from bytes.
@@ -326,7 +331,9 @@ impl From<&[u8]> for FileFormat {
 }
 
 /// A kind of file format.
-#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Hash)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = "extended-enums", derive(strum::EnumIter, strum::Display, strum::AsRefStr, strum::FromRepr))]
 pub enum Kind {
     /// Files and directories stored in a single, possibly compressed, archive.
     Archive,
