@@ -22,7 +22,7 @@ macro_rules! formats {
         )*
     } => {
         /// A file format.
-        #[derive(Clone, Copy, Debug, Eq, PartialEq)]
+        #[derive(Clone, Copy, Debug, Eq, PartialEq, Hash)]
         #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
         #[cfg_attr(feature = "extended-enums", derive(strum::EnumIter, strum::AsRefStr, strum::FromRepr))]
         pub enum FileFormat {
