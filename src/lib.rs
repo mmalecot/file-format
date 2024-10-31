@@ -103,6 +103,10 @@ identification.
   * [Free Lossless Audio Codec (FLAC)](`FileFormat::FreeLosslessAudioCodec`)
   * [MPEG-1/2 Audio Layer 3 (MP3)](`FileFormat::Mpeg12AudioLayer3`)
 - `reader-mp4` - Enables [MPEG-4 Part 14 (MP4)](`FileFormat::Mpeg4Part14`) based file formats
+  detection.
+  * [MPEG-4 Part 14 Audio (MP4)](`FileFormat::Mpeg4Part14Audio`)
+  * [MPEG-4 Part 14 Subtitles (MP4)](`FileFormat::Mpeg4Part14Subtitles`)
+  * [MPEG-4 Part 14 Video (MP4)](`FileFormat::Mpeg4Part14Video`)
 - `reader-pdf` - Enables [Portable Document Format (PDF)](`FileFormat::PortableDocumentFormat`)
   based file formats detection.
   * [Adobe Illustrator Artwork (AI)](`FileFormat::AdobeIllustratorArtwork`)
