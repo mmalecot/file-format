@@ -2,8 +2,6 @@
 
 use std::io::*;
 
-use super::common::FindBytes;
-
 impl crate::FileFormat {
     /// Determines file format from the specified format reader, if any.
     #[inline]
@@ -504,7 +502,10 @@ impl crate::FileFormat {
     /// Determines file format from a PDF reader.
     #[cfg(feature = "reader-pdf")]
     fn from_pdf_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
-        use super::common::pdf::{AI_MARKER, CHUNK_SIZE, OVERLAP_SIZE, READ_LIMIT};
+        use super::common::{
+            pdf::{AI_MARKER, CHUNK_SIZE, OVERLAP_SIZE, READ_LIMIT},
+            FindBytes,
+        };
 
         // Rewinds to the beginning of the stream plus the size of the PDF file format signature.
         reader.seek(SeekFrom::Start(5))?;
@@ -668,10 +669,13 @@ impl crate::FileFormat {
     /// Determines file format from a ZIP reader.
     #[cfg(feature = "reader-zip")]
     fn from_zip_reader<R: Read + Seek>(reader: R) -> Result<Self> {
-        use super::common::zip::{
-            check_filename, check_filename_starts_with, check_trimmed_data, ENTRY_LIMIT,
-            EOCD64_LOCATOR_SIGNATURE, EOCD64_LOCATOR_SIZE, EOCD_MAX_SIZE, EOCD_MIN_SIZE,
-            EOCD_SIGNATURE,
+        use super::common::{
+            zip::{
+                check_filename, check_filename_starts_with, check_trimmed_data, ENTRY_LIMIT,
+                EOCD64_LOCATOR_SIGNATURE, EOCD64_LOCATOR_SIZE, EOCD_MAX_SIZE, EOCD_MIN_SIZE,
+                EOCD_SIGNATURE,
+            },
+            FindBytes,
         };
 
         // Creates a buffered reader.

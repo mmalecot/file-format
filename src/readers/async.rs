@@ -1,11 +1,6 @@
 //! Readers for specific file formats.
 
-use tokio::io::{
-    AsyncBufReadExt, AsyncRead, AsyncReadExt, AsyncSeek, AsyncSeekExt, BufReader, Error, ErrorKind,
-    Result, SeekFrom,
-};
-
-use super::common::FindBytes;
+use tokio::io::*;
 
 impl crate::FileFormat {
     /// Determines file format from the specified format reader, if any.
@@ -459,7 +454,10 @@ impl crate::FileFormat {
     async fn from_pdf_reader_async<R: AsyncRead + AsyncSeek + Unpin>(
         mut reader: R,
     ) -> Result<Self> {
-        use super::common::pdf::{AI_MARKER, CHUNK_SIZE, OVERLAP_SIZE, READ_LIMIT};
+        use super::common::{
+            pdf::{AI_MARKER, CHUNK_SIZE, OVERLAP_SIZE, READ_LIMIT},
+            FindBytes,
+        };
 
         // Rewinds to the beginning of the stream plus the size of the PDF file format signature.
         reader.seek(SeekFrom::Start(5)).await?;
@@ -633,10 +631,13 @@ impl crate::FileFormat {
     /// Determines file format from a ZIP reader.
     #[cfg(feature = "reader-zip")]
     async fn from_zip_reader_async<R: AsyncRead + AsyncSeek + Unpin>(reader: R) -> Result<Self> {
-        use super::common::zip::{
-            check_filename, check_filename_starts_with, check_trimmed_data, ENTRY_LIMIT,
-            EOCD64_LOCATOR_SIGNATURE, EOCD64_LOCATOR_SIZE, EOCD_MAX_SIZE, EOCD_MIN_SIZE,
-            EOCD_SIGNATURE,
+        use super::common::{
+            zip::{
+                check_filename, check_filename_starts_with, check_trimmed_data, ENTRY_LIMIT,
+                EOCD64_LOCATOR_SIGNATURE, EOCD64_LOCATOR_SIZE, EOCD_MAX_SIZE, EOCD_MIN_SIZE,
+                EOCD_SIGNATURE,
+            },
+            FindBytes,
         };
 
         // Creates a buffered reader.
