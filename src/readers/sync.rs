@@ -57,9 +57,9 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-asf")]
     fn from_asf_reader<R: Read + Seek>(reader: R) -> Result<Self> {
         use super::common::asf::{
-            determine_file_format, AUDIO_MEDIA_GUID, DESCRIPTOR_LIMIT, DESCRIPTOR_NAME_LIMIT,
-            EXTENDED_CONTENT_DESCRIPTION_OBJECT_GUID, OBJECT_LIMIT, STREAM_PROPERTIES_OBJECT_GUID,
-            VIDEO_MEDIA_GUID,
+            determine_file_format, Stream, AUDIO_MEDIA_GUID, DESCRIPTOR_LIMIT,
+            DESCRIPTOR_NAME_LIMIT, EXTENDED_CONTENT_DESCRIPTION_OBJECT_GUID, OBJECT_LIMIT,
+            STREAM_PROPERTIES_OBJECT_GUID, VIDEO_MEDIA_GUID,
         };
 
         // Creates a buffered reader.
@@ -72,9 +72,8 @@ impl crate::FileFormat {
         // Skips the reserved fields.
         reader.seek(SeekFrom::Current(2))?;
 
-        // Flags indicating the presence of audio and video streams.
-        let mut audio_stream = false;
-        let mut video_stream = false;
+        // Detected stream type.
+        let mut stream = Stream::Other;
 
         // Iterates through the header objects.
         for _ in 0..std::cmp::min(OBJECT_LIMIT, number_of_header_objects as usize) {
@@ -92,8 +91,12 @@ impl crate::FileFormat {
 
                     // Checks the stream type.
                     match stream_type.as_str() {
-                        AUDIO_MEDIA_GUID => audio_stream = true,
-                        VIDEO_MEDIA_GUID => video_stream = true,
+                        AUDIO_MEDIA_GUID => {
+                            stream = Stream::Audio;
+                        }
+                        VIDEO_MEDIA_GUID => {
+                            stream = Stream::Video;
+                        }
                         _ => {}
                     }
 
@@ -142,8 +145,8 @@ impl crate::FileFormat {
             }
         }
 
-        // Determines the file format based on the identified streams.
-        Ok(determine_file_format(video_stream, audio_stream))
+        // Determines the file format based on the identified stream.
+        Ok(determine_file_format(stream))
     }
 
     /// Determines file format from a CFB reader.
@@ -200,7 +203,7 @@ impl crate::FileFormat {
     #[cfg(feature = "reader-ebml")]
     fn from_ebml_reader<R: Read + Seek>(reader: R) -> Result<Self> {
         use super::common::ebml::{
-            determine_file_format, CLUSTER_ELEMENT_ID, CODEC_ID_ELEMENT_ID, CODEC_ID_LIMIT,
+            determine_file_format, Track, CLUSTER_ELEMENT_ID, CODEC_ID_ELEMENT_ID, CODEC_ID_LIMIT,
             DOC_TYPE_ELEMENT_ID, DOC_TYPE_LIMIT, EBML_ELEMENT_ID, ELEMENT_LIMIT,
             SEGMENT_ELEMENT_ID, STEREO_MODE_ELEMENT_ID, TRACKS_ELEMENT_ID, TRACK_ENTRY_ELEMENT_ID,
             VIDEO_ELEMENT_ID,
@@ -215,10 +218,8 @@ impl crate::FileFormat {
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Flags indicating the presence of audio, video and subtitle tracks.
-        let mut audio_track = false;
-        let mut video_track = false;
-        let mut subtitle_track = false;
+        // Detected track type.
+        let mut track = Track::Other;
 
         // Iterates through the EBML elements.
         let mut element_count = 0;
@@ -285,11 +286,11 @@ impl crate::FileFormat {
 
                     // Checks the Codec ID.
                     if codec_id.starts_with(b"A_") {
-                        audio_track = true;
+                        track = Track::Audio;
                     } else if codec_id.starts_with(b"V_") {
-                        video_track = true;
+                        track = Track::Video;
                     } else if codec_id.starts_with(b"S_") {
-                        subtitle_track = true;
+                        track = Track::Subtitle;
                     }
 
                     // Skips the remaining size.
@@ -316,12 +317,8 @@ impl crate::FileFormat {
             element_count += 1;
         }
 
-        // Determines the file format based on the identified tracks.
-        Ok(determine_file_format(
-            video_track,
-            audio_track,
-            subtitle_track,
-        ))
+        // Determines the file format based on the identified track.
+        Ok(determine_file_format(track))
     }
 
     /// Determines file format from an EXE reader.
@@ -435,7 +432,7 @@ impl crate::FileFormat {
     /// Determines file format from a MP4 reader.
     #[cfg(feature = "reader-mp4")]
     fn from_mp4_reader<R: Read + Seek>(reader: R) -> Result<Self> {
-        use super::common::mp4::{determine_file_format, BOX_LIMIT};
+        use super::common::mp4::{determine_file_format, Track, BOX_LIMIT};
 
         // Creates a buffered reader.
         let mut reader = BufReader::new(reader);
@@ -446,10 +443,8 @@ impl crate::FileFormat {
         // Rewinds to the beginning of the stream.
         reader.rewind()?;
 
-        // Flags indicating the presence of audio, video and subtitle tracks.
-        let mut audio_track = false;
-        let mut video_track = false;
-        let mut subtitle_track = false;
+        // Detected track type.
+        let mut track = Track::Other;
 
         // Iterates through boxes.
         let mut box_count = 0;
@@ -477,9 +472,15 @@ impl crate::FileFormat {
 
                     // Checks the handler type.
                     match handler_type.as_slice() {
-                        b"vide" => video_track = true,
-                        b"soun" => audio_track = true,
-                        b"sbtl" | b"subt" | b"text" => subtitle_track = true,
+                        b"vide" => {
+                            track = Track::Video;
+                        }
+                        b"soun" => {
+                            track = Track::Audio;
+                        }
+                        b"sbtl" | b"subt" | b"text" => {
+                            track = Track::Subtitle;
+                        }
                         _ => {}
                     }
 
@@ -496,12 +497,8 @@ impl crate::FileFormat {
             box_count += 1;
         }
 
-        // Determines the file format based on the identified tracks.
-        Ok(determine_file_format(
-            video_track,
-            audio_track,
-            subtitle_track,
-        ))
+        // Determines the file format based on the identified track.
+        Ok(determine_file_format(track))
     }
 
     /// Determines file format from a PDF reader.
@@ -546,7 +543,7 @@ impl crate::FileFormat {
     /// Determines file format from a RM reader.
     #[cfg(feature = "reader-rm")]
     fn from_rm_reader<R: Read + Seek>(reader: R) -> Result<Self> {
-        use super::common::rm::{determine_file_format, CHUNK_LIMIT};
+        use super::common::rm::{determine_file_format, Stream, CHUNK_LIMIT};
 
         // Creates a buffered reader.
         let mut reader = BufReader::new(reader);
@@ -555,9 +552,8 @@ impl crate::FileFormat {
         reader.seek(SeekFrom::Start(14))?;
         let number_of_headers = reader.read_u32_be()?;
 
-        // Flags indicating the presence of audio and video streams.
-        let mut audio_stream = false;
-        let mut video_stream = false;
+        // Detected stream type.
+        let mut stream = Stream::Other;
 
         // Iterates through the chunks.
         for _ in 0..std::cmp::min(CHUNK_LIMIT, number_of_headers.saturating_sub(1) as usize) {
@@ -587,9 +583,9 @@ impl crate::FileFormat {
 
                 // Checks the mime type.
                 if mime_type.starts_with(b"audio/") {
-                    audio_stream = true;
+                    stream = Stream::Audio;
                 } else if mime_type.starts_with(b"video/") {
-                    video_stream = true;
+                    stream = Stream::Video;
                 }
 
                 // Rewinds to the offset of the media properties.
@@ -600,8 +596,8 @@ impl crate::FileFormat {
             reader.seek(SeekFrom::Current(chunk_size as i64 - 8))?;
         }
 
-        // Determines the file format based on the identified streams.
-        Ok(determine_file_format(video_stream, audio_stream))
+        // Determines the file format based on the identified stream.
+        Ok(determine_file_format(stream))
     }
 
     /// Determines file format from a SQLite 3 reader.

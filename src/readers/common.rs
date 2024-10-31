@@ -24,15 +24,20 @@ pub(super) mod asf {
     // GUID for video media.
     pub(crate) const VIDEO_MEDIA_GUID: &str = "bc19efc0-5b4d-11cf-a8fd-00805f5c442b";
 
-    // Determines the file format based on the identified streams.
-    pub(crate) fn determine_file_format(video_stream: bool, audio_stream: bool) -> FileFormat {
+    // Stream type.
+    pub(crate) enum Stream {
+        Video,
+        Audio,
+        Other,
+    }
+
+    // Determines the file format based on the identified stream.
+    pub(crate) fn determine_file_format(stream: Stream) -> FileFormat {
         use FileFormat as F;
-        if video_stream {
-            F::WindowsMediaVideo
-        } else if audio_stream {
-            F::WindowsMediaAudio
-        } else {
-            F::AdvancedSystemsFormat
+        match stream {
+            Stream::Video => F::WindowsMediaVideo,
+            Stream::Audio => F::WindowsMediaAudio,
+            Stream::Other => F::AdvancedSystemsFormat,
         }
     }
 }
@@ -136,21 +141,21 @@ pub(super) mod ebml {
     // Video element ID.
     pub(crate) const VIDEO_ELEMENT_ID: u32 = 0xE0;
 
-    // Determines the file format based on the identified tracks.
-    pub(crate) fn determine_file_format(
-        video_track: bool,
-        audio_track: bool,
-        subtitle_track: bool,
-    ) -> FileFormat {
+    pub(crate) enum Track {
+        Video,
+        Audio,
+        Subtitle,
+        Other,
+    }
+
+    // Determines the file format based on the identified track.
+    pub(crate) fn determine_file_format(track: Track) -> FileFormat {
         use FileFormat as F;
-        if video_track {
-            F::MatroskaVideo
-        } else if audio_track {
-            F::MatroskaAudio
-        } else if subtitle_track {
-            F::MatroskaSubtitles
-        } else {
-            F::ExtensibleBinaryMetaLanguage
+        match track {
+            Track::Video => F::MatroskaVideo,
+            Track::Audio => F::MatroskaAudio,
+            Track::Subtitle => F::MatroskaSubtitles,
+            Track::Other => F::ExtensibleBinaryMetaLanguage,
         }
     }
 }
@@ -162,21 +167,21 @@ pub(super) mod mp4 {
     // Maximum number of boxes that can be processed by the reader.
     pub(crate) const BOX_LIMIT: usize = 256;
 
-    // Determines the file format based on the identified tracks.
-    pub(crate) fn determine_file_format(
-        video_track: bool,
-        audio_track: bool,
-        subtitle_track: bool,
-    ) -> FileFormat {
+    pub(crate) enum Track {
+        Video,
+        Audio,
+        Subtitle,
+        Other,
+    }
+
+    // Determines the file format based on the identified track.
+    pub(crate) fn determine_file_format(track: Track) -> FileFormat {
         use FileFormat as F;
-        if video_track {
-            F::Mpeg4Part14Video
-        } else if audio_track {
-            F::Mpeg4Part14Audio
-        } else if subtitle_track {
-            F::Mpeg4Part14Subtitles
-        } else {
-            F::Mpeg4Part14
+        match track {
+            Track::Video => F::Mpeg4Part14Video,
+            Track::Audio => F::Mpeg4Part14Audio,
+            Track::Subtitle => F::Mpeg4Part14Subtitles,
+            Track::Other => F::Mpeg4Part14,
         }
     }
 }
@@ -203,15 +208,20 @@ pub(super) mod rm {
     // Maximum number of chunks that can be processed by the reader.
     pub(crate) const CHUNK_LIMIT: usize = 64;
 
-    // Determines the file format based on the identified streams.
-    pub(crate) fn determine_file_format(video_stream: bool, audio_stream: bool) -> FileFormat {
+    // Stream type.
+    pub(crate) enum Stream {
+        Video,
+        Audio,
+        Other,
+    }
+
+    // Determines the file format based on the identified stream.
+    pub(crate) fn determine_file_format(stream: Stream) -> FileFormat {
         use FileFormat as F;
-        if video_stream {
-            F::Realvideo
-        } else if audio_stream {
-            F::Realaudio
-        } else {
-            F::Realmedia
+        match stream {
+            Stream::Video => F::Realvideo,
+            Stream::Audio => F::Realaudio,
+            Stream::Other => F::Realmedia,
         }
     }
 }
