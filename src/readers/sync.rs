@@ -662,7 +662,7 @@ impl crate::FileFormat {
         let buf = &buf[..nread];
 
         // Checks if the buffer holds markers indicating the presence of various file formats.
-        Ok(check_if_buffer_holds_markers(&buf))
+        Ok(check_if_buffer_holds_markers(buf))
     }
 
     /// Determines file format from a ZIP reader.
