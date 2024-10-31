@@ -1,3 +1,18 @@
+# Version 0.26.0 (unreleased)
+
+## New formats support
+
+- ID3v2 (ID3)
+
+## API
+
+- Add `reader-id3v2` feature
+
+## Improvements
+
+- Improve Free Lossless Audio Codec (FLAC) detection when it contains ID3v2 metadata
+- Improve MPEG-1/2 Audio Layer 3 (MP3) detection
+
 # Version 0.25.0 (2024-05-08)
 
 ## Fixes

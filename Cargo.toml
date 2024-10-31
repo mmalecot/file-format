@@ -1,6 +1,6 @@
 [package]
 name = "file-format"
-version = "0.25.0"
+version = "0.26.0"
 authors = ["Mickaël Malécot <mickael.malecot@gmail.com>"]
 edition = "2021"
 description = "Crate for determining the file format of a given file or stream."
@@ -21,6 +21,7 @@ reader = [
     "reader-cfb",
     "reader-ebml",
     "reader-exe",
+    "reader-id3v2",
     "reader-mp4",
     "reader-pdf",
     "reader-rm",
@@ -33,6 +34,7 @@ reader-asf = []
 reader-cfb = []
 reader-ebml = []
 reader-exe = []
+reader-id3v2 = []
 reader-mp4 = []
 reader-pdf = []
 reader-rm = []

@@ -51,7 +51,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-file-format = "0.25"
+file-format = "0.26"
 ```
 
 ## Crate features
@@ -68,6 +68,7 @@ identification.
 - `reader-cfb` - Enables Compound File Binary (CFB) based file formats detection.
 - `reader-ebml` - Enables Extensible Binary Meta Language (EBML) based file formats detection.
 - `reader-exe` - Enables MS-DOS Executable (EXE) based file formats detection.
+- `reader-id3v2` - Enables ID3v2 (ID3) based file formats detection.
 - `reader-mp4` - Enables MPEG-4 Part 14 (MP4) based file formats detection.
 - `reader-pdf` - Enables Portable Document Format (PDF) based file formats detection.
 - `reader-rm` - Enables RealMedia (RM) based file formats detection.
@@ -353,6 +354,7 @@ identification.
 - Android Binary XML (AXML)
 - BitTorrent (Torrent)
 - CD Audio (CDA)
+- ID3v2 (ID3)
 - Meta Information Encapsulation (MIE)
 - TASTy
 - Windows Shortcut (LNK)

@@ -1005,6 +1005,13 @@ formats! {
     extension = "icc"
     kind = Other
 
+    format = Id3v2
+    name = "ID3v2"
+    short_name = "ID3"
+    media_type = "application/x-id3v2"
+    extension = "id3"
+    kind = Metadata
+
     format = ImpulseTrackerModule
     name = "Impulse Tracker Module"
     short_name = "IT"

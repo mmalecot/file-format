@@ -1097,6 +1097,11 @@ signatures! {
     format = IccProfile
     value = b"acsp" offset = 36
 
+    format = Id3v2
+    value = b"ID3\x02"
+    value = b"ID3\x03"
+    value = b"ID3\x04"
+
     format = ImpulseTrackerModule
     value = b"IMPM"
 
@@ -1316,15 +1321,6 @@ signatures! {
     format = JpegExtendedRange
     value = b"\x49\x49\xBC"
 
-    format = Mpeg12AudioLayer3
-    value = b"ID3"
-    value = b"\xFF\xE2"
-    value = b"\xFF\xE3"
-    value = b"\xFF\xF2"
-    value = b"\xFF\xF3"
-    value = b"\xFF\xFA"
-    value = b"\xFF\xFB"
-
     format = Mtv
     value = b"AMV"
 
@@ -1421,6 +1417,14 @@ signatures! {
     value = b"\xFF\xF5"
     value = b"\xFF\xFC"
     value = b"\xFF\xFD"
+
+    format = Mpeg12AudioLayer3
+    value = b"\xFF\xE2"
+    value = b"\xFF\xE3"
+    value = b"\xFF\xF2"
+    value = b"\xFF\xF3"
+    value = b"\xFF\xFA"
+    value = b"\xFF\xFB"
 
     format = Mpeg2TransportStream
     value = b"\x47", b"\x47" offset = 188
