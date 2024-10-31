@@ -85,8 +85,15 @@ fn test_flash_mp4_audiobook() {
 }
 
 #[test]
-fn test_free_lossless_audio_codec() {
-    let fmt = FileFormat::from_file("fixtures/audio/sample.flac").unwrap();
+fn test_free_lossless_audio_codec_1() {
+    let fmt = FileFormat::from_file("fixtures/audio/sample1.flac").unwrap();
+    assert_eq!(fmt, FileFormat::FreeLosslessAudioCodec);
+}
+
+#[cfg(feature = "reader-id3v2")]
+#[test]
+fn test_free_lossless_audio_codec_2() {
+    let fmt = FileFormat::from_file("fixtures/audio/sample2.flac").unwrap();
     assert_eq!(fmt, FileFormat::FreeLosslessAudioCodec);
 }
 
@@ -116,8 +123,15 @@ fn test_mpeg12_audio_layer2() {
 }
 
 #[test]
-fn test_mpeg12_audio_layer3() {
-    let fmt = FileFormat::from_file("fixtures/audio/sample.mp3").unwrap();
+fn test_mpeg12_audio_layer3_1() {
+    let fmt = FileFormat::from_file("fixtures/audio/sample1.mp3").unwrap();
+    assert_eq!(fmt, FileFormat::Mpeg12AudioLayer3);
+}
+
+#[cfg(feature = "reader-id3v2")]
+#[test]
+fn test_mpeg12_audio_layer3_2() {
+    let fmt = FileFormat::from_file("fixtures/audio/sample2.mp3").unwrap();
     assert_eq!(fmt, FileFormat::Mpeg12AudioLayer3);
 }
 

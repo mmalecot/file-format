@@ -19,6 +19,12 @@ fn test_cd_audio() {
 }
 
 #[test]
+fn test_id3v2() {
+    let fmt = FileFormat::from_file("fixtures/metadata/sample.id3").unwrap();
+    assert_eq!(fmt, FileFormat::Id3v2);
+}
+
+#[test]
 fn test_macos_alias() {
     let fmt = FileFormat::from_file("fixtures/metadata/sample.alias").unwrap();
     assert_eq!(fmt, FileFormat::MacosAlias);
