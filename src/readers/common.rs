@@ -240,23 +240,15 @@ pub(super) mod sqlite3 {
 
 #[cfg(feature = "reader-txt")]
 pub(super) mod txt {
-    use std::io::{Error, ErrorKind};
-
     // Maximum number of lines that can be processed by the reader.
     pub(crate) const LINE_LIMIT: usize = 16;
 
     // Maximum number of bytes that can be processed by the reader (64 KB).
     pub(crate) const READ_LIMIT: u64 = 65_536;
 
-    // Checks for control characters other than whitespaces.
-    pub(crate) fn check_for_non_whitespace_control_char(
-        line: Result<String, Error>,
-    ) -> Result<(), Error> {
-        line?
-            .chars()
-            .find(|char| char.is_control() && !char.is_whitespace())
-            .map(|_| Err(Error::new(ErrorKind::InvalidData, "invalid characters")))
-            .unwrap_or(Ok(()))
+    // Checks if character is control character other than whitespace.
+    pub(crate) fn is_non_whitespace_control_char(char: &char) -> bool {
+        char.is_control() && !char.is_whitespace()
     }
 }
 
