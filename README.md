@@ -77,6 +77,19 @@ identification.
 - `reader-xml` - Enables Extensible Markup Language (XML) based file formats detection.
 - `reader-zip` - Enables ZIP-based file formats detection.
 
+### Serde feature
+Serde support is optional and disabled by default. To enable use the feature `serde`.
+
+### Extended enums feature
+To use various additional methods for enums derived by `strum`. To enable use the feature `extended-enums`.
+
+### From features
+
+These features enable the detection of file formats by a specific value like media type or extension.
+- `from-all` - Enables all from features.
+- `from-media-type` - Enables the method `FileFormat::from_media_type` to get possible file formats for a media type.
+- `from-extension`  - Enables the method `FileFormat::from_extension` to get possible file formats for an extension.
+
 ## Supported file formats
 
 ### Archive

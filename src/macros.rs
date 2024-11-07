@@ -22,7 +22,9 @@ macro_rules! formats {
         )*
     } => {
         /// A file format.
-        #[derive(Clone, Copy, Debug, Eq, PartialEq)]
+        #[derive(Clone, Copy, Debug, Eq, PartialEq, Hash)]
+        #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+        #[cfg_attr(feature = "extended-enums", derive(strum::EnumIter, strum::AsRefStr, strum::FromRepr))]
         pub enum FileFormat {
             $(
                 #[doc=concat!($name, $(" (", $short_name, ")",)? ".")]
@@ -176,3 +178,45 @@ macro_rules! signatures {
         }
     };
 }
+
+
+macro_rules! media_type_mapping {
+    {
+        $(
+            media_type = $media_type:literal
+            $(format = $format:ident)+
+        )*
+    } => {
+        #[cfg(feature = "from-media-type")]
+        impl crate::FileFormat {
+            /// Determines the file format from the media type
+            pub fn from_media_type(media_type: impl AsRef<str>) -> Option<&'static [Self]> {
+                match media_type.as_ref() {
+                    $($media_type => Some(&[$(Self::$format,)+]),)*
+                    _ => None
+                }
+            }
+        }
+    };
+}
+
+macro_rules! extension_mapping {
+    {
+        $(
+            extension = $extension:literal
+            $(format = $format:ident)+
+        )*
+    } => {
+        #[cfg(feature = "from-extension")]
+        impl crate::FileFormat {
+            /// Determines the file format from the extension
+            pub fn from_extension(extension: impl AsRef<str>) -> Option<&'static [Self]> {
+                match extension.as_ref().trim_start_matches('.') {
+                    $($extension => Some(&[$(Self::$format,)+]),)*
+                    _ => None
+                }
+            }
+        }
+    };
+}
+
