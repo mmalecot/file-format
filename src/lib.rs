@@ -99,6 +99,9 @@ identification.
   * [Linear Executable (LE)](`FileFormat::LinearExecutable`)
   * [New Executable (NE)](`FileFormat::NewExecutable`)
   * [Portable Executable (PE)](`FileFormat::PortableExecutable`)
+- `reader-id3v2` - Enables [ID3v2 (ID3)](`FileFormat::Id3v2`) based file formats detection.
+  * [Free Lossless Audio Codec (FLAC)](`FileFormat::FreeLosslessAudioCodec`)
+  * [MPEG-1/2 Audio Layer 3 (MP3)](`FileFormat::Mpeg12AudioLayer3`)
 - `reader-mp4` - Enables [MPEG-4 Part 14 (MP4)](`FileFormat::Mpeg4Part14`) based file formats
   detection.
   * [MPEG-4 Part 14 Audio (MP4)](`FileFormat::Mpeg4Part14Audio`)

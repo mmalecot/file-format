@@ -18,6 +18,8 @@ impl crate::FileFormat {
             Self::ExtensibleBinaryMetaLanguage => Self::from_ebml_reader(reader)?,
             #[cfg(feature = "reader-exe")]
             Self::MsDosExecutable => Self::from_exe_reader(reader)?,
+            #[cfg(feature = "reader-id3v2")]
+            Self::Id3v2 => Self::from_id3v2_reader(reader)?,
             #[cfg(feature = "reader-mp4")]
             Self::Mpeg4Part14 => Self::from_mp4_reader(reader)?,
             #[cfg(feature = "reader-pdf")]
@@ -458,6 +460,73 @@ impl crate::FileFormat {
 
         // Returns the default value.
         Ok(Self::MsDosExecutable)
+    }
+
+    /// Determines file format from an ID3v2 reader.
+    #[cfg(feature = "reader-id3v2")]
+    pub(crate) fn from_id3v2_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
+        // Loops while in ID3v2 segment.
+        let mut offset = 0;
+        loop {
+            // Reads first 10 bytes.
+            reader.seek(SeekFrom::Start(offset))?;
+            let buf = reader.read_bytes(10)?;
+
+            // Checks for ID3 magic bytes.
+            if &buf[..3] != b"ID3" {
+                break;
+            }
+
+            // Decodes tag size.
+            let tag_size = ((buf[6] as u64 & 0x7F) << 21)
+                | ((buf[7] as u64 & 0x7F) << 14)
+                | ((buf[8] as u64 & 0x7F) << 7)
+                | (buf[9] as u64 & 0x7F);
+
+            // Checks for extended header flag.
+            let flags = buf[5];
+            let extended_header_present = (flags & 0x40) != 0;
+            let footer_present = (flags & 0x10) != 0;
+
+            // Calculates next offset.
+            let mut next_offset = offset + 10 + tag_size;
+
+            // Skips extended header if present.
+            if extended_header_present {
+                next_offset += reader.read_u32_be()? as u64;
+            }
+
+            // Adds footer size if present.
+            if footer_present {
+                next_offset += 10;
+            }
+
+            // Sets new offset for next potential tag.
+            offset = next_offset;
+        }
+
+        // Skips ID3v2 segment.
+        reader.seek(SeekFrom::Start(offset))?;
+
+        // Checks if the file contains the FLAC file format signature.
+        let buf = reader.read_bytes(4)?;
+        if buf.eq(b"fLaC") {
+            return Ok(Self::FreeLosslessAudioCodec);
+        }
+
+        // Checks if the file contains one of the MP3 file format signature.
+        match &buf[..2] {
+            b"\xFF\xE2" => return Ok(Self::Mpeg12AudioLayer3),
+            b"\xFF\xE3" => return Ok(Self::Mpeg12AudioLayer3),
+            b"\xFF\xF2" => return Ok(Self::Mpeg12AudioLayer3),
+            b"\xFF\xF3" => return Ok(Self::Mpeg12AudioLayer3),
+            b"\xFF\xFA" => return Ok(Self::Mpeg12AudioLayer3),
+            b"\xFF\xFB" => return Ok(Self::Mpeg12AudioLayer3),
+            _ => {}
+        }
+
+        // Returns the default value.
+        Ok(Self::Id3v2)
     }
 
     /// Determines file format from a MP4 reader.
