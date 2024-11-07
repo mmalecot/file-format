@@ -228,6 +228,8 @@ use std::{
 pub use formats::FileFormat;
 
 impl FileFormat {
+    const BUF_SIZE: usize = 36_870;
+
     /// Determines file format from bytes.
     ///
     /// # Examples
@@ -290,7 +292,7 @@ impl FileFormat {
     ///```
     pub fn from_reader<R: Read + Seek>(mut reader: R) -> Result<Self> {
         // Creates and fills a buffer.
-        let mut buf = [0; 36_870];
+        let mut buf = [0; Self::BUF_SIZE];
         let nread = reader.read(&mut buf)?;
 
         // Determines file format.
@@ -301,6 +303,44 @@ impl FileFormat {
                 .unwrap_or_else(|_| Self::from_generic_reader(&mut reader))
         } else {
             Self::from_generic_reader(&mut reader)
+        })
+    }
+
+    #[cfg(feature = "tokio")]
+    /// Determines file format from an async reader.
+    ///
+    /// # Examples
+    ///
+    /// Basic usage:
+    ///
+    /// ```
+    /// use file_format::FileFormat;
+    ///
+    /// # tokio::runtime::Runtime::new().unwrap().block_on(async {
+    /// let fmt = FileFormat::from_reader_async(tokio::io::empty()).await?;
+    /// assert_eq!(fmt, FileFormat::Empty);
+    /// # Ok::<(), tokio::io::Error>(())
+    /// # });
+    ///```
+    pub async fn from_reader_async<R: tokio::io::AsyncRead + tokio::io::AsyncSeek + Unpin>(
+        mut reader: R,
+    ) -> Result<Self> {
+        use tokio::io::AsyncReadExt;
+
+        // Creates and fills a buffer.
+        let mut buf = [0; Self::BUF_SIZE];
+        let nread = reader.read(&mut buf).await?;
+
+        // Determines file format.
+        Ok(if nread == 0 {
+            Self::Empty
+        } else if let Some(fmt) = Self::from_signature(&buf[..nread]) {
+            match Self::from_fmt_reader_async(fmt, &mut reader).await {
+                Ok(fmt) => fmt,
+                Err(_) => Self::from_generic_reader_async(&mut reader).await,
+            }
+        } else {
+            Self::from_generic_reader_async(&mut reader).await
         })
     }
 }

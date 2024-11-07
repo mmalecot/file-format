@@ -14,6 +14,12 @@ documentation = "https://docs.rs/file-format"
 exclude = ["/.github", "/examples", "/fixtures", "/tests", ".gitattributes", ".gitignore"]
 rust-version = "1.60.0"
 
+[dependencies]
+tokio = { version = "1.29.1", default-features = false, optional = true }
+
+[dev-dependencies]
+tokio = { version = "1.29.1", default-features = false, features = ["rt-multi-thread"] }
+
 [features]
 ## Reader features
 reader = [
@@ -42,3 +48,5 @@ reader-sqlite3 = []
 reader-txt = []
 reader-xml = []
 reader-zip = []
+
+tokio = ["dep:tokio", "tokio/io-util"]
