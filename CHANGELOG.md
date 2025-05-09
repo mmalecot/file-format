@@ -1,3 +1,10 @@
+# Version 0.27.0 (2025-05-09)
+
+## New formats support
+
+- FIGlet Font (FLF)
+- TrueType Collection (TTC)
+
 # Version 0.26.0 (2024-11-07)
 
 ## API

@@ -19,6 +19,12 @@ fn test_embedded_opentype() {
 }
 
 #[test]
+fn test_figlet_font() {
+    let fmt = FileFormat::from_file("fixtures/font/sample.flf").unwrap();
+    assert_eq!(fmt, FileFormat::FigletFont);
+}
+
+#[test]
 fn test_glyphs() {
     let fmt = FileFormat::from_file("fixtures/font/sample.glyphs").unwrap();
     assert_eq!(fmt, FileFormat::Glyphs);
@@ -34,6 +40,12 @@ fn test_opentype() {
 fn test_truetype() {
     let fmt = FileFormat::from_file("fixtures/font/sample.ttf").unwrap();
     assert_eq!(fmt, FileFormat::Truetype);
+}
+
+#[test]
+fn test_truetype_collection() {
+    let fmt = FileFormat::from_file("fixtures/font/sample.ttc").unwrap();
+    assert_eq!(fmt, FileFormat::TruetypeCollection);
 }
 
 #[test]

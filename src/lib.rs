@@ -330,6 +330,7 @@ impl From<&[u8]> for FileFormat {
 
 /// A kind of file format.
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
+#[non_exhaustive]
 pub enum Kind {
     /// Files and directories stored in a single, possibly compressed, archive.
     Archive,

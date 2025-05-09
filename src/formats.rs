@@ -768,6 +768,13 @@ formats! {
     extension = "fbz"
     kind = Ebook
 
+    format = FigletFont
+    name = "FIGlet Font"
+    short_name = "FLF"
+    media_type = "application/x-figlet"
+    extension = "flf"
+    kind = Font
+
     format = Filmbox
     name = "Filmbox"
     short_name = "FBX"
@@ -2684,6 +2691,13 @@ formats! {
     short_name = "TTF"
     media_type = "font/ttf"
     extension = "ttf"
+    kind = Font
+
+    format = TruetypeCollection
+    name = "TrueType Collection"
+    short_name = "TTC"
+    media_type = "font/collection"
+    extension = "ttc"
     kind = Font
 
     format = UltimateSoundtrackerModule
