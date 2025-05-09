@@ -1,6 +1,6 @@
 [package]
 name = "file-format"
-version = "0.27.0"
+version = "0.28.0"
 authors = ["Mickaël Malécot <mickael.malecot@gmail.com>"]
 edition = "2024"
 description = "Crate for determining the file format of a given file or stream."
