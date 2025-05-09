@@ -2,7 +2,7 @@
 name = "file-format"
 version = "0.26.0"
 authors = ["Mickaël Malécot <mickael.malecot@gmail.com>"]
-edition = "2021"
+edition = "2024"
 description = "Crate for determining the file format of a given file or stream."
 license = "MIT/Apache-2.0"
 readme = "README.md"
@@ -12,7 +12,7 @@ homepage = "https://github.com/mmalecot/file-format"
 repository = "https://github.com/mmalecot/file-format"
 documentation = "https://docs.rs/file-format"
 exclude = ["/.github", "/examples", "/fixtures", "/tests", ".gitattributes", ".gitignore"]
-rust-version = "1.60.0"
+rust-version = "1.85.0"
 
 [features]
 ## Reader features
