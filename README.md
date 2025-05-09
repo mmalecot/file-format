@@ -257,6 +257,7 @@ identification.
 - Glyphs
 - OpenType (OTF)
 - TrueType (TTF)
+- TrueType Collection (TTC)
 - Web Open Font Format (WOFF)
 - Web Open Font Format 2 (WOFF2)
 

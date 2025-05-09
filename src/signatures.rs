@@ -987,6 +987,9 @@ signatures! {
     format = Truetype
     value = b"\x00\x01\x00\x00\x00"
 
+    format = TruetypeCollection
+    value = b"ttcf\x00"
+
     format = VirtualMachineDisk
     value = b"COWD\x01"
     value = b"KDMV\x01"

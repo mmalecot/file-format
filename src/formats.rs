@@ -2693,6 +2693,13 @@ formats! {
     extension = "ttf"
     kind = Font
 
+    format = TruetypeCollection
+    name = "TrueType Collection"
+    short_name = "TTC"
+    media_type = "font/collection"
+    extension = "ttc"
+    kind = Font
+
     format = UltimateSoundtrackerModule
     name = "Ultimate Soundtracker Module"
     short_name = "MOD"

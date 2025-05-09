@@ -43,6 +43,12 @@ fn test_truetype() {
 }
 
 #[test]
+fn test_truetype_collection() {
+    let fmt = FileFormat::from_file("fixtures/font/sample.ttc").unwrap();
+    assert_eq!(fmt, FileFormat::TruetypeCollection);
+}
+
+#[test]
 fn test_web_open_font_format() {
     let fmt = FileFormat::from_file("fixtures/font/sample.woff").unwrap();
     assert_eq!(fmt, FileFormat::WebOpenFontFormat);
