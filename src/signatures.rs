@@ -900,6 +900,9 @@ signatures! {
     value = b"\x01\x00\x02" offset = 8, b"LP" offset = 34
     value = b"\x02\x00\x02" offset = 8, b"LP" offset = 34
 
+    format = FigletFont
+    value = b"flf2a"
+
     format = GoogleDraco
     value = b"DRACO"
 

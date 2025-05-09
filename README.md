@@ -253,6 +253,7 @@ identification.
 - BMFont ASCII (FNT)
 - BMFont Binary (FNT)
 - Embedded OpenType (EOT)
+- FIGlet Font (FLF)
 - Glyphs
 - OpenType (OTF)
 - TrueType (TTF)

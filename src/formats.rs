@@ -768,6 +768,13 @@ formats! {
     extension = "fbz"
     kind = Ebook
 
+    format = FigletFont
+    name = "FIGlet Font"
+    short_name = "FLF"
+    media_type = "application/x-figlet"
+    extension = "flf"
+    kind = Font
+
     format = Filmbox
     name = "Filmbox"
     short_name = "FBX"
