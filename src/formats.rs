@@ -848,7 +848,7 @@ formats! {
     format = FreeLosslessAudioCodec
     name = "Free Lossless Audio Codec"
     short_name = "FLAC"
-    media_type = "audio/x-flac"
+    media_type = "audio/flac"
     extension = "flac"
     kind = Audio
 
@@ -1322,14 +1322,14 @@ formats! {
     format = Matroska3dVideo
     name = "Matroska 3D Video"
     short_name = "MK3D"
-    media_type = "video/x-matroska"
+    media_type = "video/matroska"
     extension = "mk3d"
     kind = Video
 
     format = MatroskaAudio
     name = "Matroska Audio"
     short_name = "MKA"
-    media_type = "audio/x-matroska"
+    media_type = "audio/matroska"
     extension = "mka"
     kind = Audio
 
@@ -1343,7 +1343,7 @@ formats! {
     format = MatroskaVideo
     name = "Matroska Video"
     short_name = "MKV"
-    media_type = "video/x-matroska"
+    media_type = "video/matroska"
     extension = "mkv"
     kind = Video
 
