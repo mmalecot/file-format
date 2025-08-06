@@ -2957,6 +2957,13 @@ formats! {
     extension = "wmf"
     kind = Image
 
+    format = EnhancedMetafile
+    name = "Enhanced Metafile"
+    short_name = "EMF"
+    media_type = "image/emf"
+    extension = "emf"
+    kind = Image
+
     format = WindowsRecordedTvShow
     name = "Windows Recorded TV Show"
     short_name = "WTV"

@@ -418,6 +418,12 @@ fn test_windows_metafile() {
 }
 
 #[test]
+fn test_enhanced_metafile() {
+    let fmt = FileFormat::from_file("fixtures/image/sample.emf").unwrap();
+    assert_eq!(fmt, FileFormat::EnhancedMetafile);
+}
+
+#[test]
 fn test_wordperfect_graphics_1() {
     let fmt = FileFormat::from_file("fixtures/image/sample1.wpg").unwrap();
     assert_eq!(fmt, FileFormat::WordperfectGraphics);
