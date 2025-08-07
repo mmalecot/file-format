@@ -3,6 +3,7 @@
 ## New formats support
 
 - Enhanced Metafile (EMF)
+- Figma Design (FIG)
 
 ## Fixes
 

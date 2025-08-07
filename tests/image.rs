@@ -103,6 +103,13 @@ fn test_farbfeld() {
     assert_eq!(fmt, FileFormat::Farbfeld);
 }
 
+#[cfg(feature = "reader-zip")]
+#[test]
+fn test_figma_design() {
+    let fmt = FileFormat::from_file("fixtures/image/sample.fig").unwrap();
+    assert_eq!(fmt, FileFormat::FigmaDesign);
+}
+
 #[test]
 fn test_free_lossless_image_format() {
     let fmt = FileFormat::from_file("fixtures/image/sample.flif").unwrap();

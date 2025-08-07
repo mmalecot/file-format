@@ -975,6 +975,7 @@ impl crate::FileFormat {
                 "META-INF/application.xml" => return Ok(Self::EnterpriseApplicationArchive),
                 "META-INF/mozilla.rsa" => return Ok(Self::Xpinstall),
                 "WEB-INF/web.xml" => return Ok(Self::WebApplicationArchive),
+                "canvas.fig" => return Ok(Self::FigmaDesign),
                 "doc.kml" => return Ok(Self::KeyholeMarkupLanguageZip),
                 "document.json" => return Ok(Self::Sketch43),
                 "extension.vsixmanifest" => return Ok(Self::MicrosoftVisualStudioExtension),

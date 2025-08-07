@@ -782,6 +782,13 @@ formats! {
     extension = "flf"
     kind = Font
 
+    format = FigmaDesign
+    name = "Figma Design"
+    short_name = "FIG"
+    media_type = "image/x-figma"
+    extension = "fig"
+    kind = Image
+
     format = Filmbox
     name = "Filmbox"
     short_name = "FBX"

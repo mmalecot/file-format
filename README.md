@@ -297,6 +297,7 @@ identification.
 - Encapsulated PostScript (EPS)
 - Enhanced Metafile (EMF)
 - Experimental Computing Facility (XCF)
+- Figma Design (FIG)
 - Free Lossless Image Format (FLIF)
 - Fujifilm Raw (RAF)
 - Graphics Interchange Format (GIF)
