@@ -295,6 +295,7 @@ identification.
 - Cineon (CIN)
 - Digital Picture Exchange (DPX)
 - Encapsulated PostScript (EPS)
+- Enhanced Metafile (EMF)
 - Experimental Computing Facility (XCF)
 - Free Lossless Image Format (FLIF)
 - Fujifilm Raw (RAF)

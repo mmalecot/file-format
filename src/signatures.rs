@@ -1069,6 +1069,9 @@ signatures! {
     value = b"SDPX"
     value = b"XPDS"
 
+    format = EnhancedMetafile
+    value = b"\x01\x00\x00\x00", b"\x20\x45\x4D\x46" offset=40
+
     format = ExecutableAndLinkableFormat
     value = b"\x7FELF"
 

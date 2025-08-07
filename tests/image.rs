@@ -86,6 +86,12 @@ fn test_encapsulated_postscript() {
 }
 
 #[test]
+fn test_enhanced_metafile() {
+    let fmt = FileFormat::from_file("fixtures/image/sample.emf").unwrap();
+    assert_eq!(fmt, FileFormat::EnhancedMetafile);
+}
+
+#[test]
 fn test_experimental_computing_facility() {
     let fmt = FileFormat::from_file("fixtures/image/sample.xcf").unwrap();
     assert_eq!(fmt, FileFormat::ExperimentalComputingFacility);
