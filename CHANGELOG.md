@@ -1,4 +1,4 @@
-# Version 0.28.0 (unreleased)
+# Version 0.28.0 (2025-08-07)
 
 ## New formats support
 
