@@ -161,6 +161,7 @@ identification.
   * [Electronic Publication (EPUB)](`FileFormat::ElectronicPublication`)
   * [Enterprise Application Archive (EAR)](`FileFormat::EnterpriseApplicationArchive`)
   * [FictionBook ZIP (FBZ)](`FileFormat::FictionbookZip`)
+  * [Figma Design (FIG)](`FileFormat::FigmaDesign`)
   * [Flash CS5 Project (FLA)](`FileFormat::FlashCs5Project`)
   * [Fusion 360 (F3D)](`FileFormat::Fusion360`)
   * [InDesign Markup Language (IDML)](`FileFormat::IndesignMarkupLanguage`)

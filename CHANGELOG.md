@@ -1,3 +1,17 @@
+# Version 0.28.0 (2025-08-07)
+
+## New formats support
+
+- Enhanced Metafile (EMF)
+- Figma Design (FIG)
+
+## Fixes
+
+- Free Lossless Audio Codec (FLAC) media type
+- Matroska 3D Video (MK3D) media type
+- Matroska Audio (MKA) media type
+- Matroska Video (MKV) media type
+
 # Version 0.27.0 (2025-05-09)
 
 ## New formats support

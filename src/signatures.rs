@@ -559,6 +559,9 @@ signatures! {
     format = EightBitSampledVoice
     value = b"FORM", b"8SVX" offset = 8
 
+    format = EnhancedMetafile
+    value = b"\x01\x00\x00\x00", b" EMF" offset = 40
+
     format = ExperimentalComputingFacility
     value = b"gimp xcf"
 
