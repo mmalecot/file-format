@@ -1069,6 +1069,9 @@ signatures! {
     value = b"SDPX"
     value = b"XPDS"
 
+    format = EnhancedMetafile
+    value = b"\x01\x00\x00\x00", b"\x20\x45\x4D\x46" offset=40
+
     format = ExecutableAndLinkableFormat
     value = b"\x7FELF"
 
@@ -1286,10 +1289,6 @@ signatures! {
     value = b"\x01\x00\x09\x00"
     value = b"\x02\x00\x09\x00"
     value = b"\xD7\xCD\xC6\x9A"
-
-    format = EnhancedMetafile
-    value = b"\x01\x00\x00\x00"
-    value = b"\x20\x45\x4D\x46"  offset=40
 
     format = WordperfectDocument
     value = b"\xFFWPC"
