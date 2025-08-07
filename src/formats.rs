@@ -2964,7 +2964,6 @@ formats! {
     extension = "wmf"
     kind = Image
 
-
     format = WindowsRecordedTvShow
     name = "Windows Recorded TV Show"
     short_name = "WTV"

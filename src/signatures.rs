@@ -559,6 +559,9 @@ signatures! {
     format = EightBitSampledVoice
     value = b"FORM", b"8SVX" offset = 8
 
+    format = EnhancedMetafile
+    value = b"\x01\x00\x00\x00", b" EMF" offset = 40
+
     format = ExperimentalComputingFacility
     value = b"gimp xcf"
 
@@ -1068,9 +1071,6 @@ signatures! {
     format = DigitalPictureExchange
     value = b"SDPX"
     value = b"XPDS"
-
-    format = EnhancedMetafile
-    value = b"\x01\x00\x00\x00", b"\x20\x45\x4D\x46" offset=40
 
     format = ExecutableAndLinkableFormat
     value = b"\x7FELF"
