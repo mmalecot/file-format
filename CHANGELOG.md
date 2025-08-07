@@ -1,5 +1,9 @@
 # Version 0.28.0 (unreleased)
 
+## New formats support
+
+- Enhanced Metafile (EMF)
+
 ## Fixes
 
 - Free Lossless Audio Codec (FLAC) media type
