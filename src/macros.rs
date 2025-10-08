@@ -22,7 +22,8 @@ macro_rules! formats {
         )*
     } => {
         /// A file format.
-        #[derive(Clone, Copy, Debug, Eq, PartialEq)]
+        #[cfg_attr(feature="serde", derive(Clone, Copy, Debug, Eq, PartialEq, Serialize, Deserialize))]
+        #[cfg_attr(not(feature="serde"), derive(Clone, Copy, Debug, Eq, PartialEq))]
         #[non_exhaustive]
         pub enum FileFormat {
             $(

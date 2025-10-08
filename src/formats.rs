@@ -1,4 +1,6 @@
 //! Definition of file formats, listed in alphabetical order.
+#[cfg(feature="serde")]
+use serde::{Serialize,Deserialize};
 
 formats! {
     format = Abiword
