@@ -922,6 +922,7 @@ signatures! {
     value = b"CD001" offset = 32769
     value = b"CD001" offset = 34817
     value = b"CD001" offset = 36865
+    value = b"BEA01" offset = 32769
 
     format = Larc
     value = b"-lz2-" offset = 2
