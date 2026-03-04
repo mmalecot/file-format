@@ -1165,6 +1165,15 @@ signatures! {
     format = MicrosoftDirectdrawSurface
     value = b"DDS "
 
+    format = MicrosoftExcelSpreadsheet
+    value = b"\x09\x04\x06\x00"
+
+    format = MicrosoftPowerpointPresentation
+    value = b"\xED\xDE\xAD\x0B"
+
+    format = MicrosoftSzddCompressed
+    value = b"SZDD"
+
     format = MicrosoftWorksWordProcessor
     value = b"\x01\xFE", b"\x01\x00" offset = 112
 

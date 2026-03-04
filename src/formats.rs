@@ -1541,6 +1541,13 @@ formats! {
     extension = "msi"
     kind = Package
 
+    format = MicrosoftSzddCompressed
+    name = "Microsoft SZDD Compressed"
+    short_name = "SZDD"
+    media_type = "application/x-ms-compress-szdd"
+    extension = "sz"
+    kind = Compressed
+
     format = MicrosoftVirtualHardDisk
     name = "Microsoft Virtual Hard Disk"
     short_name = "VHD"
