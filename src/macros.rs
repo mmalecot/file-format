@@ -31,6 +31,7 @@ macro_rules! formats {
         /// accessible via [`name`](Self::name), [`short_name`](Self::short_name),
         /// [`media_type`](Self::media_type), [`extension`](Self::extension), and
         /// [`kind`](Self::kind).
+        #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
         #[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
         #[non_exhaustive]
         pub enum FileFormat {

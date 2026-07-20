@@ -42,3 +42,9 @@ reader-sqlite3 = []
 reader-txt = []
 reader-xml = []
 reader-zip = []
+
+# Enable Serde
+serde = ["dep:serde"]
+
+[dependencies]
+serde = {version = "1.0", features = ["derive"], optional = true}
