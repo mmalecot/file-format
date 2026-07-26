@@ -13,8 +13,14 @@ fn test_apple_itunes_video() {
 }
 
 #[test]
-fn test_apple_quicktime() {
-    let fmt = FileFormat::from_file("fixtures/video/sample.mov").unwrap();
+fn test_apple_quicktime_1() {
+    let fmt = FileFormat::from_file("fixtures/video/sample1.mov").unwrap();
+    assert_eq!(fmt, FileFormat::AppleQuicktime);
+}
+
+#[test]
+fn test_apple_quicktime_2() {
+    let fmt = FileFormat::from_file("fixtures/video/sample2.mov").unwrap();
     assert_eq!(fmt, FileFormat::AppleQuicktime);
 }
 

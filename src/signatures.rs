@@ -864,6 +864,7 @@ signatures! {
     value = b"free" offset = 4
     value = b"mdat" offset = 4
     value = b"moov" offset = 4
+    value = b"pnot" offset = 4
     value = b"skip" offset = 4
     value = b"wide" offset = 4
 
