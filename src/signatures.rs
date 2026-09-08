@@ -270,6 +270,9 @@ signatures! {
     value = b"<html"
     value = b"<HTML"
 
+    format = PMTiles
+    value = b"PMTiles"
+
     format = PolygonAscii
     value = b"ply\r\nformat ascii"
     value = b"ply\nformat ascii"

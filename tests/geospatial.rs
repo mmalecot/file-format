@@ -53,6 +53,12 @@ fn test_keyhole_markup_language_zip() {
 }
 
 #[test]
+fn test_pmtiles() {
+    let fmt = FileFormat::from_extension("pmtiles");
+    assert_eq!(fmt, &[FileFormat::PMTiles]);
+}
+
+#[test]
 fn test_shapefile() {
     let fmt = FileFormat::from_file("fixtures/geospatial/sample.shp").unwrap();
     assert_eq!(fmt, FileFormat::Shapefile);

@@ -2189,6 +2189,13 @@ formats! {
     extension = "pma"
     kind = Archive
 
+    format = PMTiles
+    name = "PMTiles"
+    short_name = "PMTiles"
+    media_type = "application/vnd.pmtiles"
+    extension = "pmtiles"
+    kind = Geospatial
+
     format = PolygonAscii
     name = "Polygon ASCII"
     short_name = "PLY"
