@@ -2192,7 +2192,7 @@ formats! {
     format = PMTiles
     name = "PMTiles"
     short_name = "PMTiles"
-    media_type = "application/xapplication/vnd.pmtiles"
+    media_type = "application/vnd.pmtiles"
     extension = "pmtiles"
     kind = Geospatial
 
