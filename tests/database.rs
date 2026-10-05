@@ -33,6 +33,12 @@ fn test_opendocument_database() {
 }
 
 #[test]
+fn test_sas7bdat() {
+    let fmt = FileFormat::from_file("fixtures/database/sample.sas7bdat").unwrap();
+    assert_eq!(fmt, FileFormat::Sas7bdat);
+}
+
+#[test]
 fn test_sqlite3() {
     let fmt = FileFormat::from_file("fixtures/database/sample.sqlite").unwrap();
     assert_eq!(fmt, FileFormat::Sqlite3);

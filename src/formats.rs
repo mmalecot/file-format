@@ -2369,6 +2369,13 @@ formats! {
     extension = "rz"
     kind = Compressed
 
+    format = Sas7bdat
+    name = "SAS 7+ Data Set"
+    short_name = "SAS7BDAT"
+    media_type = "application/x-sas-data"
+    extension = "sas7bdat"
+    kind = Database
+
     format = ScalableVectorGraphics
     name = "Scalable Vector Graphics"
     short_name = "SVG"

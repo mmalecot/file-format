@@ -184,6 +184,7 @@ identification.
 - Microsoft Access Database (MDB)
 - Microsoft Works Database (WDB)
 - OpenDocument Database (ODB)
+- SAS 7+ Data Set (SAS7BDAT)
 - SQLite 3
 
 ### Diagram

@@ -1,3 +1,9 @@
+# Version 0.30.0 (unreleased)
+
+## New formats support
+
+- SAS 7+ Data Set (SAS7BDAT)
+
 # Version 0.29.0 (2026-03-27)
 
 ## API

@@ -90,6 +90,9 @@ signatures! {
     value = b"ply\nformat binary_big_endian"
     value = b"ply\rformat binary_big_endian"
 
+    format = Sas7bdat
+    value = b"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xC2\xEA\x81\x60\xB3\x14\x11\xCF\xBD\x92\x08\x00\x09\xC7\x31\x8C\x18\x1F\x10\x11"
+
     format = Sketchup
     value = b"\xFF\xFE\xFF\x0ES\0k\0e\0t\0c\0h\0U\0p\0 \0M\0o\0d\0e\0l\0"
 
