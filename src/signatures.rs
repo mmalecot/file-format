@@ -378,6 +378,12 @@ signatures! {
     value = b"  0\r\nSECTION"
     value = b"  0\nSECTION"
 
+    format = ExtensibleMarkupLanguage
+    value = b"\xFE\xFF\0<\0?\0x\0m\0l"
+    value = b"\xFF\xFE<\0?\0x\0m\0l\0"
+    value = b"\xEF\xBB\xBF<?xml"
+    value = b"<?xml"
+
     format = JpegXl
     value = b"\0\0\0\x0CJXL \r\n\x87\n"
     value = b"\xFF\n"
@@ -575,10 +581,6 @@ signatures! {
 
     format = ExperimentalComputingFacility
     value = b"gimp xcf"
-
-    format = ExtensibleMarkupLanguage
-    value = b"\xEF\xBB\xBF<?xml"
-    value = b"<?xml"
 
     format = Farbfeld
     value = b"farbfeld"

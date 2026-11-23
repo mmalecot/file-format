@@ -104,6 +104,20 @@ fn test_extensible_markup_language() {
 }
 
 #[test]
+fn test_extensible_markup_language_utf16() {
+    let xml = r#"<?xml version="1.0" encoding="UTF-16"?><a/>"#;
+    let (mut le, mut be) = (vec![0xFF, 0xFE], vec![0xFE, 0xFF]);
+    for unit in xml.encode_utf16() {
+        le.extend(unit.to_le_bytes());
+        be.extend(unit.to_be_bytes());
+    }
+    let fmt = FileFormat::from_bytes(le);
+    assert_eq!(fmt, FileFormat::ExtensibleMarkupLanguage);
+    let fmt = FileFormat::from_bytes(be);
+    assert_eq!(fmt, FileFormat::ExtensibleMarkupLanguage);
+}
+
+#[test]
 fn test_extensible_stylesheet_language_transformations_1() {
     let fmt = FileFormat::from_file("fixtures/other/sample1.xsl").unwrap();
     assert_eq!(fmt, FileFormat::ExtensibleStylesheetLanguageTransformations);
