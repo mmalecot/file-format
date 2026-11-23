@@ -248,6 +248,19 @@ fn test_pcap_next_generation_dump() {
 }
 
 #[test]
+fn test_pcap_next_generation_dump_big_endian() {
+    let fmt = FileFormat::from_bytes(b"\x0A\x0D\x0D\x0A\0\0\0\x1C\x1A\x2B\x3C\x4D\0\x01\0\0");
+    assert_eq!(fmt, FileFormat::PcapNextGenerationDump);
+}
+
+#[test]
+fn test_pcap_next_generation_dump_block_type_only() {
+    // Text starting with LF CR CR LF is not pcapng without the byte-order magic
+    let fmt = FileFormat::from_bytes(b"\n\r\r\n<a/>");
+    assert_ne!(fmt, FileFormat::PcapNextGenerationDump);
+}
+
+#[test]
 fn test_pem_certificate() {
     let fmt = FileFormat::from_file("fixtures/other/sample.crt").unwrap();
     assert_eq!(fmt, FileFormat::PemCertificate);

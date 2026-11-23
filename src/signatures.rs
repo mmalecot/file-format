@@ -689,6 +689,10 @@ signatures! {
     value = b"\x24\xFF\xAE\x51\x69\x9A\xA2\x21" offset = 192
     value = b"\xC8\x60\x4F\xE2\x01\x70\x8F\xE2" offset = 192
 
+    format = PcapNextGenerationDump
+    value = b"\x0A\x0D\x0D\x0A", b"\x1A\x2B\x3C\x4D" offset = 8
+    value = b"\x0A\x0D\x0D\x0A", b"\x4D\x3C\x2B\x1A" offset = 8
+
     format = PortableNetworkGraphics
     value = b"\x89PNG\r\n\x1A\n"
 
@@ -1214,9 +1218,6 @@ signatures! {
     format = PcapDump
     value = b"\xA1\xB2\xC3\xD4"
     value = b"\xD4\xC3\xB2\xA1"
-
-    format = PcapNextGenerationDump
-    value = b"\x0A\x0D\x0D\x0A"
 
     format = PersonalStorageTable
     value = b"!BDN"
